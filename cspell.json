@@ -1,0 +1,38 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [
+        {
+            "name": "custom-dictionary",
+            "path": "./.cspell/custom-dictionary.txt",
+            "addWords": true
+        }
+    ],
+    "dictionaries": [
+        "custom-dictionary"
+    ],
+    "words": [
+        "boardmarker",
+        "boardmarkers",
+        "classtime",
+        "customcontrols",
+        "emaillink",
+        "fullname",
+        "iframes",
+        "inversecolor",
+        "keyw",
+        "LEVERIDGE",
+        "LOOTES",
+        "officehour",
+        "SAYWELL",
+        "skipuncounted",
+        "speakernote",
+        "Speakman",
+        "verticator",
+        "wkpdf",
+        "Zhang"
+    ],
+    "language": "en-GB",
+    "ignoreWords": [],
+    "import": []
+}

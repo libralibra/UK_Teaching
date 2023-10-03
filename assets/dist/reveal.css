@@ -2515,11 +2515,11 @@ html.print-pdf .aria-status {
         box-shadow: none !important;
     }
 
-    html:not(.print-pdf) .reveal section small {
+    html:not(.print-pdf) section small {
         font-size: .8em !important;
     }
 
-    html:not(.print-pdf) .reveal section bigtext {
+    html:not(.print-pdf) section bigtext {
         font-size: 2em !important;
         line-height: 1.5em !important;
     }
