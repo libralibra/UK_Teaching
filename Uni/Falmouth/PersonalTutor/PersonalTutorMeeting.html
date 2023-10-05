@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title>Course Title</title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="description" content="Meet Your Personal Tutor">
+        <!-- <meta name="copyright" content="Dr Xu Zhang"> -->
+        <meta name="generator" content="VS Code">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- the default stylsheets -->
+        <link rel="stylesheet" href="../../../assets/dist/reveal.css">
+        <link rel="stylesheet" href="../../../assets/dist/reset.css">
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css">
+        <!-- <link rel="stylesheet" href="../../../assets/plugin/highlight/zenburn.css"> -->
+
+        <!-- the chalkboard -->
+        <link rel="stylesheet" href="../../../assets/plugin/chalkboard/style.css">
+        <!-- custom controls -->
+        <link rel="stylesheet" href="../../../assets/plugin/customcontrols/style.css">
+        <!-- custom controls font awsome icons -->
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
+        <!-- rows and columnes in one slide -->
+        <link rel="stylesheet" href="../../../assets/dist/row_col.css">
+        <!-- pointer plugin style -->
+        <link rel="stylesheet" href="../../../assets/plugin/pointer/pointer.css" />
+
+        <!-- all links open in new tab -->
+        <!-- <base target="_blank"> -->
+    </head>
+
+    <body>
+        <script>
+            // generate pdf link, click the button, then press CTRL+P
+            // remember to follow these steps to get rid of the borders:
+            //  1. select 'save as PDF' for printer
+            //  2. advanced settings or something similar
+            //  3. margin -> None if needed
+            //  4. tick 'background graphics' if needed
+            function GeneratePDF() {
+                let url = window.location.href;
+                let pos = url.indexOf(".html");
+                url = url.substr(0, pos + ".html".length);
+                window.location.href = url + "?print-pdf";
+            }
+        </script>
+        <!-- pdf printing by showing a corner strip
+            put pdf button before anything else, as the z-index makes sure later elements has a 
+            higher z-index than those before. In overview mode, the slides should be in the front.
+         -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <section id="title">
+                        <cyan>
+                            <h1 class="course"></h1>
+                        </cyan>
+                        <!--img src="img/nn.png" width=40% /-->
+
+                        <br><br><br>
+                        <p><span class="fullname"></span> <br>
+                            <span class="uni"></span>, v. <span class="year"></span>
+                            <!-- <script>document.write(new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1))</script> -->
+                        </p>
+
+                        <aside class="notes">
+
+                        </aside>
+                    </section>
+
+                    <section id="digital_tap">
+                        <h1>Digital Attendance System (SEATS)</h1>
+                        <img src="../common/digitap.PNG" alt="digital tap" class="r-stretch">
+                        <p class="fragment fade-down">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did't work.</p>
+                    </section>
+
+                    <section id="who_am_i">
+                        <h1>Who am I?</h1>
+                        <ul>
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li class="fragment">
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li class="fragment">
+                                <green>Teaching:</green> MSc courses in Games Academy
+                                <ul>
+                                    <li>Classical Artificial Intelligence</li>
+                                    <li>Machine Learning</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                <green>Background: </green>
+                                <ul>
+                                    <li>majored in Computer Science, AI/ML and its Applications</li>
+                                    <li>worked for Rolls-Royce UTC, University of Southampton</li>
+                                    <li>delivered more than 10 successful software and production tools for Rolls-Royce</li>
+                                    <li>supported Rolls-Royce engineers in 5 R&D Centres: Bristol (UK), Derby (UK), Dahlewitz (Germany), North America (US), Bangalore (India)</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                        </aside>
+                    </section>
+
+                    <section id="contact_info">
+                        <h1>Contact Information</h1>
+                        <ul>
+                            <li>
+                                <cyan>Email:</cyan> <a href="" class="emaillink"></a>
+                            </li>
+                            <li>
+                                <cyan>Booking:</cyan> <a target="_blank" href="https://outlook.office.com/bookwithme/user/43e7d53ea00e433f898c3b656a30f0fc@falmouth.ac.uk/?getrequesturl=https%3a%2f%2foutlook.office.com%2fows%2fOID%3a2fd42220-1a81-4f57-b132-37f7299a6a61%40550beeb3-6a3d-4646-a111-f89d0177792e%2fbeta%2fBookWithMe%2fCheckBookable%3fbookingcode%3d4c3140a8-67d2-413e-8afc-39b4bebbb369%26itemid%3dSVRwCe7HMUGxuT6WGxi68g2%26authtoken%3deyJhbGciOiJSUzI1NiIsImtpZCI6ImszWXdXK3p0c0YrWU9BQkxhK25PUDJZWlJ6TT0iLCJ0eXAiOiJKV1QiLCJ4NXQiOiJWX0IxcjA0SzdsWm9UdDU3YS1CbkVWOUJaQnMifQ.eyJvaWQiOiIyZmQ0MjIyMC0xYTgxLTRmNTctYjEzMi0zN2Y3Mjk5YTZhNjEiLCJ2ZXIiOiJSZXNvdXJjZUxvb3BiYWNrLlVzZXIuVjEiLCJzY3AiOiJPcGVuQm9vay1JbnRlcm5hbC5SZWFkV3JpdGUiLCJyc2NvcGVsZW4iOiIyMTgiLCJyZXNvdXJjZV9zY29wZSI6IntcIlVSTFwiOlwibWY0K3drSXZtcDdXNm1NWUJ0d1MxMGVJYW5Pa1dhQTlJS044eWVUNDdwST1cIn0iLCJjb3JyaWQiOiIwYWU4MTY0MS1kZjljLTQwODYtOGYyNi0zNWE4YmE0Njg0YzIiLCJhcHBpZCI6IjE1N2NkZmJmLTczOTgtNGE1Ni05NmMzLWU5M2U5YWIzMDliNSIsImFwcGlkYWNyIjoiMCIsInRpZCI6IjU1MGJlZWIzLTZhM2QtNDY0Ni1hMTExLWY4OWQwMTc3NzkyZSIsImlhdCI6MTY5NTgzNDY4MCwibmJmIjoxNjk1ODM0NjgwLCJleHAiOjE3MDM2MTA2ODAsImlzcyI6Imh0dHBzOi8vcmVzb3VyY2Uuc2VsZi8iLCJhdWQiOiJodHRwczovL291dGxvb2sub2ZmaWNlLmNvbSJ9.Qh6zH-teWvGZ6mD6oaEuvVbLYo0P4XXiopiyN5AZBCWGmBoNWsBuXHIm4VB149p-p95Bd8ohlP6tdZwLI3g63T_P_GBuT9mtxfm9kjw-jN6sDcBuVbSmx3uoc85gy8y390BwQ0kGUCmUtbTQ-92MjvD9d2DWHBGHneAcylootjH9_OMbY4oVBr-GSRmhPdtNr4zzj8v1FGX9DEW-ztwOEMeTC-8Msoa5IS1jxvCsZUpuHbzVOI3wOf5-KioySzAIhVEfdENuOkvN0DoPSxBB_XoEbVLEQjD0lFNMEVNxDsrb1snDjARDE57NYWPBji56QsIBMtz1BLnTGnQj6LCqDw&anonymous">Book time with Daniel Zhang</a>
+                            </li>
+                            <li>Or send direct message on <blue>Microsoft Teams</blue>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="what_is">
+                        <h1>What is a Personal Tutor for?</h1>
+                        <p>The personal tutoring system in higher education sector is to:</p>
+                        <ul>
+                            <li class="fragment">
+                                <purple>Encourage</purple> you to be a confident learner
+                            </li>
+                            <li class="fragment">
+                                <cyan>Guide</cyan> you to participate in the academic community actively
+                            </li>
+                            <li class="fragment">
+                                <blue>Support</blue> you in dealing with possible challenges that may affect your university life
+                            </li>
+                            <li class="fragment">
+                                <orange>Prompt</orange> your to reflect your personal progress and development
+                            </li>
+                            <li class="fragment">
+                                <green>Draw</green> your attention to services and possible opportunities that may benefit you <span class="fragment fade-down">
+                                    <cyan>if possible</cyan>
+                                </span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="what_do">
+                        <h1>What does a Personal Tutor Do?</h1>
+                        <p>Typically, a personal tutor will:</p>
+                        <ul>
+                            <li class="fragment">
+                                <purple>Listen</purple> to your non-academic experience of university life
+                            </li>
+                            <li class="fragment">
+                                <cyan>Give</cyan> your advice on pastoral matters
+                            </li>
+                            <li class="fragment">
+                                <blue>Offer</blue> you insights into <red>general</red> study skills (non-subject-specific)
+                            </li>
+                            <li class="fragment">
+                                <orange>Guide</orange> you to specialised services provided by the university (if necessary)
+                            </li>
+                            <li class="fragment">
+                                <green>Write</green> a reference letter when you apply for a job
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="meeting">
+                        <h1>Meeting Format</h1>
+                        <p>What you would expect:</p>
+                        <ul>
+                            <li class="fragment">A meeting at the <blue>beginning</blue> of your study (i.e. this one)</li>
+                            <li class="fragment">A catch-up meeting <green>per study block</green> (usually about <yellow>10 mins</yellow> each, in the middle of each study block)</li>
+                            <li class="fragment">
+                                <orange>Further meeting to arrange</orange> for specific topics as necessary (by email)
+                            </li>
+                            <li class="fragment">I am happy to meet you either <purple>in-person (one2one or in small groups)</purple> or <cyan>on-line via Microsoft Teams</cyan>. </li>
+                        </ul>
+                        <p class="fragment">It's <italic>
+                                <black>your</black>
+                            </italic> responsibility to arrange a meeting with me to report your updates, though I will email you to remind.</p>
+                    </section>
+
+                    <section id="coursework">
+                        <h1>Coursework & Assessment</h1>
+                        <ul>
+                            <li class="fragment">All information would be made available in <a href="https://learningspace.falmouth.ac.uk/" target="_blank" title="learning space link">Learning Space</a> </li>
+                            <li class="fragment">Module leaders would explain everything about the modules and courses your are on</li>
+                            <li class="fragment">Please direct all queries to relevant module leaders - we cannot help on coursework, assessment, and marking criteria.</li>
+                            <li class="fragment">Deadlines need to be checked in <a href="https://www.falmouth.ac.uk/student-portal-falmouth-app" target="_blank" title="MyFalmouth link">MyFalmouth</a>
+                                <yellow>by yourself</yellow>!
+                            </li>
+                            <li class="fragment">Advices:
+                                <ol>
+                                    <li>
+                                        <red>Never</red> escape from your study routine!
+                                    </li>
+                                    <li>
+                                        <blue>Plan</blue> ahead - DON'T wait for the last minute!
+                                    </li>
+                                    <li>
+                                        <green>Iterative</green> submission - something is always better than nothing!
+                                    </li>
+                                    <li>
+                                        <yellow>Apply</yellow> for extension if needed!
+                                    </li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="policies">
+                        <h1>Something to remember</h1>
+                        <p>Make yourself aware of these terms via the university website</p>
+                        <ul>
+                            <li class="fragment">
+                                <yellow>Individual Learning Plans</yellow>: contact <a href="https://www.falmouth.ac.uk/experience/support/accessibility" target="_blank" title="accessibility team link">Accessibility</a> as soon as possible.
+                            </li>
+                            <li class="fragment">
+                                <orange>Adjusted Deadlines</orange>: extensions of up to 10 working days (case-by-case)
+                            </li>
+                            <li class="fragment">
+                                <green><a href="https://www.falmouth.ac.uk/student-portal-falmouth-app">Extenuating Circumstances​</a></green>: via MyFalmouth, case-by-case
+                                <ol>
+                                    <li>5 working days (self-certified, twice per academic year)</li>
+                                    <li>10 working days (apply with evidence)</li>
+                                </ol>
+                            </li>
+                            <li class="fragment">
+                                <purple><a href="Regulations" target="_blank" title="regulation link">Regulations</a></purple>: <red>
+                                    <italic>your</italic>
+                                </red> responsibility to familiarise yourself with regulations, policies, and procedures
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="health">
+                        <h1>Health & Wellbeing</h1>
+                        The university has a <black>Mental Health Charter</black> to support students in multiple ways:
+                        <ul>
+                            <li class="fragment">Digital Wellbeing Space (via Spectrum Life)</li>
+                            <li class="fragment">24/7 Counselling Service</li>
+                            <li class="fragment">Community Support (<a href="https://www.thesu.org.uk/advice/" target="_blank" title="student union link">Student Union</a>, Mentors, Chaplaincy, "Look After Your Mate" scheme)</li>
+                            <li class="fragment">Wellbeing Workshops & Events</li>
+                        </ul>
+                        <p class="fragment"><a href="https://www.falmouth.ac.uk/experience/support/emergency-support" target="_blank" title="emergency support link">Emergency Support</a>
+                            <br>
+                            <a href="https://www.falmouth.ac.uk/experience/support/mental-health-wellbeing" target="_blank" title="mental health link">Mental Health & Wellbeing</a>
+                        </p>
+                    </section>
+
+                    <section id="questions">
+                        <h2>
+                            <purple>Questions?</purple>
+                        </h2>
+                        <img src="../common/questions.PNG" width="50%" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        </h6>
+
+                        <aside class="notes">
+
+                        </aside>
+                    </section>
+
+                    <section id="introduce">
+                        <h1>IT'S YOUR TURN</h1>
+                        <p>
+                            <cyan>Introduce yourself to the others:</cyan>
+                        </p>
+                        <ul>
+                            <li>Who you are? Where are you from?</li>
+                            <li>What background do you have?</li>
+                            <li>What's your study and career aspiration?</li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img src="../common/logo.png" title="visit Falmouth University" style="width:100px;"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- keys: 
+            SPACE,arrow :   navigation
+            .           :   blackout
+            ESC, O      :   overview
+            ALT+click   :   zoom in
+            C           :   note cavas
+            B           :   chalkboard
+            S           :   speaker mode (appearance didn't work well with speaker mode)
+            C+S+F       :   search in slides
+
+        -->
+
+        <script src="../../../assets/dist/reveal.js"></script>
+        <!-- <script src="../../../assets/js/reveal.js"></script> -->
+        <script src="../../../assets/plugin/zoom/zoom.js"></script>
+        <script src="../../../assets/plugin/notes/notes.js"></script>
+        <script src="../../../assets/plugin/search/search.js"></script>
+        <script src="../../../assets/plugin/markdown/markdown.js"></script>
+        <script src="../../../assets/plugin/highlight/highlight.js"></script>
+        <!-- math -->
+        <script src="../../../assets/plugin/math/math.js"></script>
+        <!-- menu: https://github.com/denehyg/reveal.js-menu -->
+        <script src="../../../assets/plugin/menu/menu.js"></script>
+        <!-- chalkboard need customcontrols -->
+        <script src="../../../assets/plugin/chalkboard/plugin.js"></script>
+        <script src="../../../assets/plugin/customcontrols/plugin.js"></script>
+        <!-- appearance for text and image animation like ppt -->
+        <!-- <script src="../../../assets/plugin/appearance/appearance.js"></script> -->
+        <!-- vertical deck indicator: verticator -->
+        <script src="../../../assets/plugin/verticator/verticator.js"></script>
+        <!-- pointer -->
+        <script src="../../../assets/plugin/pointer/pointer.js"></script>
+
+        <!-- reveal initialisation -->
+        <script>
+            // more settings: https://autonomousvision.github.io/slides/occupancy-flow/lib/reveal/#installation
+            // Also available as an ES module, see:
+            // https://revealjs.com/initialization/
+            Reveal.initialize({
+                // Learn about plugins: https://revealjs.com/plugins/
+                // and more: https://quarto.org/docs/extensions/listing-revealjs.html
+                // https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware
+                // https://github.com/rajgoel/reveal.js-plugins/tree/master
+
+                // plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, RevealChalkboard, RevealCustomControls, Appearance, Verticator],
+
+                // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
+                // 2. wait for block in speaker mode fix
+                plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
+                    RevealMenu, RevealChalkboard, RevealCustomControls, Verticator, RevealMath.KaTeX, RevealPointer],
+
+                // show controls
+                controls: true,
+                // show progress bar 
+                progress: true,
+                // center align slides vertically
+                center: true,
+                // push each slide in browser history
+                history: false,
+                // Use 1 based indexing for # links to match slide number (default is zero
+                // based)
+                hashOneBasedIndex: true,
+                // Add the current slide number to the URL hash so that reloading the
+                // page/copying the URL will return you to the same slide
+                hash: true,
+                // Slide number formatting can be configured using these variables:
+                //  "h.v": 	horizontal . vertical slide number (default)
+                //  "h/v": 	horizontal / vertical slide number
+                //    "c": 	flattened slide number
+                //  "c/t": 	flattened slide number / total slides
+                slideNumber: 'c/t',
+                // Control which views the slide number displays on using the "showSlideNumber" value:
+                //     "all": show on all views (default)
+                // "speaker": only show slide numbers on speaker notes view
+                //   "print": only show slide numbers when printing to PDF
+                showSlideNumber: 'all',
+                // Flags if speaker notes should be visible to all viewers
+                showNotes: false,
+                // auto play media
+                autoPlayMedia: null,
+                // preview links, didn't work properly sometimes
+                previewLinks: false,
+
+                // make sure slide won't expand more than 1 page in printed pdf
+                pdfMaxPagesPerSlide: 1,
+                // make sure printed pdf has all fragment in one slide
+                pdfSeparateFragments: false,
+                // Offset used to reduce the height of content within exported PDF pages.
+                // This exists to account for environment differences based on how you
+                // print to PDF. CLI printing options, like phantomjs and wkpdf, can end
+                // on precisely the total height of the document whereas in-browser
+                // printing has to end one pixel before.
+                pdfPageHeightOffset: -1,
+
+                // right-arrow works like down arrow or space bar, not grid
+                navigationMode: 'linear',
+                // mouse wheel navigate
+                mouseWheel: false,
+                // Focuses body when page changes visibility to ensure keyboard shortcuts work
+                focusBodyOnPageVisibilityChange: true,
+
+                // Transition style
+                transition: 'convex', // none/fade/slide/convex/concave/zoom
+                // Transition speed
+                transitionSpeed: 'default', // default/fast/slow
+                // Transition style for full page slide backgrounds
+                backgroundTransition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+                // disable any preloading
+                preloadIframes: false,
+                // Number of slides away from the current that are visible
+                // this affect the lazy loading behaviors with so many images, videos, and iframes
+                // in this case, use <source data-src="video.mp4" type="video/mp4" /> or
+                // <source data-src="video.webm" type="video/webm" />
+                viewDistance: 3,
+                // Number of slides away from the current that are visible on mobile
+                // devices. It is advisable to set this to a lower number than
+                // viewDistance in order to save resources.
+                mobileViewDistance: 2,
+
+                // The display mode that will be used to show slides
+                display: 'block',
+
+                // menu options
+                menu: {
+                    // position: left, right
+                    side: 'left',
+                    // title with numbers
+                    numbers: true,
+                    // click the slide number (original reveal number) open menu
+                    openSlideNumber: false,
+                    // add markers to indicate the current slide
+                    markers: true,
+                    // transition tab: false or list
+                    transitions: ['None', 'Fade', 'Slide', 'Concave', 'Convex', 'Zoom'],
+                    // If slides do not have a matching title, attempt to use the
+                    // start of the text content as the title instead
+                    useTextContentForMissingTitles: false,
+                    // Specifies the path to the default theme files. If your
+                    // presentation uses a different path to the standard reveal
+                    // layout then you need to provide this option, but only
+                    // when 'themes' is set to 'true'. If you provide your own
+                    // list of themes or 'themes' is set to 'false' the
+                    // 'themesPath' option is ignored.
+                    themes: true,
+                    themesPath: '../../../assets/dist/theme/',
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    // custom: false,
+                    custom: [
+                        // { title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' },
+                        {
+                            title: 'About', icon: '<i class="fa fa-info"></i>',
+                            content: '<span class="slide-menu-item"><h1>Copyright Disclaimers:</h1><p>All materials used and presented in this slide deck, including images, videos, and photographs, have been collected from the internet for educational purpose only. The copyrights of these materials belong to the original authors who produced them. The author of this presentation does not, and has no intention to, claim any copyrights without explicit statement.</p><br>If you wish to use any of these materials for any other reason, please contact the original authors to obtain proper permissions. If you believe that any content in this presentation violates your copyright, kindly contact me, and I will promptly remove them from the slides.</p></span>' +
+
+                                '<span class="slide-menu-item"><h1>Author:</h1><ul class="slide-menu-items"><li class= "slide-menu-item"><a href="#">Dr Daniel Zhang</li><li class= "slide-menu-item"><a href="#">Date: ' + new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1) + '</li></span>' +
+
+                                '<span class="slide-menu-item"><h1>Notes:</h1><ul class="slide-menu-items">' +
+                                '<li class= "slide-menu-item">? key: to show the help panel</li>' +
+                                '<li class= "slide-menu-item">ALT+Click: to zoom in</li>' +
+                                '<li class= "slide-menu-item">Q key: turn mouse to pointer</li>' +
+                                '</ul></span>'
+                        },
+                    ]
+
+                },
+
+                // chalkboard options
+                chalkboard: {
+                    // marker width
+                    boardmarkerWidth: 5,
+                    chalkWidth: 7,
+                    chalkEffect: 1.0,
+                    storage: null,
+                    src: null,
+                    readOnly: undefined,
+                    transition: 800,
+                    theme: "chalkboard",
+                    background: ['rgba(127,127,127,.1)', path + 'img/blackboard.png'],
+                    grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2 },
+                    eraser: { src: path + 'img/sponge.png', radius: 20 },
+                    boardmarkers: [
+                        { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto' },
+                        { color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto' },
+                        { color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto' },
+                        { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto' },
+                        { color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto' },
+                        { color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto' },
+                        { color: 'rgba(100,100,100,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto' },
+                    ],
+                    chalks: [
+                        { color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto' },
+                        { color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto' },
+                        { color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto' },
+                        { color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto' },
+                        { color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto' },
+                        { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto' },
+                        { color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto' },
+                    ]
+                },
+                // get more fa icons: https://fontawesome.com/v4/icons/
+                // or search in plugin/menu/font-awesome/css/all.css for icon names
+                customcontrols: {
+                    controls: [
+                        {
+                            id: 'toggle-overview',
+                            title: 'Toggle overview (O)',
+                            // use "fa fa-th" for 3x3 grid
+                            icon: '<i class="fa fa-th-large"></i>',
+                            action: 'Reveal.toggleOverview();'
+                        },
+                        {
+                            id: 'toggle-speakernote',
+                            title: 'Toggle speaker mode (s)',
+                            icon: '<i class="fa fa-list-alt"></i>',
+                            action: "Reveal.triggerKey(83);"
+                        },
+                        {
+                            id: 'toggle-chalkboard',
+                            icon: '<i class="fa fa-pen-square"></i>',
+                            title: 'Toggle chalkboard (B)',
+                            action: 'RevealChalkboard.toggleChalkboard();'
+                        },
+                        {
+                            id: 'toggle-canvas',
+                            icon: '<i class="fa fa-pen"></i>',
+                            title: 'Toggle notes canvas (C)',
+                            action: 'RevealChalkboard.toggleNotesCanvas();'
+                        },
+                        {
+                            id: 'toggle-pause',
+                            icon: '<i class="fa fa-eye-slash"></i>',
+                            title: 'Black out the slides (.)',
+                            action: 'Reveal.togglePause();'
+                        },
+                        {
+                            id: 'toggle-fullscreen',
+                            // or 'fa fa-expand' for another icon
+                            icon: '<i class="fa fa-expand"></i>',
+                            title: 'Toggle fullscreen (F)',
+                            action: 'document.documentElement.requestFullscreen();'
+
+                        },
+                        {
+                            id: 'toggle-help',
+                            icon: '<i class="fa fa-question-circle"></i>',
+                            title: 'Show help (?)',
+                            action: 'Reveal.toggleHelp();'
+
+                        }
+                    ]
+                },
+                // vertical deck indicator
+                verticator: {
+                    color: 'cyan',
+                    inversecolor: 'blue',
+                    skipuncounted: true,
+                    tooltip: 'auto',
+                    scale: 1.2,
+                },
+                // pointer
+                pointer: {
+                    key: "q", // key to enable pointer, default "q", not case-sensitive
+                    color: "#ffca3a", // color of a cursor, default "red" any valid CSS color; red, green, blue, yellow can be set as "#fa1e0e", "#8ac926", "#1982c4", "#ffca3a" 
+                    opacity: 0.9, // opacity of cursor, default 0.8
+                    pointerSize: 18, // pointer size in px, default 12
+                    alwaysVisible: false, // should pointer mode be always visible? default "false"
+                    tailLength: 10, // NOT IMPLEMENTED YET!!! how long the "tail" should be? default 10
+                },
+            });
+
+            // make long content auto scrollable, daniel
+            function resetSlideScrolling(slide) {
+                slide.classList.remove('scrollable-slide');
+            }
+
+            function handleSlideScrolling(slide) {
+                if (slide.scrollHeight >= 800) {
+                    slide.classList.add('scrollable-slide');
+                }
+            }
+            // make long content auto scrollable
+
+            // make long content auto scrollable, daniel
+            Reveal.addEventListener('ready', function (event) {
+                handleSlideScrolling(event.currentSlide);
+            });
+
+            Reveal.addEventListener('slidechanged', function (event) {
+                if (event.previousSlide) {
+                    resetSlideScrolling(event.previousSlide);
+                }
+                handleSlideScrolling(event.currentSlide);
+            });
+
+            // =========== change overview scales ====================
+            // regexp to match only the last `scale(...)` rule (there are two scale rules on the .slides element, don't know why)
+            const currentScaleRegexp = /scale\([^\)]*\)(?!.*(scale))/;
+            // prevent infinite loop https://stackoverflow.com/a/48599188
+            let insideInitialObserverCallback = false;
+
+            let observer = new MutationObserver(mutationsList => {
+                // only react when in overview mode
+                // could also use https://revealjs.com/overview/#events to stop/start observer when needed
+                if (!Reveal.isOverview()) return;
+
+                insideInitialObserverCallback = !insideInitialObserverCallback
+                if (insideInitialObserverCallback) {
+                    mutationsList.forEach(mutation => {
+                        const currentTransform = mutation.target.style.transform;
+                        // change to the scale that fits your needs
+                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.1)');
+                    })
+                }
+            });
+            observer.observe(
+                Reveal.getSlidesElement(),
+                { attributes: true, attributesFilter: ['style'] }
+            );
+
+        </script>
+
+        <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Meet with Your Personal Tutor'],
+                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
+                ['office', 'Games Academy, Penryn Campus'],
+                ['uni', 'Falmouth University'],
+                ['officehour', 'Monday 13.00-14.00'],
+                ['classroom', 'Room 1002, Games Academy'],
+                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
+                ['deadline', 'Monday, 30th Nov 2023'],
+                ['name', 'Dr Daniel Zhang'],
+                ['nickname', 'Daniel'],
+                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
+            ]);
+            // add the dynamic item
+            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
+            authorData.set('title', authorData.get('course'));
+            authorData.set('modulename', authorData.get('course'));
+            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+            // update html, the emaillink class need to be treated specially, so does the document title
+            // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
+            authorData.forEach((v, k) => {
+                // set up key word, is it a class or document title?
+                var keyw = k;
+                if (k != 'title') keyw = '.' + k;
+                // search the entity and replace the content
+                document.querySelectorAll(keyw).forEach(element => {
+                    if (k == 'title') {
+                        element.textContent = v;
+                    }
+                    else if (k == 'emaillink') {
+                        element.href = v;
+                        element.innerHTML = '<span>' + authorData.get('email') + '</span>';
+                    }
+                    else {
+                        element.innerHTML = v;
+                    }
+                });
+            });
+            // change page title
+            // document.title = 'Test';
+        </script>
+        <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
+
+        <!-- LINKS EFFECT: https://jsfiddle.net/hakim/Ht6Ym/  -->
+        <script>
+            var supports3DTransforms = document.body.style['webkitPerspective'] !== undefined ||
+                document.body.style['MozPerspective'] !== undefined;
+
+            function linkify(selector) {
+                if (supports3DTransforms) {
+
+                    var nodes = document.querySelectorAll(selector);
+
+                    for (var i = 0, len = nodes.length; i < len; i++) {
+                        var node = nodes[i];
+                        if (!node.className || !node.className.match(/roll/g)) {
+                            // exclude the image links, has img as a children, for firefox not supporting :has()
+                            if (node.querySelector('img')) continue;
+                            // parents div is not slide-number
+                            if (node.parentNode.className.match(/slide-number/gi)) continue;
+                            node.className += ' roll';
+                            node.innerHTML = '<span data-title="' + node.text + '">' + node.innerHTML + '</span>';
+                        }
+                    };
+                }
+
+            }
+            // don't apply to image links, firefox doesn't support :has() for the time being, manually exclude those link in function
+            // linkify('a:not(.slide-number):not(:has(img))');
+            linkify('a');
+        </script>
+
+        <!-- another method and the author's reply -->
+        <!-- https://github.com/hakimel/reveal.js/issues/806 -->
+        <!-- this one did work and worth checking: -->
+        <!-- http://www.ciges.net/revealjs_demo -->
+        <!-- it did copy the logo to each slide in ped print preview,
+            but not in the ctrl+p generated pdf file, so wont' be printed.
+            wait for bug fix -->
+        <!-- <script type="text/javascript">
+            // var header = document.querySelector('#header');
+            var logo = document.querySelector('.footer-left');
+            Reveal.on('pdf-ready', () => {
+                // change style for pdf print mode
+                logo.classList.add('footer-left-pdf');
+                logo.classList.remove('footer-left');
+                // copy the logo except the title
+                document.querySelectorAll('.pdf-page').forEach(function (page, index) {
+                    // jump over the title page as it's already shown
+                    // if (index != 0) page.appendChild(logo.cloneNode(true));
+                    page.appendChild(logo.cloneNode(true));
+                });
+            })
+        </script> -->
+
+    </body>
+
+</html>

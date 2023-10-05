@@ -487,17 +487,15 @@ a.roll span:after {
  * PRINT BACKGROUND
  *********************************************/
 @media print {
-
     /* add extra control for printing pdf in white background */
-    html.print-pdf p,
+    /* html.print-pdf p,
     html.print-pdf ul,
     html.print-pdf ol,
     html.print-pdf dl,
     html.print-pdf table,
     html.print-pdf blockquote {
         color: var(--r-print-pdf-text-color) !important;
-        /* text-shadow: none !important; */
-    }
+    } */
 
     /* turn off text shadow if don't like it */
     /* html.print-pdf red,
@@ -513,7 +511,8 @@ a.roll span:after {
         text-shadow: none !important;
     } */
 
-    html.print-pdf h1,
+    /* margin is there for fixing firefox lost slide title */
+    /* html.print-pdf h1,
     html.print-pdf h2,
     html.print-pdf h3,
     html.print-pdf h4,
@@ -521,30 +520,28 @@ a.roll span:after {
     html.print-pdf h6,
     html.print-pdf h7 {
         color: #ffda00 !important;
-        /* fix firefox print lost slide title bug, the top margin matters, which didn't
-            show in chrome-based browsers */
         margin: 20px 0 0 0 !important;
-    }
+    } */
 
-    html.print-pdf .hljs {
+    /* text-decoration: none !important; */
+    /* html.print-pdf .hljs {
         background-color: white !important;
-        /* text-decoration: none !important; */
+
         text-shadow: none !important;
-    }
+    } */
 
     /* html.print-pdf body,
     html.print-pdf section,
     html.print-pdf section section,
     html.print-pdf .slides,
     html.print-pdf .backgrounds, */
-    html.print-pdf .pdf-page,
+    /* html.print-pdf .pdf-page,
     html.print-pdf .slide-background {
-        /* background-color: var(--r-background-color); */
-        background-color: white !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        text-shadow: none !important;
+    background-color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-shadow: none !important;
     }
-
+    */
     /* add extra control for printing pdf in white background */
 }

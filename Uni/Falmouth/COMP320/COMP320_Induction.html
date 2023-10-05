@@ -46,11 +46,13 @@
     </head>
 
     <body>
-        <!-- put pdf button before anything else, as the z-index makes sure later elements has a 
-            higher z-index than those before. In overview mode, the slides should be in the front.
-        -->
         <script>
-            // generate pdf link
+            // generate pdf link, click the button, then press CTRL+P
+            // remember to follow these steps to get rid of the borders:
+            //  1. select 'save as PDF' for printer
+            //  2. advanced settings or something similar
+            //  3. margin -> None if needed
+            //  4. tick 'background graphics' if needed
             function GeneratePDF() {
                 let url = window.location.href;
                 let pos = url.indexOf(".html");
@@ -58,7 +60,10 @@
                 window.location.href = url + "?print-pdf";
             }
         </script>
-        <!-- pdf printing by showing a corner strip -->
+        <!-- pdf printing by showing a corner strip+
+            put pdf button before anything else, as the z-index makes sure later elements has a 
+            higher z-index than those before. In overview mode, the slides should be in the front.
+        -->
         <div class="pdf_div">
             <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
         </div>
@@ -73,7 +78,9 @@
                             <h1 class="course"></h1>
                         </cyan>
                         <!--img src="img/nn.png" width=40% /-->
-                        <h3><orange>COMP320</orange></h3>
+                        <h3>
+                            <orange><span class="coursecode"></span></orange>
+                        </h3>
                         <br><br><br>
                         <p><span class="fullname"></span> <br>
                             <span class="uni"></span>, v. <span class="year"></span>
@@ -81,7 +88,7 @@
                         </p>
 
                         <aside class="notes">
-                            
+
                         </aside>
                     </section>
 
@@ -94,20 +101,26 @@
                     <section id="who_am_i">
                         <h1>Who am I?</h1>
                         <ul>
-                            <li><green>Name:</green> Dr Daniel Zhang</li>
-                            <li class="fragment fade-in"><green>Role:</green> Senior Lecturer in Artificial Intelligence</li>
-                            <li class="fragment fade-in"><green>Scholarship:</green> Computer Science Education</li>
-                            <li class="fragment fade-in"><green>Teaching:</green> MSc courses in Games Academy
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>Teaching:</green> MSc courses in Games Academy
                                 <ul>
                                     <li>Classical Artificial Intelligence</li>
                                     <li>Machine Learning</li>
                                 </ul>
                             </li>
-                            <li class="fragment fade-in"><green>Background: </green>
+                            <li class="fragment fade-in">
+                                <green>Background: </green>
                                 <ul>
                                     <li>majored in Computer Science, AI/ML and its Applications</li>
                                     <li>worked for Rolls-Royce UTC, University of Southampton</li>
                                     <li>delivered more than 10 successful software and production tools for Rolls-Royce</li>
+                                    <li>supported Rolls-Royce engineers in 5 R&D Centres: Bristol (UK), Derby (UK), Dahlewitz (Germany), North America (US), Bangalore (India)</li>
                                 </ul>
                             </li>
                         </ul>
@@ -119,10 +132,15 @@
                     <section id="contact_info">
                         <h1>Contact Information</h1>
                         <ul>
-                            <li><cyan>Email:</cyan> <a href="" class="emaillink"></a></li>
-                            <li><cyan>Booking:</cyan> <a target="_blank" href="https://outlook.office.com/bookwithme/user/43e7d53ea00e433f898c3b656a30f0fc@falmouth.ac.uk/?getrequesturl=https%3a%2f%2foutlook.office.com%2fows%2fOID%3a2fd42220-1a81-4f57-b132-37f7299a6a61%40550beeb3-6a3d-4646-a111-f89d0177792e%2fbeta%2fBookWithMe%2fCheckBookable%3fbookingcode%3d4c3140a8-67d2-413e-8afc-39b4bebbb369%26itemid%3dSVRwCe7HMUGxuT6WGxi68g2%26authtoken%3deyJhbGciOiJSUzI1NiIsImtpZCI6ImszWXdXK3p0c0YrWU9BQkxhK25PUDJZWlJ6TT0iLCJ0eXAiOiJKV1QiLCJ4NXQiOiJWX0IxcjA0SzdsWm9UdDU3YS1CbkVWOUJaQnMifQ.eyJvaWQiOiIyZmQ0MjIyMC0xYTgxLTRmNTctYjEzMi0zN2Y3Mjk5YTZhNjEiLCJ2ZXIiOiJSZXNvdXJjZUxvb3BiYWNrLlVzZXIuVjEiLCJzY3AiOiJPcGVuQm9vay1JbnRlcm5hbC5SZWFkV3JpdGUiLCJyc2NvcGVsZW4iOiIyMTgiLCJyZXNvdXJjZV9zY29wZSI6IntcIlVSTFwiOlwibWY0K3drSXZtcDdXNm1NWUJ0d1MxMGVJYW5Pa1dhQTlJS044eWVUNDdwST1cIn0iLCJjb3JyaWQiOiIwYWU4MTY0MS1kZjljLTQwODYtOGYyNi0zNWE4YmE0Njg0YzIiLCJhcHBpZCI6IjE1N2NkZmJmLTczOTgtNGE1Ni05NmMzLWU5M2U5YWIzMDliNSIsImFwcGlkYWNyIjoiMCIsInRpZCI6IjU1MGJlZWIzLTZhM2QtNDY0Ni1hMTExLWY4OWQwMTc3NzkyZSIsImlhdCI6MTY5NTgzNDY4MCwibmJmIjoxNjk1ODM0NjgwLCJleHAiOjE3MDM2MTA2ODAsImlzcyI6Imh0dHBzOi8vcmVzb3VyY2Uuc2VsZi8iLCJhdWQiOiJodHRwczovL291dGxvb2sub2ZmaWNlLmNvbSJ9.Qh6zH-teWvGZ6mD6oaEuvVbLYo0P4XXiopiyN5AZBCWGmBoNWsBuXHIm4VB149p-p95Bd8ohlP6tdZwLI3g63T_P_GBuT9mtxfm9kjw-jN6sDcBuVbSmx3uoc85gy8y390BwQ0kGUCmUtbTQ-92MjvD9d2DWHBGHneAcylootjH9_OMbY4oVBr-GSRmhPdtNr4zzj8v1FGX9DEW-ztwOEMeTC-8Msoa5IS1jxvCsZUpuHbzVOI3wOf5-KioySzAIhVEfdENuOkvN0DoPSxBB_XoEbVLEQjD0lFNMEVNxDsrb1snDjARDE57NYWPBji56QsIBMtz1BLnTGnQj6LCqDw&anonymous">Book time with Daniel Zhang</a></li>
+                            <li>
+                                <cyan>Email:</cyan> <a href="" class="emaillink"></a>
+                            </li>
+                            <li>
+                                <cyan>Booking:</cyan> <a target="_blank" href="https://outlook.office.com/bookwithme/user/43e7d53ea00e433f898c3b656a30f0fc@falmouth.ac.uk/?getrequesturl=https%3a%2f%2foutlook.office.com%2fows%2fOID%3a2fd42220-1a81-4f57-b132-37f7299a6a61%40550beeb3-6a3d-4646-a111-f89d0177792e%2fbeta%2fBookWithMe%2fCheckBookable%3fbookingcode%3d4c3140a8-67d2-413e-8afc-39b4bebbb369%26itemid%3dSVRwCe7HMUGxuT6WGxi68g2%26authtoken%3deyJhbGciOiJSUzI1NiIsImtpZCI6ImszWXdXK3p0c0YrWU9BQkxhK25PUDJZWlJ6TT0iLCJ0eXAiOiJKV1QiLCJ4NXQiOiJWX0IxcjA0SzdsWm9UdDU3YS1CbkVWOUJaQnMifQ.eyJvaWQiOiIyZmQ0MjIyMC0xYTgxLTRmNTctYjEzMi0zN2Y3Mjk5YTZhNjEiLCJ2ZXIiOiJSZXNvdXJjZUxvb3BiYWNrLlVzZXIuVjEiLCJzY3AiOiJPcGVuQm9vay1JbnRlcm5hbC5SZWFkV3JpdGUiLCJyc2NvcGVsZW4iOiIyMTgiLCJyZXNvdXJjZV9zY29wZSI6IntcIlVSTFwiOlwibWY0K3drSXZtcDdXNm1NWUJ0d1MxMGVJYW5Pa1dhQTlJS044eWVUNDdwST1cIn0iLCJjb3JyaWQiOiIwYWU4MTY0MS1kZjljLTQwODYtOGYyNi0zNWE4YmE0Njg0YzIiLCJhcHBpZCI6IjE1N2NkZmJmLTczOTgtNGE1Ni05NmMzLWU5M2U5YWIzMDliNSIsImFwcGlkYWNyIjoiMCIsInRpZCI6IjU1MGJlZWIzLTZhM2QtNDY0Ni1hMTExLWY4OWQwMTc3NzkyZSIsImlhdCI6MTY5NTgzNDY4MCwibmJmIjoxNjk1ODM0NjgwLCJleHAiOjE3MDM2MTA2ODAsImlzcyI6Imh0dHBzOi8vcmVzb3VyY2Uuc2VsZi8iLCJhdWQiOiJodHRwczovL291dGxvb2sub2ZmaWNlLmNvbSJ9.Qh6zH-teWvGZ6mD6oaEuvVbLYo0P4XXiopiyN5AZBCWGmBoNWsBuXHIm4VB149p-p95Bd8ohlP6tdZwLI3g63T_P_GBuT9mtxfm9kjw-jN6sDcBuVbSmx3uoc85gy8y390BwQ0kGUCmUtbTQ-92MjvD9d2DWHBGHneAcylootjH9_OMbY4oVBr-GSRmhPdtNr4zzj8v1FGX9DEW-ztwOEMeTC-8Msoa5IS1jxvCsZUpuHbzVOI3wOf5-KioySzAIhVEfdENuOkvN0DoPSxBB_XoEbVLEQjD0lFNMEVNxDsrb1snDjARDE57NYWPBji56QsIBMtz1BLnTGnQj6LCqDw&anonymous">Book time with Daniel Zhang</a>
+                            </li>
                             <li>Try to speak to me in the studio, especially during the teaching hours</li>
-                            <li>Or send direct message on <blue>Microsoft Teams</blue></li>
+                            <li>Or send direct message on <blue>Microsoft Teams</blue>
+                            </li>
                         </ul>
                     </section>
 
@@ -131,44 +149,80 @@
                         <ul>
                             <li class="fragment fade-in">
                                 <dt>Aim</dt>
-                                <dd>To help you to plan your <cyan><bigtext>major</bigtext></cyan> individual research and development project</dd>
+                                <dd>To help you to plan your <cyan>
+                                        <bigtext>major</bigtext>
+                                    </cyan> individual research and development project</dd>
                             </li>
-                            <li class="fragment fade-in"><dt>Objectives</dt>
+                            <li class="fragment fade-in">
+                                <dt>Objectives</dt>
                                 <dd>
                                     <ul>
-                                        <li><purple>Think about</purple> what you are going to do for your project?</li>
-                                        <li><green>Discuss</green> with your classmates about your topic selection (feedbacks, defending if needed) </li>
-                                        <li><orange>Consolidate</orange> your thinking</li>
-                                        <li><cyan>Collect and review</cyan> relevant literatures</li>
-                                        <li><red>Conduct</red> the proposed research</li>
-                                        <li><yellow>Keep tracking</yellow> of your progress</li>
+                                        <li>
+                                            <purple>Think about</purple> what you are going to do for your project?
+                                        </li>
+                                        <li>
+                                            <cyan>Collect and review</cyan> relevant literatures
+                                        </li>
+                                        <li>
+                                            <blue>Define</blue> the question and hypotheses
+                                        </li>
+                                        <li>
+                                            <orange>Consolidate</orange> your thinking: methodology, quantitative analysis
+                                        </li>
+                                        <li>
+                                            <green>Discuss</green> with your classmates about your topic selection (feedbacks, defending if needed)
+                                        </li>
+                                        <li>
+                                            <red>Conduct</red> the proposed research
+                                        </li>
+                                        <li>
+                                            <yellow>Drive</yellow> your progress towards a <purple>conclusion</purple>
+                                        </li>
                                     </ul>
                                 </dd>
                             </li>
                         </ul>
                     </section>
 
+                    <section id="plan">
+                        <h1>Plan</h1>
+                        <img src="img/arr1.PNG" alt="weekly plan" class="r-stretch">
+                    </section>
+
                     <section id="project">
                         <h1>Your Project</h1>
                         <p>To come up with an idea of your project</p>
                         <ul>
-                            <li class="fragment fade-in"><purple>Be creative: </purple> do something fancy</li>
-                            <li class="fragment fade-in"><blue>Be diligent: </blue> keep on polishing your project</li>
-                            <li class="fragment fade-in"><orange>Be reasonable: </orange> should be doable within the timescale</li>
+                            <li class="fragment fade-in">
+                                <purple>Be creative: </purple> do something fancy
+                            </li>
+                            <li class="fragment fade-in">
+                                <blue>Be diligent: </blue> keep on polishing your project
+                            </li>
+                            <li class="fragment fade-in">
+                                <orange>Be reasonable: </orange> should be doable within the timescale
+                            </li>
                         </ul>
                     </section>
 
                     <section id="sb1">
                         <h1>Study Block (SB) 1</h1>
                         <ul>
-                            <li class="fragment fade-in"><purple>Meetings:</purple> 10 times</li>
-                            <li class="fragment fade-in"><purple>Time:</purple> Wednesday, 09.00-10.00 (2nd Oct - 12 Dec)</li>
-                            <li class="fragment fade-in"><purple>Location:</purple> Microsoft Teams (online)</li>
-                            <li class="fragment fade-in"><purple>Group:</purple> 3 students
+                            <li class="fragment fade-in">
+                                <purple>Meetings:</purple> 10 times
+                            </li>
+                            <li class="fragment fade-in">
+                                <purple>Time:</purple> Wednesday, 09.00-10.00 (2nd Oct - 12 Dec)
+                            </li>
+                            <li class="fragment fade-in">
+                                <purple>Location:</purple> Microsoft Teams (online)
+                            </li>
+                            <li class="fragment fade-in">
+                                <purple>Group:</purple> 3 students
                                 <ul>
-                                    <li>LEVERIDGE, JAMIE</li>
+                                    <li>LEVERIDGE, JAMIE: C#, C++, Computing for Games, interested in AI</li>
                                     <li>LOOTES, MICHAEL</li>
-                                    <li>SAYWELL, BRENDAN</li>
+                                    <li>SAYWELL, BRENDAN: programming, C#, shaders module, engneering/computer science bg</li>
                                 </ul>
                             </li>
                         </ul>
@@ -178,15 +232,26 @@
                         <h1>SB1 Assessment</h1>
                         <img src="img/sb1_assess.PNG" alt="SB1 Assessment" class="r-stretch">
                         <ul>
-                            <li class="fragment fade-in"><red>Time: </red> Wed 3 Jan and Fri 5 Jan, 2024
+                            <li class="fragment fade-in">
+                                <red>Time: </red> Wed 3 Jan and Fri 5 Jan, 2024
                                 <ul>
-                                    <li><cyan>Wed 3 Jan:</cyan> 10.00-13.00</li>
-                                    <li><blue>Fri 4 Jan:</blue> 10.00-13.00 and 14.00-17.00</li>
+                                    <li>
+                                        <cyan>Wed 3 Jan:</cyan> 10.00-13.00
+                                    </li>
+                                    <li>
+                                        <blue>Fri 4 Jan:</blue> 10.00-13.00 and 14.00-17.00
+                                    </li>
                                 </ul>
                             </li>
-                            <li class="fragment fade-in"><yellow>NOTE: check your time slot carefully!</yellow></li>
-                            <li class="fragment fade-in"><orange>Location: </orange>Microsoft Teams (online)</li>
-                            <li class="fragment fade-in"><green>Staff: </green>Me and John Speakman</li>
+                            <li class="fragment fade-in">
+                                <yellow>NOTE: check your time slot carefully!</yellow>
+                            </li>
+                            <li class="fragment fade-in">
+                                <orange>Location: </orange>Microsoft Teams (online)
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>Staff: </green>Me and John Speakman
+                            </li>
                         </ul>
                     </section>
 
@@ -216,13 +281,15 @@
                         </h6>
 
                         <aside class="notes">
-                            
+
                         </aside>
                     </section>
 
                     <section id="introduce">
                         <h1>IT'S YOUR TURN</h1>
-                        <p><cyan>Introduce yourself to the others:</cyan></p>
+                        <p>
+                            <cyan>Introduce yourself to the others:</cyan>
+                        </p>
                         <ul>
                             <li>Who you are? Where are you from?</li>
                             <li>What background do you have?</li>
@@ -570,6 +637,7 @@
         <script>
             const authorData = new Map([
                 ['course', 'Research & Development: Practice'],
+                ['coursecode', 'COMP320'],
                 ['email', 'Daniel.Zhang@falmouth.ac.uk'],
                 ['office', 'Games Academy, Penryn Campus'],
                 ['uni', 'Falmouth University'],
@@ -591,10 +659,10 @@
             authorData.forEach((v, k) => {
                 // set up key word, is it a class or document title?
                 var keyw = k;
-                if (k != 'title') keyw = '.'+k;
+                if (k != 'title') keyw = '.' + k;
                 // search the entity and replace the content
                 document.querySelectorAll(keyw).forEach(element => {
-                    if (k == 'title'){
+                    if (k == 'title') {
                         element.textContent = v;
                     }
                     else if (k == 'emaillink') {
