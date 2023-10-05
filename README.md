@@ -28,7 +28,7 @@
     * Hover: ![PDF download link hover](./examples/assets/pdf_download2.PNG "PDF Download Link - hover")
 7. extra colours to enable `<red></red>, <blue></blue>, <yellow></yellow>, <green></green>, <cyan></cyan>, <purple></purple>, <orange></orange>, <gray></gray>, <white></white>, <black></black>`
     * ![colour definition](./examples/assets/colours.png "color definition")
-    * ![result](./examples/assets/result.PNG "result")
+    * ![result](./examples/assets/result.png "result")
 8. change mouse to pointer by pressing Q
 9. add link animation (exclude slide-number and image links), which is a modified version of [this](https://jsfiddle.net/hakim/Ht6Ym/)
 
