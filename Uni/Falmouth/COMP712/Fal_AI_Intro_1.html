@@ -2,14 +2,14 @@
 <html lang="en">
 
     <head>
-        <title>Introduction to Artificial Intelligence and Machine Learning</title>
+        <title></title>
 
         <!-- charset setting -->
         <meta charset="utf-8">
 
         <!-- meta data -->
         <meta name="author" content="Dr Xu Zhang">
-        <meta name="description" content="Introduction to Artificial Intelligence and Machine Learning">
+        <meta name="description" content="Classical Artificial Intelligence">
         <!-- <meta name="copyright" content="Dr Xu Zhang"> -->
         <meta name="generator" content="VS Code">
 
@@ -22,35 +22,38 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
         <!-- the default stylsheets -->
-        <link rel="stylesheet" href="../assets/dist/reset.css">
-        <link rel="stylesheet" href="../assets/dist/reveal.css">
-        <link rel="stylesheet" href="../assets/dist/theme/black.css" id="theme">
+        <link rel="stylsheets" href="../../../assets/dist/reset.css">
+        <link rel="stylesheet" href="../../../assets/dist/reveal.css">
+        <link rel="stylesheet" href="../../../assets/dist/reveal.css">
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="../assets/plugin/highlight/monokai.css">
-        <!-- <link rel="stylesheet" href="../assets/plugin/highlight/zenburn.css"> -->
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css">
+        <!-- <link rel="stylesheet" href="../../../assets/plugin/highlight/zenburn.css"> -->
 
         <!-- the chalkboard -->
-        <link rel="stylesheet" href="../assets/plugin/chalkboard/style.css">
+        <link rel="stylesheet" href="../../../assets/plugin/chalkboard/style.css">
         <!-- custom controls -->
-        <link rel="stylesheet" href="../assets/plugin/customcontrols/style.css">
+        <link rel="stylesheet" href="../../../assets/plugin/customcontrols/style.css">
         <!-- custom controls font awsome icons -->
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
-        <!-- rows and columnes in one slide -->
-        <link rel="stylesheet" href="../assets/dist/row_col.css">
+        <!-- rows and columns in one slide -->
+        <link rel="stylesheet" href="../../../assets/dist/row_col.css">
         <!-- pointer plugin style -->
-        <link rel="stylesheet" href="../assets/plugin/pointer/pointer.css" />
+        <link rel="stylesheet" href="../../../assets/plugin/pointer/pointer.css" />
 
         <!-- all links open in new tab -->
         <!-- <base target="_blank"> -->
     </head>
 
     <body>
-        <!-- put pdf button before anything else, as the z-index makes sure later elements has a 
-            higher z-index than those before. In overview mode, the slides should be in the front.
-        -->
         <script>
-            // generate pdf link
+            // generate pdf link, click the button, then press CTRL+P
+            // remember to follow these steps to get rid of the borders:
+            //  1. select 'save as PDF' for printer
+            //  2. advanced settings or something similar
+            //  3. margin -> None if needed
+            //  4. tick 'background graphics' if needed
             function GeneratePDF() {
                 let url = window.location.href;
                 let pos = url.indexOf(".html");
@@ -58,7 +61,10 @@
                 window.location.href = url + "?print-pdf";
             }
         </script>
-        <!-- pdf printing by showing a corner strip -->
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
         <div class="pdf_div">
             <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
         </div>
@@ -69,21 +75,98 @@
             <div class="slides">
                 <section>
                     <section id="title">
-                        <h1>Introduction to <br>
-                            <cyan>Artificial Intelligence</cyan> <br> & <purple>Machine Learning</purple>
-                        </h1>
-                        <img src="img/nn.png" width=40% />
-                        <p><span class="fullname"></span> <br>
+                        <h1><span class="course"></span></h1>
+                        <h3>
+                            <orange><span class="coursecode"></span></orange>
+                        </h3>
+                        <img src="img/nn.png" width=50% />
+                        <p>
+                            <cyan class="fullname"></cyan> <br>
                             <span class="uni"></span>, v. <span class="year"></span>
                             <!-- <script>document.write(new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1))</script> -->
                         </p>
 
                         <aside class="notes">
                             <ul>
-                                <li>Hello, everyone. Welcome to this module: <span class="modulename"></span>. In the next couple of weeks, I will take you through the journey to the AI and ML world by introducing you the main concepts in this area. We will also review the history, key achievements, and morden applications in the field of AI.</li>
+                                <li>Hello, everyone. Welcome to this module: <span class="course"></span>. In the next couple of weeks, I will take you through the journey to the AI and ML world by introducing you the main concepts in this area. We will also review the history, key achievements, and morden applications in the field of AI.</li>
                                 <li>Apart from that, I will talk about the details of AI and ML techniques. This includes online and offline learning, supervised and unsupervised learning, classification and regression, inductive and generative techniques. You will also learn all sorts of necessary knowledge to master the required skills to enter the AI-related Computer Science and Games industries.</li>
                             </ul>
                         </aside>
+                    </section>
+
+                    <section id="outine">
+                        <h1 class="r-fit-text">Module Outline</h1>
+                    </section>
+
+                    <section id="aim">
+                        <h1>Aim</h1>
+                        <p>To <span class="fragment highlight-red">confidently</span> implement <span class="fragment highlight-green">artificial intelligence (AI)</span> techniques which are commonly used to <span class="fragment highlight-blue">solve problems</span> in industry.</p>
+                    </section>
+
+                    <section id="description" data-auto-animate>
+                        <h1 data-id="hd">Description</h1>
+                        <ul data-id="desp">
+                            <li class="fragment">
+                                <cyan>introduce</cyan> you to the core techniques of AI
+                            </li>
+                            <li class="fragment">
+                                <blue>refine</blue> your understanding of these techniques
+                            </li>
+                            <li class="fragment">
+                                <black>study</black> the strengths and weaknesses of standard AI techniques
+                            </li>
+                            <li class="fragment">
+                                <yellow>equip</yellow> you with a solid background in this fast-moving field
+                            </li>
+                            <li class="fragment">
+                                <orange>train</orange> you to apply them to well-defined problem domains
+                            </li>
+                            <li class="fragment">
+                                <purple>lay</purple> the foundation for more complex applications in subsequent module
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="description" data-auto-animate>
+                        <h1 data-id="hd">Description (cont.)</h1>
+                        <ul data-id="desp">
+                            <li class="fragment">
+                                <cyan>Cover</cyan> classical AI for decision-making and content generation
+                            </li>
+                            <li class="fragment">
+                                <blue>Showcase</blue> typical application of these techniques:
+                                <ul>
+                                    <li>authoring of non-player character behaviours in games</li>
+                                    <li>the navigation of complex environments</li>
+                                    <li>the formation of logistical plans with respect to constraints</li>
+                                    <li>the generation of content in creative domains</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                <yellow>build</yellow> a portfolio of AI instances applied to these domains
+                                to simplified versions
+                            </li>
+                            <li class="fragment">
+                                <black>select</black> appropriate technologies to solve real
+                                problems
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="description" data-auto-animate>
+                        <h1 data-id="hd">Description Summary</h1>
+                        <ol data-id="desp">
+                            <li class="fragment">learn <purple>classical</purple> AI</li>
+                            <li class="fragment">will look at <blue>machine learning</blue> in next study block (with me)</li>
+                            <li class="fragment">make a <green>'portfolio'</green> using AI techniques</li>
+                        </ol>
+                    </section>
+
+                    <section id="outcome">
+                        <h1>Outcomes</h1>
+                        <p>The expected outcomes include:</p>
+                        <div class="col2">1</div>
+                        <div class="col2">2</div>
                     </section>
 
                     <section id="course_info">
@@ -147,7 +230,7 @@
 
                         <aside class="notes">
                             <ul>
-                                <li>The most important date is the coursework deadline, which is shown clearly on the top of this slide. You'd better to note it down now. In addtion, please set up reminders in your calendar to make sure all your works have been submitted successfully before the deadline. And more importantly, you have received email confirmation about your submission.</li>
+                                <li>The most important date is the coursework deadline, which is shown clearly on the top of this slide. You'd better to note it down now. In addition, please set up reminders in your calendar to make sure all your works have been submitted successfully before the deadline. And more importantly, you have received email confirmation about your submission.</li>
                                 <li>Please note that anything received past the due date will be marked as ZERO automatically, unless you have the official and approved EC application in hand.</li>
                                 <li>The EC application can be submitted via MyFalmouth portal by following the link.</li>
                             </ul>
@@ -177,8 +260,8 @@
                         <aside class="notes">
                             <ul>
                                 <li>The university has various standards and policies regarding the academic integrity, which are available under the 'student regulation' section on our website. Please make sure you are aware of them.</li>
-                                <li>More specifically for this module, all coursework must be your own work and has to be done by yourselves. Though discussions are encouraged, you should not share your work with anyone else. And you should not look at other students' work before your submissio and the due date.</li>
-                                <li>The university works very hard to detect plagiarism. If you're caught unfortunately, further action would be taken and you may be asked to attend listing mettings.</li>
+                                <li>More specifically for this module, all coursework must be your own work and has to be done by yourselves. Though discussions are encouraged, you should not share your work with anyone else. And you should not look at other students' work before your submission and the due date.</li>
+                                <li>The university works very hard to detect plagiarism. If you're caught unfortunately, further action would be taken and you may be asked to attend listing meetings.</li>
                                 <li>Since this module would be evaluated purely based on your coursework, all sorts of AI writing tools are not allowed!</li>
                             </ul>
                         </aside>
@@ -339,7 +422,7 @@
                         <aside class="notes">
                             <ul>
                                 <li>Again, my email is shown here. Drop me an email if you have questions about the contents of the lecture, or if you'd like to make an appointment. The email doesn't need to be very long.</li>
-                                <li>Alternatively, you can alwasy talk to me before or after the class.</li>
+                                <li>Alternatively, you can always talk to me before or after the class.</li>
                                 <li></li>
                             </ul>
                         </aside>
@@ -1158,27 +1241,27 @@
                     <p>
                         reveal.js comes with a few themes built in: <br>
                         <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/black.css'); return false;">Black
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/black.css'); return false;">Black
                             (default)</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/white.css'); return false;">White</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/white.css'); return false;">White</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/league.css'); return false;">League</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/league.css'); return false;">League</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/sky.css'); return false;">Sky</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/sky.css'); return false;">Sky</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/beige.css'); return false;">Beige</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/beige.css'); return false;">Beige</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/simple.css'); return false;">Simple</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/simple.css'); return false;">Simple</a>
                         <br>
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/serif.css'); return false;">Serif</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/serif.css'); return false;">Serif</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/blood.css'); return false;">Blood</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/blood.css'); return false;">Blood</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/night.css'); return false;">Night</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/night.css'); return false;">Night</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/moon.css'); return false;">Moon</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/moon.css'); return false;">Moon</a>
                         -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../assets/dist/theme/solarized.css'); return false;">Solarized</a>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/solarized.css'); return false;">Solarized</a>
                     </p>
                 </section>
 
@@ -1243,7 +1326,7 @@
                 </section>
 
                 <section>
-                    <h2>Marvelous List</h2>
+                    <h2>Marvellous List</h2>
                     <ul>
                         <li>No order here</li>
                         <li>Or here</li>
@@ -1400,7 +1483,7 @@ Reveal.on( 'customevent', function() {
         <div id="header">
             <!-- <div id="header-left">HEADER-LEFT</div> -->
             <!-- <div id="header-right">HEADER-RIGHT</div> -->
-            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img src="img/logo.png" title="visit Falmouth University" style="width:100px;"></a></div>
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img src="../common/logo.png" title="visit Falmouth University" style="width:100px;"></a></div>
             <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
         </div>
 
@@ -1409,35 +1492,35 @@ Reveal.on( 'customevent', function() {
             .           :   blackout
             ESC, O      :   overview
             ALT+click   :   zoom in
-            C           :   note cavas
+            C           :   note canvas
             B           :   chalkboard
             S           :   speaker mode (appearance didn't work well with speaker mode)
             C+S+F       :   search in slides
 
         -->
 
-        <script src="../assets/dist/reveal.js"></script>
-        <!-- <script src="../assets/js/reveal.js"></script> -->
-        <script src="../assets/plugin/zoom/zoom.js"></script>
-        <script src="../assets/plugin/notes/notes.js"></script>
-        <script src="../assets/plugin/search/search.js"></script>
-        <script src="../assets/plugin/markdown/markdown.js"></script>
-        <script src="../assets/plugin/highlight/highlight.js"></script>
+        <script src="../../../assets/dist/reveal.js"></script>
+        <!-- <script src="../../../assets/js/reveal.js"></script> -->
+        <script src="../../../assets/plugin/zoom/zoom.js"></script>
+        <script src="../../../assets/plugin/notes/notes.js"></script>
+        <script src="../../../assets/plugin/search/search.js"></script>
+        <script src="../../../assets/plugin/markdown/markdown.js"></script>
+        <script src="../../../assets/plugin/highlight/highlight.js"></script>
         <!-- math -->
-        <script src="../assets/plugin/math/math.js"></script>
+        <script src="../../../assets/plugin/math/math.js"></script>
         <!-- menu: https://github.com/denehyg/reveal.js-menu -->
-        <script src="../assets/plugin/menu/menu.js"></script>
+        <script src="../../../assets/plugin/menu/menu.js"></script>
         <!-- chalkboard need customcontrols -->
-        <script src="../assets/plugin/chalkboard/plugin.js"></script>
-        <script src="../assets/plugin/customcontrols/plugin.js"></script>
+        <script src="../../../assets/plugin/chalkboard/plugin.js"></script>
+        <script src="../../../assets/plugin/customcontrols/plugin.js"></script>
         <!-- appearance for text and image animation like ppt -->
-        <!-- <script src="../assets/plugin/appearance/appearance.js"></script> -->
+        <!-- <script src="../../../assets/plugin/appearance/appearance.js"></script> -->
         <!-- vertical deck indicator: verticator -->
-        <script src="../assets/plugin/verticator/verticator.js"></script>
+        <script src="../../../assets/plugin/verticator/verticator.js"></script>
         <!-- pointer -->
-        <script src="../assets/plugin/pointer/pointer.js"></script>
+        <script src="../../../assets/plugin/pointer/pointer.js"></script>
 
-        <!-- reveal initilisation -->
+        <!-- reveal initialisation -->
         <script>
             // more settings: https://autonomousvision.github.io/slides/occupancy-flow/lib/reveal/#installation
             // Also available as an ES module, see:
@@ -1515,7 +1598,7 @@ Reveal.on( 'customevent', function() {
                 // disable any preloading
                 preloadIframes: false,
                 // Number of slides away from the current that are visible
-                // this affect the lazy loading behavious with so many images, videos, and iframes
+                // this affect the lazy loading behaviours with so many images, videos, and iframes
                 // in this case, use <source data-src="video.mp4" type="video/mp4" /> or
                 // <source data-src="video.webm" type="video/webm" />
                 viewDistance: 3,
@@ -1549,7 +1632,8 @@ Reveal.on( 'customevent', function() {
                     // list of themes or 'themes' is set to 'false' the
                     // 'themesPath' option is ignored.
                     themes: true,
-                    themesPath: '../assets/dist/theme/',
+                    // with last slash
+                    themesPath: '../../../assets/dist/theme/',
                     // Specify custom panels to be included in the menu, by
                     // providing an array of objects with 'title', 'icon'
                     // properties, and either a 'src' or 'content' property.
@@ -1730,6 +1814,8 @@ Reveal.on( 'customevent', function() {
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
         <script>
             const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
                 ['email', 'Daniel.Zhang@falmouth.ac.uk'],
                 ['office', 'Games Academy, Penryn Campus'],
                 ['uni', 'Falmouth University'],
@@ -1737,18 +1823,27 @@ Reveal.on( 'customevent', function() {
                 ['classroom', 'Room 1002, Games Academy'],
                 ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
                 ['deadline', 'Monday, 30th Nov 2023'],
-                ['modulename', 'Introduction to Artificial Intelligence and Machine Learning'],
-                ['name', 'Daniel Zhang'],
+                ['name', 'Dr Daniel Zhang'],
                 ['nickname', 'Daniel'],
-                ['fullname', 'Dr Daniel Zhang (PhD, MSc, BEng)'],
                 ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
             ]);
             // add the dynamic item
             authorData.set('emaillink', 'mailto:' + authorData.get('email'));
-            // update html, the emaillink need to be trated specially
+            authorData.set('title', authorData.get('course'));
+            authorData.set('modulename', authorData.get('course'));
+            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+            // update html, the emaillink class need to be treated specially, so does the document title
+            // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
             authorData.forEach((v, k) => {
-                document.querySelectorAll('.' + k).forEach(element => {
-                    if (k == 'emaillink') {
+                // set up key word, is it a class or document title?
+                var keyw = k;
+                if (k != 'title') keyw = '.' + k;
+                // search the entity and replace the content
+                document.querySelectorAll(keyw).forEach(element => {
+                    if (k == 'title') {
+                        element.textContent = v;
+                    }
+                    else if (k == 'emaillink') {
                         element.href = v;
                         element.innerHTML = '<span>' + authorData.get('email') + '</span>';
                     }
@@ -1757,7 +1852,6 @@ Reveal.on( 'customevent', function() {
                     }
                 });
             });
-
         </script>
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
 
