@@ -39,8 +39,18 @@ html {
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.reveal skyblue {
+    color: skyblue;
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
 .reveal green {
     color: #17ff2e;
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.reveal lime {
+    color: limegreen;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -64,13 +74,33 @@ html {
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.reveal grey {
+    color: gray;
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.reveal pale {
+    color: palegoldenrod;
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.reveal golden {
+    color: gold;
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.reveal silver {
+    color: silver;
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
 .reveal black {
     color: black;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
-.reveal black {
-    color: pink;
+.reveal pink {
+    color: rgb(247, 155, 170);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -118,21 +148,77 @@ html {
 
 /* half out text */
 
-/* italic or oblique */
-.reveal italic {
-    font-style: oblique;
+/* left, right align */
+.left {
+    text-align: left !important;
 }
+
+.right {
+    text-align: right !important;
+}
+
+/* left, right align */
+
+/* font style: italic or oblique, bold, bigtext, underline */
+italic {
+    font-style: oblique !important;
+}
+
+bold {
+    font-size: 120% !important;
+    font-weight: bold !important;
+    text-shadow: 2px 2px 2px ghostwhite !important;
+}
+
+bigtext {
+    font-size: 2em !important;
+}
+
+smalltext {
+    font-size: 0.8em !important;
+}
+
+underline {
+    text-decoration-line: underline !important;
+}
+
+overline {
+    text-decoration-line: overline !important;
+}
+
+strike {
+    text-decoration-line: line-through !important;
+}
+
+/* font style: italic or oblique, bold, bigtext, underline */
 
 /* italic or oblique */
 
 /* enlarge image on hover */
-.reveal .img-zoom {
+.reveal .img-zoom,
+.reveal .img-zoom-12,
+.reveal .img-zoom-15,
+.reveal .img-zoom-2,
+.reveal .img-zoom-3 {
     transition: transoform .2s;
 }
 
 /* too big will go outside the viewport */
-.reveal .img-zoom:hover {
+.reveal .img-zoom:hover,
+.reveal .img-zoom-.img-zoom-3 {
     transform: scale(3);
+}
+
+.reveal .img-zoom-.img-zoom-2 {
+    transform: scale(2);
+}
+
+.reveal .img-zoom-.img-zoom-15 {
+    transform: scale(1.5);
+}
+
+.reveal .img-zoom-.img-zoom-12 {
+    transform: scale(1.2);
 }
 
 /* pdf download corner */
@@ -176,7 +262,7 @@ html.print-pdf .pdf_div {
 }
 
 
-/* don't change pdf downlowd link color, no underline */
+/* don't change pdf download link color, no underline */
 .link_no_change {
     color: inherit;
     text-decoration: none;
@@ -262,7 +348,7 @@ html.print-pdf body {
     position: absolute;
     display: block;
     z-index: 31;
-    /* navigation link and slide numbers are at the bottom right conrer */
+    /* navigation link and slide numbers are at the bottom right corner */
     bottom: 10px;
     right: 100px;
 }
@@ -387,8 +473,8 @@ html.reveal-full-page {
 
 /* change default fragment to fade-down rather than fade-in */
 .reveal .fragment {
-    /* transition: all .2s ease; */
-    transition: all .2s translate(0, -40px);
+    transition: all .2s ease;
+    /* transition: all .2s translate(0, -40px); */
 }
 
 .reveal .fragment:not(.custom) {
@@ -2267,8 +2353,8 @@ html.print-pdf .reveal .slides .pdf-page {
     /* page-break-after: always;
     break-after: always; */
     /* fix extra blank page in chrome-based browser */
-    page-break-after: auto;
-    break-after: auto;
+    page-break-after: always;
+    break-after: always;
 }
 
 html.print-pdf .reveal .slides section {
@@ -2340,6 +2426,7 @@ html.print-pdf .reveal .speaker-notes-pdf[data-layout=separate-page] {
 html.print-pdf .reveal .slide-number-pdf {
     display: block;
     position: absolute;
+    bottom: 5px !important;
     font-size: 14px;
 }
 
@@ -2394,24 +2481,24 @@ html.print-pdf .aria-status {
     }
 
     html:not(.print-pdf) .reveal h1 {
-        font-size: 28pt !important
+        font-size: 30pt !important
     }
 
     html:not(.print-pdf) .reveal h2 {
-        font-size: 24pt !important
+        font-size: 28pt !important
     }
 
     html:not(.print-pdf) .reveal h3 {
-        font-size: 22pt !important
+        font-size: 26pt !important
     }
 
     html:not(.print-pdf) .reveal h4 {
-        font-size: 22pt !important;
+        font-size: 24pt !important;
         font-variant: small-caps !important;
     }
 
     html:not(.print-pdf) .reveal h5 {
-        font-size: 21pt !important
+        font-size: 22pt !important
     }
 
     html:not(.print-pdf) .reveal h6 {
@@ -2518,14 +2605,14 @@ html.print-pdf .aria-status {
         box-shadow: none !important;
     }
 
-    html:not(.print-pdf) section small {
+    /* html:not(.print-pdf) section small {
         font-size: .8em !important;
     }
 
     html:not(.print-pdf) section bigtext {
         font-size: 2em !important;
         line-height: 1.5em !important;
-    }
+    } */
 
     html:not(.print-pdf) .reveal .hljs {
         max-height: 100% !important;
@@ -2541,8 +2628,6 @@ html.print-pdf .aria-status {
 
     html:not(.print-pdf) .reveal .hljs td {
         font-size: inherit !important;
-        color: inherit !important
+        color: inherit !important;
     }
-
-    ;
 }

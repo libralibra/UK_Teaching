@@ -459,6 +459,14 @@ a.roll span:after {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
+/* title or section header, compare to r-fit-text, it's not that big */
+.reveal .r-frame-text {
+    /* border: 4px solid var(--r-main-color); */
+    font-size: 3em;
+    border: thick double rgb(153, 153, 153);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
 .reveal a .r-frame {
     transition: all 0.15s linear;
 }
