@@ -71,14 +71,13 @@
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section>
+                <section id="chap_1">
                     <section id="title">
-                        <h1><span class="course"></span></h1>
-                        <h3>
-                            <orange><span class="coursecode"></span></orange>
-                        </h3>
+                        <h1>
+                            <orange><span class="coursecode"></span>: </orange><span class="course"></span>
+                        </h1>
                         <!-- <img src="img/nn.png" width=50% /> -->
-                        <img src="img/ai_title.png" width=50% />
+                        <img src="img/ai_title.png" class="r-stretch" />
                         <p>
                             <cyan class="fullname"></cyan> <br>
                             <span class="uni"></span>, v. <span class="year"></span>
@@ -96,11 +95,11 @@
                     <section id="digital_tap">
                         <h1>Digital Attendance System (SEATS)</h1>
                         <img src="../common/digitap.PNG" alt="digital tap" class="r-stretch">
-                        <p class="fragment">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did't work.</p>
+                        <p class="fragment">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did' t work.</p>
                     </section>
                 </section>
 
-                <section>
+                <section id="module_induction">
                     <section id="outine">
                         <h1 class="r-frame-text">Module Outline</h1>
                     </section>
@@ -163,23 +162,33 @@
 
                     <section id="description_summary" data-auto-animate>
                         <h1 data-id="hd">Description Summary</h1>
-                        <ol data-id="desp">
-                            <li class="fragment">learn <purple>classical</purple> AI</li>
-                            <li class="fragment">will look at <blue>machine learning</blue> in next study block (with me)</li>
-                            <li class="fragment">make a <green>'portfolio'</green> using AI techniques</li>
-                        </ol>
+                        <div class="row no-margin-top" data-id="desp">
+                            <div class="col-33 no-margin-top fragment">
+                                <img class="img-round img-square-200" alt="description 1" src="img/desp1.png"><br>
+                                learn <purple>classical</purple> AI techniques
+                            </div>
+                            <div class="col-33 no-margin-top fragment">
+                                <img class="img-round img-square-200" alt="description 2" src="img/desp2.png"><br>
+                                will look at <blue>machine learning</blue> in next SB
+                            </div>
+                            <div class="col-33 no-margin-top fragment">
+                                <img class="img-round img-square-200" alt="description 3" src="img/desp3.png"><br>
+                                make a <green>'portfolio'</green> using AI techniques
+                            </div>
+                        </div>
                     </section>
 
                     <section id="outcome">
                         <h1>Learning Outcomes</h1>
-                        <p>The expected outcomes include:</p>
                         <div class="row no-margin-top">
                             <div class="col-50 no-margin-top fragment">
+                                <img class="img-round img-square-200" src="img/coding.png" alt="coding picture"><br>
                                 <cyan>Code/Compute</cyan><br>
                                 implement working and maintainable software components
                             </div>
 
                             <div class="col-50 no-margin-top fragment">
+                                <img class="img-round img-square-200" src="img/solving.png" alt="thinking picture"><br>
                                 <green>Solve</green><br>
                                 Demonstrate computational thinking and numeracy skills (Not directly assessed)
                             </div>
@@ -187,7 +196,7 @@
                     </section>
                 </section>
 
-                <section>
+                <section id="teaching">
                     <section id="teaching">
                         <h1 class="r-frame-text">Teaching</h1>
                     </section>
@@ -216,7 +225,7 @@
                             <li class="fragment">
                                 <green>Role:</green> Senior Lecturer in Artificial Intelligence
                             </li>
-                            <li class="fragment">
+                            <li class="fragment" data-id="hi">
                                 <green>Background: </green>
                                 <ul>
                                     <li>worked for <yellow>Rolls-Royce UTC</yellow> at <pink>University of Southampton</pink> (aircraft engine design & optimisation)</li>
@@ -229,6 +238,36 @@
                     </section>
 
                     <section id="who_am_i_2" data-auto-animate>
+                        <h1 data-id="hh">Who am I?</h1>
+                        <ul data-id="hd">
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li>
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li data-id="hi">
+                                <img class="r-stretch" src="../common/trent_xwb.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="who_am_i_3" data-auto-animate>
+                        <h1 data-id="hh">Who am I?</h1>
+                        <ul data-id="hd">
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li>
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li data-id="hi">
+                                <img class="r-stretch" src="../common/trent_xwb_2.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="who_am_i_4" data-auto-animate>
                         <h1 data-id="hh">Who am I? (cont.)</h1>
                         <ul data-id="hd">
                             <li>
@@ -265,7 +304,7 @@
                     </section>
                 </section>
 
-                <section>
+                <section id="plan">
                     <section id="assessment">
                         <h1 class="r-frame-text">Assessment</h1>
                     </section>
@@ -303,7 +342,7 @@
                     </section>
 
                     <section id="examples">
-                        <h1>Examples</h1>
+                        <h1>Examples/Ideas</h1>
                         <div class="row no-margin-top">
                             <div class="col-50 no-margin-top fragment" data-fragment-index="1">
                                 <ul>
@@ -316,7 +355,7 @@
                             <div class="col-50 no-margin-top fragment" data-fragment-index="2">
                                 <ul>
                                     <li>Puzzle Solver</li>
-                                    <li>Component for Existing Project<cyan class="fragment" data-fragment-index="3">*</cyan>
+                                    <li>Component for Existing Project<cyan class="fragment" data-fragment-index="3"><sup>*</sup></cyan>
                                     </li>
                                     <li>Board Game AI</li>
                                     <li>Standalone Game/Demo</li>
@@ -324,56 +363,44 @@
                             </div>
                         </div>
                         <br>
-                        <p class="fragment" data-fragment-index="3">Draw a clear line between the project and the component!<br>
-                            <cyan>NO duplicate submissions!</cyan>
+                        <p class="fragment" data-fragment-index="3">
+                            <cyan><sup>*</sup></cyan>Draw a clear line between the project and the component!<br>
+                            <pink>NO duplicate submissions!</pink>
                         </p>
                     </section>
 
                     <section id="marking">
                         <h1>Marking Criteria</h1>
                         <div class="row no-margin-top">
-                            <ol>
-                                <div class="col-50 no-margin-top">
-                                    <li class="fragment">
-                                        <blue>Choice of Concept: 20%</blue>
-                                        <ul>
-                                            <li>Appropriate to demonstrate AI techniques</li>
-                                            <li>Scope</li>
-                                            <li>Creative</li>
-                                        </ul>
-                                    </li>
-                                    <li class="fragment">
-                                        <green>Functional Coherence: 20%</green>
-                                        <ul>
-                                            <li>Requirements are met</li>
-                                            <li>No (obvious) bug detected</li>
-                                        </ul>
-                                    </li>
-                                </div>
-                                <div class="col-50 no-margin-top">
-                                    <li class="fragment">
-                                        <purple>Sophistication: 40%</purple>
-                                        <ul>
-                                            <li>Insight into AI techniques</li>
-                                            <li>Insight into software architecture</li>
-                                        </ul>
-                                    </li>
-                                    <li class="fragment">
-                                        <orange>Maintainability: 20%</orange>
-                                        <ul>
-                                            <li>Code quality</li>
-                                            <li>Flexibility</li>
-                                            <li>Documentation</li>
-                                        </ul>
-                                    </li>
-                                </div>
-                            </ol>
+                            <div class="fragment col-25 no-margin-top no-margin-bottom">
+                                <blue>Choice of Concept: 20%</blue><br>
+                                <lime>-</lime>Appropriate<br>
+                                <lime>-</lime>Scope<br>
+                                <lime>-</lime>Creative
+                                </ul>
+                            </div>
+                            <div class="fragment col-25 no-margin-top no-margin-bottom">
+                                <green>Functional Coherence: 20%</green><br>
+                                <lime>-</lime>Requirements are met<br>
+                                <lime>-</lime>No (obvious) bug detected
+                            </div>
+                            <div class="fragment col-25 no-margin-top no-margin-bottom">
+                                <purple>Sophistication: 40%</purple><br>
+                                <lime>-</lime>Insight into AI techniques<br>
+                                <lime>-</lime>Insight into software architecture
+                            </div>
+                            <div class="fragment col-25 no-margin-top no-margin-bottom">
+                                <orange>Maintainability: 20%</orange><br>
+                                <lime>-</lime>Code quality<br>
+                                <lime>-</lime>Flexibility<br>
+                                <lime>-</lime>Documentation
+                            </div>
                         </div>
                     </section>
 
                     <section id="step_1" data-auto-animate>
                         <h1 data-id="ht">Step 1: Proposal (Part A)</h1>
-                        For your first AI technique:
+                        For your first AI technique:<br>
                         <ul>
                             <li>
                                 <blue>Outline</blue> concept
@@ -388,7 +415,7 @@
 
                     <section id="step_2" data-auto-animate>
                         <h1 data-id="ht">Step 2: Implement (Part B)</h1>
-                        Implement your AI technique
+                        Implement your AI technique<br>
                         <ul>
                             <li>
                                 <red>Write</red> your code
@@ -401,7 +428,7 @@
 
                     <section id="step_3" data-auto-animate>
                         <h1 data-id="ht">Step 3: Repeat (Part C & D)</h1>
-                        Repeat step 1 and 2 for the second instance
+                        Repeat step 1 and 2 for the second instance<br>
                         <ul>
                             <li>
                                 <orange>Repeat</orange> the previous two steps
@@ -454,7 +481,7 @@
                     </section>
                 </section>
 
-                <section>
+                <section id="details">
                     <section id="timetable">
                         <h1 class="r-frame-text">Timetable</h1>
                     </section>
@@ -504,7 +531,7 @@
                                 <bold>Questions?</bold>
                             </purple>
                         </h2>
-                        <img src="img/questions.png" width="70%"><br>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
                         <cyan><span class="office"></span></cyan>
                         </h6>
@@ -535,7 +562,7 @@
         <div id="header">
             <!-- <div id="header-left">HEADER-LEFT</div> -->
             <!-- <div id="header-right">HEADER-RIGHT</div> -->
-            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img src="../common/logo.png" title="visit Falmouth University" style="width:100px;"></a></div>
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
             <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
         </div>
 
@@ -582,6 +609,10 @@
                 // and more: https://quarto.org/docs/extensions/listing-revealjs.html
                 // https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware
                 // https://github.com/rajgoel/reveal.js-plugins/tree/master
+
+                // original ratio, reveal will use this ratio to scale elements
+                width: 1200,
+                height: 650,
 
                 // plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, RevealChalkboard, RevealCustomControls, Appearance, Verticator],
 
@@ -903,9 +934,9 @@
             ]);
             // add the dynamic item
             authorData.set('emaillink', 'mailto:' + authorData.get('email'));
-            authorData.set('title', authorData.get('course'));
+            authorData.set('title', authorData.get('coursecode') + ": " + authorData.get('course'));
             authorData.set('modulename', authorData.get('course'));
-            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+            authorData.set('fullname', authorData.get('name') + ' (Senior Lecturer in AI)');
             // update html, the emaillink class need to be treated specially, so does the document title
             // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
             authorData.forEach((v, k) => {

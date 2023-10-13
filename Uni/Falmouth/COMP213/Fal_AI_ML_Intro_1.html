@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        <title>Course Title</title>
+        <title></title>
 
         <!-- charset setting -->
         <meta charset="utf-8">
@@ -20,8 +20,9 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
         <!-- the default stylsheets -->
-        <link rel="stylesheet" href="../../../assets/dist/reset.css">
+        <link rel="stylsheets" href="../../../assets/dist/reset.css">
         <link rel="stylesheet" href="../../../assets/dist/reveal.css">
+        <!-- <link rel="stylesheet" href="../../../assets/dist/temp.css"> -->
         <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
 
         <!-- Theme used for syntax highlighting of code -->
@@ -34,7 +35,7 @@
         <link rel="stylesheet" href="../../../assets/plugin/customcontrols/style.css">
         <!-- custom controls font awsome icons -->
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
-        <!-- rows and columnes in one slide -->
+        <!-- rows and columns in one slide -->
         <link rel="stylesheet" href="../../../assets/dist/row_col.css">
         <!-- pointer plugin style -->
         <link rel="stylesheet" href="../../../assets/plugin/pointer/pointer.css" />
@@ -59,9 +60,9 @@
             }
         </script>
         <!-- pdf printing by showing a corner strip+
-            put pdf button before anything else, as the z-index makes sure later elements has a 
-            higher z-index than those before. In overview mode, the slides should be in the front.
-        -->
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
         <div class="pdf_div">
             <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
         </div>
@@ -72,226 +73,499 @@
             <div class="slides">
                 <section>
                     <section id="title">
-                        <h1 class="course"></h1>
-                        <h3>
-                            <orange><span class="coursecode"></span></orange>
-                        </h3>
-                        <br><br><br>
-                        <p><span class="fullname"></span> <br>
+                        <h1>
+                            <orange><span class="coursecode"></span>: </orange><span class="course"></span>
+                        </h1>
+                        <!-- <img src="img/nn.png" width=50% /> -->
+                        <img src="img/al_ml.jpg" class="r-stretch" />
+                        <p>
+                            <cyan class="fullname"></cyan> <br>
                             <span class="uni"></span>, v. <span class="year"></span>
                             <!-- <script>document.write(new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1))</script> -->
                         </p>
 
                         <aside class="notes">
-
+                            <ul>
+                                <li>Hello, everyone. Welcome to this module: <span class="course"></span>. In the next couple of weeks, I will take you through the journey to the AI and ML world by introducing you the main concepts in this area. We will also review the history, key achievements, and morden applications in the field of AI.</li>
+                                <li>Apart from that, I will talk about the details of AI and ML techniques. This includes online and offline learning, supervised and unsupervised learning, classification and regression, inductive and generative techniques. You will also learn all sorts of necessary knowledge to master the required skills to enter the AI-related Computer Science and Games industries.</li>
+                            </ul>
                         </aside>
                     </section>
 
                     <section id="digital_tap">
                         <h1>Digital Attendance System (SEATS)</h1>
                         <img src="../common/digitap.PNG" alt="digital tap" class="r-stretch">
-                        <p class="fragment fade-down">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did't work.</p>
+                        <p class="fragment">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did't work.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="outine">
+                        <h1 class="r-frame-text">Module Outline</h1>
                     </section>
 
-                    <section id="who_am_i">
-                        <h1>Who am I?</h1>
+                    <section id="aim">
+                        <h1>Aim</h1>
+                        <p>To <span class="fragment highlight-red">confidently</span> implement <span class="fragment highlight-green">artificial intelligence (AI)</span> techniques which are commonly used to <span class="fragment highlight-blue">solve problems</span> in industry.</p>
+                    </section>
+
+                    <section id="description_1" data-auto-animate>
+                        <h1 data-id="hd">Description</h1>
+                        <ul data-id="desp">
+                            <li class="fragment">
+                                <cyan>introduce</cyan> you to the core techniques of AI
+                            </li>
+                            <li class="fragment">
+                                <blue>refine</blue> your understanding of these techniques
+                            </li>
+                            <li class="fragment">
+                                <lime>study</lime> the strengths and weaknesses of standard AI techniques
+                            </li>
+                            <li class="fragment">
+                                <yellow>equip</yellow> you with a solid background in this fast-moving field
+                            </li>
+                            <li class="fragment">
+                                <orange>train</orange> you to apply them to well-defined problem domains
+                            </li>
+                            <li class="fragment">
+                                <purple>lay</purple> the foundation for more complex applications in subsequent module
+                            </li>
+                            <li class="fragment">
+                                <pink>select</pink> appropriate technologies to build a portfolio of AI instances
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="description_2" data-auto-animate data-visibility="hidden">
+                        <h1 data-id="hd">Description (cont.)</h1>
+                        <ul data-id="desp">
+                            <li class="fragment">
+                                <cyan>Cover</cyan> classical AI for decision-making and content generation
+                            </li>
+                            <li class="fragment">
+                                <blue>Showcase</blue> typical application of these techniques:
+                                <ul>
+                                    <li>authoring of non-player character behaviours in games</li>
+                                    <li>the navigation of complex environments</li>
+                                    <li>the formation of logistical plans with respect to constraints</li>
+                                    <li>the generation of content in creative domains</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                <yellow>build</yellow> a portfolio of AI instances applied to these simplified versions of domains
+                            </li>
+                            <li class="fragment">
+                                <pink>select</pink> appropriate technologies to solve real problems
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="description_summary" data-auto-animate>
+                        <h1 data-id="hd">Description Summary</h1>
+                        <div class="row no-margin-top">
+                            <ol data-id="desp">
+                                <div class="col-33 no-margin-top fragment">
+                                    <li>learn <purple>classical</purple> AI</li>
+                                </div>
+                                <div class="col-33 no-margin-top fragment">
+                                    <li>will look at <blue>machine learning</blue> in next study block (with me)</li>
+                                </div>
+                                <div class="col-33 no-margin-top fragment">
+                                    <li>make a <green>'portfolio'</green> using AI techniques</li>
+                                </div>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <section id="outcome">
+                        <h1>Learning Outcomes</h1>
+                        <p>The expected outcomes include:</p>
+                        <div class="row no-margin-top">
+                            <div class="col-50 no-margin-top fragment">
+                                <img class="img-round" src="img/coding.png" height="200px" width="200px" alt="coding picture"><br>
+                                <cyan>Code/Compute</cyan><br>
+                                implement working and maintainable software components
+                            </div>
+
+                            <div class="col-50 no-margin-top fragment">
+                                <img class="img-round" src="img/solving.png" height="200px" width="200px" alt="thinking picture"><br>
+                                <green>Solve</green><br>
+                                Demonstrate computational thinking and numeracy skills (Not directly assessed)
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="teaching">
+                        <h1 class="r-frame-text">Teaching</h1>
+                    </section>
+
+                    <section id="delivery">
+                        <h1>Module Delivery</h1>
                         <ul>
+                            <li>
+                                <cyan>Given by:</cyan> Dr Daniel Zhang
+                            </li>
+                            <li>
+                                <cyan>Email:</cyan> <a href="" class="emaillink"></a> (also on <orange>MS Teams</orange>)
+                            </li>
+                            <li>
+                                <purple>Drop me an email to arrange meetings if necessary.</purple>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="who_am_i" data-auto-animate>
+                        <h1 data-id="hh">Who am I?</h1>
+                        <ul data-id="hd">
                             <li>
                                 <green>Name:</green> Dr Daniel Zhang
                             </li>
-                            <li class="fragment fade-in">
+                            <li class="fragment">
                                 <green>Role:</green> Senior Lecturer in Artificial Intelligence
                             </li>
-                            <li class="fragment fade-in">
+                            <li class="fragment" data-id="hi">
+                                <green>Background: </green>
+                                <ul>
+                                    <li>worked for <yellow>Rolls-Royce UTC</yellow> at <pink>University of Southampton</pink> (aircraft engine design & optimisation)</li>
+                                    <li>focused on <blue>AI/ML</blue> and their Applications</li>
+                                    <li>delivered <cyan>more than 10</cyan> successful software and production tools to <yellow>Rolls-Royce</yellow> to solve their computational engineering problems</li>
+                                    <li>supported Rolls-Royce engineers in <cyan>five</cyan> R&D Centres: <purple>Bristol</purple> (UK), <orange>Derby</orange> (UK), <red>Dahlewitz</red> (Germany), <blue>Illinois</blue> (US), <green>Bangalore</green> (India)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="who_am_i_2" data-auto-animate>
+                        <h1 data-id="hh">Who am I?</h1>
+                        <ul data-id="hd">
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li>
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li data-id="hi">
+                                <img class="fragment custom blur r-stretch" src="img/trent_xwb.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="who_am_i_3" data-auto-animate>
+                        <h1 data-id="hh">Who am I?</h1>
+                        <ul data-id="hd">
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li>
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li data-id="hi">
+                                <img class="fragment custom blur r-stretch" src="img/trent_xwb_2.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="who_am_i_4" data-auto-animate>
+                        <h1 data-id="hh">Who am I? (cont.)</h1>
+                        <ul data-id="hd">
+                            <li>
+                                <green>Name:</green> Dr Daniel Zhang
+                            </li>
+                            <li>
+                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
+                            </li>
+                            <li class="fragment">
                                 <green>Teaching:</green> MSc courses in Games Academy
                                 <ul>
                                     <li>Classical Artificial Intelligence</li>
                                     <li>Machine Learning</li>
                                 </ul>
                             </li>
-                            <li class="fragment fade-in">
-                                <green>Background: </green>
-                                <ul>
-                                    <li>majored in Computer Science, AI/ML and its Applications</li>
-                                    <li>worked for Rolls-Royce UTC, University of Southampton</li>
-                                    <li>delivered 10+ successful software and production tools to Rolls-Royce for aircraft engine design and optimisation</li>
-                                    <li>supported Rolls-Royce engineers in 5 R&D Centres: Bristol (UK), Derby (UK), Dahlewitz (Germany), North America (US), Bangalore (India)</li>
-                                </ul>
+                            <li class="fragment">
+                                <green>Other activities</green>: dissertation, group project, PhD supervision, research, etc.
                             </li>
                         </ul>
-
-                        <aside class="notes">
-                        </aside>
                     </section>
 
-                    <section id="contact_info">
-                        <h1>Contact Information</h1>
+                    <section id="email_policy">
+                        <h1>Email Policy</h1>
+                        <h3><a class="emaillink"></a></h3>
+                        <!-- <br> -->
+                        <ul>
+                            <!-- <li>I don't answer questions about the course content by email.</li> -->
+                            <li>
+                                <red>Short</red> and <blue>to-the-point</blue> email will be read. (or MS Teams).
+                            </li>
+                            <li>Talk to me <green>before</green> or <green>after</green> class during my office hours.</li>
+                            <li>An alternative mutually acceptable meeting time may need to be agreed upon if there's an unavoidable scheduling conflict.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="assessment">
+                        <h1 class="r-frame-text">Assessment</h1>
+                    </section>
+
+                    <section id="assignment">
+                        <h1>Assignment</h1>
+                        <ul>
+                            <li class="fragment">
+                                <blue>Format</blue>: portfolio of AI instances with computational efforts
+                            </li>
+                            <li class="fragment">
+                                <blue>Marks</blue>: 100%
+                            </li>
+                            <li class="fragment">
+                                <blue>Details</blue>: see Learning Space
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="important_dates">
+                        <h1>Important Notes</h1>
+                        <p>Deadline: check <a href="https://www.falmouth.ac.uk/student-portal-falmouth-app" target="_blank" title="MyFalmouth link">
+                                <red>MyFalmouth</red>
+                            </a> and/or <a href="https://mytimetable.falmouth.ac.uk/schedule" target="_blank" title="MyTimetable link">
+                                <cyan>MyTimetable</cyan>
+                            </a> for deadlines
+                        </p>
+                        <red>
+                            <pre class="fragment grow"><code class="hljs js">
+           -> Please note: late submission WILL be penalised!       
+                        </code></pre>
+                        </red>
+                        <p>You marks would be capped for anything past the due date, unless you have an approved <blue>Extenuating Circumstances (EC) Applications</blue> (you must submit your EC application via <!--img src="img/open_new.png" width="3%" style="display: inline;" title="visit MyFalmouth Student Portal"--><a href="https://www.falmouth.ac.uk/student-portal-falmouth-app">MyFalmouth portal</a>)
+                        </p>
+                    </section>
+
+                    <section id="examples">
+                        <h1>Examples</h1>
+                        <div class="row no-margin-top">
+                            <div class="col-50 no-margin-top fragment" data-fragment-index="1">
+                                <ul>
+                                    <li>NPC Behaviour</li>
+                                    <li>Strategic AI</li>
+                                    <li>Procedure Content Generator</li>
+                                    <li>Game Design Tool</li>
+                                </ul>
+                            </div>
+                            <div class="col-50 no-margin-top fragment" data-fragment-index="2">
+                                <ul>
+                                    <li>Puzzle Solver</li>
+                                    <li>Component for Existing Project<cyan class="fragment" data-fragment-index="3"><sup>*</sup></cyan>
+                                    </li>
+                                    <li>Board Game AI</li>
+                                    <li>Standalone Game/Demo</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <p class="fragment" data-fragment-index="3">
+                            <cyan><sup>*</sup></cyan>Draw a clear line between the project and the component!<br>
+                            <pink>NO duplicate submissions!</pink>
+                        </p>
+                    </section>
+
+                    <section id="marking">
+                        <h1>Marking Criteria</h1>
+                        <div class="row no-margin-top">
+                            <ol>
+                                <div class="col-50 no-margin-top">
+                                    <li class="fragment">
+                                        <blue>Choice of Concept: 20%</blue>
+                                        <ul>
+                                            <li>Appropriate to demonstrate AI techniques</li>
+                                            <li>Scope</li>
+                                            <li>Creative</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment">
+                                        <green>Functional Coherence: 20%</green>
+                                        <ul>
+                                            <li>Requirements are met</li>
+                                            <li>No (obvious) bug detected</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                                <div class="col-50 no-margin-top">
+                                    <li class="fragment">
+                                        <purple>Sophistication: 40%</purple>
+                                        <ul>
+                                            <li>Insight into AI techniques</li>
+                                            <li>Insight into software architecture</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment">
+                                        <orange>Maintainability: 20%</orange>
+                                        <ul>
+                                            <li>Code quality</li>
+                                            <li>Flexibility</li>
+                                            <li>Documentation</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <section id="step_1" data-auto-animate>
+                        <h1 data-id="ht">Step 1: Proposal (Part A)</h1>
+                        For your first AI technique:
                         <ul>
                             <li>
-                                <cyan>Email:</cyan> <a href="" class="emaillink"></a>
+                                <blue>Outline</blue> concept
                             </li>
                             <li>
-                                <cyan>Booking:</cyan> <a target="_blank" href="https://outlook.office.com/bookwithme/user/43e7d53ea00e433f898c3b656a30f0fc@falmouth.ac.uk/?getrequesturl=https%3a%2f%2foutlook.office.com%2fows%2fOID%3a2fd42220-1a81-4f57-b132-37f7299a6a61%40550beeb3-6a3d-4646-a111-f89d0177792e%2fbeta%2fBookWithMe%2fCheckBookable%3fbookingcode%3d4c3140a8-67d2-413e-8afc-39b4bebbb369%26itemid%3dSVRwCe7HMUGxuT6WGxi68g2%26authtoken%3deyJhbGciOiJSUzI1NiIsImtpZCI6ImszWXdXK3p0c0YrWU9BQkxhK25PUDJZWlJ6TT0iLCJ0eXAiOiJKV1QiLCJ4NXQiOiJWX0IxcjA0SzdsWm9UdDU3YS1CbkVWOUJaQnMifQ.eyJvaWQiOiIyZmQ0MjIyMC0xYTgxLTRmNTctYjEzMi0zN2Y3Mjk5YTZhNjEiLCJ2ZXIiOiJSZXNvdXJjZUxvb3BiYWNrLlVzZXIuVjEiLCJzY3AiOiJPcGVuQm9vay1JbnRlcm5hbC5SZWFkV3JpdGUiLCJyc2NvcGVsZW4iOiIyMTgiLCJyZXNvdXJjZV9zY29wZSI6IntcIlVSTFwiOlwibWY0K3drSXZtcDdXNm1NWUJ0d1MxMGVJYW5Pa1dhQTlJS044eWVUNDdwST1cIn0iLCJjb3JyaWQiOiIwYWU4MTY0MS1kZjljLTQwODYtOGYyNi0zNWE4YmE0Njg0YzIiLCJhcHBpZCI6IjE1N2NkZmJmLTczOTgtNGE1Ni05NmMzLWU5M2U5YWIzMDliNSIsImFwcGlkYWNyIjoiMCIsInRpZCI6IjU1MGJlZWIzLTZhM2QtNDY0Ni1hMTExLWY4OWQwMTc3NzkyZSIsImlhdCI6MTY5NTgzNDY4MCwibmJmIjoxNjk1ODM0NjgwLCJleHAiOjE3MDM2MTA2ODAsImlzcyI6Imh0dHBzOi8vcmVzb3VyY2Uuc2VsZi8iLCJhdWQiOiJodHRwczovL291dGxvb2sub2ZmaWNlLmNvbSJ9.Qh6zH-teWvGZ6mD6oaEuvVbLYo0P4XXiopiyN5AZBCWGmBoNWsBuXHIm4VB149p-p95Bd8ohlP6tdZwLI3g63T_P_GBuT9mtxfm9kjw-jN6sDcBuVbSmx3uoc85gy8y390BwQ0kGUCmUtbTQ-92MjvD9d2DWHBGHneAcylootjH9_OMbY4oVBr-GSRmhPdtNr4zzj8v1FGX9DEW-ztwOEMeTC-8Msoa5IS1jxvCsZUpuHbzVOI3wOf5-KioySzAIhVEfdENuOkvN0DoPSxBB_XoEbVLEQjD0lFNMEVNxDsrb1snDjARDE57NYWPBji56QsIBMtz1BLnTGnQj6LCqDw&anonymous">Book time with Daniel Zhang</a>
-                            </li>
-                            <li>Try to speak to me in the studio, especially during the teaching hours</li>
-                            <li>Or send direct message on <blue>Microsoft Teams</blue>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="aims_objs">
-                        <h1>Aim and Objectives</h1>
-                        <ul>
-                            <li class="fragment fade-in">
-                                <dt>Aim</dt>
-                                <dd>To help you to plan your <cyan>
-                                        <bigtext>major</bigtext>
-                                    </cyan> individual research and development project</dd>
-                            </li>
-                            <li class="fragment fade-in">
-                                <dt>Objectives</dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <purple>Think about</purple> what you are going to do for your project?
-                                        </li>
-                                        <li>
-                                            <cyan>Collect and review</cyan> relevant literatures
-                                        </li>
-                                        <li>
-                                            <blue>Define</blue> the question and hypotheses
-                                        </li>
-                                        <li>
-                                            <orange>Consolidate</orange> your thinking: methodology, quantitative analysis
-                                        </li>
-                                        <li>
-                                            <green>Discuss</green> with your classmates about your topic selection (feedbacks, defending if needed)
-                                        </li>
-                                        <li>
-                                            <red>Conduct</red> the proposed research
-                                        </li>
-                                        <li>
-                                            <yellow>Drive</yellow> your progress towards a <purple>conclusion</purple>
-                                        </li>
-                                    </ul>
-                                </dd>
+                                <orange>Describe</orange> key requirements
+                            <li>
+                                <cyan>Identify</cyan> AI techniques that will be implemented
                             </li>
                         </ul>
                     </section>
 
-                    <section id="plan">
-                        <h1>Plan</h1>
-                        <img src="img/arr1.PNG" alt="weekly plan" class="r-stretch">
-                    </section>
-
-                    <section id="project">
-                        <h1>Your Project</h1>
-                        <p>To come up with an idea of your project</p>
+                    <section id="step_2" data-auto-animate>
+                        <h1 data-id="ht">Step 2: Implement (Part B)</h1>
+                        Implement your AI technique
                         <ul>
-                            <li class="fragment fade-in">
-                                <purple>Be creative: </purple> do something fancy
+                            <li>
+                                <red>Write</red> your code
                             </li>
-                            <li class="fragment fade-in">
-                                <blue>Be diligent: </blue> keep on polishing your project
-                            </li>
-                            <li class="fragment fade-in">
-                                <orange>Be reasonable: </orange> should be doable within the timescale
+                            <li>
+                                <pink>Pay attention</pink> to the marking rubic
                             </li>
                         </ul>
                     </section>
 
-                    <section id="sb1">
-                        <h1>Study Block (SB) 1</h1>
+                    <section id="step_3" data-auto-animate>
+                        <h1 data-id="ht">Step 3: Repeat (Part C & D)</h1>
+                        Repeat step 1 and 2 for the second instance
                         <ul>
-                            <li class="fragment fade-in">
-                                <purple>Meetings:</purple> 10 times
+                            <li>
+                                <orange>Repeat</orange> the previous two steps
                             </li>
-                            <li class="fragment fade-in">
-                                <purple>Time:</purple> Wednesday, 09.00-10.00 (2nd Oct - 12 Dec)
+                            <li>
+                                <purple>Check</purple> the requirements for the second instance
                             </li>
-                            <li class="fragment fade-in">
-                                <purple>Location:</purple> Microsoft Teams (online)
+                        </ul>
+                    </section>
+
+                    <section id="step_4" data-auto-animate>
+                        <h1 data-id="ht">Step 4: Refine (Part E)</h1>
+                        <ul>
+                            <li>
+                                <lime>Implement</lime> final version of your AI
                             </li>
-                            <li class="fragment fade-in">
-                                <purple>Group:</purple> 3 students
+                            <li>
+                                <pale>Submit</pale> on learning space
                                 <ul>
-                                    <li>LEVERIDGE, JAMIE: C#, C++, Computing for Games, interested in AI</li>
-                                    <li>LOOTES, MICHAEL</li>
-                                    <li>SAYWELL, BRENDAN: programming, C#, shaders module, engneering/computer science bg</li>
+                                    <li>Deadline on <span class="fragment highlight-purple">
+                                            <bold>MyFalmouth</bold>
+                                        </span>
+                                    </li>
+                                    <li>Do not miss the deadline or be penalised</li>
                                 </ul>
                             </li>
                         </ul>
                     </section>
 
-                    <section id="sb1_assessment">
-                        <h1>SB1 Assessment</h1>
-                        <img src="img/sb1_assess.PNG" alt="SB1 Assessment" class="r-stretch">
+                    <section id="step_5" data-auto-animate>
+                        <h1 data-id="ht">Step 5: Viva (Part F)</h1>
                         <ul>
-                            <li class="fragment fade-in">
-                                <red>Time: </red> Wed 3 Jan and Fri 5 Jan, 2024
+                            <li>
+                                <golden>Attend</golden> the viva, <yellow>demonstrate</yellow> your work
                                 <ul>
+                                    <li>Currently scheduled with me and other lecturers</li>
+                                    <li>Week 15(ish), the end of SB1</li>
                                     <li>
-                                        <cyan>Wed 3 Jan:</cyan> 10.00-13.00
-                                    </li>
-                                    <li>
-                                        <blue>Fri 4 Jan:</blue> 10.00-13.00 and 14.00-17.00
+                                        <purple>Check timetable for session!</purple>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="fragment fade-in">
-                                <yellow>NOTE: check your time slot carefully!</yellow>
-                            </li>
-                            <li class="fragment fade-in">
-                                <orange>Location: </orange>Microsoft Teams (online)
-                            </li>
-                            <li class="fragment fade-in">
-                                <green>Staff: </green>Me and John Speakman
-                            </li>
                         </ul>
                     </section>
 
-                    <section id="format">
-                        <h1>Meeting Format</h1>
+                    <section id="version_control">
+                        <h1>Version Control</h1>
+                        <p class="fragment custom blur">Manage your work using version control tools.</p>
+                        <p class="fragment custom blur">You are going to submit a repository.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="timetable">
+                        <h1 class="r-frame-text">Timetable</h1>
+                    </section>
+
+                    <section id="plan" data-auto-animate>
+                        <h1 data-id="hh">Timetable (Study Block 1)</h1>
+                        <img data-id="hw" src="img/sb1.png" alt="sb1 plan" class="r-stretch r-frame">
+                        <p data-id="hd">Week 8 to week 15 (DO check <purple>MyTimetable</purple>)</p>
+                    </section>
+
+                    <section id="structure" data-auto-animate>
+                        <h1 data-id="hh">Session Structure</h1>
+                        <ul data-id="hw">
+                            <li>Lectures (1 hour)</li>
+                            <li>Weekly workshops (2 hours)</li>
+                            <li>Seminar/paper club (1 hour)</li>
+                        </ul>
+                        <p data-id="hd">Check <pink>MyTimetable</pink> for details!</p>
+                    </section>
+
+                    <section id="paper_club">
+                        <h1>Paper Club (Seminar)</h1>
                         <ul>
-                            <li class="fragment fade-in">This week: induction, know each other (topics if we have time?)</li>
-                            <li class="fragment fade-in">The others: 15 mins per person, 15 mins group discussion</li>
+                            <li>Read a paper together with your peers</li>
+                            <li>Come to the seminar ready to discuss the paper<span class="fragment">: bring questions, comments, thoughts, ...</span></li>
+                            <li>Not assessed, but an important opportunity to reflect on state-of-the-art AI research, and possibly apply it to your own practice</li>
                         </ul>
                     </section>
 
-                    <section id="useful_info">
-                        <h1>Useful Information</h1>
+                    <section id="prerequisites">
+                        <h1>Prerequisites</h1>
                         <ul>
-                            <li class="fragment fade-in"><a target="_blank" href="https://www.falmouth.ac.uk/student-regulations">Student Regulations</a></li>
-                            <li class="fragment fade-in"><a target="_blank" href="https://fxplus.ac.uk/student-support/the-compass/">Compass (Student Information Service)</a></li>
-                            <li class="fragment fade-in">Your personal tutor</li>
+                            <li class="fragment">Some knowledge of maths and probability</li>
+                            <li class="fragment">Some programming skills would be useful but not essential
+                                (C++, Python, Matlab, Java, etc.)</li>
                         </ul>
+                    </section>
+
+                    <!-- http://i.giphy.com/90F8aUepslB84.gif" -->
+                    <section id="no_panic" data-background="../common/oh.gif" data-background-size="850px">
+                        <h1>No Panic!</h1>
                     </section>
 
                     <section id="questions">
                         <h2>
-                            <purple>Questions?</purple>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
                         </h2>
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
+                        <cyan><span class="office"></span></cyan>
                         </h6>
-
-                        <aside class="notes">
-
-                        </aside>
                     </section>
+                </section>
 
-                    <section id="introduce">
-                        <h1>IT'S YOUR TURN</h1>
-                        <p>
-                            <cyan>Introduce yourself to the others:</cyan>
-                        </p>
-                        <ul>
-                            <li>Who you are? Where are you from?</li>
-                            <li>What background do you have?</li>
-                            <li>What's your study and career aspiration?</li>
-                            <li>...</li>
-                        </ul>
-                    </section>
+
+                <section data-visibility="hidden">
+                    <h2>The Lorenz Equations</h2>
+                    <p>
+                        \[\begin{aligned}
+                        \dot{x} &amp; = \sigma(y-x) \\
+                        \dot{y} &amp; = \rho x - y - xz \\
+                        \dot{z} &amp; = -\beta z + xy
+                        \end{aligned} \]
+                    </p>
+                </section>
+
+                <section data-visibility="hidden">
+                    <h1>Live Code Editor</h1>
+                    <iframe class="ace" width=600 height=300 data-onchange="console.log(editor.getValue())">Hello World!</iframe>
                 </section>
 
             </div>
@@ -310,7 +584,7 @@
             .           :   blackout
             ESC, O      :   overview
             ALT+click   :   zoom in
-            C           :   note cavas
+            C           :   note canvas
             B           :   chalkboard
             S           :   speaker mode (appearance didn't work well with speaker mode)
             C+S+F       :   search in slides
@@ -349,10 +623,33 @@
                 // https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware
                 // https://github.com/rajgoel/reveal.js-plugins/tree/master
 
+                // original ratio, reveal will use this ratio to scale elements
                 width: 1200,
-                height: 650,
+                height: 700,
 
                 // plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, RevealChalkboard, RevealCustomControls, Appearance, Verticator],
+
+                // old style plugins
+                dependencies: [
+                    // ace live code editor 
+                    { src: '../../../assets/plugin/ace/ace.js' }
+                ],
+
+                ace: {
+                    // Event is triggered when a new editor is created.
+                    oninit: function (editor) {
+
+                    },
+                    // Event is triggered when the text of an editor has changed
+                    onchange: function (event, editor) {
+
+                    },
+                    // Automatically focus an editor when it is displayed
+                    autoFocus: false,
+
+                    // defines a css class name for the ace editors
+                    className: "ace"
+                },
 
                 // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
                 // 2. wait for block in speaker mode fix
@@ -419,7 +716,7 @@
                 // disable any preloading
                 preloadIframes: false,
                 // Number of slides away from the current that are visible
-                // this affect the lazy loading behaviors with so many images, videos, and iframes
+                // this affect the lazy loading behaviours with so many images, videos, and iframes
                 // in this case, use <source data-src="video.mp4" type="video/mp4" /> or
                 // <source data-src="video.webm" type="video/webm" />
                 viewDistance: 3,
@@ -453,6 +750,7 @@
                     // list of themes or 'themes' is set to 'false' the
                     // 'themesPath' option is ignored.
                     themes: true,
+                    // with last slash
                     themesPath: '../../../assets/dist/theme/',
                     // Specify custom panels to be included in the menu, by
                     // providing an array of objects with 'title', 'icon'
@@ -634,8 +932,8 @@
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
         <script>
             const authorData = new Map([
-                ['course', 'Research & Development: Practice'],
-                ['coursecode', 'COMP320'],
+                ['course', 'Artificial Intelligence and Machine Learning'],
+                ['coursecode', 'COMP213'],
                 ['email', 'Daniel.Zhang@falmouth.ac.uk'],
                 ['office', 'Games Academy, Penryn Campus'],
                 ['uni', 'Falmouth University'],
@@ -649,9 +947,9 @@
             ]);
             // add the dynamic item
             authorData.set('emaillink', 'mailto:' + authorData.get('email'));
-            authorData.set('title', authorData.get('course'));
+            authorData.set('title', authorData.get('coursecode') + ": " + authorData.get('course'));
             authorData.set('modulename', authorData.get('course'));
-            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+            authorData.set('fullname', authorData.get('name') + ' (Senior Lecturer in AI)');
             // update html, the emaillink class need to be treated specially, so does the document title
             // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
             authorData.forEach((v, k) => {
