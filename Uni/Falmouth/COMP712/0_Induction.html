@@ -42,10 +42,32 @@
 
         <!-- all links open in new tab -->
         <!-- <base target="_blank"> -->
-    </head>
 
-    <body>
+        <!-- define data here, but update the document later to avoid using
+        window.onload = function() {}; syntax -->
         <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', 'Week 1'],
+                ['topic', ' - Induction'],
+                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
+                ['office', 'Games Academy, Penryn Campus'],
+                ['uni', 'Falmouth University'],
+                ['officehour', 'Monday 13.00-14.00'],
+                ['classroom', 'Room 1002, Games Academy'],
+                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
+                ['deadline', 'Monday, 30th Nov 2023'],
+                ['name', 'Dr Daniel Zhang'],
+                ['nickname', 'Daniel'],
+                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
+            ]);
+            // add the dynamic item
+            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
+            authorData.set('title', authorData.get('coursecode') + ": " + authorData.get('course'));
+            authorData.set('modulename', authorData.get('course'));
+            authorData.set('fullname', authorData.get('name') + ' (Senior Lecturer in AI)');
+
             // generate pdf link, click the button, then press CTRL+P
             // remember to follow these steps to get rid of the borders:
             //  1. select 'save as PDF' for printer
@@ -59,6 +81,9 @@
                 window.location.href = url + "?print-pdf";
             }
         </script>
+    </head>
+
+    <body>
         <!-- pdf printing by showing a corner strip+
                     put pdf button before anything else, as the z-index makes sure later elements has a 
                     higher z-index than those before. In overview mode, the slides should be in the front.
@@ -73,10 +98,13 @@
             <div class="slides">
                 <section id="chap_1">
                     <section id="title">
-                        <h1>
-                            <orange><span class="coursecode"></span>: </orange><span class="course"></span>
-                        </h1>
-                        <!-- <img src="img/nn.png" width=50% /> -->
+                        <h1><span class="course"></span></h1>
+                        <h3>
+                            <orange><span class="coursecode"></span></orange>
+                        </h3>
+                        <p>
+                            <bigtext><span class="week"></span><span class="topic"></span></bigtext>
+                        </p>
                         <img src="img/ai_title.png" class="r-stretch" />
                         <p>
                             <cyan class="fullname"></cyan> <br>
@@ -505,9 +533,9 @@
                     <section id="paper_club">
                         <h1>Paper Club (Seminar)</h1>
                         <ul>
-                            <li>Read a paper together with your peers</li>
-                            <li>Come to the seminar ready to discuss the paper<span class="fragment">: bring questions, comments, thoughts, ...</span></li>
-                            <li>Not assessed, but an important opportunity to reflect on state-of-the-art AI research, and possibly apply it to your own practice</li>
+                            <li><img src="../common/read.png" alt="read paper" class="img-round img-inline"> Read a paper together with your peers</li>
+                            <li><img src="../common/question.png" alt="ask question" class="img-round img-inline">Come to the seminar ready to discuss the paper<span class="fragment">: bring questions, comments, thoughts, ...</span></li>
+                            <li><img src="../common/apply.png" alt="read paper" class="img-round img-inline">Not assessed, but an important opportunity to reflect on state-of-the-art AI research, and possibly apply it to your own practice</li>
                         </ul>
                     </section>
 
@@ -533,28 +561,10 @@
                         </h2>
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
-                        <cyan><span class="office"></span></cyan>
+                        <cyan><span class="office"></span>, <span class="uni"></span></cyan>
                         </h6>
                     </section>
                 </section>
-
-
-                <section data-visibility="hidden">
-                    <h2>The Lorenz Equations</h2>
-                    <p>
-                        \[\begin{aligned}
-                        \dot{x} &amp; = \sigma(y-x) \\
-                        \dot{y} &amp; = \rho x - y - xz \\
-                        \dot{z} &amp; = -\beta z + xy
-                        \end{aligned} \]
-                    </p>
-                </section>
-
-                <section data-visibility="hidden">
-                    <h1>Live Code Editor</h1>
-                    <iframe class="ace" width=600 height=300 data-onchange="console.log(editor.getValue())">Hello World!</iframe>
-                </section>
-
             </div>
         </div>
 
@@ -918,25 +928,6 @@
 
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
         <script>
-            const authorData = new Map([
-                ['course', 'Classical Artificial Intelligence'],
-                ['coursecode', 'COMP712'],
-                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
-                ['office', 'Games Academy, Penryn Campus'],
-                ['uni', 'Falmouth University'],
-                ['officehour', 'Monday 13.00-14.00'],
-                ['classroom', 'Room 1002, Games Academy'],
-                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
-                ['deadline', 'Monday, 30th Nov 2023'],
-                ['name', 'Dr Daniel Zhang'],
-                ['nickname', 'Daniel'],
-                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
-            ]);
-            // add the dynamic item
-            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
-            authorData.set('title', authorData.get('coursecode') + ": " + authorData.get('course'));
-            authorData.set('modulename', authorData.get('course'));
-            authorData.set('fullname', authorData.get('name') + ' (Senior Lecturer in AI)');
             // update html, the emaillink class need to be treated specially, so does the document title
             // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
             authorData.forEach((v, k) => {

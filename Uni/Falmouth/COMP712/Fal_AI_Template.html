@@ -1,0 +1,1730 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- the default stylsheets -->
+        <link rel="stylsheets" href="../../../assets/dist/reset.css">
+        <link rel="stylesheet" href="../../../assets/dist/reveal.css">
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css">
+        <!-- <link rel="stylesheet" href="../../../assets/plugin/highlight/zenburn.css"> -->
+
+        <!-- the chalkboard -->
+        <link rel="stylesheet" href="../../../assets/plugin/chalkboard/style.css">
+        <!-- custom controls -->
+        <link rel="stylesheet" href="../../../assets/plugin/customcontrols/style.css">
+        <!-- custom controls font awsome icons -->
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
+        <!-- rows and columns in one slide -->
+        <link rel="stylesheet" href="../../../assets/dist/row_col.css">
+        <!-- pointer plugin style -->
+        <link rel="stylesheet" href="../../../assets/plugin/pointer/pointer.css" />
+
+        <!-- all links open in new tab -->
+        <!-- <base target="_blank"> -->
+
+        <!-- define data here, but update the document later to avoid using
+                window.onload = function() {}; syntax -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', 'Week 2'],
+                ['topic', ' - What is AI?'],
+                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
+                ['office', 'Games Academy, Penryn Campus'],
+                ['uni', 'Falmouth University'],
+                ['officehour', 'Monday 13.00-14.00'],
+                ['classroom', 'Room 1002, Games Academy'],
+                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
+                ['deadline', 'Monday, 30th Nov 2023'],
+                ['name', 'Dr Daniel Zhang'],
+                ['nickname', 'Daniel'],
+                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
+            ]);
+            // add the dynamic item
+            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
+            authorData.set('title', authorData.get('course'));
+            authorData.set('modulename', authorData.get('course'));
+            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+            // CALL THE FUNCTION TO UPDATE DOCUMENT IN THE END
+
+            // overview scale
+            overview_scale = 0.2;
+
+            // generate pdf link, click the button, then press CTRL+P
+            // remember to follow these steps to get rid of the borders:
+            //  1. select 'save as PDF' for printer
+            //  2. advanced settings or something similar
+            //  3. margin -> None if needed
+            //  4. tick 'background graphics' if needed
+            function GeneratePDF() {
+                let url = window.location.href;
+                let pos = url.indexOf(".html");
+                url = url.substr(0, pos + ".html".length);
+                window.location.href = url + "?print-pdf";
+            }
+        </script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3>
+                            <orange><span class="coursecode"></span></orange>
+                        </h3>
+                        <!-- <img src="img/nn.png" width=50% /> -->
+                        <!-- <img src="img/ai_title.png" width=50% /> -->
+                        <p>
+                            <bigtext><span class="week"></span><span class="topic"></span></bigtext>
+                        </p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <cyan class="fullname"></cyan> <br>
+                            <span class="uni"></span>, v. <span class="year"></span>
+                            <!-- <script>document.write(new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1))</script> -->
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_what">
+                    <section id="warm_up">
+                        <h1 class="r-frame-text">What is "Classical" AI?</h1>
+                    </section>
+
+                    <section id="reference" data-visibility="hidden">
+                        <h1>Reference Materials</h1>
+                        <dl>
+                            <dt>
+                                <cyan>Artificial Intelligence: A Modern Approach</cyan>
+                            </dt>
+                            <dd>Stuart J. Russell and Peter Norvig, 4th Edition, 2022</dd>
+                            <a href="http://aima.cs.berkeley.edu/global-index.html"><img class="r-frame r-stretch img-zoom" src="img/ai_book.PNG" title="Artificial Intelligence: A Modern Approach" style="display: block;margin: auto; width: 18%;" /> </a>
+
+                            <span class="fragment fade-down">
+                                <dt><a href="https://d2l.ai/">Dive into Deep Learning</a></dt>
+                                <dd>Zhang, Aston, Lipton, Zachary C. et.al (2021), arXiv
+                                    preprint arXiv:2106.11342</dd>
+                            </span>
+                            <span class="fragment fade-in">
+                                <dt><a href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a></dt>
+                                <dd>online book by Michael Nielsen</dd>
+                            </span>
+                        </dl>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>This slide lists some books and learning materials for your reference. Feel free to grab as much information as you can to help yourselves to understand the topics of AI and machine learning.</li>
+                                <li>Nowadays, learning materials are very easy to access via various methods. You can read on your laptop, tablet, or smartphone at any time you like.</li>
+                                <li></li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="materials" data-visibility="hidden">
+                        <h1>Alternative Materials</h1>
+                        <dl>
+                            <dt>
+                                <cyan>Artificial Intelligence: A Textbook</cyan>
+                            </dt>
+                            <dd>Charu C. Aggarwal, 2021. Springer.</dd>
+                            <a href=" https://link.springer.com/book/10.1007/978-3-030-72357-6"><img class="r-frame r-stretch img-zoom" src="img/ai_textbook.PNG" title="Artificial Intelligence: A Textbook" style="display: block;margin: auto; width: 12%;" /></a>
+
+                            <span class="fragment fade-in">
+                                <dt><a href="http://themlbook.com/wiki/doku.php?id=start">The Hundred-Page Machine Learning</a>
+                                </dt>
+                                <dd>online book by Andriy Burkov</dd>
+                                <dt><a href="https://www.deeplearningbook.org/">Deep Learning</a></dt>
+                                <dd>Ian Goodfellow and Yoshua Bengio and Aaron Courville (2016), MIT Press</dd>
+                            </span>
+
+                            <span class="fragment fade-in">
+                                <dt>
+                                    <orange>Online Courses:</orange>
+                                </dt>
+                                <dd>Various lectures are available in online platforms, e.g <a href="https://www.udacity.com/">Udacity</a>, <a href="https://www.coursera.org/">Coursera</a>, <a href="https://www.edx.org/">edX</a>
+                                </dd>
+                            </span>
+                        </dl>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>These are some other books and online resources available.</li>
+                                <li>Moreover, you may find useful tutorials and free courses on some online learning platforms, such as edx, coursera, and udacity. Most of those online courses are self-paced, which means you can learn whenever you like. You can even get a certificate if you complete all the sections and pass the final exam.</li>
+                                <li>Please bare in mind that some of them may require payments for the certificate.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="structure">
+                        <h1>Course Structure</h1>
+                        <p>Core part of <em>
+                                <purple>Artificial Intelligence (AI) for Games MSc</purple>
+                            </em></p>
+                        <ol>
+                            <li>Introduction to AI & ML</li>
+                            <li>Machine Learning Fundamentals</li>
+                            <li>Supervised Learning Algorithms</li>
+                            <li>Neural Networks & Deep Learning</li>
+                            <li>Unsupervised Learning Algorithms</li>
+                            <li>Reinforcement Learning</li>
+                            <li>Transfer Learning</li>
+                            <li>Convolutional Neural Networks</li>
+                            <li>Generative Models</li>
+                        </ol>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>The structure of this modue is shown here. As a core part of Artificial Intelligence for Games MSc programme, it contains several sub-sections.</li>
+                                <li>These sections cover a wide range of topics from the historical development to the cutting-edge research about AI and ML.</li>
+                                <li>This week and next week would serve as the background and intorduction of this module. From the 3rd week, we will dive deeply into the AI/ML world with more technical details.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="email_policy">
+                        <h1>Email Policy</h1>
+                        <!-- <h3><a class="emaillink"></a></h3> -->
+                        <!-- <br> -->
+                        <ul>
+                            <!-- <li>I don't answer questions about the course content by email.</li> -->
+                            <li>
+                                <red>Short</red> and <blue>to the point</blue> email will be read.
+                            </li>
+                            <li>Talk to me <green>before or after</green> class during my office hours.</li>
+                            <li>An alternative mutually acceptable meeting time may need to be agreed upon if there's an unavoidable scheduling conflict.</li>
+                        </ul>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Again, my email is shown here. Drop me an email if you have questions about the contents of the lecture, or if you'd like to make an appointment. The email doesn't need to be very long.</li>
+                                <li>Alternatively, you can always talk to me before or after the class.</li>
+                                <li></li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="questions">
+                        <h2>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
+                        </h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <cyan><span class="office"></span></cyan>
+                        </h6>
+                    </section>
+                </section>
+
+                <!-- section 2: Introduction to AI & ML -->
+
+                <section id="chap_ai_intro">
+                    <section>
+                        <h1>Introduction to AI & ML</h1>
+                        <ul>
+                            <li>The <red>definition</red>: what is Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL)?</li>
+                            <li>The <blue>evolution</blue> of AI -> ML -> DL
+                            </li>
+                            <li>The <green>relationship</green> between AI, ML, and DL</li>
+                            <li>The <orange>applications</orange> of AI, ML, and DL</li>
+                            <li>
+                                <cyan>Why</cyan> shoud we learn AI?
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Artificial intelligence, machine learning, and deep learning are three terms you may find more and more frequently nowadays. They are closely-related with each other and have some intersections between one and another. </li>
+                                <li>This week is about the introduction to AI and ML. We will learn the definitions, the evolution history, the relationships between AI, ML, and DL, the applications, and the motivation of learning all of them - in other words, how these techniques can help us.</li>
+                                <li></li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h1>AI in Early Days</h1>
+                        <ul>
+                            <li class="fragment fade-in">
+                                <green>1000BC: </green>
+                                <blue>A life-sized automaton</blue>- marvelous invention created by a Chinese artificer <yellow>Yan Shi</yellow>.
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>400BC: </green>
+                                <blue>A mechanical pigeon</blue> - created by a friend of the famouse Greek philosopher <yellow>Plato</yellow>.
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>1495: </green>
+                                <blue>Leonardo's Knight</blue> - a mechanical knight designed and possiblly created by <yellow>Leonardo da Vinci</yellow>.
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>1929: </green>
+                                <blue>Gakutensoku</blue> - the 1st Japanese robot by Professor <yellow>Makoto Nishimura</yellow>.
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>1949: </green>
+                                <blue>
+                                    <italic>Giant Brains, or Machines that Think</italic>
+                                </blue> - a book compares computers to human by computer scientist <yellow>Edmund Callis Berkley</yellow>.
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Actually, artificial intelligence is not a new concept at all. If we look back to the human history, we can surprisingly find out that there were so many AI-related records in the past. For example, a life-sized automaton was described in an acient Chinese history book - it was dated to 1,000BC which was 3,000 years ago! According to the notes, the human-like robot could move its arms and legs automatically.</li>
+                                <li>In 400BC, the famours Greek philosopher Plato descriped a mechnical pigeon that was created by one of his friends. It was said to be able to fly on its own.</li>
+                                <li>Other early attempts include the Leonardo's Knight in 15th centruty and later Japanese robot in 1930s.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Birth of Modern AI</h1>
+                        <ul>
+                            <li class="fragment fade-in">
+                                <green>1950: </green>
+                                <blue>Computer Machinery and Intelligence </blue>- <yellow>Alan Turing</yellow> proposed a test of machine intelligence <span class="fragment highlight-green">(Turing Test)</span>.
+                            </li>
+                            <li class="fragment fade-in-then-semi-out">
+                                <green>1952: </green>
+                                <blue>Program to play checkers </blue>- first to ever learn the game independently by <yellow>Arthur Samuel</yellow>.
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>1956: </green>
+                                <red>Artificial Intelligence </red>- the term was coined in Dartmouth workshop by <yellow>John McCarthy</yellow> and others.
+                            </li>
+                        </ul>
+                        <p class="fragment fade-in">
+                            <purple>The Birth of Modern AI!</purple>
+                        </p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>In 1950s, the genius British computer scientist Alan Turing proposed his most important machine intelligence test, which is known as Turing Test today! We will talk about this test in the next slide.</li>
+                                <li>In 1952, Arthur Samuel created a programme that could learn to play checkers game indepndently. That's the first time ever that a computer programme really learnt to do something by its own.</li>
+                                <li>In 1956, the Dartmouth workshop organised by Johan Macarthy and other scientists coined the term Artificial Intelligence. That was the first time AI was considered to be an independent area of computer science.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Turing Test</h1>
+                        <img data-id="pic" class="r-stretch" src="img/turing_test.png" title="Turing Test" />
+                        <p class="fragment custom blur">
+                            Can <purple>C</purple> tell if <blue>A</blue> and <green>B</green> are human or machine<br>
+                            <orange>based on the responses to written questions</orange>?<bigtext>
+                        </p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Let's talk about Turing Test. Has any one heard about this test before? Can you explain to class what the test is about?</li>
+                                <li>OK, the turing test is very simple. A computer and a person seat behind a wall. All we need to do during the test is to answer the question if A and B are human beings or machine purely based on their responses to written questions. Apparently, you cannot see them, or wave your hands to or even try to talk to the person - all these sorts of communications are forbidden and you have to rely on written text! A and B may switch seats randomly whenever they want.</li>
+                                <li>If the person C cannot tell which one is machine and which one is human, we then consider that the machine passes the Turing Test. In other words, it has the equivalent level of intelligence as a human being!</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section data-auto-animate>
+                        <!-- the image cannot be seen while CTRL+P printing the document, need to find out why (preview pdf print is OK) -->
+                        <h1 data-id="tt">Modern AI</h1>
+                        <img data-id="pic" class="r-stretch" src="img/ai_history.png" title="AI History" />
+                        <p class="fragment custom blur">John McCarthy, Marvin L. Minsky, Nathaniel Rochester, and Claude E. Shannon (1956)</p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>This is a picture of the original Dartmouth workshop proposal. And it was held in the summer of 1956 successfully, announcing the birth of mordern AI! It was the origin of mordern AI concept.</li>
+                                <li>During the Dartmouth workshop, the pineer scientists discussed some aspects of AI, which are considered as the key requirements of any AI techniques.</li>
+                                <li></li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h1>Key requirements of AI</h1>
+                        <ol>
+                            <li class="fragment fade-in" data-fragment-index="1">Abstractions</li>
+                            <li class="fragment fade-in" data-fragment-index="2">Creativity</li>
+                            <li class="fragment fade-in" data-fragment-index="3">Automatic computer</li>
+                            <li class="fragment fade-in" data-fragment-index="2">Language understanding</li>
+                            <li class="fragment fade-in" data-fragment-index="3">Usage of neuron nets</li>
+                            <li class="fragment fade-in" data-fragment-index="4">Computational efficiency</li>
+                            <li class="fragment fade-in" data-fragment-index="5">Self-improvement <span class="fragment fade-in" data-fragment-index="8">
+                                    <red>- machine learning</red>
+                                </span></li>
+                        </ol>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>These key requirements include: automatic computer - well, easy to understand as we are talking about intelligence, so the machine needs to compute without being told explicitly. Language understanding - fair enough as we need to interact with machines so they need to understand some kinds of agreed languages with certain rules. Use of neuron nets - biologists learnt from human brains far early than we thought. The basic perceptron model has been proposed at that time. And the computer scientists in Dartmouth workshop realised the importance of neuron nets already. We have to admit their insights on this area. Nowadays, various deep neural networks show their potential in so many ways. Computational efficiency is very important. In theory, a monkey can produce the full set of Shakespeare's manuscripts by typing randomly on the keyboard - it just takes times to get it in the correct order! But for most of our problems, we need the results in a certain period of time</li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Advancement of Modern AI</h1>
+                        <img class="r-stretch" src="img/ai_roadmap.png" alt="AI Roadmap" />
+                        <p class="fragment fade-in">3 stages: <red>1950's-1980's;</red>
+                            <blue>1980's-2010's;</blue>
+                            <green>2010's-now</green>
+                        </p>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Stage I: 1950's - 1980's <span class="fragment fade-in" data-fragment-index="20">
+                                <red>(automation)</red>
+                            </span></h1>
+                        <ul>
+                            <li class="fragment fade-in" data-fragment-index="1">
+                                <green>1951: </green>
+                                <blue>1st working AI Programme </blue>- can play chckers and chess at the University of Manchester.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="2">
+                                <green>1957: </green>
+                                <blue>1st artificial neural network </blue>- designed by <yellow>Frank Rosenblatt</yellow>.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="3">
+                                <green>1967: </green>
+                                <purple>
+                                    <italic>Nearest neighbour</italic>
+                                </purple>
+                                - a Computer-based pattern recognition algorithm was proposed.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="4">
+                                <green>1979: </green>
+                                <purple>
+                                    <italic><a href="https://www.computerhistory.org/revolution/artificial-intelligence-robotics/13/293/1277" title="See more information">Stanford Cart</a></italic>
+                                </purple>- the 1st self-driving vehicle by Stanford University students.
+                            </li>
+                        </ul>
+                        <p>
+                            <span class="fragment fade-in" data-fragment-index="10">
+                                <orange>Automated-way of mimicing human actions.</orange>
+                            </span><br>
+                            <span class="fragment fade-in" data-fragment-index="20">
+                                <blue> - by following defined rules!</blue>
+                            </span>
+                        </p>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Stage II: 1980's - 2010's <span class="fragment fade-in" data-fragment-index="20">
+                                <purple>(learning)</purple>
+                            </span> </h1>
+                        <ul>
+                            <li class="fragment fade-in" data-fragment-index="1">
+                                <green>1981: </green>
+                                <blue>Explanation Based Learning (EBL) </blue>- learnt general problem-solving techniques by observing human solutions.
+                                <!--introduced by Gerald Dejong.-->
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="2">
+                                <green>1985: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/NETtalk_(artificial_neural_network)" title="See more information">NETtalk</a> </italic>
+                                </blue>- a program that learns to pronounce words by <yellow>Terry Sejnowski</yellow> and <yellow>Charles Rosenberg</yellow>.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="3">
+                                <green>1989: </green>
+                                <blue>CNN</blue>- for recognising images by <yellow>Yann LeCun, Yoshua Bengio</yellow>, and <yellow>Patrik Haffner</yellow>.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="4">
+                                <green>1997: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/Deep_Blue_(chess_computer)" title="See more information">Deep Blue</a> </italic>
+                                </blue>- IBM's AI programme dereats the world Champion of Chess.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="5">
+                                <green>2006: </green>
+                                <blue>
+                                    <italic>Deep Learning </italic>
+                                </blue>- coined by <yellow>Geoffrey Hinton</yellow> to explain new algorithms that empower computers to distinguish objects and images and video.
+                            </li>
+                        </ul>
+                        <p>
+                            <span class="fragment fade-in" data-fragment-index="10">
+                                <orange>From <yellow>knowledge-driven</yellow> approach to <cyan>data-driven</cyan> approach.</orange>
+                            </span><br>
+                            <span class="fragment fade-in" data-fragment-index="20">
+                                <blue>- where machine starts learning!</blue>
+                            </span>
+                        </p>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Stage III: 2010's - now</h1>
+                        <ul>
+                            <li class="fragment fade-in" data-fragment-index="1">
+                                <green>2010: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/Kinect" title="See more information">Microsoft Kinect</a> </italic>
+                                </blue>- allows people to interact with computer through movements and gestures.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="2">
+                                <green>2011: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/IBM_Watson#Comparison_with_human_players" title="See more information">IBM Watson</a> </italic>
+                                </blue>- AI programme beats two of Jeopardy's greatest champions.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="3">
+                                <green>2014: </green>
+                                <blue>
+                                    <italic><a href="https://deepai.org/machine-learning-glossary-and-terms/generative-adversarial-network" title="See more information">GAN</a> </italic>
+                                </blue>- generative adversarial network developed by <yellow>Ian Goodfellow</yellow>.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="4">
+                                <green>2016: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/AlphaGo#Match_against_Lee_Sedol" title="See more information">Google AlphaGo</a> </italic>
+                                </blue>- beat the Korean 9-dan professional Go players <yellow>Lee Sedol</yellow>. - <purple>A historical match!</purple>
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="5">
+                                <green>2017: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/AlphaGo#Match_against_Lee_Sedol" title="See more information">Google AlphaGo</a> </italic>
+                                </blue>- beat the world’s number 1 ranking Chinese Go players <yellow>Ke Jie</yellow>. - <blue>running on a single computer!</blue>
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="6">
+                                <green>2018: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/Generative_pre-trained_transformer" title="See more information">GPT model</a></italic>
+                                </blue>- a prominent framework for generative artificial intelligence by <yellow>OpenAI</yellow>.
+                            </li>
+                            <li class="fragment fade-in" data-fragment-index="7">
+                                <green>2021: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/DALL-E" title="See more information">DALL-E</a> </italic>
+                                </blue>- deep learning model that generates images from text by <yellow>OpenAI</yellow>.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h1 data-id="tt">Stage III: 2010's - now <span class="fragment fade-in" data-fragment-index="10">
+                                <cyan>(intelligence)</cyan>
+                            </span> </h1>
+                        <ul>
+                            <li class="half-out">
+                                <green>2014: </green>
+                                <blue>
+                                    <italic><a href="https://deepai.org/machine-learning-glossary-and-terms/generative-adversarial-network" title="See more information">GAN</a> </italic>
+                                </blue>- generative adversarial network developed by <yellow>Ian Goodfellow</yellow>.
+                            </li>
+                            <li class="half-out">
+                                <green>2016: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/AlphaGo#Match_against_Lee_Sedol" title="See more information">Google AlphaGo</a> </italic>
+                                </blue>- beat the world’s best Go players <yellow>Lee Sedol</yellow>.- <purple>A historical match!</purple>
+                            </li>
+                            <li class="half-out">
+                                <green>2017: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/AlphaGo#Match_against_Lee_Sedol" title="See more information">Google AlphaGo</a> </italic>
+                                </blue>- beat the world’s number 1 ranking Chinese Go players <yellow>Ke Jie</yellow>. - <blue>running on a single computer!</blue>
+                            </li>
+                            <li class="half-out">
+                                <green>2018: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/Generative_pre-trained_transformer" title="See more information">GPT model</a></italic>
+                                </blue>- one of the most sucessful large language models by <yellow>OpenAI</yellow>.
+                            </li>
+                            <li class="half-out">
+                                <green>2021: </green>
+                                <blue>
+                                    <italic><a href="https://www.wikiwand.com/en/DALL-E" title="See more information">DALL-E</a> </italic>
+                                </blue>- deep learning model that generates images from text by <yellow>OpenAI</yellow>.
+                            </li>
+                            <li>
+                                <green>2023: </green>
+                                <blue>
+                                    <italic>ChatGPT3, ChatGPT4</italic>
+                                </blue>- the most successful generative models by <yellow>OpenAI</yellow> .
+                            </li>
+                        </ul>
+                        <p class="fragment fade-in" data-fragment-index="10">
+                            <orange>AI boom with <purple>DEEP</purple> neural networks</orange>
+                            <blue> - intelligence emerges!</blue>
+                        </p>
+                    </section>
+
+                    <section id="AI_classification">
+                        <h1>The <cyan>AI</cyan> Continuum</h1>
+                        <ul>
+                            <li>
+                                <blue>
+                                    <cyan>A</cyan>ssistant <cyan>I</cyan>ntelligence:
+                                </blue>AI automates basic <purple>repetitive and standardised</purple> tasks, working from clearly defined rules. Humans are still making the key decisions.<br>
+                                <orange>Examples: </orange>automated assembly line robots, software-based agents.
+                            </li>
+                            <li>
+                                <blue>
+                                    <cyan>A</cyan>ugmented <cyan>I</cyan>ntelligence:
+                                </blue>AI <purple>enhances the ability of humans</purple> to accomplish tasks - humans and machines learn from each other.<br>
+                                <orange>Examples: </orange>virtual assistants, some of generative design systems.
+                            </li>
+                            <li>
+                                <blue>
+                                    <cyan>A</cyan>utonomous <cyan>I</cyan>ntelligence:
+                                </blue>AI takes over <purple>some decision-making</purple>, but only after a human fully trusts the machine.<br>
+                                <orange>Examples: </orange>auto-pilot and self-driven cars.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="AI_examples" data-auto-animate>
+                        <h1 data-id="tt">AI vs. ML vs. DP: <green>Examples</green>
+                        </h1>
+                        <ul data-id="wt">
+                            <li>
+                                <blue>Artificial Intelligence: </blue><span class="fragment fade-in">try to play some games with well-defined rules like <yellow>Chess, Checker, and Jeopardy; encode/decode information.</yellow></span><br><br>
+                            </li>
+                            <li>
+                                <blue>Machine Learning: </blue><span class="fragment fade-in">helps to make decision based on knowledge learnt from big data, e.g. <cyan>Spam email filters, Face detection, Hand-wirtten digits recognition, etc.</cyan> </span><br><br>
+                            </li>
+                            <li>
+                                <blue>Deep Learning: </blue><span class="fragment fade-in">be able to generate contents and be creative with some intelligence, e.g. <orange>GO, Poker; ChatGPT, Midjourney, Stable Diffusion; Self-Driving.</orange></span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="AI_definitions" data-auto-animate>
+                        <h1 data-id="tt">AI vs. ML vs. DP: <red>Definitions</red>
+                        </h1>
+                        <ul data-id="wt">
+                            <li class="fragment fade-in">
+                                <blue>Artificial Intelligence: </blue>a programme that can <cyan>sense, reason, act, and adapt</cyan>.<br><br>
+                            </li>
+                            <li class="fragment fade-in">
+                                <blue>Machine Learning: </blue>algorithms whose performance <cyan>improve</cyan> as they are exposed to more data <purple>over time</purple>.<br><br>
+                            </li>
+                            <li class="fragment fade-in">
+                                <blue>Deep Learning: </blue>subset of machine learning in which <cyan>multi-layer</cyan>
+                                <purple>neural networks </purple>learn from vast amounts of data.
+                            </li>
+                        </ul>
+                        <p class="fragment fade-left">
+                            <orange>The boundaries between these three areas are occasionally <yellow>ambiguous!</yellow>
+                            </orange>
+                        </p>
+                    </section>
+
+                    <section id="AP_applications">
+                        <h1 data-id="tt2">AI Applications</h1>
+                        <img data-id="wt2" src="img/ai_applications.PNG" class="r-stretch" title="AI Applications">
+                        Source: <a href="https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2020/05/16100918/Applications-of-Artificial-Intelligence-1-1024x640.png">https://leverageedu.com/</a>
+                    </section>
+
+                    <section id="why_we_learn" data-auto-animate>
+                        <h1 data-id="tt2">Why should we learn it?</h1>
+                        <img data-id="wt2" src="img/ml_nn_dp.PNG" class="r-stretch" title="MLvsNNvsDP">
+                        Source <a href="https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/4_what-is-deep-learning.png">https://builtin.com/</a>
+                    </section>
+
+                    <section id="AI_abstract_model" data-auto-animate>
+                        <h1 data-id="tt2">The Abstract Model of AI</h1>
+                        <img data-id="wt2" src="img/ai_blackbox.PNG" class="r-stretch" title="AI as Blackbox">
+                    </section>
+
+                    <section id="questions">
+                        <h2>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
+                        </h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <cyan><span class="office"></span></cyan>
+                        </h6>
+                    </section>
+                </section>
+
+                <!-- section 3: Machine Learning Fundamentals -->
+
+                <section id="chap_ml">
+                    <section id="ml_fundamentals">
+                        <h1>
+                            <purple>Machine Learning (ML) Fundamentals</purple>
+                        </h1>
+                        <bigtext>
+                            <blue>Machine Learning: </blue>algorithms whose performance <cyan>improve</cyan> as they are exposed to more data <purple>over time</purple>.
+                        </bigtext>
+                        <div class="fragment fade-in">
+                            <img class="r-stretch" src="img/ml_pred.PNG" title="ML models">
+                            </img><br>
+                            ML models can <blue>learn from </blue>and <orange>make predictions on </orange>data!
+                        </div>
+                    </section>
+
+                    <section id="ml_categories">
+                        <h1>ML Categories</h1>
+                        <ul>
+                            <li class="fragment fade-in">
+                                <blue>Supervised ML</blue>
+                                <dd>Learning with <purple>labelled</purple> training data<br>
+                                    <yellow>NB. training dataset + test dataset</yellow>
+                                </dd>
+                            </li>
+                            <li class="fragment fade-in">
+                                <green>Unsupvervised ML</green>
+                                <dd>Discovering patterns in unlabelled data<br>
+                                    <red>NB. no training dataset</red>
+                                </dd>
+                            </li>
+                            <li class="fragment fade-in">
+                                <orange>Reinforced ML</orange>
+                                <dd>Learning based on feedbacks or rewwards<br>
+                                    <cyan>NB. goal-oriented algorithms</cyan>
+                                </dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="supervised_ml">
+                        <h1>Supervised ML</h1>
+                        Two of the most common supervised ML tasks are<br>
+                        <blue>classification</blue> and <green>regression</green>.
+                        <div class="row no-margin-top">
+                            <div class="col-50 no-margin-top">
+                                <img src="img/ml_classification.jpeg" title="classification" height="400px"><a href="https://t.ly/KTwZA">https://t.ly/KTwZA</a>
+                            </div>
+
+                            <div class="col-50 no-margin-top">
+                                <img src="img/ml_regression.jpg" title="regression" height="400px"><a href="https://t.ly/yrpNE">https://t.ly/yrpNE</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="classification">
+                        <h1>Classification</h1>
+                        <ul>
+                            <li>It was used to categorise data</li>
+                            <li>At least 2 categories, but may be more</li>
+                            <li>Learn on training set, predict test set</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
+                        </h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <cyan><span class="office"></span></cyan>
+                        </h6>
+                    </section>
+                </section>
+
+
+                <!-- section 4: Supervised Learning Algorithms -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+
+                <!-- section 5: Neural Networks & Deep Learning -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+
+                <!-- section 6: Unsupervised Learning Algorithms -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+
+                <!-- section 7: Reinforcement Learning -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+
+                <!-- section 8: Transfer Learning -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+
+                <!-- section 9: Convolutional Neural Networks -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+
+                <!-- section 10: Generative Models -->
+
+                <section>
+                    <section>
+                    </section>
+                </section>
+
+                <!-- example of multiple columns -->
+                <section>
+                    <h1>Multi-visualizations are supported</h1>
+                    <div class="row no-margin-top">
+                        <div class="col-50 no-margin-top">
+                            <p class="no-margin-top small">
+                                <a href='https://bl.ocks.org/olearym/ec27b9ac1bf0da42ed8a0d533181693b' target='_blank'>Gooey effect - Hexagon</a> by Nadieh Bremer
+                            </p>
+                            <div class="fig-container no-margin-top" data-file="d3-fig/gooey.html"></div>
+                            <p>testetest</p>
+                            <p>testetest</p>
+                            <p>testetest</p>
+                            <p>testetest</p>
+                        </div>
+                        <div class="col-50 no-margin-top">
+                            <p class="no-margin-top small">
+                                <a href='https://bl.ocks.org/olearym/ec27b9ac1bf0da42ed8a0d533181693b' target='_blank'>Modular Multiplication Circle</a> by Megan O'Leary
+                            </p>
+                            <div class="fig-container no-margin-top" data-file="d3-fig/modular-multiplication.html"></div>
+                            <p>testetest</p>
+                            <p>testetest</p>
+                            <p>testetest</p>
+                            <p>testetest</p>
+                        </div>
+                </section>
+
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <h2>Vertical Slides</h2>
+                        <p>Slides can be nested inside of each other.</p>
+                        <p>Use the <em>Space</em> key to navigate through all slides.</p>
+                        <br>
+                        <a href=" #/2/1" class="navigate-down">
+                            <img class="r-frame" style="background: rgba(255,255,255,0.1);" width="178" height="238" data-src="https://static.slid.es/reveal/arrow.png" alt="Down arrow">
+                        </a>
+                    </section>
+                    <section>
+                        <h2>Basement Level 1</h2>
+                        <p>Nested slides are useful for adding additional detail underneath a high level horizontal
+                            slide.</p>
+                    </section>
+                    <section>
+                        <h2>Basement Level 2</h2>
+                        <p>That's it, time to go back up.</p>
+                        <br>
+                        <a href="#/2">
+                            <img class="r-frame" style="background: rgba(255,255,255,0.1); transform: rotate(180deg);" width="178" height="238" data-src="https://static.slid.es/reveal/arrow.png" alt="Up arrow">
+                        </a>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Slides</h2>
+                    <p>
+                        Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it
+                        out at <a href="https://slides.com" target="_blank">https://slides.com</a>.
+                    </p>
+                </section>
+
+                <section data-visibility="hidden">
+                    <h2>Hidden Slides</h2>
+                    <p>
+                        This slide is visible in the source, but hidden when the presentation is viewed. You can show
+                        all hidden slides by setting the `showHiddenSlides` config option to `true`.
+                    </p>
+                </section>
+
+                <section data-auto-animate>
+                    <h2 data-id="code-title">Pretty Code</h2>
+                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+						import React, { useState } from 'react';
+
+						function Example() {
+						  const [count, setCount] = useState(0);
+
+						  return (
+						    ...
+						  );
+						}
+					</code></pre>
+                    <p>Code syntax highlighting courtesy of <a href="https://highlightjs.org/usage/">highlight.js</a>.
+                    </p>
+                </section>
+
+                <section data-auto-animate>
+                    <h2 data-id="code-title">With Animations</h2>
+                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="|4,8-11|17|22-24"><script type="text/template">
+						import React, { useState } from 'react';
+
+						function Example() {
+						  const [count, setCount] = useState(0);
+
+						  return (
+						    <div>
+						      <p>You clicked {count} times</p>
+						      <button onClick={() => setCount(count + 1)}>
+						        Click me
+						      </button>
+						    </div>
+						  );
+						}
+
+						function SecondExample() {
+						  const [count, setCount] = useState(0);
+
+						  return (
+						    <div>
+						      <p>You clicked {count} times</p>
+						      <button onClick={() => setCount(count + 1)}>
+						        Click me
+						      </button>
+						    </div>
+						  );
+						}
+					</script></code></pre>
+                </section>
+
+                <section>
+                    <h2>Point of View</h2>
+                    <p>
+                        Press <strong>ESC</strong> to enter the slide overview.
+                    </p>
+                    <p>
+                        Hold down the <strong>alt</strong> key (<strong>ctrl</strong> in Linux) and click on any element
+                        to zoom towards it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Click again to zoom
+                        back out.
+                    </p>
+                    <p>
+                        (NOTE: Use ctrl + click in Linux.)
+                    </p>
+                </section>
+
+                <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+                    <h2>Auto-Animate</h2>
+                    <p>Automatically animate matching elements across slides with <a href="https://revealjs.com/auto-animate/">Auto-Animate</a>.</p>
+                    <div class="r-hstack justify-center">
+                        <div data-id="box1" style="background: #999; width: 50px; height: 50px; margin: 10px; border-radius: 5px;">
+                        </div>
+                        <div data-id="box2" style="background: #999; width: 50px; height: 50px; margin: 10px; border-radius: 5px;">
+                        </div>
+                        <div data-id="box3" style="background: #999; width: 50px; height: 50px; margin: 10px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </section>
+                <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+                    <div class="r-hstack justify-center">
+                        <div data-id="box1" data-auto-animate-delay="0" style="background: cyan; width: 150px; height: 100px; margin: 10px;"></div>
+                        <div data-id="box2" data-auto-animate-delay="0.1" style="background: magenta; width: 150px; height: 100px; margin: 10px;"></div>
+                        <div data-id="box3" data-auto-animate-delay="0.2" style="background: yellow; width: 150px; height: 100px; margin: 10px;"></div>
+                    </div>
+                    <h2 style="margin-top: 20px;">Auto-Animate</h2>
+                </section>
+                <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+                    <div class="r-stack">
+                        <div data-id="box1" style="background: cyan; width: 300px; height: 300px; border-radius: 200px;"></div>
+                        <div data-id="box2" style="background: magenta; width: 200px; height: 200px; border-radius: 200px;"></div>
+                        <div data-id="box3" style="background: yellow; width: 100px; height: 100px; border-radius: 200px;"></div>
+                    </div>
+                    <h2 style="margin-top: 20px;">Auto-Animate</h2>
+                </section>
+
+                <section>
+                    <h2>Touch Optimized</h2>
+                    <p>
+                        Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through
+                        your slides.
+                    </p>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+						## Markdown Support
+
+						Write content using inline or external Markdown.
+						Instructions and more info available in the [docs](https://revealjs.com/markdown/).
+
+						```html []
+						<section data-markdown>
+						  ## Markdown Support
+
+						  Write content using inline or external Markdown.
+						  Instructions and more info available in the [docs](https://revealjs.com/markdown/).
+						</section>
+						```
+					</script>
+                </section>
+
+                <section>
+                    <p>Add the <code>r-fit-text</code> class to auto-size text</p>
+                    <h2 class="r-fit-text">FIT TEXT</h2>
+                </section>
+
+                <section>
+                    <section id="fragments">
+                        <h2>Fragments</h2>
+                        <p>Hit the next arrow...</p>
+                        <p class="fragment">... to step through ...</p>
+                        <p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+
+                        <aside class="notes">
+                            This slide has fragments which are also stepped through in the notes window.
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Fragment Styles</h2>
+                        <p>There's different types of fragments, like:</p>
+                        <p class="fragment grow">grow</p>
+                        <p class="fragment shrink">shrink</p>
+                        <p class="fragment fade-out">fade-out</p>
+                        <p>
+                            <span style="display: inline-block;" class="fragment fade-right">fade-right, </span>
+                            <span style="display: inline-block;" class="fragment fade-up">up, </span>
+                            <span style="display: inline-block;" class="fragment fade-down">down, </span>
+                            <span style="display: inline-block;" class="fragment fade-left">left</span>
+                        </p>
+                        <p class="fragment fade-in-then-out">fade-in-then-out</p>
+                        <p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
+                        <p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+                    </section>
+                </section>
+
+                <section id="transitions">
+                    <h2>Transition Styles</h2>
+                    <p>
+                        You can select from different transitions, like: <br>
+                        <a href="?transition=none#/transitions">None</a> -
+                        <a href="?transition=fade#/transitions">Fade</a> -
+                        <a href="?transition=slide#/transitions">Slide</a> -
+                        <a href="?transition=convex#/transitions">Convex</a> -
+                        <a href="?transition=concave#/transitions">Concave</a> -
+                        <a href="?transition=zoom#/transitions">Zoom</a>
+                    </p>
+                </section>
+
+                <section id="themes">
+                    <h2>Themes</h2>
+                    <p>
+                        reveal.js comes with a few themes built in: <br>
+                        <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/black.css'); return false;">Black
+                            (default)</a> -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/white.css'); return false;">White</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/league.css'); return false;">League</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/sky.css'); return false;">Sky</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/beige.css'); return false;">Beige</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/simple.css'); return false;">Simple</a>
+                        <br>
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/serif.css'); return false;">Serif</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/blood.css'); return false;">Blood</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/night.css'); return false;">Night</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/moon.css'); return false;">Moon</a>
+                        -
+                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/solarized.css'); return false;">Solarized</a>
+                    </p>
+                </section>
+
+                <section>
+                    <section data-background="#dddddd">
+                        <h2>Slide Backgrounds</h2>
+                        <p>
+                            Set <code>data-background="#dddddd"</code> on a slide to change the background color. All
+                            CSS color formats are supported.
+                        </p>
+                        <a href="#" class="navigate-down">
+                            <img class="r-frame" style="background: rgba(255,255,255,0.1);" width="178" height="238" data-src="https://static.slid.es/reveal/arrow.png" alt="Down arrow">
+                        </a>
+                    </section>
+                    <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+                        <h2>Gradient Backgrounds</h2>
+                        <pre><code class="hljs html wrap">&lt;section data-background-gradient=
+							"linear-gradient(to bottom, #ddd, #191919)"&gt;</code></pre>
+                    </section>
+                    <section data-background="https://static.slid.es/reveal/image-placeholder.png">
+                        <h2>Image Backgrounds</h2>
+                        <pre><code class="hljs html">&lt;section data-background="image.png"&gt;</code></pre>
+                    </section>
+                    <section data-background="https://static.slid.es/reveal/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
+                        <h2>Tiled Backgrounds</h2>
+                        <pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
+                    </section>
+                    <section data-background-video="https://static.slid.es/site/homepage/v1/homepage-video-editor.mp4" data-background-color="#000000">
+                        <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+                            <h2>Video Backgrounds</h2>
+                            <pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
+                        </div>
+                    </section>
+                    <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
+                        <h2>... and GIFs!</h2>
+                    </section>
+                </section>
+
+                <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+                    <h2>Background Transitions</h2>
+                    <p>
+                        Different background transitions are available via the backgroundTransition option. This one's
+                        called "zoom".
+                    </p>
+                    <pre><code class="hljs javascript">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
+                </section>
+
+                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                    <h2>Background Transitions</h2>
+                    <p>
+                        You can override background transitions per-slide.
+                    </p>
+                    <pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
+                </section>
+
+                <section data-background-iframe="https://hakim.se" data-background-interactive>
+                    <div style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+                        <h2>Iframe Backgrounds</h2>
+                        <p>Since reveal.js runs on the web, you can easily embed other web content. Try interacting with
+                            the page in the background.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Marvellous List</h2>
+                    <ul>
+                        <li>No order here</li>
+                        <li>Or here</li>
+                        <li>Or here</li>
+                        <li>Or here</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Fantastic Ordered List</h2>
+                    <ol>
+                        <li>One is smaller than...</li>
+                        <li>Two is smaller than...</li>
+                        <li>Three!</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Tabular Tables</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Value</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Apples</td>
+                                <td>$1</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Lemonade</td>
+                                <td>$2</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td>Bread</td>
+                                <td>$3</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Clever Quotes</h2>
+                    <p>
+                        These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The
+                            nice thing about standards is that there are so many to choose from</q> and block:
+                    </p>
+                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                        &ldquo;For years there has been a theory that millions of monkeys typing at random on millions
+                        of typewriters would
+                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be
+                        untrue.&rdquo;
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h2>Intergalactic Interconnections</h2>
+                    <p>
+                        You can link between slides internally,
+                        <a href="#/2/3">like this</a>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Speaker View</h2>
+                    <p>There's a <a href="https://revealjs.com/speaker-view/">speaker view</a>. It includes a timer,
+                        preview of the upcoming slide as well as your speaker notes.</p>
+                    <p>Press the <em>S</em> key to try it out.</p>
+
+                    <aside class="notes">
+                        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if
+                        you open the speaker notes window (hit 's' on your keyboard).
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Export to PDF</h2>
+                    <p>Presentations can be <a href="https://revealjs.com/pdf-export/">exported to PDF</a>, here's an
+                        example:</p>
+                    <iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+                </section>
+
+                <section>
+                    <h2>Global State</h2>
+                    <p>
+                        Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+                        will be added as a class to the document element when the slide is open. This lets you
+                        apply broader style changes, like switching the page background.
+                    </p>
+                </section>
+
+                <section data-state="customevent">
+                    <h2>State Events</h2>
+                    <p>
+                        Additionally custom events can be triggered on a per slide basis by binding to the
+                        <code>data-state</code> name.
+                    </p>
+                    <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+Reveal.on( 'customevent', function() {
+	console.log( '"customevent" has fired' );
+} );
+					</code></pre>
+                </section>
+
+                <section>
+                    <h2>Take a Moment</h2>
+                    <p>
+                        Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage
+                        and want to take distracting slides off the screen.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Much more</h2>
+                    <ul>
+                        <li>Right-to-left support</li>
+                        <li><a href="https://revealjs.com/api/">Extensive JavaScript API</a></li>
+                        <li><a href="https://revealjs.com/auto-slide/">Auto-progression</a></li>
+                        <li><a href="https://revealjs.com/backgrounds/#parallax-background">Parallax backgrounds</a>
+                        </li>
+                        <li><a href="https://revealjs.com/keyboard/">Custom keyboard bindings</a></li>
+                    </ul>
+                </section>
+
+                <section style="text-align: left;">
+                    <h1>THE END</h1>
+                    <p>
+                        - <a href="https://slides.com">Try the online editor</a> <br>
+                        - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>The Lorenz Equations</h2>
+                    <p>
+                        \[\begin{aligned}
+                        \dot{x} &amp; = \sigma(y-x) \\
+                        \dot{y} &amp; = \rho x - y - xz \\
+                        \dot{z} &amp; = -\beta z + xy
+                        \end{aligned} \]
+                    </p>
+                </section>
+
+                <section>
+                    <iframe class="ace" width=600 height=500 data-onchange="console.log(editor.getValue())">
+                        Hello World!
+                    </iframe>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- keys: 
+            SPACE,arrow :   navigation
+            .           :   blackout
+            ESC, O      :   overview
+            ALT+click   :   zoom in
+            C           :   note canvas
+            B           :   chalkboard
+            S           :   speaker mode (appearance didn't work well with speaker mode)
+            C+S+F       :   search in slides
+
+        -->
+
+        <script src="../../../assets/dist/reveal.js"></script>
+        <!-- <script src="../../../assets/js/reveal.js"></script> -->
+        <script src="../../../assets/plugin/zoom/zoom.js"></script>
+        <script src="../../../assets/plugin/notes/notes.js"></script>
+        <script src="../../../assets/plugin/search/search.js"></script>
+        <script src="../../../assets/plugin/markdown/markdown.js"></script>
+        <script src="../../../assets/plugin/highlight/highlight.js"></script>
+        <!-- math -->
+        <script src="../../../assets/plugin/math/math.js"></script>
+        <!-- menu: https://github.com/denehyg/reveal.js-menu -->
+        <script src="../../../assets/plugin/menu/menu.js"></script>
+        <!-- chalkboard need customcontrols -->
+        <script src="../../../assets/plugin/chalkboard/plugin.js"></script>
+        <script src="../../../assets/plugin/customcontrols/plugin.js"></script>
+        <!-- appearance for text and image animation like ppt -->
+        <!-- <script src="../../../assets/plugin/appearance/appearance.js"></script> -->
+        <!-- vertical deck indicator: verticator -->
+        <script src="../../../assets/plugin/verticator/verticator.js"></script>
+        <!-- pointer -->
+        <script src="../../../assets/plugin/pointer/pointer.js"></script>
+
+        <!-- reveal initialisation -->
+        <script id="reveal_init">
+            // more settings: https://autonomousvision.github.io/slides/occupancy-flow/lib/reveal/#installation
+            // Also available as an ES module, see:
+            // https://revealjs.com/initialization/
+            Reveal.initialize({
+                // Learn about plugins: https://revealjs.com/plugins/
+                // and more: https://quarto.org/docs/extensions/listing-revealjs.html
+                // https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware
+                // https://github.com/rajgoel/reveal.js-plugins/tree/master
+
+                width: 1200,
+                height: 650,
+
+                // plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, RevealChalkboard, RevealCustomControls, Appearance, Verticator],
+
+                // old style plugins
+                dependencies: [
+                    // ace live code editor 
+                    { src: '../../../assets/plugin/ace/ace.js' }
+                ],
+
+                ace: {
+                    // Event is triggered when a new editor is created.
+                    oninit: function (editor) {
+
+                    },
+                    // Event is triggered when the text of an editor has changed
+                    onchange: function (event, editor) {
+
+                    },
+                    // Automatically focus an editor when it is displayed
+                    autoFocus: false,
+
+                    // defines a css class name for the ace editors
+                    className: "ace"
+                },
+
+                // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
+                // 2. wait for block in speaker mode fix
+                plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
+                    RevealMenu, RevealChalkboard, RevealCustomControls, Verticator, RevealMath.KaTeX, RevealPointer],
+
+                // show controls
+                controls: true,
+                // show progress bar 
+                progress: true,
+                // center align slides vertically
+                center: true,
+                // push each slide in browser history
+                history: false,
+                // Use 1 based indexing for # links to match slide number (default is zero
+                // based)
+                hashOneBasedIndex: true,
+                // Add the current slide number to the URL hash so that reloading the
+                // page/copying the URL will return you to the same slide
+                hash: true,
+                // Slide number formatting can be configured using these variables:
+                //  "h.v": 	horizontal . vertical slide number (default)
+                //  "h/v": 	horizontal / vertical slide number
+                //    "c": 	flattened slide number
+                //  "c/t": 	flattened slide number / total slides
+                slideNumber: 'c/t',
+                // Control which views the slide number displays on using the "showSlideNumber" value:
+                //     "all": show on all views (default)
+                // "speaker": only show slide numbers on speaker notes view
+                //   "print": only show slide numbers when printing to PDF
+                showSlideNumber: 'all',
+                // Flags if speaker notes should be visible to all viewers
+                showNotes: false,
+                // auto play media
+                autoPlayMedia: null,
+                // preview links, didn't work properly sometimes
+                previewLinks: false,
+
+                // make sure slide won't expand more than 1 page in printed pdf
+                pdfMaxPagesPerSlide: 1,
+                // make sure printed pdf has all fragment in one slide
+                pdfSeparateFragments: false,
+                // Offset used to reduce the height of content within exported PDF pages.
+                // This exists to account for environment differences based on how you
+                // print to PDF. CLI printing options, like phantomjs and wkpdf, can end
+                // on precisely the total height of the document whereas in-browser
+                // printing has to end one pixel before.
+                pdfPageHeightOffset: -1,
+
+                // right-arrow works like down arrow or space bar, not grid
+                navigationMode: 'linear',
+                // mouse wheel navigate
+                mouseWheel: false,
+                // Focuses body when page changes visibility to ensure keyboard shortcuts work
+                focusBodyOnPageVisibilityChange: true,
+
+                // Transition style
+                transition: 'convex', // none/fade/slide/convex/concave/zoom
+                // Transition speed
+                transitionSpeed: 'default', // default/fast/slow
+                // Transition style for full page slide backgrounds
+                backgroundTransition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+                // disable any preloading
+                preloadIframes: false,
+                // Number of slides away from the current that are visible
+                // this affect the lazy loading behaviours with so many images, videos, and iframes
+                // in this case, use <source data-src="video.mp4" type="video/mp4" /> or
+                // <source data-src="video.webm" type="video/webm" />
+                viewDistance: 3,
+                // Number of slides away from the current that are visible on mobile
+                // devices. It is advisable to set this to a lower number than
+                // viewDistance in order to save resources.
+                mobileViewDistance: 2,
+
+                // The display mode that will be used to show slides
+                display: 'block',
+
+                // menu options
+                menu: {
+                    // position: left, right
+                    side: 'left',
+                    // title with numbers
+                    numbers: true,
+                    // click the slide number (original reveal number) open menu
+                    openSlideNumber: false,
+                    // add markers to indicate the current slide
+                    markers: true,
+                    // transition tab: false or list
+                    transitions: ['None', 'Fade', 'Slide', 'Concave', 'Convex', 'Zoom'],
+                    // If slides do not have a matching title, attempt to use the
+                    // start of the text content as the title instead
+                    useTextContentForMissingTitles: false,
+                    // Specifies the path to the default theme files. If your
+                    // presentation uses a different path to the standard reveal
+                    // layout then you need to provide this option, but only
+                    // when 'themes' is set to 'true'. If you provide your own
+                    // list of themes or 'themes' is set to 'false' the
+                    // 'themesPath' option is ignored.
+                    themes: true,
+                    // with last slash
+                    themesPath: '../../../assets/dist/theme/',
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    // custom: false,
+                    custom: [
+                        // { title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' },
+                        {
+                            title: 'About', icon: '<i class="fa fa-info"></i>',
+                            content: '<span class="slide-menu-item"><h1>Copyright Disclaimers:</h1><p>All materials used and presented in this slide deck, including images, videos, and photographs, have been collected from the internet for educational purpose only. The copyrights of these materials belong to the original authors who produced them. The author of this presentation does not, and has no intention to, claim any copyrights without explicit statement.</p><br>If you wish to use any of these materials for any other reason, please contact the original authors to obtain proper permissions. If you believe that any content in this presentation violates your copyright, kindly contact me, and I will promptly remove them from the slides.</p></span>' +
+
+                                '<span class="slide-menu-item"><h1>Author:</h1><ul class="slide-menu-items"><li class= "slide-menu-item"><a href="#">Dr Daniel Zhang</li><li class= "slide-menu-item"><a href="#">Date: ' + new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1) + '</li></span>' +
+
+                                '<span class="slide-menu-item"><h1>Notes:</h1><ul class="slide-menu-items">' +
+                                '<li class= "slide-menu-item">? key: to show the help panel</li>' +
+                                '<li class= "slide-menu-item">ALT+Click: to zoom in</li>' +
+                                '<li class= "slide-menu-item">Q key: turn mouse to pointer</li>' +
+                                '</ul></span>'
+                        },
+                    ]
+
+                },
+
+                // chalkboard options
+                chalkboard: {
+                    // marker width
+                    boardmarkerWidth: 5,
+                    chalkWidth: 7,
+                    chalkEffect: 1.0,
+                    storage: null,
+                    src: null,
+                    readOnly: undefined,
+                    transition: 800,
+                    theme: "chalkboard",
+                    background: ['rgba(127,127,127,.1)', path + 'img/blackboard.png'],
+                    grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2 },
+                    eraser: { src: path + 'img/sponge.png', radius: 20 },
+                    boardmarkers: [
+                        { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto' },
+                        { color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto' },
+                        { color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto' },
+                        { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto' },
+                        { color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto' },
+                        { color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto' },
+                        { color: 'rgba(100,100,100,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto' },
+                    ],
+                    chalks: [
+                        { color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto' },
+                        { color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto' },
+                        { color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto' },
+                        { color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto' },
+                        { color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto' },
+                        { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto' },
+                        { color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto' },
+                    ]
+                },
+                // get more fa icons: https://fontawesome.com/v4/icons/
+                // or search in plugin/menu/font-awesome/css/all.css for icon names
+                customcontrols: {
+                    controls: [
+                        {
+                            id: 'toggle-overview',
+                            title: 'Toggle overview (O)',
+                            // use "fa fa-th" for 3x3 grid
+                            icon: '<i class="fa fa-th-large"></i>',
+                            action: 'Reveal.toggleOverview();'
+                        },
+                        {
+                            id: 'toggle-speakernote',
+                            title: 'Toggle speaker mode (S)',
+                            icon: '<i class="fa fa-list-alt"></i>',
+                            action: "Reveal.triggerKey(83);"
+                        },
+                        {
+                            id: 'toggle-chalkboard',
+                            icon: '<i class="fa fa-pen-square"></i>',
+                            title: 'Toggle chalkboard (B)',
+                            action: 'RevealChalkboard.toggleChalkboard();'
+                        },
+                        {
+                            id: 'toggle-canvas',
+                            icon: '<i class="fa fa-pen"></i>',
+                            title: 'Toggle notes canvas (C)',
+                            action: 'RevealChalkboard.toggleNotesCanvas();'
+                        },
+                        {
+                            id: 'toggle-pause',
+                            icon: '<i class="fa fa-eye-slash"></i>',
+                            title: 'Black out the slides (.)',
+                            action: 'Reveal.togglePause();'
+                        },
+                        {
+                            id: 'toggle-fullscreen',
+                            // or 'fa fa-expand' for another icon
+                            icon: '<i class="fa fa-expand"></i>',
+                            title: 'Toggle fullscreen (F)',
+                            action: 'document.documentElement.requestFullscreen();'
+
+                        },
+                        {
+                            id: 'toggle-help',
+                            icon: '<i class="fa fa-question-circle"></i>',
+                            title: 'Show help (?)',
+                            action: 'Reveal.toggleHelp();'
+
+                        }
+                    ]
+                },
+                // vertical deck indicator
+                verticator: {
+                    color: 'cyan',
+                    inversecolor: 'blue',
+                    skipuncounted: true,
+                    tooltip: 'auto',
+                    scale: 1.2,
+                },
+                // pointer
+                pointer: {
+                    key: "q", // key to enable pointer, default "q", not case-sensitive
+                    color: "#ffca3a", // color of a cursor, default "red" any valid CSS color; red, green, blue, yellow can be set as "#fa1e0e", "#8ac926", "#1982c4", "#ffca3a" 
+                    opacity: 0.9, // opacity of cursor, default 0.8
+                    pointerSize: 18, // pointer size in px, default 12
+                    alwaysVisible: false, // should pointer mode be always visible? default "false"
+                    tailLength: 10, // NOT IMPLEMENTED YET!!! how long the "tail" should be? default 10
+                },
+            });
+
+            // make long content auto scrollable, daniel
+            function resetSlideScrolling(slide) {
+                slide.classList.remove('scrollable-slide');
+            }
+
+            function handleSlideScrolling(slide) {
+                if (slide.scrollHeight >= 800) {
+                    slide.classList.add('scrollable-slide');
+                }
+            }
+            // make long content auto scrollable
+
+            // make long content auto scrollable, daniel
+            Reveal.addEventListener('ready', function (event) {
+                handleSlideScrolling(event.currentSlide);
+            });
+
+            Reveal.addEventListener('slidechanged', function (event) {
+                if (event.previousSlide) {
+                    resetSlideScrolling(event.previousSlide);
+                }
+                handleSlideScrolling(event.currentSlide);
+            });
+
+            // =========== change overview scales ====================
+            // regexp to match only the last `scale(...)` rule (there are two scale rules on the .slides element, don't know why)
+            const currentScaleRegexp = /scale\([^\)]*\)(?!.*(scale))/;
+            // prevent infinite loop https://stackoverflow.com/a/48599188
+            let insideInitialObserverCallback = false;
+
+            let observer = new MutationObserver(mutationsList => {
+                // only react when in overview mode
+                // could also use https://revealjs.com/overview/#events to stop/start observer when needed
+                if (!Reveal.isOverview()) return;
+
+                insideInitialObserverCallback = !insideInitialObserverCallback
+                if (insideInitialObserverCallback) {
+                    mutationsList.forEach(mutation => {
+                        const currentTransform = mutation.target.style.transform;
+                        // change to the scale that fits your needs
+                        // mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.05)');
+                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(' + overview_scale.toString() + ')');
+                    })
+                }
+            });
+            observer.observe(
+                Reveal.getSlidesElement(),
+                { attributes: true, attributesFilter: ['style'] }
+            );
+
+        </script>
+
+        <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
+        <script id="inject_data">
+            // set up all data in header, but update the document here
+
+            // update html, the emaillink class need to be treated specially, so does the document title
+            // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
+            authorData.forEach((v, k) => {
+                // set up key word, is it a class or document title?
+                var keyw = k;
+                if (k != 'title') keyw = '.' + k;
+                // search the entity and replace the content
+                document.querySelectorAll(keyw).forEach(element => {
+                    if (k == 'title') {
+                        element.textContent = v;
+                    }
+                    else if (k == 'emaillink') {
+                        element.href = v;
+                        element.innerHTML = '<span>' + authorData.get('email') + '</span>';
+                    }
+                    else {
+                        element.innerHTML = v;
+                    }
+                });
+            });
+        </script>
+        <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
+
+        <!-- LINKS EFFECT: https://jsfiddle.net/hakim/Ht6Ym/  -->
+        <script id="link_effect">
+            var supports3DTransforms = document.body.style['webkitPerspective'] !== undefined ||
+                document.body.style['MozPerspective'] !== undefined;
+
+            function linkify(selector) {
+                if (supports3DTransforms) {
+
+                    var nodes = document.querySelectorAll(selector);
+
+                    for (var i = 0, len = nodes.length; i < len; i++) {
+                        var node = nodes[i];
+                        if (!node.className || !node.className.match(/roll/g)) {
+                            // exclude the image links, has img as a children, for firefox not supporting :has()
+                            if (node.querySelector('img')) continue;
+                            // parents div is not slide-number
+                            if (node.parentNode.className.match(/slide-number/gi)) continue;
+                            node.className += ' roll';
+                            node.innerHTML = '<span data-title="' + node.text + '">' + node.innerHTML + '</span>';
+                        }
+                    };
+                }
+
+            }
+            // don't apply to image links, firefox doesn't support :has() for the time being, manually exclude those link in function
+            // linkify('a:not(.slide-number):not(:has(img))');
+            linkify('a');
+        </script>
+
+        <!-- another method and the author's reply -->
+        <!-- https://github.com/hakimel/reveal.js/issues/806 -->
+        <!-- this one did work and worth checking: -->
+        <!-- http://www.ciges.net/revealjs_demo -->
+        <!-- it did copy the logo to each slide in ped print preview,
+            but not in the ctrl+p generated pdf file, so wont' be printed.
+            wait for bug fix -->
+        <!-- <script type="text/javascript">
+            // var header = document.querySelector('#header');
+            var logo = document.querySelector('.footer-left');
+            Reveal.on('pdf-ready', () => {
+                // change style for pdf print mode
+                logo.classList.add('footer-left-pdf');
+                logo.classList.remove('footer-left');
+                // copy the logo except the title
+                document.querySelectorAll('.pdf-page').forEach(function (page, index) {
+                    // jump over the title page as it's already shown
+                    // if (index != 0) page.appendChild(logo.cloneNode(true));
+                    page.appendChild(logo.cloneNode(true));
+                });
+            })
+        </script> -->
+
+    </body>
+
+</html>

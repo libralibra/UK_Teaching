@@ -22,7 +22,6 @@
         <!-- the default stylsheets -->
         <link rel="stylsheets" href="../../../assets/dist/reset.css">
         <link rel="stylesheet" href="../../../assets/dist/reveal.css">
-        <link rel="stylesheet" href="../../../assets/dist/reveal.css">
         <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
 
         <!-- Theme used for syntax highlighting of code -->
@@ -42,10 +41,36 @@
 
         <!-- all links open in new tab -->
         <!-- <base target="_blank"> -->
-    </head>
 
-    <body>
+        <!-- define data here, but update the document later to avoid using
+                window.onload = function() {}; syntax -->
         <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', 'Week 3'],
+                ['topic', ' - Authored Behaviour'],
+                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
+                ['office', 'Games Academy, Penryn Campus'],
+                ['uni', 'Falmouth University'],
+                ['officehour', 'Monday 13.00-14.00'],
+                ['classroom', 'Room 1002, Games Academy'],
+                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
+                ['deadline', 'Monday, 30th Nov 2023'],
+                ['name', 'Dr Daniel Zhang'],
+                ['nickname', 'Daniel'],
+                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
+            ]);
+            // add the dynamic item
+            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
+            authorData.set('title', authorData.get('course'));
+            authorData.set('modulename', authorData.get('course'));
+            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+            // CALL THE FUNCTION TO UPDATE DOCUMENT IN THE END
+
+            // overview scale
+            overview_scale = 0.2;
+
             // generate pdf link, click the button, then press CTRL+P
             // remember to follow these steps to get rid of the borders:
             //  1. select 'save as PDF' for printer
@@ -59,6 +84,9 @@
                 window.location.href = url + "?print-pdf";
             }
         </script>
+    </head>
+
+    <body>
         <!-- pdf printing by showing a corner strip+
                     put pdf button before anything else, as the z-index makes sure later elements has a 
                     higher z-index than those before. In overview mode, the slides should be in the front.
@@ -71,384 +99,39 @@
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section>
+                <section id="chap_title">
                     <section id="title">
                         <h1><span class="course"></span></h1>
                         <h3>
                             <orange><span class="coursecode"></span></orange>
                         </h3>
                         <!-- <img src="img/nn.png" width=50% /> -->
-                        <img src="img/ai_title.png" width=50% />
+                        <!-- <img src="img/ai_title.png" width=50% /> -->
+                        <p>
+                            <bigtext><span class="week"></span><span class="topic"></span></bigtext>
+                        </p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
                         <p>
                             <cyan class="fullname"></cyan> <br>
                             <span class="uni"></span>, v. <span class="year"></span>
-                            <!-- <script>document.write(new Date().getFullYear() + ' - ' + (new Date().getFullYear() + 1))</script> -->
                         </p>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>Hello, everyone. Welcome to this module: <span class="course"></span>. In the next couple of weeks, I will take you through the journey to the AI and ML world by introducing you the main concepts in this area. We will also review the history, key achievements, and morden applications in the field of AI.</li>
-                                <li>Apart from that, I will talk about the details of AI and ML techniques. This includes online and offline learning, supervised and unsupervised learning, classification and regression, inductive and generative techniques. You will also learn all sorts of necessary knowledge to master the required skills to enter the AI-related Computer Science and Games industries.</li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="digital_tap">
-                        <h1>Digital Attendance System (SEATS)</h1>
-                        <img src="../common/digitap.PNG" alt="digital tap" class="r-stretch">
-                        <p class="fragment fade-down">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did't work.</p>
                     </section>
                 </section>
 
-                <section>
-                    <section id="outine">
-                        <h1 class="r-fit-text">Module Outline</h1>
+                <section id="chap_agents">
+                    <section id="agents">
+                        <h1 class="r-frame-text">Agents</h1>
                     </section>
 
-                    <section id="aim">
-                        <h1>Aim</h1>
-                        <p>To <span class="fragment highlight-red">confidently</span> implement <span class="fragment highlight-green">artificial intelligence (AI)</span> techniques which are commonly used to <span class="fragment highlight-blue">solve problems</span> in industry.</p>
+                    <section id="agents_1">
+                        <h1>Agents</h1>
+                        <img src="img/agent.png" alt="agent illustration" class="r-stretch">
+
+                        <p class="fragment custom blur">An <purple>agent</purple> is anything which perceives an <lime>environment</lime> through <skyblue>sensors</skyblue>, and acts upon that environment through <pink>actuators</pink>.</p>
                     </section>
 
-                    <section id="description_1" data-auto-animate>
-                        <h1 data-id="hd">Description</h1>
-                        <ul data-id="desp">
-                            <li class="fragment">
-                                <cyan>introduce</cyan> you to the core techniques of AI
-                            </li>
-                            <li class="fragment">
-                                <blue>refine</blue> your understanding of these techniques
-                            </li>
-                            <li class="fragment">
-                                <black>study</black> the strengths and weaknesses of standard AI techniques
-                            </li>
-                            <li class="fragment">
-                                <yellow>equip</yellow> you with a solid background in this fast-moving field
-                            </li>
-                            <li class="fragment">
-                                <orange>train</orange> you to apply them to well-defined problem domains
-                            </li>
-                            <li class="fragment">
-                                <purple>lay</purple> the foundation for more complex applications in subsequent module
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="description_2" data-auto-animate>
-                        <h1 data-id="hd">Description (cont.)</h1>
-                        <ul data-id="desp">
-                            <li class="fragment">
-                                <cyan>Cover</cyan> classical AI for decision-making and content generation
-                            </li>
-                            <li class="fragment">
-                                <blue>Showcase</blue> typical application of these techniques:
-                                <ul>
-                                    <li>authoring of non-player character behaviours in games</li>
-                                    <li>the navigation of complex environments</li>
-                                    <li>the formation of logistical plans with respect to constraints</li>
-                                    <li>the generation of content in creative domains</li>
-                                </ul>
-                            </li>
-                            <li class="fragment">
-                                <yellow>build</yellow> a portfolio of AI instances applied to these domains
-                                to simplified versions
-                            </li>
-                            <li class="fragment">
-                                <black>select</black> appropriate technologies to solve real
-                                problems
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="description_summary" data-auto-animate>
-                        <h1 data-id="hd">Description Summary</h1>
-                        <ol data-id="desp">
-                            <li class="fragment">learn <purple>classical</purple> AI</li>
-                            <li class="fragment">will look at <blue>machine learning</blue> in next study block (with me)</li>
-                            <li class="fragment">make a <green>'portfolio'</green> using AI techniques</li>
-                        </ol>
-                    </section>
-
-                    <section id="outcome">
-                        <h1>Learning Outcomes</h1>
-                        <p>The expected outcomes include:</p>
-                        <div class="row no-margin-top">
-                            <div class="col-50 no-margin-top fragment">
-                                <cyan>Code/Compute</cyan><br>
-                                implement working and maintainable software components
-                            </div>
-
-                            <div class="col-50 no-margin-top fragment">
-                                <green>Solve</green><br>
-                                Demonstrate computational thinking and numeracy skills (Not directly assessed)
-                            </div>
-                        </div>
-                    </section>
-                </section>
-                <section>
-                    <section id="teaching">
-                        <h1 class="r-fit-text">Teaching</h1>
-                    </section>
-
-                    <section id="plan">
-                        <h1>Plan (Study Block 1)</h1>
-                        <img src="img/sb1.png" alt="sb1 plan" class="r-stretch r-frame">
-                    </section>
-
-                    <section id="delivery">
-                        <h1>Module Delivery</h1>
-                        <ul>
-                            <li>
-                                <cyan>Given by:</cyan> Dr Daniel Zhang
-                            </li>
-                            <li>
-                                <cyan>Email:</cyan> <a href="" class="emaillink"></a> (also on <orange>MS Teams</orange>)
-                            </li>
-                            <li>
-                                <purple>Drop me an email to arrange meetings if necessary.</purple>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="who_am_i" data-auto-animate>
-                        <h1 data-id="hh">Who am I?</h1>
-                        <ul data-id="hd">
-                            <li>
-                                <green>Name:</green> Dr Daniel Zhang
-                            </li>
-                            <li class="fragment">
-                                <green>Role:</green> Senior Lecturer in Artificial Intelligence
-                            </li>
-                            <li class="fragment">
-                                <green>Background: </green>
-                                <ul>
-                                    <li>worked for <yellow>Rolls-Royce UTC</yellow> at <black>University of Southampton</black> (aircraft engine design & optimisation)</li>
-                                    <li>focused on <blue>AI/ML</blue> and their Applications</li>
-                                    <li>delivered <cyan>more than 10</cyan> successful software and production tools to <yellow>Rolls-Royce</yellow> to solve their computational engineering problems</li>
-                                    <li>supported Rolls-Royce engineers in <cyan>five</cyan> R&D Centres: <purple>Bristol</purple> (UK), <orange>Derby</orange> (UK), <red>Dahlewitz</red> (Germany), <blue>Illinois</blue> (US), <green>Bangalore</green> (India)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="who_am_i_2" data-auto-animate>
-                        <h1 data-id="hh">Who am I? (cont.)</h1>
-                        <ul data-id="hd">
-                            <li>
-                                <green>Background: </green>
-                                <ul>
-                                    <li>worked for <yellow>Rolls-Royce UTC</yellow> at <black>University of Southampton</black> (aircraft engine design & optimisation)</li>
-                                    <li>focused on <blue>AI/ML</blue> and their Applications</li>
-                                    <li>delivered <cyan>more than 10</cyan> successful software and production tools to <yellow>Rolls-Royce</yellow> to solve their computational engineering problems</li>
-                                    <li>supported Rolls-Royce engineers in <cyan>five</cyan> R&D Centres: <purple>Bristol</purple> (UK), <orange>Derby</orange> (UK), <red>Dahlewitz</red> (Germany), <blue>Illinois</blue> (US), <green>Bangalore</green> (India)</li>
-                                </ul>
-                            </li>
-                            <li class="fragment">
-                                <green>Teaching:</green> MSc courses in Games Academy
-                                <ul>
-                                    <li>Classical Artificial Intelligence</li>
-                                    <li>Machine Learning</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section>
-                    <section id="assessment">
-                        <h1 class="r-fit-text">Assessment</h1>
-                    </section>
-
-
-
-                    <section id="important_dates">
-                        <h1>Important Dates</h1>
-                        <p>Coursework Deadline: <red><span class="deadline"></span></red>
-                        </p>
-                        <red>
-                            <pre class="fragment grow"><code class="hljs js fragment shrink">
-           -> Please note: late assignments would NOT be accepted!       
-                        </code></pre>
-                        </red>
-                        <p>You get zero for anything past the due date, unless you have an approved <blue>Extenuating Circumstances (EC) Applications</blue> (you must submit your EC application via <!--img src="img/open_new.png" width="3%" style="display: inline;" title="visit MyFalmouth Student Portal"--><a href="https://www.falmouth.ac.uk/student-portal-falmouth-app">MyFalmouth portal</a>)
-                        </p>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>The most important date is the coursework deadline, which is shown clearly on the top of this slide. You'd better to note it down now. In addition, please set up reminders in your calendar to make sure all your works have been submitted successfully before the deadline. And more importantly, you have received email confirmation about your submission.</li>
-                                <li>Please note that anything received past the due date will be marked as ZERO automatically, unless you have the official and approved EC application in hand.</li>
-                                <li>The EC application can be submitted via MyFalmouth portal by following the link.</li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="plagiarism">
-                        <h1>Plagiarism</h1>
-                        <ul>
-                            <li>Visit <a href="https://www.falmouth.ac.uk/student-regulations">https://www.falmouth.ac.uk/student-regulations</a>
-                                to check Falmouth University Academic Integrity Policies</li>
-                            <li class="fragment fade-in-then-semi-out">All assignments are to be done individually</li>
-                            <li class="fragment fade-in-then-semi-out">Discussions are encouraged, but you should not share your work (or parts of your work) to other students. You should not look at another student's work until after you have handed in yours (and the due date is past).</li>
-                            <li class="fragment fade-in">Plagiarism has occurred in the past in the
-                                University and it has had very negative consequences for the students involved. <span>
-                                    <purple class="fragment fade-right">- Take it seriously!
-                                    </purple>
-                                </span>
-                            </li>
-                            <li class="fragment fade-in-then-semi-out">Since 100% of the course mark is based on handed in work, we will be very diligent about detecting plagiarism!</li>
-                            <li class="fragment fade-down">
-                                <cyan>Note: AI writing tools are <red>prohibited!</red>
-                                </cyan>
-                            </li>
-                        </ul>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>The university has various standards and policies regarding the academic integrity, which are available under the 'student regulation' section on our website. Please make sure you are aware of them.</li>
-                                <li>More specifically for this module, all coursework must be your own work and has to be done by yourselves. Though discussions are encouraged, you should not share your work with anyone else. And you should not look at other students' work before your submission and the due date.</li>
-                                <li>The university works very hard to detect plagiarism. If you're caught unfortunately, further action would be taken and you may be asked to attend listing meetings.</li>
-                                <li>Since this module would be evaluated purely based on your coursework, all sorts of AI writing tools are not allowed!</li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="reference">
-                        <h1>Reference Materials</h1>
-                        <dl>
-                            <dt>
-                                <cyan>Artificial Intelligence: A Modern Approach</cyan>
-                            </dt>
-                            <dd>Stuart J. Russell and Peter Norvig, 4th Edition, 2022</dd>
-                            <a href="http://aima.cs.berkeley.edu/global-index.html"><img class="r-frame r-stretch img-zoom" src="img/ai_book.PNG" title="Artificial Intelligence: A Modern Approach" style="display: block;margin: auto; width: 18%;" /> </a>
-
-                            <span class="fragment fade-down">
-                                <dt><a href="https://d2l.ai/">Dive into Deep Learning</a></dt>
-                                <dd>Zhang, Aston, Lipton, Zachary C. et.al (2021), arXiv
-                                    preprint arXiv:2106.11342</dd>
-                            </span>
-                            <span class="fragment fade-in">
-                                <dt><a href="http://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a></dt>
-                                <dd>online book by Michael Nielsen</dd>
-                            </span>
-                        </dl>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>This slide lists some books and learning materials for your reference. Feel free to grab as much information as you can to help yourselves to understand the topics of AI and machine learning.</li>
-                                <li>Nowadays, learning materials are very easy to access via various methods. You can read on your laptop, tablet, or smartphone at any time you like.</li>
-                                <li></li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="materials">
-                        <h1>Alternative Materials</h1>
-                        <dl>
-                            <dt>
-                                <cyan>Artificial Intelligence: A Textbook</cyan>
-                            </dt>
-                            <dd>Charu C. Aggarwal, 2021. Springer.</dd>
-                            <a href="https://link.springer.com/book/10.1007/978-3-030-72357-6"><img class="r-frame r-stretch img-zoom" src="img/ai_textbook.PNG" title="Artificial Intelligence: A Textbook" style="display: block;margin: auto; width: 12%;" /></a>
-
-                            <span class="fragment fade-in">
-                                <dt><a href="http://themlbook.com/wiki/doku.php?id=start">The Hundred-Page Machine Learning</a>
-                                </dt>
-                                <dd>online book by Andriy Burkov</dd>
-                                <dt><a href="https://www.deeplearningbook.org/">Deep Learning</a></dt>
-                                <dd>Ian Goodfellow and Yoshua Bengio and Aaron Courville (2016), MIT Press</dd>
-                            </span>
-
-                            <span class="fragment fade-in">
-                                <dt>
-                                    <orange>Online Courses:</orange>
-                                </dt>
-                                <dd>Various lectures are available in online platforms, e.g <a href="https://www.udacity.com/">Udacity</a>, <a href="https://www.coursera.org/">Coursera</a>, <a href="https://www.edx.org/">edX</a>
-                                </dd>
-                            </span>
-                        </dl>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>These are some other books and online resources available.</li>
-                                <li>Moreover, you may find useful tutorials and free courses on some online learning platforms, such as edx, coursera, and udacity. Most of those online courses are self-paced, which means you can learn whenever you like. You can even get a certificate if you complete all the sections and pass the final exam.</li>
-                                <li>Please bare in mind that some of them may require payments for the certificate.</li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="prerequisites">
-                        <h1>Prerequisites</h1>
-                        <ul>
-                            <li class="fragment fade-in">Some knowledge of maths and probability</li>
-                            <li class="fragment fade-in">Some programming skills would be useful but not essential
-                                (C++, Python, Matlab, Java, etc.)</li>
-                            <li class="fragment fade-in">If you don't have these prerequisites <strong>you
-                                    will be responsible</strong> for learning any needed background materials by yourselves.
-                                <ul>
-                                    <li class="fragment fade-in">You will not be given any special consideration for not having had the proper background.</li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>For this module, previous programming skills are not essential but they may help you to understand the contents better. Additionally, it's better to have some knowledge of maths and probability.</li>
-                                <li>If you have these skills, that's good. However, don't panic if you are not familiar with them. We'll learn the required skills together during this module.</li>
-                                <li>But you have to work harder to equip yourselves with these skills to catch up the others in the class.</li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="website">
-                        <h1>Website</h1>
-                        <ul>
-                            <li>The course website: Artificial Intelligence for Games MSc
-                            <li><a href="https://www.falmouth.ac.uk/study/postgraduate/artificial-intelligence-games">https://www.falmouth.ac.uk/study/postgraduate/artificial-intelligence-games</a>
-                            </li>
-                            <li>Primary source of more detailed information, announcements, etc.</li>
-                            <li>Updates about assignments, clarifications etc. will be posted on the website.
-                                <!-- <purple class="fragment fade-in">- not by Email!</purple> -->
-                            </li>
-                            <li>Emergency announcements will be sent by email!
-                            </li>
-                            <li>
-                                <cyan>Check the website and Email often.</cyan>
-                            </li>
-                        </ul>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>The course website is the main source for teaching materials, assignments, and announcements, etc, while emergency announcements will be sent to you by emails. No phone calls!</li>
-                                <li>So please make sure to check both the website and email often.</li>
-                                <li></li>
-                            </ul>
-                        </aside>
-                    </section>
-
-                    <section id="structure">
-                        <h1>Course Structure</h1>
-                        <p>Core part of <em>
-                                <purple>Artificial Intelligence (AI) for Games MSc</purple>
-                            </em></p>
-                        <ol>
-                            <li>Introduction to AI & ML</li>
-                            <li>Machine Learning Fundamentals</li>
-                            <li>Supervised Learning Algorithms</li>
-                            <li>Neural Networks & Deep Learning</li>
-                            <li>Unsupervised Learning Algorithms</li>
-                            <li>Reinforcement Learning</li>
-                            <li>Transfer Learning</li>
-                            <li>Convolutional Neural Networks</li>
-                            <li>Generative Models</li>
-                        </ol>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>The structure of this modue is shown here. As a core part of Artificial Intelligence for Games MSc programme, it contains several sub-sections.</li>
-                                <li>These sections cover a wide range of topics from the historical development to the cutting-edge research about AI and ML.</li>
-                                <li>This week and next week would serve as the background and intorduction of this module. From the 3rd week, we will dive deeply into the AI/ML world with more technical details.</li>
-                            </ul>
-                        </aside>
+                    <section id="terminology">
+                        <h1>Agents Terminology</h1>
                     </section>
 
                     <section id="email_policy">
@@ -475,27 +158,20 @@
 
                     <section id="questions">
                         <h2>
-                            <purple>Questions?</purple>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
                         </h2>
-                        <img src="img/questions.png" width="70%"><br>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
-                        <h6>Office hour: <green><span class="officehour"></span></green><br>
-                            <cyan><span class="office"></span></cyan>
+                        <cyan><span class="office"></span></cyan>
                         </h6>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>Any questions so far?</li>
-                                <li>Good! Let's start the AI adventure!</li>
-                                <li></li>
-                            </ul>
-                        </aside>
                     </section>
                 </section>
 
                 <!-- section 2: Introduction to AI & ML -->
 
-                <section>
+                <section id="chap_ai_intro">
                     <section>
                         <h1>Introduction to AI & ML</h1>
                         <ul>
@@ -901,21 +577,22 @@
                         <img data-id="wt2" src="img/ai_blackbox.PNG" class="r-stretch" title="AI as Blackbox">
                     </section>
 
-                    <section>
+                    <section id="questions">
                         <h2>
-                            <purple>Questions?</purple>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
                         </h2>
-                        <img src="img/questions.png" width="70%"><br>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
-                        <h6>Office hour: <green><span class="officehour"></span></green><br>
-                            <cyan><span class="office"></span></cyan>
+                        <cyan><span class="office"></span></cyan>
                         </h6>
                     </section>
                 </section>
 
                 <!-- section 3: Machine Learning Fundamentals -->
 
-                <section>
+                <section id="chap_ml">
                     <section id="ml_fundamentals">
                         <h1>
                             <purple>Machine Learning (ML) Fundamentals</purple>
@@ -980,12 +657,13 @@
 
                     <section id="questions">
                         <h2>
-                            <purple>Questions?</purple>
+                            <purple>
+                                <bold>Questions?</bold>
+                            </purple>
                         </h2>
-                        <img src="img/questions.png" width="70%"><br>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
-                        <h6>Office hour: <green><span class="officehour"></span></green><br>
-                            <cyan><span class="office"></span></cyan>
+                        <cyan><span class="office"></span></cyan>
                         </h6>
                     </section>
                 </section>
@@ -1534,7 +1212,7 @@ Reveal.on( 'customevent', function() {
         <div id="header">
             <!-- <div id="header-left">HEADER-LEFT</div> -->
             <!-- <div id="header-right">HEADER-RIGHT</div> -->
-            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img src="../common/logo.png" title="visit Falmouth University" style="width:100px;"></a></div>
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
             <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
         </div>
 
@@ -1572,7 +1250,7 @@ Reveal.on( 'customevent', function() {
         <script src="../../../assets/plugin/pointer/pointer.js"></script>
 
         <!-- reveal initialisation -->
-        <script>
+        <script id="reveal_init">
             // more settings: https://autonomousvision.github.io/slides/occupancy-flow/lib/reveal/#installation
             // Also available as an ES module, see:
             // https://revealjs.com/initialization/
@@ -1581,6 +1259,9 @@ Reveal.on( 'customevent', function() {
                 // and more: https://quarto.org/docs/extensions/listing-revealjs.html
                 // https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware
                 // https://github.com/rajgoel/reveal.js-plugins/tree/master
+
+                width: 1200,
+                height: 650,
 
                 // plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, RevealChalkboard, RevealCustomControls, Appearance, Verticator],
 
@@ -1873,7 +1554,8 @@ Reveal.on( 'customevent', function() {
                     mutationsList.forEach(mutation => {
                         const currentTransform = mutation.target.style.transform;
                         // change to the scale that fits your needs
-                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.05)');
+                        // mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.05)');
+                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(' + overview_scale.toString() + ')');
                     })
                 }
             });
@@ -1885,26 +1567,9 @@ Reveal.on( 'customevent', function() {
         </script>
 
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
-        <script>
-            const authorData = new Map([
-                ['course', 'Classical Artificial Intelligence'],
-                ['coursecode', 'COMP712'],
-                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
-                ['office', 'Games Academy, Penryn Campus'],
-                ['uni', 'Falmouth University'],
-                ['officehour', 'Monday 13.00-14.00'],
-                ['classroom', 'Room 1002, Games Academy'],
-                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
-                ['deadline', 'Monday, 30th Nov 2023'],
-                ['name', 'Dr Daniel Zhang'],
-                ['nickname', 'Daniel'],
-                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
-            ]);
-            // add the dynamic item
-            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
-            authorData.set('title', authorData.get('course'));
-            authorData.set('modulename', authorData.get('course'));
-            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
+        <script id="inject_data">
+            // set up all data in header, but update the document here
+
             // update html, the emaillink class need to be treated specially, so does the document title
             // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
             authorData.forEach((v, k) => {
@@ -1929,7 +1594,7 @@ Reveal.on( 'customevent', function() {
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
 
         <!-- LINKS EFFECT: https://jsfiddle.net/hakim/Ht6Ym/  -->
-        <script>
+        <script id="link_effect">
             var supports3DTransforms = document.body.style['webkitPerspective'] !== undefined ||
                 document.body.style['MozPerspective'] !== undefined;
 
