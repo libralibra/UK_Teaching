@@ -355,13 +355,12 @@ strike {
     max-width: 800px !important;
 }
 
-/* pdf download corner */
+/* pdf download corner, position only, the colour is different for 
+    each theme */
 .pdf_div {
-    background-color: #424242;
+    /* hide the overflow part */
     width: 200px;
     height: 200px;
-    border: 1px solid #424242;
-    /* hide the overflow part */
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -375,9 +374,9 @@ html.print-pdf .pdf_div {
 
 .pdf_div .pdf_link {
     text-align: center;
+    text-shadow: #333333;
     position: absolute;
-    background-color: #333333;
-    color: yellow;
+    color: orange;
     /* will affect the corner bar display */
     width: 80%;
     height: 50px;
@@ -386,15 +385,94 @@ html.print-pdf .pdf_div {
     top: 5px;
     left: 40%;
     transform: rotate(45deg);
-    border: 5px solid yellow;
+    border: 5px solid orange;
     z-index: 2;
 }
 
 .pdf_link:hover {
     color: lime;
     border: 5px solid lime;
+
 }
 
+/* title bar */
+.reveal h1:first-child,
+.reveal h2:first-child,
+.reveal h3:first-child,
+.reveal h4:first-child,
+.reveal h5:first-child,
+.reveal h6:first-child {
+    color: var(--r-heading-color);
+    /* font-size: var(--r-heading1-size); */
+    /* text-shadow: var(--r-heading1-text-shadow); */
+    text-shadow: 2px 1px 5px black;
+    border-bottom: thick double rgb(153, 153, 153);
+}
+
+/* linkify function style for links, as Firefox doesn't support :has() so it will 
+    fail. Keep the original 2 blocks above for the time being. 
+*/
+a.roll {
+    display: inline-block;
+    overflow: hidden;
+
+    vertical-align: top;
+
+    -webkit-perspective: 400px;
+    -moz-perspective: 400px;
+    perspective: 400px;
+
+    -webkit-perspective-origin: 50% 50%;
+    -moz-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+}
+
+a.roll span {
+    display: block;
+    position: relative;
+    padding: 0 2px;
+
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    transition: all 400ms ease;
+
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+a.roll:hover span {
+    background: #111;
+
+    -webkit-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
+    -moz-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
+    transform: translate3d(0px, 0px, -30px) rotateX(90deg);
+}
+
+a.roll span:after {
+    content: attr(data-title);
+
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 2px;
+
+    color: #fff;
+    background: hsl(206, 80%, 30%);
+
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+
+    -webkit-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
+    -moz-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
+    transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
+}
 
 /* don't change pdf download link color, no underline */
 .link_no_change {

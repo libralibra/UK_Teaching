@@ -31,13 +31,10 @@ section.has-light-background h6 {
     /* --r-main-font: Source Sans Pro, Helvetica, sans-serif; */
     --r-main-font: AmaranthBold, Helvetica, sans-serif;
     --r-main-color: #fff;
-    --r-heading-margin: 0 0 10px 0;
     /* change font, has to modify the reveal.csss as well */
     /* --r-heading-font: Source Sans Pro, Helvetica, sans-serif; */
     --r-heading-font: AmaranthBold, Helvetica, sans-serif;
     --r-heading-color: #ffda00;
-    --r-heading-line-height: 1.2em;
-    --r-heading-letter-spacing: normal;
     /* convert all text to uppercase ? */
     /* --r-heading-text-transform: uppercase; */
     /* add extra shadow effect */
@@ -49,7 +46,10 @@ section.has-light-background h6 {
     /* --r-heading1-text-shadow: 2px 2px 0 rgba(170, 165, 164, 0.795); */
     --r-heading1-text-shadow: 2px 2px 0 black;
     /* font sizes */
+    --r-heading-line-height: 1.2em;
+    --r-heading-letter-spacing: normal;
     --r-block-margin: 10px;
+    --r-heading-margin: 0 0 10px 0;
     --r-main-font-size: 34px;
     --r-heading1-size: 1.75em;
     --r-heading2-size: 1.6em;
@@ -98,6 +98,16 @@ section.has-light-background h6 {
     font-weight: inherit;
 }
 
+/* print pdf div in the corner */
+.pdf_div {
+    background-color: var(--r-background-color);
+    border: 1px solid var(--r-background-color);
+}
+
+.pdf_div .pdf_link {
+    background-color: var(--r-background-color);
+}
+
 /*********************************************
  * HEADERS
  *********************************************/
@@ -140,20 +150,6 @@ section.has-light-background h6 {
 
 .reveal h6 {
     font-size: var(--r-heading6-size);
-}
-
-/* title of each slide */
-.reveal h1:first-child,
-.reveal h2:first-child,
-.reveal h3:first-child,
-.reveal h4:first-child,
-.reveal h5:first-child,
-.reveal h6:first-child {
-    color: var(--r-heading-color);
-    /* font-size: var(--r-heading1-size); */
-    /* text-shadow: var(--r-heading1-text-shadow); */
-    text-shadow: 2px 1px 5px black;
-    border-bottom: thick double rgb(153, 153, 153);
 }
 
 /*********************************************
@@ -385,71 +381,6 @@ section.has-light-background h6 {
     color: #fff;
     background: var(--r-link-color-dark);
 } */
-
-/* linkify function style for links, as Firefox doesn't support :has() so it will 
-    fail. Keep the original 2 blocks above for the time being. 
-*/
-a.roll {
-    display: inline-block;
-    overflow: hidden;
-
-    vertical-align: top;
-
-    -webkit-perspective: 400px;
-    -moz-perspective: 400px;
-    perspective: 400px;
-
-    -webkit-perspective-origin: 50% 50%;
-    -moz-perspective-origin: 50% 50%;
-    perspective-origin: 50% 50%;
-}
-
-a.roll span {
-    display: block;
-    position: relative;
-    padding: 0 2px;
-
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    transition: all 400ms ease;
-
-    -webkit-transform-origin: 50% 0%;
-    -moz-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-}
-
-a.roll:hover span {
-    background: #111;
-
-    -webkit-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
-    -moz-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
-    transform: translate3d(0px, 0px, -30px) rotateX(90deg);
-}
-
-a.roll span:after {
-    content: attr(data-title);
-
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 0 2px;
-
-    color: #fff;
-    background: hsl(206, 80%, 30%);
-
-    -webkit-transform-origin: 50% 0%;
-    -moz-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-
-    -webkit-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
-    -moz-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
-    transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
-}
 
 /*********************************************
  * Frame helper

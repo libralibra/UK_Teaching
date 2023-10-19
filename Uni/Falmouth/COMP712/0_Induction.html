@@ -68,6 +68,9 @@
             authorData.set('modulename', authorData.get('course'));
             authorData.set('fullname', authorData.get('name') + ' (Senior Lecturer in AI)');
 
+            // overview scale
+            overview_scale = 0.2;
+
             // generate pdf link, click the button, then press CTRL+P
             // remember to follow these steps to get rid of the borders:
             //  1. select 'save as PDF' for printer
@@ -815,12 +818,12 @@
                             icon: '<i class="fa fa-th-large"></i>',
                             action: 'Reveal.toggleOverview();'
                         },
-                        {
-                            id: 'toggle-speakernote',
-                            title: 'Toggle speaker mode (S)',
-                            icon: '<i class="fa fa-list-alt"></i>',
-                            action: "Reveal.triggerKey(83);"
-                        },
+                        // {
+                        //     id: 'toggle-speakernote',
+                        //     title: 'Toggle speaker mode (S)',
+                        //     icon: '<i class="fa fa-list-alt"></i>',
+                        //     action: "Reveal.triggerKey(83);"
+                        // },
                         {
                             id: 'toggle-chalkboard',
                             icon: '<i class="fa fa-pen-square"></i>',
@@ -915,7 +918,8 @@
                     mutationsList.forEach(mutation => {
                         const currentTransform = mutation.target.style.transform;
                         // change to the scale that fits your needs
-                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.05)');
+                        // mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.05)');
+                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(' + overview_scale.toString() + ')');
                     })
                 }
             });

@@ -30,17 +30,18 @@ section.has-light-background h6 {
     --r-background-color: #282A36;
     --r-main-font: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
     --r-main-color: #F8F8F2;
-    --r-heading-margin: 0 0 20px 0;
     --r-heading-font: League Gothic, Impact, sans-serif;
     --r-heading-color: #BD93F9;
-    --r-heading-line-height: 1.2;
     --r-heading-letter-spacing: normal;
     --r-heading-text-transform: none;
     --r-heading-text-shadow: none;
     --r-heading-font-weight: normal;
     --r-heading1-text-shadow: none;
     /* font sizes */
+    --r-heading-line-height: 1.2em;
+    --r-heading-letter-spacing: normal;
     --r-block-margin: 10px;
+    --r-heading-margin: 0 0 10px 0;
     --r-main-font-size: 34px;
     --r-heading1-size: 1.75em;
     --r-heading2-size: 1.6em;
