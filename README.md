@@ -10,36 +10,36 @@ For a demo, try [https://pages.github.falmouth.ac.uk/Daniel-Zhang/UK_Teaching/Fa
 
 
 ## ToDos:
+- [ ] find a good way of showing all slides in overview mode (**requires modification of the original javascript in node.js environment and rebuild the whole package**)
 
-1. find a good way of showing all slides in overview mode
-2. modify all the other themes accordingly
 
 ## Extras:
 
-1. add extra plugins: menu, chalkboard, extra controls
-    * More controls:
-        - menu (1st icon) to show slide list, change theme, change transition style
-        - chalkboard for annotating and drawing
-        - customcontrols for toggling blackout, fullscreen, overview, speakernote, and showing help
-        - verticator for showing vertical shortcut for all slides in the current section
-    * Examples:
-        - merged controls with menu (from left to right: slide list, overview, speakernote, free draw, annotation, blackout, fullscreen, help): ![menu items](./examples/assets/menus.PNG "Menu Items")
+1. [x] add extra plugins: menu, chalkboard, extra controls
+    * [x] More controls:
+        - [x] menu (1st icon) to show slide list, change theme, change transition style
+        - [x] chalkboard for annotating and drawing
+        - [x] customcontrols for toggling blackout, fullscreen, overview, speakernote, and showing help
+        - [x] verticator for showing vertical shortcut for all slides in the current section
+    * [x] Examples:
+        - [x] merged controls with menu (from left to right: slide list, overview, speakernote, free draw, annotation, blackout, fullscreen, help): ![menu items](./examples/assets/menus.PNG "Menu Items")
         - vertical indicator: ![vertical indicator](./examples/assets/vert.PNG "Vertical Indicator")
-2. update the default black theme for my own preference
-   * use AmaranthRegular font
-3. slide heading underlined
-    * Slide title: ![Slide title](./examples/assets/title.PNG "Slide Title")
-4. modify list item styles and colours
-    * multi-level list: ![List items](./examples/assets/list.PNG "Multi-level List")
-5. show the progress bar
-6. add PDF download strip at the top-right corner of the slide deck
-    * Normal: ![PDF download link](./examples/assets/pdf_download.PNG "PDF Download Link - normal")
-    * Hover: ![PDF download link hover](./examples/assets/pdf_download2.PNG "PDF Download Link - hover")
-7. extra colours to enable `<red></red>, <blue></blue>, <yellow></yellow>, <green></green>, <cyan></cyan>, <purple></purple>, <orange></orange>, <gray></gray>, <white></white>, <black></black>`
-    * ![colour definition](./examples/assets/colours.png "color definition")
-    * ![result](./examples/assets/result.png "result")
-8. change mouse to pointer by pressing Q
-9. add link animation (exclude slide-number and image links), which is a modified version of [this](https://jsfiddle.net/hakim/Ht6Ym/)
+1. [x] update the default black theme for my own preference
+   * [x] use AmaranthRegular font
+2. [x] slide heading underlined
+    * [x] Slide title: ![Slide title](./examples/assets/title.PNG "Slide Title")
+3. [x] modify list item styles and colours
+    * [x] multi-level list: ![List items](./examples/assets/list.PNG "Multi-level List")
+4. [x] show the progress bar
+5. [x] add PDF download strip at the top-right corner of the slide deck
+    * [x] Normal: ![PDF download link](./examples/assets/pdf_download.PNG "PDF Download Link - normal")
+    * [x] Hover: ![PDF download link hover](./examples/assets/pdf_download2.PNG "PDF Download Link - hover")
+6. [x] extra colours to enable `<red></red>, <blue></blue>, <yellow></yellow>, <green></green>, <cyan></cyan>, <purple></purple>, <orange></orange>, <gray></gray>, <white></white>, <black></black>`
+    * [x] ![colour definition](./examples/assets/colours.png "color definition")
+    * [x] ![result](./examples/assets/result.png "result")
+7. [x] change mouse to pointer by pressing Q
+8. [x] add link animation (exclude slide-number and image links), which is a modified version of [this](https://jsfiddle.net/hakim/Ht6Ym/)
+9. [x] modify all the other themes accordingly
 
 --- 
 <div align="center">
