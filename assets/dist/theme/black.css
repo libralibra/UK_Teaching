@@ -98,6 +98,13 @@ section.has-light-background h6 {
     font-weight: inherit;
 }
 
+/* invisible text in index.html for testing */
+.invisible {
+    color: var(--r-background-color);
+    text-decoration: none;
+    text-shadow: none;
+}
+
 /* print pdf div in the corner */
 .pdf_div {
     background-color: var(--r-background-color);
@@ -355,7 +362,7 @@ section.has-light-background h6 {
 /*********************************************
  * LINKS
  *********************************************/
-.reveal a {
+.reveal a:not(.invisible) {
     color: var(--r-link-color);
     text-decoration: none;
     transition: color 0.15s ease;
@@ -483,4 +490,7 @@ section.has-light-background h6 {
     }
     */
     /* add extra control for printing pdf in white background */
+    .backgrounds {
+        background-color: var(--r-background-color);
+    }
 }

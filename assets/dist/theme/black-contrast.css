@@ -82,6 +82,13 @@ section.has-light-background h6 {
     font-weight: inherit;
 }
 
+/* invisible text in index.html for testing */
+.invisible {
+    color: var(--r-background-color);
+    text-decoration: none;
+    text-shadow: none;
+}
+
 /*********************************************
  * HEADERS
  *********************************************/
@@ -320,7 +327,7 @@ section.has-light-background h6 {
 /*********************************************
  * LINKS
  *********************************************/
-.reveal a {
+.reveal a:not(.invisible) {
     color: var(--r-link-color);
     text-decoration: none;
     transition: color 0.15s ease;
