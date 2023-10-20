@@ -38,7 +38,7 @@ section.has-dark-background h6 {
     --r-heading-line-height: 1.2em;
     --r-block-margin: 10px;
     --r-heading-margin: 0 0 10px 0;
-    --r-main-font-size: 34px;
+    --r-main-font-size: 33px;
     --r-heading1-size: 1.75em;
     --r-heading2-size: 1.6em;
     --r-heading3-size: 1.45em;
@@ -100,7 +100,7 @@ section.has-dark-background h6 {
 .reveal h5,
 .reveal h6 {
     margin: var(--r-heading-margin);
-    color: var(--r-heading-color);
+    /* color: var(--r-heading-color); */
     font-family: var(--r-heading-font);
     font-weight: var(--r-heading-font-weight);
     line-height: var(--r-heading-line-height);
@@ -124,6 +124,14 @@ section.has-dark-background h6 {
 
 .reveal h4 {
     font-size: var(--r-heading4-size);
+}
+
+.reveal h5 {
+    font-size: var(--r-heading5-size);
+}
+
+.reveal h6 {
+    font-size: var(--r-heading6-size);
 }
 
 .reveal h1 {

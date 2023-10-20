@@ -25,7 +25,7 @@ section.has-light-background h6 {
     --r-main-color: #eee;
     --r-heading-font: Montserrat, Impact, sans-serif;
     --r-heading-color: #eee;
-    /* --r-heading-letter-spacing: -0.03em; */
+    --r-heading-letter-spacing: -0.03em;
     --r-heading-text-transform: none;
     --r-heading-text-shadow: none;
     --r-heading-font-weight: normal;
@@ -33,9 +33,9 @@ section.has-light-background h6 {
     /* font sizes */
     --r-heading-line-height: 1.2em;
     --r-heading-letter-spacing: normal;
-    --r-block-margin: 10px;
     --r-heading-margin: 0 0 10px 0;
-    --r-main-font-size: 34px;
+    --r-block-margin: 10px;
+    --r-main-font-size: 33px;
     --r-heading1-size: 1.75em;
     --r-heading2-size: 1.6em;
     --r-heading3-size: 1.45em;
@@ -115,6 +115,14 @@ section.has-light-background h6 {
 
 .reveal h4 {
     font-size: var(--r-heading4-size);
+}
+
+.reveal h5 {
+    font-size: var(--r-heading5-size);
+}
+
+.reveal h6 {
+    font-size: var(--r-heading6-size);
 }
 
 .reveal h1 {

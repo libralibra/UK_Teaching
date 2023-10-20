@@ -123,6 +123,14 @@ section.has-light-background h6 {
     font-size: var(--r-heading4-size);
 }
 
+.reveal h5 {
+    font-size: var(--r-heading5-size);
+}
+
+.reveal h6 {
+    font-size: var(--r-heading6-size);
+}
+
 .reveal h1 {
     text-shadow: var(--r-heading1-text-shadow);
 }

@@ -25,16 +25,16 @@ section.has-dark-background h6 {
     --r-background-color: #fff;
     --r-main-font: Source Sans Pro, Helvetica, sans-serif;
     --r-main-color: #000;
-    --r-heading-margin: 0 0 20px 0;
     --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
     --r-heading-color: #000;
-    --r-heading-line-height: 1.2;
     --r-heading-letter-spacing: normal;
     --r-heading-text-transform: none;
     --r-heading-text-shadow: none;
     --r-heading-font-weight: 450;
     --r-heading1-text-shadow: none;
     /* font sizes */
+    --r-heading-line-height: 1.2;
+    --r-heading-margin: 0 0 10px 0;
     --r-block-margin: 10px;
     --r-main-font-size: 34px;
     --r-heading1-size: 1.75em;
@@ -116,6 +116,14 @@ section.has-dark-background h6 {
 
 .reveal h4 {
     font-size: var(--r-heading4-size);
+}
+
+.reveal h5 {
+    font-size: var(--r-heading5-size);
+}
+
+.reveal h6 {
+    font-size: var(--r-heading6-size);
 }
 
 .reveal h1 {

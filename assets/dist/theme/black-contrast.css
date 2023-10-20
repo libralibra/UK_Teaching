@@ -25,18 +25,18 @@ section.has-light-background h6 {
     --r-background-color: #000000;
     --r-main-font: Source Sans Pro, Helvetica, sans-serif;
     --r-main-color: #fff;
-    --r-block-margin: 20px;
-    --r-heading-margin: 0 0 20px 0;
     --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
     --r-heading-color: #fff;
-    --r-heading-line-height: 1.2;
-    --r-heading-letter-spacing: normal;
     --r-heading-text-transform: uppercase;
     --r-heading-text-shadow: none;
     --r-heading-font-weight: 600;
     --r-heading1-text-shadow: none;
     /* font sizes */
-    --r-main-font-size: 34px;
+    --r-heading-line-height: 1.2em;
+    --r-heading-letter-spacing: normal;
+    --r-heading-margin: 0 0 10px 0;
+    --r-block-margin: 10px;
+    --r-main-font-size: 33px;
     --r-heading1-size: 1.75em;
     --r-heading2-size: 1.6em;
     --r-heading3-size: 1.45em;
@@ -116,6 +116,14 @@ section.has-light-background h6 {
 
 .reveal h4 {
     font-size: var(--r-heading4-size);
+}
+
+.reveal h5 {
+    font-size: var(--r-heading5-size);
+}
+
+.reveal h6 {
+    font-size: var(--r-heading6-size);
 }
 
 .reveal h1 {
