@@ -18,87 +18,104 @@ html {
 }
 
 /* customised colour tags */
+.white,
 white {
     color: white;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.red,
 red {
     color: #ff2c2d;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.yellow,
 yellow {
     /* color: rgba(241, 241, 10, 0.808); */
     color: yellow;
     text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
+.blue,
 blue {
     color: #1b91ff;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.skyblue,
 skyblue {
     color: skyblue;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.green,
 green {
     color: #17ff2e;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.lime,
 lime {
     color: limegreen;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.cyan,
 cyan {
     color: cyan;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.purple,
 purple {
     color: magenta;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.orange,
 orange {
     color: orange;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.gray,
 gray {
     color: gray;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.grey,
 grey {
     color: grey;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.pale,
 pale {
     color: palegoldenrod;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.golden,
 golden {
     color: goldenrod;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.silver,
 silver {
     color: silver;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.black,
 black {
     color: black;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.pink,
 pink {
     color: rgb(247, 155, 170);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -164,32 +181,39 @@ pink {
 /* left, right align */
 
 /* font style: italic or oblique, bold, bigtext, underline */
+.italic,
 italic {
     font-style: oblique !important;
 }
 
+.bold,
 bold {
     font-size: 120% !important;
     font-weight: bold !important;
-    text-shadow: 2px 2px 2px ghostwhite !important;
+    text-shadow: 1px 1px 1px black !important;
 }
 
+.bigtext,
 bigtext {
-    font-size: 2em !important;
+    font-size: 1.7em !important;
 }
 
+.smalltext,
 smalltext {
     font-size: 0.8em !important;
 }
 
+.underline,
 underline {
     text-decoration-line: underline !important;
 }
 
+.overline,
 overline {
     text-decoration-line: overline !important;
 }
 
+.strike,
 strike {
     text-decoration-line: line-through !important;
 }

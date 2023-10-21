@@ -44,11 +44,11 @@
         <!-- <base target="_blank"> -->
 
         <!-- define data here, but update the document later to avoid using
-        window.onload = function() {}; syntax -->
+                        window.onload = function() {}; syntax -->
         <script>
             const authorData = new Map([
-                ['course', 'Classical Artificial Intelligence'],
-                ['coursecode', 'COMP712'],
+                ['course', 'Artificial Intelligence <br> & Machine Learning'],
+                ['coursecode', 'COMP213'],
                 ['week', 'Week 1'],
                 ['topic', ' - Induction'],
                 ['email', 'Daniel.Zhang@falmouth.ac.uk'],
@@ -66,6 +66,20 @@
     </head>
 
     <body>
+        <script>
+            // generate pdf link, click the button, then press CTRL+P
+            // remember to follow these steps to get rid of the borders:
+            //  1. select 'save as PDF' for printer
+            //  2. advanced settings or something similar
+            //  3. margin -> None if needed
+            //  4. tick 'background graphics' if needed
+            function GeneratePDF() {
+                let url = window.location.href;
+                let pos = url.indexOf(".html");
+                url = url.substr(0, pos + ".html".length);
+                window.location.href = url + "?print-pdf";
+            }
+        </script>
         <!-- pdf printing by showing a corner strip+
                     put pdf button before anything else, as the z-index makes sure later elements has a 
                     higher z-index than those before. In overview mode, the slides should be in the front.
@@ -78,16 +92,13 @@
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section id="chap_1">
+                <section>
                     <section id="title">
-                        <h1><span class="course"></span></h1>
-                        <h3>
-                            <orange><span class="coursecode"></span></orange>
-                        </h3>
-                        <p>
-                            <bigtext><span class="week"></span><span class="topic"></span></bigtext>
-                        </p>
-                        <img src="img/ai_title.png" class="r-stretch" alt="robot image" />
+                        <h1>
+                            <orange><span class="coursecode"></span>: </orange><span class="course"></span>
+                        </h1>
+                        <!-- <img src="img/nn.png" width=50% /> -->
+                        <img src="img/al_ml.jpg" alt="robot image" class="r-stretch" />
                         <p>
                             <cyan class="fullname"></cyan> <br>
                             <span class="uni"></span> v. <span class="year"></span>
@@ -95,21 +106,17 @@
                         </p>
 
                         <aside class="notes">
-                            <ul>
-                                <li>Hello, everyone. Welcome to this module: <span class="course"></span>. In the next couple of weeks, I will take you through the journey to the AI and ML world by introducing you the main concepts in this area. We will also review the history, key achievements, and morden applications in the field of AI.</li>
-                                <li>Apart from that, I will talk about the details of AI and ML techniques. This includes online and offline learning, supervised and unsupervised learning, classification and regression, inductive and generative techniques. You will also learn all sorts of necessary knowledge to master the required skills to enter the AI-related Computer Science and Games industries.</li>
-                            </ul>
                         </aside>
                     </section>
 
                     <section id="digital_tap">
                         <h1>Digital Attendance System (SEATS)</h1>
                         <img src="../common/digitap.PNG" alt="digital tap" class="r-stretch">
-                        <p class="fragment">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did' t work.</p>
+                        <p class="fragment">Be aware of the system and check your attendance <purple>regularly</purple>. <green>Manually register</green> if it did't work.</p>
                     </section>
                 </section>
 
-                <section id="module_induction">
+                <section>
                     <section id="outine">
                         <h1 class="r-frame-text">Module Outline</h1>
                     </section>
@@ -172,33 +179,33 @@
 
                     <section id="description_summary" data-auto-animate>
                         <h1 data-id="hd">Description Summary</h1>
-                        <div class="row no-margin-top" data-id="desp">
-                            <div class="col-33 no-margin-top fragment">
-                                <img class="img-round img-square-200" alt="description 1" src="img/desp1.png"><br>
-                                learn <purple>classical</purple> AI techniques
-                            </div>
-                            <div class="col-33 no-margin-top fragment">
-                                <img class="img-round img-square-200" alt="description 2" src="img/desp2.png"><br>
-                                will look at <blue>machine learning</blue> in next SB
-                            </div>
-                            <div class="col-33 no-margin-top fragment">
-                                <img class="img-round img-square-200" alt="description 3" src="img/desp3.png"><br>
-                                make a <green>'portfolio'</green> using AI techniques
-                            </div>
+                        <div class="row no-margin-top">
+                            <ol data-id="desp">
+                                <div class="col-33 no-margin-top fragment">
+                                    <li>learn <purple>classical</purple> AI</li>
+                                </div>
+                                <div class="col-33 no-margin-top fragment">
+                                    <li>will look at <blue>machine learning</blue> in next study block (with me)</li>
+                                </div>
+                                <div class="col-33 no-margin-top fragment">
+                                    <li>make a <green>'portfolio'</green> using AI techniques</li>
+                                </div>
+                            </ol>
                         </div>
                     </section>
 
                     <section id="outcome">
                         <h1>Learning Outcomes</h1>
+                        <p>The expected outcomes include:</p>
                         <div class="row no-margin-top">
                             <div class="col-50 no-margin-top fragment">
-                                <img class="img-round img-square-200" src="img/coding.png" alt="coding picture"><br>
+                                <img class="img-round" src="img/coding.png" height="200px" width="200px" alt="coding picture"><br>
                                 <cyan>Code/Compute</cyan><br>
-                                Implement working and maintainable software components
+                                implement working and maintainable software components
                             </div>
 
                             <div class="col-50 no-margin-top fragment">
-                                <img class="img-round img-square-200" src="img/solving.png" alt="thinking picture"><br>
+                                <img class="img-round" src="img/solving.png" height="200px" width="200px" alt="thinking picture"><br>
                                 <green>Solve</green><br>
                                 Demonstrate computational thinking and numeracy skills (Not directly assessed)
                             </div>
@@ -206,7 +213,7 @@
                     </section>
                 </section>
 
-                <section id="teaching">
+                <section>
                     <section id="teaching">
                         <h1 class="r-frame-text">Teaching</h1>
                     </section>
@@ -257,7 +264,7 @@
                                 <green>Role:</green> Senior Lecturer in Artificial Intelligence
                             </li>
                             <li data-id="hi">
-                                <img class="r-stretch" src="../common/trent_xwb.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
+                                <img class="fragment custom blur r-stretch" src="img/trent_xwb.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
                             </li>
                         </ul>
                     </section>
@@ -272,7 +279,7 @@
                                 <green>Role:</green> Senior Lecturer in Artificial Intelligence
                             </li>
                             <li data-id="hi">
-                                <img class="r-stretch" src="../common/trent_xwb_2.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
+                                <img class="fragment custom blur r-stretch" src="img/trent_xwb_2.png" alt="Rolls-Royce Trent XWB"> - Rolls-Royce XWB
                             </li>
                         </ul>
                     </section>
@@ -314,7 +321,7 @@
                     </section>
                 </section>
 
-                <section id="plan">
+                <section>
                     <section id="assessment">
                         <h1 class="r-frame-text">Assessment</h1>
                     </section>
@@ -352,7 +359,7 @@
                     </section>
 
                     <section id="examples">
-                        <h1>Examples/Ideas</h1>
+                        <h1>Examples</h1>
                         <div class="row no-margin-top">
                             <div class="col-50 no-margin-top fragment" data-fragment-index="1">
                                 <ul>
@@ -382,35 +389,48 @@
                     <section id="marking">
                         <h1>Marking Criteria</h1>
                         <div class="row no-margin-top">
-                            <div class="fragment col-25 no-margin-top no-margin-bottom">
-                                <blue>Choice of Concept: 20%</blue><br>
-                                <lime>-</lime>Appropriate<br>
-                                <lime>-</lime>Scope<br>
-                                <lime>-</lime>Creative
-                                </ul>
-                            </div>
-                            <div class="fragment col-25 no-margin-top no-margin-bottom">
-                                <green>Functional Coherence: 20%</green><br>
-                                <lime>-</lime>Requirements are met<br>
-                                <lime>-</lime>No (obvious) bug detected
-                            </div>
-                            <div class="fragment col-25 no-margin-top no-margin-bottom">
-                                <purple>Sophistication: 40%</purple><br>
-                                <lime>-</lime>Insight into AI techniques<br>
-                                <lime>-</lime>Insight into software architecture
-                            </div>
-                            <div class="fragment col-25 no-margin-top no-margin-bottom">
-                                <orange>Maintainability: 20%</orange><br>
-                                <lime>-</lime>Code quality<br>
-                                <lime>-</lime>Flexibility<br>
-                                <lime>-</lime>Documentation
-                            </div>
+                            <ol>
+                                <div class="col-50 no-margin-top">
+                                    <li class="fragment">
+                                        <blue>Choice of Concept: 20%</blue>
+                                        <ul>
+                                            <li>Appropriate to demonstrate AI techniques</li>
+                                            <li>Scope</li>
+                                            <li>Creative</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment">
+                                        <green>Functional Coherence: 20%</green>
+                                        <ul>
+                                            <li>Requirements are met</li>
+                                            <li>No (obvious) bug detected</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                                <div class="col-50 no-margin-top">
+                                    <li class="fragment">
+                                        <purple>Sophistication: 40%</purple>
+                                        <ul>
+                                            <li>Insight into AI techniques</li>
+                                            <li>Insight into software architecture</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment">
+                                        <orange>Maintainability: 20%</orange>
+                                        <ul>
+                                            <li>Code quality</li>
+                                            <li>Flexibility</li>
+                                            <li>Documentation</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </ol>
                         </div>
                     </section>
 
                     <section id="step_1" data-auto-animate>
                         <h1 data-id="ht">Step 1: Proposal (Part A)</h1>
-                        For your first AI technique:<br>
+                        For your first AI technique:
                         <ul>
                             <li>
                                 <blue>Outline</blue> concept
@@ -425,7 +445,7 @@
 
                     <section id="step_2" data-auto-animate>
                         <h1 data-id="ht">Step 2: Implement (Part B)</h1>
-                        Implement your AI technique<br>
+                        Implement your AI technique
                         <ul>
                             <li>
                                 <red>Write</red> your code
@@ -438,7 +458,7 @@
 
                     <section id="step_3" data-auto-animate>
                         <h1 data-id="ht">Step 3: Repeat (Part C & D)</h1>
-                        Repeat step 1 and 2 for the second instance<br>
+                        Repeat step 1 and 2 for the second instance
                         <ul>
                             <li>
                                 <orange>Repeat</orange> the previous two steps
@@ -491,7 +511,7 @@
                     </section>
                 </section>
 
-                <section id="details">
+                <section>
                     <section id="timetable">
                         <h1 class="r-frame-text">Timetable</h1>
                     </section>
@@ -515,9 +535,9 @@
                     <section id="paper_club">
                         <h1>Paper Club (Seminar)</h1>
                         <ul>
-                            <li><img src="../common/read.png" alt="read paper" class="img-round img-inline"> Read a paper together with your peers</li>
-                            <li><img src="../common/question.png" alt="ask question" class="img-round img-inline">Come to the seminar ready to discuss the paper<span class="fragment">: bring questions, comments, thoughts, ...</span></li>
-                            <li><img src="../common/apply.png" alt="read paper" class="img-round img-inline">Not assessed, but an important opportunity to reflect on state-of-the-art AI research, and possibly apply it to your own practice</li>
+                            <li>Read a paper together with your peers</li>
+                            <li>Come to the seminar ready to discuss the paper<span class="fragment">: bring questions, comments, thoughts, ...</span></li>
+                            <li>Not assessed, but an important opportunity to reflect on state-of-the-art AI research, and possibly apply it to your own practice</li>
                         </ul>
                     </section>
 
@@ -543,10 +563,28 @@
                         </h2>
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
-                        <cyan><span class="office"></span>, <span class="uni"></span></cyan>
+                        <cyan><span class="office"></span></cyan>
                         </h6>
                     </section>
                 </section>
+
+
+                <section data-visibility="hidden">
+                    <h2>The Lorenz Equations</h2>
+                    <p>
+                        \[\begin{aligned}
+                        \dot{x} &amp; = \sigma(y-x) \\
+                        \dot{y} &amp; = \rho x - y - xz \\
+                        \dot{z} &amp; = -\beta z + xy
+                        \end{aligned} \]
+                    </p>
+                </section>
+
+                <section data-visibility="hidden">
+                    <h1>Live Code Editor</h1>
+                    <iframe class="ace" width=600 height=300 data-onchange="console.log(editor.getValue())">Hello World!</iframe>
+                </section>
+
             </div>
         </div>
 
@@ -559,16 +597,16 @@
         </div>
 
         <!-- keys: 
-                    SPACE,arrow :   navigation
-                    .           :   blackout
-                    ESC, O      :   overview
-                    ALT+click   :   zoom in
-                    C           :   note canvas
-                    B           :   chalkboard
-                    S           :   speaker mode (appearance didn't work well with speaker mode)
-                    C+S+F       :   search in slides
-        
-                -->
+                            SPACE,arrow :   navigation
+                            .           :   blackout
+                            ESC, O      :   overview
+                            ALT+click   :   zoom in
+                            C           :   note canvas
+                            B           :   chalkboard
+                            S           :   speaker mode (appearance didn't work well with speaker mode)
+                            C+S+F       :   search in slides
+                
+                        -->
         <script src="../../../assets/dist/reveal.js"></script>
         <!-- <script src="../../../assets/js/reveal.js"></script> -->
         <script src="../../../assets/plugin/zoom/zoom.js"></script>
@@ -609,8 +647,8 @@
         <script id="check_image" src="../../../assets/dist/check_images.js"></script>
 
         <!-- it did copy the logo to each slide in the print preview,
-                    but not in the ctrl+p generated pdf file, so wont' be printed.
-                    wait for bug fix -->
+                            but not in the ctrl+p generated pdf file, so wont' be printed.
+                            wait for bug fix -->
         <script id="copy_logo" src="../../../assets/dist/copy_logo.js"></script>
 
     </body>

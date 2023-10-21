@@ -59,31 +59,9 @@
                 ['deadline', ''],
                 ['name', 'Dr Daniel Zhang'],
                 ['nickname', 'Daniel'],
-                ['year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1)]
             ]);
-            // add the dynamic item
-            authorData.set('emaillink', 'mailto:' + authorData.get('email'));
-            authorData.set('title', authorData.get('course'));
-            authorData.set('modulename', authorData.get('course'));
-            authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
-            // CALL THE FUNCTION TO UPDATE DOCUMENT IN THE END
-
-            // overview scale
-            overview_scale = 0.2;
-
-            // generate pdf link, click the button, then press CTRL+P
-            // remember to follow these steps to get rid of the borders:
-            //  1. select 'save as PDF' for printer
-            //  2. advanced settings or something similar
-            //  3. margin -> None if needed
-            //  4. tick 'background graphics' if needed
-            function GeneratePDF() {
-                let url = window.location.href;
-                let pos = url.indexOf(".html");
-                url = url.substr(0, pos + ".html".length);
-                window.location.href = url + "?print-pdf";
-            }
         </script>
+        <script id="header_pdf_func" src="./assets/dist/header.js"></script>
     </head>
 
     <body>
@@ -444,137 +422,28 @@
                     tailLength: 10, // NOT IMPLEMENTED YET!!! how long the "tail" should be? default 10
                 },
             });
-
-            // make long content auto scrollable, daniel
-            function resetSlideScrolling(slide) {
-                slide.classList.remove('scrollable-slide');
-            }
-
-            function handleSlideScrolling(slide) {
-                if (slide.scrollHeight >= 800) {
-                    slide.classList.add('scrollable-slide');
-                }
-            }
-            // make long content auto scrollable
-
-            // make long content auto scrollable, daniel
-            Reveal.addEventListener('ready', function (event) {
-                handleSlideScrolling(event.currentSlide);
-            });
-
-            Reveal.addEventListener('slidechanged', function (event) {
-                if (event.previousSlide) {
-                    resetSlideScrolling(event.previousSlide);
-                }
-                handleSlideScrolling(event.currentSlide);
-            });
-
-            // =========== change overview scales ====================
-            // regexp to match only the last `scale(...)` rule (there are two scale rules on the .slides element, don't know why)
-            const currentScaleRegexp = /scale\([^\)]*\)(?!.*(scale))/;
-            // prevent infinite loop https://stackoverflow.com/a/48599188
-            let insideInitialObserverCallback = false;
-
-            let observer = new MutationObserver(mutationsList => {
-                // only react when in overview mode
-                // could also use https://revealjs.com/overview/#events to stop/start observer when needed
-                if (!Reveal.isOverview()) return;
-
-                insideInitialObserverCallback = !insideInitialObserverCallback
-                if (insideInitialObserverCallback) {
-                    mutationsList.forEach(mutation => {
-                        const currentTransform = mutation.target.style.transform;
-                        // change to the scale that fits your needs
-                        // mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(.05)');
-                        mutation.target.style.transform = currentTransform.replace(currentScaleRegexp, 'scale(' + overview_scale.toString() + ')');
-                    })
-                }
-            });
-            observer.observe(
-                Reveal.getSlidesElement(),
-                { attributes: true, attributesFilter: ['style'] }
-            );
-
         </script>
 
-        <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
-        <script id="inject_data">
-            // set up all data in header, but update the document here
+        <!-- make long slides overflow -->
+        <script id="overflow" src="./assets/dist/overflow.js"></script>
 
-            // update html, the emaillink class need to be treated specially, so does the document title
-            // javascript Map.forEach() loops (value,key) pair rather than (key,value) pair
-            authorData.forEach((v, k) => {
-                // set up key word, is it a class or document title?
-                var keyw = k;
-                if (k != 'title') keyw = '.' + k;
-                // search the entity and replace the content
-                document.querySelectorAll(keyw).forEach(element => {
-                    if (k == 'title') {
-                        element.textContent = v;
-                    }
-                    else if (k == 'emaillink') {
-                        element.href = v;
-                        element.innerHTML = '<span>' + authorData.get('email') + '</span>';
-                    }
-                    else {
-                        element.innerHTML = v;
-                    }
-                });
-            });
-        </script>
+        <!-- change overview scale -->
+        <script id="overview_scale" src="./assets/dist/overview_scale.js"></script>
+
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
+        <script id="inject_data" src="./assets/dist/inject.js"></script>
 
         <!-- LINKS EFFECT: https://jsfiddle.net/hakim/Ht6Ym/  -->
-        <script id="link_effect">
-            var supports3DTransforms = document.body.style['webkitPerspective'] !== undefined ||
-                document.body.style['MozPerspective'] !== undefined;
+        <script id="linkify" src="./assets/dist/linkify.js"></script>
 
-            function linkify(selector) {
-                if (supports3DTransforms) {
+        <!-- sync image alt and title strings -->
+        <script id="check_image" src="./assets/dist/check_images.js"></script>
 
-                    var nodes = document.querySelectorAll(selector);
+        <!-- it did copy the logo to each slide in the print preview,
+                    but not in the ctrl+p generated pdf file, so wont' be printed.
+                    wait for bug fix -->
+        <script id="copy_logo" src="./assets/dist/copy_logo.js"></script>
 
-                    for (var i = 0, len = nodes.length; i < len; i++) {
-                        var node = nodes[i];
-                        if (!node.className || !node.className.match(/roll/g)) {
-                            // exclude the image links, has img as a children, for firefox not supporting :has()
-                            if (node.querySelector('img')) continue;
-                            // parents div is not slide-number
-                            if (node.parentNode.className.match(/slide-number/gi)) continue;
-                            node.className += ' roll';
-                            node.innerHTML = '<span data-title="' + node.text + '">' + node.innerHTML + '</span>';
-                        }
-                    };
-                }
-
-            }
-            // don't apply to image links, firefox doesn't support :has() for the time being, manually exclude those link in function
-            // linkify('a:not(.slide-number):not(:has(img))');
-            linkify('a');
-        </script>
-
-        <!-- another method and the author's reply -->
-        <!-- https://github.com/hakimel/reveal.js/issues/806 -->
-        <!-- this one did work and worth checking: -->
-        <!-- http://www.ciges.net/revealjs_demo -->
-        <!-- it did copy the logo to each slide in ped print preview,
-            but not in the ctrl+p generated pdf file, so wont' be printed.
-            wait for bug fix -->
-        <!-- <script type="text/javascript">
-            // var header = document.querySelector('#header');
-            var logo = document.querySelector('.footer-left');
-            Reveal.on('pdf-ready', () => {
-                // change style for pdf print mode
-                logo.classList.add('footer-left-pdf');
-                logo.classList.remove('footer-left');
-                // copy the logo except the title
-                document.querySelectorAll('.pdf-page').forEach(function (page, index) {
-                    // jump over the title page as it's already shown
-                    // if (index != 0) page.appendChild(logo.cloneNode(true));
-                    page.appendChild(logo.cloneNode(true));
-                });
-            })
-        </script> -->
 
     </body>
 
