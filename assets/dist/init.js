@@ -92,7 +92,7 @@ Reveal.initialize({
     focusBodyOnPageVisibilityChange: true,
 
     // Transition style
-    transition: 'convex', // none/fade/slide/convex/concave/zoom
+    transition: 'concave', // none/fade/slide/convex/concave/zoom
     // Transition speed
     transitionSpeed: 'default', // default/fast/slow
     // Transition style for full page slide backgrounds

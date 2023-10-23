@@ -80,17 +80,11 @@
                 <section id="chap_title">
                     <section id="title">
                         <h1><span class="course"></span></h1>
-                        <h3>
-                            <orange><span class="coursecode"></span></orange>
-                        </h3>
-                        <!-- <img src="img/nn.png" width=50% /> -->
-                        <!-- <img src="img/ai_title.png" width=50% /> -->
-                        <p>
-                            <bigtext><span class="week"></span><span class="topic"></span></bigtext>
-                        </p>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
                         <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
                         <p>
-                            <cyan class="fullname"></cyan> <br>
+                            <span class="fullname cyan"></span> <br>
                             <span class="uni"></span> v. <span class="year"></span>
                         </p>
                     </section>
@@ -111,14 +105,11 @@
                     <section id="agent_type">
                         <h1>Different Types of Agent</h1>
                         <ul>
-                            <li class="fragment">
-                                <red>Human agent</red>: eyes, ears, nose, skin as sensors, and other organs such as hands, legs, mouth as effectors.
+                            <li class="fragment"><span class="red">Human agent</span>: eyes, ears, nose, skin as sensors, and other organs such as hands, legs, mouth as effectors.
                             </li>
-                            <li class="fragment">
-                                <orange>Robotic agent</orange>: cameras and infrared range finders as sensors, and various motors as effectors.
+                            <li class="fragment"><span class="orange">Robotic agent</span>: cameras and infrared range finders as sensors, and various motors as effectors.
                             </li>
-                            <li class="fragment">
-                                <blue>Software agent</blue>: encoded big strings as its programs and actions, e.g. spell checker.
+                            <li class="fragment"><span class="blue">Software agent</span>: encoded big strings as its programs and actions, e.g. spell checker.
                             </li>
                         </ul>
                     </section>
@@ -126,19 +117,11 @@
                     <section id="terminology">
                         <h1>Agents Terminology</h1>
                         <ul>
-                            <li>
-                                <red>Performance Measure:</red> how successful an agent is, or how well the agent fits the goal <span class="fragment">(<lime>goal</lime> &#8674; an environment state or a set of states)</span>
+                            <li><span class="red">Performance Measure</span>: how successful an agent is, or how well the agent fits the goal <span class="fragment">(<lime>goal</lime> &#8674; an environment state or a set of states)</span>
                             </li>
-                            <li>
-                                <yellow>Percept:</yellow> agent's perceptual inputs at a given instance <br><span class="fragment">
-                                    (<purple>percept sequence</purple> &#8674; the history of all that an agent has perceived till data)
-                                </span>
-                            <li>
-                                <orange>Behaviour:</orange> agent's action after any given sequence of percepts
-                            </li>
-
-                            <li>
-                                <blue>Function:</blue> a map from the percept sequence to an action
+                            <li><span class="yellow">Percept</span>: agent's perceptual inputs at a given instance <br><span class="fragment">(<purple>percept sequence</purple> &#8674; the history of all that an agent has perceived till data)</span>
+                            <li><span class="orange">Behaviour</span>: agent's action after any given sequence of percepts</li>
+                            <li><span class="blue">Function</span>: a map from the percept sequence to an action
                             </li>
                         </ul>
                     </section>
@@ -150,505 +133,417 @@
                         </span>
                     </section>
 
-                    <section id="peas_human">
+                    <section id="peas_1">
+                        <h1>PEAS - ChatBot</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Customer assistance?<br>Pass Turing Test?</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Instant messaging app<br>Other interactive environment</div>
+                            <img src="img/chatbot.png" alt="chat robot" width="800" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Output messages<br>Provide responses</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Read messages<br>Listen voice input</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_2">
+                        <h1>PEAS - Chess AI</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Win the game</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Chess board</div>
+                            <img src="img/chess.png" alt="chess AI" width="900" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Move a piece</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Game status</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_3">
+                        <h1>PEAS - Robot Vacuum</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Room cleanness</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>The room it is in</div>
+                            <img src="img/room_clean.png" alt="room clean robot" width="800" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Motors<br>Vacuum unit</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Dirt sensor, Bin level sensor<br>infrared sensor for obstacles<br>Battery level sensor, ...</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_4">
+                        <h1>PEAS - Autopilot AI</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Arrive destination safely</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Road traffics</div>
+                            <img src="img/autopilot.png" alt="autopilot AI" width="800" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Motors<br>Steering<br>Accelerator<br>Break</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Infrared, GPS<br>Cameras, radar, lidar, ...</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_5">
+                        <h1>PEAS - Game AI</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Kill enemies?<br>Assist teammates?</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Game world</div>
+                            <img src="img/game_player.png" alt="game AI" width="300" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Character controllers.Move()<br>Shooting<br>Talk, animations, ...</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Raycast<br>Player/NPC positions<br>Scene geometry</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_6">
                         <h1>PEAS - Human</h1>
-                        <img src="" alt="">
+                        <div class="r-statck">
+                            <div class="box-top-left fragment" data-fragment-index="4"><span class="red bold">Performance</span><br>???</div>
+                            <div class="box-top-right fragment" data-fragment-index="1"><span class="orange bold">Environment</span><br>Real world</div>
+                            <img src="img/human.png" alt="human" width="800" height="500">
+                            <div class="box-bottom-left fragment" data-fragment-index="2"><span class="purple bold">Actuators</span><br>All sorts of muscle controls<br>Hands, legs, feet, mouth, ...</div>
+                            <div class="box-bottom-right fragment" data-fragment-index="3"><span class="lime bold">Sensors</span><br>Eyes, ears, nose, tongue, skin</div>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_terms">
+                    <section id="env_type">
+                        <h1>Environment</h1>
+                        <ul>
+                            <li>Environment comes with many different properties</li>
+                            <li>These properties influence the choice of AI architecture we use to build agents</li>
+                        </ul>
+                    </section>
+
+                    <section id="observability">
+                        <h1>Observability</h1>
+                        <ul>
+                            <li class="fragment"><span class="purple bold">Fully observable</span>: the agent's sensors give it full information about the state of the environment</li>
+                            <li class="fragment"><span class="lime bold">Partially observable</span>: some aspects of the environment state are not visible to the agent's sensors</li>
+                            <li class="fragment"><span class="orange bold">E.g.</span>: a chess game is fully observable, a poker game is partially observable</li>
+                        </ul>
+                    </section>
+
+                    <section id="agent_number">
+                        <h1>Number of Agents</h1>
+                        <ul>
+                            <li class="fragment"><span class="red bold">Single agent</span>: agent is the only on in the environment</li>
+                            <li class="fragment"><span class="blue bold">Multi-agent</span>: there is more than one agent</li>
+                            <li class="fragment"><span class="orange bold">Cooperative</span>: all agents share the same performance measure</li>
+                            <li class="fragment"><span class="pink bold">Competitive</span>: agents performance measures are in opposition to each other (i.e. if one agent "wins", another "loses")</li>
+                        </ul>
+                    </section>
+
+                    <section id="determinisim">
+                        <h1>Determinism</h1>
+                        <ul>
+                            <li class="fragment"><span class="purple bold">Deterministic</span>: the next state of the environment is completely determined by the current state and by the agent's action</li>
+                            <li class="fragment"><span class="cyan bold">Stochastic</span>: there is some aspect of randomness in determining the next state of the environment</li>
+                            <li class="fragment"><span class="orange bold">E.g.</span>: Chess is deterministic; any board game involving dice rolls or random card draws is stochastic</li>
+                        </ul>
+                    </section>
+
+                    <section id="dynamicity">
+                        <h1>Dynamicity</h1>
+                        <ul>
+                            <li class="fragment"><span class="lime bold">Static</span>: the environment does not change while the agent is deliberating</li>
+                            <li class="fragment"><span class="skyblue bold">Dynamic</span>: the environment changes constantly</li>
+                            <li class="fragment"><span class="purple bold">E.g.</span>: most board games are static while most (non turn-based) video games are dynamic</li>
+                        </ul>
+                    </section>
+
+                    <section id="discreteness">
+                        <h1>Discreteness</h1>
+                        <ul>
+                            <li class="fragment"><span class="skyblue bold">Discrete</span>: time, percepts, and actions are all discrete (from a finite set of possibilities or "integer values")</li>
+                            <li class="fragment"><span class="golden bold">Continuous</span>: at least one of these is not discrete ("float values")</li>
+                            <li class="fragment">Continuous problems are hard so we sometimes <span class="yellow">discretise</span> them</li>
+                        </ul>
+                    </section>
+
+                    <section id="known_unknown">
+                        <h1>Known or Unknown</h1>
+                        <ul>
+                            <li class="fragment">Are all the details of the environment <span class="red">known</span> to the AI designer?</li>
+                            <li class="fragment">For a game or simulation: probably <span class="orange">yes</span> (unless someone else made it and we don't have the source code)</li>
+                            <li class="fragment">For the real world: technically <span class="cyan">no</span> (but we have physics, sociology, economics, etc to give us good approximations)</li>
+                        </ul>
+                    </section>
+
+                    <section id="agents_ai">
+                        <h1>Agents and AI</h1>
+                        <ul>
+                            <li class="fragment">The ideas of agents and environments are a useful frame for designing AI</li>
+                            <li class="fragment">All(?) AI problems can be expressed in terms of <q class="pink">creating an agent that optimises some performance measure in some environment</q></li>
+                            <li class="fragment">Agent design boils down to: given a <span class="green">percept</span> (and possibly some <span class="orange">memory</span> of past percepts/actions), choose the best <span class="cyan">action</span> to take now</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_rule_based_ai">
+
+                    <section id="rule_based">
+                        <h1 class="r-frame-text">Rule-based AI</h1>
+                    </section>
+
+                    <section id="rule_based_ai">
+                        <h1>Rule-based AI</h1>
+                        <ul>
+                            <li class="fragment">Generally <span class="purple">reactive</span> to the state of the world</li>
+                            <li class="fragment">Based on <span class="cyan">if-then</span> triggers, basic <span class="orange">calculations</span>, etc.</li>
+                            <li class="fragment">Generally hand-coded and only modifiable by a programmer</li>
+                        </ul>
+                    </section>
+
+                    <section id="case_pac_man" data-background="img/pac_man.png">
+                        <div style="background-color: black; opacity: 80%;">
+                            <h1>Case Study: Ghosts in Pac-Man</h1>
+                            <ul>
+                                <li class="fragment">Full details: <a href="http://gameinternals.com/understanding-pac-man-ghost-behavior" target="_blank">http://gameinternals.com/understanding-pac-man-ghost-behavior</a></li>
+                                <li class="fragment">Each ghost has 3 states
+                                    <ul>
+                                        <li><span class="red">Chase</span>: head for a specific position</li>
+                                        <li><span class="blue">Scatter</span>: head for a specific corner</li>
+                                        <li><span class="green">Frightened</span>: move randomly</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="ghost">
+                        <h1>Ghost "personalities"</h1>
+                        <ul>
+                            <li class="fragment"><span class="red">Red ghost</span>: aim for Pac-Man</li>
+                            <li class="fragment"><span class="pink">Pink ghost</span>: aim for 2 spaces ahead of Pac-Man</li>
+                            <li class="fragment"><span class="blue">Blue ghost</span>: aim for position on the line between red ghost and 2 spaces ahead of Pac-Man</li>
+                            <li class="fragment"><span class="orange">Orange ghost</span>: aim for Pac-Man until 8 spaces away, then aim for corner</li>
+                        </ul>
+                    </section>
+
+                    <section id="ghost_move">
+                        <h1>Ghost Movement</h1>
+                        <ul>
+                            <li class="fragment">No pathfinding - greedily move towards target</li>
+                            <li class="fragment">Can only change direction at an intersection</li>
+                            <li class="fragment">Cannot reverse or stay still</li>
+                            <li class="fragment">Therefore cannot get stuck, despite imperfect pathfinding</li>
+                        </ul>
+                    </section>
+
+                    <section id="pac_man" data-background-iframe="https://pacman.cc/">
+                        <h1 class="hidden">PAC-MAN Example</h1>
+                    </section>
+
+                    <section id="ghost_behaviour">
+                        <h1>Ghost Behaviour</h1>
+                        <ul>
+                            <li>Behaviour rules are very simple</li>
+                            <li>However, the combination of them leads to interesting gameplay and illusion of personality</li>
+                        </ul>
+                    </section>
+
+                    <section id="design_lesson">
+                        <h1>Design Lessons</h1>
+                        <ul>
+                            <li>AI doesn't have to be complicated</li>
+                            <li>Simple AI, when interacting with a player and each other, can give engaging results</li>
+                            <li>Bugs in AI don't alway matter ...</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_fsm">
+
+                    <section id="fsm_title">
+                        <h1 class="r-frame-text">Finite State Machines</h1>
+                    </section>
+
+                    <section id="fsm">
+                        <h1>Finite State Machines (FSM)</h1>
+                        <ul>
+                            <li class="fragment">A <span class="orange">FSM</span> consists of:
+                                <ul>
+                                    <li>A set of <span class="blue">states</span>, and</li>
+                                    <li><span class="lime">Transitions</span> between states</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">At any given time, the FSM is in a <span class="blue">single state</span></li>
+                            <li class="fragment"><span class="pink">Inputs</span> or <span class="golden">events (percepts)</span> can cause the FSM to transition to a different state</li>
+                            <li class="fragment">Which state the FSM is in dictates what <span class="lime">actions</span> the agent takes</li>
+                        </ul>
+                    </section>
+
+                    <section id="transition">
+                        <h1>State Transition Diagrams</h1>
+                        <img class="r-stretch" src="img/fsm.png" alt="FSM state transition diagram"><br>
+                        <ul>
+                            <li>FSMs are often drawn as <span class="yellow">state transition diagrams</span></li>
+                            <li>Similar to <span class="cyan">flowcharts</span> and certain types of <span class="purple">UML diagram</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="fms_use">
+                        <h1>Other Uses of FSMs</h1>
+                        <div class="text-left">
+                            <p>As well as AI behaviours, FSMs may also be used for:</p>
+                            <ul>
+                                <li>Animation</li>
+                                <li>UI menu systems</li>
+                                <li>Dialogue trees</li>
+                                <li>Token parsing</li>
+                                <li>...</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="implement_fsm">
+                        <h1>Implementing FSMs</h1>
+                        <ul>
+                            <li class="fragment">Implementation needs to keep track of current state and execute some code dependent on the state (the code may change the current state)</li>
+                            <li class="fragment"><span class="golden">Most common approach</span>: a big <code class="purple">switch-case</code> statement, with an <code class="yellow">enum</code> type for the state</li>
+                            <li class="fragment"><span class="golden">Object-oriented approach</span>: a <code class="blue">State</code> class, which your FSM states inherit from</li>
+                            <li class="fragment"><span class="golden">Functional approach</span>: represent state by a function delegate</li>
+                            <li class="fragment"><span class="golden">Coroutine approach</span>: encode your FSM logic as a procedure which runs as a coroutine (requires either refactoring logic into structured loops or using <code class="lime">goto</code>)</li>
+                        </ul>
+                    </section>
+
+                    <section id="hierach_fsm">
+                        <h1>Hierarchical FSMs</h1>
+                        <img class="r-stretch" src="img/hfsm.png" alt="Hierarchical FSMs"><br>
+                        <ul>
+                            <li>An FSM with <code class="italic">N</code> states has potentially <code class="italic">N<sup>2</sup></code>
+                                transitions</li>
+                            <li>Designing complex behaviour with FSMs quickly gets
+                                unwieldy</li>
+                            <li>Hierarchical FSMs allow to group states into
+                                <span class="lime">super-states</span> to simplify defining transitions
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="use_fsm">
+                        <h1>Should you use FSMs?</h1>
+                        <ul>
+                            <li>FSMs are useful for designing simple AI behaviours</li>
+                            <li>Historically an important technique for game AI</li>
+                            <li>However, other techniques such as behaviour trees are more flexible and better suited to designing complex behaviours</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_behaviour_tree">
+
+                    <section id="bt_title">
+                        <h1 class="r-frame-text">Behaviour Trees</h1>
+                    </section>
+
+                    <section id="bt">
+                        <h1>Behaviour Trees (BTs)</h1>
+                        <ul>
+                            <li class="fragment">A <span class="yellow">hierarchical</span> model of decision making</li>
+                            <li class="fragment">Allow <span class="blue">complex behaviours</span> to be built up from <span class="cyan">simple components</span></li>
+                            <li class="fragment">Allow for <span class="purple">more complex</span> behaviours than FSMs</li>
+                            <li class="fragment">First used in <span class="lime">Halo 2</span> (2005), now used extensively</li>
+                            <li class="fragment">Also used in robotics and other non-game AI applications</li>
+                        </ul>
+                    </section>
+
+                    <section id="use_bt">
+                        <h1>Using BTs</h1>
+                        <ul>
+                            <li>Fairly easy to implement; plenty of resources online</li>
+                            <li><span class="red">Unreal</span>: an advanced BT system is built it</li>
+                            <li><span class="cyan">Unity</span>: numerous free and paid options on the Asset Store <span class="fragment pink">e.g. Behavior Machine, Behavior Designer, Behave, RAIN</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="bt_basics">
+                        <h1>BT Basics</h1>
+                        <ul>
+                            <li class="fragment">A BT is a <span class="greem">tree</span> of <span class="purple">nodes</span></li>
+                            <li class="fragment">On each game update (i.e. each frame), the root node is <span class="blue">ticked</span>
+                                <ul>
+                                    <li>When a node is ticked, it might cause some or all of its <span class="lime">children</span> to tick as well</li>
+                                    <li>So ticks propagate down the tree from the root</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">A ticked node returns one of three <span class="orange">statuses</span>:
+                                <ul>
+                                    <li>Success</li>
+                                    <li>Running</li>
+                                    <li>Failure</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">"Running" status allows nodes to represent operations that <span class="blue">last multiple frames</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="blackboard">
+                        <h1>Blackboard</h1>
+                        <ul>
+                            <li class="fragment">It is often useful to <span class="lime">share</span> data between nodes</li>
+                            <li class="fragment">A <span class="yellow">blackboard</span> (sometimes called a <span class="pink">data context</span>) allows this</li>
+                            <li class="fragment">Blackboard defines <span class="skyblue">variables</span>, which can be <span class="cyan">read</span> and <span class="red">written</span> by nodes</li>
+                            <li class="fragment">Blackboard can be <span class="purple">local</span> to the AI agent, <span class="golden">shared</span> between several agents, or <span class="yellow">global</span> to all agents</li>
+                            <li class="fragment">Note: shared blackboards mean that your AI has "<span class="bold italic lime">telepathy</span>" - this may or may not be desirable!</li>
+                        </ul>
+                    </section>
+
+                    <section id="bt_example">
+                        <h1>BTs in The Division</h1>
+                        <div class="row no-margin-top no-margin-bottom r-stretch">
+                            <div class="col-50 no-margin-top"><img class="img-height-400 img-enhance" src="img/div1.png" alt="division behaviour tree"></div>
+                            <div class="col-50 no-margin-top"><img class="img-height-400 img-enhance" src="img/div2.png" alt="division behaviour tree"></div>
+                        </div>
+                        <br><a href="https://www.gdcvault.com/play/1023382/" target="_blank">https://www.gdcvault.com/play/1023382/</a>
+                        <br>AI Behavior Editing and Debugging in "Tom Clancy's The Division"
+                    </section>
+                </section>
+
+                <section id="chap_workshop">
+
+                    <section id="workshop">
+                        <h1 class="r-frame-text">Workshop</h1>
+                    </section>
+
+                    <section id="mario_peas">
+                        <h1 class="hidden">Mario Game</h1>
+                        <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Reach the end of the level</div>
+                        <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Game world</div>
+                        <img class="r-stretch" src="img/mario.png" alt="Mario game">
+                        <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Move (left/right)<br>Jump<br>Sprint<br>Crouch<br>Shoot</div>
+                        <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>World geometry<br>Enemies, coins, ...</div>
+                    </section>
+
+                    <section id="sensing">
+                        <h1>Sensing the World</h1>
+                        <ul>
+                            <li>A common way for game agents to sense the world is using <span class="pink">raycast</span></li>
+                            <li>Cast a <span class="golden">ray (straight line)</span> from the agent out into the world</li>
+                            <li>Test if the ray hits a <span class="blue">collider</span></li>
+                            <li>Unity: <code>Physics.Raycast</code> (for 3D), <code>Physics2D.Raycast</code> (for 2D)</li>
+                        </ul>
+                    </section>
+
+                    <section id="mario_raycast">
+                        <h1 class="hidden">Mario Raycast Explained</h1>
+                        <img src="img/mario2.png" alt="Mario game" class="r-stretch">
+                    </section>
+
+                    <section id="implementation">
+                        <h1>Implementing AI to Play mario</h1>
+                        <ul>
+                            <li>Fork and clone the <a href="https://github.falmouth.ac.uk/Games-Academy/comp702-workshop-mario" target="_blank">sample project</a> (link on <span class="purple">LearningSpace</span>)</li>
+                            <li>Load the <span class="lime">Main Menu</span> scene</li>
+                            <li>Formulate an AI controller as a set of <code class="golden">if-then</code> rules</li>
+                            <li>Code your AI logic into the <code class="golden">Update()</code> method on the <code class="golden">AIMarioController.cs</code> script</li>
+                            <li>Let's see whose Mario can get the furthest!</li>
+                        </ul>
                     </section>
 
                     <section id="questions">
-                        <h2>
-                            <purple>
-                                <bold>Questions?</bold>
-                            </purple>
-                        </h2>
+                        <h2><span class="bold purple">Questions?</span></h2>
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
-                        <cyan><span class="office"></span></cyan>
-                        </h6>
+                        <span class="office cyan"></span>
                     </section>
+
                 </section>
-
-                <!-- example of multiple columns -->
-                <section>
-                    <h1>Multi-visualizations are supported</h1>
-                    <div class="row no-margin-top">
-                        <div class="col-50 no-margin-top">
-                            <p class="no-margin-top small">
-                                <a href='https://bl.ocks.org/olearym/ec27b9ac1bf0da42ed8a0d533181693b' target='_blank'>Gooey effect - Hexagon</a> by Nadieh Bremer
-                            </p>
-                            <div class="fig-container no-margin-top" data-file="d3-fig/gooey.html"></div>
-                            <p>testetest</p>
-                            <p>testetest</p>
-                            <p>testetest</p>
-                            <p>testetest</p>
-                        </div>
-                        <div class="col-50 no-margin-top">
-                            <p class="no-margin-top small">
-                                <a href='https://bl.ocks.org/olearym/ec27b9ac1bf0da42ed8a0d533181693b' target='_blank'>Modular Multiplication Circle</a> by Megan O'Leary
-                            </p>
-                            <div class="fig-container no-margin-top" data-file="d3-fig/modular-multiplication.html"></div>
-                            <p>testetest</p>
-                            <p>testetest</p>
-                            <p>testetest</p>
-                            <p>testetest</p>
-                        </div>
-                </section>
-
-                <!-- Example of nested vertical slides -->
-                <section>
-                    <section>
-                        <h2>Vertical Slides</h2>
-                        <p>Slides can be nested inside of each other.</p>
-                        <p>Use the <em>Space</em> key to navigate through all slides.</p>
-                        <br>
-                        <a href=" #/2/1" class="navigate-down">
-                            <img class="r-frame" style="background: rgba(255,255,255,0.1);" width="178" height="238" data-src="https://static.slid.es/reveal/arrow.png" alt="Down arrow">
-                        </a>
-                    </section>
-                    <section>
-                        <h2>Basement Level 1</h2>
-                        <p>Nested slides are useful for adding additional detail underneath a high level horizontal
-                            slide.</p>
-                    </section>
-                    <section>
-                        <h2>Basement Level 2</h2>
-                        <p>That's it, time to go back up.</p>
-                        <br>
-                        <a href="#/2">
-                            <img class="r-frame" style="background: rgba(255,255,255,0.1); transform: rotate(180deg);" width="178" height="238" data-src="https://static.slid.es/reveal/arrow.png" alt="Up arrow">
-                        </a>
-                    </section>
-                </section>
-
-                <section>
-                    <h2>Slides</h2>
-                    <p>
-                        Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it
-                        out at <a href="https://slides.com" target="_blank">https://slides.com</a>.
-                    </p>
-                </section>
-
-                <section data-visibility="hidden">
-                    <h2>Hidden Slides</h2>
-                    <p>
-                        This slide is visible in the source, but hidden when the presentation is viewed. You can show
-                        all hidden slides by setting the `showHiddenSlides` config option to `true`.
-                    </p>
-                </section>
-
-                <section data-auto-animate>
-                    <h2 data-id="code-title">Pretty Code</h2>
-                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
-						import React, { useState } from 'react';
-
-						function Example() {
-						  const [count, setCount] = useState(0);
-
-						  return (
-						    ...
-						  );
-						}
-					</code></pre>
-                    <p>Code syntax highlighting courtesy of <a href="https://highlightjs.org/usage/">highlight.js</a>.
-                    </p>
-                </section>
-
-                <section data-auto-animate>
-                    <h2 data-id="code-title">With Animations</h2>
-                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="|4,8-11|17|22-24"><script type="text/template">
-						import React, { useState } from 'react';
-
-						function Example() {
-						  const [count, setCount] = useState(0);
-
-						  return (
-						    <div>
-						      <p>You clicked {count} times</p>
-						      <button onClick={() => setCount(count + 1)}>
-						        Click me
-						      </button>
-						    </div>
-						  );
-						}
-
-						function SecondExample() {
-						  const [count, setCount] = useState(0);
-
-						  return (
-						    <div>
-						      <p>You clicked {count} times</p>
-						      <button onClick={() => setCount(count + 1)}>
-						        Click me
-						      </button>
-						    </div>
-						  );
-						}
-					</script></code></pre>
-                </section>
-
-                <section>
-                    <h2>Point of View</h2>
-                    <p>
-                        Press <strong>ESC</strong> to enter the slide overview.
-                    </p>
-                    <p>
-                        Hold down the <strong>alt</strong> key (<strong>ctrl</strong> in Linux) and click on any element
-                        to zoom towards it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Click again to zoom
-                        back out.
-                    </p>
-                    <p>
-                        (NOTE: Use ctrl + click in Linux.)
-                    </p>
-                </section>
-
-                <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
-                    <h2>Auto-Animate</h2>
-                    <p>Automatically animate matching elements across slides with <a href="https://revealjs.com/auto-animate/">Auto-Animate</a>.</p>
-                    <div class="r-hstack justify-center">
-                        <div data-id="box1" style="background: #999; width: 50px; height: 50px; margin: 10px; border-radius: 5px;">
-                        </div>
-                        <div data-id="box2" style="background: #999; width: 50px; height: 50px; margin: 10px; border-radius: 5px;">
-                        </div>
-                        <div data-id="box3" style="background: #999; width: 50px; height: 50px; margin: 10px; border-radius: 5px;">
-                        </div>
-                    </div>
-                </section>
-                <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
-                    <div class="r-hstack justify-center">
-                        <div data-id="box1" data-auto-animate-delay="0" style="background: cyan; width: 150px; height: 100px; margin: 10px;"></div>
-                        <div data-id="box2" data-auto-animate-delay="0.1" style="background: magenta; width: 150px; height: 100px; margin: 10px;"></div>
-                        <div data-id="box3" data-auto-animate-delay="0.2" style="background: yellow; width: 150px; height: 100px; margin: 10px;"></div>
-                    </div>
-                    <h2 style="margin-top: 20px;">Auto-Animate</h2>
-                </section>
-                <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
-                    <div class="r-stack">
-                        <div data-id="box1" style="background: cyan; width: 300px; height: 300px; border-radius: 200px;"></div>
-                        <div data-id="box2" style="background: magenta; width: 200px; height: 200px; border-radius: 200px;"></div>
-                        <div data-id="box3" style="background: yellow; width: 100px; height: 100px; border-radius: 200px;"></div>
-                    </div>
-                    <h2 style="margin-top: 20px;">Auto-Animate</h2>
-                </section>
-
-                <section>
-                    <h2>Touch Optimized</h2>
-                    <p>
-                        Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through
-                        your slides.
-                    </p>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-						## Markdown Support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [docs](https://revealjs.com/markdown/).
-
-						```html []
-						<section data-markdown>
-						  ## Markdown Support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [docs](https://revealjs.com/markdown/).
-						</section>
-						```
-					</script>
-                </section>
-
-                <section>
-                    <p>Add the <code>r-fit-text</code> class to auto-size text</p>
-                    <h2 class="r-fit-text">FIT TEXT</h2>
-                </section>
-
-                <section>
-                    <section id="fragments">
-                        <h2>Fragments</h2>
-                        <p>Hit the next arrow...</p>
-                        <p class="fragment">... to step through ...</p>
-                        <p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-                        <aside class="notes">
-                            This slide has fragments which are also stepped through in the notes window.
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>Fragment Styles</h2>
-                        <p>There's different types of fragments, like:</p>
-                        <p class="fragment grow">grow</p>
-                        <p class="fragment shrink">shrink</p>
-                        <p class="fragment fade-out">fade-out</p>
-                        <p>
-                            <span style="display: inline-block;" class="fragment fade-right">fade-right, </span>
-                            <span style="display: inline-block;" class="fragment fade-up">up, </span>
-                            <span style="display: inline-block;" class="fragment fade-down">down, </span>
-                            <span style="display: inline-block;" class="fragment fade-left">left</span>
-                        </p>
-                        <p class="fragment fade-in-then-out">fade-in-then-out</p>
-                        <p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
-                        <p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-                    </section>
-                </section>
-
-                <section id="transitions">
-                    <h2>Transition Styles</h2>
-                    <p>
-                        You can select from different transitions, like: <br>
-                        <a href="?transition=none#/transitions">None</a> -
-                        <a href="?transition=fade#/transitions">Fade</a> -
-                        <a href="?transition=slide#/transitions">Slide</a> -
-                        <a href="?transition=convex#/transitions">Convex</a> -
-                        <a href="?transition=concave#/transitions">Concave</a> -
-                        <a href="?transition=zoom#/transitions">Zoom</a>
-                    </p>
-                </section>
-
-                <section id="themes">
-                    <h2>Themes</h2>
-                    <p>
-                        reveal.js comes with a few themes built in: <br>
-                        <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/black.css'); return false;">Black
-                            (default)</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/white.css'); return false;">White</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/league.css'); return false;">League</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/sky.css'); return false;">Sky</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/beige.css'); return false;">Beige</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/simple.css'); return false;">Simple</a>
-                        <br>
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/serif.css'); return false;">Serif</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/blood.css'); return false;">Blood</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/night.css'); return false;">Night</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/moon.css'); return false;">Moon</a>
-                        -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../assets/dist/theme/solarized.css'); return false;">Solarized</a>
-                    </p>
-                </section>
-
-                <section>
-                    <section data-background="#dddddd">
-                        <h2>Slide Backgrounds</h2>
-                        <p>
-                            Set <code>data-background="#dddddd"</code> on a slide to change the background color. All
-                            CSS color formats are supported.
-                        </p>
-                        <a href="#" class="navigate-down">
-                            <img class="r-frame" style="background: rgba(255,255,255,0.1);" width="178" height="238" data-src="https://static.slid.es/reveal/arrow.png" alt="Down arrow">
-                        </a>
-                    </section>
-                    <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
-                        <h2>Gradient Backgrounds</h2>
-                        <pre><code class="hljs html wrap">&lt;section data-background-gradient=
-							"linear-gradient(to bottom, #ddd, #191919)"&gt;</code></pre>
-                    </section>
-                    <section data-background="https://static.slid.es/reveal/image-placeholder.png">
-                        <h2>Image Backgrounds</h2>
-                        <pre><code class="hljs html">&lt;section data-background="image.png"&gt;</code></pre>
-                    </section>
-                    <section data-background="https://static.slid.es/reveal/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-                        <h2>Tiled Backgrounds</h2>
-                        <pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-                    </section>
-                    <section data-background-video="https://static.slid.es/site/homepage/v1/homepage-video-editor.mp4" data-background-color="#000000">
-                        <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-                            <h2>Video Backgrounds</h2>
-                            <pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-                        </div>
-                    </section>
-                    <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-                        <h2>... and GIFs!</h2>
-                    </section>
-                </section>
-
-                <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-                    <h2>Background Transitions</h2>
-                    <p>
-                        Different background transitions are available via the backgroundTransition option. This one's
-                        called "zoom".
-                    </p>
-                    <pre><code class="hljs javascript">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-                </section>
-
-                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-                    <h2>Background Transitions</h2>
-                    <p>
-                        You can override background transitions per-slide.
-                    </p>
-                    <pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-                </section>
-
-                <section data-background-iframe="https://hakim.se" data-background-interactive>
-                    <div style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
-                        <h2>Iframe Backgrounds</h2>
-                        <p>Since reveal.js runs on the web, you can easily embed other web content. Try interacting with
-                            the page in the background.</p>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Marvellous List</h2>
-                    <ul>
-                        <li>No order here</li>
-                        <li>Or here</li>
-                        <li>Or here</li>
-                        <li>Or here</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Fantastic Ordered List</h2>
-                    <ol>
-                        <li>One is smaller than...</li>
-                        <li>Two is smaller than...</li>
-                        <li>Three!</li>
-                    </ol>
-                </section>
-
-                <section>
-                    <h2>Tabular Tables</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Value</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Apples</td>
-                                <td>$1</td>
-                                <td>7</td>
-                            </tr>
-                            <tr>
-                                <td>Lemonade</td>
-                                <td>$2</td>
-                                <td>18</td>
-                            </tr>
-                            <tr>
-                                <td>Bread</td>
-                                <td>$3</td>
-                                <td>2</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section>
-                    <h2>Clever Quotes</h2>
-                    <p>
-                        These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The
-                            nice thing about standards is that there are so many to choose from</q> and block:
-                    </p>
-                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                        &ldquo;For years there has been a theory that millions of monkeys typing at random on millions
-                        of typewriters would
-                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be
-                        untrue.&rdquo;
-                    </blockquote>
-                </section>
-
-                <section>
-                    <h2>Intergalactic Interconnections</h2>
-                    <p>
-                        You can link between slides internally,
-                        <a href="#/2/3">like this</a>.
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Speaker View</h2>
-                    <p>There's a <a href="https://revealjs.com/speaker-view/">speaker view</a>. It includes a timer,
-                        preview of the upcoming slide as well as your speaker notes.</p>
-                    <p>Press the <em>S</em> key to try it out.</p>
-
-                    <aside class="notes">
-                        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if
-                        you open the speaker notes window (hit 's' on your keyboard).
-                    </aside>
-                </section>
-
-                <section>
-                    <h2>Export to PDF</h2>
-                    <p>Presentations can be <a href="https://revealjs.com/pdf-export/">exported to PDF</a>, here's an
-                        example:</p>
-                    <iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-                </section>
-
-                <section>
-                    <h2>Global State</h2>
-                    <p>
-                        Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-                        will be added as a class to the document element when the slide is open. This lets you
-                        apply broader style changes, like switching the page background.
-                    </p>
-                </section>
-
-                <section data-state="customevent">
-                    <h2>State Events</h2>
-                    <p>
-                        Additionally custom events can be triggered on a per slide basis by binding to the
-                        <code>data-state</code> name.
-                    </p>
-                    <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.on( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-                </section>
-
-                <section>
-                    <h2>Take a Moment</h2>
-                    <p>
-                        Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage
-                        and want to take distracting slides off the screen.
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Much more</h2>
-                    <ul>
-                        <li>Right-to-left support</li>
-                        <li><a href="https://revealjs.com/api/">Extensive JavaScript API</a></li>
-                        <li><a href="https://revealjs.com/auto-slide/">Auto-progression</a></li>
-                        <li><a href="https://revealjs.com/backgrounds/#parallax-background">Parallax backgrounds</a>
-                        </li>
-                        <li><a href="https://revealjs.com/keyboard/">Custom keyboard bindings</a></li>
-                    </ul>
-                </section>
-
-                <section style="text-align: left;">
-                    <h1>THE END</h1>
-                    <p>
-                        - <a href="https://slides.com">Try the online editor</a> <br>
-                        - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-                    </p>
-                </section>
-
-                <section>
-                    <h2>The Lorenz Equations</h2>
-                    <p>
-                        \[\begin{aligned}
-                        \dot{x} &amp; = \sigma(y-x) \\
-                        \dot{y} &amp; = \rho x - y - xz \\
-                        \dot{z} &amp; = -\beta z + xy
-                        \end{aligned} \]
-                    </p>
-                </section>
-
-                <section>
-                    <iframe class="ace" width=600 height=500 data-onchange="console.log(editor.getValue())">
-                        Hello World!
-                    </iframe>
-                </section>
-
             </div>
         </div>
 

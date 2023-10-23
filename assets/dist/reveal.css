@@ -165,17 +165,72 @@ pink {
 
 /* half out text */
 
+/* hidden titles or other items */
+.hidden {
+    visibility: hidden !important;
+}
+
 /* left, right align */
-.left {
+.text-left {
     text-align: left !important;
 }
 
-.right {
+.text-right {
     text-align: right !important;
 }
 
-.center {
+.text-center {
     text-align: center !important;
+}
+
+/* absolute position */
+.box-top-left {
+    position: absolute !important;
+    top: 80px !important;
+    left: 0px !important;
+    background-color: #333 !important;
+    padding: 5px !important;
+}
+
+.box-top-right {
+    position: absolute !important;
+    top: 80px !important;
+    right: 0px !important;
+    background-color: #333 !important;
+    padding: 5px !important;
+}
+
+.box-bottom-right {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 0px !important;
+    background-color: #333 !important;
+    padding: 5px !important;
+}
+
+.box-bottom-left {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 0px !important;
+    background-color: #333 !important;
+    padding: 5px !important;
+}
+
+/* enlarge image on hover */
+.fix-bottom-left {
+    transform-origin: bottom left;
+}
+
+.fix-bottom-right {
+    transform-origin: bottom right;
+}
+
+.fix-top-left {
+    transform-origin: top left;
+}
+
+.fix-top-right {
+    transform-origin: top right;
 }
 
 /* left, right align */
@@ -188,9 +243,9 @@ italic {
 
 .bold,
 bold {
-    font-size: 120% !important;
+    font-size: 110% !important;
     font-weight: bold !important;
-    text-shadow: 1px 1px 1px black !important;
+    text-shadow: 2px 2px 2px black !important;
 }
 
 .bigtext,
@@ -220,23 +275,56 @@ strike {
 
 /* font style: italic or oblique, bold, bigtext, underline */
 
+/* table header */
+table thead {
+    font-size: 110% !important;
+    font-weight: bold !important;
+    color: rgb(255, 255, 255) !important;
+    text-shadow: 2px 2px 2px rgb(73, 73, 73) !important;
+}
+
+/* blockquote before and after */
+.reveal blockquote::before {
+    content: '“';
+}
+
+.reveal blockquote::after {
+    content: '”';
+}
+
 /* italic or oblique */
 
-/* enlarge image on hover */
-.fix-bottom-left {
-    transform-origin: bottom left;
+/* increase image contrast */
+.img-enhance {
+    filter: contrast(130%) !important;
 }
 
-.fix-bottom-right {
-    transform-origin: bottom right;
+.img-darken {
+    filter: brightness(30%) !important;
 }
 
-.fix-top-left {
-    transform-origin: top left;
+.img-blur {
+    filter: blur(5px) !important;
 }
 
-.fix-top-right {
-    transform-origin: top right;
+.img-shadow {
+    filter: drop-shadow(10px 10px 15px red) invert(75%);
+}
+
+.opacity-30 {
+    filter: opacity(30%) !important;
+}
+
+.opacity-50 {
+    filter: opacity(50%) !important;
+}
+
+.opacity-70 {
+    filter: opacity(70%) !important;
+}
+
+.opacity-100 {
+    filter: opacity(100%) !important;
 }
 
 .img-zoom,
@@ -250,8 +338,8 @@ strike {
 
 /* too big will go outside the viewport */
 .img-zoom:hover,
-.img-zoom-3:hover {
-    transform: scale(3);
+.img-zoom-12:hover {
+    transform: scale(1.2);
 }
 
 .img-zoom-2:hover {
@@ -266,8 +354,8 @@ strike {
     transform: scale(1.5);
 }
 
-.img-zoom-12:hover {
-    transform: scale(1.2);
+.img-zoom-3:hover {
+    transform: scale(3);
 }
 
 /* move image lower to inline with text */
@@ -279,104 +367,159 @@ strike {
 
 /* round image */
 .img-round {
-    border-radius: 50%;
+    border-radius: 50% !important;
 }
 
 .img-round-corner-5 {
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 
 .img-round-corner-10 {
-    border-radius: 10px;
+    border-radius: 10px !important;
 }
 
 .img-round-corner-20 {
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
 .img-square-50 {
-    height: 50px;
-    width: 50px;
+    height: 50px !important;
+    width: 50px !important;
 }
 
 .img-square-100 {
-    height: 100px;
-    width: 100px;
+    height: 100px !important;
+    width: 100px !important;
 }
 
 .img-square-200 {
-    height: 200px;
-    width: 200px;
+    height: 200px !important;
+    width: 200px !important;
 }
 
 .img-square-300 {
-    height: 300px;
-    width: 300px;
+    height: 300px !important;
+    width: 300px !important;
+}
+
+.img-square-400 {
+    height: 400px !important;
+    width: 400px !important;
 }
 
 .img-square-500 {
-    height: 500px;
-    width: 500px;
+    height: 500px !important;
+    width: 500px !important;
 }
 
 .img-height-20 {
     max-height: 20px !important;
+    height: 20px !important;
 }
 
 .img-height-30 {
     max-height: 30px !important;
+    height: 30px !important;
 }
 
 .img-height-50 {
     max-height: 50px !important;
+    height: 50px !important;
 }
 
 .img-height-100 {
     max-height: 100px !important;
+    height: 100px !important;
 }
 
 .img-height-200 {
     max-height: 200px !important;
+    height: 200px !important;
 }
 
 .img-height-300 {
     max-height: 300px !important;
+    height: 300px !important;
+}
+
+.img-height-400 {
+    max-height: 400px !important;
+    height: 400px !important;
 }
 
 .img-height-500 {
     max-height: 500px !important;
+    height: 500px !important;
+}
+
+.img-height-600 {
+    max-height: 600px !important;
+    height: 600px !important;
+}
+
+.img-height-700 {
+    max-height: 700px !important;
+    height: 700px !important;
+}
+
+.img-height-800 {
+    max-height: 800px !important;
+    height: 800px !important;
 }
 
 .img-width-20 {
     max-width: 20px !important;
+    width: 20px !important;
 }
 
 .img-width-30 {
     max-width: 30px !important;
+    width: 30px !important;
 }
 
 .img-width-50 {
     max-width: 50px !important;
+    width: 50px !important;
 }
 
 .img-width-100 {
     max-width: 100px !important;
+    width: 100px !important;
 }
 
 .img-width-200 {
     max-width: 200px !important;
+    width: 200px !important;
 }
 
 .img-width-300 {
     max-width: 300px !important;
+    width: 300px !important;
+}
+
+.img-width-400 {
+    max-width: 400px !important;
+    width: 400px !important;
 }
 
 .img-width-500 {
     max-width: 500px !important;
+    width: 500px !important;
+}
+
+.img-width-600 {
+    max-width: 600px !important;
+    width: 600px !important;
+}
+
+.img-width-700 {
+    max-width: 700px !important;
+    width: 700px !important;
 }
 
 .img-width-800 {
     max-width: 800px !important;
+    width: 800px !important;
 }
 
 /* pdf download corner, position only, the colour is different for 

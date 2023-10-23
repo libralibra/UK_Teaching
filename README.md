@@ -1,4 +1,4 @@
-# **Daniel's UK Teaching Materials**
+# **Daniel's Teaching Materials**
 
 This repository hosts the teaching material I created based on the HTML slide framework reveal.js to fit my own requirements. For more information, please refer to [RevealJS](https://revealjs.com).
 
