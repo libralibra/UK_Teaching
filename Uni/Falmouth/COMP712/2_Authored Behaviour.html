@@ -284,7 +284,7 @@
                         <h1>Rule-based AI</h1>
                         <ul>
                             <li class="fragment">Generally <span class="purple">reactive</span> to the state of the world</li>
-                            <li class="fragment">Based on <span class="cyan">if-then</span> triggers, basic <span class="orange">calculations</span>, etc.</li>
+                            <li class="fragment">Based on <code class="cyan">if-then</code> triggers, basic <span class="orange">calculations</span>, etc.</li>
                             <li class="fragment">Generally hand-coded and only modifiable by a programmer</li>
                         </ul>
                     </section>
@@ -406,7 +406,7 @@
                         <h1>Hierarchical FSMs</h1>
                         <img class="r-stretch" src="img/hfsm.png" alt="Hierarchical FSMs"><br>
                         <ul>
-                            <li>An FSM with <code class="italic">N</code> states has potentially <code class="italic">N<sup>2</sup></code>
+                            <li>An FSM with <code class="italic cyan">N</code> states has potentially <code class="italic skyblue">N<sup>2</sup></code>
                                 transitions</li>
                             <li>Designing complex behaviour with FSMs quickly gets
                                 unwieldy</li>
@@ -501,38 +501,22 @@
                         <h1 class="r-frame-text">Workshop</h1>
                     </section>
 
-                    <section id="mario_peas">
-                        <h1 class="hidden">Mario Game</h1>
-                        <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Reach the end of the level</div>
-                        <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Game world</div>
-                        <img class="r-stretch" src="img/mario.png" alt="Mario game">
-                        <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Move (left/right)<br>Jump<br>Sprint<br>Crouch<br>Shoot</div>
-                        <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>World geometry<br>Enemies, coins, ...</div>
+                    <section id="pacman-peas">
+                        <h1 class="hidden">PAC-MAN Game</h1>
+                        <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Score as much as you can</div>
+                        <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Game board</div>
+                        <img class="r-stretch" src="img/pac_man.png" alt="PAC-MAN game">
+                        <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Move (left/right/up/down)</div>
+                        <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>The map<br>Ghosts, dots</div>
                     </section>
 
                     <section id="sensing">
-                        <h1>Sensing the World</h1>
+                        <h1>Simple vs. Complex Rules</h1>
                         <ul>
-                            <li>A common way for game agents to sense the world is using <span class="pink">raycast</span></li>
-                            <li>Cast a <span class="golden">ray (straight line)</span> from the agent out into the world</li>
-                            <li>Test if the ray hits a <span class="blue">collider</span></li>
-                            <li>Unity: <code>Physics.Raycast</code> (for 3D), <code>Physics2D.Raycast</code> (for 2D)</li>
-                        </ul>
-                    </section>
-
-                    <section id="mario_raycast">
-                        <h1 class="hidden">Mario Raycast Explained</h1>
-                        <img src="img/mario2.png" alt="Mario game" class="r-stretch">
-                    </section>
-
-                    <section id="implementation">
-                        <h1>Implementing AI to Play mario</h1>
-                        <ul>
-                            <li>Fork and clone the <a href="https://github.falmouth.ac.uk/Games-Academy/comp702-workshop-mario" target="_blank">sample project</a> (link on <span class="purple">LearningSpace</span>)</li>
-                            <li>Load the <span class="lime">Main Menu</span> scene</li>
-                            <li>Formulate an AI controller as a set of <code class="golden">if-then</code> rules</li>
-                            <li>Code your AI logic into the <code class="golden">Update()</code> method on the <code class="golden">AIMarioController.cs</code> script</li>
-                            <li>Let's see whose Mario can get the furthest!</li>
+                            <li>Try to increase the complexity of the game gradually</li>
+                            <li>Think carefully while defining new rules for ghosts</li>
+                            <li>Implement different behaviours for ghosts</span></li>
+                            <li>Pure Python + 3rd party libs</li>
                         </ul>
                     </section>
 
@@ -541,6 +525,21 @@
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
                         <span class="office cyan"></span>
+                    </section>
+
+                    <section id="flowchart" data-visibility="hidden">
+                        <h3>Flowchart Example</h3>
+                        <div class="mermaid">
+                            <pre>
+                              %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                              flowchart LR
+                                Selector --> A
+                                Selector --> B
+                                Selector --> Sequence
+                                Sequence --> C
+                                Sequence --> D
+                            </pre>
+                        </div>
                     </section>
 
                 </section>
@@ -555,60 +554,8 @@
             <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
         </div>
 
-        <!-- keys: 
-            SPACE,arrow :   navigation
-            .           :   blackout
-            ESC, O      :   overview
-            ALT+click   :   zoom in
-            C           :   note canvas
-            B           :   chalkboard
-            S           :   speaker mode (appearance didn't work well with speaker mode)
-            C+S+F       :   search in slides
-
-        -->
-        <script src="../../../assets/dist/reveal.js"></script>
-        <!-- <script src="../../../assets/js/reveal.js"></script> -->
-        <script src="../../../assets/plugin/zoom/zoom.js"></script>
-        <script src="../../../assets/plugin/notes/notes.js"></script>
-        <script src="../../../assets/plugin/search/search.js"></script>
-        <script src="../../../assets/plugin/markdown/markdown.js"></script>
-        <script src="../../../assets/plugin/highlight/highlight.js"></script>
-        <!-- math -->
-        <script src="../../../assets/plugin/math/math.js"></script>
-        <!-- menu: https://github.com/denehyg/reveal.js-menu -->
-        <script src="../../../assets/plugin/menu/menu.js"></script>
-        <!-- chalkboard need customcontrols -->
-        <script src="../../../assets/plugin/chalkboard/plugin.js"></script>
-        <script src="../../../assets/plugin/customcontrols/plugin.js"></script>
-        <!-- appearance for text and image animation like ppt -->
-        <!-- <script src="../../../assets/plugin/appearance/appearance.js"></script> -->
-        <!-- vertical deck indicator: verticator -->
-        <script src="../../../assets/plugin/verticator/verticator.js"></script>
-        <!-- pointer -->
-        <script src="../../../assets/plugin/pointer/pointer.js"></script>
-
-        <!-- reveal initialisation -->
-        <script id="reveal_init" src="../../../assets/dist/init.js"></script>
-
-        <!-- make long slides overflow -->
-        <script id="overflow" src="../../../assets/dist/overflow.js"></script>
-
-        <!-- change overview scale -->
-        <script id="overview_scale" src="../../../assets/dist/overview_scale.js"></script>
-
-        <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
-        <script id="inject_data" src="../../../assets/dist/inject.js"></script>
-
-        <!-- LINKS EFFECT: https://jsfiddle.net/hakim/Ht6Ym/  -->
-        <script id="linkify" src="../../../assets/dist/linkify.js"></script>
-
-        <!-- sync image alt and title strings -->
-        <script id="check_image" src="../../../assets/dist/check_images.js"></script>
-
-        <!-- it did copy the logo to each slide in the print preview,
-            but not in the ctrl+p generated pdf file, so wont' be printed.
-            wait for bug fix -->
-        <script id="copy_logo" src="../../../assets/dist/copy_logo.js"></script>
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/include.js"></script>
 
     </body>
 

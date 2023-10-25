@@ -1,4 +1,28 @@
-<!doctype html>
+''' Use this script to generate all links to existing files for easily deploying
+    slide decks to github as the URLs would be different
+    Use relative link in the index.html page to make it generic between repositories
+
+    The structure would be:
+
+    <div class="reveal">
+        <div class="slides">
+            <section id="EACH UNIVERSITY">
+                <section id="EACH MODULE">
+                    <!-- list each html file here -->
+                </section>
+            </section>
+        </div>
+    </div>
+
+    Daniel.Zhang
+    Oct 2023
+'''
+
+# importing modules
+import os
+from glob import glob
+
+HEADERS = r'''<!doctype html>
 <html lang="en">
 
     <head>
@@ -48,8 +72,8 @@
             const authorData = new Map([
                 ['course', "Daniel's Teaching Materials"],
                 ['coursecode', ''],
-                ['week', ''],
-                ['topic', 'Live Demo'],
+                ['week', 'For UK Universities'],
+                ['topic', 'Categorised by Modules'],
                 ['email', ''],
                 ['office', ''],
                 ['uni', ''],
@@ -77,44 +101,9 @@
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section id="chapter_title">
-                    <section id="title">
-                        <h1><span class="course"></span></h1>
-                        <h3>
-                            <orange><span class="coursecode"></span></orange>
-                        </h3>
-                        <p>
-                            <bigtext><span class="week"></span><span class="topic"></span></bigtext>
-                        </p>
-                        <p>
-                            <cyan class="fullname"></cyan> <br>
-                            <span class="uni"></span> v. <span class="year"></span>
-                        </p>
-                        <p><a class="invisible" href="./all_links.html">All Links</a></p>
-                    </section>
+'''
 
-                    <section id="1st">
-                        <h1>Daniel's Teaching Slide Demo</h1>
-                        <p>If you can see this slide in your browser, it works as expected!</p>
-
-                        <p>Use your <bold>
-                                <purple>SPACE(&#9141;)</purple>
-                            </bold> or <bold>
-                                <cyan>
-                                    Right Arrow(<i class="fa fa-arrow-right"></i>)
-                                </cyan>
-                            </bold> or <bold>
-                                <yellow>Down Arrow(<i class="fa fa-arrow-down"></i>)</yellow>
-                            </bold> to navigate to the next slide!</p>
-                    </section>
-
-                    <section id="2nd">
-                        <h1>Demo END</h1>
-                        <p>This is the last slide of this demo!</p>
-                    </section>
-                </section>
-
-            </div>
+FOOTER = r'''</div>
         </div>
 
         <!-- header footer div -->
@@ -157,7 +146,6 @@
         <script src="./assets/plugin/verticator/verticator.js"></script>
         <!-- pointer -->
         <script src="./assets/plugin/pointer/pointer.js"></script>
-
         <!-- mermaid flowchart -->
         <script src="./assets/plugin/mermaid/mermaid.js"></script>
 
@@ -202,7 +190,7 @@
                 // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
                 // 2. wait for block in speaker mode fix
                 plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
-                    RevealMenu, RevealChalkboard, RevealCustomControls,
+                    RevealMenu, RevealChalkboard, RevealCustomControls, 
                     Verticator, RevealMath.KaTeX, RevealPointer, RevealMermaid],
 
                 // show controls
@@ -452,11 +440,83 @@
         <script id="check_image" src="./assets/dist/check_images.js"></script>
 
         <!-- it did copy the logo to each slide in the print preview,
-                    but not in the ctrl+p generated pdf file, so wont' be printed.
-                    wait for bug fix -->
+            but not in the ctrl+p generated pdf file, so wont' be printed.
+            wait for bug fix -->
         <script id="copy_logo" src="./assets/dist/copy_logo.js"></script>
 
-
     </body>
+</html>'''
 
-</html>
+# #################################################################
+def get_all_files(d_path):
+    ''' get all files with relative links to a dict: {uni: {module:html}} '''
+    # get all html file paths 
+    htmls = [x[x.index(d_path)+len(d_path)+1:] for x in glob(d_path+r'/**/*.html',recursive=True)]
+    # sort out after split: uni -> module -> htmls
+    html_dict = {}
+    for x in htmls:
+        parts = x.split(os.sep)
+        u,m,f = parts[0],parts[1],os.sep.join(parts[2:])
+        if u in html_dict:
+            if m in html_dict[u]:
+                html_dict[u][m].append(f)
+            else:
+                html_dict[u][m] = [f]
+        else:
+            html_dict[u] = {m:[f]}
+    return html_dict
+
+# #################################################################
+SECTION_START = r'''<section id="chapter_UNIVERSITY">
+                    <section id="UNIVERSITY">
+                        <h1 class="r-frame-text">UNIVERSITY</h1>
+                    </section>'''
+SECTION_END = r'</section>'
+def get_uni_section(base_path, u_name, u_modules):
+    ''' create a section (a new vertical slide deck) for each university
+        base_path: where start the search
+        u_name: university name
+        u_modules: a dict of m_name -> list of html files
+    '''
+    return SECTION_START.replace('UNIVERSITY',u_name) + '\n'.join([get_module_slide(base_path+'/'+u_name,k,v) for k,v in u_modules.items()]) + SECTION_END
+
+# #################################################################  
+MODULE_LEFT = r'''
+<section id="MODULE">
+    <h1>MODULE</h1><ol>
+    <div class="row no-margin-top no-margin-bottom r-stretch">
+        <div class="col-50 no-margin-top">
+'''
+MODULE_RIGHT = r'''</div>
+<div class="col-50 no-margin-top">'''
+MODULE_END = r'''</div></div></ol>
+</section>'''
+def get_module_slide(u_name, m_name, m_htmls):
+    ''' get a module page using it's name (slide id), and all it's children html files as the page content 
+        u_name: university name (added to the path)
+        m_name: module name (the header and added to the path)
+        m_htmls: a list of all html files
+    '''
+    left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[:round(len(m_htmls)/2+0.5)]]
+    right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[round(len(m_htmls)/2+0.5):]]
+    return MODULE_LEFT.replace('MODULE',m_name) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END
+
+# #################################################################
+# global definitions
+BASE_UNI_URL = r'https://pages.github.falmouth.ac.uk/Daniel-Zhang/UK_Teaching/'
+BASE_PRI_URL = r'https://libralibra.github.io/UK_Teaching/'
+SOURCE_PATH = r'Uni'
+OUTPUT_PATH = r'all_links.html'
+def get_html(base_path, h_dict):
+    ''' write out the html file: '''
+    with open(OUTPUT_PATH,'w',encoding="utf-8") as fout:
+        fout.write(HEADERS + '\n'.join([get_uni_section(SOURCE_PATH,u,m) for u,m in h_dict.items()]) + FOOTER)
+    print(f'{OUTPUT_PATH} has been updated!')
+
+
+# #################################################################
+if __name__ == '__main__':
+    htmls = get_all_files(SOURCE_PATH)
+    print(len(htmls),'->',htmls)
+    get_html(SOURCE_PATH,htmls)
+

@@ -39,7 +39,8 @@ Reveal.initialize({
     // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
     // 2. wait for block in speaker mode fix
     plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
-        RevealMenu, RevealChalkboard, RevealCustomControls, Verticator, RevealMath.KaTeX, RevealPointer],
+        RevealMenu, RevealChalkboard, RevealCustomControls, Verticator,
+        RevealMath.KaTeX, RevealPointer, RevealMermaid],
 
     // show controls
     controls: true,
@@ -112,6 +113,14 @@ Reveal.initialize({
 
     // The display mode that will be used to show slides
     display: 'block',
+
+    // mermaid initialize config
+    mermaid: {
+        flowchart: {
+            // curve will turn off flexible line
+            curve: 'linear',
+        },
+    },
 
     // menu options
     menu: {
