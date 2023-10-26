@@ -5,9 +5,9 @@ Dr Daniel Zhang @ Falmouth University\
 
 ![PAC-MAN](pacman.gif)
 
-# Table of Content
+# Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
-- [Table of Content](#table-of-content)
+- [Table of Contents](#table-of-contents)
 - [Workshop: Rule-based AI (PAC-MAN Example)](#workshop-rule-based-ai-pac-man-example)
   - [PAC-MAN: The Game](#pac-man-the-game)
   - [Before We Start: The Setup](#before-we-start-the-setup)
@@ -39,17 +39,9 @@ For a better understanding of rule-based AI in games, you are going to have some
 
 ### Python Installation
 
-You will need to coding in [Python](https://www.python.org/). Please install the latest version by visiting the link if you haven't done so. The might be other libraries we need along the road. But it should be fine to just install Python by now. 
+You will need to coding in [`python`](https://www.python.org/). Please install the latest version by visiting the link if you haven't done so. The might be other libraries we need along the road. But it should be fine to just install Python by now. Refer to [The first workshop](../python/python_lab.html) if you don't have python installed.
 
 You can use some management tools like `conda`, `virtualenv` or `pipx` if you like. But `pip` would be sufficient for you to carry out the experiment of this workshop.
-
-- Note: open `Command Window` and type `python` to make sure your installation is successful. You should get something like:
-
-    ```
-    C:\>python
-    Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>>```
 
 ### FreeGames Module
 
@@ -57,41 +49,42 @@ You can use some management tools like `conda`, `virtualenv` or `pipx` if you li
 
 - Install FreeGames using `pip`
   
-  ```
-  C:\>python -m pip install freegames
-  ```
+    >  ```python
+    >  C:\>python -m pip install freegames
+    >  ```
 
 - Check all the free games provided by this module. 
-    ```
-    C:\>python -m freegames list
-    ant
-    avoid
-    bagels
-    bounce
-    cannon
-    connect
-    crypto
-    fidget
-    flappy
-    guess
-    illusion
-    life
-    madlibs
-    maze
-    memory
-    minesweeper
-    pacman
-    paint
-    pong
-    rps
-    simonsays
-    snake
-    tictactoe
-    tiles
-    tron
-    typing
-    C:\>
-    ```
+
+    >    ```python
+    >    C:\>python -m freegames list
+    >    ant
+    >    avoid
+    >    bagels
+    >    bounce
+    >    cannon
+    >    connect
+    >    crypto
+    >    fidget
+    >    flappy
+    >    guess
+    >    illusion
+    >    life
+    >    madlibs
+    >    maze
+    >    memory
+    >    minesweeper
+    >    pacman
+    >    paint
+    >    pong
+    >    rps
+    >    simonsays
+    >    snake
+    >    tictactoe
+    >    tiles
+    >    tron
+    >    typing
+    >    C:\>
+    >    ```
 
 - As long as you can see `pacman` in the list, you are ready to go.
 
