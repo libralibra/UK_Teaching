@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- the default stylsheets -->
+        <link rel="stylsheets" href="../../../assets/dist/reset.css">
+        <link rel="stylesheet" href="../../../assets/dist/reveal.css">
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css">
+        <!-- <link rel="stylesheet" href="../../../assets/plugin/highlight/zenburn.css"> -->
+
+        <!-- the chalkboard -->
+        <link rel="stylesheet" href="../../../assets/plugin/chalkboard/style.css">
+        <!-- custom controls -->
+        <link rel="stylesheet" href="../../../assets/plugin/customcontrols/style.css">
+        <!-- custom controls font awsome icons -->
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
+        <!-- rows and columns in one slide -->
+        <link rel="stylesheet" href="../../../assets/dist/row_col.css">
+        <!-- pointer plugin style -->
+        <link rel="stylesheet" href="../../../assets/plugin/pointer/pointer.css" />
+
+        <!-- all links open in new tab -->
+        <!-- <base target="_blank"> -->
+
+        <!-- define data here, but update the document later to avoid using
+                window.onload = function() {}; syntax -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', 'Week 3'],
+                ['topic', ' - Authored Behaviour'],
+                ['email', 'Daniel.Zhang@falmouth.ac.uk'],
+                ['office', 'Games Academy, Penryn Campus'],
+                ['uni', 'Falmouth University'],
+                ['officehour', 'Monday 13.00-14.00'],
+                ['classroom', 'Room 1002, Games Academy'],
+                ['classtime', 'Tuesday & Thursday, 13.00-14.00'],
+                ['deadline', 'Monday, 30th Nov 2023'],
+                ['name', 'Dr Daniel Zhang'],
+                ['nickname', 'Daniel'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_agents">
+                    <section id="agents">
+                        <h1 class="r-frame-text">Agents</h1>
+                    </section>
+
+                    <section id="agent">
+                        <h1>Agent</h1>
+                        <img src="img/agent.png" alt="agent illustration" class="r-stretch">
+
+                        <p class="fragment custom blur">An <purple>agent</purple> is anything which perceives an <lime>environment</lime> through <skyblue>sensors</skyblue>, and acts upon that environment through <pink>actuators</pink>.</p>
+                    </section>
+
+                    <section id="agent_type">
+                        <h1>Different Types of Agent</h1>
+                        <ul>
+                            <li class="fragment"><span class="red">Human agent</span>: eyes, ears, nose, skin as sensors, and other organs such as hands, legs, mouth as effectors.
+                            </li>
+                            <li class="fragment"><span class="orange">Robotic agent</span>: cameras and infrared range finders as sensors, and various motors as effectors.
+                            </li>
+                            <li class="fragment"><span class="blue">Software agent</span>: encoded big strings as its programs and actions, e.g. spell checker.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="terminology">
+                        <h1>Agents Terminology</h1>
+                        <ul>
+                            <li><span class="red">Performance Measure</span>: how successful an agent is, or how well the agent fits the goal <span class="fragment">(<lime>goal</lime> &#8674; an environment state or a set of states)</span>
+                            </li>
+                            <li><span class="yellow">Percept</span>: agent's perceptual inputs at a given instance <br><span class="fragment">(<purple>percept sequence</purple> &#8674; the history of all that an agent has perceived till data)</span>
+                            <li><span class="orange">Behaviour</span>: agent's action after any given sequence of percepts</li>
+                            <li><span class="blue">Function</span>: a map from the percept sequence to an action
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="peas">
+                        <h1>P.E.A.S.</h1>
+                        <span>For each example of an agent, what are the:<br>
+                            <span class="red bold underline">P</span>erformance measures, <span class="orange bold underline">E</span>nvironment, <span class="purple bold underline">A</span>ctuators, and <span class="lime bold underline">S</span>ensors?
+                        </span>
+                    </section>
+
+                    <section id="peas_1">
+                        <h1>PEAS - ChatBot</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Customer assistance?<br>Pass Turing Test?</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Instant messaging app<br>Other interactive environment</div>
+                            <img src="img/chatbot.png" alt="chat robot" width="800" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Output messages<br>Provide responses</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Read messages<br>Listen voice input</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_2">
+                        <h1>PEAS - Chess AI</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Win the game</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Chess board</div>
+                            <img src="img/chess.png" alt="chess AI" width="900" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Move a piece</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Game status</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_3">
+                        <h1>PEAS - Robot Vacuum</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Room cleanness</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>The room it is in</div>
+                            <img src="img/room_clean.png" alt="room clean robot" width="800" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Motors<br>Vacuum unit</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Dirt sensor, Bin level sensor<br>infrared sensor for obstacles<br>Battery level sensor, ...</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_4">
+                        <h1>PEAS - Autopilot AI</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Arrive destination safely</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Road traffics</div>
+                            <img src="img/autopilot.png" alt="autopilot AI" width="800" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Motors<br>Steering<br>Accelerator<br>Break</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Infrared, GPS<br>Cameras, radar, lidar, ...</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_5">
+                        <h1>PEAS - Game AI</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Kill enemies?<br>Assist teammates?</div>
+                            <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Game world</div>
+                            <img src="img/game_player.png" alt="game AI" width="300" height="500">
+                            <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Character controllers.Move()<br>Shooting<br>Talk, animations, ...</div>
+                            <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>Raycast<br>Player/NPC positions<br>Scene geometry</div>
+                        </div>
+                    </section>
+
+                    <section id="peas_6">
+                        <h1>PEAS - Human</h1>
+                        <div class="r-statck">
+                            <div class="box-top-left fragment" data-fragment-index="4"><span class="red bold">Performance</span><br>???</div>
+                            <div class="box-top-right fragment" data-fragment-index="1"><span class="orange bold">Environment</span><br>Real world</div>
+                            <img src="img/human.png" alt="human" width="800" height="500">
+                            <div class="box-bottom-left fragment" data-fragment-index="2"><span class="purple bold">Actuators</span><br>All sorts of muscle controls<br>Hands, legs, feet, mouth, ...</div>
+                            <div class="box-bottom-right fragment" data-fragment-index="3"><span class="lime bold">Sensors</span><br>Eyes, ears, nose, tongue, skin</div>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_terms">
+                    <section id="env_type">
+                        <h1>Environment</h1>
+                        <ul>
+                            <li>Environment comes with many different properties</li>
+                            <li>These properties influence the choice of AI architecture we use to build agents</li>
+                        </ul>
+                    </section>
+
+                    <section id="observability">
+                        <h1>Observability</h1>
+                        <ul>
+                            <li class="fragment"><span class="purple bold">Fully observable</span>: the agent's sensors give it full information about the state of the environment</li>
+                            <li class="fragment"><span class="lime bold">Partially observable</span>: some aspects of the environment state are not visible to the agent's sensors</li>
+                            <li class="fragment"><span class="orange bold">E.g.</span>: a chess game is fully observable, a poker game is partially observable</li>
+                        </ul>
+                    </section>
+
+                    <section id="agent_number">
+                        <h1>Number of Agents</h1>
+                        <ul>
+                            <li class="fragment"><span class="red bold">Single agent</span>: agent is the only on in the environment</li>
+                            <li class="fragment"><span class="blue bold">Multi-agent</span>: there is more than one agent</li>
+                            <li class="fragment"><span class="orange bold">Cooperative</span>: all agents share the same performance measure</li>
+                            <li class="fragment"><span class="pink bold">Competitive</span>: agents performance measures are in opposition to each other (i.e. if one agent "wins", another "loses")</li>
+                        </ul>
+                    </section>
+
+                    <section id="determinisim">
+                        <h1>Determinism</h1>
+                        <ul>
+                            <li class="fragment"><span class="purple bold">Deterministic</span>: the next state of the environment is completely determined by the current state and by the agent's action</li>
+                            <li class="fragment"><span class="cyan bold">Stochastic</span>: there is some aspect of randomness in determining the next state of the environment</li>
+                            <li class="fragment"><span class="orange bold">E.g.</span>: Chess is deterministic; any board game involving dice rolls or random card draws is stochastic</li>
+                        </ul>
+                    </section>
+
+                    <section id="dynamicity">
+                        <h1>Dynamicity</h1>
+                        <ul>
+                            <li class="fragment"><span class="lime bold">Static</span>: the environment does not change while the agent is deliberating</li>
+                            <li class="fragment"><span class="skyblue bold">Dynamic</span>: the environment changes constantly</li>
+                            <li class="fragment"><span class="purple bold">E.g.</span>: most board games are static while most (non turn-based) video games are dynamic</li>
+                        </ul>
+                    </section>
+
+                    <section id="discreteness">
+                        <h1>Discreteness</h1>
+                        <ul>
+                            <li class="fragment"><span class="skyblue bold">Discrete</span>: time, percepts, and actions are all discrete (from a finite set of possibilities or "integer values")</li>
+                            <li class="fragment"><span class="golden bold">Continuous</span>: at least one of these is not discrete ("float values")</li>
+                            <li class="fragment">Continuous problems are hard so we sometimes <span class="yellow">discretise</span> them</li>
+                        </ul>
+                    </section>
+
+                    <section id="known_unknown">
+                        <h1>Known or Unknown</h1>
+                        <ul>
+                            <li class="fragment">Are all the details of the environment <span class="red">known</span> to the AI designer?</li>
+                            <li class="fragment">For a game or simulation: probably <span class="orange">yes</span> (unless someone else made it and we don't have the source code)</li>
+                            <li class="fragment">For the real world: technically <span class="cyan">no</span> (but we have physics, sociology, economics, etc to give us good approximations)</li>
+                        </ul>
+                    </section>
+
+                    <section id="agents_ai">
+                        <h1>Agents and AI</h1>
+                        <ul>
+                            <li class="fragment">The ideas of agents and environments are a useful frame for designing AI</li>
+                            <li class="fragment">All(?) AI problems can be expressed in terms of <q class="pink">creating an agent that optimises some performance measure in some environment</q></li>
+                            <li class="fragment">Agent design boils down to: given a <span class="green">percept</span> (and possibly some <span class="orange">memory</span> of past percepts/actions), choose the best <span class="cyan">action</span> to take now</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_rule_based_ai">
+
+                    <section id="rule_based">
+                        <h1 class="r-frame-text">Rule-based AI</h1>
+                    </section>
+
+                    <section id="rule_based_ai">
+                        <h1>Rule-based AI</h1>
+                        <ul>
+                            <li class="fragment">Generally <span class="purple">reactive</span> to the state of the world</li>
+                            <li class="fragment">Based on <code class="cyan">if-then</code> triggers, basic <span class="orange">calculations</span>, etc.</li>
+                            <li class="fragment">Generally hand-coded and only modifiable by a programmer</li>
+                        </ul>
+                    </section>
+
+                    <section id="case_pac_man" data-background="img/pac_man.png">
+                        <div style="background-color: black; opacity: 80%;">
+                            <h1>Case Study: Ghosts in Pac-Man</h1>
+                            <ul>
+                                <li class="fragment">Full details: <a href="http://gameinternals.com/understanding-pac-man-ghost-behavior" target="_blank">http://gameinternals.com/understanding-pac-man-ghost-behavior</a></li>
+                                <li class="fragment">Each ghost has 3 states
+                                    <ul>
+                                        <li><span class="red">Chase</span>: head for a specific position</li>
+                                        <li><span class="blue">Scatter</span>: head for a specific corner</li>
+                                        <li><span class="green">Frightened</span>: move randomly</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="ghost">
+                        <h1>Ghost "personalities"</h1>
+                        <ul>
+                            <li class="fragment"><span class="red">Red ghost</span>: aim for Pac-Man</li>
+                            <li class="fragment"><span class="pink">Pink ghost</span>: aim for 2 spaces ahead of Pac-Man</li>
+                            <li class="fragment"><span class="blue">Blue ghost</span>: aim for position on the line between red ghost and 2 spaces ahead of Pac-Man</li>
+                            <li class="fragment"><span class="orange">Orange ghost</span>: aim for Pac-Man until 8 spaces away, then aim for corner</li>
+                        </ul>
+                    </section>
+
+                    <section id="ghost_move">
+                        <h1>Ghost Movement</h1>
+                        <ul>
+                            <li class="fragment">No pathfinding - greedily move towards target</li>
+                            <li class="fragment">Can only change direction at an intersection</li>
+                            <li class="fragment">Cannot reverse or stay still</li>
+                            <li class="fragment">Therefore cannot get stuck, despite imperfect pathfinding</li>
+                        </ul>
+                    </section>
+
+                    <section id="pac_man" data-background-iframe="https://pacman.cc/">
+                        <h1 class="hidden">PAC-MAN Example</h1>
+                    </section>
+
+                    <section id="ghost_behaviour">
+                        <h1>Ghost Behaviour</h1>
+                        <ul>
+                            <li>Behaviour rules are very simple</li>
+                            <li>However, the combination of them leads to interesting gameplay and illusion of personality</li>
+                        </ul>
+                    </section>
+
+                    <section id="design_lesson">
+                        <h1>Design Lessons</h1>
+                        <ul>
+                            <li>AI doesn't have to be complicated</li>
+                            <li>Simple AI, when interacting with a player and each other, can give engaging results</li>
+                            <li>Bugs in AI don't alway matter ...</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_fsm">
+
+                    <section id="fsm_title">
+                        <h1 class="r-frame-text">Finite State Machines</h1>
+                    </section>
+
+                    <section id="fsm">
+                        <h1>Finite State Machines (FSM)</h1>
+                        <ul>
+                            <li class="fragment">A <span class="orange">FSM</span> consists of:
+                                <ul>
+                                    <li>A set of <span class="blue">states</span>, and</li>
+                                    <li><span class="lime">Transitions</span> between states</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">At any given time, the FSM is in a <span class="blue">single state</span></li>
+                            <li class="fragment"><span class="pink">Inputs</span> or <span class="golden">events (percepts)</span> can cause the FSM to transition to a different state</li>
+                            <li class="fragment">Which state the FSM is in dictates what <span class="lime">actions</span> the agent takes</li>
+                        </ul>
+                    </section>
+
+                    <section id="transition">
+                        <h1>State Transition Diagrams</h1>
+                        <img class="r-stretch" src="img/fsm.png" alt="FSM state transition diagram"><br>
+                        <ul>
+                            <li>FSMs are often drawn as <span class="yellow">state transition diagrams</span></li>
+                            <li>Similar to <span class="cyan">flowcharts</span> and certain types of <span class="purple">UML diagram</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="fms_use">
+                        <h1>Other Uses of FSMs</h1>
+                        <div class="text-left">
+                            <p>As well as AI behaviours, FSMs may also be used for:</p>
+                            <ul>
+                                <li>Animation</li>
+                                <li>UI menu systems</li>
+                                <li>Dialogue trees</li>
+                                <li>Token parsing</li>
+                                <li>...</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="implement_fsm">
+                        <h1>Implementing FSMs</h1>
+                        <ul>
+                            <li class="fragment">Implementation needs to keep track of current state and execute some code dependent on the state (the code may change the current state)</li>
+                            <li class="fragment"><span class="golden">Most common approach</span>: a big <code class="purple">switch-case</code> statement, with an <code class="yellow">enum</code> type for the state</li>
+                            <li class="fragment"><span class="golden">Object-oriented approach</span>: a <code class="blue">State</code> class, which your FSM states inherit from</li>
+                            <li class="fragment"><span class="golden">Functional approach</span>: represent state by a function delegate</li>
+                            <li class="fragment"><span class="golden">Coroutine approach</span>: encode your FSM logic as a procedure which runs as a coroutine (requires either refactoring logic into structured loops or using <code class="lime">goto</code>)</li>
+                        </ul>
+                    </section>
+
+                    <section id="hierach_fsm">
+                        <h1>Hierarchical FSMs</h1>
+                        <img class="r-stretch" src="img/hfsm.png" alt="Hierarchical FSMs"><br>
+                        <ul>
+                            <li>An FSM with <code class="italic cyan">N</code> states has potentially <code class="italic skyblue">N<sup>2</sup></code>
+                                transitions</li>
+                            <li>Designing complex behaviour with FSMs quickly gets
+                                unwieldy</li>
+                            <li>Hierarchical FSMs allow to group states into
+                                <span class="lime">super-states</span> to simplify defining transitions
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="use_fsm">
+                        <h1>Should you use FSMs?</h1>
+                        <ul>
+                            <li>FSMs are useful for designing simple AI behaviours</li>
+                            <li>Historically an important technique for game AI</li>
+                            <li>However, other techniques such as behaviour trees are more flexible and better suited to designing complex behaviours</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_behaviour_tree">
+
+                    <section id="bt_title">
+                        <h1 class="r-frame-text">Behaviour Trees</h1>
+                    </section>
+
+                    <section id="bt">
+                        <h1>Behaviour Trees (BTs)</h1>
+                        <ul>
+                            <li class="fragment">A <span class="yellow">hierarchical</span> model of decision making</li>
+                            <li class="fragment">Allow <span class="blue">complex behaviours</span> to be built up from <span class="cyan">simple components</span></li>
+                            <li class="fragment">Allow for <span class="purple">more complex</span> behaviours than FSMs</li>
+                            <li class="fragment">First used in <span class="lime">Halo 2</span> (2005), now used extensively</li>
+                            <li class="fragment">Also used in robotics and other non-game AI applications</li>
+                        </ul>
+                    </section>
+
+                    <section id="use_bt">
+                        <h1>Using BTs</h1>
+                        <ul>
+                            <li>Fairly easy to implement; plenty of resources online</li>
+                            <li><span class="red">Unreal</span>: an advanced BT system is built it</li>
+                            <li><span class="cyan">Unity</span>: numerous free and paid options on the Asset Store <span class="fragment pink">e.g. Behavior Machine, Behavior Designer, Behave, RAIN</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="bt_basics">
+                        <h1>BT Basics</h1>
+                        <ul>
+                            <li class="fragment">A BT is a <span class="greem">tree</span> of <span class="purple">nodes</span></li>
+                            <li class="fragment">On each game update (i.e. each frame), the root node is <span class="blue">ticked</span>
+                                <ul>
+                                    <li>When a node is ticked, it might cause some or all of its <span class="lime">children</span> to tick as well</li>
+                                    <li>So ticks propagate down the tree from the root</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">A ticked node returns one of three <span class="orange">statuses</span>:
+                                <ul>
+                                    <li>Success</li>
+                                    <li>Running</li>
+                                    <li>Failure</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">"Running" status allows nodes to represent operations that <span class="blue">last multiple frames</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="blackboard">
+                        <h1>Blackboard</h1>
+                        <ul>
+                            <li class="fragment">It is often useful to <span class="lime">share</span> data between nodes</li>
+                            <li class="fragment">A <span class="yellow">blackboard</span> (sometimes called a <span class="pink">data context</span>) allows this</li>
+                            <li class="fragment">Blackboard defines <span class="skyblue">variables</span>, which can be <span class="cyan">read</span> and <span class="red">written</span> by nodes</li>
+                            <li class="fragment">Blackboard can be <span class="purple">local</span> to the AI agent, <span class="golden">shared</span> between several agents, or <span class="yellow">global</span> to all agents</li>
+                            <li class="fragment">Note: shared blackboards mean that your AI has "<span class="bold italic lime">telepathy</span>" - this may or may not be desirable!</li>
+                        </ul>
+                    </section>
+
+                    <section id="bt_example">
+                        <h1>BTs in The Division</h1>
+                        <div class="row no-margin-top no-margin-bottom r-stretch">
+                            <div class="col-50 no-margin-top"><img class="img-height-400 img-enhance" src="img/div1.png" alt="division behaviour tree"></div>
+                            <div class="col-50 no-margin-top"><img class="img-height-400 img-enhance" src="img/div2.png" alt="division behaviour tree"></div>
+                        </div>
+                        <br><a href="https://www.gdcvault.com/play/1023382/" target="_blank">https://www.gdcvault.com/play/1023382/</a>
+                        <br>AI Behavior Editing and Debugging in "Tom Clancy's The Division"
+                    </section>
+                </section>
+
+                <section id="chap_workshop">
+
+                    <section id="workshop">
+                        <h1 class="r-frame-text">Workshop</h1>
+                    </section>
+
+                    <section id="pacman-peas">
+                        <h1 class="hidden">PAC-MAN Game</h1>
+                        <div class="box-top-left fragment"><span class="red bold">Performance</span><br>Score as much as you can</div>
+                        <div class="box-top-right fragment"><span class="orange bold">Environment</span><br>Game board</div>
+                        <img class="r-stretch" src="img/pac_man.png" alt="PAC-MAN game">
+                        <div class="box-bottom-left fragment"><span class="purple bold">Actuators</span><br>Move (left/right/up/down)</div>
+                        <div class="box-bottom-right fragment"><span class="lime bold">Sensors</span><br>The map<br>Ghosts, dots</div>
+                    </section>
+
+                    <section id="sensing">
+                        <h1>Simple vs. Complex Rules</h1>
+                        <ul>
+                            <li>Try to increase the complexity of the game gradually</li>
+                            <li>Think carefully while defining new rules for ghosts</li>
+                            <li>Implement different behaviours for ghosts</span></li>
+                            <li>Pure Python + 3rd party libs</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                    </section>
+
+                    <section id="flowchart" data-visibility="hidden">
+                        <h3>Flowchart Example</h3>
+                        <div class="mermaid">
+                            <pre>
+                              %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                              flowchart LR
+                                Selector --> A
+                                Selector --> B
+                                Selector --> Sequence
+                                Sequence --> C
+                                Sequence --> D
+                            </pre>
+                        </div>
+                    </section>
+
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/include.js"></script>
+
+    </body>
+
+</html>

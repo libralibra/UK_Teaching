@@ -34,7 +34,7 @@ document.write(`
 <script src="../../../assets/plugin/customcontrols/plugin.js"></script>
 
 <!-- appearance for text and image animation like ppt, not ready yet -->
-<!-- <script src="../../../assets/plugin/appearance/appearance.js"></script> -->
+<script src="../../../assets/plugin/appearance/appearance.js"></script>
 
 <!-- vertical deck indicator: verticator -->
 <script src="../../../assets/plugin/verticator/verticator.js"></script>

@@ -40,7 +40,7 @@ Reveal.initialize({
     // 2. wait for block in speaker mode fix
     plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
         RevealMenu, RevealChalkboard, RevealCustomControls, Verticator,
-        RevealMath.KaTeX, RevealPointer, RevealMermaid],
+        RevealMath.KaTeX, RevealPointer, RevealMermaid, Appearance],
 
     // show controls
     controls: true,
@@ -119,6 +119,29 @@ Reveal.initialize({
         flowchart: {
             // curve will turn off flexible line
             curve: 'linear',
+        },
+    },
+
+    // appearance global control
+    appearance: {
+        // Change this (true/false) if you want to see the shown elements if you go back.
+        hideagain: true,
+        // Base time in ms between appearances.
+        delay: 10,
+        // slidetransitionend(default , after the transition)
+        // slidechanged(with the transition)
+        // auto(with transition, on autoanimate slides)
+        appearevent: 'auto',
+        // Use this when you do not want to add classes to each item that you want to appear, and just let Appearance add animation classes to (all of) the provided elements in the presentation.
+        autoappear: true,
+        // These are the elements that autoappear will target. Each element has a selector and an animation class. If autoappear is off, the elements will still get animation if the section contains a data-autoappear attribute.
+        // check https://animate.style/ for more styles
+        autoelements: {
+            "ul li": { "animation": "animate__flipInX", "speed": "faster", "delay": "100" },
+            'ol li': {
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '100'
+            },
+            // 'img': 'animate__fadeIn',
         },
     },
 

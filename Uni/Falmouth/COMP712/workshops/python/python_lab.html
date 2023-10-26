@@ -1,608 +1,672 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>COMP712&colon; Classical Artificial Intelligence</title>
-        <style>
-/* From extension vscode.github */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>python_lab</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 
-.vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
-	display: none;
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
 }
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
 
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-<style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
-        <style>
-.task-list-item {
-    list-style-type: none;
-}
-
-.task-list-item-checkbox {
-    margin-left: -20px;
-    vertical-align: middle;
-    pointer-events: none;
-}
-</style>
-        
-    </head>
-    <body class="vscode-body vscode-light">
-        <h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</h1>
-<p>Dr Daniel Zhang @ Falmouth University<br>
+  <style type="text/css">html {font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%}body {margin: 0;background-color: blanchedalmond;}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {display: block}audio,canvas,progress,video {display: inline-block;vertical-align: baseline}audio:not([controls]) {display: none;height: 0}[hidden],template {display: none}a {background: transparent}a:active,a:hover {outline: 0}abbr[title] {border-bottom: 1px dotted}b,strong {font-weight: bold}dfn {font-style: italic}h1 {font-size: 2em;margin: 0.67em 0}mark {background: #ff0;color: #000}small {font-size: 80%}sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline}sup {top: -0.5em}sub {bottom: -0.25em}img {border: 0}svg:not(:root) {overflow: hidden}figure {margin: 1em 40px}hr {-moz-box-sizing: content-box;box-sizing: content-box;height: 0}pre {overflow: auto}code,kbd,pre,samp {font-family: monospace, monospace;font-size: 1em}button,input,optgroup,select,textarea {color: inherit;font: inherit;margin: 0}button {overflow: visible}button,select {text-transform: none}button,html input[type="button"],input[type="reset"],input[type="submit"] {-webkit-appearance: button;cursor: pointer}button[disabled],html input[disabled] {cursor: default}button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0}input {line-height: normal}input[type="checkbox"],input[type="radio"] {box-sizing: border-box;padding: 0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button {height: auto}input[type="search"] {-webkit-appearance: textfield;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;box-sizing: content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none}fieldset {border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em}legend {border: 0;padding: 0}textarea {overflow: auto}optgroup {font-weight: bold}table {border-collapse: collapse;border-spacing: 0}td,th {padding: 0}body,code,tr.odd,tr.even,figure {background-image: url("data:image/png;base64,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")}body {font-family: "Libre Baskerville", Baskerville, Georgia, serif;background-color: #f8f8f8;color: #111;line-height: 1.3;text-align: justify;-moz-hyphens: auto;-ms-hyphens: auto;-webkit-hyphens: auto;hyphens: auto}@media (max-width: 400px) {body {font-size: 12px;margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 15px}}@media (min-width: 401px) and (max-width: 600px) {body {font-size: 14px;margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 15px}}@media (min-width: 601px) and (max-width: 900px) {body {font-size: 15px;margin-left: 100px;margin-right: 100px;margin-top: 20px;margin-bottom: 25px}}@media (min-width: 901px) and (max-width: 1800px) {body {font-size: 17px;margin-left: 200px;margin-right: 200px;margin-top: 30px;margin-bottom: 25px;max-width: 800px}}@media (min-width: 1801px) {body {font-size: 18px;margin-left: 20%;margin-right: 20%;margin-top: 30px;margin-bottom: 25px;max-width: 1000px}}p {margin-top: 10px;margin-bottom: 18px}em {font-style: italic}strong {font-weight: bold}h1,h2,h3,h4,h5,h6 {font-weight: bold;padding-top: 0.25em;margin-bottom: 0.15em}header {line-height: 2.475em;padding-bottom: 0.7em;border-bottom: 1px solid #bbb;margin-bottom: 1.2em}header>h1 {border: none;padding: 0;margin: 0;font-size: 225%}header>h2 {border: none;padding: 0;margin: 0;font-style: normal;font-size: 175%}header>h3 {padding: 0;margin: 0;font-size: 125%;font-style: italic}header+h1 {border-top: none;padding-top: 0px}h1 {border-top: 1px solid #bbb;padding-top: 15px;font-size: 150%;margin-bottom: 10px}h1:first-of-type {border: none}h2 {font-size: 125%;font-style: italic}h3 {font-size: 105%;font-style: italic}hr {border: 0px;border-top: 1px solid #bbb;width: 100%;height: 0px}hr+h1 {border-top: none;padding-top: 0px}ul,ol {font-size: 90%;margin-top: 10px;margin-bottom: 15px;padding-left: 30px}ul {list-style: circle}ol {list-style: decimal}ul ul,ol ol,ul ol,ol ul {font-size: inherit}li {margin-top: 5px;margin-bottom: 7px}q,blockquote,dd {font-style: italic;font-size: 90%}blockquote,dd {quotes: none;border-left: 0.35em #bbb solid;padding-left: 1.15em;margin: 0 1.5em 0 0}blockquote blockquote,dd blockquote,blockquote dd,dd dd,ol blockquote,ol dd,ul blockquote,ul dd,blockquote ol,dd ol,blockquote ul,dd ul {font-size: inherit}a,a:link,a:visited,a:hover {color: inherit;text-decoration: none;border-bottom: 1px dashed #111}a:hover,a:link:hover,a:visited:hover,a:hover:hover {border-bottom-style: solid}a.footnoteRef,a:link.footnoteRef,a:visited.footnoteRef,a:hover.footnoteRef {border-bottom: none;color: #666}code {font-family: "Source Code Pro", "Consolas", "Monaco", monospace;font-size: 85%;background-color: #ddd;border: 1px solid #bbb;padding: 0px 0.15em 0px 0.15em;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px}pre {margin-right: 1.5em;display: block}pre>code {display: block;font-size: 70%;padding: 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;overflow-x: auto}blockquote pre,dd pre,ul pre,ol pre {margin-left: 0;margin-right: 0}blockquote pre>code,dd pre>code,ul pre>code,ol pre>code {font-size: 77.77778%}caption,figcaption {font-size: 80%;font-style: italic;text-align: right;margin-bottom: 5px}caption:empty,figcaption:empty {display: none}table {width: 100%;margin-top: 1em;margin-bottom: 1em}table+h1 {border-top: none}tr td,tr th {padding: 0.2em 0.7em}tr.header {border-top: 1px solid #222;border-bottom: 1px solid #222;font-weight: 700}tr.odd {background-color: #eee}tr.even {background-color: #ccc}tbody:last-child {border-bottom: 1px solid #222}dt {font-weight: 700}dt:after {font-weight: normal;content: ":"}dd {margin-bottom: 10px}figure {margin: 1.3em 0 1.3em 0;text-align: center;padding: 0px;width: 100%;background-color: #ddd;border: 1px solid #bbb;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;overflow: hidden}img {display: block;margin: 0px auto;padding: 0px;max-width: 100%}figcaption {margin: 5px 10px 5px 30px}.footnotes {color: #666;font-size: 70%;font-style: italic}.footnotes li p:last-child a:last-child {border-bottom: none}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="comp712-classical-artificial-intelligence">COMP712: Classical
+Artificial Intelligence</h1>
+<p>Dr Daniel Zhang @ Falmouth University<br />
 2023-2024 Study Block 1</p>
-<p><img src="data:image/png;base64,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" alt="Python Logo"></p>
-<p>Table of Contents</p>
-<ul>
-<li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
-<li><a href="#workshop-python-tutorial">Workshop: Python Tutorial</a>
-<ul>
-<li><a href="#python-basics">Python Basics</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#data-types">Data Types</a>
-<ul>
-<li><a href="#numeric-data-types">Numeric Data Types</a></li>
-<li><a href="#sequence">Sequence</a></li>
-<li><a href="#dictionaries">Dictionaries</a></li>
-<li><a href="#booleans">Booleans</a></li>
-</ul>
-</li>
-<li><a href="#flow-control">Flow Control</a>
-<ul>
-<li><a href="#conditional-statements">Conditional Statements</a></li>
-<li><a href="#loops">Loops</a></li>
-<li><a href="#control-statements">Control Statements</a></li>
-<li><a href="#exception-handling">Exception Handling</a></li>
-</ul>
-</li>
-<li><a href="#functions">Functions</a>
-<ul>
-<li><a href="#defining-a-function">Defining a Function</a></li>
-<li><a href="#calling-a-function">Calling a Function</a></li>
-<li><a href="#parameters-and-return-values">Parameters and Return Values</a></li>
-<li><a href="#default-parameters">Default Parameters</a></li>
-<li><a href="#variable-scope">Variable Scope</a></li>
-<li><a href="#docstrings">Docstrings</a></li>
-<li><a href="#lambda-functions"><em>Lambda Functions*</em></a></li>
-<li><a href="#function-recursion">Function Recursion</a></li>
-</ul>
-</li>
-<li><a href="#classes">Classes</a>
-<ul>
-<li><a href="#defining-a-class">Defining a Class</a></li>
-<li><a href="#creating-objects">Creating Objects</a></li>
-<li><a href="#accessing-attributes-and-methods">Accessing Attributes and Methods</a></li>
-<li><a href="#inheritance">Inheritance</a></li>
-<li><a href="#encapsulation">Encapsulation</a></li>
-<li><a href="#polymorphism">Polymorphism</a></li>
-</ul>
-</li>
-<li><a href="#file-operations">File Operations</a>
-<ul>
-<li><a href="#opening-a-file">Opening a File</a></li>
-<li><a href="#reading-from-a-file">Reading from a File</a></li>
-<li><a href="#writing-to-a-file">Writing to a File</a></li>
-<li><a href="#closing-a-file">Closing a File</a></li>
-<li><a href="#using-with-statement">Using 'with' Statement</a></li>
-<li><a href="#reading-and-writing-binary-files">Reading and Writing Binary Files</a></li>
-<li><a href="#handling-exceptions">Handling Exceptions</a></li>
-</ul>
-</li>
-<li><a href="#package-management">Package Management</a>
-<ul>
-<li><a href="#installing-packages">Installing Packages</a></li>
-<li><a href="#listing-installed-packages">Listing Installed Packages</a></li>
-<li><a href="#creating-a-requirementstxt-file">Creating a <code>requirements.txt</code> File</a></li>
-<li><a href="#installing-packages-from-a-requirementstxt-file">Installing Packages from a <code>requirements.txt</code> File</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#further-reading">Further Reading</a></li>
-</ul>
+<figure>
+<img src="python_logo.png" alt="Python Logo" />
+<figcaption aria-hidden="true">Python Logo</figcaption>
+</figure>
+<p>Table of Contents - <a href="#comp712-classical-artificial-intelligence">COMP712: Classical
+Artificial Intelligence</a> - <a href="#workshop-python-tutorial">Workshop: Python Tutorial</a> - <a href="#python-basics">Python Basics</a> - <a href="#installation">Installation</a> - <a href="#data-types">Data
+Types</a> - <a href="#numeric-data-types">Numeric Data Types</a> - <a href="#sequence">Sequence</a> - <a href="#dictionaries">Dictionaries</a>
+- <a href="#booleans">Booleans</a> - <a href="#flow-control">Flow
+Control</a> - <a href="#conditional-statements">Conditional
+Statements</a> - <a href="#loops">Loops</a> - <a href="#control-statements">Control Statements</a> - <a href="#exception-handling">Exception Handling</a> - <a href="#functions">Functions</a> - <a href="#defining-a-function">Defining a Function</a> - <a href="#calling-a-function">Calling a Function</a> - <a href="#parameters-and-return-values">Parameters and Return Values</a> -
+<a href="#default-parameters">Default Parameters</a> - <a href="#variable-scope">Variable Scope</a> - <a href="#docstrings">Docstrings</a> - <a href="#lambda-functions"><em>Lambda Functions*</em></a> - <a href="#function-recursion">Function Recursion</a> - <a href="#classes">Classes</a> - <a href="#defining-a-class">Defining a
+Class</a> - <a href="#creating-objects">Creating Objects</a> - <a href="#accessing-attributes-and-methods">Accessing Attributes and
+Methods</a> - <a href="#inheritance">Inheritance</a> - <a href="#encapsulation">Encapsulation</a> - <a href="#polymorphism">Polymorphism</a> - <a href="#file-operations">File
+Operations</a> - <a href="#opening-a-file">Opening a File</a> - <a href="#reading-from-a-file">Reading from a File</a> - <a href="#writing-to-a-file">Writing to a File</a> - <a href="#closing-a-file">Closing a File</a> - <a href="#using-with-statement">Using ‘with’ Statement</a> - <a href="#reading-and-writing-binary-files">Reading and Writing Binary
+Files</a> - <a href="#handling-exceptions">Handling Exceptions</a> - <a href="#package-management">Package Management</a> - <a href="#installing-packages">Installing Packages</a> - <a href="#listing-installed-packages">Listing Installed Packages</a> - <a href="#creating-a-requirementstxt-file">Creating a
+<code>requirements.txt</code> File</a> - <a href="#installing-packages-from-a-requirementstxt-file">Installing
+Packages from a <code>requirements.txt</code> File</a> - <a href="#further-reading">Further Reading</a></p>
 <h1 id="workshop-python-tutorial">Workshop: Python Tutorial</h1>
-<p>In addition to our regular teaching sessions, we will be providing workshop materials utilising the Python programming language. These resources will complement the work you do in COMP712.</p>
+<p>In addition to our regular teaching sessions, we will be providing
+workshop materials utilising the Python programming language. These
+resources will complement the work you do in COMP712.</p>
 <h2 id="python-basics">Python Basics</h2>
-<p>Python is a lightweight, high-level, open-source, cross-platform, strongly-typed, and interpreted programming language.</p>
+<p>Python is a lightweight, high-level, open-source, cross-platform,
+strongly-typed, and interpreted programming language.</p>
 <ul>
-<li><strong>Light-weight:</strong> Python code typically has a small footprint. Basically, they are pure text.</li>
-<li><strong>High-level:</strong> It is more user-friendly and human-readable than low-level languages like C.</li>
-<li><strong>Open-source:</strong> Python source code is freely available.</li>
-<li><strong>Cross-platform:</strong> It is independent of the computer's hardware architecture. The same code works on Windows, Linux/Unix, and Mac.</li>
-<li><strong>Strongly-typed:</strong> Although variables don’t have types, like you might be familiar with in other languages, values do.</li>
-<li><strong>Interpreted:</strong> Python does not require compilation; it is interpreted at runtime.</li>
+<li><strong>Light-weight:</strong> Python code typically has a small
+footprint. Basically, they are pure text.</li>
+<li><strong>High-level:</strong> It is more user-friendly and
+human-readable than low-level languages like C.</li>
+<li><strong>Open-source:</strong> Python source code is freely
+available.</li>
+<li><strong>Cross-platform:</strong> It is independent of the computer’s
+hardware architecture. The same code works on Windows, Linux/Unix, and
+Mac.</li>
+<li><strong>Strongly-typed:</strong> Although variables don’t have
+types, like you might be familiar with in other languages, values
+do.</li>
+<li><strong>Interpreted:</strong> Python does not require compilation;
+it is interpreted at runtime.</li>
 </ul>
-<p>In this session, I won't delve extensively into Python basics. As master's students, you should be able to grasp the fundamentals quickly. For detailed Python materials, please refer to the resources listed at the bottom of this guide, which are well-written and comprehensive.</p>
+<p>In this session, I won’t delve extensively into Python basics. As
+master’s students, you should be able to grasp the fundamentals quickly.
+For detailed Python materials, please refer to the resources listed at
+the bottom of this guide, which are well-written and comprehensive.</p>
 <h2 id="installation">Installation</h2>
-<p>Python should already be installed on university machines. If you are using your own device, you can download the installation file from the <a href="https://www.python.org/">official Python website</a>.</p>
+<p>Python should already be installed on university machines. If you are
+using your own device, you can download the installation file from the
+<a href="https://www.python.org/">official Python website</a>.</p>
 <ul>
-<li>
-<p><strong>Note:</strong> To ensure a successful installation, open a <code>Command Window</code> and type <code>python</code>. You should receive a response similar to:</p>
-<pre><code class="language-python">C:\&gt;python
-Python <span class="hljs-number">3.10</span><span class="hljs-number">.11</span> (tags/v3<span class="hljs-number">.10</span><span class="hljs-number">.11</span>:7d4cc5a, Apr  <span class="hljs-number">5</span> <span class="hljs-number">2023</span>, <span class="hljs-number">00</span>:<span class="hljs-number">38</span>:<span class="hljs-number">17</span>) [MSC v<span class="hljs-number">.1929</span> <span class="hljs-number">64</span> bit (AMD64)] on win32
-<span class="hljs-type">Type</span> <span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-string">&quot;copyright&quot;</span>, <span class="hljs-string">&quot;credits&quot;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;license&quot;</span> <span class="hljs-keyword">for</span> more information.
-&gt;&gt;&gt;
-</code></pre>
-</li>
+<li><p><strong>Note:</strong> To ensure a successful installation, open
+a <code>Command Window</code> and type <code>python</code>. You should
+receive a response similar to:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>C:\<span class="op">&gt;</span>python</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Python <span class="fl">3.10.11</span> (tags<span class="op">/</span>v3<span class="fl">.10.11</span>:<span class="dv">7</span><span class="er">d4cc5a</span>, Apr  <span class="dv">5</span> <span class="dv">2023</span>, <span class="dv">00</span>:<span class="dv">38</span>:<span class="dv">17</span>) [MSC v<span class="fl">.1929</span> <span class="dv">64</span> bit (AMD64)] on win32</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Type <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> <span class="kw">or</span> <span class="st">&quot;license&quot;</span> <span class="cf">for</span> more information.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div></li>
 </ul>
-<p>Certainly! Here's a simple introduction to Python datatypes in Markdown format with code examples:</p>
+<p>Certainly! Here’s a simple introduction to Python datatypes in
+Markdown format with code examples:</p>
 <h2 id="data-types">Data Types</h2>
-<p>In Python, data types are used to categorise and manage different types of data. Python offers several built-in data types that help you work with various kinds of information. Here are some of the most commonly used data types in Python:</p>
+<p>In Python, data types are used to categorise and manage different
+types of data. Python offers several built-in data types that help you
+work with various kinds of information. Here are some of the most
+commonly used data types in Python:</p>
 <h3 id="numeric-data-types">Numeric Data Types</h3>
-<p><strong>Integers</strong>
-Integers (<code>int</code>) represent whole numbers. They can be positive or negative. Numerical operations such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code> are supported for calculations.</p>
+<p><strong>Integers</strong> Integers (<code>int</code>) represent whole
+numbers. They can be positive or negative. Numerical operations such as
+<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and
+<code>%</code> are supported for calculations.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>x = <span class="hljs-number">5</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>y = -<span class="hljs-number">10</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>x+y
--<span class="hljs-number">5</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>x*y
--<span class="hljs-number">50</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>
-</code></pre>
-<p><strong>Floating-Point Numbers</strong>
-Floating-point numbers (<code>float</code>) represent real numbers with a decimal point.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x<span class="op">+</span>y</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">5</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x<span class="op">*</span>y</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">50</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre></div>
+<p><strong>Floating-Point Numbers</strong> Floating-point numbers
+(<code>float</code>) represent real numbers with a decimal point.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>pi = <span class="hljs-number">3.14159</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>radius = <span class="hljs-number">98.6</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>pi * radius
-<span class="hljs-number">309.76077399999997</span>
-&gt;&gt;&gt;
-</code></pre>
-<p><strong>Strings</strong>
-Strings (<code>str</code>) are sequences of characters enclosed in single (<code>'</code> <code>'</code>), double (<code>&quot;</code> <code>&quot;</code>), or triple (<code>'''</code> <code>'''</code> or <code>&quot;&quot;&quot;</code> <code>&quot;&quot;&quot;</code>) quotes. The content of string can be displayed using <code>print</code> function. The operator <code>+</code> can be used to concatenate multiple strings.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pi <span class="op">=</span> <span class="fl">3.14159</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> radius <span class="op">=</span> <span class="fl">98.6</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pi <span class="op">*</span> radius</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">309.76077399999997</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
+<p><strong>Strings</strong> Strings (<code>str</code>) are sequences of
+characters enclosed in single (<code>&#39;</code> <code>&#39;</code>), double
+(<code>&quot;</code> <code>&quot;</code>), or triple (<code>&#39;&#39;&#39;</code>
+<code>&#39;&#39;&#39;</code> or <code>&quot;&quot;&quot;</code> <code>&quot;&quot;&quot;</code>) quotes. The
+content of string can be displayed using <code>print</code> function.
+The operator <code>+</code> can be used to concatenate multiple
+strings.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>name = <span class="hljs-string">&#x27;John&#x27;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>message = <span class="hljs-string">&quot;Hello, World!&quot;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>multi_line = <span class="hljs-string">&#x27;&#x27;&#x27;The first line
-<span class="hljs-meta">... </span>The second line&#x27;&#x27;&#x27;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(multi_line)
-The first line
-The second line
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(name + <span class="hljs-string">&#x27;, &#x27;</span> + message)
-John, Hello, World!
-&gt;&gt;&gt;
-</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> name <span class="op">=</span> <span class="st">&#39;John&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> message <span class="op">=</span> <span class="st">&quot;Hello, World!&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> multi_line <span class="op">=</span> <span class="st">&#39;&#39;&#39;The first line</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">... The second line&#39;&#39;&#39;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(multi_line)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>The first line</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>The second line</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(name <span class="op">+</span> <span class="st">&#39;, &#39;</span> <span class="op">+</span> message)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>John, Hello, World<span class="op">!</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="sequence">Sequence</h3>
-<p><strong>Lists</strong>
-Lists (<code>list</code>) are ordered collections of items. They can contain elements of different data types. You can use the 0-based index to access certain item in the list.</p>
+<p><strong>Lists</strong> Lists (<code>list</code>) are ordered
+collections of items. They can contain elements of different data types.
+You can use the 0-based index to access certain item in the list.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>fruits = [<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;cherry&#x27;</span>]
-<span class="hljs-meta">&gt;&gt;&gt; </span>numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
-<span class="hljs-meta">&gt;&gt;&gt; </span>numbers[<span class="hljs-number">0</span>]
-<span class="hljs-number">1</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>fruits[<span class="hljs-number">2</span>]
-<span class="hljs-string">&#x27;cherry&#x27;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>fruits[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;grape&#x27;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>fruits
-[<span class="hljs-string">&#x27;grape&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;cherry&#x27;</span>, <span class="hljs-string">&#x27;pear&#x27;</span>]
-&gt;&gt;&gt;
-</code></pre>
-<p>Two list can be combined together using operator <code>+</code>, which is a shorthand of the normal <code>extend()</code> function (note: <code>extend()</code> doesn't return a new list, the change happens in-place). Individual items can be added to list using <code>append()</code> function.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>fruits = [<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;cherry&#x27;</span>]
-<span class="hljs-meta">&gt;&gt;&gt; </span>numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(fruits + numbers)
-[<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;cherry&#x27;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
-<span class="hljs-meta">&gt;&gt;&gt; </span>numbers.extend(fruits)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(numbers)
-[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;cherry&#x27;</span>]
-<span class="hljs-meta">&gt;&gt;&gt; </span>fruits.append(<span class="hljs-string">&#x27;pear&#x27;</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(fruits)
-[<span class="hljs-string">&#x27;apple&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;cherry&#x27;</span>, <span class="hljs-string">&#x27;pear&#x27;</span>]
-&gt;&gt;&gt;
-</code></pre>
-<p><strong>Tuples</strong>
-Tuples (<code>tuple</code>) are ordered collections like lists but are immutable (cannot be changed after creation). The item can be accessed in the same way as list. Notice the immutable property while trying to make change to the <code>tuple</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits <span class="op">=</span> [<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers[<span class="dv">0</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits[<span class="dv">2</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;cherry&#39;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;grape&#39;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;grape&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>, <span class="st">&#39;pear&#39;</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
+<p>Two list can be combined together using operator <code>+</code>,
+which is a shorthand of the normal <code>extend()</code> function (note:
+<code>extend()</code> doesn’t return a new list, the change happens
+in-place). Individual items can be added to list using
+<code>append()</code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits <span class="op">=</span> [<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(fruits <span class="op">+</span> numbers)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers.extend(fruits)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(numbers)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits.append(<span class="st">&#39;pear&#39;</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(fruits)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>, <span class="st">&#39;pear&#39;</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
+<p><strong>Tuples</strong> Tuples (<code>tuple</code>) are ordered
+collections like lists but are immutable (cannot be changed after
+creation). The item can be accessed in the same way as list. Notice the
+immutable property while trying to make change to the
+<code>tuple</code>.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>coordinates = (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span>colors = (<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span>colors[<span class="hljs-number">0</span>]
-<span class="hljs-string">&#x27;red&#x27;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>coordinates[<span class="hljs-number">1</span>]
-<span class="hljs-number">4</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>colors[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;yellow&#x27;</span>
-Traceback (most recent call last):
-  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
-TypeError: <span class="hljs-string">&#x27;tuple&#x27;</span> <span class="hljs-built_in">object</span> does <span class="hljs-keyword">not</span> support item assignment
-&gt;&gt;&gt;
-</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> coordinates <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> colors <span class="op">=</span> (<span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> colors[<span class="dv">0</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;red&#39;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> coordinates[<span class="dv">1</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> colors[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;yellow&#39;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: <span class="st">&#39;tuple&#39;</span> <span class="bu">object</span> does <span class="kw">not</span> support item assignment</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="dictionaries">Dictionaries</h3>
-<p>Dictionaries (<code>dict</code>) are collections of <code>key-value</code> pairs used to store data in an associative manner.</p>
+<p>Dictionaries (<code>dict</code>) are collections of
+<code>key-value</code> pairs used to store data in an associative
+manner.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>person = {<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">30</span>, <span class="hljs-string">&#x27;city&#x27;</span>: <span class="hljs-string">&#x27;New York&#x27;</span>}
-<span class="hljs-meta">&gt;&gt;&gt; </span>person[<span class="hljs-string">&#x27;name&#x27;</span>]
-<span class="hljs-string">&#x27;Alice&#x27;</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>person[<span class="hljs-string">&#x27;age&#x27;</span>]
-<span class="hljs-number">30</span>
-&gt;&gt;&gt;
-</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> person <span class="op">=</span> {<span class="st">&#39;name&#39;</span>: <span class="st">&#39;Alice&#39;</span>, <span class="st">&#39;age&#39;</span>: <span class="dv">30</span>, <span class="st">&#39;city&#39;</span>: <span class="st">&#39;New York&#39;</span>}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> person[<span class="st">&#39;name&#39;</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Alice&#39;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> person[<span class="st">&#39;age&#39;</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="booleans">Booleans</h3>
-<p>Booleans (<code>bool</code>) represent two values, <code>True</code> and <code>False</code>, used for logical operations. The logical operations <code>and</code> and <code>or</code> are supported between variables.</p>
+<p>Booleans (<code>bool</code>) represent two values, <code>True</code>
+and <code>False</code>, used for logical operations. The logical
+operations <code>and</code> and <code>or</code> are supported between
+variables.</p>
 <p>Example:</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>is_sunny = <span class="hljs-literal">True</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>is_raining = <span class="hljs-literal">False</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>is_sunny <span class="hljs-keyword">and</span> is_raining
-<span class="hljs-literal">False</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>is_sunny <span class="hljs-keyword">or</span> is_raining
-<span class="hljs-literal">True</span>
-&gt;&gt;&gt;
-</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_sunny <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_raining <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_sunny <span class="kw">and</span> is_raining</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_sunny <span class="kw">or</span> is_raining</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h2 id="flow-control">Flow Control</h2>
-<p>In Python, flow control statements allow you to control the execution of your code. You can make decisions, create loops, and handle exceptions using these constructs. Here are some essential flow control statements:</p>
+<p>In Python, flow control statements allow you to control the execution
+of your code. You can make decisions, create loops, and handle
+exceptions using these constructs. Here are some essential flow control
+statements:</p>
 <h3 id="conditional-statements">Conditional Statements</h3>
-<p><strong><code>if</code>, <code>elif</code>, and <code>else</code></strong></p>
-<p>Conditional statements allow you to execute different code blocks based on specified conditions.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>age = <span class="hljs-number">18</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> age &lt; <span class="hljs-number">18</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;You are a minor.&quot;</span>)
-<span class="hljs-meta">... </span><span class="hljs-keyword">elif</span> age == <span class="hljs-number">18</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;You just became an adult.&quot;</span>)
-<span class="hljs-meta">... </span><span class="hljs-keyword">else</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;You are an adult.&quot;</span>)
-...
-You just became an adult.
-&gt;&gt;&gt;
-</code></pre>
+<p><strong><code>if</code>, <code>elif</code>, and
+<code>else</code></strong></p>
+<p>Conditional statements allow you to execute different code blocks
+based on specified conditions.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> age <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;You are a minor.&quot;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>... <span class="cf">elif</span> age <span class="op">==</span> <span class="dv">18</span>:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;You just became an adult.&quot;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>... <span class="cf">else</span>:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;You are an adult.&quot;</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>You just became an adult.</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="loops">Loops</h3>
 <p><strong><code>for</code> Loop</strong></p>
-<p>A <code>for</code> loop iterates over a sequence (e.g., a list or range) and executes a block of code for each item.</p>
-<pre><code class="language-python">fruits = [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>]
-<span class="hljs-keyword">for</span> fruit <span class="hljs-keyword">in</span> fruits:
-    <span class="hljs-built_in">print</span>(fruit)
-</code></pre>
+<p>A <code>for</code> loop iterates over a sequence (e.g., a list or
+range) and executes a block of code for each item.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fruit <span class="kw">in</span> fruits:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(fruit)</span></code></pre></div>
 <p><strong><code>while</code> Loop</strong></p>
-<p>A <code>while</code> loop repeats a block of code as long as a condition is <code>True</code>.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>count = <span class="hljs-number">0</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">5</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Count:&quot;</span>, count)
-<span class="hljs-meta">... </span>    count += <span class="hljs-number">1</span>
-...
-Count: <span class="hljs-number">0</span>
-Count: <span class="hljs-number">1</span>
-Count: <span class="hljs-number">2</span>
-Count: <span class="hljs-number">3</span>
-Count: <span class="hljs-number">4</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>A <code>while</code> loop repeats a block of code as long as a
+condition is <code>True</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;Count:&quot;</span>, count)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>...     count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">0</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">1</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">2</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">3</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">4</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="control-statements">Control Statements</h3>
 <p><strong><code>break</code></strong></p>
-<p>The <code>break</code> statement is used to exit the current loop prematurely.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">if</span> number == <span class="hljs-number">5</span>:
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">break</span>
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(number)
-...
-<span class="hljs-number">0</span>
-<span class="hljs-number">1</span>
-<span class="hljs-number">2</span>
-<span class="hljs-number">3</span>
-<span class="hljs-number">4</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>The <code>break</code> statement is used to exit the current loop
+prematurely.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> number <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> number <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">break</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(number)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <p><strong><code>continue</code></strong></p>
-<p>The <code>continue</code> statement skips the rest of the current iteration and proceeds to the next one.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">if</span> number == <span class="hljs-number">2</span>:
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">continue</span>
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(number)
-...
-<span class="hljs-number">0</span>
-<span class="hljs-number">1</span>
-<span class="hljs-number">3</span>
-<span class="hljs-number">4</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>The <code>continue</code> statement skips the rest of the current
+iteration and proceeds to the next one.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> number <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> number <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">continue</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(number)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="exception-handling">Exception Handling</h3>
-<p><strong><code>try</code>, <code>except</code>, <code>else</code>, and <code>finally</code></strong></p>
+<p><strong><code>try</code>, <code>except</code>, <code>else</code>, and
+<code>finally</code></strong></p>
 <p>Exception handling helps you manage errors in your code.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">try</span>:
-<span class="hljs-meta">... </span>    result = <span class="hljs-number">10</span> / <span class="hljs-number">0</span>
-<span class="hljs-meta">... </span><span class="hljs-keyword">except</span> ZeroDivisionError:
-<span class="hljs-meta">... </span>    result = <span class="hljs-string">&quot;Error: Division by zero&quot;</span>
-<span class="hljs-meta">... </span><span class="hljs-keyword">else</span>:
-<span class="hljs-meta">... </span>    result = <span class="hljs-string">&quot;Result: &quot;</span> + <span class="hljs-built_in">str</span>(result)
-<span class="hljs-meta">... </span><span class="hljs-keyword">finally</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-built_in">print</span>(result)
-...
-Error: Division by zero
-&gt;&gt;&gt;
-</code></pre>
-<p>By using flow control statements in Python, you can create dynamic and flexible programs that can make decisions, repeat tasks, and handle errors gracefully.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">try</span>:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>...     result <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>... <span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>...     result <span class="op">=</span> <span class="st">&quot;Error: Division by zero&quot;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>... <span class="cf">else</span>:</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>...     result <span class="op">=</span> <span class="st">&quot;Result: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(result)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>... <span class="cf">finally</span>:</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(result)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>Error: Division by zero</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
+<p>By using flow control statements in Python, you can create dynamic
+and flexible programs that can make decisions, repeat tasks, and handle
+errors gracefully.</p>
 <h2 id="functions">Functions</h2>
-<p>Functions in Python are reusable blocks of code that perform specific tasks. They are essential for structuring and organising your code.</p>
+<p>Functions in Python are reusable blocks of code that perform specific
+tasks. They are essential for structuring and organising your code.</p>
 <h3 id="defining-a-function">Defining a Function</h3>
-<p>To define a function, use the <code>def</code> keyword followed by the function name and any parameters it should accept. The function's code block is indented.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;Hello, <span class="hljs-subst">{name}</span>!&quot;</span>
-...
-&gt;&gt;&gt;
-</code></pre>
+<p>To define a function, use the <code>def</code> keyword followed by
+the function name and any parameters it should accept. The function’s
+code block is indented.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> greet(name):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> <span class="ss">f&quot;Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="calling-a-function">Calling a Function</h3>
-<p>To use a function, call it by its name and provide any required arguments.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>greet(<span class="hljs-string">&quot;Alice&quot;</span>)
-<span class="hljs-string">&#x27;Hello, Alice!&#x27;</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>To use a function, call it by its name and provide any required
+arguments.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> greet(<span class="st">&quot;Alice&quot;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Hello, Alice!&#39;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="parameters-and-return-values">Parameters and Return Values</h3>
-<p>Functions can accept parameters (inputs) and return values (outputs).</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a, b</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">return</span> a + b
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>result = add(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(result)
-<span class="hljs-number">8</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>Functions can accept parameters (inputs) and return values
+(outputs).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> add(a, b):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> result <span class="op">=</span> add(<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(result)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="default-parameters">Default Parameters</h3>
 <p>You can set default values for function parameters.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name, greeting=<span class="hljs-string">&quot;Hello&quot;</span></span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">{greeting}</span>, <span class="hljs-subst">{name}</span>!&quot;</span>
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>message = greet(<span class="hljs-string">&quot;Bob&quot;</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(message)
-Hello, Bob!
-&gt;&gt;&gt;
-</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> greet(name, greeting<span class="op">=</span><span class="st">&quot;Hello&quot;</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span>greeting<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> message <span class="op">=</span> greet(<span class="st">&quot;Bob&quot;</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(message)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>Hello, Bob<span class="op">!</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="variable-scope">Variable Scope</h3>
-<p>Variables defined within a function have local scope, while those defined outside have global scope.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>x = <span class="hljs-number">10</span>
-&gt;&gt;&gt;
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">multiply</span>(<span class="hljs-params">y</span>):
-<span class="hljs-meta">... </span>    x = <span class="hljs-number">2</span>
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">return</span> x * y
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>result = multiply(<span class="hljs-number">5</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(result)
-<span class="hljs-number">10</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>Variables defined within a function have local scope, while those
+defined outside have global scope.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> multiply(y):</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>...     x <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> x <span class="op">*</span> y</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> result <span class="op">=</span> multiply(<span class="dv">5</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(result)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="docstrings">Docstrings</h3>
-<p>Use docstrings to provide documentation for your functions. It should be the next line after your function definitions with content wrapped in triple quotation marks, either single (<code>'</code>) or double (<code>&quot;</code>). The docstring can be viewed by calling <code>help()</code> function.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">square</span>(<span class="hljs-params">x</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-string">&quot;&quot;&quot;
-<span class="hljs-meta">... </span>    This function returns the square of a number.
-<span class="hljs-meta">... </span>    &quot;&quot;&quot;</span>
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">return</span> x ** <span class="hljs-number">2</span>
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">help</span>(square)
-Help on function square <span class="hljs-keyword">in</span> module __main__:
-
-square(x)
-    This function returns the square of a number.
-
-&gt;&gt;&gt;
-</code></pre>
-<h3 id="lambda-functions"><em>Lambda Functions*</em></h3>
-<p>Lambda functions are small, anonymous functions defined using the <code>lambda</code> keyword.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span>multiply = <span class="hljs-keyword">lambda</span> x, y: x * y
-<span class="hljs-meta">&gt;&gt;&gt; </span>result = multiply(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(result)
-<span class="hljs-number">12</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>Use docstrings to provide documentation for your functions. It should
+be the next line after your function definitions with content wrapped in
+triple quotation marks, either single (<code>&#39;</code>) or double
+(<code>&quot;</code>). The docstring can be viewed by calling
+<code>help()</code> function.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> square(x):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>...     <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">...     This function returns the square of a number.</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">...     &quot;&quot;&quot;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> x <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(square)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>Help on function square <span class="kw">in</span> module __main__:</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>square(x)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    This function returns the square of a number.</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
+<h3 id="lambda-functions_">_Lambda Functions*_</h3>
+<p>Lambda functions are small, anonymous functions defined using the
+<code>lambda</code> keyword.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> multiply <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">*</span> y</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> result <span class="op">=</span> multiply(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(result)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="function-recursion">Function Recursion</h3>
-<p>Functions can call themselves. Recursive functions are used for tasks that can be divided into smaller, similar tasks.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">else</span>:
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> n * factorial(n - <span class="hljs-number">1</span>)
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>factorial(<span class="hljs-number">5</span>)
-<span class="hljs-number">120</span>
-&gt;&gt;&gt;
-</code></pre>
+<p>Functions can call themselves. Recursive functions are used for tasks
+that can be divided into smaller, similar tasks.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> factorial(n):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">else</span>:</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> factorial(<span class="dv">5</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="dv">120</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h2 id="classes">Classes</h2>
-<p>In Python, a class is a blueprint for creating objects. It defines the structure and behaviours of objects of that class while facilitating object-oriented programming, which is a powerful paradigm for building complex systems.</p>
+<p>In Python, a class is a blueprint for creating objects. It defines
+the structure and behaviours of objects of that class while facilitating
+object-oriented programming, which is a powerful paradigm for building
+complex systems.</p>
 <h3 id="defining-a-class">Defining a Class</h3>
-<p>To define a class, use the <code>class</code> keyword followed by the class name, and a colon. The class's attributes and methods are defined within the class block.</p>
-<pre><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>:
-    <span class="hljs-comment"># Class attributes</span>
-    species = <span class="hljs-string">&quot;Canis familiaris&quot;</span>
-    
-    <span class="hljs-comment"># Constructor method</span>
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, age</span>):
-        self.name = name
-        self.age = age
-    
-    <span class="hljs-comment"># Instance method</span>
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">description</span>(<span class="hljs-params">self</span>):
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">{self.name}</span> is <span class="hljs-subst">{self.age}</span> years old.&quot;</span>
-    
-    <span class="hljs-comment"># Another instance method</span>
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self, sound</span>):
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">{self.name}</span> says <span class="hljs-subst">{sound}</span>.&quot;</span>
-</code></pre>
+<p>To define a class, use the <code>class</code> keyword followed by the
+class name, and a colon. The class’s attributes and methods are defined
+within the class block.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dog:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Class attributes</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    species <span class="op">=</span> <span class="st">&quot;Canis familiaris&quot;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Constructor method</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age):</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.age <span class="op">=</span> age</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Instance method</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> description(<span class="va">self</span>):</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>age<span class="sc">}</span><span class="ss"> years old.&quot;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Another instance method</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> speak(<span class="va">self</span>, sound):</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> says </span><span class="sc">{</span>sound<span class="sc">}</span><span class="ss">.&quot;</span></span></code></pre></div>
 <h3 id="creating-objects">Creating Objects</h3>
-<p>To create an object (an instance) of a class, call the class as if it were a function with any required arguments.</p>
-<pre><code class="language-python">mikey = Dog(<span class="hljs-string">&quot;Mikey&quot;</span>, <span class="hljs-number">6</span>)
-</code></pre>
-<h3 id="accessing-attributes-and-methods">Accessing Attributes and Methods</h3>
-<p>You can access attributes and methods of an object using the <code>dot</code> (<code>.</code>) notation.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(mikey.description())
-Mikey <span class="hljs-keyword">is</span> <span class="hljs-number">6</span> years old.
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(mikey.speak(<span class="hljs-string">&quot;Woof Woof&quot;</span>))
-Mikey says Woof Woof.
-&gt;&gt;&gt;
-</code></pre>
+<p>To create an object (an instance) of a class, call the class as if it
+were a function with any required arguments.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mikey <span class="op">=</span> Dog(<span class="st">&quot;Mikey&quot;</span>, <span class="dv">6</span>)</span></code></pre></div>
+<h3 id="accessing-attributes-and-methods">Accessing Attributes and
+Methods</h3>
+<p>You can access attributes and methods of an object using the
+<code>dot</code> (<code>.</code>) notation.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mikey.description())</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Mikey <span class="kw">is</span> <span class="dv">6</span> years old.</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mikey.speak(<span class="st">&quot;Woof Woof&quot;</span>))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Mikey says Woof Woof.</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="inheritance">Inheritance</h3>
-<p>Inheritance allows you to create a new class based on an existing class. The new class inherits attributes and methods from the parent class.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Beagle</span>(<span class="hljs-title class_ inherited__">Dog</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self, speed</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">{self.name}</span> runs at <span class="hljs-subst">{speed}</span>.&quot;</span>
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>buddy = Beagle(<span class="hljs-string">&quot;Buddy&quot;</span>, <span class="hljs-number">3</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(buddy.run(<span class="hljs-string">&quot;fast&quot;</span>))
-Buddy runs at fast.
-&gt;&gt;&gt;
-</code></pre>
+<p>Inheritance allows you to create a new class based on an existing
+class. The new class inherits attributes and methods from the parent
+class.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Beagle(Dog):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> run(<span class="va">self</span>, speed):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> runs at </span><span class="sc">{</span>speed<span class="sc">}</span><span class="ss">.&quot;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> buddy <span class="op">=</span> Beagle(<span class="st">&quot;Buddy&quot;</span>, <span class="dv">3</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(buddy.run(<span class="st">&quot;fast&quot;</span>))</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>Buddy runs at fast.</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h3 id="encapsulation">Encapsulation</h3>
-<p>Python supports encapsulation, which means you can restrict access to certain attributes and methods using the underscores <code>_</code> convention. Such attributes and methods are protected and can only be accessed by the class itself.</p>
-<pre><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span>:
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, radius</span>):
-        <span class="hljs-comment"># Protected attribute</span>
-        self._radius = radius  
-    
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_calculate_area</span>(<span class="hljs-params">self</span>):
-        <span class="hljs-comment"># Protected method</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">3.14159</span> * self._radius * self._radius  
-</code></pre>
+<p>Python supports encapsulation, which means you can restrict access to
+certain attributes and methods using the underscores <code>_</code>
+convention. Such attributes and methods are protected and can only be
+accessed by the class itself.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circle:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius):</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Protected attribute</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._radius <span class="op">=</span> radius  </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _calculate_area(<span class="va">self</span>):</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Protected method</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">3.14159</span> <span class="op">*</span> <span class="va">self</span>._radius <span class="op">*</span> <span class="va">self</span>._radius  </span></code></pre></div>
 <h3 id="polymorphism">Polymorphism</h3>
-<p>Polymorphism allows objects of different classes to be treated as objects of a common superclass. This is useful for creating flexible and dynamic code.</p>
-<pre><code class="language-python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):
-<span class="hljs-meta">... </span>        self._name = name
-<span class="hljs-meta">... </span>        self._age = age
-...
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&#x27;Animal speaks!&#x27;</span>)
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>(<span class="hljs-title class_ inherited__">Animal</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-built_in">super</span>().__init__(name,age)
-...
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Woof woof!&#x27;</span>
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Cat</span>(<span class="hljs-title class_ inherited__">Animal</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-built_in">super</span>().__init__(name,age)
-...
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Meow meow!&#x27;</span>
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>my_dog = Dog(<span class="hljs-string">&quot;Buddy&quot;</span>, <span class="hljs-number">5</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span>my_cat = Cat(<span class="hljs-string">&quot;Whiskers&quot;</span>, <span class="hljs-number">3</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span>:
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):
-<span class="hljs-meta">... </span>        self._name = name
-<span class="hljs-meta">... </span>        self._age = age
-...
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&#x27;Animal speaks!&#x27;</span>)
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>(<span class="hljs-title class_ inherited__">Animal</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-built_in">super</span>().__init__(name,age)
-...
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;<span class="hljs-subst">{self._name}</span> says: Woof woof!&#x27;</span>)
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">class</span> <span class="hljs-title class_">Cat</span>(<span class="hljs-title class_ inherited__">Animal</span>):
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-built_in">super</span>().__init__(name,age)
-...
-<span class="hljs-meta">... </span>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">speak</span>(<span class="hljs-params">self</span>):
-<span class="hljs-meta">... </span>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;<span class="hljs-subst">{self._name}</span> says: Meow meow!&#x27;</span>)
-...
-<span class="hljs-meta">&gt;&gt;&gt; </span>my_dog = Dog(<span class="hljs-string">&quot;Buddy&quot;</span>, <span class="hljs-number">5</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span>my_cat = Cat(<span class="hljs-string">&quot;Whiskers&quot;</span>, <span class="hljs-number">3</span>)
-<span class="hljs-meta">&gt;&gt;&gt; </span>my_dog.speak()
-Buddy says: Woof woof!
-<span class="hljs-meta">&gt;&gt;&gt; </span>my_cat.speak()
-Whiskers says: Meow meow!
-&gt;&gt;&gt;
-</code></pre>
+<p>Polymorphism allows objects of different classes to be treated as
+objects of a common superclass. This is useful for creating flexible and
+dynamic code.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Animal:</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._name <span class="op">=</span> name</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._age <span class="op">=</span> age</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> (<span class="st">&#39;Animal speaks!&#39;</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Dog(Animal):</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="st">&#39;Woof woof!&#39;</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Cat(Animal):</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="st">&#39;Meow meow!&#39;</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_dog <span class="op">=</span> Dog(<span class="st">&quot;Buddy&quot;</span>, <span class="dv">5</span>)</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_cat <span class="op">=</span> Cat(<span class="st">&quot;Whiskers&quot;</span>, <span class="dv">3</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Animal:</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._name <span class="op">=</span> name</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._age <span class="op">=</span> age</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> (<span class="st">&#39;Animal speaks!&#39;</span>)</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Dog(Animal):</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_name<span class="sc">}</span><span class="ss"> says: Woof woof!&#39;</span>)</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Cat(Animal):</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_name<span class="sc">}</span><span class="ss"> says: Meow meow!&#39;</span>)</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_dog <span class="op">=</span> Dog(<span class="st">&quot;Buddy&quot;</span>, <span class="dv">5</span>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_cat <span class="op">=</span> Cat(<span class="st">&quot;Whiskers&quot;</span>, <span class="dv">3</span>)</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_dog.speak()</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>Buddy says: Woof woof<span class="op">!</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_cat.speak()</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>Whiskers says: Meow meow<span class="op">!</span></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <h2 id="file-operations">File Operations</h2>
-<p>File operations in Python allow you to interact with files on your computer. You can read, write, and manipulate data in files. Here's how to work with files:</p>
+<p>File operations in Python allow you to interact with files on your
+computer. You can read, write, and manipulate data in files. Here’s how
+to work with files:</p>
 <h3 id="opening-a-file">Opening a File</h3>
-<p>You can open a file using the <code>open()</code> function. Provide the file's path and specify the mode ('r' for reading, 'w' for writing, 'a' for appending, 'b' for binary mode, etc.).</p>
-<pre><code class="language-python"><span class="hljs-comment"># Opening a file for reading</span>
-file = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;example.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>)
-</code></pre>
+<p>You can open a file using the <code>open()</code> function. Provide
+the file’s path and specify the mode (‘r’ for reading, ‘w’ for writing,
+‘a’ for appending, ‘b’ for binary mode, etc.).</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening a file for reading</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;example.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)</span></code></pre></div>
 <h3 id="reading-from-a-file">Reading from a File</h3>
-<p>To read the content of a file, you can use various methods like <code>read()</code>, <code>readline()</code>, or <code>readlines()</code>.</p>
-<pre><code class="language-python"><span class="hljs-comment"># Read the entire file</span>
-content = file.read()
-
-<span class="hljs-comment"># Read a single line</span>
-line = file.readline()
-
-<span class="hljs-comment"># Read all lines into a list</span>
-lines = file.readlines()
-</code></pre>
+<p>To read the content of a file, you can use various methods like
+<code>read()</code>, <code>readline()</code>, or
+<code>readlines()</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the entire file</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a single line</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> <span class="bu">file</span>.readline()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all lines into a list</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span></code></pre></div>
 <h3 id="writing-to-a-file">Writing to a File</h3>
-<p>To write to a file, open it in write (<code>'w'</code>) or append (<code>'a'</code>) mode and use the <code>write()</code> method.</p>
-<pre><code class="language-python"><span class="hljs-comment"># Open a file for writing</span>
-file = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;output.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>)
-
-<span class="hljs-comment"># Write a line to the file</span>
-file.write(<span class="hljs-string">&quot;Hello, World!\n&quot;</span>)
-</code></pre>
+<p>To write to a file, open it in write (<code>&#39;w&#39;</code>) or append
+(<code>&#39;a&#39;</code>) mode and use the <code>write()</code> method.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open a file for writing</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;output.txt&quot;</span>, <span class="st">&quot;w&quot;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Write a line to the file</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.write(<span class="st">&quot;Hello, World!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <h3 id="closing-a-file">Closing a File</h3>
-<p>Always close a file after you're done with it using the <code>close()</code> method to free up system resources.</p>
-<pre><code class="language-python">file.close()
-</code></pre>
-<h3 id="using-with-statement">Using 'with' Statement</h3>
-<p>A better practice is to use the '<code>with</code>' statement, which ensures the file is properly closed even if an error occurs.</p>
-<pre><code class="language-python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;example.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> file:
-    content = file.read()
-</code></pre>
-<h3 id="reading-and-writing-binary-files">Reading and Writing Binary Files</h3>
-<p>You can read and write binary files by specifying the '<code>b</code>' mode.</p>
-<pre><code class="language-python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;binary_data.bin&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> binary_file:
-    data = binary_file.read()
-
-<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;new_binary_data.bin&quot;</span>, <span class="hljs-string">&quot;wb&quot;</span>) <span class="hljs-keyword">as</span> new_binary_file:
-    new_binary_file.write(data)
-</code></pre>
+<p>Always close a file after you’re done with it using the
+<code>close()</code> method to free up system resources.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code></pre></div>
+<h3 id="using-with-statement">Using ‘with’ Statement</h3>
+<p>A better practice is to use the ‘<code>with</code>’ statement, which
+ensures the file is properly closed even if an error occurs.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;example.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span></code></pre></div>
+<h3 id="reading-and-writing-binary-files">Reading and Writing Binary
+Files</h3>
+<p>You can read and write binary files by specifying the
+‘<code>b</code>’ mode.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;binary_data.bin&quot;</span>, <span class="st">&quot;rb&quot;</span>) <span class="im">as</span> binary_file:</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> binary_file.read()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;new_binary_data.bin&quot;</span>, <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> new_binary_file:</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    new_binary_file.write(data)</span></code></pre></div>
 <h3 id="handling-exceptions">Handling Exceptions</h3>
-<p>When working with files, it's important to handle exceptions, especially if the file may not exist.</p>
-<pre><code class="language-python"><span class="hljs-keyword">try</span>:
-    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;file.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> file:
-        content = file.read()
-<span class="hljs-keyword">except</span> FileNotFoundError:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The file does not exist.&quot;</span>)
-</code></pre>
-<p>Python's file operations make it easy to work with text and binary files, which is essential for tasks such as data reading, writing, and processing. Always remember to close files properly to avoid resource leaks.</p>
+<p>When working with files, it’s important to handle exceptions,
+especially if the file may not exist.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;file.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        content <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;The file does not exist.&quot;</span>)</span></code></pre></div>
+<p>Python’s file operations make it easy to work with text and binary
+files, which is essential for tasks such as data reading, writing, and
+processing. Always remember to close files properly to avoid resource
+leaks.</p>
 <h2 id="package-management">Package Management</h2>
-<p>Python package management involves installing, managing, and using external libraries or packages in your Python projects. The most common tool for package management in Python is <code>pip</code>. Here are some key operations:</p>
+<p>Python package management involves installing, managing, and using
+external libraries or packages in your Python projects. The most common
+tool for package management in Python is <code>pip</code>. Here are some
+key operations:</p>
 <h3 id="installing-packages">Installing Packages</h3>
-<p>You can install packages from the Python Package Index (PyPI) using <code>pip</code>. Simply provide the package name as an argument.</p>
-<pre><code class="language-bash">pip install package_name
-</code></pre>
+<p>You can install packages from the Python Package Index (PyPI) using
+<code>pip</code>. Simply provide the package name as an argument.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div>
 <p>Example:</p>
-<pre><code class="language-bash">pip install requests
-</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install requests</span></code></pre></div>
 <h3 id="listing-installed-packages">Listing Installed Packages</h3>
-<p>You can list all the packages installed in your Python environment using <code>pip list</code>.</p>
-<pre><code class="language-bash">pip list
-</code></pre>
-<h3 id="creating-a-requirementstxt-file">Creating a <code>requirements.txt</code> File</h3>
-<p>A <code>requirements.txt</code> file lists all the packages your project depends on, making it easy to recreate your project's environment on another system.</p>
+<p>You can list all the packages installed in your Python environment
+using <code>pip list</code>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> list</span></code></pre></div>
+<h3 id="creating-a-requirements.txt-file">Creating a
+<code>requirements.txt</code> File</h3>
+<p>A <code>requirements.txt</code> file lists all the packages your
+project depends on, making it easy to recreate your project’s
+environment on another system.</p>
 <p>Create the file:</p>
-<pre><code class="language-bash">pip freeze &gt; requirements.txt
-</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div>
 <p>Example <code>requirements.txt</code>:</p>
-<pre><code class="language-text">requests==2.26.0
+<pre class="text"><code>requests==2.26.0
 flask==2.1.1
-numpy==1.21.0
-</code></pre>
-<h3 id="installing-packages-from-a-requirementstxt-file">Installing Packages from a <code>requirements.txt</code> File</h3>
-<p>To install packages listed in a <code>requirements.txt</code> file, use the <code>-r</code> flag.</p>
-<pre><code class="language-bash">pip install -r requirements.txt
-</code></pre>
+numpy==1.21.0</code></pre>
+<h3 id="installing-packages-from-a-requirements.txt-file">Installing
+Packages from a <code>requirements.txt</code> File</h3>
+<p>To install packages listed in a <code>requirements.txt</code> file,
+use the <code>-r</code> flag.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div>
 <p>This installs all the packages listed in the file.</p>
-<p>Python package management is crucial for utilizing external libraries and packages to enhance the functionality of your Python projects. Using <code>pip</code> and <code>requirements.txt</code> files simplifies the process of package installation and project environment management.</p>
+<p>Python package management is crucial for utilizing external libraries
+and packages to enhance the functionality of your Python projects. Using
+<code>pip</code> and <code>requirements.txt</code> files simplifies the
+process of package installation and project environment management.</p>
 <h1 id="further-reading">Further Reading</h1>
 <ul>
-<li><a href="https://docs.python.org/3/tutorial/">Python Tutorial</a></li>
-<li><a href="https://wiki.python.org/moin/BeginnersGuide/Programmers">More Python Resources</a></li>
+<li><a href="https://docs.python.org/3/tutorial/">Python
+Tutorial</a></li>
+<li><a href="https://wiki.python.org/moin/BeginnersGuide/Programmers">More
+Python Resources</a></li>
 </ul>
-
-        
-        
-    </body>
-    </html>
+</body>
+</html>

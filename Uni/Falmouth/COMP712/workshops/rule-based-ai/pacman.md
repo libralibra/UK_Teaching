@@ -1,4 +1,4 @@
-# COMP712: Classical Artificial Intelligence 
+# <span class="text-centre">COMP712: Classical Artificial Intelligence</span> 
 
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
@@ -144,9 +144,10 @@ A brief explanation of how the code works:
 As described in the lectures, the ghost are implemented as rule-based agents with limited AI. However, it's amazing to see that a combination of simple rules can result such an complex game environment. Check [Ghost Behaviour](http://gameinternals.com/understanding-pac-man-ghost-behavior) for better understanding. 
 
 > Recall:
-> - Red ghost: aim for Pac-Man
-> - Pink ghost: aim for 2 spaces ahead of Pac-Man
-> - Blue ghost: aim for position on the line between red ghost and 2 spaces ahead of Pac-Man
+> - <span class="red">**Red** ghost</span>: aim for Pac-Man
+> - <span class="pink">**Pink** ghost</span>: aim for 2 spaces ahead of Pac-Man
+> - <span class="blue">**Blue** ghost</span>: aim for position on the line between red ghost and 2 spaces ahead of Pac-Man
+> - <span class="orange">**Orange** ghost</span>: aim for Pac-Man until 8 spaces away, then aim for corner
 
 Currently, the ghosts have the same colours so that they are moving in the same way (or in other words 'following the same rule'). Think about the question of 'how can you introduce more rules to the ghosts?'.
 
@@ -154,10 +155,10 @@ One can split the task into several steps. Feel free to refactor the code by the
 
 ### **Task 4**:
 
-Assign different colours to the ghosts (this may require changes to the rendering process).
+Assign different colours to the ghosts.
 
 ### **Task 5**:
-Make different ghosts move at different speeds (again, check the rendering process!).
+Make different ghosts move at different speeds.
 
 ### **Task 6**:
 Assign new rules to ghosts depending on their colours (might be tricky, take your time and keep on working).
