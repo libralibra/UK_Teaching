@@ -91,6 +91,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
   <![endif]-->
 </head>
 <body>
+<header id="title-block-header">
+<h1 class="title">pacman</h1>
+</header>
 <h1 id="comp712-classical-artificial-intelligence"><span class="text-centre">COMP712: Classical Artificial
 Intelligence</span></h1>
 <p>Dr Daniel Zhang @ Falmouth University<br />
@@ -112,9 +115,8 @@ Rule-based AI (PAC-MAN Example)</a>
 <ul>
 <li><a href="#python-installation">Python Installation</a></li>
 <li><a href="#freegames-module">FreeGames Module</a></li>
-<li><a href="#copy-the-template-python-source-file">Copy the Template
-Python Source File</a></li>
 </ul></li>
+<li><a href="#you-tasks">You Tasks</a></li>
 <li><a href="#the-game">The Game</a>
 <ul>
 <li><a href="#task-1"><strong>Task 1</strong>:</a></li>
@@ -134,6 +136,8 @@ Python Source File</a></li>
 <li><a href="#task-6"><strong>Task 6</strong>:</a></li>
 <li><a href="#task-7"><strong><em>Task 7*</em></strong></a></li>
 </ul></li>
+<li><a href="#submit-your-improvements">Submit Your
+Improvements</a></li>
 </ul></li>
 </ul>
 <h1 id="workshop-rule-based-ai-pac-man-example">Workshop: Rule-based AI
@@ -200,25 +204,28 @@ it. active</p>
 <li><p>As long as you can see <code>pacman</code> in the list, you are
 ready to go.</p></li>
 </ul>
-<h3 id="copy-the-template-python-source-file">Copy the Template Python
-Source File</h3>
-<p>Grab a copy of the <a href="pacman.py">PAC-MAN Source File</a>
-template and save to your local drive. That’s the template you’ll work
-on.</p>
+<h2 id="you-tasks">You Tasks</h2>
+<p>The repository below contains the code of a basic PAC-MAN game.</p>
+<p><strong>Fork the repository</strong> (NOT clone!) and work on your
+fork. This will enable you to submit a pull request in the end.</p>
+<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Rule-based-AI.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Rule-based-AI.git</strong></a></p>
 <p>The <code>.py</code> file can be opened by any text editor. However,
 a proper programming style editor or IDE would be helpful, such as
 <code>IDLE</code>, <code>VS Code</code>, <code>PyCharm</code>,
 <code>Spyder</code>, <code>NotePad++</code>, or any other you prefer.
 <code>VS Code</code> might be a good start!</p>
 <h2 id="the-game">The Game</h2>
-<p>The game play is very straightforward. Use four arrow keys (←, ↑, →,
-↓) to control the PAC-MAN and try to score as much as you can before the
-ghosts catch you!</p>
+<p>This is essentially a working game prototype. By moving PAC-MAN using
+the four arrow keys (←, ↑, →, ↓), the game will start, and the ghosts
+will move simultaneously. Control the PAC-MAN and try to score as much
+as you can before the ghosts catch you!</p>
+<hr />
 <h3 id="task-1"><strong>Task 1</strong>:</h3>
 <ul>
 <li><strong>Start the game</strong> using <code>python pacman.py</code>
 and give it a try!</li>
 </ul>
+<hr />
 <h2 id="the-code-template">The Code Template</h2>
 <p>Open the code in your selected editor and have a look about the code
 structure.</p>
@@ -226,6 +233,7 @@ structure.</p>
 variables to represent the PAC-MAN, the ghosts, and the board, there are
 several function definitions before actually running the game loop at
 the end of the source file.</p>
+<hr />
 <h3 id="task-2"><strong>Task 2</strong>:</h3>
 <ul>
 <li><strong>Modify the game board</strong> that is represented by the
@@ -241,6 +249,7 @@ calculation as well.</li>
 </ol></li>
 <li><strong>Change the starting position</strong> of the PAC-MAN.</li>
 </ul>
+<hr />
 <h2 id="the-functions">The Functions</h2>
 <p>A brief explanation of how the code works:</p>
 <ul>
@@ -280,6 +289,7 @@ and <code>move()</code>. The <code>done()</code> function from the
 window open.</li>
 </ol></li>
 </ul>
+<hr />
 <h3 id="task-3"><strong>Task 3</strong>:</h3>
 <ul>
 <li>Play with the code to have a feel of how the function are combined
@@ -291,20 +301,23 @@ documentation if you are not familiar with some functions.</li>
 <li><strong>Change the number of ghosts</strong> and <strong>their
 positions</strong>.</li>
 </ul>
+<hr />
 <h2 id="ghost-behaviour-the-rules">Ghost Behaviour: The Rules</h2>
 <p>As described in the lectures, the ghost are implemented as rule-based
 agents with limited AI. However, it’s amazing to see that a combination
 of simple rules can result such an complex game environment. Check <a href="http://gameinternals.com/understanding-pac-man-ghost-behavior">Ghost
 Behaviour</a> for better understanding.</p>
-<blockquote>
-<p>Recall: - <span class="red"><strong>Red</strong> ghost</span>: aim
-for Pac-Man - <span class="pink"><strong>Pink</strong> ghost</span>: aim
-for 2 spaces ahead of Pac-Man - <span class="blue"><strong>Blue</strong>
-ghost</span>: aim for position on the line between red ghost and 2
-spaces ahead of Pac-Man - <span class="orange"><strong>Orange</strong>
-ghost</span>: aim for Pac-Man until 8 spaces away, then aim for
-corner</p>
-</blockquote>
+<hr />
+<p>Recall:</p>
+<ul>
+<li><strong>Red ghost</strong>: aim for Pac-Man</li>
+<li><strong>Pink ghost</strong>: aim for 2 spaces ahead of Pac-Man</li>
+<li><strong>Blue ghost</strong>: aim for position on the line between
+red ghost and 2 aces ahead of Pac-Man</li>
+<li><strong>Orange ghost</strong>: aim for Pac-Man until 8 spaces away,
+then aim for corner</li>
+</ul>
+<hr />
 <p>Currently, the ghosts have the same colours so that they are moving
 in the same way (or in other words ‘following the same rule’). Think
 about the question of ‘how can you introduce more rules to the
@@ -312,14 +325,22 @@ ghosts?’.</p>
 <p>One can split the task into several steps. Feel free to refactor the
 code by the use of <code>class</code> and/or global variables if
 necessary.</p>
+<hr />
 <h3 id="task-4"><strong>Task 4</strong>:</h3>
 <p>Assign different colours to the ghosts.</p>
+<hr />
 <h3 id="task-5"><strong>Task 5</strong>:</h3>
 <p>Make different ghosts move at different speeds.</p>
+<hr />
 <h3 id="task-6"><strong>Task 6</strong>:</h3>
 <p>Assign new rules to ghosts depending on their colours (might be
 tricky, take your time and keep on working).</p>
+<hr />
 <h3 id="task-7"><strong><em>Task 7*</em></strong></h3>
 <p>Add other improvements as you like.</p>
+<hr />
+<h2 id="submit-your-improvements">Submit Your Improvements</h2>
+<p>You can submit a pull request to the original repository to showcase
+your work if you like.</p>
 </body>
 </html>

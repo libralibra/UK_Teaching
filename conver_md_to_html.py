@@ -11,7 +11,8 @@ from glob import glob
 
 SOURCE_PATH = r'Uni'
 CSS_PATH = r'assets\dist\pan_am.css'
-PANDOC_CMD = r'pandoc "MD_FILE" -f markdown -t html5 -s -o "HTML_FILE"'
+# -yaml_metadata_block can turn off the YAML warning if --- appears in the file
+PANDOC_CMD = r'pandoc "MD_FILE" -f markdown-yaml_metadata_block -t html5 -o "HTML_FILE" --metadata title="TITLE"'
 
 # #################################################################
 def get_all_files(d_path):
@@ -38,12 +39,12 @@ def md_2_html(m_name,p_path_info,c_css=None,pan_path=None):
     if not pan_path:
         pan_path = 'pandoc'
     full_md_path = os.sep.join(p_path_info)
-    cmd_str = PANDOC_CMD.replace('MD_FILE',full_md_path+'.md').replace('HTML_FILE',full_md_path+'.html')
+    cmd_str = PANDOC_CMD.replace('MD_FILE',full_md_path+'.md').replace('HTML_FILE',full_md_path+'.html').replace('TITLE',p_path_info[-1])
     if c_css:
         # copy css to the md folder
         # css_name = c_css.split(os.sep)[-1]
         # shutil.copy(CSS_PATH,p_path_info[0]+os.sep+css_name)
-        cmd_str += ' --self-contained -c "'+c_css+'"'
+        cmd_str += ' --embed-resources --standalone -c "'+c_css+'"'
     os.system(cmd_str)
 
 # #################################################################

@@ -13,7 +13,7 @@ Dr Daniel Zhang @ Falmouth University\
   - [Before We Start: The Setup](#before-we-start-the-setup)
     - [Python Installation](#python-installation)
     - [FreeGames Module](#freegames-module)
-    - [Copy the Template Python Source File](#copy-the-template-python-source-file)
+  - [You Tasks](#you-tasks)
   - [The Game](#the-game)
     - [**Task 1**:](#task-1)
   - [The Code Template](#the-code-template)
@@ -25,6 +25,7 @@ Dr Daniel Zhang @ Falmouth University\
     - [**Task 5**:](#task-5)
     - [**Task 6**:](#task-6)
     - [**_Task 7\*_**](#task-7)
+  - [Submit Your Improvements](#submit-your-improvements)
 
 
 #  Workshop: Rule-based AI (PAC-MAN Example)
@@ -88,25 +89,35 @@ You can use some management tools like `conda`, `virtualenv` or `pipx` if you li
 
 - As long as you can see `pacman` in the list, you are ready to go.
 
-### Copy the Template Python Source File
+## You Tasks
 
-Grab a copy of the [PAC-MAN Source File](pacman.py) template and save to your local drive. That's the template you'll work on. 
+The repository below contains the code of a basic PAC-MAN game.
+
+**Fork the repository** (NOT clone!) and work on your fork. This will enable you to submit a pull request in the end.
+
+[**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Rule-based-AI.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Rule-based-AI.git)
 
 The `.py` file can be opened by any text editor. However, a proper programming style editor or IDE would be helpful, such as `IDLE`, `VS Code`, `PyCharm`, `Spyder`, `NotePad++`, or any other you prefer. `VS Code` might be a good start!
 
 ## The Game
 
-The game play is very straightforward. Use four arrow keys (&larr;, &uarr;, &rarr;, &darr;) to control the PAC-MAN and try to score as much as you can before the ghosts catch you!
+This is essentially a working game prototype. By moving PAC-MAN using the four arrow keys (&larr;, &uarr;, &rarr;, &darr;), the game will start, and the ghosts will move simultaneously. Control the PAC-MAN and try to score as much as you can before the ghosts catch you!
+
+---
 
 ### **Task 1**: 
 
 - **Start the game** using `python pacman.py` and give it a try!
+
+---
 
 ## The Code Template
 
 Open the code in your selected editor and have a look about the code structure.  
 
 After `import` the required modules and define necessary variables to represent the PAC-MAN, the ghosts, and the board, there are several function definitions before actually running the game loop at the end of the source file.  
+
+---
 
 ### **Task 2**: 
 
@@ -116,6 +127,7 @@ After `import` the required modules and define necessary variables to represent 
   2. Make sure the board is still valid if you tried to change the size of the matrix - in this case you might need to change the tile index calculation as well.
 - **Change the starting position** of the PAC-MAN.
 
+---
 
 ## The Functions
 
@@ -133,35 +145,58 @@ A brief explanation of how the code works:
   6. The `change(x, y)` function is used as event handlers for the arrow keys. It updates the aim of the pacman based on the arrow key pressed, if the new position is valid.
   7. The code under the line `if __name__ == '__main__':` sets up the game window and graphics, sets up event listeners for key presses, and then initializes the game by calling `world()` and `move()`. The `done()` function from the `turtle` module is used to start the game loop and keep the window open.
 
+---
+
 ### **Task 3**: 
 
 - Play with the code to have a feel of how the function are combined together. 
   - Search [Python](https://docs.python.org/3/) or [`Turtle`](https://docs.python.org/3/library/turtle.html) documentation if you are not familiar with some functions.
 - **Change the number of ghosts** and **their positions**.
 
+---
+
 ## Ghost Behaviour: The Rules
 
 As described in the lectures, the ghost are implemented as rule-based agents with limited AI. However, it's amazing to see that a combination of simple rules can result such an complex game environment. Check [Ghost Behaviour](http://gameinternals.com/understanding-pac-man-ghost-behavior) for better understanding. 
 
-> Recall:
-> - <span class="red">**Red** ghost</span>: aim for Pac-Man
-> - <span class="pink">**Pink** ghost</span>: aim for 2 spaces ahead of Pac-Man
-> - <span class="blue">**Blue** ghost</span>: aim for position on the line between red ghost and 2 spaces ahead of Pac-Man
-> - <span class="orange">**Orange** ghost</span>: aim for Pac-Man until 8 spaces away, then aim for corner
+---
+
+Recall:
+
+- **Red ghost**: aim for Pac-Man
+- **Pink ghost**: aim for 2 spaces ahead of Pac-Man
+- **Blue ghost**: aim for position on the line between red ghost and 2 aces ahead of Pac-Man
+- **Orange ghost**: aim for Pac-Man until 8 spaces away, then aim for corner
+
+---
 
 Currently, the ghosts have the same colours so that they are moving in the same way (or in other words 'following the same rule'). Think about the question of 'how can you introduce more rules to the ghosts?'.
 
 One can split the task into several steps. Feel free to refactor the code by the use of `class` and/or global variables if necessary.
 
+---
+
 ### **Task 4**:
 
 Assign different colours to the ghosts.
 
+---
+
 ### **Task 5**:
 Make different ghosts move at different speeds.
+
+---
 
 ### **Task 6**:
 Assign new rules to ghosts depending on their colours (might be tricky, take your time and keep on working).
 
+---
+
 ### **_Task 7\*_**
 Add other improvements as you like.
+
+---
+
+## Submit Your Improvements
+
+You can submit a pull request to the original repository to showcase your work if you like.

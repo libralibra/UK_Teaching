@@ -52,7 +52,6 @@ Table of Contents
 - [Further Reading](#further-reading)
 
 
-
 # Workshop: Python Tutorial
 
 In addition to our regular teaching sessions, we will be providing workshop materials utilising the Python programming language. These resources will complement the work you do in COMP712.
