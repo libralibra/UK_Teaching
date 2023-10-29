@@ -13,6 +13,7 @@ I make **2** versions of the same source code: one with university internal acce
 ---
 
 ## ToDos:
+- [ ] fix the pre/code alignment problem (probably caused by css)
 - [ ] find a good way of showing all slides in overview mode (**requires modification of the original javascript in node.js environment and rebuild the whole package**)
 - [ ] simplify the code for deployment
 

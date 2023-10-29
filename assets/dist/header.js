@@ -2,7 +2,11 @@
 authorData.set('year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1));
 authorData.set('emaillink', 'mailto:' + authorData.get('email'));
 if (authorData.has('week')) {
-    authorData.set('title', authorData.get('course') + '-' + authorData.get('week'));
+    if (authorData.has('topic')) {
+        authorData.set('title', authorData.get('course') + '-' + authorData.get('week') + ': ' + authorData.get('topic'));
+    } else {
+        authorData.set('title', authorData.get('course') + '-' + authorData.get('week'));
+    }
 } else {
     authorData.set('title', authorData.get('course'));
 }

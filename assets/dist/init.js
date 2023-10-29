@@ -12,7 +12,11 @@ Reveal.initialize({
     width: 1200,
     height: 650,
 
-    // plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu, RevealChalkboard, RevealCustomControls, Appearance, Verticator],
+    // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
+    // 2. wait for block in speaker mode fix
+    plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
+        RevealMenu, RevealChalkboard, RevealCustomControls, Verticator,
+        RevealMath.KaTeX, RevealPointer, RevealMermaid, Appearance],
 
     // old style plugins
     dependencies: [
@@ -35,12 +39,6 @@ Reveal.initialize({
         // defines a css class name for the ace editors
         className: "ace"
     },
-
-    // 1. has to wait for a fix that Appearance block all fragments for print-pdf version - fixed
-    // 2. wait for block in speaker mode fix
-    plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
-        RevealMenu, RevealChalkboard, RevealCustomControls, Verticator,
-        RevealMath.KaTeX, RevealPointer, RevealMermaid, Appearance],
 
     // show controls
     controls: true,
@@ -137,9 +135,9 @@ Reveal.initialize({
         // These are the elements that autoappear will target. Each element has a selector and an animation class. If autoappear is off, the elements will still get animation if the section contains a data-autoappear attribute.
         // check https://animate.style/ for more styles
         autoelements: {
-            "ul li": { "animation": "animate__flipInX", "speed": "faster", "delay": "100" },
+            "ul li": { "animation": "animate__flipInX", "speed": "faster", "delay": "50" },
             'ol li': {
-                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '100'
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
             },
             // 'img': 'animate__fadeIn',
         },

@@ -272,12 +272,12 @@ html * {
     font-weight: bold;
 }
 
-.reveal table th,
+/* .reveal table th,
 .reveal table td {
     text-align: left;
     padding: 0.2em 0.5em 0.2em 0.5em;
     border-bottom: 1px solid;
-}
+} */
 
 .reveal table th[align=center],
 .reveal table td[align=center] {
@@ -289,10 +289,10 @@ html * {
     text-align: right;
 }
 
-.reveal table tbody tr:last-child th,
+/* .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
     border-bottom: none;
-}
+} */
 
 .reveal sup {
     vertical-align: super;
