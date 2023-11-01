@@ -41,7 +41,7 @@ If everything is working correctly, you should see a GUI similar to the screensh
 
 **Note**:
 
-The `.pyc` file was compiled using `Python 3.12.0` and should work with any `Python 3.x` versions. However, if you encounter any issues while running the script, please let us know, and a newer version of the script can be uploaded to the repository.
+The `.pyc` file was compiled using `Python 3.12.0` and should work with any `Python 3.x` versions. However, if you encounter any issues while running the script, please let me know, and a newer version of the script can be uploaded to the repository.
 
 # Game Controls
 This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.
@@ -49,7 +49,7 @@ This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd>
 # The Code
 The implementation is relatively straightforward. Let's take a closer look at the detailed structure of the code:
 
-![Game Flow](flow1.png)
+<!-- ![Game Flow](flow1.png) -->
 
 ```mermaid
 flowchart TD
@@ -66,7 +66,7 @@ F -- listen to keyboard events --> F
 
 The main loop can be illustrated as:
 
-![Main Loop](flow2.png)
+<!-- ![Main Loop](flow2.png) -->
 
 ```mermaid
 flowchart TD
@@ -82,7 +82,7 @@ B -- perform collision test --> B
 
 There are four functions defined for keyboard controls:
 
-1.`left_paddle_up()`: Move the left paddle upwards with <kbd>W</kbd>.
+1. `left_paddle_up()`: Move the left paddle upwards with <kbd>W</kbd>.
 2. `left_paddle_down()`: Move the left paddle downwards with <kbd>S</kbd>.
 3. `right_paddle_up()`: Move the right paddle upwards with <kbd>↑</kbd>.
 4. `right_paddle_down()`: Move the right paddle downwards with <kbd>↓</kbd>.

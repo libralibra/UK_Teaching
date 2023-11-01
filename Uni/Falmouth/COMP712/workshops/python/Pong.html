@@ -1,114 +1,38 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Pong</title>
-  <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+<!DOCTYPE html><html><head>
+      <title>Pong</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\DZ308602\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.10\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:///c:\Users\DZ308602\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.10\crossnote\dependencies\mermaid\mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-color: #aaaaaa;
-}
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } 
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.at { color: #7d9029; } 
-code span.bn { color: #40a070; } 
-code span.bu { color: #008000; } 
-code span.cf { color: #007020; font-weight: bold; } 
-code span.ch { color: #4070a0; } 
-code span.cn { color: #880000; } 
-code span.co { color: #60a0b0; font-style: italic; } 
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.do { color: #ba2121; font-style: italic; } 
-code span.dt { color: #902000; } 
-code span.dv { color: #40a070; } 
-code span.er { color: #ff0000; font-weight: bold; } 
-code span.ex { } 
-code span.fl { color: #40a070; } 
-code span.fu { color: #06287e; } 
-code span.im { color: #008000; font-weight: bold; } 
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.kw { color: #007020; font-weight: bold; } 
-code span.op { color: #666666; } 
-code span.ot { color: #007020; } 
-code span.pp { color: #bc7a00; } 
-code span.sc { color: #4070a0; } 
-code span.ss { color: #bb6688; } 
-code span.st { color: #4070a0; } 
-code span.va { color: #19177c; } 
-code span.vs { color: #4070a0; } 
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
-</style>
-  <style type="text/css">html {font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%}body {margin: 0;background-color: blanchedalmond;}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {display: block}audio,canvas,progress,video {display: inline-block;vertical-align: baseline}audio:not([controls]) {display: none;height: 0}[hidden],template {display: none}a {background: transparent}a:active,a:hover {outline: 0}abbr[title] {border-bottom: 1px dotted}b,strong {font-weight: bold}dfn {font-style: italic}h1 {font-size: 2em;margin: 0.67em 0}mark {background: #ff0;color: #000}small {font-size: 80%}sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline}sup {top: -0.5em}sub {bottom: -0.25em}img {border: 0}svg:not(:root) {overflow: hidden}figure {margin: 1em 40px}hr {-moz-box-sizing: content-box;box-sizing: content-box;height: 0}pre {overflow: auto}code,kbd,pre,samp {font-family: monospace, monospace;font-size: 1em}button,input,optgroup,select,textarea {color: inherit;font: inherit;margin: 0}button {overflow: visible}button,select {text-transform: none}button,html input[type="button"],input[type="reset"],input[type="submit"] {-webkit-appearance: button;cursor: pointer}button[disabled],html input[disabled] {cursor: default}button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0}input {line-height: normal}input[type="checkbox"],input[type="radio"] {box-sizing: border-box;padding: 0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button {height: auto}input[type="search"] {-webkit-appearance: textfield;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;box-sizing: content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none}fieldset {border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em}legend {border: 0;padding: 0}textarea {overflow: auto}optgroup {font-weight: bold}table {border-collapse: collapse;border-spacing: 0}td,th {padding: 0}body,code,tr.odd,tr.even,figure {background-image: url("data:image/png;base64,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")}body {font-family: "Libre Baskerville", Baskerville, Georgia, serif;background-color: #f8f8f8;color: #111;line-height: 1.3;text-align: justify;-moz-hyphens: auto;-ms-hyphens: auto;-webkit-hyphens: auto;hyphens: auto}@media (max-width: 400px) {body {font-size: 12px;margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 15px}}@media (min-width: 401px) and (max-width: 600px) {body {font-size: 14px;margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 15px}}@media (min-width: 601px) and (max-width: 900px) {body {font-size: 15px;margin-left: 100px;margin-right: 100px;margin-top: 20px;margin-bottom: 25px}}@media (min-width: 901px) and (max-width: 1800px) {body {font-size: 17px;margin-left: 200px;margin-right: 200px;margin-top: 30px;margin-bottom: 25px;max-width: 800px}}@media (min-width: 1801px) {body {font-size: 18px;margin-left: 20%;margin-right: 20%;margin-top: 30px;margin-bottom: 25px;max-width: 1000px}}p {margin-top: 10px;margin-bottom: 18px}em {font-style: italic}strong {font-weight: bold}h1,h2,h3,h4,h5,h6 {font-weight: bold;padding-top: 0.25em;margin-bottom: 0.15em}header {line-height: 2.475em;padding-bottom: 0.7em;border-bottom: 1px solid #bbb;margin-bottom: 1.2em}header>h1 {border: none;padding: 0;margin: 0;font-size: 225%}header>h2 {border: none;padding: 0;margin: 0;font-style: normal;font-size: 175%}header>h3 {padding: 0;margin: 0;font-size: 125%;font-style: italic}header+h1 {border-top: none;padding-top: 0px}h1 {border-top: 1px solid #bbb;padding-top: 15px;font-size: 150%;margin-bottom: 10px}h1:first-of-type {border: none}h2 {font-size: 125%;font-style: italic}h3 {font-size: 105%;font-style: italic}hr {border: 0px;border-top: 1px solid #bbb;width: 100%;height: 0px}hr+h1 {border-top: none;padding-top: 0px}ul,ol {font-size: 90%;margin-top: 10px;margin-bottom: 15px;padding-left: 30px}ul {list-style: circle}ol {list-style: decimal}ul ul,ol ol,ul ol,ol ul {font-size: inherit}li {margin-top: 5px;margin-bottom: 7px}q,blockquote,dd {font-style: italic;font-size: 90%}blockquote,dd {quotes: none;border-left: 0.35em #bbb solid;padding-left: 1.15em;margin: 0 1.5em 0 0}blockquote blockquote,dd blockquote,blockquote dd,dd dd,ol blockquote,ol dd,ul blockquote,ul dd,blockquote ol,dd ol,blockquote ul,dd ul {font-size: inherit}a,a:link,a:visited,a:hover {color: inherit;text-decoration: none;border-bottom: 1px dashed #111}a:hover,a:link:hover,a:visited:hover,a:hover:hover {border-bottom-style: solid}a.footnoteRef,a:link.footnoteRef,a:visited.footnoteRef,a:hover.footnoteRef {border-bottom: none;color: #666}code {font-family: "Source Code Pro", "Consolas", "Monaco", monospace;font-size: 85%;background-color: #ddd;border: 1px solid #bbb;padding: 0px 0.15em 0px 0.15em;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px}pre {margin-right: 1.5em;display: block}pre>code {display: block;font-size: 70%;padding: 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;overflow-x: auto}blockquote pre,dd pre,ul pre,ol pre {margin-left: 0;margin-right: 0}blockquote pre>code,dd pre>code,ul pre>code,ol pre>code {font-size: 77.77778%}caption,figcaption {font-size: 80%;font-style: italic;text-align: right;margin-bottom: 5px}caption:empty,figcaption:empty {display: none}table {width: 100%;margin-top: 1em;margin-bottom: 1em}table+h1 {border-top: none}tr td,tr th {padding: 0.2em 0.7em}tr.header {border-top: 1px solid #222;border-bottom: 1px solid #222;font-weight: 700}tr.odd {background-color: #eee}tr.even {background-color: #ccc}tbody:last-child {border-bottom: 1px solid #222}dt {font-weight: 700}dt:after {font-weight: normal;content: ":"}dd {margin-bottom: 10px}figure {margin: 1.3em 0 1.3em 0;text-align: center;padding: 0px;width: 100%;background-color: #ddd;border: 1px solid #bbb;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;overflow: hidden}img {display: block;margin: 0px auto;padding: 0px;max-width: 100%}figcaption {margin: 5px 10px 5px 30px}.footnotes {color: #666;font-size: 70%;font-style: italic}.footnotes li p:last-child a:last-child {border-bottom: none}</style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<header id="title-block-header">
-<h1 class="title">Pong</h1>
-</header>
-<h1 id="comp712-classical-artificial-intelligence">COMP712: Classical
-Artificial Intelligence</h1>
-<p>Dr Daniel Zhang @ Falmouth University<br />
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence </h1>
+<p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
-<figure>
-<img src="pong_gui.png" alt="The Pong Game" />
-<figcaption aria-hidden="true">The Pong Game</figcaption>
-</figure>
-<h1 id="table-of-contents">Table of Contents</h1>
+<p><img src="pong_gui.png" alt="The Pong Game"></p>
+<h1 id="table-of-contents">Table of Contents </h1>
 <ul>
-<li><a href="#comp712-classical-artificial-intelligence">COMP712:
-Classical Artificial Intelligence</a></li>
+<li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
 <li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#workshop-pong-game-implementation">Workshop: Pong Game
-Implementation</a></li>
+<li><a href="#workshop-pong-game-implementation">Workshop: Pong Game Implementation</a></li>
 <li><a href="#the-repository">The Repository</a></li>
 <li><a href="#game-play">Game Play</a></li>
 <li><a href="#game-controls">Game Controls</a></li>
@@ -116,43 +40,25 @@ Implementation</a></li>
 <li><a href="#the-code-1">The Code</a></li>
 <li><a href="#your-task">Your Task</a></li>
 </ul>
-<h1 id="workshop-pong-game-implementation">Workshop: Pong Game
-Implementation</h1>
-<p>During this workshop, you will put your Python skills to the test by
-completing the implementation of the Pong game.</p>
-<h1 id="the-repository">The Repository</h1>
-<p>The repository linked below contains the code for a basic 2-player
-PONG game.</p>
-<p><strong>Fork the repository</strong> (do not clone!) and work on your
-fork. This will enable you to submit a pull request at the end.</p>
+<h1 id="workshop-pong-game-implementation">Workshop: Pong Game Implementation </h1>
+<p>During this workshop, you will put your Python skills to the test by completing the implementation of the Pong game.</p>
+<h1 id="the-repository">The Repository </h1>
+<p>The repository linked below contains the code for a basic 2-player PONG game.</p>
+<p><strong>Fork the repository</strong> (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.</p>
 <blockquote>
 <p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git</strong></a></p>
 </blockquote>
-<h1 id="game-play">Game Play</h1>
-<p>Ensure that you have successfully downloaded <code>pong.pyc</code>.
-Then, open a command window in the folder and run the game by
-executing:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> pong.pyc</span></code></pre></div>
-<p>If everything is working correctly, you should see a GUI similar to
-the screenshot above.</p>
+<h1 id="game-play">Game Play </h1>
+<p>Ensure that you have successfully downloaded <code>pong.pyc</code>. Then, open a command window in the folder and run the game by executing:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>python pong.pyc
+</code></pre><p>If everything is working correctly, you should see a GUI similar to the screenshot above.</p>
 <p><strong>Note</strong>:</p>
-<p>The <code>.pyc</code> file was compiled using
-<code>Python 3.12.0</code> and should work with any
-<code>Python 3.x</code> versions. However, if you encounter any issues
-while running the script, please let us know, and a newer version of the
-script can be uploaded to the repository.</p>
-<h1 id="game-controls">Game Controls</h1>
-<p>This is a 2-player game. Player A can control the left paddle using
-<kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses
-<kbd>↑</kbd> and <kbd>↓</kbd>.</p>
-<h1 id="the-code">The Code</h1>
-<p>The implementation is relatively straightforward. Let’s take a closer
-look at the detailed structure of the code:</p>
-<figure>
-<img src="flow1.png" alt="Game Flow" />
-<figcaption aria-hidden="true">Game Flow</figcaption>
-</figure>
-<pre class="mermaid"><code>flowchart TD
+<p>The <code>.pyc</code> file was compiled using <code>Python 3.12.0</code> and should work with any <code>Python 3.x</code> versions. However, if you encounter any issues while running the script, please let me know, and a newer version of the script can be uploaded to the repository.</p>
+<h1 id="game-controls">Game Controls </h1>
+<p>This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.</p>
+<h1 id="the-code">The Code </h1>
+<p>The implementation is relatively straightforward. Let's take a closer look at the detailed structure of the code:</p>
+<div class="mermaid">flowchart TD
 
 A(game start) ---&gt; B(define global variables)
 B ---&gt; C(draw the board)
@@ -161,58 +67,105 @@ B ---&gt; E(draw the ball)
 C ---&gt; F(the main loop)
 D ---&gt; F
 E ---&gt; F
-F -- listen to keyboard events --&gt; F</code></pre>
-<p>The main loop can be illustrated as:</p>
-<figure>
-<img src="flow2.png" alt="Main Loop" />
-<figcaption aria-hidden="true">Main Loop</figcaption>
-</figure>
-<pre class="mermaid"><code>flowchart TD
+F -- listen to keyboard events --&gt; F
+</div><p>The main loop can be illustrated as:</p>
+<div class="mermaid">flowchart TD
 
 A(the main loop) ---&gt; B(update the window)
 B ---&gt; C(update ball)
 B ---&gt; D(update paddles)
 B ---&gt; E(update scores)
-B -- perform collision test --&gt; B</code></pre>
-<h1 id="the-code-1">The Code</h1>
+B -- perform collision test --&gt; B
+</div><h1 id="the-code-1">The Code </h1>
 <p>There are four functions defined for keyboard controls:</p>
-<p>1.<code>left_paddle_up()</code>: Move the left paddle upwards with
-<kbd>W</kbd>. 2. <code>left_paddle_down()</code>: Move the left paddle
-downwards with <kbd>S</kbd>. 3. <code>right_paddle_up()</code>: Move the
-right paddle upwards with <kbd>↑</kbd>. 4.
-<code>right_paddle_down()</code>: Move the right paddle downwards with
-<kbd>↓</kbd>.</p>
-<p>Additionally, there are two functions for displaying messages and
-drawing text on the board:</p>
-<ol type="1">
-<li><code>msgbox(msg)</code>: Display a modal dialogue box with the
-given msg string.</li>
-<li><code>write_text(txt)</code>: Display the provided txt string on the
-board.</li>
+<ol>
+<li><code>left_paddle_up()</code>: Move the left paddle upwards with <kbd>W</kbd>.</li>
+<li><code>left_paddle_down()</code>: Move the left paddle downwards with <kbd>S</kbd>.</li>
+<li><code>right_paddle_up()</code>: Move the right paddle upwards with <kbd>↑</kbd>.</li>
+<li><code>right_paddle_down()</code>: Move the right paddle downwards with <kbd>↓</kbd>.</li>
+</ol>
+<p>Additionally, there are two functions for displaying messages and drawing text on the board:</p>
+<ol>
+<li><code>msgbox(msg)</code>: Display a modal dialogue box with the given msg string.</li>
+<li><code>write_text(txt)</code>: Display the provided txt string on the board.</li>
 </ol>
 <p><strong>Note:</strong></p>
 <ul>
-<li><p>The last two functions are primarily for debugging purposes and
-do not affect gameplay. They are useful for checking collision with
-window borders and paddles.</p></li>
-<li><p>You may need to improve the control functions to prevent paddles
-from moving out of the window in some cases.</p></li>
+<li>
+<p>The last two functions are primarily for debugging purposes and do not affect gameplay. They are useful for checking collision with window borders and paddles.</p>
+</li>
+<li>
+<p>You may need to improve the control functions to prevent paddles from moving out of the window in some cases.</p>
+</li>
 </ul>
-<h1 id="your-task">Your Task</h1>
-<ol type="1">
-<li><p>Implement collisions with the board’s top and bottom, as well as
-the left and right paddles to make the game complete.</p></li>
-<li><p>Change the ball’s starting speed using the random
-module.</p></li>
-<li><p>Adjust the size and moving speed of the paddles.</p></li>
-<li><p>Add more fun by speeding up the ball after a certain number of
-catches.</p></li>
-<li><p>Increase the excitement by adding a ‘random’ direction change for
-each collision with the board or paddle.</p></li>
-<li><p>Implement any other improvements you can imagine!</p></li>
+<h1 id="your-task">Your Task </h1>
+<ol>
+<li>
+<p>Implement collisions with the board's top and bottom, as well as the left and right paddles to make the game complete.</p>
+</li>
+<li>
+<p>Change the ball's starting speed using the random module.</p>
+</li>
+<li>
+<p>Adjust the size and moving speed of the paddles.</p>
+</li>
+<li>
+<p>Add more fun by speeding up the ball after a certain number of catches.</p>
+</li>
+<li>
+<p>Increase the excitement by adding a 'random' direction change for each collision with the board or paddle.</p>
+</li>
+<li>
+<p>Implement any other improvements you can imagine!</p>
+</li>
 </ol>
 <p><strong>Note:</strong></p>
-<p>You can submit a pull request to the original repository to showcase
-your work if you like.</p>
-</body>
-</html>
+<p>You can submit a pull request to the original repository to showcase your work if you like.</p>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>
