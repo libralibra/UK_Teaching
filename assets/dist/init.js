@@ -116,7 +116,7 @@ Reveal.initialize({
     mermaid: {
         flowchart: {
             // curve will turn off flexible line
-            curve: 'linear',
+            // curve: 'linear',
         },
     },
 

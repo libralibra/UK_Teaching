@@ -91,355 +91,421 @@
                     </section>
                 </section>
 
-                <section id="chap_game_theory">
-                    <section id="game_theory">
-                        <h1 class="r-frame-text">Game Theory</h1>
+                <section id="chap_monte_carlo">
+                    <section id="monte_carlo_title">
+                        <h1 class="r-frame-text">Monte Carlo Methods</h1>
                     </section>
 
-                    <section id="theory">
-                        <h1>Game Theory</h1>
+                    <section id="expected_value">
+                        <h1>Expected Value</h1>
                         <ul>
-                            <li>A branch of mathematics studying <span class="blue">decision making</span></li>
-                            <li>A <span class="cyan">game</span> is a system where one or more <span class="lime">players</span> choose <span class="yellow">actions</span>; the combination of these choices lead to each agent receiving a payoff</li>
-                            <li>Important applications in economics, ecology and social sciences as well as AI</li>
-                        </ul>
-                    </section>
-
-                    <section id="dilemma">
-                        <h1>The <span class="strike">Prisoner's</span> Students' Dilemma</h1>
-                        <ul>
-                            <li>Two students, <span class="red">Alice</span> and <span class="blue">Bob</span>, are suspected of copying from each other</li>
-                            <li>Each is offered a deal in exchange for information</li>
-                            <li>Each can choose to <span class="pink">betray</span> the other or stay <span class="lime">silent</span> - no <span class="purple">communication</span> before they make the choices</li>
-                            <li>If <span class="lime">both stay silent</span>, both receive a C grade</li>
-                            <li>If <span class="red">Alice betrays Bob</span>, she gets an A whilst Bob gets expelled</li>
-                            <li>If <span class="blue">Bob betrays Alice</span>, he gets an A whilst Alice gets expelled</li>
-                            <li>if <span class="pink">both betray each other</span>, both get an F</li>
-                        </ul>
-                    </section>
-
-                    <section id="payoff">
-                        <h1>Payoff Matrix</h1>
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th class="with-bg"><span class="bold lime">A Silent</span></th>
-                                <th class="with-bg"><span class="bold red">A Betray</span></th>
-                            </tr>
-                            <tr>
-                                <td class="with-bg"><span class="bold lime">B Silent</span></td>
-                                <td><span class="orange">A:40<br>B:40</span></td>
-                                <td><span class="green">A:70</span><br><span class="red">B:-100</span></td>
-                            </tr>
-                            <tr>
-                                <td class="with-bg"><span class="bold red">B Betray</span></td>
-                                <td><span class="red">A:-100</span><br><span class="green">B:70</span></td>
-                                <td><span class="purple">A:0<br>B:0</span></td>
-                            </tr>
-                        </table>
-                        <p class="fragment custom blur">Which strategy are you going to choose if you and your best friend were caught?</p>
-                        <p class="fragment orange">Is that the best both of you can do?</p>
-                    </section>
-
-                    <section id="nash">
-                        <h1>Nash Equilibrium</h1>
-                        <ul>
-                            <li>Consider the situation where both have chosen to betray</li>
-                            <li>Neither person has anything to gain by switching to silence, assuming the other person doesn't also switch</li>
-                            <li class="fragment">Such as situation is called a <span class="blue">Nash Equilibrium</span></li>
-                            <li class="fragment">If all players are <span class="yellow">rational</span> (in the sense of wanting to maximising payoff), they should converge upon a Nash Equilibrium</li>
-                        </ul>
-                    </section>
-
-                    <section id="rps">
-                        <h1>Does every game have a Nash Equilibrium?</h1>
-                        <table class="fragment">
-                            <tr>
-                                <th></th>
-                                <th class="with-bg"><span class="red">A Rock</span></th>
-                                <th class="with-bg"><span class="orange">A Paper</span></th>
-                                <th class="with-bg"><span class="green">A Scissors</span></th>
-                            </tr>
-                            <tr>
-                                <td class="with-bg"><span class="red">B Rock</span></td>
-                                <td>A: 0<br>B: 0</td>
-                                <td>A: +1<br>B: -1</td>
-                                <td>A: -1<br>B: +1</td>
-                            </tr>
-                            <tr>
-                                <td class="with-bg"><span class="orange">B Paper</span></td>
-                                <td>A: -1<br>B:+1</td>
-                                <td>A: 0<br>B: 0</td>
-                                <td>A: +1<br>B: -1</td>
-                            </tr>
-                            <tr>
-                                <td class="with-bg"><span class="green">B Scissors</span></td>
-                                <td>A: +1<br>B: -1</td>
-                                <td>A: -1<br>B: +1</td>
-                                <td>A: 0<br>B: 0</td>
-                            </tr>
-                        </table>
-                        <p class="fragment bigtext bold purple">No!</p>
-                    </section>
-
-                    <section id="rps_analysis">
-                        <h1>Nash Equilibrium for<br>Rock-Paper-Scissors</h1>
-                        <ul>
-                            <li class="fragment">Committing to any choice of action can be <span class="blue">exploited</span>
-                                <dd>E.g. if you always choose paper, I choose scissors</dd>
+                            <li>Let $X$ be a <span class="blue">random variable</span></li>
+                            <li>Let $p(x)$ be the <span class="lime">probability</span> that $X$ has value $x$</li>
+                            <li>Then, the <span class="pink">expected value</span> of $X$ is
+                                <dd>\[
+                                    \sum_x{xp(x)}
+                                    \]
+                                </dd>
                             </li>
-                            <li class="fragment">If we try to reason naively, we get stuck in a loop<dd><span class="fragment pink">If I choose paper, you'll choose scissors,</span> <span class="fragment skyblue">so I should choose rock, but then you'll choose paper,</span> <span class="fragment lime">so I'll choose scissors, so you'll choose rock,</span> <span class="fragment">so I choose paper, ...</span></dd>
+                        </ul>
+                    </section>
+
+                    <section id="expected_value_example">
+                        <h1>Expected Value - Example</h1>
+                        <ul>
+                            <li class="fragment">Suppose that a slot machine pays out
+                                <dd><span class="lime">$£1$</span> with probability <span class="skyblue">$0.05$</span>,<br>
+                                    <span class="lime">$£5$</span> with probability <span class="skyblue">$0.03$</span>,<br>
+                                    <span class="lime">$£10$</span> with probability <span class="skyblue">$0.02$</span>,<br>
+                                    <span class="lime">nothing</span> with probability <span class="skyblue">$0.9$</span>.
+                                </dd>
                             </li>
-                            <li class="fragment">The optimum strategy is to be <span class="cyan bold">unpredictable</span></li>
-                            <li class="fragment">Choose rock with probability $\frac{1}{3}$, paper with probability $\frac{1}{3}$, and scissors with probability $\frac{1}{3}$</li>
+                            <li class="fragment">The expected payout is
+                                <dd><span class="lime">$1$</span>$\times$<span class="skyblue">$0.05$</span>$+$<span class="lime">$5$</span>$\times$<span class="skyblue">$0.03$</span>$+$<span class="lime">$10$</span>$\times$<span class="skyblue">$0.02$</span>$+$<span class="lime">$0$</span>$\times$<span class="skyblue">$0.90$</span>$=$<span class="pink">$0.40$</span></dd>
+                            </li>
+                            <li class="fragment">On average, if you play the machine <span class="blue">$N$</span> times, you will win <span class="pink">$£0.40*N$</span></li>
                         </ul>
                     </section>
 
-                    <section id="mixed_strategy">
-                        <h1>Mixed Strategies</h1>
+                    <section id="randomness">
+                        <h1>"Randomness" in Computing</h1>
                         <ul>
-                            <li class="fragment">A <span class="blue">mixed strategy</span> assigns probabilities to actions and chooses one at random</li>
-                            <li class="fragment">In contrast to a <span class="orange">pure</span> or <span class="pink">deterministic strategy</span>, which always chooses the same actions</li>
-                            <li class="fragment">If we allow mixed strategies, <span class="skyblue">every game has at least one Nash Equilibrium</span></li>
+                            <li>Digital computers are <span class="blue">deterministic</span>, so there's no such thing as true randomness
+                                <dd>- Cryptographically secure systems use an external source of randomness, e.g. atmospheric noise, radioactive decay, etc.</dd>
+                            </li>
+                            <li>What we actually have are <span class="lime">pseudo-random number generators (PRNGs)</span></li>
+                            <li>A PRNG is an algorithm which gives an <span class="pink">unpredictable</span> sequence of numbers based on a <span class="blue">seed</span></li>
+                            <li>Sequence is <span class="lime">uniformly distributed</span>, i.e. all numbers have equal probability</li>
+                            <li>Seed is generally based on some source of <span class="orange">entropy</span>, e.g. system clock, mouse input, electronic noise</li>
                         </ul>
                     </section>
 
-                    <section id="guess">
-                        <h1>Guess $\frac{2}{3}$ of the Average</h1>
+                    <section id="monte_carlo">
+                        <h1>Monte Carlo Methods</h1>
                         <ul>
-                            <li>Everyone guesses a real number (decimals are allowed) between 0 and 100 inclusive</li>
-                            <li>The winner is the person who guesses closest to $\frac{2}{3}$ of the mean of all guesses</li>
-                            <li>Example:<br>
+                            <li>In computing, a <span class="yellow">Monte Carlo Method</span> is an algorithm based on <span class="orange">averaging over random samples</span></li>
+                            <li>The <span class="orange">average</span> over a large number of samples is a good approximation of the <span class="pink">expected value</span></li>
+                            <li>Used for <span class="grey">quickly approximating</span> quantities over <span class="skyblue">large domains</span></li>
+                            <li>Generally designed to <span class="blue">converge in the limit</span>
                                 <ul>
-                                    <li>if the guesses are 30, 40,and 80</li>
-                                    <li>then the mean is $\frac{30+40+80}{3}=50$</li>
-                                    <li>so the winning guess is 30, as this is the closest to <br>$\frac{2}{3} \times 50=33.333...$</li>
+                                    <li>an <span class="silver">infinite</span> number of samples would give an <span class="purple">exact</span> answer</li>
+                                    <li>As the <span class="golden">number of samples</span> increases, the <span class="cyan">accuracy</span> of the answer improves</li>
                                 </ul>
                             </li>
+                            <li>Applications in physics, engineering, finance, weather forecasting, graphics, ...</li>
                         </ul>
                     </section>
 
-                    <section id="rationality">
-                        <h1>Rationality</h1>
-                        <ul>
-                            <li>Rationality is a useful assumption for mathematics and AI programmes</li>
-                            <li>However, it's important to remember that <br><span class="bigtext2 blue">humans aren't always rational!</span></li>
-                        </ul>
+                    <section id="monte_carlo_pi">
+                        <h1>Monte Carlo Method Example</h1>
+                        <img class="r-stretch" src="img/monte_carlo_pi.gif" alt="calculating Pi using Monte Carlo simulation">
+                        <p>$\frac{inside\_point\_number}{total\_number}=\frac{\pi}{4}$</p>
                     </section>
                 </section>
 
-                <section id="chap_markov">
-
-                    <section id="markov">
-                        <h1 class="r-frame-test">Markov Decision Process and Games</h1>
+                <section id="chap_ucb">
+                    <section id="ucb_title">
+                        <h1 class="r-frame-text">Search Strategy</h1>
                     </section>
 
-                    <section id="markov_decision_process">
-                        <h1>Markov Decision Process</h1>
-                        <p class="left">A <span class="cyan">Markov Decision Process (MDP)</span> is defined by:</p>
-                        <ul>
-                            <li>A finite set <code class="lime">$S$</code> of <span class="orange">states</span></li>
-                            <li>A finite set <code class="blue">$A$</code> of <span class="pink">actions</span></li>
-                            <li><code class="yellow">$P(s,a,s')$</code> is the <span class="red">probability</span> that action <code class="blue">$a$</code> in state <code class="lime">$s$</code> leads to state <code class="orange">$s'$</code></li>
-                            <li><code class="orange">$R(s,a,s')$</code> is the <span class="cyan">reward</span> received from performing action <code class="blue">$a$</code> in state <code class="lime">$s$</code> and ending up in state <code class="orange">$s'$</code></li>
-                        </ul>
+                    <section id="multi_arm">
+                        <h1>The Multi-armed Bandit Problem</h1>
+                        <div class="row no-margin-bottom no-margin-top">
+                            <div class="col-50 text-left">
+                                <ul>
+                                    <li>Pull one arm at a time</li>
+                                    <li>Each arm has a different chance to win</li>
+                                    <li>Random/noisy reward signal</li>
+                                    <li>Pulling any arm either wins or loses</li>
+                                    <li>Maximise the total reward after each move (expected return)</li>
+                                </ul>
+                                </p>
+                            </div>
+                            <div class="col-50">
+                                <img src="img/multi_arm.png" alt="The multi-armed bandit problem"><br>
+                                <a class="tinytext" href="https://tinyurl.com/58n984kp" target="_blank">https://tinyurl.com/58n984kp</a>
+                            </div>
+                        </div>
                     </section>
 
-                    <section id="markov_property">
-                        <h1>The Markov Property</h1>
+                    <section id="expected_return">
+                        <h1>Expected Return</h1>
                         <ul>
-                            <li>Given state <code class="lime">$s$</code> and action <code class="blue">$a$</code>, the next state <code class="orange">$s'$</code> is determined by <code class="yellow">$P(s,a,s')$</code></li>
-                            <li>The previous states before <code class="lime">$s$</code> has no effect</li>
-                            <li>Hence and MDP is <span class="italic purple">memoryless</span>
-                                <dd>(or rather, any memory has to be contained within the state)</dd>
+                            <li><span class="orange">Action value</span> $\implies$ to decide which arm is the best action ($a$) we define the value of taking the action as: $q_t(a)=E(R_t \vert A_t = a)$
+                                <dd>- Maximise the expected reward ($R_t$) by selecting the action ($a$) with the highest action-value ($q_t(a)$)</dd>
+                            </li>
+                            <li><span class="pink">Action value estimate</span> $\implies$ since the action value is unknown to the agent it can be estimated by: $Q_t(a)=\frac{\sum_{T=0}^{T=t} R_T}{N_t(a)}$
+                                <dd>- The sample-average: the total reward ($\sum_{T=0}^{T=t} R_T$) is divided by the number of actions ($N_t(a)$)</dd>
                             </li>
                         </ul>
                     </section>
 
-                    <section id="non_determinism">
-                        <h1>(Non)determinism</h1>
+                    <!-- the next 3 slides refers to https://www.geeksforgeeks.org/upper-confidence-bound-algorithm-in-reinforcement-learning/ -->
+                    <section id="explore_exploit">
+                        <h1>Exploration <span class="italic">vs</span> Exploitation Dilemma</h1>
                         <ul>
-                            <li>MDP defines <code class="yellow">$P(s,a,s')$</code></li>
-                            <li>From state <code class="lime">$s$</code> and action <code class="blue">$a$</code>, there may be several possible states <code class="orange">$s'$</code></li>
-                            <li>MDPs are <span class="pink">nondeterministic</span> i.e. <span class="skyblue">stochastic</span></li>
-                            <!-- normal space is missing for some reason, has to use \space or other katex supported syntax like \enspace, \quad, \qquad, and \phantom-->
-                            <li>If we have
-                                <smalltext>\[
-                                    P(s,a,s')=\begin{cases}
-                                    1, & for\space some\space s' \\
-                                    0, & for\space all\space other\space s'
-                                    \end{cases}
-                                    \]</smalltext>
-                                <br>then the MDP is <span class="blue">deterministic</span>
+                            <li><span class="blue">Greedy Action</span>: By choose the largest estimated value, the agent exploits its current knowledge.</li>
+                            <li><span class="orange">Non-Greedy Action</span>: Do not choose the largest estimated value and hope to gain more information about the other actions.</li>
+                            <li><span class="lime">Exploration</span>: It allows the agent to improve its knowledge about each action. Hopefully, leading to a <span class="purple">long-term benefit</span>.</li>
+                            <li><span class="yellow">Exploitation</span>: Try to get the most reward for <span class="cyan">short-term benefit</span>. A pure greedy action selection can lead to <span class="red">sub-optimal</span> behaviour.</li>
+                        </ul>
+                        <p class="fragment skyblue">A dilemma occurs between exploration and exploitation because an agent can not choose to both explore and exploit at the same time.</p>
+                    </section>
+
+                    <section id="ucb">
+                        <h1>Upper Confidence Bound (UCB)</h1>
+                        <ul>
+                            <li>Balance <span class="lime">exploitation</span> with <span class="orange">exploration</span></li>
+                            <li>Inherent uncertainty in the accuracy of the action-value estimates</li>
+                            <li>Select the arm that maximises:
+                                <dd class="text-center">
+                                    $A_t=argmax_a\left(Q_t(a)+c\sqrt{\frac{ln(t)}{N_t(a)}}\right)$
+                                </dd>
+                                <dd>where $c$ is a trade-off between exploration and exploitation. If $c=0$ then you only consider $Q_t(a)$ (no exploration); if $c→\infty$ then you only consider exploration term (<span class="cyan">UCB</span>).</dd>
                             </li>
-                            <li>In the deterministic case, the same state <code class="lime">$s$</code> and action <code class="blue">$a$</code> always leads to the same state <code class="orange">$s'$</code></li>
+                            <li>Select the action that has:<dd> the highest estimated action-value <span class="purple">plus</span> the UCB exploration term.</dd>
+                            </li>
                         </ul>
                     </section>
 
-                    <section id="markov_prblem">
-                        <h1>Markov Decision problems</h1>
-                        <ul>
-                            <li>A <span class="skyblue">policy</span> for an MDP is a function <span class="cyan">$\pi: S \to A$</span>
-                                <dd>i.e. in state <span class="lime">$s$</span>, choose action <span class="blue">$a$</span>=<span class="cyan">$\pi$</span>(<span class="lime">$s$</span>)</dd>
-                            </li>
-                            <li>Goal: find <span class="cyan">$\pi$</span> which maximises the total reward over time</li>
-                        </ul>
+                    <section id="ucb_ci">
+                        <h1>UCB with Confidence Interval</h1>
+                        <p class="text-left">$Q(A)$ represents the current action-value estimate for action $A$. <br>The brackets represent a confidence interval which says that we are confident that the actual $Q(A)$ lies somewhere in this region.</p>
+                        <img class="r-stretch" src="img/ucb_1.png" alt="UCB">
                     </section>
 
-                    <section id="ma_mdp">
-                        <h1>Multi-agent MDPs</h1>
-                        <ul>
-                            <li>We have assumed a <span class="golden">single agent</span> choosing a policy <span class="cyan">$\pi$</span></li>
-                            <li>We can extend to <span class="pink">$n$</span> agents choosing policies <span class="cyan">$\pi_1,\pi_2,\cdots,\pi_n$</span></li>
-                            <li>The "action" is now a combination <span class="blue">$(a_1,a_2,\cdots,a_n)$</span> of all the agents' actions</li>
-                            <li>Each agent has their own reward function and is trying to maximise it</li>
-                            <li>This is a <span class="bigtext3 bold orange">game!</span></li>
-                        </ul>
+                    <section id="ucb_example_1" data-auto-animate>
+                        <h1>UCB Example</h1>
+                        optimistically pick action $A$ to either get the highest reward or learn about an action we know least about.
+                        <img class="r-stretch" src="img/ucb_2.png" alt="UCB example">
+                    </section>
+
+                    <section id="ucb_example_2" data-auto-animate>
+                        <h1>UCB Example (cont.)</h1>
+                        Select the action $B$ since $Q(B)$ has the highest UCB, even though the confidence interval is small.
+                        <img class="r-stretch" src="img/ucb_3.png" alt="UCB example">
                     </section>
                 </section>
 
-                <section id="chap_minimax">
-
-                    <section id="minimax_search_title">
-                        <h1 class="r-frame-text">Minimax Search</h1>
+                <section id="chap_mcts">
+                    <section id="MCTS_title">
+                        <h1 class="r-frame-text">Monte Carlo Tree Search</h1>
+                        <img src="img/slots.gif" alt="Slot Game">
                     </section>
 
-                    <section id="game_trees">
-                        <h1>Game Trees</h1>
-                        <img src="img/game_tree.png" alt="game tree" class="r-stretch">
+                    <section id="game_decision_revisted">
+                        <h1>Game Decision Revisited</h1>
+                        <div class="mermaid">
+                            <pre>
+                                %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                                graph TD
+                                A(Current Position) -- Move A --> B(PA)
+                                A(Current Position) -- Move B --> C(PB)
+                                A(Current Position) -- Move C --> D(PD)
+                                C -. playout policy .-> E(Terminal: win=1, lose=0)
+                                E -- Reward for Move B --> C
+                            </pre>
+                        </div>
+                        <p class="text-left">PB to Terminal (dash line) represents the (possibly long) <span class="blue">playout policy</span>. Reward feedbacks to PB.<br>Minimax algorithm requires the expansion of whole game tree. So we may:<br>
+                            - expand the game tree only <span class="pink">up to certain</span> threshold <span class="pink">depth $d$</span><br>
+                            - prune the game tree using <a href="https://www.wikiwand.com/en/Alpha%E2%80%93beta_pruning" alt="Alpha beta pruning algorithm" target="_blank">Alpha-Beta Pruning Algorithm</a></p>
                     </section>
 
-                    <section id="minimax">
-                        <h1>Minimax</h1>
-                        <ul>
-                            <li>Consider a 2-agent MDP with the following restrictions: <ul>
-                                    <li>Deterministic</li>
-                                    <li>Only one agent chooses an action from a given state</li>
-                                    <li>Some states are <span class="red">terminal</span> - these are the only ones with non-zero reward</li>
-                                    <li>The game is <span class="skyblue">zero sum</span>: $R_1 (s,a,s')+R_2(s,a,s')=0$</li>
-                                </ul>
-                            </li>
-                            <li>My opponent wants to <span class="lime">maximise</span> his reward, which is the same as <span class="pink">minimise</span> mine</li>
-                            <li>Therefore, I want to <span class="lime">minimise</span> the <span class="pink">maximum</span> value my opponent can achieve</li>
+                    <section id="mcts_process">
+                        <h1>Monte Carlo Tree Search (MCTS) Process</h1>
+                        <div class="mermaid">
+                            <pre>
+                                %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                                graph TD
+                                A(Current Position) -- Move A --> B(PA)
+                                A(Current Position) -- Move B --> C(PB)
+                                A(Current Position) -- Move C --> D(PC)
+                                C -. tree policy .-> E(PD)
+                                C -- Move D --> E(PD)
+                                E -. default policy .-> F(Terminal: win=1, lose=0)
+                                F -- Reward --> C
+                                F -- Reward --> E
+                            </pre>
+                        </div>
+                        <ul class="float-left">Now, the <span class="blue">playout policy</span> to select the "possible" best move include 2 steps:
+                            <li>Select node PD (Move D) via <span class="lime">tree policy</span>: UCB</li>
+                            <li>From PD to Terminal using the <span class="skyblue">default policy</span>: uniform random</li>
+                            <li>Reward feedbacks to both PB and PD</li>
                         </ul>
                     </section>
 
-                    <section id="minimax_search">
-                        <h1>Minimax Search</h1>
-                        <ul>
-                            <li>Recursively defines a <span class="blue">value</span> for non-terminal game states (the value function)</li>
-                            <li>Consider each possible "next state", i.e. each possible move</li>
-                            <li>If it's <span class="cyan">my turn</span>, the value is the <span class="lime">maximum</span> value over next states</li>
-                            <li>If it's <span class="purple">my opponent's turn</span>, the value is the <span class="pink">minimum</span> value over next states</li>
-                        </ul>
-                    </section>
-
-                    <section id="example">
-                        <h1>Minimax Example</h1>
-                        <img src="img/tic-tac-toe.jpg" alt="tic tac toe" class="r-stretch">
-                    </section>
-
-                    <!-- this need to be fixed urgently, otherwise, it's painful to include code in the slide deck -->
-                    <section id="pseudo_code">
-                        <h1>Minimax Search Pseudo Code</h1>
-                        <pre><code class="bigtext vbnet" data-trim data-line-numbers="1-3|4-9|10-15">                           procedure MINIMAX(state, currentPlayer)
-                    if state == terminal then
-                      return game over
-                          else if currentPlayer == 1 then
-                    bestValue = -&infin;
-                                    for each possible nextState do
-                                                    v = MINIMAX(nextState, 3-currentPlayer)
-                                          bestValue = MAX(bestValue, v)
-                      return bestValue
-                          else if currentPlayer == 1 then
-                    bestValue = +&infin;
-                                    for each possible nextState do
-                                                    v = MINIMAX(nextState, 3-currentPlayer)
-                                          bestValue = MIN(bestValue, v)
-                      return bestValue
-                        </code></pre>
-                    </section>
-
-                    <section id="improvement">
-                        <h1>Stopping Early</h1>
-                        <pre><code class="vbnet">                       for each possible nextState do 
-                            v = MINMAX(nextState, 3-currentPlayer)
-                            bestValue = MAX(bestValue, v)
-                        </code></pre>
-                        <ul>
-                            <li>State values are always between -1 and +1 (designed value function)</li>
-                            <li>So if we have <code class="lime">bestValue = 1</code>, we can stop early when <span class="lime">maximising</span></li>
-                            <li>Similarly when <span class="pink">minimising</span> if <code class="pink">bestValue = -1</code></li>
-                            <li>There are techniques for smarter early stopping, e.g. <span class="orange">alpha-beta pruning</span></li>
-                        </ul>
-                    </section>
-
-                    <section id="using_minimax">
-                        <h1>Using Minimax Search</h1>
-                        <ul>
-                            <li>To decide which move to play next</li>
-                            <li>Calculate the minimax value for each move</li>
-                            <li>Choose the move with the maximum score </li>
-                            <li>If there are several with the same score, choose one at random</li>
-                        </ul>
-                    </section>
-
-                    <section id="minimax_and_game_theory">
-                        <h1>Minimax and Game Theory</h1>
-                        <ul>
-                            <li>For a <span class="cyan">two-player</span>, <span class="purple">zero-sum</span> game with <span class="yellow">perfect information</span> and <span class="lime">sequential moves</span></li>
-                            <li>Minimax search will always find a <span class="blue">Nash Equilibrium</span>
-                                <dd>i.e. a minimax player plays <span class="golden">perfectly</span></dd>
-                            </li>
-                            <li class="fragment"><span class="red">But...</span></li>
-                        </ul>
-                    </section>
-
-                    <section id="big_game">
-                        <h1>Minimax for Larger Game</h1>
-                        <ul>
-                            <li>The game tree for noughts and crosses has <span class="blue">only a few thousand</span> states</li>
-                            <li>Most games are too large to search fully
+                    <!-- refer to https://int8.io/monte-carlo-tree-search-beginners-guide/ -->
+                    <section id="monte_carlo_tree_search">
+                        <h1>UCB for MCTS - UCT</h1>
+                        <div class="row">
+                            <div class="col-50">
                                 <ul>
-                                    <li><span class="grey">Connect 4</span> has $\approx 10^{13}$ states</li>
-                                    <li><span class="gray">Chess</span> has $\approx 10^{47}$ states</li>
+                                    <li>Iteratively build a partial search tree, one node per iteration</li>
+                                    <li>Monte Carlo (randomness) evaluation for non-terminal nodes</li>
+                                    <li><span class="lime">Asymmetric</span>: balance between exploitation and exploration with unbalanced tree topology</li>
+                                    <li><span class="orange">Anytime</span>: can do as many (or as few) iteration as we want</li>
+                                    <li><span class="purple">Aheuristic</span>: no prior knowledge required except rules</li>
                                 </ul>
-                                <dd>It is just "<span class="golden">impossible</span>" to search the game tree thoroughly!</dd>
-                            </li>
-                            <li>Generally need to <span class="blue">cut off</span> the tree at a certain depth and use <span class="lime">heuristics</span></li>
-                            <li>In practice, define our own reward function that (hopefully) approximates the real one</li>
+                            </div>
+                            <div class="fragment col-50">
+                                <img src="img/mcts.png" alt="MCTS" class="r-stretch"><br>
+                                <span class="smalltext text-left">
+                                    <span class="lime">$UCT(v_i,v)=\frac{W_{v_i}}{N_{v_i}}+c\sqrt{\frac{log(N_v)}{N_{v_i}}}$</span>
+                                    <br>
+                                    $c$: exploration parameter (theoretically $=\sqrt{2}$)
+                                    $v_i$: $i$-th child node of node $v$<br>
+                                    $W_{v_i}$: the number of wins from node $v_i$<br>
+                                    $N_{v_i}$: the number of visits to node $v_i$<br>
+                                    $N_v$: the number of visits to it's parent node $v$<br>
+                                    <span class="golden smalltext">How does $N_{v_i}$ affect the UCT value?</span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="why_mcts">
+                        <h1>Why MCTS?</h1>
+                        <ul>
+                            <li>MCTS simulates the process how we play games: we do not list all moves but the "most possible" moves of the opponent after we make our "most possible" moves and so on... </li>
+                            <li>Effectively search a large "space" without prior knowledge</li>
+                            <li>Estimate the value of each possible move by random simulation</li>
+                            <li>Move towards the best strategy</li>
                         </ul>
+                    </section>
+
+                    <section id="mcts_process">
+                        <h1>MCTS Process</h1>
+                        <p class="text-left">Each iteration of MCTS includes 4 steps:</p>
+                        <img src="img/mctc_steps.png" alt="MCTS steps" class="r-stretch">
+                    </section>
+
+                    <section id="node_status">
+                        <h1>Node Status</h1>
+                        <span class="blue">Fully-expanded</span>: <span class="cyan">visited</span> (reward evaluated) all children nodes at least once<br>
+                        <span class="skyblue">Not fully-expanded</span>: didn't visit all children nodes, further expansion is possible!<br>
+                        Each node contains information about win rate, number of visits, ...
+                        <img class="r-stretch" src="img/mcts_1.png" alt="MCTS">
+                    </section>
+
+                    <!-- detailed process with implementation:
+                        Python: https://www.baeldung.com/java-monte-carlo-tree-search 
+                        Java: https://ai-boson.github.io/mcts/
+                    -->
+                    <section id="mcts_select_1">
+                        <h1>MCTS Process - Selection</h1>
+                        <div class="row">
+                            <div class="col-20 r-stretch"><img src="img/mcts_selection.png" alt="MCTS selection step"></div>
+                            <div class="col-80">
+                                <ul>
+                                    <li><span class="strike"> 4 </span> 3 different type of nodes: <dd>
+                                            -<span class="grey">unvisited</span>: never been evaluated before<br>
+                                            -<span class="blue">fully-expanded</span>: as explained above (all children nodes have been visited)<br>
+                                            -<span class="skyblue">not fully-expanded</span>: visited at least once, but not all children has been visited</dd>
+                                    </li>
+                                    <li class="fragment">As the game begins, all nodes are unvisited - <span class="orange">randomly pick one</span> child of the root to simulate.</li>
+                                    <li class="fragment">Then, which node to choose?
+                                        <dd>
+                                    <li>Choose the one with <span class="red">biggest win rate</span> (Number of Win/Total Number)<span class="fragment purple">, is this a good choice?</span></li>
+                                    </dd>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mcts_select_2">
+                        <h1>MCTS Process - Selection (cont.)</h1>
+                        <div class="row">
+                            <div class="col-20 r-stretch"><img src="img/mcts_selection.png" alt="MCTS selection step"></div>
+                            <div class="col-80">
+                                <ul>
+                                    <li>Which node to choose?
+                                        <dd>
+                                    <li>Choose the one with <span class="red">biggest win rate</span> (Number of Win/Total Number), <span class="purple">is this a good choice?</span>
+                                    </li>
+                                    <li class="fragment"><span class="red">No!</span> As the same node will be picked up all the time if it wins in the first random simulation.</span></li>
+                                    </dd>
+                                    </li>
+                                    <li class="fragment">The selection strategy:
+                                        <dd>- keep on selecting the best child node until reaching the leaf node<br>
+                                            - <span class="smalltext lime">$UCT$</span> is a good measure for the selection<br>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mcts_expansion">
+                        <h1>MCTS Process - Expansion</h1>
+                        <div class="row">
+                            <div class="col-20 r-stretch"><img src="img/mcts_expansion.png" alt="MCTS expansion step"></div>
+                            <div class="col-80">
+                                <ul>
+                                    <li>When it can no longer apply <span class="lime">$UCT$</span> to find the successor node, <span class="orange">expand</span> the game tree by appending all possible children nodes from the leaf node.</li>
+                                    <li>After Expansion, the algorithm picks <span class="red">ONE</span> child node arbitrarily.</li>
+                                    <li>Empty statistics for the <span class="orange">picked node</span> - <span class="lime">expanded node</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mcts_simulation">
+                        <h1>MCTS Process - Simulation</h1>
+                        <div class="row">
+                            <div class="col-20 r-stretch"><img src="img/mcts_simulation.png" alt="MCTS simulation step"></div>
+                            <div class="col-80">
+                                <ul>
+                                    <li>Simulates entire game from the <span class="orange">picked node</span> until it reaches the resulting state (playout process):
+                                        <ul>
+                                            <li>using Monte Carlo method to randomly simulate the game quickly (<span class="cyan">light playout</span>)</li>
+                                            <li>applying complicated heuristics or evaluation functions (<span class="purple">heavy playout</span>)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Evaluate the game state to figure out which player os has won. For a given player it's<dd>- either <span class="lime">win (1)</span> or <span class="red">lost (0)</span></dd>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mcts_backpropagation">
+                        <h1>MCTS Process - Backpropagation</h1>
+                        <div class="row">
+                            <div class="col-20 r-stretch r-stack">
+                                <img class="fragment fade-in-then-out" data-fragment-index="1" src="img/mcts_simulation.png" alt="MCTS simulation step">
+                                <img class="fragment fade-in" data-fragment-index="2" src="img/mcts_backpropagation.png" alt="MCTS simulation step">
+                            </div>
+                            <div class="col-80">
+                                <ul>
+                                    <li class="fragment" data-fragment-index="1">Assign the simulated results as the statistics of the <span class="orange">picked node</span></li>
+                                    <li class="fragment" data-fragment-index="2">Update the information of the parent of the <span class="orange">picked node</span></li>
+                                    <li class="fragment" data-fragment-index="2">Traverse upwards to the root and increments visit score for all visited nodes</li>
+                                    <li class="fragment" data-fragment-index="2">The whole game tree has been updated</dd>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mcts_process_recall">
+                        <h1>MCTS Process Recall</h1>
+                        <img src="img/mctc_steps.png" alt="MCTS steps" class="r-stretch">
+                        <p>MCTS keeps repeating these four phases until<br>
+                            some fixed number of iterations <br>
+                            or some fixed amount of time</p>
+                    </section>
+
+                    <section id="mcts_vis">
+                        <h1>MCTS: Tic-Toc-Toe</h1>
+                        <iframe src="https://vgarciasc.github.io/mcts-viz/" frameborder="0" class="float-left r-stretch" style="background-color: white;"></iframe>
+                    </section>
+
+                    <section id="mario_bro">
+                        <h1>MCTS: Mario Brothers</h1>
+                        <img class="r-stretch" src="img/mcts_demo_2.gif" alt="MCTS demo">
+                        <p>MCTS can be used to deal with problems <br>in very large, complex game domains</p>
                     </section>
                 </section>
 
-                <section id="chap_applications">
-
-                    <section id="application_title">
-                        <h1 class="r-frame-text">Application to Games</h1>
-                    </section>
-
-                    <section id="application_board_game">
-                        <h1>Application to Board Games</h1>
+                <section id="chap_end">
+                    <section id="challenge">
+                        <h1>Challenges for Tree Search <br>in Real-Time Domains</h1>
                         <ul>
-                            <li>The ideas of MDPs and game theory apply readily to board games</li>
-                            <li><span class="pink">State</span> = state of the board</li>
-                            <li><span class="orange">Action</span> = a move</li>
-                            <li><span class="lime">Reward</span> = win/loss, score, etc.</li>
-                        </ul>
-                    </section>
-
-                    <section id="application_video_game">
-                        <h1>Application to Video Games</h1>
-                        <ul>
-                            <li><span class="italic">Technically</span>, a video game is an MDP
+                            <li>Many more <span class="blue">decisions per game</span> than most turn-based games</li>
+                            <li>Hence state space is enormous even if branching factor is small
                                 <ul>
-                                    <li><span class="pink">State</span> = entire state of the game (memory?)</li>
-                                    <li><span class="orange">Action</span> = controller input on each frame</li>
+                                    <li>19x19 Go game has of the order $10^{171}$ states</li>
+                                    <li>Physical Travelling Salesman Problem has of the order $10^{1556}$ states</li>
                                 </ul>
                             </li>
-                            <li>However, this is intractable!</li>
-                            <li>Generally necessary to <span class="yellow">abstract</span> parts out of the game to treat as MDPs / Game Theory games</li>
+                            <li><span class="blue">Time budget</span> is restricted (milliseconds per decision)</li>
                         </ul>
+                    </section>
+
+                    <section id="conclusion">
+                        <h1>Conclusion</h1>
+                        <ul>
+                            <li>MCTS is a powerful <span class="purple">general-purpose</span> AI technique<dd>- Asymmetric, Anytime, Aheuristic</dd>
+                            </li>
+                            <li>MCTS has proven successful in several challenging classes of games<dd>- games of imperfect information<br>
+                                    - commercial mobile games<br>
+                                    - real-time games</dd>
+                            </li>
+                            <li>It shows promise in many other games and non-game applications</li>
+                        </ul>
+                    </section>
+
+                    <section id="further_reading">
+                        <h1>Further Reading</h1>
+                        <div class="row">
+                            <div class="col-40"><a href="https://ieeexplore.ieee.org/document/6145622" target="_blank"><img class="img-zoom-2" src="img/mcts_paper.png" alt="MCTS paper"></a></div>
+                            <div class="col-60 text-left">C. B. Browne et al., <br>
+                                <a href="https://ieeexplore.ieee.org/document/6145622" target="_blank"><span class="blue">A Survey of Monte Carlo Tree Search Methods</span></a><br>
+                                in IEEE Transactions on Computational Intelligence and AI in Games, <br>
+                                vol. 4, no. 1, pp. 1-43, March 2012, <br>
+                                doi: <a href="https://ieeexplore.ieee.org/document/6145622" target="_blank">10.1109/TCIAIG.2012.2186810</a>.
+                            </div>
+                        </div>
                     </section>
 
                     <section id="questions">
@@ -447,21 +513,6 @@
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
                         <span class="office cyan"></span>
-                    </section>
-
-                    <section id="flowchart" data-visibility="hidden">
-                        <h3>Flowchart Example</h3>
-                        <div class="mermaid">
-                            <pre>
-                              %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
-                              flowchart LR
-                                Selector --> A
-                                Selector --> B
-                                Selector --> Sequence
-                                Sequence --> C
-                                Sequence --> D
-                            </pre>
-                        </div>
                     </section>
 
                 </section>

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #
 # License: BSD
 #   https://raw.githubusercontent.com/splintered-reality/py_trees/devel/LICENSE
@@ -88,8 +87,8 @@ def command_line_argument_parser() -> argparse.ArgumentParser:
         the argument parser
     """
     return argparse.ArgumentParser(
-        description=description(),
-        epilog=epilog(),
+        description = description(),
+        epilog = epilog(),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
@@ -126,7 +125,7 @@ class Counter(py_trees.behaviour.Behaviour):
         )
         if new_status == py_trees.common.Status.SUCCESS:
             self.feedback_message = (
-                "counting...{0} - phew, thats enough for today".format(self.counter)
+                "counting...{0} - phew, that's enough for today".format(self.counter)
             )
         else:
             self.feedback_message = "still counting"

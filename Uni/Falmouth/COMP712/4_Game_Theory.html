@@ -300,6 +300,7 @@
 
                 <section id="chap_minimax">
 
+                    <!-- video reference: https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/resources/lecture-6-search-games-minimax-and-alpha-beta/ -->
                     <section id="minimax_search_title">
                         <h1 class="r-frame-text">Minimax Search</h1>
                     </section>
@@ -334,6 +335,11 @@
                         </ul>
                     </section>
 
+                    <section id="minimax_game">
+                        <h1>Minimax Game Tree</h1>
+                        <img src="img/minimax.png" alt="Minimax game tree search" class="r-stretch">
+                    </section>
+
                     <section id="example">
                         <h1>Minimax Example</h1>
                         <img src="img/tic-tac-toe.jpg" alt="tic tac toe" class="r-stretch">
@@ -342,7 +348,23 @@
                     <!-- this need to be fixed urgently, otherwise, it's painful to include code in the slide deck -->
                     <section id="pseudo_code">
                         <h1>Minimax Search Pseudo Code</h1>
-                        <pre><code class="bigtext vbnet" data-trim data-line-numbers="1-3|4-9|10-15">                           procedure MINIMAX(state, currentPlayer)
+                        <pre><code class="r-stretch vbnet">procedure MINIMAX(state, currentPlayer)
+    if state == terminal then
+        return game over
+    else if currentPlayer == 1 then
+        bestValue = -&infin;
+        for each possible nextState do
+            v = MINIMAX(nextState, 3-currentPlayer)
+            bestValue = MAX(bestValue, v)
+        return bestValue
+    else if currentPlayer == 1 then
+        bestValue = +&infin;
+        for each possible nextState do
+            v = MINIMAX(nextState, 3-currentPlayer)
+            bestValue = MIN(bestValue, v)
+        return bestValue
+                        </code></pre>
+                        <!-- <pre><code class="bigtext vbnet" data-trim data-line-numbers="1-3|4-9|10-15">                           procedure MINIMAX(state, currentPlayer)
                     if state == terminal then
                       return game over
                           else if currentPlayer == 1 then
@@ -357,20 +379,20 @@
                                                     v = MINIMAX(nextState, 3-currentPlayer)
                                           bestValue = MIN(bestValue, v)
                       return bestValue
-                        </code></pre>
+                        </code></pre> -->
                     </section>
 
                     <section id="improvement">
                         <h1>Stopping Early</h1>
-                        <pre><code class="vbnet">                       for each possible nextState do 
-                            v = MINMAX(nextState, 3-currentPlayer)
-                            bestValue = MAX(bestValue, v)
+                        <pre><code class="r-stretch vbnet">for each possible nextState do
+    v = MINMAX(nextState, 3-currentPlayer)
+    bestValue = MAX(bestValue, v)
                         </code></pre>
                         <ul>
-                            <li>State values are always between -1 and +1 (designed value function)</li>
-                            <li>So if we have <code class="lime">bestValue = 1</code>, we can stop early when <span class="lime">maximising</span></li>
-                            <li>Similarly when <span class="pink">minimising</span> if <code class="pink">bestValue = -1</code></li>
-                            <li>There are techniques for smarter early stopping, e.g. <span class="orange">alpha-beta pruning</span></li>
+                            <li>State values are always between <span class="pink">MIN_Value</span> and <span class="lime">MAX_Value</span> (designed value function)</li>
+                            <li>So if we have <code class="lime">bestValue = MAX_Value</code>, we can stop early when <span class="lime">maximising</span></li>
+                            <li>Similarly when <span class="pink">minimising</span> if <code class="pink">bestValue = MIN_Value</code></li>
+                            <li>There are techniques for smarter early stopping, e.g. <a href="https://www.javatpoint.com/ai-alpha-beta-pruning" target="_blank">alpha-beta pruning</a> </li>
                         </ul>
                     </section>
 
@@ -447,21 +469,6 @@
                         <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
                         <h5>Email: <a class="emaillink"></a></h5>
                         <span class="office cyan"></span>
-                    </section>
-
-                    <section id="flowchart" data-visibility="hidden">
-                        <h3>Flowchart Example</h3>
-                        <div class="mermaid">
-                            <pre>
-                              %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
-                              flowchart LR
-                                Selector --> A
-                                Selector --> B
-                                Selector --> Sequence
-                                Sequence --> C
-                                Sequence --> D
-                            </pre>
-                        </div>
                     </section>
 
                 </section>

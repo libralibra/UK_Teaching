@@ -1,3 +1,5 @@
 {
-    "cSpell.language": "en-GB"
+    "cSpell.language": "en-GB",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "basic"
 }

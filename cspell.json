@@ -12,6 +12,8 @@
         "custom-dictionary"
     ],
     "words": [
+        "Aheuristic",
+        "Backpropagation",
         "boardmarker",
         "boardmarkers",
         "classtime",
@@ -26,6 +28,7 @@
         "LOOTES",
         "officehour",
         "pacman",
+        "playout",
         "Raycast",
         "SAYWELL",
         "skipuncounted",

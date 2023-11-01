@@ -13,7 +13,7 @@ Dr Daniel Zhang @ Falmouth University\
   - [Before We Start: The Setup](#before-we-start-the-setup)
     - [Python Installation](#python-installation)
     - [FreeGames Module](#freegames-module)
-  - [You Tasks](#you-tasks)
+  - [You Task](#you-task)
   - [The Game](#the-game)
     - [**Task 1**:](#task-1)
   - [The Code Template](#the-code-template)
@@ -25,7 +25,7 @@ Dr Daniel Zhang @ Falmouth University\
     - [**Task 5**:](#task-5)
     - [**Task 6**:](#task-6)
     - [**_Task 7\*_**](#task-7)
-  - [Submit Your Improvements](#submit-your-improvements)
+  - [Submit Your Code](#submit-your-code)
 
 
 #  Workshop: Rule-based AI (PAC-MAN Example)
@@ -58,38 +58,15 @@ You can use some management tools like `conda`, `virtualenv` or `pipx` if you li
 
     >    ```python
     >    C:\>python -m freegames list
-    >    ant
-    >    avoid
-    >    bagels
-    >    bounce
-    >    cannon
-    >    connect
-    >    crypto
-    >    fidget
-    >    flappy
-    >    guess
-    >    illusion
-    >    life
-    >    madlibs
-    >    maze
-    >    memory
-    >    minesweeper
+    >    ...
     >    pacman
-    >    paint
-    >    pong
-    >    rps
-    >    simonsays
-    >    snake
-    >    tictactoe
-    >    tiles
-    >    tron
-    >    typing
+    >    ...
     >    C:\>
     >    ```
 
 - As long as you can see `pacman` in the list, you are ready to go.
 
-## You Tasks
+## You Task
 
 The repository below contains the code of a basic PAC-MAN game.
 
@@ -197,6 +174,6 @@ Add other improvements as you like.
 
 ---
 
-## Submit Your Improvements
+## Submit Your Code
 
 You can submit a pull request to the original repository to showcase your work if you like.

@@ -24,7 +24,7 @@ export default class Overview {
     activate() {
 
         // Only proceed if enabled in config
-        if (this.Reveal.getConfig().overview && !this.isActive()) {
+        if (this.Reveal.getConfig().overview && !this.Reveal.isScrollView() && !this.isActive()) {
 
             this.active = true;
 
@@ -45,7 +45,6 @@ export default class Overview {
             });
 
             // Calculate slide sizes
-            // const margin = 70;
             const margin = 70;
             const slideSize = this.Reveal.getComputedSlideSize();
             this.overviewSlideWidth = slideSize.width + margin;
