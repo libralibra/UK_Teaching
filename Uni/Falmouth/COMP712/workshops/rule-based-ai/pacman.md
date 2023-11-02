@@ -13,18 +13,16 @@ Dr Daniel Zhang @ Falmouth University\
   - [Before We Start: The Setup](#before-we-start-the-setup)
     - [Python Installation](#python-installation)
     - [FreeGames Module](#freegames-module)
-  - [You Task](#you-task)
-  - [The Game](#the-game)
+  - [The Repository](#the-repository)
+  - [Give It a Try](#give-it-a-try)
     - [**Task 1**:](#task-1)
-  - [The Code Template](#the-code-template)
-    - [**Task 2**:](#task-2)
+  - [The Code Structure](#the-code-structure)
   - [The Functions](#the-functions)
-    - [**Task 3**:](#task-3)
+    - [**Task 2**:](#task-2)
   - [Ghost Behaviour: The Rules](#ghost-behaviour-the-rules)
+    - [**Task 3**:](#task-3)
     - [**Task 4**:](#task-4)
-    - [**Task 5**:](#task-5)
-    - [**Task 6**:](#task-6)
-    - [**_Task 7\*_**](#task-7)
+    - [**Task 5\***](#task-5)
   - [Submit Your Code](#submit-your-code)
 
 
@@ -66,9 +64,9 @@ You can use some management tools like `conda`, `virtualenv` or `pipx` if you li
 
 - As long as you can see `pacman` in the list, you are ready to go.
 
-## You Task
+## The Repository
 
-The repository below contains the code of a basic PAC-MAN game.
+The repository below contains the template code of a basic PAC-MAN game.
 
 **Fork the repository** (NOT clone!) and work on your fork. This will enable you to submit a pull request in the end.
 
@@ -76,35 +74,30 @@ The repository below contains the code of a basic PAC-MAN game.
 
 The `.py` file can be opened by any text editor. However, a proper programming style editor or IDE would be helpful, such as `IDLE`, `VS Code`, `PyCharm`, `Spyder`, `NotePad++`, or any other you prefer. `VS Code` might be a good start!
 
-## The Game
+## Give It a Try
 
-This is essentially a working game prototype. By moving PAC-MAN using the four arrow keys (&larr;, &uarr;, &rarr;, &darr;), the game will start, and the ghosts will move simultaneously. Control the PAC-MAN and try to score as much as you can before the ghosts catch you!
+The repository contains a compiled working game prototype `pacman.pyc`. By moving PAC-MAN using the four arrow keys (&larr;, &uarr;, &rarr;, &darr;), the game will start, and the ghosts will move simultaneously. Control the PAC-MAN and try to score as much as you can before the ghosts catch you!
 
 ---
 
 ### **Task 1**: 
 
 - **Start the game** using `python pacman.py` and give it a try!
-
 ---
 
-## The Code Template
+## The Code Structure
 
 Open the code in your selected editor and have a look about the code structure.  
 
 After `import` the required modules and define necessary variables to represent the PAC-MAN, the ghosts, and the board, there are several function definitions before actually running the game loop at the end of the source file.  
 
----
-
-### **Task 2**: 
-
-- **Modify the game board** that is represented by the `tiles` matrix (actually it is a `list` data type in Python). 
-- Note: 
-  1. Do make changes gradually by flipping one value at a time and re-running the game to see the effect. 
-  2. Make sure the board is still valid if you tried to change the size of the matrix - in this case you might need to change the tile index calculation as well.
-- **Change the starting position** of the PAC-MAN.
-
----
+```mermaid
+flowchart LR
+A(import modules) ---> B(init environment)
+B --> C(listen to keyboard events)
+C --> D(update board)
+D --> C
+```
 
 ## The Functions
 
@@ -114,20 +107,23 @@ A brief explanation of how the code works:
 - It defines a dictionary named `state` to keep track of the game score and initializes it with a score of `0`.
 - The game area is represented by a grid of `tiles`. The `tiles` list stores the configuration of the grid, where `0` represents walls, `1` represents pellets, and `2` represents eaten pellets.
 - Several helper functions are defined:
-  1. `square(x, y)`: Draws a square at the given coordinates `(x, y)` using the `Turtle` graphics.
-  2. `offset(point)`: Converts a point in the game world to an index in the `tiles` list.
-  3. `valid(point)`: Checks if a given point is a valid position in the game world, considering walls and boundaries.
-  4. `world()`: Draws the game world by iterating through the `tiles` list and calling `square()` to draw each tile.
-  5. The main game loop is defined in the `move()` function. It updates the game state, moves the pacman and ghosts, checks for collisions, and updates the display. The loop is implemented using recursive calls to `move()` function with a delay of `100` milliseconds.
-  6. The `change(x, y)` function is used as event handlers for the arrow keys. It updates the aim of the pacman based on the arrow key pressed, if the new position is valid.
-  7. The code under the line `if __name__ == '__main__':` sets up the game window and graphics, sets up event listeners for key presses, and then initializes the game by calling `world()` and `move()`. The `done()` function from the `turtle` module is used to start the game loop and keep the window open.
+  1. `draw_grid(x, y)`: Draws a grid (one tile) at the given coordinates `(x, y)` using the `Turtle` graphics.
+  2. `draw_dot(p, c, s, pen)`: Draws a dot (circle) at position `p(x,y)` with colour `c` (str) and size `s`. It has been used to draw Pacman, Ghost, and pellets, for drawing the pellets, a specific pen has to be defined.
+  3. `random_direction()`: Randomly choose one vector from the list of 4 directions as the next movement of ghost.
+  4. `get_index(point)`: Converts a point in the game world to an index in the `tiles` list.
+  5. `is_valid(point)`: Checks if a given point is a valid position in the game world, considering walls and boundaries.
+  6. `draw_board()`: Draws the game world by iterating through the `tiles` list and calling `grid()` to draw each tile.
+  7. The main game loop is defined in the `play()` function. It updates the game state, moves the pacman and ghosts, checks for collisions, and updates the display. The loop is implemented using recursive calls to `play()` function with a delay of `100` milliseconds.
+  8. The `change(x, y)` function is used as event handlers for the arrow keys. It updates the aim of the pacman based on the arrow key pressed, if the new position is valid.
+  9. The code under the line `if __name__ == '__main__':` sets up the game window and graphics, sets up event listeners for key presses, and then initializes the game by calling `init()` and `keyboard()`. Then, the `draw_board()` and `play()` were called to start the game. The `done()` function from the `turtle` module is used to start the game loop and keep the window open.
 
 ---
 
-### **Task 3**: 
+### **Task 2**: 
 
 - Play with the code to have a feel of how the function are combined together. 
   - Search [Python](https://docs.python.org/3/) or [`Turtle`](https://docs.python.org/3/library/turtle.html) documentation if you are not familiar with some functions.
+- **Change the starting position** of the PAC-MAN.
 - **Change the number of ghosts** and **their positions**.
 
 ---
@@ -153,24 +149,24 @@ One can split the task into several steps. Feel free to refactor the code by the
 
 ---
 
+### **Task 3**:
+
+- Assign different colours to the ghosts.
+- Make ghosts with different colours move at different speeds.
+
+---
+
 ### **Task 4**:
-
-Assign different colours to the ghosts.
-
----
-
-### **Task 5**:
-Make different ghosts move at different speeds.
+- Assign new rules to ghosts depending on their colours (might be tricky, take your time and keep on working).
 
 ---
 
-### **Task 6**:
-Assign new rules to ghosts depending on their colours (might be tricky, take your time and keep on working).
+### **Task 5\***
 
----
-
-### **_Task 7\*_**
-Add other improvements as you like.
+- **Modify the game board** that is represented by the `tiles` matrix (actually it is a `list` data type in Python). 
+- Note: 
+  1. Do make changes gradually by flipping one value at a time and re-running the game to see the effect. 
+  2. Make sure the board is still valid if you tried to change the size of the matrix - in this case you might need to change the tile index calculation as well.
 
 ---
 

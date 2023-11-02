@@ -125,12 +125,6 @@ def random_direction():
         vector(0, -5)]
     return choice(options)
 
-def change(x, y):
-    """ Change pacman aim if is_valid ."""
-    if is_valid(pacman + vector(x, y)):
-        aim.x = x
-        aim.y = y
-        
 def play():
     """ Move pacman and all ghosts. """
     writer.undo()
@@ -166,6 +160,12 @@ def play():
             return
 
     ontimer(play, 100)
+
+def change(x, y):
+    """ Change pacman aim if is_valid ."""
+    if is_valid(pacman + vector(x, y)):
+        aim.x = x
+        aim.y = y
 
 def init():
     ''' initialise the board '''
