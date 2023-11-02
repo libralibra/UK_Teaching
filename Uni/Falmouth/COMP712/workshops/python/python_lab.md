@@ -1,3 +1,10 @@
+---
+toc:
+  depth_from: 1
+  depth_to: 6
+  ordered: false
+---
+
 # COMP712: Classical Artificial Intelligence 
 
 Dr Daniel Zhang @ Falmouth University\
@@ -52,6 +59,7 @@ Table of Contents
 - [Further Reading](#further-reading)
 - [You Task](#you-task)
   - [Submit Your Code](#submit-your-code)
+    - [The Repository](#the-repository)
 
 
 # Workshop: Python Tutorial
@@ -751,3 +759,9 @@ Python package management is crucial for utilizing external libraries and packag
 ## Submit Your Code
 
 You can submit a pull request to the original repository to showcase your work if you like.
+
+### The Repository
+
+**Fork the repository** (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.
+
+[**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git)

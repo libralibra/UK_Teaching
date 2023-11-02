@@ -3,10 +3,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\DZ308602\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.10\crossnote\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
-      <script type="text/javascript" src="file:///c:\Users\DZ308602\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.10\crossnote\dependencies\mermaid\mermaid.min.js" charset="UTF-8"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.0/dist/mermaid.min.js"></script>
       
       
       <style>
@@ -27,7 +27,7 @@
 <h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence </h1>
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
-<p><img src="pong_gui.png" alt="The Pong Game"></p>
+<p><img src="pong_gui.png" alt=""></p>
 <h1 id="table-of-contents">Table of Contents </h1>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
@@ -37,7 +37,7 @@
 <li><a href="#game-play">Game Play</a></li>
 <li><a href="#game-controls">Game Controls</a></li>
 <li><a href="#the-code">The Code</a></li>
-<li><a href="#the-code-1">The Code</a></li>
+<li><a href="#the-functions">The Functions</a></li>
 <li><a href="#your-task">Your Task</a></li>
 </ul>
 <h1 id="workshop-pong-game-implementation">Workshop: Pong Game Implementation </h1>
@@ -46,7 +46,7 @@
 <p>The repository linked below contains the code for a basic 2-player PONG game.</p>
 <p><strong>Fork the repository</strong> (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.</p>
 <blockquote>
-<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git</strong></a></p>
+<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git</strong></a></p>
 </blockquote>
 <h1 id="game-play">Game Play </h1>
 <p>Ensure that you have successfully downloaded <code>pong.pyc</code>. Then, open a command window in the folder and run the game by executing:</p>
@@ -57,7 +57,7 @@
 <h1 id="game-controls">Game Controls </h1>
 <p>This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.</p>
 <h1 id="the-code">The Code </h1>
-<p>The implementation is relatively straightforward. Let's take a closer look at the detailed structure of the code:</p>
+<p>The implementation is relatively straightforward. Let’s take a closer look at the detailed structure of the code:</p>
 <div class="mermaid">flowchart TD
 
 A(game start) ---&gt; B(define global variables)
@@ -76,7 +76,7 @@ B ---&gt; C(update ball)
 B ---&gt; D(update paddles)
 B ---&gt; E(update scores)
 B -- perform collision test --&gt; B
-</div><h1 id="the-code-1">The Code </h1>
+</div><h1 id="the-functions">The Functions </h1>
 <p>There are four functions defined for keyboard controls:</p>
 <ol>
 <li><code>left_paddle_up()</code>: Move the left paddle upwards with <kbd>W</kbd>.</li>
@@ -101,10 +101,10 @@ B -- perform collision test --&gt; B
 <h1 id="your-task">Your Task </h1>
 <ol>
 <li>
-<p>Implement collisions with the board's top and bottom, as well as the left and right paddles to make the game complete.</p>
+<p>Implement collisions with the board’s top and bottom, as well as the left and right paddles to make the game complete.</p>
 </li>
 <li>
-<p>Change the ball's starting speed using the random module.</p>
+<p>Change the ball’s starting speed using the random module.</p>
 </li>
 <li>
 <p>Adjust the size and moving speed of the paddles.</p>
@@ -113,7 +113,7 @@ B -- perform collision test --&gt; B
 <p>Add more fun by speeding up the ball after a certain number of catches.</p>
 </li>
 <li>
-<p>Increase the excitement by adding a 'random' direction change for each collision with the board or paddle.</p>
+<p>Increase the excitement by adding a ‘random’ direction change for each collision with the board or paddle.</p>
 </li>
 <li>
 <p>Implement any other improvements you can imagine!</p>
@@ -136,7 +136,7 @@ var MERMAID_CONFIG = ({"startOnLoad":false});
 if (typeof MERMAID_CONFIG !== 'undefined') {
   MERMAID_CONFIG.startOnLoad = false
   MERMAID_CONFIG.cloneCssStyles = false
-  MERMAID_CONFIG.theme = "default"
+  MERMAID_CONFIG.theme = "forest"
 }
 
 mermaid.initialize(MERMAID_CONFIG || {})

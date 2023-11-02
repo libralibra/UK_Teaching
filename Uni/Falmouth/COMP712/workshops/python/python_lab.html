@@ -1,702 +1,600 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>python_lab</title>
-  <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+<!DOCTYPE html><html><head>
+      <title>python_lab</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-color: #aaaaaa;
-}
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } 
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.at { color: #7d9029; } 
-code span.bn { color: #40a070; } 
-code span.bu { color: #008000; } 
-code span.cf { color: #007020; font-weight: bold; } 
-code span.ch { color: #4070a0; } 
-code span.cn { color: #880000; } 
-code span.co { color: #60a0b0; font-style: italic; } 
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.do { color: #ba2121; font-style: italic; } 
-code span.dt { color: #902000; } 
-code span.dv { color: #40a070; } 
-code span.er { color: #ff0000; font-weight: bold; } 
-code span.ex { } 
-code span.fl { color: #40a070; } 
-code span.fu { color: #06287e; } 
-code span.im { color: #008000; font-weight: bold; } 
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.kw { color: #007020; font-weight: bold; } 
-code span.op { color: #666666; } 
-code span.ot { color: #007020; } 
-code span.pp { color: #bc7a00; } 
-code span.sc { color: #4070a0; } 
-code span.ss { color: #bb6688; } 
-code span.st { color: #4070a0; } 
-code span.va { color: #19177c; } 
-code span.vs { color: #4070a0; } 
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
-</style>
-  <style type="text/css">html {font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%}body {margin: 0;background-color: blanchedalmond;}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {display: block}audio,canvas,progress,video {display: inline-block;vertical-align: baseline}audio:not([controls]) {display: none;height: 0}[hidden],template {display: none}a {background: transparent}a:active,a:hover {outline: 0}abbr[title] {border-bottom: 1px dotted}b,strong {font-weight: bold}dfn {font-style: italic}h1 {font-size: 2em;margin: 0.67em 0}mark {background: #ff0;color: #000}small {font-size: 80%}sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline}sup {top: -0.5em}sub {bottom: -0.25em}img {border: 0}svg:not(:root) {overflow: hidden}figure {margin: 1em 40px}hr {-moz-box-sizing: content-box;box-sizing: content-box;height: 0}pre {overflow: auto}code,kbd,pre,samp {font-family: monospace, monospace;font-size: 1em}button,input,optgroup,select,textarea {color: inherit;font: inherit;margin: 0}button {overflow: visible}button,select {text-transform: none}button,html input[type="button"],input[type="reset"],input[type="submit"] {-webkit-appearance: button;cursor: pointer}button[disabled],html input[disabled] {cursor: default}button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0}input {line-height: normal}input[type="checkbox"],input[type="radio"] {box-sizing: border-box;padding: 0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button {height: auto}input[type="search"] {-webkit-appearance: textfield;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;box-sizing: content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none}fieldset {border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em}legend {border: 0;padding: 0}textarea {overflow: auto}optgroup {font-weight: bold}table {border-collapse: collapse;border-spacing: 0}td,th {padding: 0}body,code,tr.odd,tr.even,figure {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAABOFBMVEWDg4NycnJnZ2ebm5tjY2OgoKCurq5lZWWoqKiKiopmZmahoaGOjo5TU1N6enp7e3uRkZGJiYmFhYWxsbFOTk6Xl5eBgYGkpKRhYWFRUVGvr69dXV2wsLBiYmKnp6dUVFR5eXmdnZ1sbGxYWFh2dnZ0dHSmpqaZmZlVVVVqamqsrKyCgoJ3d3dubm5fX19tbW2ioqKSkpJWVlaHh4epqalSUlKTk5OVlZWysrJoaGhzc3N+fn5wcHBaWlqcnJxkZGRpaWlvb2+zs7NcXFxPT09/f3+lpaWWlpaQkJCjo6OIiIitra2enp6YmJhQUFBZWVmqqqqLi4uNjY1eXl6rq6ufn599fX2AgIB8fHyEhIRxcXFra2tbW1uPj4+MjIyGhoaamppgYGB4eHhNTU1XV1d1dXW0tLSUlJSHWuNDAAAAaHRSTlMNDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDUnKohIAAAaZSURBVHhelZWFrmZVDEb3cffzq7u7u7u7u9z7/m8AhISQwMDMAzRN2/WtAhO7zOd0x0U/UNb0oWQZGLWhIHBK/lC96klgkA+3B5JoqI9ozRcn4306YeDweKG9vxo5YbGbqBkln93ZFGs3SA0RRpSO4dpdpg+VnMUv8BEqmiIcli8gJeRZc29K51qOg0OWHRGyA0ccrmbmSRj1r7x5JisCpAs+iuCd8GFc0pMGldB2BOC0VoY37qKJh5nqZNjb4XtnjRlYMQYxsN0KWTdk77hnJZB7s+MbXK3Mxawrwu8cHGNKynDQTUqhbrxmNQ+belwSPemILVuUu1p4G6xGI0yUA0lh26IduYnd2soQ0KVmwUxo7D6U0QdCJwLWDTwzFij0cE/ZvorI7kl/QuCHUy7ibZCHT9mtLaY4HJLhIHOJ+jt5DAI9MJqOs0refRcF5H7S9mb2vnsqo21xvTPVgZGrLDCTJ+kk9eQ67kPk+xP4697EDY+boY3tC4zs3yy+5XRqg58EivoohEownfBzjpeQN6v6gaY0TCzADte1m2pbFSUbpKfDqU0iq+4UPNyxFlW00Q70b9jGpIbqdoCQLZ1Lax+Bv3XUj5ZnoT1N0j3CZS95FfHDRump2ujpuLY47oI5VWjmR2PwietdJbJGZRYFFm6SWPiwmhFZqWKEwNM6Nlw7XmZuQmKu8FHq8DFcaYjAYojsS6NrLKNnMRgyu2oaXaNpyLa0Nncawan7eDOxZVSxv4GYoLCF184C0EAvuhuJNvZ1gosWDdHUfJ05uHdwhRKYb/5+4W90jQxT/pHd2hnkBgn3GFzCCzcVXPbZ3qdqLlYrDl0dUWqkXYc6LStL8QLPI3G3gVDdAa2Pr0co8wQgwRYBlTB5AEmteLPCRHMgoHi56glp5rMSrwAllRSatomKatJdy0nXEkCI2z5065bpKav5/bKgSXr+L0HgDwSsvwQaeC0SjH1cnu7WZTcxJn0kVLI/HEzNK1j8W7etR/BfXDXhak8LmTQdwMqaF/jh+k+ZVMUvWU/+OfUwz5TDJhclFAtiMYD8ss6TFNluVg6lYZaeXXv/FzqQ3yjupMEIyzlf6yt2zmyHxI43held1dMbGkLMY5Kpv4llTCazqHbKsakh+DPPZdHvqYQF1onZpg1W/H7b6DJr019WhPWucVJTcStosCf1fQ1kLWA/12vjb3PItlBUuo6FO/4kFTPGNXC4e/TRMDGwPpSG1RJwYXNH4vkHK8BSmFNrXVTwJjLAphVEKq7HS2d8pSqoZdCBAv6mdJ72revxET6giWB7PgbJph+2i011uUifL7xruTb3zv+NKvgpqRSU0yBSckeKeQzSgeZZcaQb8+JYzehtPraBkg3Jc3e8boxVXJzNW23deFoZ74Vzy6xd1+FemwZ/neOnHQh2ufopy5c/r69Cz+scIrx+uN+dzhyzEjCeNLL0hgjGUOHdvb25YDijfq/An/D+iv7BBDutUsyuvBrH2ya6j2SIkLvjxFIpk8H37wcAt9KHX9cLeNmn+8CR1xtKgrzojVXl/qikMqAsDcO1coQrEanpsrB3DlAImIwS07oN2k3C2x2jSE3jxSm908P1tUXUMD15Lpp50CHii7i2BDSdYMcfB7+X7QdqymsDWH6BJ5APN+qIRhTVc/msYf5CjOyA82VSuIEtZA3GmUuXBK2r6xJ2LXO8fCU9kmCvydDptoECLq+XXLs4w8U+DUZyir9Cw+XL3rHFGoDNI9Rw3baFy/fZwTY2Gr0WMuLaxMrWaC5rh+IeyZijp0fdaDLPg8YtugLgnwYZss1xIh1o13qB7L8pC6wEutNQVuy5aIpNkSSl2yWAiRADUVXSMqpTH8Da3gCNr8maodNIxjY7CXyvzHHfiJoto/CE9UMmX+cRqPC8RKdks7OV35txMGkdXzOkkhX9wTr+tIOGKZzjoo+qbWy3hsJJtz5D7nP+syyjxYe7eCAMIOywwFNfv/ZMNyBSxV0g7ZEJCPVE8IA5sw7jg9Kx3RXdfCQXGxpH+0kyHYpBj0H4y2VdAHRW9RyegOPPB+5NudysJji/lnxHQ9pFOMLMLeZ0O9hrnsuFsstbjczbC+14JHS+xsDf3pPgQXvUG6Q/H2fKV/B7jYX8RdOrug5BjG/1jueAPq1ElQb4AeH/sRNwnNyoFqsJwT9tWhChzL/IP/gxfleLSIgVQDdRvKBZVfu9wgKkeHEEfgIqa/F6fJ0HM8knJtkbCn4hKFvNDLWXDr8BGMywGD1Lh54AAAAASUVORK5CYII=")}body {font-family: "Libre Baskerville", Baskerville, Georgia, serif;background-color: #f8f8f8;color: #111;line-height: 1.3;text-align: justify;-moz-hyphens: auto;-ms-hyphens: auto;-webkit-hyphens: auto;hyphens: auto}@media (max-width: 400px) {body {font-size: 12px;margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 15px}}@media (min-width: 401px) and (max-width: 600px) {body {font-size: 14px;margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 15px}}@media (min-width: 601px) and (max-width: 900px) {body {font-size: 15px;margin-left: 100px;margin-right: 100px;margin-top: 20px;margin-bottom: 25px}}@media (min-width: 901px) and (max-width: 1800px) {body {font-size: 17px;margin-left: 200px;margin-right: 200px;margin-top: 30px;margin-bottom: 25px;max-width: 800px}}@media (min-width: 1801px) {body {font-size: 18px;margin-left: 20%;margin-right: 20%;margin-top: 30px;margin-bottom: 25px;max-width: 1000px}}p {margin-top: 10px;margin-bottom: 18px}em {font-style: italic}strong {font-weight: bold}h1,h2,h3,h4,h5,h6 {font-weight: bold;padding-top: 0.25em;margin-bottom: 0.15em}header {line-height: 2.475em;padding-bottom: 0.7em;border-bottom: 1px solid #bbb;margin-bottom: 1.2em}header>h1 {border: none;padding: 0;margin: 0;font-size: 225%}header>h2 {border: none;padding: 0;margin: 0;font-style: normal;font-size: 175%}header>h3 {padding: 0;margin: 0;font-size: 125%;font-style: italic}header+h1 {border-top: none;padding-top: 0px}h1 {border-top: 1px solid #bbb;padding-top: 15px;font-size: 150%;margin-bottom: 10px}h1:first-of-type {border: none}h2 {font-size: 125%;font-style: italic}h3 {font-size: 105%;font-style: italic}hr {border: 0px;border-top: 1px solid #bbb;width: 100%;height: 0px}hr+h1 {border-top: none;padding-top: 0px}ul,ol {font-size: 90%;margin-top: 10px;margin-bottom: 15px;padding-left: 30px}ul {list-style: circle}ol {list-style: decimal}ul ul,ol ol,ul ol,ol ul {font-size: inherit}li {margin-top: 5px;margin-bottom: 7px}q,blockquote,dd {font-style: italic;font-size: 90%}blockquote,dd {quotes: none;border-left: 0.35em #bbb solid;padding-left: 1.15em;margin: 0 1.5em 0 0}blockquote blockquote,dd blockquote,blockquote dd,dd dd,ol blockquote,ol dd,ul blockquote,ul dd,blockquote ol,dd ol,blockquote ul,dd ul {font-size: inherit}a,a:link,a:visited,a:hover {color: inherit;text-decoration: none;border-bottom: 1px dashed #111}a:hover,a:link:hover,a:visited:hover,a:hover:hover {border-bottom-style: solid}a.footnoteRef,a:link.footnoteRef,a:visited.footnoteRef,a:hover.footnoteRef {border-bottom: none;color: #666}code {font-family: "Source Code Pro", "Consolas", "Monaco", monospace;font-size: 85%;background-color: #ddd;border: 1px solid #bbb;padding: 0px 0.15em 0px 0.15em;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px}pre {margin-right: 1.5em;display: block}pre>code {display: block;font-size: 70%;padding: 10px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;overflow-x: auto}blockquote pre,dd pre,ul pre,ol pre {margin-left: 0;margin-right: 0}blockquote pre>code,dd pre>code,ul pre>code,ol pre>code {font-size: 77.77778%}caption,figcaption {font-size: 80%;font-style: italic;text-align: right;margin-bottom: 5px}caption:empty,figcaption:empty {display: none}table {width: 100%;margin-top: 1em;margin-bottom: 1em}table+h1 {border-top: none}tr td,tr th {padding: 0.2em 0.7em}tr.header {border-top: 1px solid #222;border-bottom: 1px solid #222;font-weight: 700}tr.odd {background-color: #eee}tr.even {background-color: #ccc}tbody:last-child {border-bottom: 1px solid #222}dt {font-weight: 700}dt:after {font-weight: normal;content: ":"}dd {margin-bottom: 10px}figure {margin: 1.3em 0 1.3em 0;text-align: center;padding: 0px;width: 100%;background-color: #ddd;border: 1px solid #bbb;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;overflow: hidden}img {display: block;margin: 0px auto;padding: 0px;max-width: 100%}figcaption {margin: 5px 10px 5px 30px}.footnotes {color: #666;font-size: 70%;font-style: italic}.footnotes li p:last-child a:last-child {border-bottom: none}</style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<header id="title-block-header">
-<h1 class="title">python_lab</h1>
-</header>
-<h1 id="comp712-classical-artificial-intelligence">COMP712: Classical
-Artificial Intelligence</h1>
-<p>Dr Daniel Zhang @ Falmouth University<br />
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence </h1>
+<p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
-<figure>
-<img src="python_logo.png" alt="Python Logo" />
-<figcaption aria-hidden="true">Python Logo</figcaption>
-</figure>
-<p>Table of Contents - <a href="#comp712-classical-artificial-intelligence">COMP712: Classical
-Artificial Intelligence</a> - <a href="#workshop-python-tutorial">Workshop: Python Tutorial</a> - <a href="#python-basics">Python Basics</a> - <a href="#installation">Installation</a> - <a href="#data-types">Data
-Types</a> - <a href="#numeric-data-types">Numeric Data Types</a> - <a href="#sequence">Sequence</a> - <a href="#dictionaries">Dictionaries</a>
-- <a href="#booleans">Booleans</a> - <a href="#flow-control">Flow
-Control</a> - <a href="#conditional-statements">Conditional
-Statements</a> - <a href="#loops">Loops</a> - <a href="#control-statements">Control Statements</a> - <a href="#exception-handling">Exception Handling</a> - <a href="#functions">Functions</a> - <a href="#defining-a-function">Defining a Function</a> - <a href="#calling-a-function">Calling a Function</a> - <a href="#parameters-and-return-values">Parameters and Return Values</a> -
-<a href="#default-parameters">Default Parameters</a> - <a href="#variable-scope">Variable Scope</a> - <a href="#docstrings">Docstrings</a> - <a href="#lambda-functions"><em>Lambda Functions*</em></a> - <a href="#function-recursion">Function Recursion</a> - <a href="#classes">Classes</a> - <a href="#defining-a-class">Defining a
-Class</a> - <a href="#creating-objects">Creating Objects</a> - <a href="#accessing-attributes-and-methods">Accessing Attributes and
-Methods</a> - <a href="#inheritance">Inheritance</a> - <a href="#encapsulation">Encapsulation</a> - <a href="#polymorphism">Polymorphism</a> - <a href="#file-operations">File
-Operations</a> - <a href="#opening-a-file">Opening a File</a> - <a href="#reading-from-a-file">Reading from a File</a> - <a href="#writing-to-a-file">Writing to a File</a> - <a href="#closing-a-file">Closing a File</a> - <a href="#using-with-statement">Using ‘with’ Statement</a> - <a href="#reading-and-writing-binary-files">Reading and Writing Binary
-Files</a> - <a href="#handling-exceptions">Handling Exceptions</a> - <a href="#package-management">Package Management</a> - <a href="#installing-packages">Installing Packages</a> - <a href="#listing-installed-packages">Listing Installed Packages</a> - <a href="#creating-a-requirementstxt-file">Creating a
-<code>requirements.txt</code> File</a> - <a href="#installing-packages-from-a-requirementstxt-file">Installing
-Packages from a <code>requirements.txt</code> File</a> - <a href="#further-reading">Further Reading</a> - <a href="#you-task">You
-Task</a> - <a href="#submit-your-code">Submit Your Code</a></p>
-<h1 id="workshop-python-tutorial">Workshop: Python Tutorial</h1>
-<p>In addition to our regular teaching sessions, we will be providing
-workshop materials utilising the Python programming language. These
-resources will complement the work you do in COMP712.</p>
-<h2 id="python-basics">Python Basics</h2>
-<p>Python is a lightweight, high-level, open-source, cross-platform,
-strongly-typed, and interpreted programming language.</p>
+<p><img src="python_logo.png" alt=""></p>
+<p>Table of Contents</p>
 <ul>
-<li><strong>Light-weight:</strong> Python code typically has a small
-footprint. Basically, they are pure text.</li>
-<li><strong>High-level:</strong> It is more user-friendly and
-human-readable than low-level languages like C.</li>
-<li><strong>Open-source:</strong> Python source code is freely
-available.</li>
-<li><strong>Cross-platform:</strong> It is independent of the computer’s
-hardware architecture. The same code works on Windows, Linux/Unix, and
-Mac.</li>
-<li><strong>Strongly-typed:</strong> Although variables don’t have
-types, like you might be familiar with in other languages, values
-do.</li>
-<li><strong>Interpreted:</strong> Python does not require compilation;
-it is interpreted at runtime.</li>
-</ul>
-<p>In this session, I won’t delve extensively into Python basics. As
-master’s students, you should be able to grasp the fundamentals quickly.
-For detailed Python materials, please refer to the resources listed at
-the bottom of this guide, which are well-written and comprehensive.</p>
-<h2 id="installation">Installation</h2>
-<p>Python should already be installed on university machines. If you are
-using your own device, you can download the installation file from the
-<a href="https://www.python.org/">official Python website</a>.</p>
+<li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
+<li><a href="#workshop-python-tutorial">Workshop: Python Tutorial</a>
 <ul>
-<li><p><strong>Note:</strong> To ensure a successful installation, open
-a <code>Command Window</code> and type <code>python</code>. You should
-receive a response similar to:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>C:\<span class="op">&gt;</span>python</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Python <span class="fl">3.10.11</span> (tags<span class="op">/</span>v3<span class="fl">.10.11</span>:<span class="dv">7</span><span class="er">d4cc5a</span>, Apr  <span class="dv">5</span> <span class="dv">2023</span>, <span class="dv">00</span>:<span class="dv">38</span>:<span class="dv">17</span>) [MSC v<span class="fl">.1929</span> <span class="dv">64</span> bit (AMD64)] on win32</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Type <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> <span class="kw">or</span> <span class="st">&quot;license&quot;</span> <span class="cf">for</span> more information.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div></li>
+<li><a href="#python-basics">Python Basics</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#data-types">Data Types</a>
+<ul>
+<li><a href="#numeric-data-types">Numeric Data Types</a></li>
+<li><a href="#sequence">Sequence</a></li>
+<li><a href="#dictionaries">Dictionaries</a></li>
+<li><a href="#booleans">Booleans</a></li>
 </ul>
-<p>Certainly! Here’s a simple introduction to Python datatypes in
-Markdown format with code examples:</p>
-<h2 id="data-types">Data Types</h2>
-<p>In Python, data types are used to categorise and manage different
-types of data. Python offers several built-in data types that help you
-work with various kinds of information. Here are some of the most
-commonly used data types in Python:</p>
-<h3 id="numeric-data-types">Numeric Data Types</h3>
-<p><strong>Integers</strong> Integers (<code>int</code>) represent whole
-numbers. They can be positive or negative. Numerical operations such as
-<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and
-<code>%</code> are supported for calculations.</p>
+</li>
+<li><a href="#flow-control">Flow Control</a>
+<ul>
+<li><a href="#conditional-statements">Conditional Statements</a></li>
+<li><a href="#loops">Loops</a></li>
+<li><a href="#control-statements">Control Statements</a></li>
+<li><a href="#exception-handling">Exception Handling</a></li>
+</ul>
+</li>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#defining-a-function">Defining a Function</a></li>
+<li><a href="#calling-a-function">Calling a Function</a></li>
+<li><a href="#parameters-and-return-values">Parameters and Return Values</a></li>
+<li><a href="#default-parameters">Default Parameters</a></li>
+<li><a href="#variable-scope">Variable Scope</a></li>
+<li><a href="#docstrings">Docstrings</a></li>
+<li><a href="#lambda-functions"><em>Lambda Functions*</em></a></li>
+<li><a href="#function-recursion">Function Recursion</a></li>
+</ul>
+</li>
+<li><a href="#classes">Classes</a>
+<ul>
+<li><a href="#defining-a-class">Defining a Class</a></li>
+<li><a href="#creating-objects">Creating Objects</a></li>
+<li><a href="#accessing-attributes-and-methods">Accessing Attributes and Methods</a></li>
+<li><a href="#inheritance">Inheritance</a></li>
+<li><a href="#encapsulation">Encapsulation</a></li>
+<li><a href="#polymorphism">Polymorphism</a></li>
+</ul>
+</li>
+<li><a href="#file-operations">File Operations</a>
+<ul>
+<li><a href="#opening-a-file">Opening a File</a></li>
+<li><a href="#reading-from-a-file">Reading from a File</a></li>
+<li><a href="#writing-to-a-file">Writing to a File</a></li>
+<li><a href="#closing-a-file">Closing a File</a></li>
+<li><a href="#using-with-statement">Using ‘with’ Statement</a></li>
+<li><a href="#reading-and-writing-binary-files">Reading and Writing Binary Files</a></li>
+<li><a href="#handling-exceptions">Handling Exceptions</a></li>
+</ul>
+</li>
+<li><a href="#package-management">Package Management</a>
+<ul>
+<li><a href="#installing-packages">Installing Packages</a></li>
+<li><a href="#listing-installed-packages">Listing Installed Packages</a></li>
+<li><a href="#creating-a-requirementstxt-file">Creating a <code>requirements.txt</code> File</a></li>
+<li><a href="#installing-packages-from-a-requirementstxt-file">Installing Packages from a <code>requirements.txt</code> File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a></li>
+<li><a href="#you-task">You Task</a>
+<ul>
+<li><a href="#submit-your-code">Submit Your Code</a>
+<ul>
+<li><a href="#the-repository">The Repository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="workshop-python-tutorial">Workshop: Python Tutorial </h1>
+<p>In addition to our regular teaching sessions, we will be providing workshop materials utilising the Python programming language. These resources will complement the work you do in COMP712.</p>
+<h2 id="python-basics">Python Basics </h2>
+<p>Python is a lightweight, high-level, open-source, cross-platform, strongly-typed, and interpreted programming language.</p>
+<ul>
+<li><strong>Light-weight:</strong> Python code typically has a small footprint. Basically, they are pure text.</li>
+<li><strong>High-level:</strong> It is more user-friendly and human-readable than low-level languages like C.</li>
+<li><strong>Open-source:</strong> Python source code is freely available.</li>
+<li><strong>Cross-platform:</strong> It is independent of the computer’s hardware architecture. The same code works on Windows, Linux/Unix, and Mac.</li>
+<li><strong>Strongly-typed:</strong> Although variables don’t have types, like you might be familiar with in other languages, values do.</li>
+<li><strong>Interpreted:</strong> Python does not require compilation; it is interpreted at runtime.</li>
+</ul>
+<p>In this session, I won’t delve extensively into Python basics. As master’s students, you should be able to grasp the fundamentals quickly. For detailed Python materials, please refer to the resources listed at the bottom of this guide, which are well-written and comprehensive.</p>
+<h2 id="installation">Installation </h2>
+<p>Python should already be installed on university machines. If you are using your own device, you can download the installation file from the <a href="https://www.python.org/">official Python website</a>.</p>
+<ul>
+<li>
+<p><strong>Note:</strong> To ensure a successful installation, open a <code>Command Window</code> and type <code>python</code>. You should receive a response similar to:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>C<span class="token punctuation">:</span>\<span class="token operator">&gt;</span>python
+Python <span class="token number">3.10</span><span class="token number">.11</span> <span class="token punctuation">(</span>tags<span class="token operator">/</span>v3<span class="token punctuation">.</span><span class="token number">10.11</span><span class="token punctuation">:</span>7d4cc5a<span class="token punctuation">,</span> Apr  <span class="token number">5</span> <span class="token number">2023</span><span class="token punctuation">,</span> <span class="token number">00</span><span class="token punctuation">:</span><span class="token number">38</span><span class="token punctuation">:</span><span class="token number">17</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>MSC v<span class="token punctuation">.</span><span class="token number">1929</span> <span class="token number">64</span> bit <span class="token punctuation">(</span>AMD64<span class="token punctuation">)</span><span class="token punctuation">]</span> on win32
+Type <span class="token string">"help"</span><span class="token punctuation">,</span> <span class="token string">"copyright"</span><span class="token punctuation">,</span> <span class="token string">"credits"</span> <span class="token keyword keyword-or">or</span> <span class="token string">"license"</span> <span class="token keyword keyword-for">for</span> more information<span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre></li>
+</ul>
+<p>Certainly! Here’s a simple introduction to Python datatypes in Markdown format with code examples:</p>
+<h2 id="data-types">Data Types </h2>
+<p>In Python, data types are used to categorise and manage different types of data. Python offers several built-in data types that help you work with various kinds of information. Here are some of the most commonly used data types in Python:</p>
+<h3 id="numeric-data-types">Numeric Data Types </h3>
+<p><strong>Integers</strong><br>
+Integers (<code>int</code>) represent whole numbers. They can be positive or negative. Numerical operations such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code> are supported for calculations.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x<span class="op">+</span>y</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">5</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x<span class="op">*</span>y</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">50</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre></div>
-<p><strong>Floating-Point Numbers</strong> Floating-point numbers
-(<code>float</code>) represent real numbers with a decimal point.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> y <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">10</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x<span class="token operator">+</span>y
+<span class="token operator">-</span><span class="token number">5</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x<span class="token operator">*</span>y
+<span class="token operator">-</span><span class="token number">50</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> 
+</code></pre><p><strong>Floating-Point Numbers</strong><br>
+Floating-point numbers (<code>float</code>) represent real numbers with a decimal point.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pi <span class="op">=</span> <span class="fl">3.14159</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> radius <span class="op">=</span> <span class="fl">98.6</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pi <span class="op">*</span> radius</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">309.76077399999997</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<p><strong>Strings</strong> Strings (<code>str</code>) are sequences of
-characters enclosed in single (<code>&#39;</code> <code>&#39;</code>), double
-(<code>&quot;</code> <code>&quot;</code>), or triple (<code>&#39;&#39;&#39;</code>
-<code>&#39;&#39;&#39;</code> or <code>&quot;&quot;&quot;</code> <code>&quot;&quot;&quot;</code>) quotes. The
-content of string can be displayed using <code>print</code> function.
-The operator <code>+</code> can be used to concatenate multiple
-strings.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> pi <span class="token operator">=</span> <span class="token number">3.14159</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> radius <span class="token operator">=</span> <span class="token number">98.6</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> pi <span class="token operator">*</span> radius
+<span class="token number">309.76077399999997</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><p><strong>Strings</strong><br>
+Strings (<code>str</code>) are sequences of characters enclosed in single (<code>'</code> <code>'</code>), double (<code>"</code> <code>"</code>), or triple (<code>'''</code> <code>'''</code> or <code>"""</code> <code>"""</code>) quotes. The content of string can be displayed using <code>print</code> function. The operator <code>+</code> can be used to concatenate multiple strings.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> name <span class="op">=</span> <span class="st">&#39;John&#39;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> message <span class="op">=</span> <span class="st">&quot;Hello, World!&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> multi_line <span class="op">=</span> <span class="st">&#39;&#39;&#39;The first line</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">... The second line&#39;&#39;&#39;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(multi_line)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>The first line</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>The second line</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(name <span class="op">+</span> <span class="st">&#39;, &#39;</span> <span class="op">+</span> message)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>John, Hello, World<span class="op">!</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="sequence">Sequence</h3>
-<p><strong>Lists</strong> Lists (<code>list</code>) are ordered
-collections of items. They can contain elements of different data types.
-You can use the 0-based index to access certain item in the list.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> name <span class="token operator">=</span> <span class="token string">'John'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> message <span class="token operator">=</span> <span class="token string">"Hello, World!"</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> multi_line <span class="token operator">=</span> <span class="token triple-quoted-string string">'''The first line
+... The second line'''</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>multi_line<span class="token punctuation">)</span>
+The first line
+The second line
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">', '</span> <span class="token operator">+</span> message<span class="token punctuation">)</span>
+John<span class="token punctuation">,</span> Hello<span class="token punctuation">,</span> World!
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="sequence">Sequence </h3>
+<p><strong>Lists</strong><br>
+Lists (<code>list</code>) are ordered collections of items. They can contain elements of different data types. You can use the 0-based index to access certain item in the list.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits <span class="op">=</span> [<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers[<span class="dv">0</span>]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits[<span class="dv">2</span>]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;cherry&#39;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;grape&#39;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;grape&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>, <span class="st">&#39;pear&#39;</span>]</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<p>Two list can be combined together using operator <code>+</code>,
-which is a shorthand of the normal <code>extend()</code> function (note:
-<code>extend()</code> doesn’t return a new list, the change happens
-in-place). Individual items can be added to list using
-<code>append()</code> function.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits <span class="op">=</span> [<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(fruits <span class="op">+</span> numbers)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers.extend(fruits)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(numbers)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>]</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fruits.append(<span class="st">&#39;pear&#39;</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(fruits)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;banana&#39;</span>, <span class="st">&#39;cherry&#39;</span>, <span class="st">&#39;pear&#39;</span>]</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<p><strong>Tuples</strong> Tuples (<code>tuple</code>) are ordered
-collections like lists but are immutable (cannot be changed after
-creation). The item can be accessed in the same way as list. Notice the
-immutable property while trying to make change to the
-<code>tuple</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'cherry'</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> numbers<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token number">1</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> fruits<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token string">'cherry'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> fruits<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'grape'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> fruits
+<span class="token punctuation">[</span><span class="token string">'grape'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'cherry'</span><span class="token punctuation">,</span> <span class="token string">'pear'</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><p>Two list can be combined together using operator <code>+</code>, which is a shorthand of the normal <code>extend()</code> function (note: <code>extend()</code> doesn’t return a new list, the change happens in-place). Individual items can be added to list using <code>append()</code> function.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'cherry'</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>fruits <span class="token operator">+</span> numbers<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'cherry'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> numbers<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>fruits<span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'cherry'</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> fruits<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">'pear'</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'cherry'</span><span class="token punctuation">,</span> <span class="token string">'pear'</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><p><strong>Tuples</strong><br>
+Tuples (<code>tuple</code>) are ordered collections like lists but are immutable (cannot be changed after creation). The item can be accessed in the same way as list. Notice the immutable property while trying to make change to the <code>tuple</code>.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> coordinates <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> colors <span class="op">=</span> (<span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> colors[<span class="dv">0</span>]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;red&#39;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> coordinates[<span class="dv">1</span>]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> colors[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;yellow&#39;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: <span class="st">&#39;tuple&#39;</span> <span class="bu">object</span> does <span class="kw">not</span> support item assignment</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="dictionaries">Dictionaries</h3>
-<p>Dictionaries (<code>dict</code>) are collections of
-<code>key-value</code> pairs used to store data in an associative
-manner.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> coordinates <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> colors <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> colors<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token string">'red'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> coordinates<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token number">4</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> colors<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'yellow'</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"&lt;stdin&gt;"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+TypeError<span class="token punctuation">:</span> <span class="token string">'tuple'</span> <span class="token builtin">object</span> does <span class="token keyword keyword-not">not</span> support item assignment
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="dictionaries">Dictionaries </h3>
+<p>Dictionaries (<code>dict</code>) are collections of <code>key-value</code> pairs used to store data in an associative manner.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> person <span class="op">=</span> {<span class="st">&#39;name&#39;</span>: <span class="st">&#39;Alice&#39;</span>, <span class="st">&#39;age&#39;</span>: <span class="dv">30</span>, <span class="st">&#39;city&#39;</span>: <span class="st">&#39;New York&#39;</span>}</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> person[<span class="st">&#39;name&#39;</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Alice&#39;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> person[<span class="st">&#39;age&#39;</span>]</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dv">30</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="booleans">Booleans</h3>
-<p>Booleans (<code>bool</code>) represent two values, <code>True</code>
-and <code>False</code>, used for logical operations. The logical
-operations <code>and</code> and <code>or</code> are supported between
-variables.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'Alice'</span><span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token string">'city'</span><span class="token punctuation">:</span> <span class="token string">'New York'</span><span class="token punctuation">}</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> person<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span>
+<span class="token string">'Alice'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> person<span class="token punctuation">[</span><span class="token string">'age'</span><span class="token punctuation">]</span>
+<span class="token number">30</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="booleans">Booleans </h3>
+<p>Booleans (<code>bool</code>) represent two values, <code>True</code> and <code>False</code>, used for logical operations. The logical operations <code>and</code> and <code>or</code> are supported between variables.</p>
 <p>Example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_sunny <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_raining <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_sunny <span class="kw">and</span> is_raining</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> is_sunny <span class="kw">or</span> is_raining</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h2 id="flow-control">Flow Control</h2>
-<p>In Python, flow control statements allow you to control the execution
-of your code. You can make decisions, create loops, and handle
-exceptions using these constructs. Here are some essential flow control
-statements:</p>
-<h3 id="conditional-statements">Conditional Statements</h3>
-<p><strong><code>if</code>, <code>elif</code>, and
-<code>else</code></strong></p>
-<p>Conditional statements allow you to execute different code blocks
-based on specified conditions.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> age <span class="op">=</span> <span class="dv">18</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">18</span>:</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;You are a minor.&quot;</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>... <span class="cf">elif</span> age <span class="op">==</span> <span class="dv">18</span>:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;You just became an adult.&quot;</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>... <span class="cf">else</span>:</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;You are an adult.&quot;</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>You just became an adult.</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="loops">Loops</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> is_sunny <span class="token operator">=</span> <span class="token boolean">True</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> is_raining <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> is_sunny <span class="token keyword keyword-and">and</span> is_raining
+<span class="token boolean">False</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> is_sunny <span class="token keyword keyword-or">or</span> is_raining
+<span class="token boolean">True</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h2 id="flow-control">Flow Control </h2>
+<p>In Python, flow control statements allow you to control the execution of your code. You can make decisions, create loops, and handle exceptions using these constructs. Here are some essential flow control statements:</p>
+<h3 id="conditional-statements">Conditional Statements </h3>
+<p><strong><code>if</code>, <code>elif</code>, and <code>else</code></strong></p>
+<p>Conditional statements allow you to execute different code blocks based on specified conditions.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> age <span class="token operator">=</span> <span class="token number">18</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-if">if</span> age <span class="token operator">&lt;</span> <span class="token number">18</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"You are a minor."</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword keyword-elif">elif</span> age <span class="token operator">==</span> <span class="token number">18</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"You just became an adult."</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"You are an adult."</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+You just became an adult<span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="loops">Loops </h3>
 <p><strong><code>for</code> Loop</strong></p>
-<p>A <code>for</code> loop iterates over a sequence (e.g., a list or
-range) and executes a block of code for each item.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fruit <span class="kw">in</span> fruits:</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(fruit)</span></code></pre></div>
-<p><strong><code>while</code> Loop</strong></p>
-<p>A <code>while</code> loop repeats a block of code as long as a
-condition is <code>True</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;Count:&quot;</span>, count)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>...     count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">0</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">1</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">2</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">3</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>Count: <span class="dv">4</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="control-statements">Control Statements</h3>
+<p>A <code>for</code> loop iterates over a sequence (e.g., a list or range) and executes a block of code for each item.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"banana"</span><span class="token punctuation">,</span> <span class="token string">"cherry"</span><span class="token punctuation">]</span>
+<span class="token keyword keyword-for">for</span> fruit <span class="token keyword keyword-in">in</span> fruits<span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>fruit<span class="token punctuation">)</span>
+</code></pre><p><strong><code>while</code> Loop</strong></p>
+<p>A <code>while</code> loop repeats a block of code as long as a condition is <code>True</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> count <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-while">while</span> count <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Count:"</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     count <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Count<span class="token punctuation">:</span> <span class="token number">0</span>
+Count<span class="token punctuation">:</span> <span class="token number">1</span>
+Count<span class="token punctuation">:</span> <span class="token number">2</span>
+Count<span class="token punctuation">:</span> <span class="token number">3</span>
+Count<span class="token punctuation">:</span> <span class="token number">4</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="control-statements">Control Statements </h3>
 <p><strong><code>break</code></strong></p>
-<p>The <code>break</code> statement is used to exit the current loop
-prematurely.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> number <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> number <span class="op">==</span> <span class="dv">5</span>:</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">break</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(number)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<p><strong><code>continue</code></strong></p>
-<p>The <code>continue</code> statement skips the rest of the current
-iteration and proceeds to the next one.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> number <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> number <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">continue</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(number)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="exception-handling">Exception Handling</h3>
-<p><strong><code>try</code>, <code>except</code>, <code>else</code>, and
-<code>finally</code></strong></p>
+<p>The <code>break</code> statement is used to exit the current loop prematurely.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-for">for</span> number <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-if">if</span> number <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-break">break</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token number">0</span>
+<span class="token number">1</span>
+<span class="token number">2</span>
+<span class="token number">3</span>
+<span class="token number">4</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><p><strong><code>continue</code></strong></p>
+<p>The <code>continue</code> statement skips the rest of the current iteration and proceeds to the next one.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-for">for</span> number <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-if">if</span> number <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-continue">continue</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token number">0</span>
+<span class="token number">1</span>
+<span class="token number">3</span>
+<span class="token number">4</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="exception-handling">Exception Handling </h3>
+<p><strong><code>try</code>, <code>except</code>, <code>else</code>, and <code>finally</code></strong></p>
 <p>Exception handling helps you manage errors in your code.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">try</span>:</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>...     result <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>... <span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>...     result <span class="op">=</span> <span class="st">&quot;Error: Division by zero&quot;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>... <span class="cf">else</span>:</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>...     result <span class="op">=</span> <span class="st">&quot;Result: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(result)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>... <span class="cf">finally</span>:</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(result)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>Error: Division by zero</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<p>By using flow control statements in Python, you can create dynamic
-and flexible programs that can make decisions, repeat tasks, and handle
-errors gracefully.</p>
-<h2 id="functions">Functions</h2>
-<p>Functions in Python are reusable blocks of code that perform specific
-tasks. They are essential for structuring and organising your code.</p>
-<h3 id="defining-a-function">Defining a Function</h3>
-<p>To define a function, use the <code>def</code> keyword followed by
-the function name and any parameters it should accept. The function’s
-code block is indented.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> greet(name):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> <span class="ss">f&quot;Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!&quot;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="calling-a-function">Calling a Function</h3>
-<p>To use a function, call it by its name and provide any required
-arguments.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> greet(<span class="st">&quot;Alice&quot;</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Hello, Alice!&#39;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="parameters-and-return-values">Parameters and Return Values</h3>
-<p>Functions can accept parameters (inputs) and return values
-(outputs).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> add(a, b):</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> a <span class="op">+</span> b</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> result <span class="op">=</span> add(<span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(result)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="default-parameters">Default Parameters</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     result <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">/</span> <span class="token number">0</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword keyword-except">except</span> ZeroDivisionError<span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     result <span class="token operator">=</span> <span class="token string">"Error: Division by zero"</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     result <span class="token operator">=</span> <span class="token string">"Result: "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword keyword-finally">finally</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Error<span class="token punctuation">:</span> Division by zero
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><p>By using flow control statements in Python, you can create dynamic and flexible programs that can make decisions, repeat tasks, and handle errors gracefully.</p>
+<h2 id="functions">Functions </h2>
+<p>Functions in Python are reusable blocks of code that perform specific tasks. They are essential for structuring and organising your code.</p>
+<h3 id="defining-a-function">Defining a Function </h3>
+<p>To define a function, use the <code>def</code> keyword followed by the function name and any parameters it should accept. The function’s code block is indented.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"Hello, </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">!"</span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="calling-a-function">Calling a Function </h3>
+<p>To use a function, call it by its name and provide any required arguments.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> greet<span class="token punctuation">(</span><span class="token string">"Alice"</span><span class="token punctuation">)</span>
+<span class="token string">'Hello, Alice!'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="parameters-and-return-values">Parameters and Return Values </h3>
+<p>Functions can accept parameters (inputs) and return values (outputs).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> result <span class="token operator">=</span> add<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token number">8</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="default-parameters">Default Parameters </h3>
 <p>You can set default values for function parameters.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> greet(name, greeting<span class="op">=</span><span class="st">&quot;Hello&quot;</span>):</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span>greeting<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!&quot;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> message <span class="op">=</span> greet(<span class="st">&quot;Bob&quot;</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(message)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>Hello, Bob<span class="op">!</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="variable-scope">Variable Scope</h3>
-<p>Variables defined within a function have local scope, while those
-defined outside have global scope.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> multiply(y):</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>...     x <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> x <span class="op">*</span> y</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> result <span class="op">=</span> multiply(<span class="dv">5</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(result)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="docstrings">Docstrings</h3>
-<p>Use docstrings to provide documentation for your functions. It should
-be the next line after your function definitions with content wrapped in
-triple quotation marks, either single (<code>&#39;</code>) or double
-(<code>&quot;</code>). The docstring can be viewed by calling
-<code>help()</code> function.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> square(x):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>...     <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">...     This function returns the square of a number.</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">...     &quot;&quot;&quot;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> x <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(square)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>Help on function square <span class="kw">in</span> module __main__:</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>square(x)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    This function returns the square of a number.</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="lambda-functions_">_Lambda Functions*_</h3>
-<p>Lambda functions are small, anonymous functions defined using the
-<code>lambda</code> keyword.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> multiply <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">*</span> y</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> result <span class="op">=</span> multiply(<span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(result)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="function-recursion">Function Recursion</h3>
-<p>Functions can call themselves. Recursive functions are used for tasks
-that can be divided into smaller, similar tasks.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> factorial(n):</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">else</span>:</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> factorial(<span class="dv">5</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="dv">120</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h2 id="classes">Classes</h2>
-<p>In Python, a class is a blueprint for creating objects. It defines
-the structure and behaviours of objects of that class while facilitating
-object-oriented programming, which is a powerful paradigm for building
-complex systems.</p>
-<h3 id="defining-a-class">Defining a Class</h3>
-<p>To define a class, use the <code>class</code> keyword followed by the
-class name, and a colon. The class’s attributes and methods are defined
-within the class block.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dog:</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Class attributes</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    species <span class="op">=</span> <span class="st">&quot;Canis familiaris&quot;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Constructor method</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age):</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.age <span class="op">=</span> age</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Instance method</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> description(<span class="va">self</span>):</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>age<span class="sc">}</span><span class="ss"> years old.&quot;</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Another instance method</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> speak(<span class="va">self</span>, sound):</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> says </span><span class="sc">{</span>sound<span class="sc">}</span><span class="ss">.&quot;</span></span></code></pre></div>
-<h3 id="creating-objects">Creating Objects</h3>
-<p>To create an object (an instance) of a class, call the class as if it
-were a function with any required arguments.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mikey <span class="op">=</span> Dog(<span class="st">&quot;Mikey&quot;</span>, <span class="dv">6</span>)</span></code></pre></div>
-<h3 id="accessing-attributes-and-methods">Accessing Attributes and
-Methods</h3>
-<p>You can access attributes and methods of an object using the
-<code>dot</code> (<code>.</code>) notation.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mikey.description())</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Mikey <span class="kw">is</span> <span class="dv">6</span> years old.</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(mikey.speak(<span class="st">&quot;Woof Woof&quot;</span>))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Mikey says Woof Woof.</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="inheritance">Inheritance</h3>
-<p>Inheritance allows you to create a new class based on an existing
-class. The new class inherits attributes and methods from the parent
-class.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Beagle(Dog):</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> run(<span class="va">self</span>, speed):</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> runs at </span><span class="sc">{</span>speed<span class="sc">}</span><span class="ss">.&quot;</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> buddy <span class="op">=</span> Beagle(<span class="st">&quot;Buddy&quot;</span>, <span class="dv">3</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(buddy.run(<span class="st">&quot;fast&quot;</span>))</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>Buddy runs at fast.</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h3 id="encapsulation">Encapsulation</h3>
-<p>Python supports encapsulation, which means you can restrict access to
-certain attributes and methods using the underscores <code>_</code>
-convention. Such attributes and methods are protected and can only be
-accessed by the class itself.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circle:</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius):</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Protected attribute</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._radius <span class="op">=</span> radius  </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _calculate_area(<span class="va">self</span>):</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Protected method</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">3.14159</span> <span class="op">*</span> <span class="va">self</span>._radius <span class="op">*</span> <span class="va">self</span>._radius  </span></code></pre></div>
-<h3 id="polymorphism">Polymorphism</h3>
-<p>Polymorphism allows objects of different classes to be treated as
-objects of a common superclass. This is useful for creating flexible and
-dynamic code.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Animal:</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._name <span class="op">=</span> name</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._age <span class="op">=</span> age</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> (<span class="st">&#39;Animal speaks!&#39;</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Dog(Animal):</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="st">&#39;Woof woof!&#39;</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Cat(Animal):</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> <span class="st">&#39;Meow meow!&#39;</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_dog <span class="op">=</span> Dog(<span class="st">&quot;Buddy&quot;</span>, <span class="dv">5</span>)</span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_cat <span class="op">=</span> Cat(<span class="st">&quot;Whiskers&quot;</span>, <span class="dv">3</span>)</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Animal:</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._name <span class="op">=</span> name</span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>...         <span class="va">self</span>._age <span class="op">=</span> age</span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
-<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> (<span class="st">&#39;Animal speaks!&#39;</span>)</span>
-<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Dog(Animal):</span>
-<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
-<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
-<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
-<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_name<span class="sc">}</span><span class="ss"> says: Woof woof!&#39;</span>)</span>
-<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Cat(Animal):</span>
-<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name,age):</span>
-<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">super</span>().<span class="fu">__init__</span>(name,age)</span>
-<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> speak(<span class="va">self</span>):</span>
-<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_name<span class="sc">}</span><span class="ss"> says: Meow meow!&#39;</span>)</span>
-<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_dog <span class="op">=</span> Dog(<span class="st">&quot;Buddy&quot;</span>, <span class="dv">5</span>)</span>
-<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_cat <span class="op">=</span> Cat(<span class="st">&quot;Whiskers&quot;</span>, <span class="dv">3</span>)</span>
-<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_dog.speak()</span>
-<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>Buddy says: Woof woof<span class="op">!</span></span>
-<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> my_cat.speak()</span>
-<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>Whiskers says: Meow meow<span class="op">!</span></span>
-<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
-<h2 id="file-operations">File Operations</h2>
-<p>File operations in Python allow you to interact with files on your
-computer. You can read, write, and manipulate data in files. Here’s how
-to work with files:</p>
-<h3 id="opening-a-file">Opening a File</h3>
-<p>You can open a file using the <code>open()</code> function. Provide
-the file’s path and specify the mode (‘r’ for reading, ‘w’ for writing,
-‘a’ for appending, ‘b’ for binary mode, etc.).</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening a file for reading</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;example.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)</span></code></pre></div>
-<h3 id="reading-from-a-file">Reading from a File</h3>
-<p>To read the content of a file, you can use various methods like
-<code>read()</code>, <code>readline()</code>, or
-<code>readlines()</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the entire file</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> <span class="bu">file</span>.read()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a single line</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> <span class="bu">file</span>.readline()</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all lines into a list</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span></code></pre></div>
-<h3 id="writing-to-a-file">Writing to a File</h3>
-<p>To write to a file, open it in write (<code>&#39;w&#39;</code>) or append
-(<code>&#39;a&#39;</code>) mode and use the <code>write()</code> method.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open a file for writing</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;output.txt&quot;</span>, <span class="st">&quot;w&quot;</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Write a line to the file</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.write(<span class="st">&quot;Hello, World!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<h3 id="closing-a-file">Closing a File</h3>
-<p>Always close a file after you’re done with it using the
-<code>close()</code> method to free up system resources.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()</span></code></pre></div>
-<h3 id="using-with-statement">Using ‘with’ Statement</h3>
-<p>A better practice is to use the ‘<code>with</code>’ statement, which
-ensures the file is properly closed even if an error occurs.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;example.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span></code></pre></div>
-<h3 id="reading-and-writing-binary-files">Reading and Writing Binary
-Files</h3>
-<p>You can read and write binary files by specifying the
-‘<code>b</code>’ mode.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;binary_data.bin&quot;</span>, <span class="st">&quot;rb&quot;</span>) <span class="im">as</span> binary_file:</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> binary_file.read()</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;new_binary_data.bin&quot;</span>, <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> new_binary_file:</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    new_binary_file.write(data)</span></code></pre></div>
-<h3 id="handling-exceptions">Handling Exceptions</h3>
-<p>When working with files, it’s important to handle exceptions,
-especially if the file may not exist.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;file.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        content <span class="op">=</span> <span class="bu">file</span>.read()</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;The file does not exist.&quot;</span>)</span></code></pre></div>
-<p>Python’s file operations make it easy to work with text and binary
-files, which is essential for tasks such as data reading, writing, and
-processing. Always remember to close files properly to avoid resource
-leaks.</p>
-<h2 id="package-management">Package Management</h2>
-<p>Python package management involves installing, managing, and using
-external libraries or packages in your Python projects. The most common
-tool for package management in Python is <code>pip</code>. Here are some
-key operations:</p>
-<h3 id="installing-packages">Installing Packages</h3>
-<p>You can install packages from the Python Package Index (PyPI) using
-<code>pip</code>. Simply provide the package name as an argument.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div>
-<p>Example:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install requests</span></code></pre></div>
-<h3 id="listing-installed-packages">Listing Installed Packages</h3>
-<p>You can list all the packages installed in your Python environment
-using <code>pip list</code>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> list</span></code></pre></div>
-<h3 id="creating-a-requirements.txt-file">Creating a
-<code>requirements.txt</code> File</h3>
-<p>A <code>requirements.txt</code> file lists all the packages your
-project depends on, making it easy to recreate your project’s
-environment on another system.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> greeting<span class="token operator">=</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>greeting<span class="token punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">!"</span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> message <span class="token operator">=</span> greet<span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+Hello<span class="token punctuation">,</span> Bob!
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="variable-scope">Variable Scope </h3>
+<p>Variables defined within a function have local scope, while those defined outside have global scope.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">multiply</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     x <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> x <span class="token operator">*</span> y
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> result <span class="token operator">=</span> multiply<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token number">10</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="docstrings">Docstrings </h3>
+<p>Use docstrings to provide documentation for your functions. It should be the next line after your function definitions with content wrapped in triple quotation marks, either single (<code>'</code>) or double (<code>"</code>). The docstring can be viewed by calling <code>help()</code> function.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">square</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token triple-quoted-string string">"""
+...     This function returns the square of a number.
+...     """</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> x <span class="token operator">**</span> <span class="token number">2</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">help</span><span class="token punctuation">(</span>square<span class="token punctuation">)</span>
+Help on function square <span class="token keyword keyword-in">in</span> module __main__<span class="token punctuation">:</span>
+
+square<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    This function returns the square of a number<span class="token punctuation">.</span>
+
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3><em>Lambda Functions*</em> {#<em>lambda-functions</em> }</h3>
+<p>Lambda functions are small, anonymous functions defined using the <code>lambda</code> keyword.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> multiply <span class="token operator">=</span> <span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">,</span> y<span class="token punctuation">:</span> x <span class="token operator">*</span> y
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> result <span class="token operator">=</span> multiply<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token number">12</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="function-recursion">Function Recursion </h3>
+<p>Functions can call themselves. Recursive functions are used for tasks that can be divided into smaller, similar tasks.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-if">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token number">1</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> n <span class="token operator">*</span> factorial<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> factorial<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token number">120</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h2 id="classes">Classes </h2>
+<p>In Python, a class is a blueprint for creating objects. It defines the structure and behaviours of objects of that class while facilitating object-oriented programming, which is a powerful paradigm for building complex systems.</p>
+<h3 id="defining-a-class">Defining a Class </h3>
+<p>To define a class, use the <code>class</code> keyword followed by the class name, and a colon. The class’s attributes and methods are defined within the class block.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Dog</span><span class="token punctuation">:</span>
+    <span class="token comment"># Class attributes</span>
+    species <span class="token operator">=</span> <span class="token string">"Canis familiaris"</span>
+    
+    <span class="token comment"># Constructor method</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+        self<span class="token punctuation">.</span>age <span class="token operator">=</span> age
+    
+    <span class="token comment"># Instance method</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">description</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>name<span class="token punctuation">}</span></span><span class="token string"> is </span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>age<span class="token punctuation">}</span></span><span class="token string"> years old."</span></span>
+    
+    <span class="token comment"># Another instance method</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> sound<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>name<span class="token punctuation">}</span></span><span class="token string"> says </span><span class="token interpolation"><span class="token punctuation">{</span>sound<span class="token punctuation">}</span></span><span class="token string">."</span></span>
+</code></pre><h3 id="creating-objects">Creating Objects </h3>
+<p>To create an object (an instance) of a class, call the class as if it were a function with any required arguments.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>mikey <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"Mikey"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span>
+</code></pre><h3 id="accessing-attributes-and-methods">Accessing Attributes and Methods </h3>
+<p>You can access attributes and methods of an object using the <code>dot</code> (<code>.</code>) notation.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>mikey<span class="token punctuation">.</span>description<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+Mikey <span class="token keyword keyword-is">is</span> <span class="token number">6</span> years old<span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>mikey<span class="token punctuation">.</span>speak<span class="token punctuation">(</span><span class="token string">"Woof Woof"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+Mikey says Woof Woof<span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="inheritance">Inheritance </h3>
+<p>Inheritance allows you to create a new class based on an existing class. The new class inherits attributes and methods from the parent class.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Beagle</span><span class="token punctuation">(</span>Dog<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> speed<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>name<span class="token punctuation">}</span></span><span class="token string"> runs at </span><span class="token interpolation"><span class="token punctuation">{</span>speed<span class="token punctuation">}</span></span><span class="token string">."</span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> buddy <span class="token operator">=</span> Beagle<span class="token punctuation">(</span><span class="token string">"Buddy"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>buddy<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token string">"fast"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+Buddy runs at fast<span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h3 id="encapsulation">Encapsulation </h3>
+<p>Python supports encapsulation, which means you can restrict access to certain attributes and methods using the underscores <code>_</code> convention. Such attributes and methods are protected and can only be accessed by the class itself.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Circle</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> radius<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># Protected attribute</span>
+        self<span class="token punctuation">.</span>_radius <span class="token operator">=</span> radius  
+    
+    <span class="token keyword keyword-def">def</span> <span class="token function">_calculate_area</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># Protected method</span>
+        <span class="token keyword keyword-return">return</span> <span class="token number">3.14159</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>_radius <span class="token operator">*</span> self<span class="token punctuation">.</span>_radius  
+</code></pre><h3 id="polymorphism">Polymorphism </h3>
+<p>Polymorphism allows objects of different classes to be treated as objects of a common superclass. This is useful for creating flexible and dynamic code.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_name <span class="token operator">=</span> name
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_age <span class="token operator">=</span> age
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">'Animal speaks!'</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token string">'Woof woof!'</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token string">'Meow meow!'</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_dog <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"Buddy"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_cat <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_name <span class="token operator">=</span> name
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_age <span class="token operator">=</span> age
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">'Animal speaks!'</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>_name<span class="token punctuation">}</span></span><span class="token string"> says: Woof woof!'</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>_name<span class="token punctuation">}</span></span><span class="token string"> says: Meow meow!'</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_dog <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"Buddy"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_cat <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_dog<span class="token punctuation">.</span>speak<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Buddy says<span class="token punctuation">:</span> Woof woof!
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_cat<span class="token punctuation">.</span>speak<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Whiskers says<span class="token punctuation">:</span> Meow meow!
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+</code></pre><h2 id="file-operations">File Operations </h2>
+<p>File operations in Python allow you to interact with files on your computer. You can read, write, and manipulate data in files. Here’s how to work with files:</p>
+<h3 id="opening-a-file">Opening a File </h3>
+<p>You can open a file using the <code>open()</code> function. Provide the file’s path and specify the mode (‘r’ for reading, ‘w’ for writing, ‘a’ for appending, ‘b’ for binary mode, etc.).</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Opening a file for reading</span>
+<span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"example.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+</code></pre><h3 id="reading-from-a-file">Reading from a File </h3>
+<p>To read the content of a file, you can use various methods like <code>read()</code>, <code>readline()</code>, or <code>readlines()</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Read the entire file</span>
+content <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Read a single line</span>
+line <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Read all lines into a list</span>
+lines <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><h3 id="writing-to-a-file">Writing to a File </h3>
+<p>To write to a file, open it in write (<code>'w'</code>) or append (<code>'a'</code>) mode and use the <code>write()</code> method.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Open a file for writing</span>
+<span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"output.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Write a line to the file</span>
+<span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Hello, World!\n"</span><span class="token punctuation">)</span>
+</code></pre><h3 id="closing-a-file">Closing a File </h3>
+<p>Always close a file after you’re done with it using the <code>close()</code> method to free up system resources.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token builtin">file</span><span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><h3 id="using-with-statement">Using ‘with’ Statement </h3>
+<p>A better practice is to use the ‘<code>with</code>’ statement, which ensures the file is properly closed even if an error occurs.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"example.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
+    content <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><h3 id="reading-and-writing-binary-files">Reading and Writing Binary Files </h3>
+<p>You can read and write binary files by specifying the ‘<code>b</code>’ mode.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"binary_data.bin"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> binary_file<span class="token punctuation">:</span>
+    data <span class="token operator">=</span> binary_file<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"new_binary_data.bin"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> new_binary_file<span class="token punctuation">:</span>
+    new_binary_file<span class="token punctuation">.</span>write<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+</code></pre><h3 id="handling-exceptions">Handling Exceptions </h3>
+<p>When working with files, it’s important to handle exceptions, especially if the file may not exist.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"file.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
+        content <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-except">except</span> FileNotFoundError<span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"The file does not exist."</span><span class="token punctuation">)</span>
+</code></pre><p>Python’s file operations make it easy to work with text and binary files, which is essential for tasks such as data reading, writing, and processing. Always remember to close files properly to avoid resource leaks.</p>
+<h2 id="package-management">Package Management </h2>
+<p>Python package management involves installing, managing, and using external libraries or packages in your Python projects. The most common tool for package management in Python is <code>pip</code>. Here are some key operations:</p>
+<h3 id="installing-packages">Installing Packages </h3>
+<p>You can install packages from the Python Package Index (PyPI) using <code>pip</code>. Simply provide the package name as an argument.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> package_name
+</code></pre><p>Example:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> requests
+</code></pre><h3 id="listing-installed-packages">Listing Installed Packages </h3>
+<p>You can list all the packages installed in your Python environment using <code>pip list</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip list
+</code></pre><h3 id="creating-a-requirementstxt-file">Creating a <code>requirements.txt</code> File </h3>
+<p>A <code>requirements.txt</code> file lists all the packages your project depends on, making it easy to recreate your project’s environment on another system.</p>
 <p>Create the file:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div>
-<p>Example <code>requirements.txt</code>:</p>
-<pre class="text"><code>requests==2.26.0
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip freeze <span class="token operator">&gt;</span> requirements.txt
+</code></pre><p>Example <code>requirements.txt</code>:</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>requests==2.26.0
 flask==2.1.1
-numpy==1.21.0</code></pre>
-<h3 id="installing-packages-from-a-requirements.txt-file">Installing
-Packages from a <code>requirements.txt</code> File</h3>
-<p>To install packages listed in a <code>requirements.txt</code> file,
-use the <code>-r</code> flag.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div>
-<p>This installs all the packages listed in the file.</p>
-<p>Python package management is crucial for utilizing external libraries
-and packages to enhance the functionality of your Python projects. Using
-<code>pip</code> and <code>requirements.txt</code> files simplifies the
-process of package installation and project environment management.</p>
-<h1 id="further-reading">Further Reading</h1>
+numpy==1.21.0
+</code></pre><h3 id="installing-packages-from-a-requirementstxt-file">Installing Packages from a <code>requirements.txt</code> File </h3>
+<p>To install packages listed in a <code>requirements.txt</code> file, use the <code>-r</code> flag.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> <span class="token parameter variable">-r</span> requirements.txt
+</code></pre><p>This installs all the packages listed in the file.</p>
+<p>Python package management is crucial for utilizing external libraries and packages to enhance the functionality of your Python projects. Using <code>pip</code> and <code>requirements.txt</code> files simplifies the process of package installation and project environment management.</p>
+<h1 id="further-reading">Further Reading </h1>
 <ul>
-<li><a href="https://docs.python.org/3/tutorial/">Python
-Tutorial</a></li>
-<li><a href="https://wiki.python.org/moin/BeginnersGuide/Programmers">More
-Python Resources</a></li>
+<li><a href="https://docs.python.org/3/tutorial/">Python Tutorial</a></li>
+<li><a href="https://wiki.python.org/moin/BeginnersGuide/Programmers">More Python Resources</a></li>
 </ul>
-<h1 id="you-task">You Task</h1>
-<p><strong>Task 1: Prime Number Calculation</strong> - Write a function
-to calculate prime numbers between 2 and <code>N</code>, where
-<code>N</code> is the input parameter.</p>
-<hr />
-<p><strong>Task 2: Guess My Number Game</strong> - Write a script to
-implement the <a href="https://www.mathsisfun.com/games/guess_number.html"><code>Guess My Number</code></a>
-game: - Randomly generate a number within a specified range
-<code>[a, b]</code>. - Prompt the user to input a guess and keep track
-of the number of attempts. - Provide feedback if the guess is either
-“too large” or “too small.” - When the user correctly guesses the
-number, display the total number of attempts.</p>
-<hr />
-<p><strong>Task 3: Guess The Number Game (Advanced)</strong> - Write a
-script to implement a more complex version of the <a href="https://www.goobix.com/games/guess-the-number/"><code>Guess The Number</code></a>
-game: - Generate a random 4-digit number where each digit is unique and
-ranges from 0 to 9. - Allow the user a set number of attempts (e.g., 10
-to begin with). - Provide feedback to the user regarding how many digits
-were guessed correctly and are in the correct positions, as well as how
-many digits were guessed correctly but are in different positions
-(correct digits, incorrect positions). - Continue the game until the
-specified number of attempts is exhausted and determine the win/loss
-status.</p>
-<h2 id="submit-your-code">Submit Your Code</h2>
-<p>You can submit a pull request to the original repository to showcase
-your work if you like.</p>
-</body>
-</html>
+<h1 id="you-task">You Task </h1>
+<p><strong>Task 1: Prime Number Calculation</strong></p>
+<ul>
+<li>Write a function to calculate prime numbers between 2 and <code>N</code>, where <code>N</code> is the input parameter.</li>
+</ul>
+<hr>
+<p><strong>Task 2: Guess My Number Game</strong></p>
+<ul>
+<li>Write a script to implement the  <a href="https://www.mathsisfun.com/games/guess_number.html"><code>Guess My Number</code></a> game:
+<ul>
+<li>Randomly generate a number within a specified range <code>[a, b]</code>.</li>
+<li>Prompt the user to input a guess and keep track of the number of attempts.</li>
+<li>Provide feedback if the guess is either “too large” or “too small.”</li>
+<li>When the user correctly guesses the number, display the total number of attempts.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Task 3: Guess The Number Game (Advanced)</strong></p>
+<ul>
+<li>Write a script to implement a more complex version of the  <a href="https://www.goobix.com/games/guess-the-number/"><code>Guess The Number</code></a> game:
+<ul>
+<li>Generate a random 4-digit number where each digit is unique and ranges from 0 to 9.</li>
+<li>Allow the user a set number of attempts (e.g., 10 to begin with).</li>
+<li>Provide feedback to the user regarding how many digits were guessed correctly and are in the correct positions, as well as how many digits were guessed correctly but are in different positions (correct digits, incorrect positions).</li>
+<li>Continue the game until the specified number of attempts is exhausted and determine the win/loss status.</li>
+</ul>
+</li>
+</ul>
+<h2 id="submit-your-code">Submit Your Code </h2>
+<p>You can submit a pull request to the original repository to showcase your work if you like.</p>
+<h3 id="the-repository">The Repository </h3>
+<p><strong>Fork the repository</strong> (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.</p>
+<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git</strong></a></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

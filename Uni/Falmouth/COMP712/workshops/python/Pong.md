@@ -13,7 +13,7 @@ Dr Daniel Zhang @ Falmouth University\
 - [Game Play](#game-play)
 - [Game Controls](#game-controls)
 - [The Code](#the-code)
-- [The Code](#the-code-1)
+- [The Functions](#the-functions)
 - [Your Task](#your-task)
 
 
@@ -27,7 +27,7 @@ The repository linked below contains the code for a basic 2-player PONG game.
 
 **Fork the repository** (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.
 
-> [**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git)
+> [**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git)
 
 # Game Play
 
@@ -47,6 +47,7 @@ The `.pyc` file was compiled using `Python 3.12.0` and should work with any `Pyt
 This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.
 
 # The Code
+
 The implementation is relatively straightforward. Let's take a closer look at the detailed structure of the code:
 
 <!-- ![Game Flow](flow1.png) -->
@@ -78,7 +79,7 @@ B ---> E(update scores)
 B -- perform collision test --> B
 ```
 
-# The Code
+# The Functions
 
 There are four functions defined for keyboard controls:
 
