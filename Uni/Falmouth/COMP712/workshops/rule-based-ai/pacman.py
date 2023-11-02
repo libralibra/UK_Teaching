@@ -7,7 +7,7 @@ Exercises:
 3. Make the ghosts with different colours.
 4. Make the ghosts faster/slower.
 5. Make the ghosts smarter - apply different rules.
-8. Modify the game board.
+6. Modify the game board.
 """
 
 from random import choice
