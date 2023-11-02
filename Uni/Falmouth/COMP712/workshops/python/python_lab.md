@@ -686,8 +686,11 @@ pip install package_name
 ```
 
 Example:
+
+The following command will install the popular `numpy` package.
+
 ```bash
-pip install requests
+pip install numpy
 ```
 
 ### Listing Installed Packages
