@@ -179,7 +179,7 @@ F -- Push Button --> F
 G -- Push Button --> I(Dispense)
 I -- Last State is £2.5* --> B
 H -- Push Button --> I
-I -- Last State if More than £2.5* --> J(Giving Change)
+I -- Last State is More than £2.5* --> J(Giving Change)
 C -- Cancel --> J
 D -- Cancel --> J
 E -- Cancel --> J
