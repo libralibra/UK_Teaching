@@ -52,15 +52,11 @@ def description() -> str:
     return content
 
 def create_node(name_str,status_list,final_status=S_STATUS) -> py_trees.behaviours.StatusQueue:
-    '''
-    create a node with multiple status queue
-    '''
+    ''' create a node with multiple status queue '''
     return py_trees.behaviours.StatusQueue(name=name_str,queue=status_list,eventually=final_status)
     
 def create_root() -> py_trees.behaviour.Behaviour:
-    """
-    Create the root behaviour and it's subtree.
-
+    """ Create the root behaviour and it's subtree.
     Returns:
         the root behaviour
     """
@@ -80,7 +76,6 @@ def main() -> None:
     """Entry point for the demo script."""
     print(description())
     py_trees.logging.level = py_trees.logging.Level.DEBUG
-
     root = create_root()
 
     ####################

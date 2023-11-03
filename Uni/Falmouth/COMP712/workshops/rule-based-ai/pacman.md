@@ -1,4 +1,5 @@
-# <span class="text-centre">COMP712: Classical Artificial Intelligence</span> 
+# COMP712: Classical Artificial Intelligence 
+#  Workshop: Rule-based AI (PAC-MAN Example)
 
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
@@ -7,8 +8,8 @@ Dr Daniel Zhang @ Falmouth University\
 
 # Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
-- [Table of Contents](#table-of-contents)
 - [Workshop: Rule-based AI (PAC-MAN Example)](#workshop-rule-based-ai-pac-man-example)
+- [Table of Contents](#table-of-contents)
   - [PAC-MAN: The Game](#pac-man-the-game)
   - [Before We Start: The Setup](#before-we-start-the-setup)
     - [Python Installation](#python-installation)
@@ -24,9 +25,6 @@ Dr Daniel Zhang @ Falmouth University\
     - [**Task 4**:](#task-4)
     - [**Task 5\***](#task-5)
   - [Submit Your Code](#submit-your-code)
-
-
-#  Workshop: Rule-based AI (PAC-MAN Example)
 
 ## PAC-MAN: The Game
 
