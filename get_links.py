@@ -421,7 +421,7 @@ FOOTER = r'''</div>
 
 # #################################################################
 def get_all_files(d_path):
-    ''' get all files with relative links to a dict: {uni: {module:html}} '''
+    ''' get all files with relative links to a dict of dict: {uni: {module: html_list}} '''
     # get all html file paths 
     htmls = [x[x.index(d_path)+len(d_path)+1:] for x in glob(d_path+r'/**/*.html',recursive=True)]
     # sort out after split: uni -> module -> htmls
@@ -482,6 +482,22 @@ def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
         left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[:round(len(m_htmls)/2+0.5)]]
         right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[round(len(m_htmls)/2+0.5):]]
         return MODULE_LEFT.replace('MODULE',m_name) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END
+# #################################################################
+def show_info(htmls):
+    ''' display dict information: uni -> module -> htmls '''
+
+    print('\n'+'='*50)
+    uni_str = len(htmls) > 1 and 'Universities' or 'University'
+    print(f'There are {len(htmls)} {uni_str} info to update:')
+    for uni_name, md_list in htmls.items():
+        md_str = len(md_list) > 1 and 'modules' or 'module'
+        print(f'  University [{uni_name}] has {len(md_list)} {md_str}:')
+        for md_name, html_list in md_list.items():
+            html_str = len(html_list) > 1 and 'files' or 'file'
+            print(f'    Module [{md_name}] has {len(html_list)} {html_str}:\n      ',end='')
+            print('\n      '.join(html_list))
+        print('-'*40)
+    print('-'*50)
 
 # #################################################################
 # global definitions
@@ -499,6 +515,6 @@ def get_html(base_path, h_dict):
 # #################################################################
 if __name__ == '__main__':
     htmls = get_all_files(SOURCE_PATH)
-    print(len(htmls),'->',htmls)
+    show_info(htmls)
     get_html(SOURCE_PATH,htmls)
 
