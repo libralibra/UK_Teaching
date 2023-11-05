@@ -43,25 +43,7 @@ HEADERS = r'''<!doctype html>
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        <!-- the default stylsheets -->
-        <link rel="stylsheets" href="./assets/dist/reset.css">
-        <link rel="stylesheet" href="./assets/dist/reveal.css">
-        <link rel="stylesheet" href="./assets/dist/theme/black.css" id="theme">
-
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="./assets/plugin/highlight/monokai.css">
-        <!-- <link rel="stylesheet" href="./assets/plugin/highlight/zenburn.css"> -->
-
-        <!-- the chalkboard -->
-        <link rel="stylesheet" href="./assets/plugin/chalkboard/style.css">
-        <!-- custom controls -->
-        <link rel="stylesheet" href="./assets/plugin/customcontrols/style.css">
-        <!-- custom controls font awsome icons -->
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"> -->
-        <!-- rows and columns in one slide -->
-        <link rel="stylesheet" href="./assets/dist/row_col.css">
-        <!-- pointer plugin style -->
-        <link rel="stylesheet" href="./assets/plugin/pointer/pointer.css" />
+        <link rel="stylesheet" href="./assets/dist/css/master.css">
 
         <!-- all links open in new tab -->
         <!-- <base target="_blank"> -->
@@ -74,18 +56,9 @@ HEADERS = r'''<!doctype html>
                 ['coursecode', ''],
                 ['week', 'For UK Universities'],
                 ['topic', 'Categorised by Modules'],
-                ['email', ''],
-                ['office', ''],
-                ['uni', ''],
-                ['officehour', ''],
-                ['classroom', ''],
-                ['classtime', ''],
-                ['deadline', ''],
-                ['name', 'Dr Daniel Zhang'],
-                ['nickname', 'Daniel'],
             ]);
         </script>
-        <script id="header_pdf_func" src="./assets/dist/header.js"></script>
+        <script id="header_pdf_func" src="./assets/dist/js/header.js"></script>
     </head>
 
     <body>
@@ -127,7 +100,6 @@ FOOTER = r'''</div>
         -->
 
         <script src="./assets/dist/reveal.js"></script>
-        <!-- <script src="./assets/js/reveal.js"></script> -->
         <script src="./assets/plugin/zoom/zoom.js"></script>
         <script src="./assets/plugin/notes/notes.js"></script>
         <script src="./assets/plugin/search/search.js"></script>
@@ -425,24 +397,24 @@ FOOTER = r'''</div>
         </script>
 
         <!-- make long slides overflow -->
-        <script id="overflow" src="./assets/dist/overflow.js"></script>
+        <script id="overflow" src="./assets/dist/js/overflow.js"></script>
 
         <!-- change overview scale -->
-        <script id="overview_scale" src="./assets/dist/overview_scale.js"></script>
+        <script id="overview_scale" src="./assets/dist/js/overview_scale.js"></script>
 
         <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
-        <script id="inject_data" src="./assets/dist/inject.js"></script>
+        <script id="inject_data" src="./assets/dist/js/inject.js"></script>
 
         <!-- LINKS EFFECT: https://jsfiddle.net/hakim/Ht6Ym/  -->
-        <script id="linkify" src="./assets/dist/linkify.js"></script>
+        <script id="linkify" src="./assets/dist/js/linkify.js"></script>
 
         <!-- sync image alt and title strings -->
-        <script id="check_image" src="./assets/dist/check_images.js"></script>
+        <script id="check_image" src="./assets/dist/js/check_images.js"></script>
 
         <!-- it did copy the logo to each slide in the print preview,
             but not in the ctrl+p generated pdf file, so wont' be printed.
             wait for bug fix -->
-        <script id="copy_logo" src="./assets/dist/copy_logo.js"></script>
+        <script id="copy_logo" src="./assets/dist/js/copy_logo.js"></script>
 
     </body>
 </html>'''
