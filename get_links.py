@@ -463,15 +463,25 @@ MODULE_RIGHT = r'''</div>
 <div class="col-50 no-margin-top">'''
 MODULE_END = r'''</div></div></ol>
 </section>'''
-def get_module_slide(u_name, m_name, m_htmls):
+def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
     ''' get a module page using it's name (slide id), and all it's children html files as the page content 
         u_name: university name (added to the path)
         m_name: module name (the header and added to the path)
         m_htmls: a list of all html files
+        sec_num: how many links per slide
     '''
-    left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[:round(len(m_htmls)/2+0.5)]]
-    right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[round(len(m_htmls)/2+0.5):]]
-    return MODULE_LEFT.replace('MODULE',m_name) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END
+    all_sections = []
+    if len(m_htmls) > sec_num:
+        html_slices = [m_htmls[i:i+sec_num] for i in range(0, len(m_htmls), sec_num)]
+        for i,slice in enumerate(html_slices):
+            left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in slice[:round(len(m_htmls)/2+0.5)]]
+            right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in slice[round(len(m_htmls)/2+0.5):]]
+            all_sections.append(MODULE_LEFT.replace('MODULE',m_name+' - '+str(i+1)) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END)
+        return '\n\n'.join(all_sections)
+    else:
+        left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[:round(len(m_htmls)/2+0.5)]]
+        right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[round(len(m_htmls)/2+0.5):]]
+        return MODULE_LEFT.replace('MODULE',m_name) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END
 
 # #################################################################
 # global definitions
