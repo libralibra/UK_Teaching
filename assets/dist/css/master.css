@@ -1,0 +1,12 @@
+/* the main css that includes all the others,
+    Daniel Zhang, Oct 2023
+*/
+
+@import url(reset.css);
+@import url(reveal.css);
+@import url(../theme/black.css);
+@import url(../../plugin/highlight/monokai.css);
+@import url(../../plugin/chalkboard/style.css);
+@import url(../../plugin/customcontrols/style.css);
+@import url(row_col.css);
+@import url(../../plugin/pointer/pointer.css);

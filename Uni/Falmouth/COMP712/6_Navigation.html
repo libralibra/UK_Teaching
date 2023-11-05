@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', '6'],
+                ['topic', ' - Navigation'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_pathfinding">
+                    <section id="pathfinding_title">
+                        <h1 class="r-frame-text">Pathfinding</h1>
+                    </section>
+
+                    <section id="the_question">
+                        <h1>Why Does It Matters?</h1>
+                        <img src="img/graph.png" alt="graph" class="box-top-right img-height-300">
+                        <ul>
+                            <li>We have a <span class="blue">graph</span>
+                                <dd>- <span class="lime">Nodes</span> (points)<br>
+                                    - <span class="purple">Edges</span> (lines between <span class="blue">Nodes</span>, with a <span class="pink">length</span>
+                                </dd>
+                            </li>
+                            <li>E.g. a road map
+                                <dd>- Nodes = addresses<br>
+                                    - Edges = roads
+                                </dd>
+                            </li>
+                            <li>Ed.g. a tile-based 2D game
+                                <dd>- Nodes = grid/tiles<br>
+                                    - Edges = connections between adjacent grids
+                                </dd>
+                            </li>
+                            <li>Given two nodes $A$ and $B$, find the <span class="cyan">shortest path</span> from $A$ to $B$
+                                <dd>"<span class="pink">Shortest</span>" in terms of edge lengths $\text{---}$ could be distance, time, fuel cost, or any other assigned weights, ...</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="example_map">
+                        <h1>Applications of Pathfinding: Map</h1>
+                        <img src="img/pathfinding.png" alt="Map" class="r-stretch">
+                        <div class="box-top-right fragment">navigation<br>cost reduction<br>time saving</div>
+                    </section>
+
+                    <section id="example_maze">
+                        <h1>Applications of Pathfinding: Maze</h1>
+                        <img src="img/maze.png" alt="Maze" class="r-stretch">
+                        <div class="box-top-right fragment">navigation<br>space exploration<br>obstacle detection</div>
+                    </section>
+
+                    <section id="example_chip">
+                        <h1>Applications of Pathfinding: Chip Design</h1>
+                        <img src="img/chip.png" alt="Chip Design" class="r-stretch">
+                        <div class="box-top-left fragment">routing optimisation<br>design checking<br>minimising wirelength<br>avoid obstacles<br>multi-Layer routing</div>
+                    </section>
+
+                    <section id="example_game">
+                        <h1>Applications of Pathfinding: Strategy Game</h1>
+                        <div class="row">
+                            <img src="img/game_map.png" alt="Strategy Game" class="r-stretch col-50 img-height-400">
+                            <img src="img/game_map_2.png" alt="Game Map" class="r-stretch col-50 img-height-400">
+                            <p class="hidden">source: https://www.codeofhonor.com/blog/wp-content/uploads/2013/02/Warcraft2.jpg</p>
+                        </div>
+                        <div class="box-top-left fragment">AI unit navigation<br>obstacle detection</div>
+                    </section>
+
+                    <section id="example-shooting">
+                        <h1>Applications of Pathfinding: Real-Time Game</h1>
+                        <img src="img/game_shooting.png" alt="real-time game" class="r-stretch">
+                        <p class="hidden">source: https://images-na.ssl-images-amazon.com/images/I/B1ge3jx6AeS.jpg</p>
+                        <div class="box-top-right fragment">movement<br>navigation<br>obstacle detection</div>
+                    </section>
+                </section>
+
+                <section id="chap_searching">
+
+                    <section id="search_title">
+                        <h1 class="r-frame-text">Searching Algorithms</h1>
+                    </section>
+
+                    <section id="search">
+                        <h1>Pathfinding as a Search Problem</h1>
+                        <ul>
+                            <li>The idea: build a <span class="blue">spanning tree</span> for the graph</li>
+                            <li>Root node is the starting node ($A$)</li>
+                            <li>Edges in the tree are the <span class="lime">subset</span> of edges of the graph</li>
+                            <li>As long as the tree includes $B$, a path has been found from $A$ to $B$</li>
+                            <li>Keep track of two sets of nodes:
+                                <ul>
+                                    <li><span class="cyan">Open set:</span> nodes within 1 edge of the tree that can be added next</li>
+                                    <li><span class="purple">Closed set:</span> nodes that have been added to the tree and shouldn't be revisited to avoid infinite loop</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="graph_traversal">
+                        <h1>Graph Traversal</h1>
+                        <ul>
+                            <li><span class="pink">Breadth-first Search (BFS)</span> or <span class="lime">Depth-first Search (DFS)</span></li>
+                            <li>Can be implemented with the open set as a <span class="cyan">stack</span> or a <span class="orange">queue</span></li>
+                            <li>Inefficient - generally has to explore the <span class="green">entire map</span></li>
+                            <li>Finds a path, but probably not the <span class="blue">shortest</span></li>
+                            <li>Third type of traversal: <span class="purple">best-first search</span>
+                                <ul>
+                                    <li>"<span class="lime">Best</span>" according to some heuristic evaluation</li>
+                                    <li>Often implemented with he open set as a <span class="cyan">priority queue</span> - a data structure optimised for finding the <span class="yellow">highest priority</span> item</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="bfs_dfs" data-auto-animate>
+                        <h1>BFS vs. DFS</h1>
+                        <div class="r-stack">
+                            <img src="img/bfs_dfs_1.png" alt="BFS vs DFS" class="r-stretch fragment fade-out img-height-400">
+                            <img src="img/bfs_dfs_2.png" alt="BFS vs DFS" class="r-stretch fragment fade-in img-height-400">
+                        </div>
+                        <p class="hidden">source: https://miro.medium.com/v2/resize:fit:1400/1*xtwZnK6KCMX5pkAdd4pS3A.jpeg</p>
+                        <p class="hidden">source: https://dev-to-uploads.s3.amazonaws.com/i/e2ru41fjhqs4ombbcedf.png</p>
+                    </section>
+
+                    <section id="greedy_algorithm">
+                        <h1>Greedy Algorithm</h1>
+                        <ul>
+                            <li>Always try to move <span class="blue">closer</span> to the goal $\qquad\qquad\qquad\qquad\qquad\qquad$</li>
+                            <li>Visit the node whose
+                                <span class="lime">distance to <br>the goal is minimal</span>
+                                <dd> e.g. <span class="pink">Euclidean distance</span> $\sqrt{x^2+y^2}$<br>
+                                    (straight line distance in 2D space)</dd>
+                            </li>
+                            <li>Doesn't handle <span class="orange">dead ends</span> well</li>
+                            <li>Not guaranteed to find the <br>
+                                <span class="lightblue">shortest</span> path
+                            </li>
+                        </ul>
+                        <div class="fragment text-right">
+                            <img src="img/greedy.gif" alt="Greedy Algorithm" class="box-top-right img-height-300">
+                            <p>$\qquad\qquad\qquad\qquad\qquad\qquad\qquad$ <span class="lightbrown">Greedy Algorithm for Largest Reward</span></p>
+                            <p class="hidden">https://upload.wikimedia.org/wikipedia/commons/8/8c/Greedy-search-path-example.gif</p>
+                        </div>
+                    </section>
+
+                    <section id="dijkstra_algorithm">
+                        <h1><span class="hover-text" id="bottom"><span>Dijkstra's</span><span class="tooltip-text">/ˈdaɪkstrəz/</span></span> Algorithm</h1>
+                        <ul>
+                            <li>Let $g(x)$ be the sum of edge weights of the $\qquad \qquad \qquad \qquad \qquad$<br>
+                                path found from the start node to $x$</li>
+                            <li>Choose a node that minimises $g(x)$</li>
+                            <li>Need to handle cases where a shorter path<br>
+                                to a node is discovered later in the search</li>
+                            <li><span class="lightred">Guaranteed</span> to find the shortest path</li>
+                            <li class="fragment">... but it is not the most efficient algorithm<br>
+                                for doing so</li>
+                        </ul>
+                        <img src="img/dijkstra_alg.gif" alt="Dijkstra's Algorithm" class="box-top-right img-width-400">
+                        <p class="hidden">source: https://upload.wikimedia.org/wikipedia/commons/2/23/Dijkstras_progress_animation.gif</p>
+                    </section>
+
+                    <section id="dijkstra_pseudo_code">
+                        <h1>Dijkstra's Algorithm Pseudocode</h1>
+                        <pre><code class="java">function Dijkstra(Graph, source):
+    for each vertex v in Graph.Vertices:
+        dist[v] ← INFINITY
+        prev[v] ← UNDEFINED
+        add v to Q
+    dist[source] ← 0
+                        
+    while Q is not empty:
+        u ← vertex in Q with min dist[u]
+        remove u from Q
+
+        for each neighbour v of u still in Q:
+            alt ← dist[u] + Graph.Edges(u, v)
+            if alt < dist[v]: 
+                dist[v] ← alt 
+                prev[v] ← u 
+    return dist[], prev[]
+                    </code></pre>
+                    </section>
+
+                    <section id="a_star">
+                        <h1>$A^*$ Search</h1>
+                        <ul>
+                            <li>Let <span class="lightblue">$g(x)$</span> be the distance of the path found $\qquad \qquad \qquad \qquad \qquad$<br>
+                                from the start node to <span class="purple">$x$</span> (as in Dijkstra's<br>
+                                Algorithm)</li>
+                            <li>Let <span class="lightgreen">$h(x)$</span> be an estimate of the distance from <br><span class="purple">$x$</span> to the goal (as in greedy search)</li>
+                            <li>$A^*$ chooses a node that minimises the function<br>
+                                <span class="lightpink">$f(x)$</span> $=$ <span class="lightblue">$g(x)$</span> $+$ <span class="lightgreen">$h(x)$</span>
+                                <ul>
+                                    <li><span class="lightblue">$g(x)$</span>: cost we know already</li>
+                                    <li><span class="lightgreen">$h(x)$</span>: cost we guess to goal</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">$A^*$ is <span class="lime">faster</span> than Dijkstra's Algorithm as it visited '<span class="italic">less</span>' nodes in the graph</li>
+                        </ul>
+                        <img src="img/a_star.gif" alt="A* Algorithm" class="box-top-right img-width-400">
+                        <p class="hidden">source: https://upload.wikimedia.org/wikipedia/commons/5/5d/Astar_progress_animation.gif</p>
+                    </section>
+
+                    <!-- reference: https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search -->
+                    <section id="a_star_pseudo_code">
+                        <h1>$A^*$ Pseudocode</h1>
+                        <pre><code class="java">function A_star(Graph, s, e):
+    for each vertex v in Graph.Vertices:
+        gScore[v] ← INFINITY; fScore[v] ← INFINITY; prev[v] ← UNDEFINED
+    gScore[s] ← 0; fScore[s] ← h(s)
+
+    openSet ← {s}; closedSet ← {}
+    while openSet is not empty:
+        u ← vertex in openSet with min fScore[u]
+        if u is e: return gScore[], fScore[], prev[]!
+        openSet.remove(u)
+        for each neighbour v of u:
+            temp_gScore ← gScore[u] + dist(u,v)
+            if temp_gScore < gScore[v]: 
+                prev[v] ← u 
+                gScore[v] ← temp_gScore 
+                fScore[v] ← temp_gScore + h(v) 
+                if v not in openSet: 
+                    add v to openSet 
+                    </code></pre>
+                    </section>
+
+                    <section id="a_star_property">
+                        <h1>Properties of $A^*$ Search</h1>
+                        <ul>
+                            <li>$A^*$ is <span class="lightpurple">guaranteed</span> to find the shortest path if the estimate <span class="lightgreen">$h(x)$</span> is <span class="lightbrown">admissible</span></li>
+                            <li class="fragment">Essentially, <span class="lightbrown">admissible</span> means it must be an <span class="lightpink">underestimate</span>
+                                <dd>e.g. Euclidean distance is clearly an underestimate for actual distance</dd>
+                            </li>
+                            <li class="fragment"><span class="lightgreen">$h(x)$</span> is a <span class="lightred">heuristic</span>
+                                <dd>- In AI, a heuristic is an estimate based on human intuition<br>
+                                    - Heuristics are often used to prioritise search, i.e. explore the most promising options first</dd>
+                            </li>
+                            <li class="fragment">The more accurate <span class="lightgreen">$h(x)$</span> is, the more efficient the search
+                            </li>
+                            <li class="fragment"><span class="lightgreen">$h(x)$ $=0$</span> <span class="lightblue">gives Dijkstra's algorithm</span> (recall: $f(x)=g(x)+h(x)$)</li>
+                        </ul>
+                    </section>
+
+                    <section id="a_star_tweak">
+                        <h1>Tweaking $A^*$ Search</h1>
+                        <ul>
+                            <li>Can change how <span class="lightblue">$h(x)$</span> is calculated
+                                <dd>- <span class="lightred">increased</span> movement <span class="lightpurple">cost</span> for rough terrain, water, lava, ...<br>
+                                    - <span class="lightblue">penalty</span> for changing direction</dd>
+                            </li>
+                            <li>Different <span class="lightgreen">$h(x)$</span> can lead to different paths (if there are multiple "shortest" paths)</li>
+                        </ul>
+                    </section>
+
+                    <section id="string_pulling">
+                        <h1>String Pulling</h1>
+                        <ul>
+                            <li>Paths restricted to edges can look unnatural</li>
+                            <li>Intuition: visualise the path as a string,<br>
+                                then pull both ends to make it taut</li>
+                            <li class="fragment">Simple algorithm:
+                                <dd>
+                                    - Found path is <span class="lightbrown">$p_0,p_1,\cdots,p_n$</span><br>
+                                    - If the line from <span class="lightpink">$p_i$</span> to <span class="lightpink">$p_{i+2}$</span> is unobstructed, remove point <span class="lightpurple">$p_{i+1}$</span><br>
+                                    - Repeat until there are no more points that can be removed
+                                </dd>
+                            </li>
+                        </ul>
+                        <img src="img/string_pulling.png" alt="String Pulling" class="box-top-right">
+                        <p class="hidden">source: http://idm-lab.org/bib/abstracts/papers/socs20c.pdf</p>
+                    </section>
+                </section>
+
+                <section id="chap_navigation_mesh">
+                    <!-- reference: https://theory.stanford.edu/~amitp/GameProgramming/MapRepresentations.html -->
+                    <section id="navigation_mesh_title">
+                        <h1 class="r-frame-text">Navigation Mesh</h1>
+                    </section>
+
+                    <!-- reference: https://discuss.cocos2d-x.org/t/3d-automatic-pathfinding-comes-easy-with-the-navmesh-navigation-mesh-plug-in/55999 -->
+                    <section data-auto-animate>
+                        <h1 data-id="hh">Pathfinding in Video Games</h1>
+                        <div class="row">
+                            <ul class="col-60" data-id="hd">
+                                <li>$A^*$ works on any <span class="lightblue">graph</span>
+                                    <ul>
+                                        <li>One of the most, of not <span class="lime">THE</span> most used algorithm in game dev today</li>
+                                        <li>In many cases, it's the best choice</li>
+                                    </ul>
+                                </li>
+                                <li class="fragment">But what if the game world is not a graph?
+                                    <ul>
+                                        <li>E.g. complex 3D environments</li>
+                                        <li>Requires a proper <span class="lightpink">map representation</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <img src="img/ai_pathfinding.gif" alt="AI Pathfinding" class="col-30">
+                        </div>
+
+                    </section>
+
+                    <!-- reference: https://www.cs.kent.edu/~dragan/ST-Spring2016/visibility%20graphs.pdf -->
+                    <section data-auto-animate>
+                        <h1 data-id="hh">Waypoint Navigation</h1>
+                        <div class="row">
+                            <img class="col-30" src="img/waypoint.png" alt="Waypoint Navigation" data-id="m1">
+                            <p class="hidden">source: https://forum.treeofsavior.com/uploads/default/original/3X/0/4/04f1bb7b935d91cf3cb2700ed19c543e7d62b0da.png</p>
+
+                            <ul class="col-60" data-id="hd">
+                                <li>Manually place graph nodes in the world</li>
+                                <li>Place them at key points
+                                    <dd>e.g. in doorways, around obstacles</dd>
+                                </li>
+                                <li>Works, but...
+                                    <ul>
+                                        <li>More work for level <span class="lightblue">designers</span></li>
+                                        <li>Requires lots of testing and tweaking to get natural-looking results</li>
+                                        <li>No good for dynamic environments</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="visubility_graph" data-auto-animate>
+                        <h1 data-id="hh">Visibility Graph</h1>
+                        <div class="row">
+                            <ul class="col-60" data-id="hd">
+                                <li><span class="lightblue">Visible</span>: the line connecting two points doesn't intersect with any obstacles</li>
+                                <li>Connecting each pair of obstacle corners is computational heavy</li>
+                                <li>Maps with <span class="lime">$N$</span> corners (vertices) results up to <span class="lightpurple">$N^2$</span> edges</li>
+                                <li>Nightmare for big maps with more open areas and long corridors</li>
+                            </ul>
+                            <img src="img/visual_graph.png" alt="Visibility Graph" class="col-30" data-id="m1">
+                            <p class="hidden">source: https://theory.stanford.edu/~amitp/GameProgramming/polygon-unmanageable.png</p>
+                        </div>
+                    </section>
+
+                    <section class="nagivation_mesh" data-auto-animate>
+                        <h1 data-id="hh">Navigation Mesh</h1>
+                        <div class="row">
+                            <ul class="col-60" data-id="hd">
+                                <li>Automatically generate navigation graph<br> from level geometry</li>
+                                <li>Basic idea:
+                                    <dd>- Filter level geometry to those <br>
+                                        polygons (<span class="lightorange">mesh</span>) which are <span class="lime">passable</span> (i.e. floors, not walls/ceilings/obstacles)<br>
+                                        - generate graph from polygons</dd>
+                                </li>
+                            </ul>
+                            <img src="img/nav_mesh.png" alt="navigation mesh" class="img-bright-250 col-40 img-width-400" data-id="m1">
+                        </div>
+                    </section>
+
+                    <section id="mesh_2_graph" data-auto-animate>
+                        <h1 data-id="hg">Meshes to Graphs</h1>
+                        <img class="r-stretch img-invert" src="img/orig_mesh.png" alt="Mesh Grid" data-id="mesh">
+                        <p class="fragment">How to construct a graph from this mesh?</p>
+                        <p class="hidden">source: https://theory.stanford.edu/~amitp/GameProgramming/polygon-navmesh-plain.png</p>
+                    </section>
+
+                    <section id="mesh_2_graph_poly_centre" data-auto-animate>
+                        <h1 data-id="hg">Meshes to Graphs: Polygon Centres</h1>
+                        <div class="r-stack r-stretch">
+                            <div class="fragment fade-out">
+                                <img src="img/mesh_poly_center.png" alt="mesh with polygon centres" class="img-invert" data-id="mesh"><br>
+                                <p>
+                                    <span class="lime">Green: ideal path</span>, <span class="blue">Blue: pathfinder result</span>
+                                </p>
+                                <p class="hidden">source: https://theory.stanford.edu/~amitp/GameProgramming/polygon-navmesh-faces.png</p>
+                            </div>
+                            <div class="fragment fade-in">
+                                <img src="img/zig_zag.png" alt="mesh with triangle centres" class="img-height-400" data-id="mesh"><br>
+                                <p>unnatural path will be returned in triangular mesh</p>
+                                <p class="hidden">source: https://i.stack.imgur.com/3GGXL.gif</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mesh_2_graph_edge_centre" data-auto-animate>
+                        <h1 data-id="hg">Meshes to Graphs: Edge Centres</h1>
+                        <div class="r-stack r-stretch">
+                            <div class="fragment fade-out">
+                                <img src="img/mesh_edge_center.png" alt="mesh with edge centres" class="r-stretch img-invert" data-id="mesh"><br>
+                                <p>
+                                    <span class="lime">Green: ideal path</span>, <span class="blue">Blue: pathfinder result</span>
+                                </p>
+                                <p class="hidden">source: https://theory.stanford.edu/~amitp/GameProgramming/polygon-navmesh-edges.png</p>
+                            </div>
+                            <div class="fragment fade-in">
+                                <img src="img/zig_zag_2.png" alt="mesh with triangle edges" class="img-height-400" data-id="mesh"><br>
+                                <p>Similar problem in triangular mesh</p>
+                                <p class="hidden">source: https://i.stack.imgur.com/n71XD.gif</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mesh_2_graph_poly_vertices" data-auto-animate>
+                        <h1 data-id="hg">Meshes to Graphs: Polygon Vertices</h1>
+                        <img src="img/mesh_poly_vertices.png" alt="mesh with polygon vertices" class="r-stretch img-invert" data-id="mesh">
+                        <p>
+                            <span class="lime">Green: ideal path</span>, <span class="blue">Blue: pathfinder result</span>
+                        </p>
+                        <p class="hidden">source: https://theory.stanford.edu/~amitp/GameProgramming/polygon-navmesh-vertices.png</p>
+                    </section>
+
+                    <section id="mesh_2_graph_hybrid" data-auto-animate>
+                        <h1 data-id="hg">Meshes to Graphs: Hybrid Method</h1>
+                        <img src="img/mesh_hybrid.png" alt="mesh with hybrid method" class="r-stretch img-invert" data-id="mesh">
+                        <p>
+                            <span class="lime">Green: ideal path</span>, <span class="blue">Blue: pathfinder result</span>
+                        </p>
+                        <p class="hidden">source: https://theory.stanford.edu/~amitp/GameProgramming/polygon-navmesh-edges-and-vertices.png</p>
+                    </section>
+
+                    <!-- further reading: https://skatgame.net/mburo/ps/thesis_demyen_2006.pdf -->
+                    <!-- another reading: https://www.redblobgames.com/ -->
+                    <section id="following_path">
+                        <h1>Following the Path</h1>
+                        <ul>
+                            <p class="hidden">Funnel reference: https://gamedev.stackexchange.com/questions/68302/how-does-the-simple-stupid-funnel-algorithm-work</p>
+                            <li><span class="lightred">Funnel Algorithm:</span> like string pulling but for navigation meshes<dd><a href="http://digestingduck.blogspot.com/2010/03/simple-stupid-funnel-algorithm.html" target="_blank">http://digestingduck.blogspot.com/2010/03/simple-stupid-funnel-algorithm.html</a><br>
+                                    <a href="http://ahamnett.blogspot.com/2012/10/funnel-algorithm.html" target="_blank">http://ahamnett.blogspot.com/2012/10/funnel-algorithm.html</a>
+                                </dd>
+                            </li>
+                            <li><span class="lime">Steering:</span> don't have your AI agent follow the path exactly, but try to stay close to it</li>
+                            <li><span class="cyan">Dynamic environment:</span> may need to re-run pathfinder if environment changes (e.g. movable obstacles, destructible terrain)</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings using document.write() -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>
