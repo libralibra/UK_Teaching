@@ -434,7 +434,7 @@ bold {
 
 .bigtext,
 bigtext {
-    font-size: 1.7em !important;
+    font-size: 1.5em !important;
 }
 
 .bigtext2,
@@ -637,9 +637,19 @@ table thead {
     width: 300px !important;
 }
 
+.img-square-350 {
+    height: 350 !important;
+    width: 350 !important;
+}
+
 .img-square-400 {
     height: 400px !important;
     width: 400px !important;
+}
+
+.img-square-450 {
+    height: 450 !important;
+    width: 450 !important;
 }
 
 .img-square-500 {
@@ -672,9 +682,19 @@ table thead {
     height: 200px !important;
 }
 
+.img-height-250 {
+    max-height: 250px !important;
+    height: 250px !important;
+}
+
 .img-height-300 {
     max-height: 300px !important;
     height: 300px !important;
+}
+
+.img-height-350 {
+    max-height: 350px !important;
+    height: 350px !important;
 }
 
 .img-height-400 {
@@ -682,9 +702,19 @@ table thead {
     height: 400px !important;
 }
 
+.img-height-450 {
+    max-height: 450px !important;
+    height: 450px !important;
+}
+
 .img-height-500 {
     max-height: 500px !important;
     height: 500px !important;
+}
+
+.img-height-550 {
+    max-height: 550px !important;
+    height: 550px !important;
 }
 
 .img-height-600 {
@@ -727,9 +757,19 @@ table thead {
     width: 200px !important;
 }
 
+.img-width-250 {
+    max-width: 250px !important;
+    width: 250px !important;
+}
+
 .img-width-300 {
     max-width: 300px !important;
     width: 300px !important;
+}
+
+.img-width-350 {
+    max-width: 350px !important;
+    width: 350px !important;
 }
 
 .img-width-400 {
@@ -737,9 +777,19 @@ table thead {
     width: 400px !important;
 }
 
+.img-width-450 {
+    max-width: 450px !important;
+    width: 450px !important;
+}
+
 .img-width-500 {
     max-width: 500px !important;
     width: 500px !important;
+}
+
+.img-width-550 {
+    max-width: 550px !important;
+    width: 550px !important;
 }
 
 .img-width-600 {
@@ -747,9 +797,19 @@ table thead {
     width: 600px !important;
 }
 
+.img-width-650 {
+    max-width: 650px !important;
+    width: 650px !important;
+}
+
 .img-width-700 {
     max-width: 700px !important;
     width: 700px !important;
+}
+
+.img-width-750 {
+    max-width: 750px !important;
+    width: 750px !important;
 }
 
 .img-width-800 {

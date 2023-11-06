@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', '8'],
+                ['topic', ' - Constraint Satisfaction'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_constraint_satisfaction">
+                    <section id="constraint_satisfaction_title">
+                        <h1 class="r-frame-text">Constraint Satisfaction Problem</h1>
+                    </section>
+
+                    <section id="csp">
+                        <h1>Constraint Satisfaction Problem (CSP)</h1>
+                        <ul>
+                            <li>A CSP is defined by:
+                                <ul>
+                                    <li>A set $\{X_1,X_2,\cdots,X_n\}$ of <span class="lightcyan">variables</span></li>
+                                    <li>A set $\{D_1,D_2,\cdots,D_n\}$ of <span class="lightorange">domains</span>, specifying what values each variable can take</li>
+                                    <li>A set $\{C_1,C_2,\cdots,C_m\}$ of <span class="lightgreen">constraints</span> that the variables must satisfy</li>
+                                </ul>
+                            </li>
+                            <li>A <span class="lightpurple">solution</span> is an assignment of a value to every variable which satisfies all of the constraints</li>
+                        </ul>
+                    </section>
+
+                    <section id="sudoku">
+                        <h1>SUDOKU</h1>
+                        <div class="row">
+                            <div class="col-60">
+                                <ul><a href="https://www.wikiwand.com/en/Sudoku" target="_blank">Sudoku</a> is a popular game originated from ancient China
+                                    <li>A $9 \times 9$ grid</li>
+                                    <li>Each square contains a number $1-9$</li>
+                                    <li>A number cannot appear more than once in any given row, column, or $3 \times 3$ square outlined in bold</li>
+                                    <li>Some numbers are given - the puzzle is to fill in the rest</li>
+                                    <li>A properly designed Sudoku puzzle has exactly one solution</li>
+                                </ul>
+                            </div>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/sudoku.png" alt="Sudoku Puzzle">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="sudoku_csp">
+                        <h1>SUDOKU as a CSP</h1>
+                        <div class="row">
+                            <div class="col-60">
+                                <ul>
+                                    <li><span class="lightgreen">Variables</span>: a subset of <span class="smalltext">$\{X_{1,1},X_{1,2},\cdots,X_{9,9}\}$</span>
+                                        <dd>One variable per empty square</dd>
+                                    </li>
+                                    <li>All have the same <span class="lightorange">domain</span>: <span class="smalltext">$D_{i,j}=\{1,\cdots,9\}$</span></li>
+                                    <li><span class="lightpink">Constraints</span>:
+                                        <ul>
+                                            <li>$X_{i,j} \ne X_{i,k}$ for all $i,j,k$ with $j \ne k$</li>
+                                            <li>$X_{j,i} \ne X_{k,i}$ for all $i,j,k$ with $j \ne k$</li>
+                                            <li>$X_{i,j} \ne X_{k,l}$ for $i,j$ and $k$ in the same $3 \times 3$ square</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/sudoku.png" alt="Sudoku Puzzle">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="sudoku_solver">
+                        <h1>Solving Sudoku via Backtracking</h1>
+                        <ul>
+                            <li>Pick an empty square</li>
+                            <li>Try a possible value for that empty square</li>
+                            <li>Try to solve the rest of the puzzle (recursively)</li>
+                            <li>If we run into a dead end, go back and try a different value</li>
+                        </ul>
+                    </section>
+
+                    <section id="backtracking_pseudocode">
+                        <h1>Backtracking Pseudocode</h1>
+                        <pre><code class="vb">Procedure SolveBacktracking(square)
+    For n = 1,...,9
+        If square can have value n
+            Set value of square to n 
+            If square is the last empty square or SolveBacktracking(next_empty_square)
+                Return true 
+            End If
+        End If
+    End For 
+    Clear the value of square 
+    Return False
+End Procedure</code></pre>
+                    </section>
+
+                    <section id="sudoku_constraint">
+                        <h1>Solving Sudoku Constraint Propagation</h1>
+                        <ul>
+                            <li>Each empty square keeps track of which numbers it could possibly contain</li>
+                            <li>Update every square one after another</li>
+                            <li>If a square has only one possible number, fill it in directly</li>
+                            <li>Repeat until stuck</li>
+                        </ul>
+                    </section>
+
+                    <section id="sudoku_constraint_propagation">
+                        <h1>Constraint Propagation Pseudocode</h1>
+                        <pre><code class="vb">Procedure SolveConstraintPropagation()
+    Repeat
+        For each empty square
+            Determine the list of possible numbers that could go in the square
+            If the list is empty
+                Return false // unsolvable
+            Else if the list has a single element
+                Fill in the number
+            End If
+        End For
+    Until no changes are made
+    Return true
+End Procedure</code></pre>
+                    </section>
+
+                    <section id="backtracking_vs_constraint_propagation">
+                        <h1>Backtracking vs. Constraint Propagation</h1>
+                        <ul>
+                            <li>Backtracking <span class="lightgreen">always finds a solution</span>, but is <span class="lightpurple">inefficient</span></li>
+                            <li>Constraint propagation is <span class="lightcyan">efficient</span>, but <span class="lightred">doesn't always find a solution</span></li>
+                            <li>More sophisticated constraint propagation algorithms do exist</li>
+                            <li>We could also combine the two:
+                                <ul>
+                                    <li>Use backtracking to "<span class="italic lightorange">unstick</span>" constraint propagation</li>
+                                    <li>Use constraint propagation to <span class="lightbrown">narrow down the options</span> that backtracking needs to consider</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="back_plus_prop">
+                        <h1>Backtracking + Constraint Propagation</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <pre class="img-height-400"><code class="vb smalltext">Procedure SolveConstraintPropagation()
+    Repeat
+        For each empty square
+            Determine the list of possible numbers
+            If the list is empty
+                Return false // unsolvable
+            Else if the list has a single element
+                Fill in the number
+            End If
+        End For
+        Until no changes are made
+        If the puzzle is solved
+            Return true
+        Else
+            Return SolveBacktracking(first empty square)
+End Procedure</code></pre>
+                            </div>
+                            <div class="col-50">
+                                <pre class="img-height-400"><code class="vb smalltext">Procedure SolveBacktracking(square)
+    For n = 1, … , 9
+        If square can have value n
+            Save the state of the board
+            Set value of square to n
+            If SolveConstraintPropagation()
+                Return true
+            End If
+            Restore the saved state of the board
+        End If
+    End For
+    Clear the value of square
+    Return false
+End Procedure
+</code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_wave_function">
+                    <section class="wave_function_title">
+                        <h1 class="r-frame-text">Wave Function Collapse</h1>
+                    </section>
+
+                    <section id="wave_function">
+                        <h1>Wave Function Collapse</h1>
+                        <div class="row">
+                            <div class="col-70">
+                                <ul>
+                                    <li>Procedure Content Generation (PCG) algorithm</li>
+                                    <li>Invented by Maxim Gumin in 2016</li>
+                                    <li>Named after a concept from quantum mechanics</li>
+                                    <p class="text-center"><img class="img-height-400 text-center" src="img/wave_example.gif" alt="Wave Function Collapse Examples"></p>
+                                    <p class="hidden">source: https://raw.githubusercontent.com/mxgmn/WaveFunctionCollapse/master/images/wfc.gif</p>
+                                </ul>
+                            </div>
+                            <div class="col-30"><img class="img-height-550" src="img/wave_function.png" alt="wave function collapse algorithm">
+                                <p class="hidden">source: https://raw.githubusercontent.com/mxgmn/WaveFunctionCollapse/master/images/wfc.png</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wave_function_idea">
+                        <h1>Wave Function Collapse: The Idea</h1>
+                        <ul>
+                            <li>Space is divided into cells, each of which has a <span class="lightpink">state</span>
+                                <dd>E.g. pixels with a colour; voxels with a 3D mesh from a modular kit</dd>
+                            </li>
+                            <li>Constraints on what cell states can neighbour each other are extracted from examples
+                                <ul>
+                                    <li>A basic form of machine learning</li>
+                                    <li>Constraints are <span class="lightorange">probabilistic</span> - not just what is allowed next to a given cell, but what is more or less likely</li>
+                                </ul>
+                            </li>
+                            <li>Each cell has a <span class="lightcyan">probability distribution</span> over <span class="lightpink">states</span></li>
+                            <li>A cell is chosen, its state is set according to its probabilities, neighbouring cells are updated according to constraints</li>
+                            <li>The algorithm <span class="lightgreen">backtracks</span> if it gets stuck</li>
+                        </ul>
+                    </section>
+
+                    <section id="chooosing_next_cell">
+                        <h1>Choosing the Next Cell</h1>
+                        <ul>
+                            <li>A cell is chosen which has minimal Shannon Entropy
+                                <dd>$\qquad\qquad\qquad\qquad S = -\displaystyle\sum_i P_i log{P_i}$</dd>
+                            </li>
+                            <p class="fragment lightskyblue">Named after Claude Shannon (1916-2001),
+                                the “father of Information Theory”</p>
+                            <li>Lower Shannon Entropy = less uncertainty about the possible value of the cell</li>
+                        </ul>
+                    </section>
+
+                    <section id="wave_function_resource">
+                        <h1>Wave Function Collapse Resources</h1>
+                        <ul>
+                            <li><a href="https://github.com/mxgmn/WaveFunctionCollapse" target="_blank">https://github.com/mxgmn/WaveFunctionCollapse</a></li>
+                            <li><a href="http://www.procjam.com/tutorials/wfc/" target="_blank">http://www.procjam.com/tutorials/wfc/</a></li>
+                            <li><a href="http://oskarstalberg.com/game/wave/wave.html" target="_blank">http://oskarstalberg.com/game/wave/wave.html</a></li>
+                            <li><a href="https://twitter.com/exutumno" target="_blank">https://twitter.com/exutumno</a></li>
+                            <li><a href="https://selfsame.itch.io/unitywfc" target="_blank">https://selfsame.itch.io/unitywfc</a></li>
+                            <li><a href="https://robertheaton.com/2018/12/17/wavefunction-collapse-algorithm/" target="_blank">https://robertheaton.com/2018/12/17/wavefunction-collapse-algorithm/</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings using document.write() -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>
