@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', '7'],
+                ['topic', ' - Pathfinding and Planning'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_pathfinding">
+                    <section id="pathfinding_title">
+                        <h1 class="r-frame-text">Pathfinding (recall)</h1>
+                    </section>
+
+                    <section id="graph">
+                        <h1>Graph (recall)</h1>
+                        <img src="img/graph.png" alt="graph" class="box-top-right img-height-300">
+                        <ul>
+                            <li>In a tile-based game, the graph comes from the<br>
+                                geometry of the tiles</li>
+                            <li>In a 3D environment, the graph can be built <br>
+                                automatically from the level geometry $\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                (e.g. with a <span class="lightblue">navigation mesh</span></li>
+                            <li>Can get complex - dynamic obstacles, vaulting, <br>
+                                jumping, ...</li>
+                            <li>Following the path can also be complex <br>
+                                - <span class="lightpink">steering</span> behaviours</li>
+                        </ul>
+                    </section>
+
+                    <section id="traversal">
+                        <h1>Graph Traversal (recall)</h1>
+                        <ul>
+                            <li>BFS vs. DFS
+                                <dd>level by level or path by path</dd>
+                            </li>
+                            <li>Stack vs. Queue
+                                <dd>FIFO (first in first out) or LIFO (last in first out)</dd>
+                            </li>
+                            <li>Best first search
+                                <dd>"best" according to some heuristic evaluation in a <span class="lime">priority queue</span></dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="algorithms">
+                        <h1>Pathfinding in Graph (recall)</h1>
+                        <div class="row">
+                            <div class="col-50"><span class="lime bold">Applications</span><br>
+                                <ul>
+                                    <li>Map navigation</li>
+                                    <li>Maze solving</li>
+                                    <li>Chip designing</li>
+                                    <li>Game agent routing</li>
+                                </ul>
+                            </div>
+                            <div class="col-50"><span class="purple bold">Algorithms</span><br>
+                                <ul>
+                                    <li>Greedy search</li>
+                                    <li>Dijkstra's algorithm</li>
+                                    <li>$A^*$ search</li>
+                                    <li>String pulling</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dijkstra">
+                        <h1>Dijkstra's Algorithm (recall)</h1>
+                        <ul>
+                            <li>Save the path from the start to current node $\qquad \qquad \qquad \qquad $</li>
+                            <li>Always minimise the path for each step</li>
+                            <li><span class="blue">Guaranteed</span> to find the <span class="lightpink">shortest</span> path</li>
+                            <li>Need to handle cases where a shorter path<br>
+                                to a node is discovered later in the search</li>
+                            <li><span class="purple">Not</span> the most efficient method in some cases</li>
+                        </ul>
+                        <img src="img/dijkstra_alg.gif" alt="Dijkstra's Algorithm" class="box-top-right img-width-300">
+                        <p class="hidden">source: https://upload.wikimedia.org/wikipedia/commons/2/23/Dijkstras_progress_animation.gif</p>
+                    </section>
+
+                    <section id="a_star">
+                        <h1>$A^*$ Search (recall)</h1>
+                        <ul>
+                            <li>$A^*$ chooses a node that minimises the function<br>
+                                <span class="lightpink">$f(x)$</span> $=$ <span class="lightblue">$g(x)$</span> $+$ <span class="lightgreen">$h(x)$</span>
+                                <ul>
+                                    <li><span class="lightblue">$g(x)$</span>: cost we know already</li>
+                                    <li><span class="lightgreen">$h(x)$</span>: cost we guess to goal</li>
+                                </ul>
+                            </li>
+                            <li>$A^*$ is <span class="lightpurple">guaranteed</span> to find the shortest path if the <br>
+                                estimate <span class="lightgreen">$h(x)$</span> is <span class="lightbrown">admissible (underestimation)</span></li>
+                            <li>$A^*$ is <span class="lime">faster</span> than Dijkstra's Algorithm as it visited '<span class="italic">less</span>' nodes in the graph</li>
+                            <li>Different <span class="lightgreen">$h(x)$</span> lead to different paths (if there are multiple "shortest" paths)</li>
+                            <li><span class="lightgreen">$h(x)$ $=0$</span> <span class="lightblue">gives Dijkstra's algorithm</span></li>
+                        </ul>
+                        <img src="img/a_star.gif" alt="A* Algorithm" class="box-top-right img-height-300">
+                        <p class="hidden">source: https://upload.wikimedia.org/wikipedia/commons/5/5d/Astar_progress_animation.gif</p>
+                    </section>
+
+                    <section id="string_pulling">
+                        <h1>String Pulling (recall)</h1>
+                        <ul>
+                            <li>Paths restricted to edges can look unnatural</li>
+                            <li>Intuition: visualise the path as a string,<br>
+                                then pull both ends to make it taut</li>
+                            <li>Simple algorithm:
+                                <dd>
+                                    - Found path is <span class="lightbrown">$p_0,p_1,\cdots,p_n$</span><br>
+                                    - If the line from <span class="lightpink">$p_i$</span> to <span class="lightpink">$p_{i+2}$</span> is unobstructed, remove point <span class="lightpurple">$p_{i+1}$</span><br>
+                                    - Repeat until there are no more points that can be removed
+                                </dd>
+                            </li>
+                        </ul>
+                        <img src="img/string_pulling.png" alt="String Pulling" class="box-top-right">
+                        <p class="hidden">source: http://idm-lab.org/bib/abstracts/papers/socs20c.pdf</p>
+                    </section>
+
+                    <section id="hierarchical_pathfinding">
+                        <h1>Hierarchical Pathfinding</h1>
+                        <p>Construct multiple navigation mesh with different abstract levels</p>
+                        <p>Works well in game <span class="bold italic">Factorio</span></p>
+                        <a href="https://factorio.com/blog/post/fff-317" target="_blank">https://factorio.com/blog/post/fff-317</a>
+                    </section>
+                </section>
+
+                <section id="chap_planning">
+
+                    <section id="planning_title">
+                        <h1 class="r-frame-text">Planning</h1>
+                    </section>
+
+                    <section id="planning">
+                        <h1>Planning</h1>
+                        <ul>
+                            <li>An <span class="lightgreen">agent</span> in an <span class="lightpink">environment</span></li>
+                            <li>The environment has a <span class="blue">state</span> </li>
+                            <li>The agent can perform <span class="lightpurple">actions</span>to change the state</li>
+                            <li>Actions have a <span class="lightred">cost</span> associated with them</li>
+                            <li>The agent wants to change the state so as to achieve a <span class="lightorange">goal</span></li>
+                            <li><span class="lightbrown">Problem</span>: find a low-cost sequence of actions that leads to the goal</li>
+                        </ul>
+                    </section>
+
+                    <section id="planning_as_search">
+                        <h1>Planning as Search</h1>
+                        <ul>
+                            <li>We can construct a <span class="lightgreen">state-action graph</span></li>
+                            <li>Similar to a <span class="cyan">game tree</span>, but may include <span class="lightbrown">multiple paths</span> or <span class="lightbrown">cycles</span></li>
+                            <li>Now the planning problem becomes very similar to the <span class="lightcyan">pathfinding</span> problem (albeit possibly with <span class="lightorange">multiple goals</span>)</li>
+                            <li>We can use many of the same algorithms (<span class="lightpink">BFS, DFS, Dijkstra</span>)</li>
+                            <li>We can also use <span class="lightred">$A^*$</span> if we can come up with an admissible heuristic</li>
+                        </ul>
+                    </section>
+
+                    <section id="represent_planning_problem">
+                        <h1>Representing Planning Problem</h1>
+                        <ul>
+                            <li>We can code the state-action graph Manually</li>
+                            <li>Or we can use a more general representation</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_strips">
+                    <section id="strips_title">
+                        <h1 class="r-frame-text">STRIPS</h1>
+                    </section>
+
+                    <section id="strips_planning">
+                        <h1>STRIPS Planning</h1>
+                        <ul>
+                            <li><span class="lime bold">S</span>tanford <span class="lime bold">R</span>esearch <span class="lime bold">I</span>nstitute <span class="lime bold">P</span>roblem <span class="lime bold">S</span>olver</li>
+                            <li>Describes the state of the environment by a set of <span class="cyan">predicates</span> which are true
+                                <dd>A predicate is basically a function which returns a <code>bool</code></dd>
+                            </li>
+                            <li>Models a problem as:
+                                <ul>
+                                    <li>The <span class="purple">initial state</span> (a set of predicates which are <code class="lime">true</code>)</li>
+                                    <li>The <span class="pink">goal state</span> (a set of predicates, specifying whether each should be <code class="lime">true</code> or <code class="lightred">false</code>)</li>
+                                    <li>The set of <span class="orange">actions</span>, each specifying:
+                                        <ul>
+                                            <li>Pre-conditions (a set of predicates which must be satisfied for this action to be possible)</li>
+                                            <li>Post-conditions (specifying what predicates are made <code class="lime">true</code> or <code class="lightred">false</code> by this action)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </section>
+
+                    <section id="strips_example">
+                        <h1>STRIPS Example</h1>
+                        <div class="r-stack">
+                            <img class="fragment fade-out" src="img/strips_1.png" alt="STRIPS Example">
+                            <img class="fragment fade-in-then-out" src="img/strips_2.png" alt="STRIPS Example">
+                            <img src="img/strips_3.png" alt="STRIPS Example" class="fragment fade-in-then-out">
+                            <img src="img/strips_4.png" alt="STRIPS Example" class="fragment">
+                            <p class="hidden">source: https://www.slideshare.net/StavrosVassos/introduction-to-ai-strips-planning-and-applications-in-videogames-lecture-6-part-1</p>
+                        </div>
+                        <p class="fragment">More examples: <a href="https://www.primaryobjects.com/2015/11/06/artificial-intelligence-planning-with-strips-a-gentle-introduction/#:~:text=The%20Standford%20Research%20Institute%20Problem%20Solver%20%28STRIPS%29%20is,things%20you%20can%20do%20in%20the%20game%20world." target="_blank">1</a>, <a href="https://github.com/primaryobjects/strips/tree/master" target="_blank">2</a>, and <a href="https://stripsfiddle.meteorapp.com/" target="_blank">3</a>
+                        </p>
+                    </section>
+
+                    <section id="strips_framework">
+                        <h1>STRIPS Framework</h1>
+                        <ul>
+                            <li>STRIPS gives a common framework for defining planning problems</li>
+                            <li>Definitions in terms of <span class="lightgreen">propositional logic</span></li>
+                            <li>Easy to <span class="pink">enumerate</span> and <span class="lightorange">simulate</span> actions, and hence search the state-action graph</li>
+                            <li>Possible to write general-purpose STRIPS solvers</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_goap">
+                    <section id="goap_title">
+                        <h1 class="r-frame-text">GOAP</h1>
+                    </section>
+
+                    <section id="goap">
+                        <h1>GOAP</h1>
+                        <ul>
+                            <li><span class="purple">G</span>oal <span class="purple">O</span>riented <span class="purple">A</span>ction <span class="purple">P</span>lanning</li>
+                            <li>Originally developed for F.E.A.R.(2005), since used in several games</li>
+                            <li>A modified version of STRIPS specifically for real-time planning in video games</li>
+                        </ul>
+                    </section>
+
+                    <section id="goap_2">
+                        <h1>GOAP</h1>
+                        <ul>
+                            <li>Each agent has a <span class="lime">goal set</span>
+                                <ul>
+                                    <li>Multiple goals with differing <span class="purple">priority</span></li>
+                                    <li>Goals are like in STRIPS - sets of predicates that the agent wants to satisfy</li>
+                                </ul>
+                            </li>
+                            <li>Each agent also has a set of <span class="lightblue">actions</span>
+                                <ul>
+                                    <li>Like in STRIPS - actions have pre-conditions and post-conditions</li>
+                                    <li>Unlike STRIPS, each action also has a <span class="orange">cost</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="action_sets">
+                        <h1>Action Sets</h1>
+                        <ul>
+                            <li>Different types of agent could have the <span class="lightblue">same goals</span> but <span class="pink">different action sets</span></li>
+                            <li>This will result in those agents achieving those goals in <span class="lightbrown">different ways</span>
+                                <dd>-NB this doesn't have to be explicitly coded - it <span class="lightorange">emerges</span> from the GOAP system</dd>
+                                <dd>- E.g. this was used by the F.E.A.R. team to quickly add new enemy types</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="action_sets_2">
+                        <h1>Action Sets in F.E.A.R.</h1>
+                        <img class="r-stretch" src="img/action_set.png" alt="Action Sets in GOAP">
+                        <p class="hidden">source: https://www.gamedevs.org/uploads/three-states-plan-ai-of-fear.pdf</p>
+
+                    </section>
+
+                    <section id="layering">
+                        <h1>Layering</h1>
+                        <ul>
+                            <li>Goal set allows different behaviours with different priorities to be layered
+                            </li>
+                            <li>Although the three AIs have the same goal sets, they will behave differently.</li>
+                        </ul>
+                        <img src="img/goal_action.png" alt="goal with priorities" class="r-stretch img-contrast-150">
+                    </section>
+
+                    <section id="implementing_goap">
+                        <h1>Implementing GOAP</h1>
+                        <ul>
+                            <li>An abstracted view of the game world is used for planning</li>
+                            <li>Represented as a fixed-length array (or struct) of values</li>
+                            <li>Predicates (pre-conditions, post-conditions, goals) represented in terms of this array representation</li>
+                            <li>Most implementation also allow for <span class="lightpink">programmatic</span> pre-conditions (e.g. calling the pathfinding system to check availability of a path)</li>
+                        </ul>
+                    </section>
+
+                    <section id="implementing_goap_2">
+                        <h1>Implementing GOAP (cont.)</h1>
+                        <ul>
+                            <li>Not difficult to implement </li>
+                            <li>Open-source implementations do exist</li>
+                            <li>Not built into Unity or Unreal, but asset store packages are available</li>
+                        </ul>
+                    </section>
+
+                    <section id="finding_plan">
+                        <h1>Finding the Plan</h1>
+                        <ul>
+                            <li>As in STRIPS, we can build a <span class="lightorange">state-action graph</span></li>
+                            <li>Since actions have costs, we can use <span class="lightgreen">Dijkstra's Algorithm</span> to find the lowest cost path to the goal
+                                <dd>(or $A^*$ if we can find a suitable heuristic)</dd>
+                            </li>
+                            <li>Plan is a <span class="lightcyan">queue</span> of actions that the agent then executes</li>
+                            <li>If the plan is interrupted or fails then the agent can <span class="lightpink">re-plan</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="using_goap">
+                        <h1>Using GOAP</h1>
+                        <ul>
+                            <li>Planning is suitable when achieving a goal requires a specific <span class="lightorange">sequence of actions</span></li>
+                            <li>Especially when the plan is not obvious, or when you want to let the plan be <span class="lightpink">emergent</span></li>
+                            <li>Does require <span class="lightpurple">abstraction</span> in a real-time video game setting, though STRIPS-like definitions give a useful framework for this</li>
+                        </ul>
+                    </section>
+
+                    <section id="goap_vs_bt">
+                        <h1>"AAA Game AI" Compared:<br>GOAP vs. Behaviour Tree (BT)</h1>
+                        <ul>
+                            <li>BT: designer specifies "<span class="italic lightorange">how</span>"</li>
+                            <li>GOAP: designer specifies "<span class="italic lime">what</span>" - "<span class="italic lightorange">how</span>" is in whatever system is used to implement actions (FSMs in F.E.A.R.; could use BTs or hand coding)</li>
+                            <li>Both: actions (tasks in BTs) are modular and reusable between agents</li>
+                            <li>GOAP: goals are also modular and reusable</li>
+                            <li>BT: goals are not represented explicitly</li>
+                            <li>BT can be classified as <span class="pink">authored behaviour</span></li>
+                            <li>GOAP can be classified as <span class="cyan">computational intelligence</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="goap_vs_bt_table">
+                        <h1>GOAP vs. Behaviour Tree (BT)</h1>
+                        <table class="r-stretch bigtext">
+                            <tr class="gray-bg">
+                                <th class="no-bg"></th>
+                                <th><span class="cyan">BT</span></th>
+                                <th><span class="purple">GOAP</span></th>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="lightgreen">What is defined?</span></td>
+                                <td>"how"<br>(the tasks)</td>
+                                <td>"what" (the environment) while "how" is embedded in action implementation</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="lightgreen">Reusable actions?</span></td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="lightgreen">Reusable goals?</span></td>
+                                <td>Not represented explicitly</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="lightgreen">Classification</span></td>
+                                <td>Authored behaviour</td>
+                                <td>Computational intelligence</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings using document.write() -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

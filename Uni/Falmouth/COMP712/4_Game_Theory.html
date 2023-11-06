@@ -89,66 +89,325 @@
 
                     <section id="payoff">
                         <h1>Payoff Matrix</h1>
-                        <table>
+                        <ul>The Rules:
+                            <li>If <span class="lime">both stay silent</span>, both receive a C grade $\qquad\qquad\qquad\qquad\qquad\qquad$</li>
+                            <li>If <span class="red">Alice betrays Bob</span>, she gets an A, Bob gets expelled</li>
+                            <li>If <span class="blue">Bob betrays Alice</span>, he gets an A, Alice gets expelled</li>
+                            <li>if <span class="pink">both betray each other</span>, both been found guilty and get an F</li>
+                        </ul>
+                        <table class="box-top-right top-most">
                             <tr>
                                 <th></th>
-                                <th class="with-bg"><span class="bold lime">A Silent</span></th>
-                                <th class="with-bg"><span class="bold red">A Betray</span></th>
+                                <th class="gray-bg"><span class="bold lime">A Silent</span></th>
+                                <th class="gray-bg"><span class="bold red">A Betray</span></th>
                             </tr>
                             <tr>
-                                <td class="with-bg"><span class="bold lime">B Silent</span></td>
-                                <td><span class="orange">A:40<br>B:40</span></td>
-                                <td><span class="green">A:70</span><br><span class="red">B:-100</span></td>
+                                <td class="gray-bg"><span class="bold lime">B Silent</span></td>
+                                <td>A:40<br>B:40</td>
+                                <td>A:70<br>B:-100</td>
                             </tr>
                             <tr>
-                                <td class="with-bg"><span class="bold red">B Betray</span></td>
-                                <td><span class="red">A:-100</span><br><span class="green">B:70</span></td>
-                                <td><span class="purple">A:0<br>B:0</span></td>
+                                <td class="gray-bg"><span class="bold red">B Betray</span></td>
+                                <td>A:-100<br>B:70</td>
+                                <td>A:0<br>B:0</td>
                             </tr>
                         </table>
-                        <p class="fragment custom blur">Which strategy are you going to choose if you and your best friend were caught?</p>
-                        <p class="fragment orange">Is that the best both of you can do?</p>
+                        <p class="lightpurple fragment custom blur">Which strategy are you going to choose if you and your best friend were caught?</p>
                     </section>
 
                     <section id="nash">
                         <h1>Nash Equilibrium</h1>
+                        <table class="box-top-right top-most">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="bold lime">A Silent</span></th>
+                                <th class="gray-bg"><span class="bold red">A Betray</span></th>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="bold lime">B Silent</span></td>
+                                <td>A:40<br>B:40</td>
+                                <td>A:70<br>B:-100</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="bold red">B Betray</span></td>
+                                <td>A:-100<br>B:70</td>
+                                <td><span class="lightorange">A:0<br>B:0</span></td>
+                            </tr>
+                        </table>
                         <ul>
-                            <li>Consider the situation where both have chosen to betray</li>
-                            <li>Neither person has anything to gain by switching to silence, assuming the other person doesn't also switch</li>
-                            <li class="fragment">Such as situation is called a <span class="blue">Nash Equilibrium</span></li>
-                            <li class="fragment">If all players are <span class="yellow">rational</span> (in the sense of wanting to maximising payoff), they should converge upon a Nash Equilibrium</li>
+                            <li>Easy to find in payoff matrix (if there's one)</li>
+                            <li>Consider the situation where both choose to betray</li>
+                            <li>Neither person has anything to gain by switching <br>
+                                to silence, assuming the other person doesn't also <br>
+                                switch</li>
+                            <li class="fragment">Such as situation is called a <span class="blue">Nash Equilibrium</span> - No one gains by switching if others don't switch.</li>
+                            <li class="fragment">If all players are <span class="yellow">rational</span> (in the sense of wanting to maximising payoff), they should converge upon a <span class="lightpink">Nash Equilibrium</span> - <span class="lime">(A betray, B betray)</span></li>
                         </ul>
                     </section>
 
-                    <section id="rps">
-                        <h1>Does every game have a Nash Equilibrium?</h1>
-                        <table class="fragment">
+                    <section id="payoff_analysis">
+                        <h1>Payoff Matrix Analysis</h1>
+                        <table class="r-stretch bigtext">
                             <tr>
                                 <th></th>
-                                <th class="with-bg"><span class="red">A Rock</span></th>
-                                <th class="with-bg"><span class="orange">A Paper</span></th>
-                                <th class="with-bg"><span class="green">A Scissors</span></th>
+                                <th class="gray-bg"><span class="bold lime">A Silent</span></th>
+                                <th class="gray-bg"><span class="bold red">A Betray</span></th>
                             </tr>
                             <tr>
-                                <td class="with-bg"><span class="red">B Rock</span></td>
+                                <td class="gray-bg"><span class="bold lime">B Silent</span></td>
+                                <td>A:40<br>B:40</td>
+                                <td><span class="red">A:70</span></span><br>B:-100</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="bold red">B Betray</span></td>
+                                <td>A:-100<br><span class="lime">B:70</span></td>
+                                <td><span class="red">A:0</span><br><span class="lime">B:0</span></td>
+                            </tr>
+                        </table>
+                        <p class="fragment"><span class="purple">Think about:</span> <span class="orange">is this the best both of you can do?</span></p>
+                        <p class="fragment">Two individuals acting in their own self-interests <span class="lightred">do not</span> produce <br>
+                            the optimal outcome</p>
+                    </section>
+
+                    <section id="rps_game" data-auto-animate>
+                        <h1 data-id="hd">Does every game have a Nash Equilibrium?</h1>
+                        <table class="fragment r-stretch" data-id="ht">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="red">B Rock</span></td>
                                 <td>A: 0<br>B: 0</td>
                                 <td>A: +1<br>B: -1</td>
                                 <td>A: -1<br>B: +1</td>
                             </tr>
                             <tr>
-                                <td class="with-bg"><span class="orange">B Paper</span></td>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
                                 <td>A: -1<br>B:+1</td>
                                 <td>A: 0<br>B: 0</td>
                                 <td>A: +1<br>B: -1</td>
                             </tr>
                             <tr>
-                                <td class="with-bg"><span class="green">B Scissors</span></td>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
                                 <td>A: +1<br>B: -1</td>
                                 <td>A: -1<br>B: +1</td>
                                 <td>A: 0<br>B: 0</td>
                             </tr>
                         </table>
                         <p class="fragment bigtext bold purple">No!</p>
+                    </section>
+
+                    <section id="rps_a_rock" data-auto-animate>
+                        <h1 data-id="hd">A Rock $\to$ B Paper</h1>
+                        <table class="r-stretch" data-id="ht">
+                            <tr>
+                                <th></th>
+                                <th class="red-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="red">B Rock</span></td>
+                                <td class="red-bg">A: 0<br>B: 0</td>
+                                <td>A: +1<br>B: -1</td>
+                                <td>A: -1<br>B: +1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td class="red-bg">A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td>A: +1<br>B: -1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td class="red-bg">A: +1<br>B: -1</td>
+                                <td>A: -1<br>B: +1</td>
+                                <td>A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="rps_a_paper" data-auto-animate>
+                        <h1 data-id="hd">A Paper $\to$ B Scissors</h1>
+                        <table class="r-stretch" data-id="ht">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="red-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="red">B Rock</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td class="red-bg">A: +1<br>B: -1</td>
+                                <td>A: -1<br>B: +1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td class="red-bg">A: 0<br>B: 0</td>
+                                <td>A: +1<br>B: -1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td>A: +1<br>B: -1</td>
+                                <td class="red-bg">A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="rps_a_scissors" data-auto-animate>
+                        <h1 data-id="hd">A Scissors $\to$ B Rock</h1>
+                        <table class="r-stretch" data-id="ht">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="red-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="red">B Rock</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td>A: +1<br>B: -1</td>
+                                <td class="red-bg">A: -1<br><span class="green">B: +1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td class="red-bg">A: +1<br>B: -1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td>A: +1<br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td class="red-bg">A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="rps_b_rock" data-auto-animate>
+                        <h1 data-id="hdb">B Rock $\to$ A Paper</h1>
+                        <table class="r-stretch" data-id="htb">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr class="blue-bg">
+                                <td><span class="red">B Rock</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td>A: +1<br>B: -1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td>A: +1<br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="rps_b_paper" data-auto-animate>
+                        <h1 data-id="hdb">B Paper $\to$ A Scissors</h1>
+                        <table class="r-stretch" data-id="htb">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td><span class="red">B Rock</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                            </tr>
+                            <tr class="blue-bg">
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td>A: +1<br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="rps_b_scissors" data-auto-animate>
+                        <h1 data-id="hdb">B Scissors $\to$ A Rock</h1>
+                        <table class="r-stretch" data-id="htb">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td><span class="red">B Rock</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                            </tr>
+                            <tr class="blue-bg">
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="rps_final_state" data-auto-animate>
+                        <h1 data-id="hdb">Final State</h1>
+                        <table class="r-stretch" data-id="htb">
+                            <tr>
+                                <th></th>
+                                <th class="gray-bg"><span class="red">A Rock</span></th>
+                                <th class="gray-bg"><span class="orange">A Paper</span></th>
+                                <th class="gray-bg"><span class="green">A Scissors</span></th>
+                            </tr>
+                            <tr>
+                                <td><span class="red">B Rock</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="orange">B Paper</span></td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                            </tr>
+                            <tr>
+                                <td class="gray-bg"><span class="green">B Scissors</span></td>
+                                <td><span class="red">A: +1</span><br>B: -1</td>
+                                <td>A: -1<br><span class="green">B: +1</span></td>
+                                <td>A: 0<br>B: 0</td>
+                            </tr>
+                        </table>
                     </section>
 
                     <section id="rps_analysis">
@@ -176,15 +435,16 @@
                     <section id="guess">
                         <h1>Guess $\frac{2}{3}$ of the Average</h1>
                         <ul>
-                            <li>Everyone guesses a real number (decimals are allowed) between 0 and 100 inclusive</li>
+                            <li>Everyone guesses a real number (decimals are allowed) in $[0,100]$</li>
                             <li>The winner is the person who guesses closest to $\frac{2}{3}$ of the mean of all guesses</li>
                             <li>Example:<br>
                                 <ul>
                                     <li>if the guesses are 30, 40,and 80</li>
                                     <li>then the mean is $\frac{30+40+80}{3}=50$</li>
-                                    <li>so the winning guess is 30, as this is the closest to <br>$\frac{2}{3} \times 50=33.333...$</li>
+                                    <li>so the winning guess is 30, as this is the closest to <br>$\frac{2}{3} \times 50=33.333...$ <span class="fragment lightblue">Now, play the game with your classmates!</span></li>
                                 </ul>
                             </li>
+                            <li class="fragment lightgreen">What did you find? <span class="fragment lightorange">Why should every one guess 0?</span> <span class="fragment lightred">Is that real?</span></li>
                         </ul>
                     </section>
 

@@ -1,7 +1,7 @@
 // common data
 authorData.set('email', 'Daniel.Zhang@falmouth.ac.uk');
 authorData.set('uni', 'Falmouth University');
-authorData.set('office', 'Games Academy');
+authorData.set('office', 'Games Academy, Falmouth University');
 authorData.set('officehour', 'Monday 13.00-14.00');
 authorData.set('classroom', 'Room 1002');
 authorData.set('classtime', 'Tuesday & Thursday');

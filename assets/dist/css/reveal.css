@@ -39,7 +39,7 @@ yellow {
 
 .blue,
 blue {
-    color: #1b91ff;
+    color: #0d84f4;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -74,6 +74,8 @@ purple {
 }
 
 .orange,
+.amber,
+amber,
 orange {
     color: orange;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
@@ -131,7 +133,7 @@ lightred {
 
 .lightblue,
 lightblue {
-    color: lightblue;
+    color: rgb(92, 105, 191);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -193,7 +195,13 @@ lightpurple {
 
 .lightcyan,
 lightcyan {
-    color: lightcyan;
+    color: rgb(181, 245, 245);
+    text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.lightskyblue,
+lightskkyblue {
+    color: rgb(170, 212, 228);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -205,13 +213,13 @@ darkred {
 
 .darkblue,
 darkblue {
-    color: darkblue;
+    color: rgb(56, 56, 235);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .darkgreen,
 darkgreen {
-    color: darkgreen;
+    color: rgb(1, 109, 1);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -275,6 +283,11 @@ darkpurple {
 .hidden {
     position: absolute !important;
     visibility: hidden !important;
+}
+
+/* top most element */
+.top-most {
+    z-index: 100 !important;
 }
 
 /* left, right align */
@@ -348,29 +361,60 @@ darkpurple {
 
 /* left, right align */
 
-/* table style */
-.reveal .with-bg {
-    background-color: #aca4a4;
+/* table cell style */
+.reveal .gray-bg,
+.reveal .grey-bg {
+    background-color: #7c7575;
 }
 
-.reveal table:not(.hljs-ln) td:hover,
-.reveal table:not(.hljs-ln) th:hover {
-    background-color: #ccc;
-    color: purple;
+.reveal .red-bg {
+    background-color: #4d1919;
 }
 
-.reveal table:not(.hljs-ln) th,
-.reveal table:not(.hljs-ln) td {
-    text-align: left;
+.reveal .blue-bg {
+    background-color: rgb(41, 91, 156);
+}
+
+.reveal .green-bg {
+    background-color: rgb(6, 66, 6);
+}
+
+.reveal .yellow-bg {
+    background-color: rgb(139, 139, 13);
+}
+
+.reveal .orange-bg {
+    background-color: rgb(115, 81, 19);
+}
+
+.reveal table:not(.hljs) tr:not(.highlight-line) td:not(.hljs-ln-line):hover,
+.reveal table:not(.hljs) tr:not(.highlight-line) th:not(.hljs-ln-line):hover,
+.reveal table:not(.hljs) tr:not(.highlight-line) td:not(.hljs-ln-numbers):hover,
+.reveal table:not(.hljs) tr:not(.highlight-line) th:not(.hljs-ln-numbers):hover,
+.reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-line):hover,
+.reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-line):hover,
+.reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-numbers):hover,
+.reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-numbers):hover {
+    background-color: #736767;
+    color: cyan;
+}
+
+.reveal table:not(.hljs-ln-line) tr:not(.highlight-line) th:not(.hljs-ln-line),
+.reveal table:not(.hljs-line-number) tr:not(.highlight-line) td:not(.hljs-ln-line),
+.reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-line),
+.reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-line) {
     padding: 0.2em 0.5em 0.2em 0.5em;
     border: 1px solid;
+    vertical-align: middle;
 }
 
-.reveal table:not(.hljs-ln) tbody tr:first-child th {
+.reveal table:not(.hljs) tr:not(.highlight-line):first-child th,
+.reveal table:not(.hljs-ln) tr:not(.highlight-line):first-child th {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 2px dashed;
     padding: 10px;
+    vertical-align: middle;
 }
 
 /* table style */
@@ -465,8 +509,20 @@ table thead {
 
 /* increase image contrast */
 .img-enhance,
-.img-enhance-130 {
+.img-enhance-130,
+.img-contrast,
+.img-contrast-120 {
     filter: contrast(130%) !important;
+}
+
+.img-enhance-150,
+.img-contrast-150 {
+    filter: contrast(150%) !important;
+}
+
+.img-enhance-200,
+.img-contrast-200 {
+    filter: contrast(200%) !important;
 }
 
 .img-bright-250 {

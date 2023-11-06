@@ -121,8 +121,8 @@ A brief explanation of how the code works:
 
 - Play with the code to have a feel of how the function are combined together. 
   - Search [Python](https://docs.python.org/3/) or [`Turtle`](https://docs.python.org/3/library/turtle.html) documentation if you are not familiar with some functions.
-- **Change the starting position** of the PAC-MAN.
-- **Change the number of ghosts** and **their positions**.
+- Change the starting position of the PAC-MAN.
+- Change the number of ghosts and their positions
 
 ---
 
