@@ -285,6 +285,10 @@ darkpurple {
     visibility: hidden !important;
 }
 
+.tranparent {
+    background-color: rgba(0, 0, 220, 0) !important;
+}
+
 /* top most element */
 .top-most {
     z-index: 100 !important;
@@ -314,23 +318,33 @@ darkpurple {
     position: absolute !important;
     top: 80px !important;
     left: 0px !important;
-    background-color: #333 !important;
+    background-color: #333;
     padding: 5px !important;
+}
+
+.box-left {
+    position: absolute !important;
+    left: 0px !important;
 }
 
 .box-top-right {
     position: absolute !important;
     top: 80px !important;
     right: 0px !important;
-    background-color: #333 !important;
+    background-color: #333;
     padding: 5px !important;
+}
+
+.box-right {
+    position: absolute !important;
+    right: 0px !important;
 }
 
 .box-bottom-right {
     position: absolute !important;
     bottom: 20px !important;
     right: 0px !important;
-    background-color: #333 !important;
+    background-color: #333;
     padding: 5px !important;
 }
 
@@ -338,7 +352,7 @@ darkpurple {
     position: absolute !important;
     bottom: 20px !important;
     left: 0px !important;
-    background-color: #333 !important;
+    background-color: #333;
     padding: 5px !important;
 }
 
@@ -833,7 +847,9 @@ table thead {
 .tooltip-text {
     visibility: hidden;
     position: absolute;
-    z-index: 2;
+    margin-top: 80px;
+    margin-left: -300px;
+    z-index: 20;
     width: 400px;
     color: white;
     font-size: 30px;
@@ -848,7 +864,7 @@ table thead {
     transform: rotate(45deg);
     background-color: #192733;
     padding: 5px;
-    z-index: 1;
+    z-index: 10;
 }
 
 .hover-text:hover .tooltip-text {
@@ -2686,7 +2702,7 @@ html.reveal-full-page {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1000;
+    z-index: 100;
     background: rgba(0, 0, 0, .9);
     transition: all .3s ease;
 }

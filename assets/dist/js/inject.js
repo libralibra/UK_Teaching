@@ -27,4 +27,4 @@ authorData.forEach((v, k) => {
 let getMetaContent = (n) => document.querySelector("meta[name='" + n + "']").getAttribute("content");
 
 console.log(getMetaContent('author'));
-console.log(getMetaContent('og:author'));
+// console.log(getMetaContent('og:author'));

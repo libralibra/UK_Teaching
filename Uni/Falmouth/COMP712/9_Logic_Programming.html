@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', '9'],
+                ['topic', ' - Logic Programming'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_logic">
+                    <section id="logic_title">
+                        <h1 class="r-frame-text">Logic</h1>
+                    </section>
+
+                    <section id="predicates">
+                        <h1>Predicates</h1>
+                        <ul>
+                            <li>A <span class="lightblue">predicate</span> is a function which returns a <code>boolean</code></li>
+                            <li>In logic, a predicate is a <span class="lightpurple">parameterised statement</span> which is <code class="lightgreen">true</code> or <code class="lightpink">false</code>
+                                <dd>e.g. <code class="lightcyan">LivesIn(Bob, Falmouth)</code> could be a predicate representing the statement "<span class="italic">Bob lives in Falmouth</span>"</dd>
+                            </li>
+                            <li>Two parameters: <code>Bob</code> and <code>Falmouth</code></li>
+                            <li></li>
+                        </ul>
+                    </section>
+
+                    <section id="quantifiers">
+                        <h1>Quantifiers</h1>
+                        <ul>
+                            <li>Let $P(x)$ be a predicate</li>
+                            <li>$\forall x: P(x)$ means that $P(x)$ is <code>true</code> for all values of $x$ ($\forall$ is read "for all"</li>
+                            <li>$\exists x: P(x)$ means that there exist at least one value of $x$ so that $P(x)$ is <code>true</code></li>
+                        </ul>
+                    </section>
+
+                    <section id="implication">
+                        <h1>Implication</h1>
+                        <ul>
+                            <li>"<span class="italic">$A$ implies $B$</span>" means "<span class="italic">if $A$ is <code>true</code> then $B$ is <code>true</code></span>"</li>
+                            <li>Written as $A \implies B$
+                                <dd>e.g. if someone lives in Falmouth, then they live in Cornwall</dd>
+                            </li>
+                            <li>$\forall x:(LivesIn(x, Falmouth) \implies LivesIn(x, Cornwall))$</li>
+                        </ul>
+                    </section>
+
+                    <section id="equivalence">
+                        <h1>Equivalence</h1>
+                        <ul>
+                            <li>If $A \implies B$ and $B \implies A$, then $A$ is <code>true</code> <span class="lightred">if and only if</span> $B$ is <code>true</code></li>
+                            <li>This means $A$ and $B$ are <span class="lightblue">logically equivalent</span></li>
+                            <li>Written as $A \iff B$</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_prolog">
+                    <section id="prolog_title">
+                        <h1 class="r-frame-text">Prolog</h1>
+                    </section>
+
+                    <section id="prolog">
+                        <h1>Prolog</h1>
+                        <ul>
+                            <li>A <span class="lightblue">declarative language</span> for <span class="lightpurple">logic programming</span> developed in early 1970s </li>
+                            <li>Declarative programming: the program logic is expressed in terms of <span class="lightgreen">relations</span>, represented as <span class="lightgreen">facts</span> and <span class="lightgreen">rules</span>, rather than <span class="purple"> its control flow</span></li>
+                            <li>A computation is initiated by running a <span class="lightred">query</span> over these relations</li>
+                            <li>Several implementations available today <a href="https://www.swi-prolog.org/" target="_blank">SWI-Prolog</a> is a free and open-source implementation with its online environment <a href="https://swish.swi-prolog.org/" target="_blank">SWISH</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="use_prolog">
+                        <h1>Use of Prolog</h1>
+                        <ul>
+                            <li>Well suited for declarative propositional logic</li>
+                            <li>Can do constraint programming</li>
+                            <li>Can do STRIPS-like planning</li>
+                            <li>Backtracking search comes built-in</li>
+                        </ul>
+                    </section>
+
+                    <section id="prolog_anatomy">
+                        <h1>Anatomy of Prolog Program</h1>
+                        <ul>
+                            <li>A standard Prolog program specifies:
+                                <ul>
+                                    <li><span class="green">Facts</span> - these are predicates which hare <code>true</code></li>
+                                    <li><span class="purple">Rules</span> - implications of the form $Head :- Body$, which states that Head is <code>true</code> if Body is <code>true</code></li>
+                                </ul>
+                            </li>
+                            <li>A program by itself doesn't do anything - we run <span class="cyan">queries</span> against it
+                                <ul>
+                                    <li>Is a given predicate <code>true</code>?</li>
+                                    <li>For what parameter values is a given predicate <code>true</code>?</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="fact">
+                        <h1>A Fact</h1>
+                        <div class="img-height-500"><br><br><br><br><code>lives_in(bob, falmouth)</code></div>
+                        <div class="box-top-left"><code>lives_in</code> is a predicate.<br>Predicates are introduced <br>when first used.</div>
+                        <div class="box-bottom-right"><code>bob</code> and <code>falmouth</code> are atoms -<br>named variable values.<br>Atoms begin with <span class="lightgreen">lowercase</span> letters.</div>
+                    </section>
+
+                    <section id="queries">
+                        <h1>Queries</h1>
+                        <ul>
+                            <li>We can query predicates for truth or falsehood
+                                <ul>
+                                    <li><code>?- lives_in(bob, falmouth)</code>
+                                        <dd>$\implies$<code>true</code></dd>
+                                    </li>
+                                    <li><code>?- lives_in(bob, penryn)</code>
+                                        <dd>$\implies$<code>false</code></dd>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="queries_more">
+                        <h1>Queries</h1>
+                        <ul>
+                            <li>We can also introduce <span class="lightcyan">variables</span> - Prolog gives us all possible values of the variable for which the predicate is <code>true</code>
+                                <ul>
+                                    <li><code>?- lives_in(bob, X)</code> <span class="fragment"><span class="pink bold">$\xleftarrow{\quad\qquad}$</span> Variables begin with <span class="lightpink">uppercase</span> letters</span>
+                                        <dd><code>X = falmouth</code></dd>
+                                    </li>
+                                    <li><code>?- lives_in(Y, falmouth)</code>
+                                        <dd><code>Y = bob</code></dd>
+                                    </li>
+                                    <li><code>?- lives_in(Z, penzance)</code>
+                                        <dd><code>false</code></dd> <span class="fragment"><span class="pink bold">$\qquad\quad\nwarrow$</span> There are no variable values that make the predicate <code>true</code>, so Prolog returns <code>false</code></span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="rules">
+                        <h1>Rules</h1>
+                        <div class="img-height-500">
+                            <br><br><br>
+                            <div><code>lives_in(X, cornwall) :- lives_in(X, falmouth)</code></div>
+                            <br>
+                            <div><code>drinks_cider(X) :- lives_in(X, cornwall)</code></div>
+                        </div>
+                        <div class="fragment box-top-right text-right tranparent"><span class="green-bg"><code>:-</code> can be read as $\impliedby$ (implied by)<br>
+                                <span class="smalltext">$\vert$</span><br>
+                                <span class="smalltext">$\vert$</span><br>
+                                <code class="smalltext">$&lt;---|$</code>
+                            </span>
+                        </div>
+                        <div class="fragment box-bottom-left text-left tranparent"><span class="green-bg">$----&gt;$<br>
+                                <span class="smalltext">$\vert$</span><br>
+                                <span class="smalltext">$\vert$</span><br>
+                                When variables appear in rules, there is an implicit $\forall$ quantifier - i.e. this implication holds <code>true</code> for all $X$</span>
+                        </div>
+                    </section>
+
+                    <section id="query_rules">
+                        <h1>Querying Rules</h1>
+                        <ul>
+                            <li>We can run queries based on the <span class="lightcyan">chains of implications</span> in our rules</li>
+                            <li><code>?- lives_in(bob, cornwall).</code>
+                                <dd><code>true</code></dd>
+                            </li>
+                            <li><code>?- drinks_cider(X).</code>
+                                <dd><code>X = bob.</code></dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="pattern_matching">
+                        <h1>Pattern Matching</h1>
+                        <ul>
+                            <li>We can define <span class="lightgreen">multiple rules</span> with the same predicate, <br>
+                                or even the same LHS</li>
+                            <li>When searching in response to a query, <br>
+                                Prolog applies <span class="lightorange">whichever one</span> matches</li>
+                        </ul>
+                    </section>
+
+                    <section id="conjunction">
+                        <h1>Conjunction</h1>
+                        <ul>
+                            <li>The RHS of a rule can contain a conjunction (an <code>AND</code>)</li>
+                            <li>Denoted by predicates separated by commas
+                                <dd><code>is_local_student(X) :- lives_in(X, cornwall), students_at(X, falmouth)</code></dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="prolog_execute">
+                        <h1>How Does Prolog Execute Queries?</h1>
+                        <ul>
+                            <li>Uses <span class="lightpurple">Selective Linear Definite (SLD) resolution</span></li>
+                            <li>Multiple rules for a predicate imply a <span class="lightgreen">choice point</span>, which leads to a <span class="lightblue">backtracking search</span></li>
+                            <li>Care is needed to avoid <span class="golden">infinite loops</span> etc.</li>
+                            <li>Can be thought of as a special case of a <span class="lightorange">Boolean satisfiability (SAT) problem)</span>
+                                <dd>In the general case, SAT is NP-complete</dd>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_constraint_programming_prolog">
+                    <section id="constrain_programming_prolog_title">
+                        <h1 class="r-frame-text">Constraint Programming in Prolog</h1>
+                    </section>
+
+                    <section id="constrain_programming_prolog">
+                        <h1>Constraint Programming in Prolog</h1>
+                        <ul>
+                            <li>Prolog can do constraint programming with the aid of libraries</li>
+                            <li>Several available: e.g. <code>clpfd</code> allows for constraint programming with integer maths
+                                <dd><code>:- use_module(library(clpfd)).</code></dd>
+                            </li>
+                            <li>Introduces new relational operations <code>#=, #&lt;, #&lt;=</code> etc, which can be used for constraint solving</li>
+                        </ul>
+                    </section>
+
+                    <section id="solving_equation">
+                        <h1>Solving Equations</h1>
+                        <ul>
+                            <li><code>X #= 1 + 2.</code>
+                                <dd><code>X = 3.</code></dd>
+                            </li>
+                            <li class="fragment"><code>15 #= 3 * Y.</code>
+                                <dd><code>Y = 5.</code></dd>
+                            </li>
+                            <li class="fragment"><code>21 #= X * Y, X #> 1, Y #> 1, X #&lt; Y.</code>
+                                <dd><code>X = 3,<br>Y = 7.</code></dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="more">
+                        <h1>More Examples</h1>
+                        <p><a href="https://www.swi-prolog.org/man/clpfd.html" target="_blank">library(clpfd): CLP(FD): Constraint Logic Programming over Finite Domains</a></p>
+                        <p><a href="https://www.metalevel.at/prolog/clpz" target="_blank">CLP(FD) and CLP(ℤ): Prolog Integer Arithmetic</a></p>
+                        <p><a href="https://m00nlight.github.io/constraint%20logic%20programming/2016/01/01/using-clpfd-to-solve-factorial-and-fibonacci-problems-reversely" target="_blank">Using CLP(FD) to solve factorial and fibonacci problems reversely</a></p>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings using document.write() -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

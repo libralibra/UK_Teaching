@@ -83,9 +83,9 @@
                         <h1>SUDOKU</h1>
                         <div class="row">
                             <div class="col-60">
-                                <ul><a href="https://www.wikiwand.com/en/Sudoku" target="_blank">Sudoku</a> is a popular game originated from ancient China
+                                <ul><a href="https://www.wikiwand.com/en/Sudoku" target="_blank">Sudoku</a>: a popular game originated from ancient China
                                     <li>A $9 \times 9$ grid</li>
-                                    <li>Each square contains a number $1-9$</li>
+                                    <li>Each cell contains a number $1-9$</li>
                                     <li>A number cannot appear more than once in any given row, column, or $3 \times 3$ square outlined in bold</li>
                                     <li>Some numbers are given - the puzzle is to fill in the rest</li>
                                     <li>A properly designed Sudoku puzzle has exactly one solution</li>
@@ -103,7 +103,7 @@
                             <div class="col-60">
                                 <ul>
                                     <li><span class="lightgreen">Variables</span>: a subset of <span class="smalltext">$\{X_{1,1},X_{1,2},\cdots,X_{9,9}\}$</span>
-                                        <dd>One variable per empty square</dd>
+                                        <dd>One variable per empty cell</dd>
                                     </li>
                                     <li>All have the same <span class="lightorange">domain</span>: <span class="smalltext">$D_{i,j}=\{1,\cdots,9\}$</span></li>
                                     <li><span class="lightpink">Constraints</span>:
@@ -124,8 +124,8 @@
                     <section id="sudoku_solver">
                         <h1>Solving Sudoku via Backtracking</h1>
                         <ul>
-                            <li>Pick an empty square</li>
-                            <li>Try a possible value for that empty square</li>
+                            <li>Pick an empty cell</li>
+                            <li>Try a possible value for that empty cell</li>
                             <li>Try to solve the rest of the puzzle (recursively)</li>
                             <li>If we run into a dead end, go back and try a different value</li>
                         </ul>
@@ -133,16 +133,16 @@
 
                     <section id="backtracking_pseudocode">
                         <h1>Backtracking Pseudocode</h1>
-                        <pre><code class="vb">Procedure SolveBacktracking(square)
+                        <pre><code class="vb">Procedure SolveBacktracking(cell)
     For n = 1,...,9
-        If square can have value n
-            Set value of square to n 
-            If square is the last empty square or SolveBacktracking(next_empty_square)
+        If cell can have value n
+            Set value of cell to n 
+            If cell is the last empty cell or SolveBacktracking(next_empty_square)
                 Return true 
             End If
         End If
     End For 
-    Clear the value of square 
+    Clear the value of cell 
     Return False
 End Procedure</code></pre>
                     </section>
@@ -150,9 +150,9 @@ End Procedure</code></pre>
                     <section id="sudoku_constraint">
                         <h1>Solving Sudoku Constraint Propagation</h1>
                         <ul>
-                            <li>Each empty square keeps track of which numbers it could possibly contain</li>
-                            <li>Update every square one after another</li>
-                            <li>If a square has only one possible number, fill it in directly</li>
+                            <li>Each empty cell keeps track of which numbers it could possibly contain</li>
+                            <li>Update every cell one after another</li>
+                            <li>If a cell has only one possible number, fill it in directly</li>
                             <li>Repeat until stuck</li>
                         </ul>
                     </section>
@@ -161,8 +161,8 @@ End Procedure</code></pre>
                         <h1>Constraint Propagation Pseudocode</h1>
                         <pre><code class="vb">Procedure SolveConstraintPropagation()
     Repeat
-        For each empty square
-            Determine the list of possible numbers that could go in the square
+        For each empty cell
+            Determine the list of possible numbers that could go in the cell
             If the list is empty
                 Return false // unsolvable
             Else if the list has a single element
@@ -195,7 +195,7 @@ End Procedure</code></pre>
                             <div class="col-50">
                                 <pre class="img-height-400"><code class="vb smalltext">Procedure SolveConstraintPropagation()
     Repeat
-        For each empty square
+        For each empty cell
             Determine the list of possible numbers
             If the list is empty
                 Return false // unsolvable
@@ -207,22 +207,22 @@ End Procedure</code></pre>
         If the puzzle is solved
             Return true
         Else
-            Return SolveBacktracking(first empty square)
+            Return SolveBacktracking(first empty cell)
 End Procedure</code></pre>
                             </div>
                             <div class="col-50">
-                                <pre class="img-height-400"><code class="vb smalltext">Procedure SolveBacktracking(square)
+                                <pre class="img-height-400"><code class="vb smalltext">Procedure SolveBacktracking(cell)
     For n = 1, … , 9
-        If square can have value n
+        If cell can have value n
             Save the state of the board
-            Set value of square to n
+            Set value of cell to n
             If SolveConstraintPropagation()
                 Return true
             End If
             Restore the saved state of the board
         End If
     End For
-    Clear the value of square
+    Clear the value of cell
     Return false
 End Procedure
 </code></pre>
