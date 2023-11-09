@@ -152,7 +152,7 @@
 
                     <section id="fact">
                         <h1>A Fact</h1>
-                        <div class="img-height-500"><br><br><br><br><code>lives_in(bob, falmouth)</code></div>
+                        <div class="img-height-500"><br><br><br><br><code>lives_in(bob, falmouth).</code></div>
                         <div class="box-top-left"><code>lives_in</code> is a predicate.<br>Predicates are introduced <br>when first used.</div>
                         <div class="box-bottom-right"><code>bob</code> and <code>falmouth</code> are atoms -<br>named variable values.<br>Atoms begin with <span class="lightgreen">lowercase</span> letters.</div>
                     </section>
@@ -162,11 +162,11 @@
                         <ul>
                             <li>We can query predicates for truth or falsehood
                                 <ul>
-                                    <li><code>?- lives_in(bob, falmouth)</code>
-                                        <dd>$\implies$<code>true</code></dd>
+                                    <li><code>?- lives_in(bob, falmouth).</code>
+                                        <dd><code>true.</code></dd>
                                     </li>
-                                    <li><code>?- lives_in(bob, penryn)</code>
-                                        <dd>$\implies$<code>false</code></dd>
+                                    <li><code>?- lives_in(bob, penryn).</code>
+                                        <dd><code>false.</code></dd>
                                     </li>
                                 </ul>
                             </li>
@@ -178,14 +178,14 @@
                         <ul>
                             <li>We can also introduce <span class="lightcyan">variables</span> - Prolog gives us all possible values of the variable for which the predicate is <code>true</code>
                                 <ul>
-                                    <li><code>?- lives_in(bob, X)</code> <span class="fragment"><span class="pink bold">$\xleftarrow{\quad\qquad}$</span> Variables begin with <span class="lightpink">uppercase</span> letters</span>
-                                        <dd><code>X = falmouth</code></dd>
+                                    <li><code>?- lives_in(bob, X).</code> <span class="fragment"><span class="pink bold">$\xleftarrow{\quad\quad}$</span> Variables begin with <span class="lightpink">uppercase</span> letters</span>
+                                        <dd><code>X = falmouth.</code></dd>
                                     </li>
-                                    <li><code>?- lives_in(Y, falmouth)</code>
-                                        <dd><code>Y = bob</code></dd>
+                                    <li><code>?- lives_in(Y, falmouth).</code>
+                                        <dd><code>Y = bob.</code></dd>
                                     </li>
-                                    <li><code>?- lives_in(Z, penzance)</code>
-                                        <dd><code>false</code></dd> <span class="fragment"><span class="pink bold">$\qquad\quad\nwarrow$</span> There are no variable values that make the predicate <code>true</code>, so Prolog returns <code>false</code></span>
+                                    <li><code>?- lives_in(Z, penzance).</code>
+                                        <dd><code>false.</code></dd> <span class="fragment"><span class="pink bold">$\qquad\quad\nwarrow$</span> There are no variable values that make the predicate <code>true</code>, so Prolog returns <code>false</code></span>
                                     </li>
                                 </ul>
                             </li>
@@ -196,9 +196,9 @@
                         <h1>Rules</h1>
                         <div class="img-height-500">
                             <br><br><br>
-                            <div><code>lives_in(X, cornwall) :- lives_in(X, falmouth)</code></div>
+                            <div><code>lives_in(X, cornwall) :- lives_in(X, falmouth).</code></div>
                             <br>
-                            <div><code>drinks_cider(X) :- lives_in(X, cornwall)</code></div>
+                            <div><code>drinks_cider(X) :- lives_in(X, cornwall).</code></div>
                         </div>
                         <div class="fragment box-top-right text-right tranparent"><span class="green-bg"><code>:-</code> can be read as $\impliedby$ (implied by)<br>
                                 <span class="smalltext">$\vert$</span><br>
@@ -218,7 +218,7 @@
                         <ul>
                             <li>We can run queries based on the <span class="lightcyan">chains of implications</span> in our rules</li>
                             <li><code>?- lives_in(bob, cornwall).</code>
-                                <dd><code>true</code></dd>
+                                <dd><code>true.</code></dd>
                             </li>
                             <li><code>?- drinks_cider(X).</code>
                                 <dd><code>X = bob.</code></dd>
@@ -241,7 +241,7 @@
                         <ul>
                             <li>The RHS of a rule can contain a conjunction (an <code>AND</code>)</li>
                             <li>Denoted by predicates separated by commas
-                                <dd><code>is_local_student(X) :- lives_in(X, cornwall), students_at(X, falmouth)</code></dd>
+                                <dd><code>is_local_student(X) :- lives_in(X, cornwall), students_at(X, falmouth).</code></dd>
                             </li>
                         </ul>
                     </section>

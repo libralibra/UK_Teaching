@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', '10'],
+                ['topic', ' - Fuzzy Logic, Probability and Inference'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_fuzzy_logic">
+                    <section id="fuzzy_logic_title">
+                        <h1 class="r-frame-text">Fuzzy Logic</h1>
+                    </section>
+
+                    <section id="fuzzy_logic">
+                        <h1>Fuzzy Logic</h1>
+                        <ul>
+                            <li><span class="lightblue">Boolean</span> logic: variables are either <code class="lightgreen">true</code> or <span class="lightpink">false</span></li>
+                            <li><span class="lightorange">Fuzzy logic</span> was introduced in 1960s to model this
+                                <dd>- Variables have a <span class="lightpurple">truth value</span> between <code class="lightgreen">0</code> and <code class="lightpink">1</code></dd>
+                            </li>
+                            <li>Related to <span class="lime">fuzzy set theory</span>: instead of elements being either <code class="lightgreen">in</code> or <code class="lightpink">not in</code> a set, they have a <span class="lightred">degree of membership</span> between 0 and 1</li>
+                            <li>Humans don't tend to reason with hard Boolean logic - we use information that is <span class="lightcyan">vague, imprecise</span> and <span class="lightcyan">uncertain</span>, while computers can only manipulate <span class="lightpink">precise</span> values
+                                <dd>- Fuzzy logic is an attempt to combine the two</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="fuzzy_logic_example">
+                        <h1>Fuzzy Logic Example</h1>
+                        <ul>
+                            <li>Fuzzy: "not clear, distinct, or precise; blurred"</li>
+                            <li>e.g. "It's cold." is a fuzzy statement</li>
+                        </ul>
+                        <div class="r-stack">
+                            <img src="img/fuzzy_logic.png" alt="fuzzy logic" class="fragment fade-out img-height-300">
+                            <p class="hidden">source: https://www.wikiwand.com/en/Fuzzy_logic#Media/File:Fuzzy_logic_temperature_en.svg</p>
+                            <img src="img/fuzzy_compare.png" alt="fuzzy boolean comparison" class="fragment img-height-300">
+                            <p class="hidden">source: https://media.geeksforgeeks.org/wp-content/uploads/fuzzy-logic_1.png</p>
+                        </div>
+                    </section>
+
+                    <section id="fuzzy_logic_operators">
+                        <h1>Fuzzy Logic Operators</h1>
+                        <ul>
+                            <li>$A$ <span class="lightgreen">AND</span> $B \to min(A,B)$ </li>
+                            <li>$A$ <span class="lightpurple">OR</span> $B \to max(A,B)$ </li>
+                            <li><span class="lightorange">NOT</span>$(A) \to 1-A$</li>
+                        </ul>
+                    </section>
+
+                    <section id="probability">
+                        <h1>Probability</h1>
+                        <ul>
+                            <li>Similar to fuzzy logic: values between 0 and 1</li>
+                            <li>Fuzzy logic models <span class="lightgreen">vagueness</span></li>
+                            <li>Probability models <span class="lightpurple">chance</span> (belief or uncertainty)</li>
+                            <br>
+                            <li class="fragment">E.g.: You want some beers and you are given a beaker of liquid.
+                                <ul>
+                                    <li>Probability: There's a 1% chance the liquid is acid, 99% chance it's beer.</li>
+                                    <li>Fuzzy logic: The liquid has 99% the characteristics of beer, 1% characteristics of acid.</li>
+                                </ul>
+                                <dd class="text-right italic"> - courtesy of Prof. Jerry Mendel, University of Southern California</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="probability_logic_multiplication_rule">
+                        <h1>Probability "Logic"</h1>
+                        <div class="row">
+                            <div class="col-30"><img src="img/multiplication_rule.jpg" alt="Multiplication Theorem of Probabilities">
+                                <p class="hidden">source: https://media.geeksforgeeks.org/wp-content/uploads/20201201222946/multiplicationtheoremgfg2.jpg</p>
+                                <p class="green-bg smalltext">In sample space $S$ with $n$ events, let $m1$, $m2$, and $m$ be the number of elementary events favourable to $A$, $B$, and $A\cap B$ respectively.</p>
+                            </div>
+                            <div class="col-70 smalltext">
+                                <ul>
+                                    <li class="fragment smalltext">$P(A$ <span class="lightgreen">AND</span> $B)=P(A\>$<span class="lightgreen">$\cap$</span>$\> B) = P(A) \times P(B|A) = P(B) \times P(A|B)$
+                                        <dd>- $P(B|A)$ means "<span class="italic">the probability of $B$, if $A$ has already happened"</span></dd>
+                                    </li>
+                                    <li class="fragment orange-bg smalltext"> Proof: <br>
+                                        $\because P(A) = \frac{m_1}{n}, P(B)=\frac{m_2}{n}, and P(A\cap B)=\frac{m}{n}$<br>
+                                        $\quad P(B|A) = \frac{m}{m_1} and P(A|B) = \frac{m}{m_2}$<br>
+                                        $\therefore P(A\cap B) = \frac{m}{n} = \frac{m_1}{n} \times \frac{m}{m_1} = P(A)\times P(B|A)$
+                                        $\qquad P(A\cap B) = \frac{m}{n} = \frac{m_2}{n} \times \frac{m}{m_2} = P(B)\times P(A|B)$
+                                    </li>
+                                    <li class="fragment">E.g. drawing 2 black cards from a standard deck of $52$ without replacement <span class="fragment">$\to \frac{26}{52}\times \frac{25}{51} = \frac{650}{2652} \approx 24.5\%$</span></li>
+                                    <li class="fragment">If $A$ and $B$ are independent events, <span class="smalltext">$$P(A|B) = P(B|A) = 1 \implies P(A\cap B) = P(A)\times P(B)$$</span></li>
+                                    <li class="fragment">E.g. getting 2 heads while flipping a fair coin $\to \frac{1}{2}\times \frac{1}{2} = \frac{1}{4} (25\%)$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="probability_logic_additon_rule">
+                        <h1>Probability "Logic"</h1>
+                        <div class="row">
+                            <div class="col-70 smalltext">
+                                <ul>
+                                    <li class="fragment smalltext">$P(A$ <span class="lightpurple">OR</span> $B)= P(A\>$<span class="lightpurple">$\cup$</span>$\> B) = P(A)+P(B)-P(A\>$<span class="lightgreen">$\cap$</span>$\> B)$</li>
+                                    <li class="fragment orange-bg smalltext">Proof: $P(A\cup B) \\
+                                        = P[(only A)\cup (A\cap B) \cup (only B)] \\
+                                        = P(only A) + P(A\cap B) + P(only B) \\
+                                        = [P(A)-P(A\cap B)] + P(A\cap B) + [P(B)-P(A\cap B)] \\
+                                        = P(A) + P(B) - P(A\cap B)$
+                                    </li>
+                                    <li class="fragment smalltext">E.g. two dice are rolled together. Find the probability of <span class="blue-bg">getting a doublet (event A)</span> or <span class="pink-bg">sum of faces as 4 (event B)</span>.
+                                        <dd class="fragment">In total, there are $6\times 6=36$ outcomes. <br>
+                                            $A=\{(1,1),(2,2),(3,3),(4,4),(5,5),(6,6)\}; \\
+                                            B=\{(1,3),(2,3),(3,1)\}; A\cap B = \{(2,3)\}$ and<br>
+                                            $P(A) = \frac{6}{36}, P(B)=\frac{3}{36}, P(A\cap B) = \frac{1}{36}$. Then,
+                                            $$P(A\cup B) = P(A)+P(B)-P(A\cap B) = \frac{6}{36}+\frac{3}{36}-\frac{1}{36} = \frac{8}{36}=\frac{2}{9} $$
+                                        </dd>
+                                    </li>
+                                    <li class="fragment">$P($<span class="lightorange">$NOT$</span>$\> A)=P(\overline{A}) = 1-P(A)$</li>
+                                </ul>
+                            </div>
+                            <div class="col-30">
+                                <img class="img-height-250" src="img/addition_rule.png" alt="Addition Theorem of Probabilities">
+                                <p class="hidden">source: https://img.brainkart.com/imagebk40/uHuOMj4.jpg</p>
+                                <p class="green-bg smalltext">In sample space $S$ shown on the above Venn diagram, we have "$only A$", "$A\cap B$", and "$only B$" are mutually exclusive and their union is $A\cup B$.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="beliefs">
+                        <h1>Beliefs</h1>
+                        <ul>
+                            <li>Recall: in a game of <span class="lightblue">imperfect information</span>, the <span class="lightgreen">state</span> of the world is not known</li>
+                            <li>The <span class="lightpink">information set</span> is the set of all <span class="lightpurple">possible states</span></li>
+                            <li>Some states are <span class="lightyellow">more likely</span> than others</li>
+                            <li>The agent's <span class="lime">beliefs</span> can be modelled as a <span class="lightorange">probability distribution</span> over the information set
+                                <ul>
+                                    <li>A function assigning a probability to each state</li>
+                                    <li>Probabilities add up to 1</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="inference">
+                        <h1>Inference</h1>
+                        <ul>
+                            <li>The agent's beliefs may <span class="lightblue">change</span> based on <span class="lightpurple">observing</span> the game</li>
+                            <li>In particular, based on what <span class="lightpink">actions other players</span> choose</li>
+                            <li>E.g. in Poker, inferring what cards other players are likely to have based on their choices of bids</li>
+                        </ul>
+                    </section>
+
+                    <section id="bayesian_inference">
+                        <h1>Bayesian Inference</h1>
+                        <ul>
+                            <li>
+                                Given:
+                                <ul>
+                                    <li><span class="lightcyan">Prior distribution</span>: beliefs about what state we were in before we saw action $a$</li>
+                                    <li><span class="lightgreen">Opponent model</span>: beliefs about how likely an agent is to choose a given action in a given state</li>
+                                </ul>
+                            </li>
+                            <li>Can calculate:
+                                <ul>
+                                    <li><span class="lightpink">Posterior distribution</span>: beliefs about what state we are in now that we have seen action $a$</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="bayesian_inference_equation">
+                        <h1>Bayesian Inference</h1>
+                        <p>$P(s|a)=\frac{P(a|s)P(s)}{P(a)}$</p>
+                        <ul>
+                            <li>$P(s|a)\to$<span class="lightcyan">posterior distribution</span>: probability that we are in state $s$, given that we aw action $a$</li>
+                            <li>$P(a|s)\to$<span class="lightgreen">opponent model</span>: probability that agent would choose action $a$ if it could see state $s$</li>
+                            <li>$P(s)\to$<span class="lightpink">prior distribution</span>: probability that we were in state $s$</li>
+                            <li>$P(a)\to$<span class="lightpurple">normalising term</span>: make all probabilities add to 1
+                                <dd class="text-center">$P(a)=\displaystyle\sum_{s'} P(a|s')P(s')$</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="bluffing">
+                        <h1>Bluffing</h1>
+                        <ul>
+                            <li>Bayesian inference relies on an <span class="lightred">opponent model</span></li>
+                            <li>Assumption of <span class="lightcyan">rationality</span></li>
+                            <li>However, if a rational agent knows that they are being observed and inferred upon, this might influence their behaviour...</li>
+                            <li><span class="lightgreen">Bluffing</span> refers to any behaviour deliberately meant to fool inference</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_bluffing_inference_mcts">
+                    <section id="bluffing_inference_mcts_title">
+                        <h1 class="r-frame-text bigtext2">Emergent Bluffing and Inference <br>with Monte Carlo Tree Search</h1>
+                        <p class="tinytext ">Peter Cowling, etc. Proceedings of IEEE conference on Computational Intelligence in Games, 2015.</p>
+                    </section>
+
+                    <section id="motivation">
+                        <h1>Motivation</h1>
+                        <div class="row">
+                            <div class="col-30">
+                                <img class="img-height-500" src="img/poker.png" alt="poker game">
+                            </div>
+                            <div class="col-40">
+                                <ul>
+                                    <br>
+                                    <li>Many interesting games have <span class="lightgreen">imperfect information</span></li>
+                                    <li><span class="lightcyan">MCTS</span> has successfully been applied to several such games like <span class="italic">Bridge and Poker</span></li>
+                                    <li>MCTS is <span class="lightpink">robust</span> in the face of uncertainty, but bad at <span class="lightpurple">information gathering</span> (for <span class="lightgreen">inference</span>) and/or <span class="lightpurple">hiding</span> (for <span class="lightpink">bluffing</span>)</li>
+                                </ul>
+                            </div>
+                            <div class="col-30">
+                                <img class="img-height-500" src="img/poker_2.png" alt="poker game">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="resistance" data-auto-animate>
+                        <h1>Case Study: The Resistance</h1>
+                        <div class="row" data-id="hd">
+                            <div class="col-70">
+                                <ul>
+                                    <li>A role-playing, social deduction, card game between resistance and spies groups.</li>
+                                    <br>
+                                    <li>Every player is either a <span class="lime">resistance</span> fighter or an imperial <span class="lightpurple">spy</span>
+                                    </li>
+                                    <br>
+                                    <li>Spies know who the other spies are, resistance don’t
+                                    </li>
+                                    <br>
+                                    <li>Resistance need to <span class="cyan">infer</span> who the spies are, and spies need to <span class="purple">bluff</span> to appear un-spy-like
+                                        <dd>– Resistance don’t need to bluff, and spies don’t need to infer</dd>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-30" data-id="img"><img src="img/poker_3.png" alt="poker game" class="img-height-500"></div>
+                        </div>
+                    </section>
+
+                    <section id="resistance_3" data-auto-animate>
+                        <h1>The Resistance</h1>
+                        <div class="row">
+                            <div class="col-30" data-id="img"><img src="img/poker_4.png" alt="poker game" class="img-height-500"></div>
+                            <div class="col-70">
+                                <ul>
+                                    <li>Someone chooses a <span class="lightcyan">team</span></li>
+                                    <li>Everyone <span class="lightgreen">votes</span> (publicly, simultaneously)</li>
+                                    <br>
+                                    <li>If a majority approves, the team goes on a <span class="lightpink">mission</span>
+                                        <dd>- Spies can choose to <span class="lighpurple">sabotage</span> (secretly)</dd>
+                                    </li>
+                                    <br>
+                                    <li>If <span class="lightorange">anyone sabotaged</span>, score 1 for the spies</li>
+                                    <br>
+                                    <li>If not, score 1 for the resistance</li>
+                                    <br>
+                                    <li>First team to score 3 wins</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="information_set" data-auto-animate>
+                        <h1>Information Set - <span class="blue">Resistance</span></h1>
+                        <p>Observation gives a <span class="lightgreen">set of possible states</span>, only one is the actual game state</p>
+                        <img data-id="img" class="r-stretch" src="img/info_set_1.png" alt="information set">
+                    </section>
+
+                    <section id="information_set_2" data-auto-animate>
+                        <h1>Information Set - <span class="lightred">Spies</span></h1>
+                        <p>Spies have <span class="lightcyan">perfect information</span>, so the information set is a <span class="lightpink">singleton</span></p>
+                        <img data-id="img" class="r-stretch" src="img/info_set_2.png" alt="information set">
+                    </section>
+
+                    <section id="information_set_mcts">
+                        <h1>Information Set MCTS (ISMCTS)</h1>
+                        <div class="row img-height-300">
+                            <div class="col-40">Each iteration samples a <span class="lightcyan">determinisation</span> (a state from the current information set)…</div>
+                            <div class="col-20"><br><br><br><img src="img/poker_5.png" alt="poker game"></div>
+                            <div class="col-40">… and performs the playout <span class="lightgreen">as if</span> that determinisation was the <span class="lightpink">true root state</span>
+                            </div>
+                        </div>
+                        <div class="row img-height-300">
+                            <div class="col-10">
+                                <p class="hidden">EMPTY ON PURPOSE</p>
+                            </div>
+                            <div class="col-80"><img src="img/ismcts.png" alt="ISMCTS"></div>
+                            <div class="col-10">
+                                <p class="hidden">EMPTY ON PURPOSE</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="multiple_trees_ismcts" data-auto-animate>
+                        <h1>Multiple Trees in ISMCTS</h1>
+                        <div class="row">
+                            <div class="col-30"><br>This tree doesn't capture the notion of<br>
+                                <span class="lightcyan">hidden moves</span>
+                            </div>
+                            <div class="col-30"><br><br><span class="lightred">$\xrightarrow{\qquad\qquad\qquad\qquad\qquad}$</span></div>
+                            <div class="col-40"><img src="img/multi_tree1.png" alt="Multiple Trees"></div>
+                        </div>
+                        <p class="r-frame">We need to consider <span class="lightbrown">separate trees</span> from <span class="lightred">each player's point of view</span></p>
+                        <div class="row">
+                            <div class="col-40"><img src="img/multi_tree2.png" alt="Multiple Trees"></div>
+                            <div class="col-30">Each <span class="lightgreen">playout</span> descends <span class="lightpink">all trees in parallel</span> to keep track of the players' <span class="lightpurple">differing viewpoints</span></div>
+                            <div class="col-30"><img src="img/multi_tree3.png" alt="Multiple Trees"></div>
+                        </div>
+                    </section>
+
+                    <section id="multiple_trees_ISMCTS_2" data-auto-animate>
+                        <h1>Multiple Trees in ISMCTS</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <img src="img/ismcts_1.png" alt="ISMCTS" class="img-height-400"><br>
+                                <span class="smalltext orange-bg">Determinisation: “players 3 and 5 are spies”</span>
+                            </div>
+                            <div class="col-50">
+                                <ul>
+                                    <br>
+                                    <li>Each player has <span class="lightcyan">multiple trees</span>, to model their observations of <span class="lightgreen">different determinisations</span></li>
+                                    <br>
+                                    <li>In the yellow tree of player 4, who are spies are unknown</li>
+                                    <br>
+                                    <li>In the yellow tree of player 5, he/she knows that player 3 and 5 are spies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="particle_filter" data-auto-animate>
+                        <h1>Particle Filter Inference</h1>
+                        <ul data-id="hd">
+                            <li>Some <span class="lightblue">determinisations</span> reach some <span class="lightpink">parts of the tree</span> more than others</li>
+                            <li>By keeping track of this, hidden information can be <span class="lightred">inferred</span> from <span class="lightorange">observed actions</span></li>
+                            <li>Sampled frequencies are used to <span class="lime">update the sampling distribution</span> for determinisations for <span class="lightcyan">future decisions</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="particle_filter_result" data-auto-animate>
+                        <h1>Particle Filter Inference</h1>
+                        <img data-id="hd" class="r-stretch" src="img/particle_filter_infer.png" alt="Particle Filter Simulation">
+                    </section>
+
+                    <section id="particle_filter_2" data-auto-animate>
+                        <h1>Particle Filter Inference</h1>
+                        <ul data-id="hd">
+                            <li>Bayesian inference usually requires an <span class="lightpink">opponent model</span></li>
+                            <li>MCTS <span class="lightgreen">implicitly generates</span> an opponent model</li>
+                            <li>Particle filter inference <span class="lightorange">uses this model</span> to perform inference</li>
+                            <li>Particle filter inference <span class="lightcyan">estimates</span> <span class="lightred">$P(s|a)$</span> <span class="lightcyan">from the MCTS playouts</span> - no need to go through Bayes' rule
+                                <dd class="text-center">$$
+                                    \xcancel{\textcolor{magenta}{\overset{Posterior\> distribution}{P(s|a)}}=\frac{\textcolor{skyblue}{\overset{Opponent\> model\quad}{P(a|s)}} \textcolor{orange}{\overset{Prior\> distribution}{P(s)}}}{\displaystyle{\sum_{s'}\textcolor{skyblue}{\underset{Opponent\> model}{P(a|s')}}}}}
+                                    $$</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="results">
+                        <h1>Results</h1>
+                        <ul>
+                            <li>5 ISMCTS players, each using 20,000 iterations (approx 0.2 seconds) per decision</li>
+                            <li><span class="lightblue">Without inference</span>, resistance win <span class="lightgreen">$28.3\%$</span> of games</li>
+                            <li>With ordinary MCTS, both sides are stupid
+                                <dd>- spies are blatant, but resistance don't notice</dd>
+                            </li>
+                            <li>Inference massively changes the balance of the game - spies can't afford to be blatant any more</li>
+                            <li>When resistance use <span class="lightpink">particle filter inference</span>, resistance win <span class="lightpurple">$94.7\%$</span> of games</li>
+                        </ul>
+                    </section>
+
+                    <section id="bluffing_again">
+                        <h1>Bluffing</h1>
+                        <ul>
+                            <li>Suppose I am spy...</li>
+                            <li>To accurately <span class="lightorange">model what other players are thinking</span>, I need to bear in mind that <span class="lightcyan">they don't know</span> I'm a spy</li>
+                            <li>Basic ISMCTS samples determinisations from the <span class="lightpink">current information set</span></li>
+                            <li>If I know I'm a spy, <span class="lightred">$100\%$</span> of the determinisations I sample have me as a spy</li>
+                            <li>Essentially I am assuming that <span class="lightblue">everyone knows I'm a spy!</span></li>
+                            <li>To solve this, ISMCTS needs to <span class="lightpurple">self-determinise</span>
+                                <dd>- sample <span class="lightgreen">determinisations where I am not a spy</span>, and allow those determinisations to <span class="golden">influence the opponent trees</span></dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="bluff_mixing">
+                        <h1>Bluff Mixing</h1>
+                        <ul>
+                            <li>If several good moves are available, choose the one that looks the best in the <span class="lightgreen">average case</span></li>
+                            <li>However, <span class="lightpurple">don't play a bad move</span> for the sake of bluffing
+                                <dd>e.g. if there is only one good move then play it</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="other_games">
+                        <h1>Other Games</h1>
+                        <ul>
+                            <li>Information sets in The Resistance are <span class="lightorange">small enough to enumerate</span> (<=6 states)</li>
+                            <li>This is not true of many other games
+                                <dd>- E.g. in Contract Bridge, information set size is<br>
+                                    $${}^{39}C_{13} \times {}^{26}C_{13}\approx 8.45\times 10^{16}$$</dd>
+                            </li>
+                            <li>Extending to other games will requires more work
+                                <dd>- State <span class="lightblue">abstraction</span> and <span class="lightpink">bucketing</span><br>
+                                    - <span class="lightpurple">Particle reinvigoration</span></dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="conclusion">
+                        <h1>Conclusion</h1>
+                        <ul>
+                            <li>ISMCTS shows great promise for games of <span class="lightcyan">imperfect information</span></li>
+                            <li>ISMCTS can perform <span class="lightpink">inference</span> almost for free, reusing the opponent model it already generates</li>
+                            <li><span class="lightorange">Bluffing</span> can emerge from ISMCTS, or can be introduced artificially for smaller CPU budgets</li>
+                        </ul>
+                    </section>
+                </section>
+
+
+                <section id="questions">
+                    <h2><span class="bold purple">Questions?</span></h2>
+                    <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                    <h5>Email: <a class="emaillink"></a></h5>
+                    <span class="office cyan"></span>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings using document.write() -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'GAM202'],
+                ['coursecode', 'GAM202'],
+                ['week', '4'],
+                ['topic', ''],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <section>
+                        <h1>GAM202 - Week4 Meeting</h1>
+                        <ul>
+                            <li class="fragment">
+                                <purple>Reminder:</purple> Game Pitch in Week 5.
+                                <ol>
+                                    <li>Get yourselves prepared: <yellow>read</yellow> the brief and <pink>review</pink> the lecture slides</li>
+                                    <li>Check your time slot</li>
+                                </ol>
+                            </li>
+                            <li class="fragment">Explain your first prototype</li>
+                            <li class="fragment">Show Agile practice: project management, do-dos, doing, done, eta, etc.</li>
+                            <li class="fragment">Use of version control: <cyan>MUST-have</cyan> to pass the module</li>
+                            <li class="fragment">Group meeting plan: time, task assignment</li>
+                            <li class="fragment">1st Feedback Fruits
+                                <ol>
+                                    <li>released on <orange>Mon 16 Oct</orange>
+                                    </li>
+                                    <li>self and peer evaluation by <green>Fri 20 Oct</green>
+                                    </li>
+                                    <li>write a brief reflection by <blue>Wed 25 Oct</blue>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

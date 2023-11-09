@@ -378,27 +378,55 @@ darkpurple {
 /* table cell style */
 .reveal .gray-bg,
 .reveal .grey-bg {
-    background-color: #7c7575;
+    background-color: rgb(165, 165, 165);
 }
 
 .reveal .red-bg {
-    background-color: #4d1919;
+    background-color: #971414;
 }
 
 .reveal .blue-bg {
-    background-color: rgb(41, 91, 156);
+    background-color: rgb(68, 114, 196);
 }
 
 .reveal .green-bg {
-    background-color: rgb(6, 66, 6);
+    background-color: rgb(112, 173, 71);
 }
 
 .reveal .yellow-bg {
-    background-color: rgb(139, 139, 13);
+    background-color: rgb(255, 192, 0);
 }
 
 .reveal .orange-bg {
-    background-color: rgb(115, 81, 19);
+    background-color: rgb(237, 125, 49);
+}
+
+.reveal .skyblue-bg {
+    background-color: rgb(91, 155, 213);
+}
+
+.reveal .pink-bg {
+    background-color: rgb(255, 153, 204);
+}
+
+.reveal .purple-bg {
+    background-color: rgb(255, 0, 255);
+}
+
+.reveal .brown-bg {
+    background-color: rgb(204, 102, 0);
+}
+
+.reveal .cyan-bg {
+    background-color: rgb(0, 255, 255);
+}
+
+.reveal .golden-bg {
+    background-color: rgb(255, 204, 102);
+}
+
+.reveal .lime-bg {
+    background-color: rgb(153, 255, 153);
 }
 
 .reveal table:not(.hljs) tr:not(.highlight-line) td:not(.hljs-ln-line):hover,

@@ -40,6 +40,8 @@ Reveal.initialize({
         className: "ace"
     },
 
+    // enable touch nagivation
+    touch: true,
     // show controls
     controls: true,
     // show progress bar 
