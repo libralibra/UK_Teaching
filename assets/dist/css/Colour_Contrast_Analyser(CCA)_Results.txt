@@ -1,0 +1,27 @@
+color 	socre		failed num
+red 	5.6/7.1 	1/0
+blue	4.7/7.1		1/0
+green 	12.8		0
+yellow 	16.3		0
+orange 	8.9			0
+purple 	6.9/7.1		1/0
+cyan 	14			0
+pink 	8.5			0
+golden 	7.8			0
+silver 	9.6			0
+lightred 	5.1/7.1	1/0
+lightblue 	6.1/7.1	1/0
+lightgreen 	12.4	0
+lightcyan 	14.5	0
+lightpurple 7.6		0
+lightpink 	10.6	0
+lightorange	8.8		0
+lime		8.3		0
+skyblue		10.1	0
+lightgolden	16.5	0
+lightbrown 	9.5		0
+brown		2.5		1
+lightgray 	4.8/7.1	1/0
+gray		4.5/7.1	1/0
+pale		14.1	0
+

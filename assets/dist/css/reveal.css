@@ -11,7 +11,9 @@ html {
     line-height: 2rem;
     /* background-color: #333333; */
     /* modified background colour */
-    background-color: #424242;
+    /* background-color: #424242; */
+    /* for good contrast */
+    background-color: #1A1919;
     color: #fff;
     /* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2); */
     text-shadow: 1px 1px 0 black;
@@ -26,7 +28,7 @@ white {
 
 .red,
 red {
-    color: #ff2c2d;
+    color: #FF7D7D;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -39,7 +41,7 @@ yellow {
 
 .blue,
 blue {
-    color: #0d84f4;
+    color: #00AFF4;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -69,7 +71,7 @@ cyan {
 
 .purple,
 purple {
-    color: magenta;
+    color: #FF61FF;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -77,7 +79,7 @@ purple {
 .amber,
 amber,
 orange {
-    color: orange;
+    color: rgb(240, 172, 46);
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -85,7 +87,7 @@ orange {
 .grey,
 grey,
 gray {
-    color: gray;
+    color: #A5A5A5;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -121,19 +123,19 @@ pink {
 
 .brown,
 brown {
-    color: brown;
+    color: #DEB887;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .lightred,
 lightred {
-    color: orangered;
+    color: #FF7C7B;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .lightblue,
 lightblue {
-    color: rgb(92, 105, 191);
+    color: #7FA1FF;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -171,7 +173,7 @@ lightpink {
 .lightgray,
 lightgrey,
 lightgray {
-    color: lightslategrey;
+    color: #AAAAAA;
     text-shadow: 1px 2px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 

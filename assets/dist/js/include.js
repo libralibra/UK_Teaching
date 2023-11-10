@@ -13,10 +13,10 @@ document.write(`
 
 -->
 
-// the main js file
+<!-- the main js file -->
 <script src="../../../assets/dist/reveal.js"></script>
 
-// plugins
+<!-- the default plugins -->
 <script src="../../../assets/plugin/zoom/zoom.js"></script>
 <script src="../../../assets/plugin/notes/notes.js"></script>
 <script src="../../../assets/plugin/search/search.js"></script>
@@ -33,7 +33,7 @@ document.write(`
 <script src="../../../assets/plugin/chalkboard/plugin.js"></script>
 <script src="../../../assets/plugin/customcontrols/plugin.js"></script>
 
-<!-- appearance for text and image animation like ppt, not ready yet -->
+<!-- appearance for element (text and image) animation like ppt -->
 <script src="../../../assets/plugin/appearance/appearance.js"></script>
 
 <!-- vertical deck indicator: verticator -->
