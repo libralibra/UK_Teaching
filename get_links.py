@@ -424,19 +424,22 @@ def get_all_files(d_path):
     ''' get all files with relative links to a dict of dict: {uni: {module: html_list}} '''
     # get all html file paths 
     htmls = [x[x.index(d_path)+len(d_path)+1:] for x in glob(d_path+r'/**/*.html',recursive=True)]
+    # get all pdf files
+    pdfs = [x[x.index(d_path)+len(d_path)+1:] for x in glob(d_path+r'/**/*.pdf',recursive=True)]
+    all_files = htmls + pdfs
     # sort out after split: uni -> module -> htmls
-    html_dict = {}
-    for x in htmls:
+    all_dict = {}
+    for x in all_files:
         parts = x.split(os.sep)
         u,m,f = parts[0],parts[1],os.sep.join(parts[2:])
-        if u in html_dict:
-            if m in html_dict[u]:
-                html_dict[u][m].append(f)
+        if u in all_dict:
+            if m in all_dict[u]:
+                all_dict[u][m].append(f)
             else:
-                html_dict[u][m] = [f]
+                all_dict[u][m] = [f]
         else:
-            html_dict[u] = {m:[f]}
-    return html_dict
+            all_dict[u] = {m:[f]}
+    return all_dict
 
 # #################################################################
 SECTION_START = r'''<section id="chapter_UNIVERSITY">
@@ -457,10 +460,12 @@ MODULE_LEFT = r'''
 <section id="MODULE">
     <h1>MODULE</h1><ol>
     <div class="row no-margin-top no-margin-bottom r-stretch">
-        <div class="col-50 no-margin-top">
+        <div class="col-45 no-margin-top">
 '''
 MODULE_RIGHT = r'''</div>
-<div class="col-50 no-margin-top">'''
+<div class="col-10"></div>
+<div class="col-45 no-margin-top">
+'''
 MODULE_END = r'''</div></div></ol>
 </section>'''
 def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
@@ -473,9 +478,9 @@ def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
     all_sections = []
     if len(m_htmls) > sec_num:
         html_slices = [m_htmls[i:i+sec_num] for i in range(0, len(m_htmls), sec_num)]
-        for i,slice in enumerate(html_slices):
-            left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in slice[:round(len(m_htmls)/2+0.5)]]
-            right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in slice[round(len(m_htmls)/2+0.5):]]
+        for i,one_slice in enumerate(html_slices):
+            left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in one_slice[:round(len(one_slice)/2+0.5)]]
+            right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in one_slice[round(len(one_slice)/2+0.5):]]
             all_sections.append(MODULE_LEFT.replace('MODULE',m_name+' - '+str(i+1)) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END)
         return '\n\n'.join(all_sections)
     else:
@@ -485,7 +490,6 @@ def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
 # #################################################################
 def show_info(htmls):
     ''' display dict information: uni -> module -> htmls '''
-
     print('\n'+'='*50)
     uni_str = len(htmls) > 1 and 'Universities' or 'University'
     print(f'There are {len(htmls)} {uni_str} info to update:')

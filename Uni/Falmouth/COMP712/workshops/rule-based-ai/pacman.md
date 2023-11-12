@@ -6,6 +6,8 @@ Dr Daniel Zhang @ Falmouth University\
 
 ![PAC-MAN](pacman.gif)
 
+<div id="top"></div>
+
 # Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
 - [Workshop: Rule-based AI (PAC-MAN Example)](#workshop-rule-based-ai-pac-man-example)
@@ -27,20 +29,24 @@ Dr Daniel Zhang @ Falmouth University\
   - [Submit Your Code](#submit-your-code)
 
 ## PAC-MAN: The Game
+<a href="#top">Top</a>
 
 [PAC-MAN](https://pacman.cc/) is one of the most popular games (maybe?) although the ghost AI is fairly simple. It is a very example for experimenting with the idea of rule-based AI. 
 
 For a better understanding of rule-based AI in games, you are going to have some exercises using a simple PAC-MAN game implemented in Python.
 
 ## Before We Start: The Setup
+<a href="#top">Top</a>
 
 ### Python Installation
+<a href="#top">Top</a>
 
 You will need to coding in [`python`](https://www.python.org/). Please install the latest version by visiting the link if you haven't done so. The might be other libraries we need along the road. But it should be fine to just install Python by now. Refer to [The first workshop](../python/python_lab.html) if you don't have python installed.
 
 You can use some management tools like `conda`, `virtualenv` or `pipx` if you like. But `pip` would be sufficient for you to carry out the experiment of this workshop.
 
 ### FreeGames Module
+<a href="#top">Top</a>
 
 [FreeGames](https://www.geeksforgeeks.org/freegames-module-in-python/) module includes some basic but fun games, such as Snake, Life, Maze, Flappy, and Pac-Man. Please follow the instructions bellow to install it. active
 
@@ -63,6 +69,7 @@ You can use some management tools like `conda`, `virtualenv` or `pipx` if you li
 - As long as you can see `pacman` in the list, you are ready to go.
 
 ## The Repository
+<a href="#top">Top</a>
 
 The repository below contains the template code of a basic PAC-MAN game.
 
@@ -73,6 +80,7 @@ The repository below contains the template code of a basic PAC-MAN game.
 The `.py` file can be opened by any text editor. However, a proper programming style editor or IDE would be helpful, such as `IDLE`, `VS Code`, `PyCharm`, `Spyder`, `NotePad++`, or any other you prefer. `VS Code` might be a good start!
 
 ## Give It a Try
+<a href="#top">Top</a>
 
 The repository contains a compiled working game prototype `pacman.pyc`. By moving PAC-MAN using the four arrow keys (&larr;, &uarr;, &rarr;, &darr;), the game will start, and the ghosts will move simultaneously. Control the PAC-MAN and try to score as much as you can before the ghosts catch you!
 
@@ -84,6 +92,7 @@ The repository contains a compiled working game prototype `pacman.pyc`. By movin
 ---
 
 ## The Code Structure
+<a href="#top">Top</a>
 
 Open the code in your selected editor and have a look about the code structure.  
 
@@ -98,6 +107,7 @@ D --> C
 ```
 
 ## The Functions
+<a href="#top">Top</a>
 
 A brief explanation of how the code works:
 
@@ -127,6 +137,7 @@ A brief explanation of how the code works:
 ---
 
 ## Ghost Behaviour: The Rules
+<a href="#top">Top</a>
 
 As described in the lectures, the ghost are implemented as rule-based agents with limited AI. However, it's amazing to see that a combination of simple rules can result such an complex game environment. Check [Ghost Behaviour](http://gameinternals.com/understanding-pac-man-ghost-behavior) for better understanding. 
 
@@ -148,6 +159,7 @@ One can split the task into several steps. Feel free to refactor the code by the
 ---
 
 ### **Task 3**:
+<a href="#top">Top</a>
 
 - Assign different colours to the ghosts.
 - Make ghosts with different colours move at different speeds.
@@ -155,11 +167,14 @@ One can split the task into several steps. Feel free to refactor the code by the
 ---
 
 ### **Task 4**:
+<a href="#top">Top</a>
+
 - Assign new rules to ghosts depending on their colours (might be tricky, take your time and keep on working).
 
 ---
 
 ### **Task 5\***
+<a href="#top">Top</a>
 
 - **Modify the game board** that is represented by the `tiles` matrix (actually it is a `list` data type in Python). 
 - Note: 
@@ -169,5 +184,6 @@ One can split the task into several steps. Feel free to refactor the code by the
 ---
 
 ## Submit Your Code
+<a href="#top">Top</a>
 
 You can submit a pull request to the original repository to showcase your work if you like.

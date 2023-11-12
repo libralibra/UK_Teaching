@@ -29,6 +29,7 @@
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
 <p><img src="traffic_lights.png" alt=""></p>
+<div id="top"></div>
 <p>Table of Contents</p>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
@@ -41,18 +42,18 @@
 <li><a href="#adjacency-list">Adjacency List</a></li>
 </ul>
 </li>
-<li><a href="#tasks">Tasks</a>
+<li><a href="#your-task">Your Task</a>
 <ul>
 <li><a href="#1-traffic-light-fsm">1. Traffic Light FSM</a>
 <ul>
 <li><a href="#the-repository">The Repository</a></li>
 <li><a href="#the-code-structure">The Code Structure</a></li>
-<li><a href="#exercise">Exercise</a></li>
+<li><a href="#exercise"><strong>Exercise</strong></a></li>
 </ul>
 </li>
 <li><a href="#2-vending-machine-fsm">2. Vending Machine FSM</a>
 <ul>
-<li><a href="#exercise-1">Exercise</a></li>
+<li><a href="#exercise-1"><strong>Exercise</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -61,10 +62,13 @@
 <li><a href="#further-reading">Further Reading</a></li>
 </ul>
 <h1 id="introduction">Introduction </h1>
+<p><a href="#top">Top</a></p>
 <p>Finite State Machines (FSMs) are powerful tools in computer science and programming. They provide a structured way to model complex systems, making them an essential concept for any aspiring programmer or computer scientist. In this session, we will delve into the world of Finite State Machines, exploring their fundamental principles and applications. We’ll also demonstrate how to implement FSMs using Python, a versatile and popular programming language.</p>
 <h1 id="understanding-finite-state-machines">Understanding Finite State Machines </h1>
+<p><a href="#top">Top</a></p>
 <p>At its core, a Finite State Machine is a mathematical model that describes a system’s behaviour by dividing it into a finite number of states, transitions between these states, and the conditions triggering these transitions. FSMs are excellent for representing systems with distinct modes or conditions. They are widely used in various domains, such as robotics, gaming, natural language processing, and more.</p>
 <h2 id="components-of-a-finite-state-machine">Components of a Finite State Machine </h2>
+<p><a href="#top">Top</a></p>
 <p>Before we delve into Python programming, let’s understand the essential components of an FSM:</p>
 <ul>
 <li>
@@ -85,6 +89,7 @@
 </ul>
 <p><strong>Note</strong>: In certain FSMs, <code>transitions</code> and <code>actions</code> may be very similar, as no additional actions are required beyond state transitions.</p>
 <h2 id="a-practical-example-traffic-lights-fsm">A Practical Example: Traffic Lights FSM </h2>
+<p><a href="#top">Top</a></p>
 <p>Let’s consider a simple example of a traffic lights model. The FSM for the traffic lights could have states like ‘<code>Red</code>’, ‘<code>Green</code>’, ‘<code>Amber</code>’, etc. Signals occur as the time elapses or pedestrians pushed the button for crossing. The transition operations need to change the lights’ states.</p>
 <p><img src="traffic_lights.png" alt=""></p>
 <p>The state diagram of the Traffic Light FSM is illustrated below.</p>
@@ -120,6 +125,7 @@ E -- Restart --&gt; B
 <li><strong><code>Final State</code></strong>: The determination of the final state is context-dependent. For instance, <code>Error</code> might be considered the final state, although the <code>Restart</code> signal can trigger a transition to change the light to the <code>Red</code> state. Multiple states can be included in the final state set to terminate the FSM at various points.</li>
 </ul>
 <h2 id="adjacency-list">Adjacency List </h2>
+<p><a href="#top">Top</a></p>
 <p>In practical applications, an adjacency list becomes particularly useful when the state diagram grows too complex to explore easily. It serves as a collection of unordered lists, primarily used to represent a finite graph. Each unordered list within an adjacency list describes the set of transitions originating from a specific vertex in the graph. This representation is one of several commonly employed methods for graph representation in computer programming.</p>
 <p>For relatively simple state machines, explicitly writing out adjacency lists might seem unnecessary. However, for more intricate systems, you’ll likely find yourself creating a form of it, making it a valuable practice.</p>
 <p>In the context of this specific discussion, we won’t adhere to the precise definition of an adjacency list, as we’re not describing a “<strong>set of neighbours</strong>” but rather a “<strong>set of transitions</strong>”, as shown in the table below.</p>
@@ -157,14 +163,18 @@ E -- Restart --&gt; B
 </tr>
 </tbody>
 </table>
-<h1 id="tasks">Tasks </h1>
+<h1 id="your-task">Your Task </h1>
+<p><a href="#top">Top</a></p>
 <h2 id="1-traffic-light-fsm">1. Traffic Light FSM </h2>
+<p><a href="#top">Top</a></p>
 <p>This task is to implement the FSM for this Traffic Lights model according to the state diagram above.</p>
 <h3 id="the-repository">The Repository </h3>
+<p><a href="#top">Top</a></p>
 <p>The repository below contains the template code of an FSM implementation in Python.</p>
 <p><strong>Fork the repository</strong> (NOT clone!) and work on your fork. This will enable you to submit a pull request in the end.</p>
 <p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git</strong></a></p>
 <h3 id="the-code-structure">The Code Structure </h3>
+<p><a href="#top">Top</a></p>
 <p>The repository contains 3 file.</p>
 <ul>
 <li><code>fsm.py</code>: it is the implementation of a simple FSM with all the components introduced above except <code>Actions</code>, which is the task for you to implement in a separate script during this workshop. <em>This design will make sure the <code>FSM</code> model response to any model if the <code>transitions</code> and <code>actions</code> are defined properly somewhere</em>.</li>
@@ -175,7 +185,8 @@ E -- Restart --&gt; B
 </ul>
 </li>
 </ul>
-<h3 id="exercise">Exercise </h3>
+<h3 id="exercise"><strong>Exercise</strong> </h3>
+<p><a href="#top">Top</a></p>
 <ul>
 <li>complete the implementation of the Traffic Lights FSM
 <ul>
@@ -186,6 +197,7 @@ E -- Restart --&gt; B
 </li>
 </ul>
 <h2 id="2-vending-machine-fsm">2. Vending Machine FSM </h2>
+<p><a href="#top">Top</a></p>
 <p>This task is to implement a Vending Machine FSM that sells Coca to the user. This special machine only accepts 50p, £1, and £2 coins and each can of Coca costs £2.5 (a little bit expensive 😃). Additionally, we will assume the vending machine never runs out of stock for economic reasons. Similarly, it never runs out of change. This example is a perfect computational problem to model with a finite state machine!</p>
 <p>The state diagram is illustrated below.</p>
 <div class="mermaid">graph TD
@@ -231,15 +243,18 @@ F -- Cancel --&gt; J
 G -- Cancel --&gt; J
 H -- Cancel --&gt; J
 J ---&gt; B
-</div><h3 id="exercise-1">Exercise </h3>
+</div><h3 id="exercise-1"><strong>Exercise</strong> </h3>
+<p><a href="#top">Top</a></p>
 <ul>
 <li>Work out the adjacency list to help you understand the diagram if necessary.</li>
 <li>Create a new Python file (<code>.py</code>), either inherit from the FSM model defined in <code>fsm.py</code> or start from scratch.</li>
 <li>Implement the Vending Machine FSM to meet the requirements outlined in the state diagram.</li>
 </ul>
 <h1 id="submit-your-code">Submit Your Code </h1>
+<p><a href="#top">Top</a></p>
 <p>Feel free to submit a pull request to the original repository to showcase your work if you wish to share your solution with others.</p>
 <h1 id="further-reading">Further Reading </h1>
+<p><a href="#top">Top</a></p>
 <ul>
 <li><a href="https://www.wikiwand.com/en/Finite-state_machine">Wiki - Finite State Machine</a></li>
 <li><a href="https://python-statemachine.readthedocs.io/en/latest/index.html">Python State Machine</a></li>

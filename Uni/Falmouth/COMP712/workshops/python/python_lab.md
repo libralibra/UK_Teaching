@@ -12,6 +12,8 @@ Dr Daniel Zhang @ Falmouth University\
 
 ![Python Logo](python_logo.png)
 
+<div id="top"></div>
+
 Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
 - [Workshop: Python Tutorial](#workshop-python-tutorial)
@@ -33,7 +35,7 @@ Table of Contents
     - [Parameters and Return Values](#parameters-and-return-values)
     - [Default Parameters](#default-parameters)
     - [Variable Scope](#variable-scope)
-    - [Docstrings](#docstrings)
+    - [Docstring](#docstring)
     - [_Lambda Functions\*_](#lambda-functions)
     - [Function Recursion](#function-recursion)
   - [Classes](#classes)
@@ -63,10 +65,12 @@ Table of Contents
 
 
 # Workshop: Python Tutorial
+<a href="#top">Top</a>
 
 In addition to our regular teaching sessions, we will be providing workshop materials utilising the Python programming language. These resources will complement the work you do in COMP712.
 
 ## Python Basics
+<a href="#top">Top</a>
 
 Python is a lightweight, high-level, open-source, cross-platform, strongly-typed, and interpreted programming language.
 
@@ -80,6 +84,7 @@ Python is a lightweight, high-level, open-source, cross-platform, strongly-typed
 In this session, I won't delve extensively into Python basics. As master's students, you should be able to grasp the fundamentals quickly. For detailed Python materials, please refer to the resources listed at the bottom of this guide, which are well-written and comprehensive.
 
 ## Installation
+<a href="#top">Top</a>
 
 Python should already be installed on university machines. If you are using your own device, you can download the installation file from the [official Python website](https://www.python.org/).
 
@@ -95,10 +100,12 @@ Python should already be installed on university machines. If you are using your
 Certainly! Here's a simple introduction to Python datatypes in Markdown format with code examples:
 
 ## Data Types
+<a href="#top">Top</a>
 
 In Python, data types are used to categorise and manage different types of data. Python offers several built-in data types that help you work with various kinds of information. Here are some of the most commonly used data types in Python:
 
 ### Numeric Data Types
+<a href="#top">Top</a>
 
 **Integers**
 Integers (`int`) represent whole numbers. They can be positive or negative. Numerical operations such as `+`, `-`, `*`, `/`, and `%` are supported for calculations.
@@ -144,6 +151,7 @@ John, Hello, World!
 ```
 
 ### Sequence
+<a href="#top">Top</a>
 
 **Lists**
 Lists (`list`) are ordered collections of items. They can contain elements of different data types. You can use the 0-based index to access certain item in the list.
@@ -197,6 +205,8 @@ TypeError: 'tuple' object does not support item assignment
 ```
 
 ### Dictionaries
+<a href="#top">Top</a>
+
 Dictionaries (`dict`) are collections of `key-value` pairs used to store data in an associative manner.
 
 Example:
@@ -210,6 +220,8 @@ Example:
 ```
 
 ### Booleans
+<a href="#top">Top</a>
+
 Booleans (`bool`) represent two values, `True` and `False`, used for logical operations. The logical operations `and` and `or` are supported between variables. 
 
 Example:
@@ -224,10 +236,12 @@ True
 ```
 
 ## Flow Control
+<a href="#top">Top</a>
 
 In Python, flow control statements allow you to control the execution of your code. You can make decisions, create loops, and handle exceptions using these constructs. Here are some essential flow control statements:
 
 ### Conditional Statements
+<a href="#top">Top</a>
 
 **`if`, `elif`, and `else`**
 
@@ -247,6 +261,7 @@ You just became an adult.
 ```
 
 ### Loops
+<a href="#top">Top</a>
 
 **`for` Loop**
 
@@ -277,6 +292,7 @@ Count: 4
 ```
 
 ### Control Statements
+<a href="#top">Top</a>
 
 **`break`**
 
@@ -314,6 +330,7 @@ The `continue` statement skips the rest of the current iteration and proceeds to
 ```
 
 ### Exception Handling
+<a href="#top">Top</a>
 
 **`try`, `except`, `else`, and `finally`**
 
@@ -336,10 +353,12 @@ Error: Division by zero
 By using flow control statements in Python, you can create dynamic and flexible programs that can make decisions, repeat tasks, and handle errors gracefully.
 
 ## Functions
+<a href="#top">Top</a>
 
 Functions in Python are reusable blocks of code that perform specific tasks. They are essential for structuring and organising your code. 
 
 ### Defining a Function
+<a href="#top">Top</a>
 
 To define a function, use the `def` keyword followed by the function name and any parameters it should accept. The function's code block is indented.
 
@@ -351,6 +370,7 @@ To define a function, use the `def` keyword followed by the function name and an
 ```
 
 ### Calling a Function
+<a href="#top">Top</a>
 
 To use a function, call it by its name and provide any required arguments.
 
@@ -361,6 +381,7 @@ To use a function, call it by its name and provide any required arguments.
 ```
 
 ### Parameters and Return Values
+<a href="#top">Top</a>
 
 Functions can accept parameters (inputs) and return values (outputs).
 
@@ -375,6 +396,7 @@ Functions can accept parameters (inputs) and return values (outputs).
 ```
 
 ### Default Parameters
+<a href="#top">Top</a>
 
 You can set default values for function parameters.
 
@@ -389,6 +411,7 @@ Hello, Bob!
 ```
 
 ### Variable Scope
+<a href="#top">Top</a>
 
 Variables defined within a function have local scope, while those defined outside have global scope.
 
@@ -405,9 +428,10 @@ Variables defined within a function have local scope, while those defined outsid
 >>>
 ```
 
-### Docstrings
+### Docstring
+<a href="#top">Top</a>
 
-Use docstrings to provide documentation for your functions. It should be the next line after your function definitions with content wrapped in triple quotation marks, either single (`'`) or double (`"`). The docstring can be viewed by calling `help()` function.
+Use docstring to provide documentation for your functions. It should be the next line after your function definitions with content wrapped in **triple** quotation marks, either single (`'''`) or double (`"""`). The docstring can be viewed by calling `help()` function.
 
 ```python
 >>> def square(x):
@@ -426,6 +450,7 @@ square(x)
 ```
 
 ### _Lambda Functions*_
+<a href="#top">Top</a>
 
 Lambda functions are small, anonymous functions defined using the `lambda` keyword.
 
@@ -438,6 +463,7 @@ Lambda functions are small, anonymous functions defined using the `lambda` keywo
 ```
 
 ### Function Recursion
+<a href="#top">Top</a>
 
 Functions can call themselves. Recursive functions are used for tasks that can be divided into smaller, similar tasks.
 
@@ -454,10 +480,12 @@ Functions can call themselves. Recursive functions are used for tasks that can b
 ```
 
 ## Classes
+<a href="#top">Top</a>
 
 In Python, a class is a blueprint for creating objects. It defines the structure and behaviours of objects of that class while facilitating object-oriented programming, which is a powerful paradigm for building complex systems.
 
 ### Defining a Class
+<a href="#top">Top</a>
 
 To define a class, use the `class` keyword followed by the class name, and a colon. The class's attributes and methods are defined within the class block.
 
@@ -481,6 +509,7 @@ class Dog:
 ```
 
 ### Creating Objects
+<a href="#top">Top</a>
 
 To create an object (an instance) of a class, call the class as if it were a function with any required arguments.
 
@@ -489,6 +518,7 @@ mikey = Dog("Mikey", 6)
 ```
 
 ### Accessing Attributes and Methods
+<a href="#top">Top</a>
 
 You can access attributes and methods of an object using the `dot` (`.`) notation.
 
@@ -501,6 +531,7 @@ Mikey says Woof Woof.
 ```
 
 ### Inheritance
+<a href="#top">Top</a>
 
 Inheritance allows you to create a new class based on an existing class. The new class inherits attributes and methods from the parent class.
 
@@ -516,6 +547,7 @@ Buddy runs at fast.
 ```
 
 ### Encapsulation
+<a href="#top">Top</a>
 
 Python supports encapsulation, which means you can restrict access to certain attributes and methods using the underscores `_` convention. Such attributes and methods are protected and can only be accessed by the class itself.
 
@@ -531,11 +563,13 @@ class Circle:
 ```
 
 ### Polymorphism
+<a href="#top">Top</a>
 
 Polymorphism allows objects of different classes to be treated as objects of a common superclass. This is useful for creating flexible and dynamic code.
 
 ```python
 >>> class Animal:
+...    ''' Animial base class '''
 ...     def __init__(self,name,age):
 ...         self._name = name
 ...         self._age = age
@@ -544,30 +578,7 @@ Polymorphism allows objects of different classes to be treated as objects of a c
 ...         return ('Animal speaks!')
 ...
 >>> class Dog(Animal):
-...     def __init__(self,name,age):
-...         super().__init__(name,age)
-...
-...     def speak(self):
-...         return 'Woof woof!'
-...
->>> class Cat(Animal):
-...     def __init__(self,name,age):
-...         super().__init__(name,age)
-...
-...     def speak(self):
-...         return 'Meow meow!'
-...
->>> my_dog = Dog("Buddy", 5)
->>> my_cat = Cat("Whiskers", 3)
->>> class Animal:
-...     def __init__(self,name,age):
-...         self._name = name
-...         self._age = age
-...
-...     def speak(self):
-...         return ('Animal speaks!')
-...
->>> class Dog(Animal):
+...     ''' Dog sub-class '''
 ...     def __init__(self,name,age):
 ...         super().__init__(name,age)
 ...
@@ -575,6 +586,7 @@ Polymorphism allows objects of different classes to be treated as objects of a c
 ...         print(f'{self._name} says: Woof woof!')
 ...
 >>> class Cat(Animal):
+...     ''' Cat sub-class '''
 ...     def __init__(self,name,age):
 ...         super().__init__(name,age)
 ...
@@ -591,10 +603,12 @@ Whiskers says: Meow meow!
 ```
 
 ## File Operations
+<a href="#top">Top</a>
 
 File operations in Python allow you to interact with files on your computer. You can read, write, and manipulate data in files. Here's how to work with files:
 
 ### Opening a File
+<a href="#top">Top</a>
 
 You can open a file using the `open()` function. Provide the file's path and specify the mode ('r' for reading, 'w' for writing, 'a' for appending, 'b' for binary mode, etc.).
 
@@ -604,6 +618,7 @@ file = open("example.txt", "r")
 ```
 
 ### Reading from a File
+<a href="#top">Top</a>
 
 To read the content of a file, you can use various methods like `read()`, `readline()`, or `readlines()`.
 
@@ -619,6 +634,7 @@ lines = file.readlines()
 ```
 
 ### Writing to a File
+<a href="#top">Top</a>
 
 To write to a file, open it in write (`'w'`) or append (`'a'`) mode and use the `write()` method.
 
@@ -631,6 +647,7 @@ file.write("Hello, World!\n")
 ```
 
 ### Closing a File
+<a href="#top">Top</a>
 
 Always close a file after you're done with it using the `close()` method to free up system resources.
 
@@ -639,6 +656,7 @@ file.close()
 ```
 
 ### Using 'with' Statement
+<a href="#top">Top</a>
 
 A better practice is to use the '`with`' statement, which ensures the file is properly closed even if an error occurs.
 
@@ -648,6 +666,7 @@ with open("example.txt", "r") as file:
 ```
 
 ### Reading and Writing Binary Files
+<a href="#top">Top</a>
 
 You can read and write binary files by specifying the '`b`' mode.
 
@@ -660,6 +679,7 @@ with open("new_binary_data.bin", "wb") as new_binary_file:
 ```
 
 ### Handling Exceptions
+<a href="#top">Top</a>
 
 When working with files, it's important to handle exceptions, especially if the file may not exist.
 
@@ -674,10 +694,12 @@ except FileNotFoundError:
 Python's file operations make it easy to work with text and binary files, which is essential for tasks such as data reading, writing, and processing. Always remember to close files properly to avoid resource leaks.
 
 ## Package Management
+<a href="#top">Top</a>
 
 Python package management involves installing, managing, and using external libraries or packages in your Python projects. The most common tool for package management in Python is `pip`. Here are some key operations:
 
 ### Installing Packages
+<a href="#top">Top</a>
 
 You can install packages from the Python Package Index (PyPI) using `pip`. Simply provide the package name as an argument.
 
@@ -694,6 +716,7 @@ pip install numpy
 ```
 
 ### Listing Installed Packages
+<a href="#top">Top</a>
 
 You can list all the packages installed in your Python environment using `pip list`.
 
@@ -702,6 +725,7 @@ pip list
 ```
 
 ### Creating a `requirements.txt` File
+<a href="#top">Top</a>
 
 A `requirements.txt` file lists all the packages your project depends on, making it easy to recreate your project's environment on another system.
 
@@ -717,7 +741,10 @@ flask==2.1.1
 numpy==1.21.0
 ```
 
+> Note: the version number is optional. You don't need to define the version numbers unless your implementation only works with a specific version of 3rd party libraries.
+
 ### Installing Packages from a `requirements.txt` File
+<a href="#top">Top</a>
 
 To install packages listed in a `requirements.txt` file, use the `-r` flag.
 
@@ -730,13 +757,14 @@ This installs all the packages listed in the file.
 Python package management is crucial for utilizing external libraries and packages to enhance the functionality of your Python projects. Using `pip` and `requirements.txt` files simplifies the process of package installation and project environment management.
 
 # Further Reading
+<a href="#top">Top</a>
 
 - [Python Tutorial](https://docs.python.org/3/tutorial/)
 - [More Python Resources](https://wiki.python.org/moin/BeginnersGuide/Programmers)
 
 
 # You Task
-
+<a href="#top">Top</a>
 
 **Task 1: Prime Number Calculation**
    - Write a function to calculate prime numbers between 2 and `N`, where `N` is the input parameter.
@@ -760,10 +788,12 @@ Python package management is crucial for utilizing external libraries and packag
      - Continue the game until the specified number of attempts is exhausted and determine the win/loss status.
 
 ## Submit Your Code
+<a href="#top">Top</a>
 
 You can submit a pull request to the original repository to showcase your work if you like.
 
 ### The Repository
+<a href="#top">Top</a>
 
 **Fork the repository** (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.
 

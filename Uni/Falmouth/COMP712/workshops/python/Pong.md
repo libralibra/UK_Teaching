@@ -5,6 +5,8 @@ Dr Daniel Zhang @ Falmouth University\
 
 ![The Pong Game](pong_gui.png)
 
+<div id="top"></div>
+
 # Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
 - [Table of Contents](#table-of-contents)
@@ -18,10 +20,12 @@ Dr Daniel Zhang @ Falmouth University\
 
 
 # Workshop: Pong Game Implementation
+<a href="#top">Top</a>
 
 During this workshop, you will put your Python skills to the test by completing the implementation of the Pong game.
 
 # The Repository
+<a href="#top">Top</a>
 
 The repository linked below contains the code for a basic 2-player PONG game.
 
@@ -30,6 +34,7 @@ The repository linked below contains the code for a basic 2-player PONG game.
 > [**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git)
 
 # Game Play
+<a href="#top">Top</a>
 
 Ensure that you have successfully downloaded `pong.pyc`. Then, open a command window in the folder and run the game by executing:
 
@@ -44,9 +49,12 @@ If everything is working correctly, you should see a GUI similar to the screensh
 The `.pyc` file was compiled using `Python 3.12.0` and should work with any `Python 3.x` versions. However, if you encounter any issues while running the script, please let me know, and a newer version of the script can be uploaded to the repository.
 
 # Game Controls
+<a href="#top">Top</a>
+
 This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.
 
 # The Code
+<a href="#top">Top</a>
 
 The implementation is relatively straightforward. Let's take a closer look at the detailed structure of the code:
 
@@ -80,6 +88,7 @@ B -- perform collision test --> B
 ```
 
 # The Functions
+<a href="#top">Top</a>
 
 There are four functions defined for keyboard controls:
 
@@ -100,6 +109,7 @@ Additionally, there are two functions for displaying messages and drawing text o
 - You may need to improve the control functions to prevent paddles from moving out of the window in some cases.
 
 # Your Task
+<a href="#top">Top</a>
 
 1. Implement collisions with the board's top and bottom, as well as the left and right paddles to make the game complete.
 

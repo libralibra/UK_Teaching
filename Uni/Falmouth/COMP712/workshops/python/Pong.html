@@ -28,6 +28,7 @@
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
 <p><img src="pong_gui.png" alt=""></p>
+<div id="top"></div>
 <h1 id="table-of-contents">Table of Contents </h1>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
@@ -41,22 +42,27 @@
 <li><a href="#your-task">Your Task</a></li>
 </ul>
 <h1 id="workshop-pong-game-implementation">Workshop: Pong Game Implementation </h1>
+<p><a href="#top">Top</a></p>
 <p>During this workshop, you will put your Python skills to the test by completing the implementation of the Pong game.</p>
 <h1 id="the-repository">The Repository </h1>
+<p><a href="#top">Top</a></p>
 <p>The repository linked below contains the code for a basic 2-player PONG game.</p>
 <p><strong>Fork the repository</strong> (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.</p>
 <blockquote>
 <p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git</strong></a></p>
 </blockquote>
 <h1 id="game-play">Game Play </h1>
+<p><a href="#top">Top</a></p>
 <p>Ensure that you have successfully downloaded <code>pong.pyc</code>. Then, open a command window in the folder and run the game by executing:</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>python pong.pyc
 </code></pre><p>If everything is working correctly, you should see a GUI similar to the screenshot above.</p>
 <p><strong>Note</strong>:</p>
 <p>The <code>.pyc</code> file was compiled using <code>Python 3.12.0</code> and should work with any <code>Python 3.x</code> versions. However, if you encounter any issues while running the script, please let me know, and a newer version of the script can be uploaded to the repository.</p>
 <h1 id="game-controls">Game Controls </h1>
+<p><a href="#top">Top</a></p>
 <p>This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.</p>
 <h1 id="the-code">The Code </h1>
+<p><a href="#top">Top</a></p>
 <p>The implementation is relatively straightforward. Let’s take a closer look at the detailed structure of the code:</p>
 <div class="mermaid">flowchart TD
 
@@ -77,6 +83,7 @@ B ---&gt; D(update paddles)
 B ---&gt; E(update scores)
 B -- perform collision test --&gt; B
 </div><h1 id="the-functions">The Functions </h1>
+<p><a href="#top">Top</a></p>
 <p>There are four functions defined for keyboard controls:</p>
 <ol>
 <li><code>left_paddle_up()</code>: Move the left paddle upwards with <kbd>W</kbd>.</li>
@@ -99,6 +106,7 @@ B -- perform collision test --&gt; B
 </li>
 </ul>
 <h1 id="your-task">Your Task </h1>
+<p><a href="#top">Top</a></p>
 <ol>
 <li>
 <p>Implement collisions with the board’s top and bottom, as well as the left and right paddles to make the game complete.</p>

@@ -29,6 +29,7 @@
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
 <p><img src="pacman.gif" alt=""></p>
+<div id="top"></div>
 <h1 id="table-of-contents">Table of Contents </h1>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
@@ -66,13 +67,17 @@
 </li>
 </ul>
 <h2 id="pac-man-the-game">PAC-MAN: The Game </h2>
+<p><a href="#top">Top</a></p>
 <p><a href="https://pacman.cc/">PAC-MAN</a> is one of the most popular games (maybe?) although the ghost AI is fairly simple. It is a very example for experimenting with the idea of rule-based AI.</p>
 <p>For a better understanding of rule-based AI in games, you are going to have some exercises using a simple PAC-MAN game implemented in Python.</p>
 <h2 id="before-we-start-the-setup">Before We Start: The Setup </h2>
+<p><a href="#top">Top</a></p>
 <h3 id="python-installation">Python Installation </h3>
+<p><a href="#top">Top</a></p>
 <p>You will need to coding in <a href="https://www.python.org/"><code>python</code></a>. Please install the latest version by visiting the link if you haven’t done so. The might be other libraries we need along the road. But it should be fine to just install Python by now. Refer to <a href="../python/python_lab.html">The first workshop</a> if you don’t have python installed.</p>
 <p>You can use some management tools like <code>conda</code>, <code>virtualenv</code> or <code>pipx</code> if you like. But <code>pip</code> would be sufficient for you to carry out the experiment of this workshop.</p>
 <h3 id="freegames-module">FreeGames Module </h3>
+<p><a href="#top">Top</a></p>
 <p><a href="https://www.geeksforgeeks.org/freegames-module-in-python/">FreeGames</a> module includes some basic but fun games, such as Snake, Life, Maze, Flappy, and Pac-Man. Please follow the instructions bellow to install it. active</p>
 <ul>
 <li>
@@ -96,11 +101,13 @@ C<span class="token punctuation">:</span>\<span class="token operator">&gt;</spa
 </li>
 </ul>
 <h2 id="the-repository">The Repository </h2>
+<p><a href="#top">Top</a></p>
 <p>The repository below contains the template code of a basic PAC-MAN game.</p>
 <p><strong>Fork the repository</strong> (NOT clone!) and work on your fork. This will enable you to submit a pull request in the end.</p>
 <p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Rule-based-AI.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Rule-based-AI.git</strong></a></p>
 <p>The <code>.py</code> file can be opened by any text editor. However, a proper programming style editor or IDE would be helpful, such as <code>IDLE</code>, <code>VS Code</code>, <code>PyCharm</code>, <code>Spyder</code>, <code>NotePad++</code>, or any other you prefer. <code>VS Code</code> might be a good start!</p>
 <h2 id="give-it-a-try">Give It a Try </h2>
+<p><a href="#top">Top</a></p>
 <p>The repository contains a compiled working game prototype <code>pacman.pyc</code>. By moving PAC-MAN using the four arrow keys (←, ↑, →, ↓), the game will start, and the ghosts will move simultaneously. Control the PAC-MAN and try to score as much as you can before the ghosts catch you!</p>
 <hr>
 <h3 id="task-1"><strong>Task 1</strong>: </h3>
@@ -109,6 +116,7 @@ C<span class="token punctuation">:</span>\<span class="token operator">&gt;</spa
 </ul>
 <hr>
 <h2 id="the-code-structure">The Code Structure </h2>
+<p><a href="#top">Top</a></p>
 <p>Open the code in your selected editor and have a look about the code structure.</p>
 <p>After <code>import</code> the required modules and define necessary variables to represent the PAC-MAN, the ghosts, and the board, there are several function definitions before actually running the game loop at the end of the source file.</p>
 <div class="mermaid">flowchart LR
@@ -117,6 +125,7 @@ B --&gt; C(listen to keyboard events)
 C --&gt; D(update board)
 D --&gt; C
 </div><h2 id="the-functions">The Functions </h2>
+<p><a href="#top">Top</a></p>
 <p>A brief explanation of how the code works:</p>
 <ul>
 <li>The code starts by importing necessary modules, including the <code>choice</code> function from the <code>random</code> module and the <code>Turtle</code> class from the <code>turtle</code> module.</li>
@@ -149,6 +158,7 @@ D --&gt; C
 </ul>
 <hr>
 <h2 id="ghost-behaviour-the-rules">Ghost Behaviour: The Rules </h2>
+<p><a href="#top">Top</a></p>
 <p>As described in the lectures, the ghost are implemented as rule-based agents with limited AI. However, it’s amazing to see that a combination of simple rules can result such an complex game environment. Check <a href="http://gameinternals.com/understanding-pac-man-ghost-behavior">Ghost Behaviour</a> for better understanding.</p>
 <hr>
 <p>Recall:</p>
@@ -163,17 +173,20 @@ D --&gt; C
 <p>One can split the task into several steps. Feel free to refactor the code by the use of <code>class</code> and/or global variables if necessary.</p>
 <hr>
 <h3 id="task-3"><strong>Task 3</strong>: </h3>
+<p><a href="#top">Top</a></p>
 <ul>
 <li>Assign different colours to the ghosts.</li>
 <li>Make ghosts with different colours move at different speeds.</li>
 </ul>
 <hr>
 <h3 id="task-4"><strong>Task 4</strong>: </h3>
+<p><a href="#top">Top</a></p>
 <ul>
 <li>Assign new rules to ghosts depending on their colours (might be tricky, take your time and keep on working).</li>
 </ul>
 <hr>
 <h3 id="task-5"><strong>Task 5*</strong> </h3>
+<p><a href="#top">Top</a></p>
 <ul>
 <li><strong>Modify the game board</strong> that is represented by the <code>tiles</code> matrix (actually it is a <code>list</code> data type in Python).</li>
 <li>Note:
@@ -185,6 +198,7 @@ D --&gt; C
 </ul>
 <hr>
 <h2 id="submit-your-code">Submit Your Code </h2>
+<p><a href="#top">Top</a></p>
 <p>You can submit a pull request to the original repository to showcase your work if you like.</p>
 
       </div>

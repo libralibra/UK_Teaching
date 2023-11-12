@@ -28,6 +28,7 @@
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
 <p><img src="python_logo.png" alt=""></p>
+<div id="top"></div>
 <p>Table of Contents</p>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
@@ -58,7 +59,7 @@
 <li><a href="#parameters-and-return-values">Parameters and Return Values</a></li>
 <li><a href="#default-parameters">Default Parameters</a></li>
 <li><a href="#variable-scope">Variable Scope</a></li>
-<li><a href="#docstrings">Docstrings</a></li>
+<li><a href="#docstring">Docstring</a></li>
 <li><a href="#lambda-functions"><em>Lambda Functions*</em></a></li>
 <li><a href="#function-recursion">Function Recursion</a></li>
 </ul>
@@ -106,8 +107,10 @@
 </li>
 </ul>
 <h1 id="workshop-python-tutorial">Workshop: Python Tutorial </h1>
+<p><a href="#top">Top</a></p>
 <p>In addition to our regular teaching sessions, we will be providing workshop materials utilising the Python programming language. These resources will complement the work you do in COMP712.</p>
 <h2 id="python-basics">Python Basics </h2>
+<p><a href="#top">Top</a></p>
 <p>Python is a lightweight, high-level, open-source, cross-platform, strongly-typed, and interpreted programming language.</p>
 <ul>
 <li><strong>Light-weight:</strong> Python code typically has a small footprint. Basically, they are pure text.</li>
@@ -119,6 +122,7 @@
 </ul>
 <p>In this session, I won’t delve extensively into Python basics. As master’s students, you should be able to grasp the fundamentals quickly. For detailed Python materials, please refer to the resources listed at the bottom of this guide, which are well-written and comprehensive.</p>
 <h2 id="installation">Installation </h2>
+<p><a href="#top">Top</a></p>
 <p>Python should already be installed on university machines. If you are using your own device, you can download the installation file from the <a href="https://www.python.org/">official Python website</a>.</p>
 <ul>
 <li>
@@ -131,8 +135,10 @@ Type <span class="token string">"help"</span><span class="token punctuation">,</
 </ul>
 <p>Certainly! Here’s a simple introduction to Python datatypes in Markdown format with code examples:</p>
 <h2 id="data-types">Data Types </h2>
+<p><a href="#top">Top</a></p>
 <p>In Python, data types are used to categorise and manage different types of data. Python offers several built-in data types that help you work with various kinds of information. Here are some of the most commonly used data types in Python:</p>
 <h3 id="numeric-data-types">Numeric Data Types </h3>
+<p><a href="#top">Top</a></p>
 <p><strong>Integers</strong><br>
 Integers (<code>int</code>) represent whole numbers. They can be positive or negative. Numerical operations such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code> are supported for calculations.</p>
 <p>Example:</p>
@@ -165,6 +171,7 @@ The second line
 John<span class="token punctuation">,</span> Hello<span class="token punctuation">,</span> World!
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="sequence">Sequence </h3>
+<p><a href="#top">Top</a></p>
 <p><strong>Lists</strong><br>
 Lists (<code>list</code>) are ordered collections of items. They can contain elements of different data types. You can use the 0-based index to access certain item in the list.</p>
 <p>Example:</p>
@@ -205,6 +212,7 @@ Traceback <span class="token punctuation">(</span>most recent call last<span cla
 TypeError<span class="token punctuation">:</span> <span class="token string">'tuple'</span> <span class="token builtin">object</span> does <span class="token keyword keyword-not">not</span> support item assignment
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="dictionaries">Dictionaries </h3>
+<p><a href="#top">Top</a></p>
 <p>Dictionaries (<code>dict</code>) are collections of <code>key-value</code> pairs used to store data in an associative manner.</p>
 <p>Example:</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'Alice'</span><span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token string">'city'</span><span class="token punctuation">:</span> <span class="token string">'New York'</span><span class="token punctuation">}</span>
@@ -214,6 +222,7 @@ TypeError<span class="token punctuation">:</span> <span class="token string">'tu
 <span class="token number">30</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="booleans">Booleans </h3>
+<p><a href="#top">Top</a></p>
 <p>Booleans (<code>bool</code>) represent two values, <code>True</code> and <code>False</code>, used for logical operations. The logical operations <code>and</code> and <code>or</code> are supported between variables.</p>
 <p>Example:</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> is_sunny <span class="token operator">=</span> <span class="token boolean">True</span>
@@ -224,8 +233,10 @@ TypeError<span class="token punctuation">:</span> <span class="token string">'tu
 <span class="token boolean">True</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h2 id="flow-control">Flow Control </h2>
+<p><a href="#top">Top</a></p>
 <p>In Python, flow control statements allow you to control the execution of your code. You can make decisions, create loops, and handle exceptions using these constructs. Here are some essential flow control statements:</p>
 <h3 id="conditional-statements">Conditional Statements </h3>
+<p><a href="#top">Top</a></p>
 <p><strong><code>if</code>, <code>elif</code>, and <code>else</code></strong></p>
 <p>Conditional statements allow you to execute different code blocks based on specified conditions.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> age <span class="token operator">=</span> <span class="token number">18</span>
@@ -239,6 +250,7 @@ TypeError<span class="token punctuation">:</span> <span class="token string">'tu
 You just became an adult<span class="token punctuation">.</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="loops">Loops </h3>
+<p><a href="#top">Top</a></p>
 <p><strong><code>for</code> Loop</strong></p>
 <p>A <code>for</code> loop iterates over a sequence (e.g., a list or range) and executes a block of code for each item.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code>fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"banana"</span><span class="token punctuation">,</span> <span class="token string">"cherry"</span><span class="token punctuation">]</span>
@@ -258,6 +270,7 @@ Count<span class="token punctuation">:</span> <span class="token number">3</span
 Count<span class="token punctuation">:</span> <span class="token number">4</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="control-statements">Control Statements </h3>
+<p><a href="#top">Top</a></p>
 <p><strong><code>break</code></strong></p>
 <p>The <code>break</code> statement is used to exit the current loop prematurely.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-for">for</span> number <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -284,6 +297,7 @@ Count<span class="token punctuation">:</span> <span class="token number">4</span
 <span class="token number">4</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="exception-handling">Exception Handling </h3>
+<p><a href="#top">Top</a></p>
 <p><strong><code>try</code>, <code>except</code>, <code>else</code>, and <code>finally</code></strong></p>
 <p>Exception handling helps you manage errors in your code.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
@@ -299,19 +313,23 @@ Error<span class="token punctuation">:</span> Division by zero
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><p>By using flow control statements in Python, you can create dynamic and flexible programs that can make decisions, repeat tasks, and handle errors gracefully.</p>
 <h2 id="functions">Functions </h2>
+<p><a href="#top">Top</a></p>
 <p>Functions in Python are reusable blocks of code that perform specific tasks. They are essential for structuring and organising your code.</p>
 <h3 id="defining-a-function">Defining a Function </h3>
+<p><a href="#top">Top</a></p>
 <p>To define a function, use the <code>def</code> keyword followed by the function name and any parameters it should accept. The function’s code block is indented.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"Hello, </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">!"</span></span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="calling-a-function">Calling a Function </h3>
+<p><a href="#top">Top</a></p>
 <p>To use a function, call it by its name and provide any required arguments.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> greet<span class="token punctuation">(</span><span class="token string">"Alice"</span><span class="token punctuation">)</span>
 <span class="token string">'Hello, Alice!'</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="parameters-and-return-values">Parameters and Return Values </h3>
+<p><a href="#top">Top</a></p>
 <p>Functions can accept parameters (inputs) and return values (outputs).</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b
@@ -321,6 +339,7 @@ Error<span class="token punctuation">:</span> Division by zero
 <span class="token number">8</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="default-parameters">Default Parameters </h3>
+<p><a href="#top">Top</a></p>
 <p>You can set default values for function parameters.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> greeting<span class="token operator">=</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>greeting<span class="token punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">!"</span></span>
@@ -330,6 +349,7 @@ Error<span class="token punctuation">:</span> Division by zero
 Hello<span class="token punctuation">,</span> Bob!
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="variable-scope">Variable Scope </h3>
+<p><a href="#top">Top</a></p>
 <p>Variables defined within a function have local scope, while those defined outside have global scope.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> x <span class="token operator">=</span> <span class="token number">10</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
@@ -341,8 +361,9 @@ Hello<span class="token punctuation">,</span> Bob!
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
 <span class="token number">10</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
-</code></pre><h3 id="docstrings">Docstrings </h3>
-<p>Use docstrings to provide documentation for your functions. It should be the next line after your function definitions with content wrapped in triple quotation marks, either single (<code>'</code>) or double (<code>"</code>). The docstring can be viewed by calling <code>help()</code> function.</p>
+</code></pre><h3 id="docstring">Docstring </h3>
+<p><a href="#top">Top</a></p>
+<p>Use docstring to provide documentation for your functions. It should be the next line after your function definitions with content wrapped in <strong>triple</strong> quotation marks, either single (<code>'''</code>) or double (<code>"""</code>). The docstring can be viewed by calling <code>help()</code> function.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">square</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token triple-quoted-string string">"""
 ...     This function returns the square of a number.
@@ -357,6 +378,7 @@ square<span class="token punctuation">(</span>x<span class="token punctuation">)
 
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3><em>Lambda Functions*</em> {#<em>lambda-functions</em> }</h3>
+<p><a href="#top">Top</a></p>
 <p>Lambda functions are small, anonymous functions defined using the <code>lambda</code> keyword.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> multiply <span class="token operator">=</span> <span class="token keyword keyword-lambda">lambda</span> x<span class="token punctuation">,</span> y<span class="token punctuation">:</span> x <span class="token operator">*</span> y
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> result <span class="token operator">=</span> multiply<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
@@ -364,6 +386,7 @@ square<span class="token punctuation">(</span>x<span class="token punctuation">)
 <span class="token number">12</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="function-recursion">Function Recursion </h3>
+<p><a href="#top">Top</a></p>
 <p>Functions can call themselves. Recursive functions are used for tasks that can be divided into smaller, similar tasks.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-def">def</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-if">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
@@ -375,8 +398,10 @@ square<span class="token punctuation">(</span>x<span class="token punctuation">)
 <span class="token number">120</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h2 id="classes">Classes </h2>
+<p><a href="#top">Top</a></p>
 <p>In Python, a class is a blueprint for creating objects. It defines the structure and behaviours of objects of that class while facilitating object-oriented programming, which is a powerful paradigm for building complex systems.</p>
 <h3 id="defining-a-class">Defining a Class </h3>
+<p><a href="#top">Top</a></p>
 <p>To define a class, use the <code>class</code> keyword followed by the class name, and a colon. The class’s attributes and methods are defined within the class block.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Dog</span><span class="token punctuation">:</span>
     <span class="token comment"># Class attributes</span>
@@ -395,9 +420,11 @@ square<span class="token punctuation">(</span>x<span class="token punctuation">)
     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> sound<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>name<span class="token punctuation">}</span></span><span class="token string"> says </span><span class="token interpolation"><span class="token punctuation">{</span>sound<span class="token punctuation">}</span></span><span class="token string">."</span></span>
 </code></pre><h3 id="creating-objects">Creating Objects </h3>
+<p><a href="#top">Top</a></p>
 <p>To create an object (an instance) of a class, call the class as if it were a function with any required arguments.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code>mikey <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"Mikey"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span>
 </code></pre><h3 id="accessing-attributes-and-methods">Accessing Attributes and Methods </h3>
+<p><a href="#top">Top</a></p>
 <p>You can access attributes and methods of an object using the <code>dot</code> (<code>.</code>) notation.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>mikey<span class="token punctuation">.</span>description<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 Mikey <span class="token keyword keyword-is">is</span> <span class="token number">6</span> years old<span class="token punctuation">.</span>
@@ -405,6 +432,7 @@ Mikey <span class="token keyword keyword-is">is</span> <span class="token number
 Mikey says Woof Woof<span class="token punctuation">.</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="inheritance">Inheritance </h3>
+<p><a href="#top">Top</a></p>
 <p>Inheritance allows you to create a new class based on an existing class. The new class inherits attributes and methods from the parent class.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Beagle</span><span class="token punctuation">(</span>Dog<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> speed<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -415,6 +443,7 @@ Mikey says Woof Woof<span class="token punctuation">.</span>
 Buddy runs at fast<span class="token punctuation">.</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h3 id="encapsulation">Encapsulation </h3>
+<p><a href="#top">Top</a></p>
 <p>Python supports encapsulation, which means you can restrict access to certain attributes and methods using the underscores <code>_</code> convention. Such attributes and methods are protected and can only be accessed by the class itself.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Circle</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> radius<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -425,8 +454,10 @@ Buddy runs at fast<span class="token punctuation">.</span>
         <span class="token comment"># Protected method</span>
         <span class="token keyword keyword-return">return</span> <span class="token number">3.14159</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>_radius <span class="token operator">*</span> self<span class="token punctuation">.</span>_radius  
 </code></pre><h3 id="polymorphism">Polymorphism </h3>
+<p><a href="#top">Top</a></p>
 <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass. This is useful for creating flexible and dynamic code.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>    <span class="token triple-quoted-string string">''' Animial base class '''</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_name <span class="token operator">=</span> name
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_age <span class="token operator">=</span> age
@@ -435,30 +466,7 @@ Buddy runs at fast<span class="token punctuation">.</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">'Animal speaks!'</span><span class="token punctuation">)</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token string">'Woof woof!'</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token string">'Meow meow!'</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_dog <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"Buddy"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> my_cat <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
-<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_name <span class="token operator">=</span> name
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         self<span class="token punctuation">.</span>_age <span class="token operator">=</span> age
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">speak</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">'Animal speaks!'</span><span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token triple-quoted-string string">''' Dog sub-class '''</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
@@ -466,6 +474,7 @@ Buddy runs at fast<span class="token punctuation">.</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>_name<span class="token punctuation">}</span></span><span class="token string"> says: Woof woof!'</span></span><span class="token punctuation">)</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token triple-quoted-string string">''' Cat sub-class '''</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span><span class="token punctuation">:</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>         <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name<span class="token punctuation">,</span>age<span class="token punctuation">)</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
@@ -480,12 +489,15 @@ Buddy says<span class="token punctuation">:</span> Woof woof!
 Whiskers says<span class="token punctuation">:</span> Meow meow!
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
 </code></pre><h2 id="file-operations">File Operations </h2>
+<p><a href="#top">Top</a></p>
 <p>File operations in Python allow you to interact with files on your computer. You can read, write, and manipulate data in files. Here’s how to work with files:</p>
 <h3 id="opening-a-file">Opening a File </h3>
+<p><a href="#top">Top</a></p>
 <p>You can open a file using the <code>open()</code> function. Provide the file’s path and specify the mode (‘r’ for reading, ‘w’ for writing, ‘a’ for appending, ‘b’ for binary mode, etc.).</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Opening a file for reading</span>
 <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"example.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
 </code></pre><h3 id="reading-from-a-file">Reading from a File </h3>
+<p><a href="#top">Top</a></p>
 <p>To read the content of a file, you can use various methods like <code>read()</code>, <code>readline()</code>, or <code>readlines()</code>.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Read the entire file</span>
 content <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -496,6 +508,7 @@ line <span class="token operator">=</span> <span class="token builtin">file</spa
 <span class="token comment"># Read all lines into a list</span>
 lines <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre><h3 id="writing-to-a-file">Writing to a File </h3>
+<p><a href="#top">Top</a></p>
 <p>To write to a file, open it in write (<code>'w'</code>) or append (<code>'a'</code>) mode and use the <code>write()</code> method.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Open a file for writing</span>
 <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"output.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span>
@@ -503,13 +516,16 @@ lines <span class="token operator">=</span> <span class="token builtin">file</sp
 <span class="token comment"># Write a line to the file</span>
 <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"Hello, World!\n"</span><span class="token punctuation">)</span>
 </code></pre><h3 id="closing-a-file">Closing a File </h3>
+<p><a href="#top">Top</a></p>
 <p>Always close a file after you’re done with it using the <code>close()</code> method to free up system resources.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token builtin">file</span><span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre><h3 id="using-with-statement">Using ‘with’ Statement </h3>
+<p><a href="#top">Top</a></p>
 <p>A better practice is to use the ‘<code>with</code>’ statement, which ensures the file is properly closed even if an error occurs.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"example.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
     content <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre><h3 id="reading-and-writing-binary-files">Reading and Writing Binary Files </h3>
+<p><a href="#top">Top</a></p>
 <p>You can read and write binary files by specifying the ‘<code>b</code>’ mode.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"binary_data.bin"</span><span class="token punctuation">,</span> <span class="token string">"rb"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> binary_file<span class="token punctuation">:</span>
     data <span class="token operator">=</span> binary_file<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -517,6 +533,7 @@ lines <span class="token operator">=</span> <span class="token builtin">file</sp
 <span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"new_binary_data.bin"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> new_binary_file<span class="token punctuation">:</span>
     new_binary_file<span class="token punctuation">.</span>write<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
 </code></pre><h3 id="handling-exceptions">Handling Exceptions </h3>
+<p><a href="#top">Top</a></p>
 <p>When working with files, it’s important to handle exceptions, especially if the file may not exist.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
     <span class="token keyword keyword-with">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"file.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
@@ -525,17 +542,21 @@ lines <span class="token operator">=</span> <span class="token builtin">file</sp
     <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"The file does not exist."</span><span class="token punctuation">)</span>
 </code></pre><p>Python’s file operations make it easy to work with text and binary files, which is essential for tasks such as data reading, writing, and processing. Always remember to close files properly to avoid resource leaks.</p>
 <h2 id="package-management">Package Management </h2>
+<p><a href="#top">Top</a></p>
 <p>Python package management involves installing, managing, and using external libraries or packages in your Python projects. The most common tool for package management in Python is <code>pip</code>. Here are some key operations:</p>
 <h3 id="installing-packages">Installing Packages </h3>
+<p><a href="#top">Top</a></p>
 <p>You can install packages from the Python Package Index (PyPI) using <code>pip</code>. Simply provide the package name as an argument.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> package_name
 </code></pre><p>Example:</p>
 <p>The following command will install the popular <code>numpy</code> package.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> numpy
 </code></pre><h3 id="listing-installed-packages">Listing Installed Packages </h3>
+<p><a href="#top">Top</a></p>
 <p>You can list all the packages installed in your Python environment using <code>pip list</code>.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip list
 </code></pre><h3 id="creating-a-requirementstxt-file">Creating a <code>requirements.txt</code> File </h3>
+<p><a href="#top">Top</a></p>
 <p>A <code>requirements.txt</code> file lists all the packages your project depends on, making it easy to recreate your project’s environment on another system.</p>
 <p>Create the file:</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip freeze <span class="token operator">&gt;</span> requirements.txt
@@ -543,17 +564,23 @@ lines <span class="token operator">=</span> <span class="token builtin">file</sp
 <pre data-role="codeBlock" data-info="text" class="language-text text"><code>requests==2.26.0
 flask==2.1.1
 numpy==1.21.0
-</code></pre><h3 id="installing-packages-from-a-requirementstxt-file">Installing Packages from a <code>requirements.txt</code> File </h3>
+</code></pre><blockquote>
+<p>Note: the version number is optional. You don’t need to define the version numbers unless your implementation only works with a specific version of 3rd party libraries.</p>
+</blockquote>
+<h3 id="installing-packages-from-a-requirementstxt-file">Installing Packages from a <code>requirements.txt</code> File </h3>
+<p><a href="#top">Top</a></p>
 <p>To install packages listed in a <code>requirements.txt</code> file, use the <code>-r</code> flag.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> <span class="token parameter variable">-r</span> requirements.txt
 </code></pre><p>This installs all the packages listed in the file.</p>
 <p>Python package management is crucial for utilizing external libraries and packages to enhance the functionality of your Python projects. Using <code>pip</code> and <code>requirements.txt</code> files simplifies the process of package installation and project environment management.</p>
 <h1 id="further-reading">Further Reading </h1>
+<p><a href="#top">Top</a></p>
 <ul>
 <li><a href="https://docs.python.org/3/tutorial/">Python Tutorial</a></li>
 <li><a href="https://wiki.python.org/moin/BeginnersGuide/Programmers">More Python Resources</a></li>
 </ul>
 <h1 id="you-task">You Task </h1>
+<p><a href="#top">Top</a></p>
 <p><strong>Task 1: Prime Number Calculation</strong></p>
 <ul>
 <li>Write a function to calculate prime numbers between 2 and <code>N</code>, where <code>N</code> is the input parameter.</li>
@@ -583,8 +610,10 @@ numpy==1.21.0
 </li>
 </ul>
 <h2 id="submit-your-code">Submit Your Code </h2>
+<p><a href="#top">Top</a></p>
 <p>You can submit a pull request to the original repository to showcase your work if you like.</p>
 <h3 id="the-repository">The Repository </h3>
+<p><a href="#top">Top</a></p>
 <p><strong>Fork the repository</strong> (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.</p>
 <p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python.git</strong></a></p>
 
