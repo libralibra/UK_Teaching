@@ -16,13 +16,43 @@ Reveal.initialize({
     // 2. wait for block in speaker mode fix
     plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,
         RevealMenu, RevealChalkboard, RevealCustomControls, Verticator,
-        RevealMath.KaTeX, RevealPointer, RevealMermaid, Appearance],
+        RevealMath.KaTeX, RevealPointer, RevealMermaid, Appearance, CopyCode],
 
     // old style plugins
     dependencies: [
         // ace live code editor 
         { src: '../../../assets/plugin/ace/ace.js' }
     ],
+
+    copycode: {
+        // "always"|"hover"
+        button: "always",
+        // "text"|"icons"|"both"
+        display: "icons",
+        // text before and after copying
+        text: {
+            copy: "Copy",
+            copied: "Copied!"
+        },
+        // revert back to copy text 
+        timeout: 1000,
+        // copy plain text rather than rich text
+        plaintextonly: true,
+        // copy button style
+        style: {
+            copybg: "orange", // Any CSS color, hex, named etc.
+            copiedbg: "green",
+            copycolor: "black",
+            copiedcolor: "white",
+            copyborder: "", // e.g. "1px solid blue"
+            copiedborder: "",
+            scale: 1,
+            offset: 0, // in em units
+            radius: 0  // in em units
+        },
+        // show tooltip while hover
+        tooltip: true,
+    },
 
     ace: {
         // Event is triggered when a new editor is created.

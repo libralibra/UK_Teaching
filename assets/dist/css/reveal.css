@@ -281,6 +281,12 @@ darkpurple {
 
 /* half out text */
 
+/* like list items */
+.like-li::before {
+    content: "➤";
+    color: #00ffd5;
+}
+
 /* hidden titles or other items */
 .hidden {
     position: absolute !important;
@@ -440,7 +446,7 @@ darkpurple {
 .reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-numbers):hover,
 .reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-numbers):hover {
     background-color: #736767;
-    color: cyan;
+    /* color: cyan; */
 }
 
 .reveal table:not(.hljs-ln-line) tr:not(.highlight-line) th:not(.hljs-ln-line),
@@ -3451,7 +3457,7 @@ html.print-pdf .aria-status {
         white-space: pre-wrap !important;
         word-wrap: break-word !important;
         word-break: break-word !important;
-        font-size: 15pt !important;
+        font-size: 25pt !important;
     }
 
     html:not(.print-pdf) .reveal .hljs .hljs-ln-numbers {

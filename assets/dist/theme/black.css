@@ -207,6 +207,12 @@ section.has-light-background h6 {
     margin: 0 0 0 1em;
 }
 
+/* change the list item symbol colour only */
+.reveal li::marker {
+    /* content: "➤"; */
+    color: #00ffd5;
+}
+
 .reveal ol {
     list-style-type: decimal;
 }
@@ -219,12 +225,6 @@ section.has-light-background h6 {
 .reveal ul ul {
     /* list-style-type: square; */
     list-style-type: "➣";
-
-}
-
-/* change the list item symbol colour only */
-.reveal li::marker {
-    color: #00ffd5;
 }
 
 .reveal ul ul ul {
@@ -313,12 +313,12 @@ section.has-light-background h6 {
     font-weight: bold;
 }
 
-/* .reveal table th,
+.reveal table th,
 .reveal table td {
     text-align: left;
     padding: 0.2em 0.5em 0.2em 0.5em;
     border: 1px solid;
-} */
+}
 
 .reveal table th[align=center],
 .reveal table td[align=center] {
@@ -330,10 +330,10 @@ section.has-light-background h6 {
     text-align: right;
 }
 
-/* .reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
     border-bottom: none;
-} */
+}
 
 .reveal sup {
     vertical-align: super;

@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Classical Artificial Intelligence'],
+                ['coursecode', 'COMP712'],
+                ['week', '11'],
+                ['topic', ' - Data Science with Python'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <!-- pdf printing by showing a corner strip+
+                    put pdf button before anything else, as the z-index makes sure later elements has a 
+                    higher z-index than those before. In overview mode, the slides should be in the front.
+                -->
+        <div class="pdf_div">
+            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_title">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="chap_intro_python">
+                    <section id="install_python_title">
+                        <h1 class="r-frame-text">Installing Python</h1>
+                    </section>
+
+                    <section id="windows">
+                        <h1>Installing Python for Windows</h1>
+                        <ul>
+                            <li>Python website: <a href="https://www.python.org" target="_blank">https://www.python.org></a></li>
+                            <li>Download the Windows <span class="cyan">x64</span> installer</li>
+                            <li>Make sure to enable '<span class="lightpurple">Add Python to PATH</span>' when installing</li>
+                            <li class="smalltext italic gray">Note: The latest version on the website is recommended unless you have a specific reason, such as certain 3rd-party libraries that only work with a particular version of Python.</li>
+                        </ul>
+                    </section>
+
+                    <section id="other_os">
+                        <h1>Getting Python for Other OSes</h1>
+                        <ul>
+                            <li>Mac OSX:
+                                <ul>
+                                    <li>Comes with an outdated version of Python, not recommend</li>
+                                    <li>Download the latest version from <a href="https://www.python.org" target="_blank">https://www.python.org></a>, or install using <code class="lime">homebrew</code></li>
+                                </ul>
+                            </li>
+                            <li>Linux:
+                                <ul>
+                                    <li>May come pre-installed depending on your selection of distros</li>
+                                    <li>If not, check the package manager of your distribution</li>
+                                    <li class="grey">Note: some distros do separate <code class="lightblue">py2</code> and <code class="lightred">py3</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="ide">
+                        <h1>Choosing and IDE</h1>
+                        <ul>
+                            <li><span class="lightblue">IDLE</span>: Integrated Development and Learning Environment
+                                <ul>
+                                    <li>Comes with Python by default</li>
+                                    <li>"Basic" functionalities: syntax highlighting, limited autocomplete</li>
+                                </ul>
+                            </li>
+                            <li><span class="lightpurple">Visual Studio Code</span>: free and open-source, cross-platform, general purpose IDE
+                                <ul>
+                                    <li>Download: <a href="https://code.visualstudio.com/Download" target="_blank">https://code.visualstudio.com/Download</a></li>
+                                    <li>Python extension among others</li>
+                                    <li>Useful features: enhanced syntax highlighting, autocomplete, auto importing, linting, basic debugging, etc.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="ide_2">
+                        <h1>Choosing and IDE (cont.)</h1>
+                        <ul>
+                            <li><span class="lightorange">PyCharm</span>: free and open-source, cross-platform IDE made for Python
+                                <ul>
+                                    <li>Download: <a href="https://www.jetbrains.com/pycharm/" target="_blank">https://www.jetbrains.com/pycharm/</a></li>
+                                    <li>Sign up for an educational account at <a href="https:
+                                                                //www.jetbrains.com/community/education/" target="_blank">https:
+                                            //www.jetbrains.com/community/education/</a> to get the Professional version for free </li>
+                                    <li>Fully features: advanced debugging, package management</li>
+                                </ul>
+                            </li>
+                            <li><span class="lightpink">SPyder IDE</span>: Scientific Python Development Environment
+                                <ul>
+                                    <li>Download: <a href="https://www.spyder-ide.org/" target="_blank">https://www.spyder-ide.org/</a></li>
+                                    <li>Free and open-source with plugins</li>
+                                    <li>Written in Python, for Python developers</li>
+                                    <li>Matlab-like GUI, pre-installed with Anaconda</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="running_python_code">
+                        <h1>How to run Python code?</h1>
+                        <ol>
+                            <li>Write code to a <code>.py</code> file and run it</li>
+                            <li>Type code into the interactive interpreter directly (e.g. IDLE, IPython)</li>
+                            <li>use a more advanced interactive environment like Jupyter Notebook</li>
+                        </ol>
+                    </section>
+
+                    <section id="package_management">
+                        <h1>Package Management</h1>
+                        <ul>
+                            <li>Python has many useful <span class="lightcyan">packages</span> available</li>
+                            <li>Can be installed using <code class="lime">pip</code></li>
+                            <li>From the command line: <code class="gray">pip install ...</code></li>
+                            <li>In PyCharm: <dd><code>File</code> $\implies$ <code>Settings</code> $\implies$ <code>Project</code> $\implies$ <code>Python Interpreter</code></dd>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_python_basics">
+                    <section id="python_basic_title">
+                        <h1 class="r-frame-text">Python Basics</h1>
+                    </section>
+
+                    <section id="hello_world">
+                        <h1>Hello World</h1>
+                        <pre>
+                            <code class="python">print('Hello world!')
+                            </code></pre>
+                        <ul>
+                            <li>Code does not have to be inside a class or function</li>
+                            <li>No semicolons</li>
+                            <li>String laterals starts and ends with <code>'</code>, <code>"</code>,<code>'''</code>, or <code>"""</code></li>
+                            <li><code class="lightcyan">print</code> is a built-in function</li>
+                        </ul>
+                    </section>
+
+                    <section id="comments">
+                        <h1>Comments</h1>
+                        <pre><code class="python"># This is a comment line
+# No block comment command
+# Multi-line comment works in the same way as a single line comment
+                        </code></pre>
+                    </section>
+
+                    <section id="variables">
+                        <h1>Variables</h1>
+                        <pre><code class="python">a = 1
+b = 2
+c = a + b
+                        </code></pre>
+                        <p class="like-li">Variables doesn't need to be declared</li>
+                    </section>
+
+                    <section id="variables_2">
+                        <h1>Variables</h1>
+                        <pre><code class="python">x = 7
+x = 12.30
+x = "Hello"
+x = True
+                        </code></pre>
+                        <p class="like-li">Variables can hold values of any type</p>
+                    </section>
+
+                    <section id="if">
+                        <h1><code>if</code> Statement</h1>
+                        <pre><code class="python">if 0 < x < 40:
+    print('Fail')
+elif x < 60:
+    print('Pass')
+elif x < 70:
+    print('Merit')
+elif x <= 100:
+    print('Distinction')
+else:
+    print('Wrong number')</code></pre>
+                        <ul>
+                            <li><span class="purple">Indentation</span> matters - the biggest feature of Python!</li>
+                            <li>Note the <span class="lime">colons</span> and the lack of <span class="skyblue">parentheses</span></li>
+                            <li>Note the <code class="lightred">elif</code> - the shorthand of <code class="lightblue">else</code></li>
+                            <li>Note the syntax of <code class="orange">0 < x < 40</code></li>
+                        </ul>
+                    </section>
+
+                    <section id="list">
+                        <h1>List</h1>
+                        <pre><code class="python">data = ['apple', 2, 3.5, False]
+print(data[0])
+data[-1] = 6
+                        </code></pre>
+                        <ul>
+                            <li>Can store values of <span class="lightred">any</span> type within <code class="lightred bold">[]</code></li>
+                            <li>Compare to c-style languages: <code class="c++">int a[2]; int b[2][3];</code></li>
+                            <li><span class="lightblue">One of the most</span>, if not the most, important data types in Python.</li>
+                            <li>Can use <code class="lightpink">negative</code> index (counting from right to left starting with -1)</li>
+                        </ul>
+                    </section>
+
+                    <section id="dict">
+                        <h1>Dictionary</h1>
+                        <pre><code class="python">data = {'name': 'Alice',
+        'age': 19, 
+        'courses': ['COMP201','COMP270'], 
+        'score': 66.8}
+print(data['name'])
+data['age'] = 20
+                        </code></pre>
+                        <ul>
+                            <li>Another important data type in Python defined by <code class="lightpurple bold">{}</code></li>
+                            <li>Items in <code class="lime">dict</code> are ordered, changeable, and no duplicates</li>
+                            <li>Very useful for storing <code class="lightblue">key:value</code> pairs</li>
+                        </ul>
+                    </section>
+
+                    <section id="for">
+                        <h1><code>for</code> Loop</h1>
+                        <pre><code class="python">for x in data:
+    print(x)
+                        </code></pre>
+                        <p class="like-li">Works like <code class="lime">foreach</code> in C# or JavaScript</p>
+                        <div class="fragment">
+                            <pre><code class="python">for i in range(5):
+    print(i)
+                            </code></pre>
+                            <ul>
+                                <li><code class="lightgreen">range(n)</code> returns the numbers in the range of <code class="lightgreen">$[0,n)\> or\> [0,n-1]$</code></li>
+                                <li>The other way of a <code class="lightpink">for</code> loop using index</li>
+                                <li>Python doesn't have the C-style <code>for</code> loop (<code class="lightskyblue">for(int i=0;i<10;i++)...</code>)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="function">
+                        <h1>Function</h1>
+                        <pre><code class="python">def add(a, b):
+    return a + b
+                        </code></pre>
+                        <pre><code class="python">def foo(txt):
+    print('The input information is:', txt)
+                        </code></pre>
+                        <ul>
+                            <li>Use keyword <code class="lime">def</code> to define a function</li>
+                            <li>Can return <span class="lightpink">any</span> value (<code>int, float, string, list, dict, ...</code>) or <span class="lightpurple">nothing</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="function_2">
+                        <h1>Function</h1>
+                        <pre><code class="python">def add(a, b):
+    return a + b 
+
+print(add(5, 8))
+
+f = add 
+print(f(10, 20))
+                        </code></pre>
+                        <pre><code class="python">x = lambda a, b: a + b 
+print(x(2, 5))
+                        </code></pre>
+                        <ul>
+                            <li>Functions are values - can be assigned to variables</li>
+                            <li>Use <code class="lime">lambda</code> to define anonymous functions</li>
+                        </ul>
+                    </section>
+
+                    <section id="class">
+                        <h1>Class</h1>
+                        <pre><code class="python">class Adder:
+    def __init__(self, a, b):
+        self.a = a 
+        self.b = b 
+    
+    def add(self): 
+        return self.a + self.b 
+                        </code></pre>
+                        <ul>
+                            <li><code class="lime">__init__</code> is the constructor - must-have for any <code class="lightred">class</code></li>
+                            <li><code class="lightpink">self</code> is equivalent to <code class="lightpurple">this</code></li>
+                            <li><code class="lightblue">self</code> has to be referred <lightorange>explicitly</lightorange> - different from <code class="lightcyan">this</code>
+                                <dd>- <code class="lightblue">self</code> must be the <code class="lightred">first</code> parameter of any method/function</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="list_comprehension">
+                        <h1>List Comprehension</h1>
+                        <pre><code class="python">data = [2, 4, 5, 6, 15, 20, 36]
+square_data = [x*x for x in data]
+less_than_20 = [x for x in data if x < 20]
+double_if_greater_than_20 = [x*2 for x in data if x >= 20]
+                        </code></pre>
+                        <ul>
+                            <li>Python's be-loved syntactic sugar (<code class="lime">dict</code> has a very similar usage)</li>
+                            <li>Provide a shorthand for <code class="lightorange">loop</code></li>
+                            <li>Follow the form of the mathematical set-build notation</li>
+                            <li>Similar to <code class="pink">LINQ</code> queries in C#</li>
+                        </ul>
+                    </section>
+
+                    <section id="python_c">
+                        <h1>Python vs. Other Languages</h1>
+                        <ul>
+                            <li>Python has so many advantages, but someone may criticise its speed
+                                <dd>- long history of the battle between <code class="lightred">compiled</code> vs. <code class="lightcyan">interpreted</code> languages</dd>
+                            </li>
+                            <li>External libraries written in C/C++ are widely available for intensive calculations</li>
+                            <li>Python interpreter can be embedded within a C/C++ program</li>
+                        </ul>
+                    </section>
+
+                    <section id="libs">
+                        <h1>Useful Libraries</h1>
+                        <ul>
+                            <li><code class="lightred">NumPy</code>: offers efficient mathematical functions to deal with large, multi-dimensional array calculations</li>
+                            <li><code class="lightpurple">Scipy</code>: enhances NumPy's scientific capabilities by providing additional functionalities for optimisation, statistical tasks, and more.</li>
+                            <li><code class="lightpink">Pandas</code>: an intuitive and powerful data manipulation, modelling and analysis library for structured data</li>
+                            <li><code class="lightorange">Matplotlib</code>: a comprehensive 2D/3D plotting and data visualisation library for Python</li>
+                            <li>Various libraries for machine learning like <code class="lightcyan">PyTorch</code> and <code class="lightgreen">TensorFlow</code>, which will be covered in COMP714</li>
+                        </ul>
+                    </section>
+
+                    <section id="pygame">
+                        <h1>Pygame</h1>
+                        <ul>
+                            <li>Cross-platform Python modules for game development</li>
+                            <li>Includes features for managing multimedia elements using SDL (Simple DirectMedia Layer)</li>
+                            <li>Provides functionality for capturing and responding to user input</li>
+                            <li>Allows low-level control over the game loop</li>
+                        </ul>
+                    </section>
+
+                    <section id="main_loop">
+                        <h1>The Main Game Loop</h1>
+                        <p class="left">Most main loops in games follow the same basic pattern:</p>
+                        <pre><code class="pascal">repeat
+    handle events
+    update game state
+    draw graphics
+    maintain frame rate
+    swap buffers
+until "quit" signal received
+
+                        </code></pre>
+                    </section>
+
+                    <section id="python_console">
+                        <h1>Interactive Python Console</h1>
+                        <iframe class="img-height-400 img-width-800" src="https://jupyterlite.github.io/demo/repl/?toolbar=1&kernel=python&code=import%20numpy%20as%20np" frameborder="0"></iframe>
+                        <p class="tinytext">A WebAssembly-powered Python kernel borrowed from <a href="https://numpy.org/" target="_blank">NumPy</a><br>
+                            Click "<code class="cyan bigtext">&#9658;</code>" on the top-left corner or hit <code class="lightcyan">SHIFT+ENTER</code> to execute code<br>
+                            Support <code class="lightcyan">TAB</code> for code completion
+                        </p>
+                    </section>
+                </section>
+
+                <section id="questions">
+                    <h2><span class="bold purple">Questions?</span></h2>
+                    <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                    <h5>Email: <a class="emaillink"></a></h5>
+                    <span class="office cyan"></span>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings using document.write() -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

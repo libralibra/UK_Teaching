@@ -45,6 +45,9 @@ document.write(`
 <!-- mermaid flowchart -->
 <script src="../../../assets/plugin/mermaid/mermaid.js"></script>
 
+<!-- copy code -->
+<script src="../../../assets/plugin/copycode/copycode.js"></script>
+
 <!-- reveal initialisation -->
 <script id="reveal_init" src="../../../assets/dist/js/init.js"></script>
 

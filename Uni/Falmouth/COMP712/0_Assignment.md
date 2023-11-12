@@ -9,6 +9,9 @@ Games Academy, Falmouth University
 v 0.1 (2023-2024)
 
 ---
+
+<div id="top" style="visibility: hidden;"></div>
+
 # Table of Contents
 - [Portfolio of AI Instances](#portfolio-of-ai-instances)
 - [Table of Contents](#table-of-contents)
@@ -22,7 +25,7 @@ v 0.1 (2023-2024)
 
 
 ## Introduction
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 Artificial Intelligence (AI) plays a crucial role in nearly all types of games, with various genres relying on advanced AI techniques. The application of AI extends to the control of non-player characters, presenting diverse challenges based on the game type. For instance, enemy AI in a realistic stealth game differs significantly from that in an arcade shooter, which, in turn, varies from a racing game. Additionally, AI finds applications in adversaries within board, card, or strategy games, procedural content generators, procedural narrative engines, assistive technologies, AI "directors," and numerous other areas.
 
@@ -34,7 +37,7 @@ For this assignment, your objective is to **design** and **implement** a portfol
 The format of these instances is flexible and can be tailored to your preference. They could be standalone, purpose-built demo applications, or components integrated into larger, existing projects. Whether they take the form of playable game experiences, non-interactive demonstrations, or tools designed for game developers (either standalone or integrated into a game engine) is entirely up to you. They might be individual works or components of a unified artifact. The implementation can leverage various technologies, programming languages, platforms, and third-party libraries deemed suitable. However, it is essential that they showcase your understanding of the employed AI techniques and demonstrate your capability to develop robust and maintainable software systems. 
 
 ## Assignment Breakdown
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 This assignment is divided into various sections:
 
@@ -68,12 +71,12 @@ This assignment is divided into various sections:
 >**Note**: You are encouraged to write proposals for both AI instances, although they will not be formally assessed. Planning your projects in advance and seeking feedback from both the tutor and peers is considered good practice.
 
 ## Assignment Guidelines
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 This programming task does not come with a predefined GitHub repository. You are expected to utilise version control, selecting the platform and repository that best suits your project. Remember to adjust the `.gitignore` file (or its equivalent in other version control systems) to exclude temporary build files from the repository.
 
 ### Submission Structure
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 1. **Formative Submissions**
    - There are **two formative submissions** throughout the assignment.
@@ -89,7 +92,7 @@ This programming task does not come with a predefined GitHub repository. You are
 >**Note**: Always refer to the course handbook for comprehensive details on university policies and guidelines.
 
 ## Project Implementation Guidelines
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 1. **Scope and Feasibility**
    - Avoid underestimating the effort required for even seemingly simple software; carefully consider project **scope** from the proposal stage.
@@ -125,7 +128,7 @@ This programming task does not come with a predefined GitHub repository. You are
 >**Note**: Please refer to the marking rubric for more detailed information regarding the criteria.
 
 ## Marking Rubic
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 | Criteria               	| Weight 	| Near Pass                                                                                                                                                                                                                  	| Pass                                                                                                                                                                                                          	| Merit                                                                                                                                                                                                                                                               	| Distinction                                                                                                                                                                                                                                                                                                            	|
 |------------------------	|--------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -137,7 +140,7 @@ This programming task does not come with a predefined GitHub repository. You are
 *The above table was generated on <a href="https://www.tablesgenerator.com/markdown_tables" target="_blank">https://www.tablesgenerator.com/markdown_tables</a>
 
 ## FAQ
-<a href="#">Top</a>
+<a href="#top">Top</a>
 
 1. **Q: What is the deadline of this assignment?**
    **A**: _<a href="https://myfalmouth.falmouth.ac.uk/" target="_blank">MyFalmouth</a>_ system is the only place where you should be able to find all deadline information according to the requirements and the policies of Falmouth University.
