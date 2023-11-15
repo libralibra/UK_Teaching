@@ -35,10 +35,6 @@
     </head>
 
     <body>
-        <!-- pdf printing by showing a corner strip+
-                    put pdf button before anything else, as the z-index makes sure later elements has a 
-                    higher z-index than those before. In overview mode, the slides should be in the front.
-                -->
         <div class="pdf_div">
             <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
         </div>
@@ -57,6 +53,16 @@
                             <span class="fullname cyan"></span> <br>
                             <span class="uni"></span> v. <span class="year"></span>
                         </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Planning: a brief revisit </li>
+                            <li>Planning: the planning problem</li>
+                            <li>Stanford Research Institute Problem Solver: the STRIPS tool</li>
+                            <li>Goal Oriented Action Planning: GOAP property, applications, vs. BT</li>
+                        </ul>
                     </section>
                 </section>
 

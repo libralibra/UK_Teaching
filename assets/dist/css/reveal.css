@@ -437,32 +437,46 @@ darkpurple {
     background-color: rgb(153, 255, 153);
 }
 
-.reveal table:not(.hljs) tr:not(.highlight-line) td:not(.hljs-ln-line):hover,
-.reveal table:not(.hljs) tr:not(.highlight-line) th:not(.hljs-ln-line):hover,
-.reveal table:not(.hljs) tr:not(.highlight-line) td:not(.hljs-ln-numbers):hover,
-.reveal table:not(.hljs) tr:not(.highlight-line) th:not(.hljs-ln-numbers):hover,
-.reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-line):hover,
-.reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-line):hover,
-.reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-numbers):hover,
-.reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-numbers):hover {
-    background-color: #736767;
-    /* color: cyan; */
+/* increase the table width */
+.reveal table.hljs,
+.reveal table.hljs-ln {
+    width: 90% !important;
 }
 
-.reveal table:not(.hljs-ln-line) tr:not(.highlight-line) th:not(.hljs-ln-line),
-.reveal table:not(.hljs-line-number) tr:not(.highlight-line) td:not(.hljs-ln-line),
-.reveal table:not(.hljs-ln) tr:not(.highlight-line) th:not(.hljs-ln-line),
-.reveal table:not(.hljs-ln) tr:not(.highlight-line) td:not(.hljs-ln-line) {
+/* make sure the code is left-aligned */
+.reveal table.hljs td,
+.reveal table.hljs-ln td {
+    text-align: left !important;
+}
+
+/* if it's not code, show border */
+.reveal table:not(.hljs-ln) td {
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    border: 1px solid !important;
+}
+
+/* line number background */
+.reveal td.hljs-ln-line.hljs-ln-numbers {
+    background-color: #363535 !important;
+    width: 20px !important;
+    text-align: right !important;
+}
+
+.reveal table:not(.hljs-ln) td:hover {
+    background-color: #3c3636;
+}
+
+/* .reveal td:not(.hljs-ln-line .hljs-ln-code),
+.reveal td:not(.hljs-ln-line .hljs-ln-numbers) {
     padding: 0.2em 0.5em 0.2em 0.5em;
     border: 1px solid;
     vertical-align: middle;
-}
+} */
 
-.reveal table:not(.hljs) tr:not(.highlight-line):first-child th,
-.reveal table:not(.hljs-ln) tr:not(.highlight-line):first-child th {
+.reveal tr:not(.highlight-line):first-child th {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border-bottom: 2px dashed;
+    border-bottom: 4px double;
     padding: 10px;
     vertical-align: middle;
 }
@@ -1132,12 +1146,12 @@ html.print-pdf body {
 .reveal pre {
     display: block;
     position: relative;
-    width: 90%;
+    width: 100%;
     margin: 20px auto;
-    text-align: left;
-    font-size: 0.55em;
+    text-align: left !important;
+    font-size: 0.9em !important;
     font-family: monospace;
-    line-height: 1.2em;
+    line-height: 1.1em;
     word-wrap: break-word;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
 }
@@ -3310,7 +3324,7 @@ html.print-pdf .aria-status {
     html:not(.print-pdf) .reveal li,
     html:not(.print-pdf) .reveal p,
     html:not(.print-pdf) .reveal td {
-        font-size: 20pt !important;
+        font-size: 32pt !important;
         color: #000 !important;
     }
 
@@ -3457,7 +3471,7 @@ html.print-pdf .aria-status {
         white-space: pre-wrap !important;
         word-wrap: break-word !important;
         word-break: break-word !important;
-        font-size: 25pt !important;
+        font-size: 30pt !important;
     }
 
     html:not(.print-pdf) .reveal .hljs .hljs-ln-numbers {

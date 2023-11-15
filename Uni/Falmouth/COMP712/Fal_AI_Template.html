@@ -35,10 +35,6 @@
     </head>
 
     <body>
-        <!-- pdf printing by showing a corner strip+
-                    put pdf button before anything else, as the z-index makes sure later elements has a 
-                    higher z-index than those before. In overview mode, the slides should be in the front.
-                -->
         <div class="pdf_div">
             <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
         </div>
@@ -1213,9 +1209,54 @@ Reveal.on( 'customevent', function() {
                 </section>
 
                 <section>
+                    <h1>ACE Live Editor</h1>
                     <iframe class="ace" width=600 height=500 data-onchange="console.log(editor.getValue())">
                         Hello World!
                     </iframe>
+                </section>
+
+                <section id="mermaid_example">
+                    <h1>Mermaid Example</h1>
+                    <div class="mermaid">
+                        <pre>
+                            %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                            graph TD
+                            A(Current Position) -- Move A --> B(PA)
+                            A(Current Position) -- Move B --> C(PB)
+                            A(Current Position) -- Move C --> D(PD)
+                            C -. playout policy .-> E(Terminal: win=1, lose=0)
+                            E -- Reward for Move B --> C
+                        </pre>
+                    </div>
+                </section>
+
+                <section id="mermaid_example_2">
+                    <h1>Mermaid with Subgraph</h1>
+                    <div class="mermaid">
+                        <pre>
+                            %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                            graph TD
+                            A[(Blackboard)]
+                            B[Sequence]
+                            C[Find closest enemy] 
+                            D[Attach]
+                            subgraph Action
+                            B --> C 
+                            B --> D 
+                            end
+                            C -- Save coordinates --> A 
+                            A -- Read coordinates --> D
+                        </pre>
+                    </div>
+                </section>
+
+                <section id="python_console">
+                    <h1>Interactive Python Console</h1>
+                    <iframe class="img-height-400 img-width-800" src="https://jupyterlite.github.io/demo/repl/?toolbar=1&kernel=python&code=import%20numpy%20as%20np" frameborder="0"></iframe>
+                    <p class="tinytext">A WebAssembly-powered Python kernel borrowed from <a href="https://numpy.org/" target="_blank">NumPy</a><br>
+                        Click "<code class="cyan bigtext">&#9658;</code>" on the top-left corner or hit <code class="lightcyan">SHIFT+ENTER</code> to execute code<br>
+                        Support <code class="lightcyan">TAB</code> for code completion
+                    </p>
                 </section>
 
             </div>

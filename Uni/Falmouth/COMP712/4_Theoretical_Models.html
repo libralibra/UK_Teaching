@@ -58,6 +58,15 @@
                             <span class="uni"></span> v. <span class="year"></span>
                         </p>
                     </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Game Theory: concept, payoff matrix, Nash Equilibrium, example</li>
+                            <li>Markov Decision Problem: definition, property, applications</li>
+                            <li>Minimax Search: what is it, how does it work, examples</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="chap_game_theory">
@@ -577,7 +586,7 @@
                     <!-- this need to be fixed urgently, otherwise, it's painful to include code in the slide deck -->
                     <section id="pseudo_code">
                         <h1>Minimax Search Pseudo Code</h1>
-                        <pre><code class="r-stretch vbnet">procedure MINIMAX(state, currentPlayer)
+                        <pre><code class="r-stretch vbnet" data-line-numbers="|2-3|4-9|10-15">procedure MINIMAX(state, currentPlayer)
     if state == terminal then
         return game over
     else if currentPlayer == 1 then
@@ -586,7 +595,7 @@
             v = MINIMAX(nextState, 3-currentPlayer)
             bestValue = MAX(bestValue, v)
         return bestValue
-    else if currentPlayer == 1 then
+    else if currentPlayer == 2 then
         bestValue = +&infin;
         for each possible nextState do
             v = MINIMAX(nextState, 3-currentPlayer)

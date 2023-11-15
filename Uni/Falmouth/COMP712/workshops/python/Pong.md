@@ -1,4 +1,16 @@
+<style>
+    table, tr, td { border: none !important; }
+</style>
+<table align="left">
+    <tr>
+        <td><img src="../../../../Falmouth/common/ga.png" alt="Game Academy" align="left"></td>
+        <td> <img src="../../../../Falmouth/common/logo_white.png" alt="Falmouth University" align="right"></td>
+    </tr><br>
+</table><br><br>
+
 # COMP712: Classical Artificial Intelligence 
+
+# Workshop: Pong Game Implementation
 
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
@@ -9,8 +21,9 @@ Dr Daniel Zhang @ Falmouth University\
 
 # Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
-- [Table of Contents](#table-of-contents)
 - [Workshop: Pong Game Implementation](#workshop-pong-game-implementation)
+- [Table of Contents](#table-of-contents)
+- [Workshop: Pong Game Implementation](#workshop-pong-game-implementation-1)
 - [The Repository](#the-repository)
 - [Game Play](#game-play)
 - [Game Controls](#game-controls)

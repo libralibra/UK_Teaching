@@ -1,3 +1,13 @@
+<style>
+    table, tr, td { border: none !important; }
+</style>
+<table align="left">
+    <tr>
+        <td><img src="../../../../Falmouth/common/ga.png" alt="Game Academy" align="left"></td>
+        <td> <img src="../../../../Falmouth/common/logo_white.png" alt="Falmouth University" align="right"></td>
+    </tr>
+</table><br><br>
+
 # COMP712: Classical Artificial Intelligence 
 #  Workshop: Rule-based AI (PAC-MAN Example)
 

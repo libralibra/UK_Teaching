@@ -1,11 +1,17 @@
----
-toc:
-  depth_from: 1
-  depth_to: 6
-  ordered: false
----
+<style>
+    table, tr, td { border: none !important; }
+</style>
+<table align="left">
+    <tr>
+        <td><img src="../../../../Falmouth/common/ga.png" alt="Game Academy" align="left"></td>
+        <td> <img src="../../../../Falmouth/common/logo_white.png" alt="Falmouth University" align="right"></td>
+    </tr><br>
+</table><br><br>
+
 
 # COMP712: Classical Artificial Intelligence 
+
+# Workshop: Python
 
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
@@ -16,7 +22,7 @@ Dr Daniel Zhang @ Falmouth University\
 
 Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
-- [Workshop: Python Tutorial](#workshop-python-tutorial)
+- [Workshop: Python](#workshop-python)
   - [Python Basics](#python-basics)
   - [Installation](#installation)
   - [Data Types](#data-types)
@@ -64,13 +70,10 @@ Table of Contents
     - [The Repository](#the-repository)
 
 
-# Workshop: Python Tutorial
+## Python Basics
 <a href="#top">Top</a>
 
 In addition to our regular teaching sessions, we will be providing workshop materials utilising the Python programming language. These resources will complement the work you do in COMP712.
-
-## Python Basics
-<a href="#top">Top</a>
 
 Python is a lightweight, high-level, open-source, cross-platform, strongly-typed, and interpreted programming language.
 

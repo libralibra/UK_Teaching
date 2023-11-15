@@ -35,10 +35,6 @@
     </head>
 
     <body>
-        <!-- pdf printing by showing a corner strip+
-                    put pdf button before anything else, as the z-index makes sure later elements has a 
-                    higher z-index than those before. In overview mode, the slides should be in the front.
-                -->
         <div class="pdf_div">
             <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
         </div>
@@ -57,6 +53,14 @@
                             <span class="fullname cyan"></span> <br>
                             <span class="uni"></span> v. <span class="year"></span>
                         </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Python Basics: recap of the Python workshop</li>
+                            <li>Towards Machine Learning: useful libraries for ML in the next study blocks</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -204,7 +208,7 @@ x = True
 
                     <section id="if">
                         <h1><code>if</code> Statement</h1>
-                        <pre><code class="python">if 0 < x < 40:
+                        <pre><code class="python" data-line-numbers>if 0 < x < 40:
     print('Fail')
 elif x < 60:
     print('Pass')
@@ -286,15 +290,15 @@ data['age'] = 20
 
                     <section id="function_2">
                         <h1>Function</h1>
-                        <pre><code class="python">def add(a, b):
+                        <pre><code class="python" data-line-numbers="1-2|4|6-7|9-10">def add(a, b):
     return a + b 
 
 print(add(5, 8))
 
 f = add 
 print(f(10, 20))
-                        </code></pre>
-                        <pre><code class="python">x = lambda a, b: a + b 
+
+x = lambda a, b: a + b
 print(x(2, 5))
                         </code></pre>
                         <ul>
@@ -305,7 +309,7 @@ print(x(2, 5))
 
                     <section id="class">
                         <h1>Class</h1>
-                        <pre><code class="python">class Adder:
+                        <pre><code class="python" data-line-numbers="|2-4|6-7|6">class Adder:
     def __init__(self, a, b):
         self.a = a 
         self.b = b 

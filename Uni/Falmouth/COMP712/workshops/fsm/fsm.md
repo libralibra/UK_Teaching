@@ -1,3 +1,14 @@
+<style>
+    table, tr, td { border: none !important; }
+</style>
+<table align="left">
+    <tr>
+        <td><img src="../../../../Falmouth/common/ga.png" alt="Game Academy" align="left"></td>
+        <td> <img src="../../../../Falmouth/common/logo_white.png" alt="Falmouth University" align="right"></td>
+    </tr><br>
+</table><br><br>
+
+
 # COMP712: Classical Artificial Intelligence 
 # Workshop: Finite State Machine (FSM)
 
@@ -129,7 +140,7 @@ The repository below contains the template code of an FSM implementation in Pyth
 
 **Fork the repository** (NOT clone!) and work on your fork. This will enable you to submit a pull request in the end.
 
-[**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git)
+> [**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git)
 
 ### The Code Structure
 <a href="#top">Top</a>

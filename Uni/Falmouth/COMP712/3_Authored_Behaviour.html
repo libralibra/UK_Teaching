@@ -58,6 +58,17 @@
                             <span class="uni"></span> v. <span class="year"></span>
                         </p>
                     </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Agents: definition, types</li>
+                            <li>Environment: what is it, its characteristic</li>
+                            <li>Rule-based AI: pac-man example</li>
+                            <li>Finite State Machine: concept, usage</li>
+                            <li>Behaviour Tree: how does it work, examples</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="chap_agents">
@@ -171,6 +182,10 @@
                 </section>
 
                 <section id="chap_terms">
+                    <section id="environment_title">
+                        <h1 class="r-frame-text">Environment</h1>
+                    </section>
+
                     <section id="env_type">
                         <h1>Environment</h1>
                         <ul>
@@ -457,6 +472,27 @@
                             <li class="fragment">Blackboard can be <span class="purple">local</span> to the AI agent, <span class="golden">shared</span> between several agents, or <span class="yellow">global</span> to all agents</li>
                             <li class="fragment">Note: shared blackboards mean that your AI has "<span class="bold italic lime">telepathy</span>" - this may or may not be desirable!</li>
                         </ul>
+                    </section>
+
+                    <section id="blackboard_example">
+                        <h1>Blackboard Example</h1>
+                        <div class="mermaid">
+                            <pre>
+                                %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                                graph TD
+                                A[(Blackboard)]
+                                B[Sequence]
+                                C[Find closest enemy] 
+                                D[Attack]
+                                subgraph Action
+                                B --> C 
+                                B --> D 
+                                end
+                                C -- Save coordinates --> A 
+                                A -- Read coordinates --> D
+                            </pre>
+                        </div>
+                        <p class="like-li">E.g. you have a node that finds the closest enemy and another one that attacks it.</p>
                     </section>
 
                     <section id="bt_example">

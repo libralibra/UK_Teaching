@@ -268,7 +268,7 @@ section.has-light-background h6 {
     font-style: italic;
 }
 
-.reveal pre {
+/* .reveal pre {
     display: block;
     position: relative;
     width: 90%;
@@ -279,7 +279,7 @@ section.has-light-background h6 {
     line-height: 1.2em;
     word-wrap: break-word;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-}
+} */
 
 .reveal code {
     font-family: var(--r-code-font);
@@ -287,13 +287,13 @@ section.has-light-background h6 {
     tab-size: 2;
 }
 
-.reveal pre code {
+/* .reveal pre code {
     display: block;
     padding: 5px;
     overflow: auto;
     max-height: 400px;
     word-wrap: normal;
-}
+} */
 
 .reveal .code-wrapper {
     white-space: normal;
@@ -330,10 +330,10 @@ section.has-light-background h6 {
     text-align: right;
 }
 
-.reveal table tbody tr:last-child th,
+/* .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
     border-bottom: none;
-}
+} */
 
 .reveal sup {
     vertical-align: super;

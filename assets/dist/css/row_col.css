@@ -302,7 +302,7 @@ section .row *[class*='col-'] {
 
 /*for tables*/
 td {
-    font-size: 0.6em !important;
+    font-size: 0.7em !important;
     text-align: center !important;
 }
 
