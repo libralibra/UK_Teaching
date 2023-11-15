@@ -602,6 +602,7 @@ numpy==1.21.0
 <li>Prompt the user to input a guess and keep track of the number of attempts.</li>
 <li>Provide feedback if the guess is either “too large” or “too small.”</li>
 <li>When the user correctly guesses the number, display the total number of attempts.</li>
+<li>Write the highest score to a file on the dist (the minimal number of guesses).</li>
 </ul>
 </li>
 </ul>
@@ -614,6 +615,7 @@ numpy==1.21.0
 <li>Allow the user a set number of attempts (e.g., 10 to begin with).</li>
 <li>Provide feedback to the user regarding how many digits were guessed correctly and are in the correct positions, as well as how many digits were guessed correctly but are in different positions (correct digits, incorrect positions).</li>
 <li>Continue the game until the specified number of attempts is exhausted and determine the win/loss status.</li>
+<li>Write game status to a file in case the user exit before the guess runs out. This will make the game restartable if the states file presents in the folder.</li>
 </ul>
 </li>
 </ul>

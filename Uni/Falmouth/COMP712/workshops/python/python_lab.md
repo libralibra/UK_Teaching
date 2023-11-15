@@ -66,6 +66,9 @@ Table of Contents
     - [Installing Packages from a `requirements.txt` File](#installing-packages-from-a-requirementstxt-file)
 - [Further Reading](#further-reading)
 - [You Task](#you-task)
+  - [**Task 1: Prime Number Calculation**](#task-1-prime-number-calculation)
+  - [**Task 2: Guess My Number Game**](#task-2-guess-my-number-game)
+  - [**Task 3: Guess The Number Game (Advanced)**](#task-3-guess-the-number-game-advanced)
   - [Submit Your Code](#submit-your-code)
     - [The Repository](#the-repository)
 
@@ -769,26 +772,28 @@ Python package management is crucial for utilizing external libraries and packag
 # You Task
 <a href="#top">Top</a>
 
-**Task 1: Prime Number Calculation**
+## **Task 1: Prime Number Calculation**
    - Write a function to calculate prime numbers between 2 and `N`, where `N` is the input parameter.
 
 ---
 
-**Task 2: Guess My Number Game**
+## **Task 2: Guess My Number Game**
    - Write a script to implement the  [`Guess My Number`](https://www.mathsisfun.com/games/guess_number.html) game:
      - Randomly generate a number within a specified range `[a, b]`.
      - Prompt the user to input a guess and keep track of the number of attempts.
      - Provide feedback if the guess is either "too large" or "too small."
      - When the user correctly guesses the number, display the total number of attempts.
+     - Write the highest score to a file on the dist (the minimal number of guesses).
 
 ---
 
-**Task 3: Guess The Number Game (Advanced)**
+## **Task 3: Guess The Number Game (Advanced)**
    - Write a script to implement a more complex version of the  [`Guess The Number`](https://www.goobix.com/games/guess-the-number/) game:
      - Generate a random 4-digit number where each digit is unique and ranges from 0 to 9.
      - Allow the user a set number of attempts (e.g., 10 to begin with).
      - Provide feedback to the user regarding how many digits were guessed correctly and are in the correct positions, as well as how many digits were guessed correctly but are in different positions (correct digits, incorrect positions).
      - Continue the game until the specified number of attempts is exhausted and determine the win/loss status.
+     - Write game status to a file in case the user exit before the guess runs out. This will make the game restartable if the states file presents in the folder.
 
 ## Submit Your Code
 <a href="#top">Top</a>
