@@ -42,10 +42,14 @@ class ActionNode:
     def __init__(self, name, action_func):
         self.name = name
         self.action_func = action_func
+        self.parent = None
+
+    def set_parent(self, name):
+        self.parent = name
 
     def execute(self):
         status = self.action_func()
-        log(f'action: {self.name} - {status}')
+        log(f'\t action:\t {self.name} - {status}')
         return status
 
 
@@ -53,15 +57,22 @@ class SequenceNode:
     def __init__(self, name, nodes):
         self.name = name
         self.nodes = nodes
+        self.parent = None
+        [x.set_parent(name) for x in self.nodes]
+
+    def set_parent(self, name):
+        self.parent = name
 
     def execute(self):
-        log(f'execute: {self.name}')
+        if not self.parent:
+            log(f'\n======================================== New Tick  ====================================')
+        log(f'\t execute:\t {self.name}')
         for node in self.nodes:
             status = node.execute()
             if status != NodeStatus.SUCCESS:
-                log(f'\t{status}')
+                log(f'\t\t {status}')
                 return status
-        log('\tSUCCESS')
+        log('\t\t SUCCESS')
         return NodeStatus.SUCCESS
 
 
@@ -69,57 +80,79 @@ class SelectorNode:
     def __init__(self, name, nodes):
         self.name = name
         self.nodes = nodes
+        self.parent = None
+        [x.set_parent(name) for x in self.nodes]
+
+    def set_parent(self, name):
+        self.parent = name
 
     def execute(self):
-        log(f'execute: {self.name}')
+        if not self.parent:
+            log(f'\n======================================== New Tick  ====================================')
+        log(f'\t execute:\t {self.name}')
         for node in self.nodes:
             status = node.execute()
             if status != NodeStatus.FAILURE:
-                log(f'\t{status}')
+                log(f'\t\t {status}')
                 return status
-        log('\tFAILURE')
+        log('\t\t FAILURE')
         return NodeStatus.FAILURE
 
 
 class WaitNode:
     def __init__(self, name, wait_s, node) -> None:
         self.name = name
+        self.parent = None
         self.wait_s = wait_s
         self.node = node
         self.time_s = 0
+        node.set_parent(name)
+
+    def set_parent(self, name):
+        self.parent = name
 
     def execute(self):
-        log(f'execute: {self.name}')
+        if not self.parent:
+            log(f'\n======================================== New Tick  ====================================')
+        log(f'\t execute:\t {self.name}')
         if self.time_s < 0:
-            log("\tFAILURE - timer disabled")
+            log("\t\t FAILURE - timer disabled")
             return NodeStatus.FAILURE
         elif self.time_s == 0:
             self.time_s = time.time()
-            log("\tRUNNING - starts timer")
+            log("\t\t RUNNING - starts timer")
             self.node.execute()
             return NodeStatus.RUNNING
         elif time.time()-self.time_s < self.wait_s:
-            log("\tRUNNING - timer is counting")
+            log("\t\t RUNNING - timer is counting")
             self.node.execute()
             return NodeStatus.RUNNING
         else:
             self.time_s = -1
-            log("\tSUCCESS - timer goes off")
+            log("\t\t SUCCESS - timer goes off")
             return NodeStatus.SUCCESS
 
 
 class RepeaterNode:
     def __init__(self, name, number, node):
         self.name = name
+        self.parent = None
         self.number = number
         self.node = node
+        node.set_parent(name)
+
+    def set_parent(self, name):
+        self.parent = name
 
     def execute(self):
-        log('-'*20)
-        log(f'execute: {self.name}')
-        for _ in range(self.number):
+        if not self.parent:
+            log(f'\n========================================== New Tick  ======================================')
+        log('-'*76)
+        log(f'\t execute:\t {self.name}')
+        for i in range(self.number):
+            log(f'\t repeat:\t number {i+1}')
             self.node.execute()
-        log("\tSUCCESS")
+        log("\t\t SUCCESS")
         return NodeStatus.SUCCESS
 
 
@@ -207,7 +240,8 @@ def main_loop():
     many_square = SequenceNode(
         "Draw More Square", [colour_act, new_dir, draw_square])
 
-    wait_root = WaitNode("Wait One Minute", running_time, many_square)
+    wait_root = WaitNode(
+        f"Wait {running_time} Seconds", running_time, many_square)
 
     # draw_line.execute()
     # draw_square.execute()

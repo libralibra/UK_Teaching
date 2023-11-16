@@ -278,14 +278,7 @@ The repository below contains the template code of an Behaviour Tree implementat
 ## Your Task
 <a href="#top">Top</a>
 
-In the folder, you'll find various files, including `demo.pyc`, a compiled version providing a glimpse into the functionality of a complete behaviour tree.
-
-> **Hint**:
-> Implement your code by searching lines of 
-> 
-> ```# >>>>>>>> YOUR CODE HERE <<<<<<<<<<```
->
-> You may want to write helper functions as you need.
+In the folder, you'll find 2 python files `bt_turtle.py` and `demo.pyc`. The `demo.pyc` is a compiled version providing a glimpse into the functionality of a complete behaviour tree.
 
 ### Task 1: Running the demo
 
@@ -296,6 +289,15 @@ Upon forking the repository, you can explore the completed demo by executing the
 This command will trigger the display of informative output in the command line window, illustrating the running process, as shown in the screenshot below.
 
 ![Command Line Output](../behaviour_tree/cmd.png)
+
+You'll be working on the `bt_turtle.py` file. Simply running `python bt_turtle.py` will display the turtle on the screen without any additional setup. Several helper functions have already been provided. Your task is to finalise the implementation of various BT node types and their respective behaviors.
+
+> **Hint**:
+> Implement your code by searching lines of 
+> 
+> ```# >>>>>>>> YOUR CODE HERE <<<<<<<<<<```
+>
+> You may want to write helper functions as you need.
 
 **The Crazy Turtle**
 
@@ -390,13 +392,13 @@ graph TD
 ### Task 3: Draw a square
 <a href="#top">Top</a>
 
-- Finalize the square drawing implementation utilizing a for loop.
+- Finalise the square drawing implementation utilizing a for loop.
 - Complete the definition of the RepeaterNode class and integrate it into the process of drawing the square.
 - Optionally, include an additional header SelectorNode to choose between the two methods. If one method fails, the other can be attempted to ensure proper drawing of the square.
 
 **Force to Visit the Other Branches**
 
-SelectorNode 0, to consistently trigger the first child branch, SequenceNode 1. Consequently, the other two child branches — SequenceNode 2 and ActionNode 4 — remain unvisited.
+`SelectorNode 0` consistently triggers the first child branch `SequenceNode 1`. The other two child branches — `SequenceNode 2` and `ActionNode 4` — remain unvisited.
 
 **Q**: How can you modify the tree to explore the other branches?
 

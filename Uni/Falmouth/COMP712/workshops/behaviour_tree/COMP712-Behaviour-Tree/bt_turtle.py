@@ -38,7 +38,8 @@ class NodeStatus(Enum):
 class ActionNode:
     def __init__(self, name, action_func):
         ''' leaf action node: name and function '''
-        pass
+        self.name = name
+        self.action = action_func
 
     def execute(self):
         ''' perform an action tick '''
@@ -172,8 +173,13 @@ def change_speed():
 def main_loop():
     ''' the main logic: construct and simulate the BT '''
 
+    log('\t Complete your implementations first!')
     # ----------------------------------------------------------------
     # >>>>>>>> YOUR CODE HERE <<<<<<<<<<
+
+    # you should have BT construction blocks
+
+    # and BT execution blocks
     # ----------------------------------------------------------------
 
     # don't change

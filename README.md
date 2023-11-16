@@ -39,7 +39,7 @@ I make **2** versions of the same source code: one with university internal acce
 - [x] add PDF download strip at the top-right corner of the slide deck
     * [x] Normal: ![PDF download link](./examples/assets/pdf_download.PNG "PDF Download Link - normal")
     * [x] Hover: ![PDF download link hover](./examples/assets/pdf_download2.PNG "PDF Download Link - hover")
-- [x] extra colours to enable `<red></red>, <blue></blue>, <yellow></yellow>, <green></green>, <cyan></cyan>, <purple></purple>, <orange></orange>, <gray></gray>, <white></white>, <black></black>`
+- [x] extra colours to enable `<red></red>, <blue></blue>, <yellow></yellow>, <green></green>, <cyan></cyan>, <purple></purple>, <orange></orange>, <gray></gray>, <white></white>, <black></black>` and so on. They can also be used via the class type as `<span class="red"></span>` for any HTML element. All colours on the dark background passed the colour contrast accessibility test using [CCA App](https://github.com/ThePacielloGroup/CCAe). 
     * [x] ![colour definition](./examples/assets/colours.png "color definition")
     * [x] ![result](./examples/assets/result.png "result")
 - [x] add box around the main heading on each slide

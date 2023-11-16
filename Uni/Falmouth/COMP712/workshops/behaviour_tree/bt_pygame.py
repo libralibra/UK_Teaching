@@ -92,10 +92,6 @@ def random_movement():
             return True
         else:
             return False
-    # while check_collision(temp_pos, char_radius, obstacle):
-    #     char_x += random.choice([-1, 1]) * char_speed
-    #     char_y += random.choice([-1, 1]) * char_speed
-    #     temp_pos = [char_x, char_y]
     char_pos = temp_pos
     return True
 

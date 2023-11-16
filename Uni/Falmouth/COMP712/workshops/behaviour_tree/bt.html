@@ -364,13 +364,7 @@ graph TD
 </blockquote>
 <h2 id="your-task">Your Task </h2>
 <p><a href="#top">Top</a></p>
-<p>In the folder, you’ll find various files, including <code>demo.pyc</code>, a compiled version providing a glimpse into the functionality of a complete behaviour tree.</p>
-<blockquote>
-<p><strong>Hint</strong>:<br>
-Implement your code by searching lines of</p>
-<p><code># &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; YOUR CODE HERE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code></p>
-<p>You may want to write helper functions as you need.</p>
-</blockquote>
+<p>In the folder, you’ll find 2 python files <code>bt_turtle.py</code> and <code>demo.pyc</code>. The <code>demo.pyc</code> is a compiled version providing a glimpse into the functionality of a complete behaviour tree.</p>
 <h3 id="task-1-running-the-demo">Task 1: Running the demo </h3>
 <p>Upon forking the repository, you can explore the completed demo by executing the command:</p>
 <blockquote>
@@ -378,6 +372,13 @@ Implement your code by searching lines of</p>
 </blockquote>
 <p>This command will trigger the display of informative output in the command line window, illustrating the running process, as shown in the screenshot below.</p>
 <p><img src="../behaviour_tree/cmd.png" alt=""></p>
+<p>You’ll be working on the <code>bt_turtle.py</code> file. Simply running <code>python bt_turtle.py</code> will display the turtle on the screen without any additional setup. Several helper functions have already been provided. Your task is to finalise the implementation of various BT node types and their respective behaviors.</p>
+<blockquote>
+<p><strong>Hint</strong>:<br>
+Implement your code by searching lines of</p>
+<p><code># &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; YOUR CODE HERE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code></p>
+<p>You may want to write helper functions as you need.</p>
+</blockquote>
 <p><strong>The Crazy Turtle</strong></p>
 <p>Imagine a turtle slowly crawling along the beach at a constant speed, persistently moving forward without specific instructions to turn left or right. As it moves, it leaves behind a trail of colors, depicting the path it follows.</p>
 <p>However, one day, this turtle goes off script and attempts fervently to draw squares. Let’s split this ambitious task into pieces: (<code>A</code>) draw a line; (<code>B</code>) draw a square; and (<code>C</code>) draw many squares.</p>
@@ -472,12 +473,12 @@ graph TD
 </div><h3 id="task-3-draw-a-square">Task 3: Draw a square </h3>
 <p><a href="#top">Top</a></p>
 <ul>
-<li>Finalize the square drawing implementation utilizing a for loop.</li>
+<li>Finalise the square drawing implementation utilizing a for loop.</li>
 <li>Complete the definition of the RepeaterNode class and integrate it into the process of drawing the square.</li>
 <li>Optionally, include an additional header SelectorNode to choose between the two methods. If one method fails, the other can be attempted to ensure proper drawing of the square.</li>
 </ul>
 <p><strong>Force to Visit the Other Branches</strong></p>
-<p>SelectorNode 0, to consistently trigger the first child branch, SequenceNode 1. Consequently, the other two child branches — SequenceNode 2 and ActionNode 4 — remain unvisited.</p>
+<p><code>SelectorNode 0</code> consistently triggers the first child branch <code>SequenceNode 1</code>. The other two child branches — <code>SequenceNode 2</code> and <code>ActionNode 4</code> — remain unvisited.</p>
 <p><strong>Q</strong>: How can you modify the tree to explore the other branches?</p>
 <p>One possible approach (other methods may exist) involves adjusting the turn value of the move_forward function from return NodeStatus.SUCCESS to return random.choice([NodeStatus.SUCCESS, NodeStatus.FAILURE]). This change means that the action will randomly return either SUCCESS or FAILURE after drawing a line.</p>
 <h3 id="task-4-exploring-other-branches">Task 4: Exploring Other Branches </h3>
