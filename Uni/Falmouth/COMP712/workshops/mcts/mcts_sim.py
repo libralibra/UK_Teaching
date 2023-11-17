@@ -3,7 +3,6 @@
 
 # https://github.com/tobegit3hub/ml_implementation/blob/master/monte_carlo_tree_search/mcst_example.py
 
-import sys
 import math
 import random
 import numpy as np
@@ -195,7 +194,7 @@ def best_child(node, is_exploration):
     使用UCB算法，权衡exploration和exploitation后选择得分最高的子节点，注意如果是预测阶段直接选择当前Q值得分最高的。
     """
 
-    # TODO: Use the min float value
+    # initialise to negative infinity
     best_score = -math.inf
     best_sub_node = None
 
@@ -221,7 +220,7 @@ def best_child(node, is_exploration):
     return best_sub_node
 
 
-def backup(node, reward):
+def back_propagation(node, reward):
     """
     蒙特卡洛树搜索的Backpropagation阶段，输入前面获取需要expend的节点和新执行Action的reward，反馈给expend节点和上游所有节点并更新对应数据。
     """
@@ -262,7 +261,7 @@ def monte_carlo_tree_search(node):
         reward = default_policy(expand_node)
 
         # 3. Update all passing nodes with reward
-        backup(expand_node, reward)
+        back_propagation(expand_node, reward)
 
     # N. Get the best next node
     best_next_node = best_child(node, False)

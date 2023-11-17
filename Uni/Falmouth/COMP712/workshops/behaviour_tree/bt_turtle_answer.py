@@ -146,7 +146,7 @@ class RepeaterNode:
 
     def execute(self):
         if not self.parent:
-            log(f'\n========================================== New Tick  ======================================')
+            log('\n========================================== New Tick  ======================================')
         log('-'*76)
         log(f'\t execute:\t {self.name}')
         for i in range(self.number):

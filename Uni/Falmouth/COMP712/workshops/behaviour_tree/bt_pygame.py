@@ -13,7 +13,7 @@ pygame.init()
 # Set up the display
 win_size = (800, 600)
 window = pygame.display.set_mode(win_size)
-pygame.display.set_caption("Behavior Tree Demo")
+pygame.display.set_caption("Behaviour Tree Demo")
 
 # Character properties
 char_pos = [50, 50]
@@ -34,7 +34,7 @@ goal_radius = 20
 # Initialize clock
 clock = pygame.time.Clock()
 
-# Behavior Tree Functions
+# Behaviour Tree Functions
 
 
 def move_towards_goal():
@@ -58,10 +58,7 @@ def move_towards_goal():
 
 def check_collision(pos, radius, rect):
     ''' return true if the character position intersects the rectangle [x,y,w,h] '''
-    char_x, char_y = char_pos
-    char_rect = pygame.Rect(char_x - char_radius, char_y -
-                            char_radius, char_radius * 2, char_radius * 2)
-    return char_rect.colliderect(rect)
+    return False
 
 
 def avoid_obstacles():
@@ -95,7 +92,7 @@ def random_movement():
     char_pos = temp_pos
     return True
 
-# Behavior Tree Nodes
+# Behaviour Tree Nodes
 
 
 class ActionNode:
@@ -157,7 +154,7 @@ while running:
     # Draw character
     pygame.draw.circle(window, BLACK, char_pos, char_radius)
 
-    # Behavior Tree Setup
+    # Behaviour Tree Setup
     tree = SelectorNode([
         SequenceNode([ActionNode(move_towards_goal),
                      ActionNode(avoid_obstacles)]),

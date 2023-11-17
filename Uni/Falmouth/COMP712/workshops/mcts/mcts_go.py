@@ -2,7 +2,7 @@
 author: arrti
 github: https://github.com/arrti
 blog:   http://www.cnblogs.com/xmwd
-""" 
+"""
 
 # https://github.com/arrti/mcts/blob/master/n_in_row_uct_rave.py
 
@@ -20,16 +20,19 @@ class Board(object):
     def __init__(self, **kwargs):
         self.width = int(kwargs.get('width', 8))
         self.height = int(kwargs.get('height', 8))
-        self.states = {} # board states, key:move, value: player as piece type
-        self.n_in_row = int(kwargs.get('n_in_row', 5)) # need how many pieces in a row to win
+        self.states = {}  # board states, key:move, value: player as piece type
+        # need how many pieces in a row to win
+        self.n_in_row = int(kwargs.get('n_in_row', 5))
 
     def init_board(self):
         if self.width < self.n_in_row or self.height < self.n_in_row:
-            raise Exception('board width and height can not less than %d' % self.n_in_row)
+            raise Exception(
+                'board width and height can not less than %d' % self.n_in_row)
 
-        self.valid_moves = list(range(self.width * self.height)) # available moves
+        self.valid_moves = list(
+            range(self.width * self.height))  # available moves
 
-        self.states = {} # key:move as location on the board, value:player as pieces type
+        self.states = {}  # key:move as location on the board, value:player as pieces type
 
     def move_to_location(self, move):
         """
@@ -39,17 +42,17 @@ class Board(object):
         0 1 2
         and move 5's location is (1,2)
         """
-        h = move  // self.width
-        w = move  %  self.width
+        h = move // self.width
+        w = move % self.width
         return [h, w]
 
     def location_to_move(self, location):
-        if(len(location) != 2):
+        if (len(location) != 2):
             return -1
         h = location[0]
         w = location[1]
         move = h * self.width + w
-        if(move not in range(self.width * self.height)):
+        if (move not in range(self.width * self.height)):
             return -1
         return move
 
@@ -58,7 +61,8 @@ class Board(object):
         self.valid_moves.remove(move)
 
     def current_state(self):
-        return tuple((m, self.states[m]) for m in sorted(self.states)) # for hash
+        # for hash
+        return tuple((m, self.states[m]) for m in sorted(self.states))
 
 
 class MCTS(object):
@@ -73,26 +77,27 @@ class MCTS(object):
         self.max_actions = max_actions
         self.n_in_row = n_in_row
 
-        self.player = play_turn[0] # AI is first at now
+        self.player = play_turn[0]  # AI is first at now
         self.confident = 1.96
         self.equivalence = 1000
         self.max_depth = 1
 
         self.plays = {}      # key:(action, state), value:visited times
         self.wins = {}       # key:(action, state), value:win times
-        self.plays_rave = {} # key:(move, state), value:visited times
+        self.plays_rave = {}  # key:(move, state), value:visited times
         self.wins_rave = {}  # key:(move, state), value:{player: win times}
 
     def get_action(self):
         if len(self.board.valid_moves) == 1:
             return self.board.valid_moves[0]
-        
+
         simulations = 0
         begin = time.time()
         while time.time() - begin < self.calculation_time:
-        # while simulations < 10000: # need many simulations for a better selection
-            board_copy = copy.deepcopy(self.board)  # simulation will change board's states,
-            play_turn_copy = copy.deepcopy(self.play_turn) # and play turn
+            # while simulations < 10000: # need many simulations for a better selection
+            # simulation will change board's states,
+            board_copy = copy.deepcopy(self.board)
+            play_turn_copy = copy.deepcopy(self.play_turn)  # and play turn
             self.run_simulation(board_copy, play_turn_copy)
             simulations += 1
 
@@ -134,12 +139,12 @@ class MCTS(object):
                 total = 0
                 for a, s in plays:
                     if s == state:
-                        total += plays.get((a, s)) # N(s)
+                        total += plays.get((a, s))  # N(s)
                 beta = self.equivalence/(3 * total + self.equivalence)
 
                 value, action = max(
                     ((1 - beta) * (wins[(action, state)] / plays[(action, state)]) +
-                     beta * (wins_rave[(action[0], state)][player] / plays_rave[(action[0], state)]) + 
+                     beta * (wins_rave[(action[0], state)][player] / plays_rave[(action[0], state)]) +
                      sqrt(self.confident * log(total) / plays[(action, state)]), action)
                     for action in actions)   # UCT RAVE
 
@@ -160,8 +165,8 @@ class MCTS(object):
                 #         if not plays.get((action, state)):
                 #             peripherals.append(action)
                 #     action = choice(peripherals)
-                action = choice(actions)           
-            
+                action = choice(actions)
+
             move, p = action
             board.update(player, move)
 
@@ -175,12 +180,13 @@ class MCTS(object):
                 if t > self.max_depth:
                     self.max_depth = t
 
-            states_list.append((action, state)) # states in one simulation by order of visited
+            # states in one simulation by order of visited
+            states_list.append((action, state))
             # for i, (m_root, s_root) in enumerate(states_list):
             #     for (m_sub, s_sub) in states_list[i:]:
             #         if (m_sub, s_root) not in plays_rave:
-            #             plays_rave[(m_sub, s_root)] = 0 
-            #             wins_rave[(m_sub, s_root)] = {}              
+            #             plays_rave[(m_sub, s_root)] = 0
+            #             wins_rave[(m_sub, s_root)] = {}
             #             for p in self.play_turn:
             #                 wins_rave[(m_sub, s_root)][p] = 0
 
@@ -188,8 +194,8 @@ class MCTS(object):
             # next (action, state) is child node of all previous (action, state) nodes
             for (m, pp), s in states_list:
                 if (move, s) not in plays_rave:
-                    plays_rave[(move, s)] = 0 
-                    wins_rave[(move, s)] = {}              
+                    plays_rave[(move, s)] = 0
+                    wins_rave[(move, s)] = {}
                     for p in self.play_turn:
                         wins_rave[(move, s)][p] = 0
 
@@ -206,14 +212,15 @@ class MCTS(object):
         for i, ((m_root, p), s_root) in enumerate(states_list):
             action = (m_root, p)
             if (action, s_root) in plays:
-                plays[(action, s_root)] += 1 # all visited moves
+                plays[(action, s_root)] += 1  # all visited moves
                 if player == winner and player in action:
-                    wins[(action, s_root)] += 1 # only winner's moves
+                    wins[(action, s_root)] += 1  # only winner's moves
 
             for ((m_sub, p), s_sub) in states_list[i:]:
-                plays_rave[(m_sub, s_root)] += 1 # all child nodes of s_root 
-                if winner in wins_rave[(m_sub, s_root)]:                
-                    wins_rave[(m_sub, s_root)][winner] += 1 # each node is divided by the player 
+                plays_rave[(m_sub, s_root)] += 1  # all child nodes of s_root
+                if winner in wins_rave[(m_sub, s_root)]:
+                    # each node is divided by the player
+                    wins_rave[(m_sub, s_root)][winner] += 1
 
     def get_player(self, players):
         p = players.pop(0)
@@ -226,7 +233,8 @@ class MCTS(object):
         """
         percent_wins, move = max(
             (self.wins.get(((move, self.player), self.board.current_state()), 0) /
-             self.plays.get(((move, self.player), self.board.current_state()), 1),
+             self.plays.get(
+                 ((move, self.player), self.board.current_state()), 1),
              move)
             for move in self.board.valid_moves)
 
@@ -234,13 +242,17 @@ class MCTS(object):
         # first is MC value, second is AMAF value
         for x in sorted(
                 ((100 * self.wins.get(((move, self.player), self.board.current_state()), 0) /
-                        self.plays.get(((move, self.player), self.board.current_state()), 1),
+                  self.plays.get(
+                      ((move, self.player), self.board.current_state()), 1),
                   100 * self.wins_rave.get((move, self.board.current_state()), {}).get(self.player, 0) /
-                        self.plays_rave.get((move, self.board.current_state()), 1),
-                  self.wins.get(((move, self.player), self.board.current_state()), 0),
-                  self.plays.get(((move, self.player), self.board.current_state()), 1),
-                  self.wins_rave.get((move, self.board.current_state()), {}).get(self.player, 0),
-                  self.plays_rave.get((move, self.board.current_state()), 1), 
+                  self.plays_rave.get((move, self.board.current_state()), 1),
+                  self.wins.get(
+                      ((move, self.player), self.board.current_state()), 0),
+                  self.plays.get(
+                      ((move, self.player), self.board.current_state()), 1),
+                  self.wins_rave.get((move, self.board.current_state()), {}).get(
+                      self.player, 0),
+                  self.plays_rave.get((move, self.board.current_state()), 1),
                   self.board.move_to_location(move))
                  for move in self.board.valid_moves),
                 reverse=True):
@@ -252,7 +264,8 @@ class MCTS(object):
         """
         adjacent moves without statistics info
         """
-        moved = list(set(range(board.width * board.height)) - set(board.valid_moves))
+        moved = list(set(range(board.width * board.height)) -
+                     set(board.valid_moves))
         adjacents = set()
         width = board.width
         height = board.height
@@ -261,21 +274,21 @@ class MCTS(object):
             h = m // width
             w = m % width
             if w < width - 1:
-                adjacents.add(m + 1) # right
+                adjacents.add(m + 1)  # right
             if w > 0:
-                adjacents.add(m - 1) # left
+                adjacents.add(m - 1)  # left
             if h < height - 1:
-                adjacents.add(m + width) # upper
+                adjacents.add(m + width)  # upper
             if h > 0:
-                adjacents.add(m - width) # lower
+                adjacents.add(m - width)  # lower
             if w < width - 1 and h < height - 1:
-                adjacents.add(m + width + 1) # upper right
+                adjacents.add(m + width + 1)  # upper right
             if w > 0 and h < height - 1:
-                adjacents.add(m + width - 1) # upper left
+                adjacents.add(m + width - 1)  # upper left
             if w < width - 1 and h > 0:
-                adjacents.add(m - width + 1) # lower right
+                adjacents.add(m - width + 1)  # lower right
             if w > 0 and h > 0:
-                adjacents.add(m - width - 1) # lower left
+                adjacents.add(m - width - 1)  # lower left
 
         adjacents = list(set(adjacents) - set(moved))
         for move in adjacents:
@@ -301,8 +314,9 @@ class MCTS(object):
                 del self.wins_rave[(m, s)]
 
     def has_a_winner(self, board):
-        moved = list(set(range(board.width * board.height)) - set(board.valid_moves))
-        if(len(moved) < self.n_in_row + 2):
+        moved = list(set(range(board.width * board.height)) -
+                     set(board.valid_moves))
+        if (len(moved) < self.n_in_row + 2):
             return False, -1
 
         width = board.width
@@ -315,19 +329,19 @@ class MCTS(object):
             player = states[m]
 
             if (w in range(width - n + 1) and
-                len(set(states.get(i, -1) for i in range(m, m + n))) == 1):
+                    len(set(states.get(i, -1) for i in range(m, m + n))) == 1):
                 return True, player
 
             if (h in range(height - n + 1) and
-                len(set(states.get(i, -1) for i in range(m, m + n * width, width))) == 1):
+                    len(set(states.get(i, -1) for i in range(m, m + n * width, width))) == 1):
                 return True, player
 
             if (w in range(width - n + 1) and h in range(height - n + 1) and
-                len(set(states.get(i, -1) for i in range(m, m + n * (width + 1), width + 1))) == 1):
+                    len(set(states.get(i, -1) for i in range(m, m + n * (width + 1), width + 1))) == 1):
                 return True, player
 
             if (w in range(n - 1, width) and h in range(height - n + 1) and
-                len(set(states.get(i, -1) for i in range(m, m + n * (width - 1), width - 1))) == 1):
+                    len(set(states.get(i, -1) for i in range(m, m + n * (width - 1), width - 1))) == 1):
                 return True, player
 
         return False, -1
@@ -367,16 +381,17 @@ class Game(object):
 
     def __init__(self, board, **kwargs):
         self.board = board
-        self.player = [1, 2] # player1 and player2
+        self.player = [1, 2]  # player1 and player2
         self.n_in_row = int(kwargs.get('n_in_row', 5))
-        self.time = float(kwargs.get('time', 5))
-        self.max_actions = int(kwargs.get('max_actions', 1000))
+        self.time = float(kwargs.get('time', 2))
+        self.max_actions = int(kwargs.get('max_actions', 100))
 
     def start(self):
         p1, p2 = self.init_player()
         self.board.init_board()
 
-        ai = MCTS(self.board, [p1, p2], self.n_in_row, self.time, self.max_actions)
+        ai = MCTS(self.board, [p1, p2], self.n_in_row,
+                  self.time, self.max_actions)
         human = Human(self.board, p2)
         players = {}
         players[p1] = ai
@@ -384,7 +399,7 @@ class Game(object):
         turn = [p1, p2]
         shuffle(turn)
         self.graphic(self.board, human, ai)
-        while(1):
+        while (1):
             p = turn.pop(0)
             turn.append(p)
             player_in_turn = players[p]
@@ -445,10 +460,11 @@ def run():
     n = 4
     try:
         board = Board(width=5, height=5, n_in_row=n)
-        game = Game(board, n_in_row=n, time=15) # more time better
+        game = Game(board, n_in_row=n, time=15)  # more time better
         game.start()
     except KeyboardInterrupt:
         print('\n\rquit')
+
 
 if __name__ == '__main__':
     run()
