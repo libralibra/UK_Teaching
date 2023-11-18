@@ -243,6 +243,10 @@ classDiagram
 
 To enable gameplay, you'll need to implement the missing functions within the `MCTS` class in the `mcts_ttt.py` file. This implementation can be divided into several smaller components:
 
+> **Hint**: search for the following comments in the source file:
+> 
+> ```# YOUR CODE HERE```
+
 
 - implement `UCT_search()` function
 

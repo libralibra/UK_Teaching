@@ -460,7 +460,7 @@ def run():
     n = 4
     try:
         board = Board(width=5, height=5, n_in_row=n)
-        game = Game(board, n_in_row=n, time=15)  # more time better
+        game = Game(board, n_in_row=n, time=3)  # more time better
         game.start()
     except KeyboardInterrupt:
         print('\n\rquit')
