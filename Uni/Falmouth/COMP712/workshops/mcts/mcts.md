@@ -205,6 +205,7 @@ classDiagram
     }
 
     class Node {
+        state: State
         q(): int
         n(): int
         valid_moves(): list[Move]
@@ -213,6 +214,7 @@ classDiagram
     }
 
     class MCTS {
+        root: Node
         UCT_search(): Node
         tree_policy(): Node
         default_policy(): int

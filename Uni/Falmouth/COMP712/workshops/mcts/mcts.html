@@ -178,6 +178,7 @@ source: <a href="https://www.researchgate.net/publication/235985858_A_Survey_of_
     }
 
     class Node {
+        state: State
         q(): int
         n(): int
         valid_moves(): list[Move]
@@ -186,6 +187,7 @@ source: <a href="https://www.researchgate.net/publication/235985858_A_Survey_of_
     }
 
     class MCTS {
+        root: Node
         UCT_search(): Node
         tree_policy(): Node
         default_policy(): int
