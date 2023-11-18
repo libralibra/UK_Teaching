@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import time
 import numpy as np
 
 
@@ -189,7 +190,7 @@ def draw(board):
     ''' draw the current board status with offset '''
     if isinstance(board, State):
         board = board.board
-    print("The current board:")
+    print("The current board: (X - AI; O - Human)")
     print(' '*19 + ''.join(["{0:4}".format(x) for x in range(len(board))]))
     print(' '*20 + '|' + '-'*11 + '|')
     for i in range(len(board)):
@@ -209,8 +210,8 @@ def draw(board):
 def get_action(state):
     ''' get a valid player's move '''
     try:
-        print("-------------------------------")
-        location = input("Your move (row,col): ")
+        print("-----------------------------------")
+        location = input("Your move O(row,col): ")
         if isinstance(location, str):
             location = [int(n, 10) for n in location.split(",")]
         if len(location) != 2:
@@ -255,12 +256,22 @@ def get_ai_move(s1, s2):
     return list(zip(d[0], d[1]))[0]
 
 
+def clean():
+    ''' clean the command window '''
+    os_name = platform.system().lower()
+    if 'windows' in os_name:
+        os.system('cls')
+    else:
+        os.system('clear')
+
+
 # ----------------------------------------------------------------
 # THE MAIN LOOP
 # ----------------------------------------------------------------
 if __name__ == "__main__":
     steps, c = 1000, 0
 
+    clean()
     print('AI    player: X')
     print('Human player: O')
     board = np.zeros((3, 3))
@@ -276,11 +287,12 @@ if __name__ == "__main__":
 
         # reveal AI's move info
         ai_move = get_ai_move(best_move.state, state)
-        print("_______________________________")
-        print(f"AI's move (row,col): {ai_move[0]},{ai_move[1]}")
+        state = best_move.state
 
         # update game state
-        state = best_move.state
+        clean()
+        print("___________________________________")
+        print(f"AI's move X(row,col): {ai_move[0]},{ai_move[1]}")
         draw(state)
         if game_over(state):
             break
@@ -291,4 +303,5 @@ if __name__ == "__main__":
         board = state.board
 
         # update game state
+        clean()
         draw(state)

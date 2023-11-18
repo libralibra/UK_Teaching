@@ -4,6 +4,8 @@
 # a modified version of
 # https://github.com/lucianzhong/MCTS_demo/blob/master/MCTS_to_play_Tic-Tac-Toe.py
 
+import os
+import platform
 import numpy as np
 
 
@@ -244,7 +246,7 @@ def draw_better(board):
     ''' draw the current board status with offset '''
     if isinstance(board, State):
         board = board.board
-    print("The current board:")
+    print("The current board: (X - AI; O - Human)")
     print(' '*19 + ''.join(["{0:4}".format(x) for x in range(len(board))]))
     print(' '*20 + '|' + '-'*11 + '|')
     for i in range(len(board)):
@@ -264,8 +266,8 @@ def draw_better(board):
 def get_action(state):
     ''' get a valid player's move '''
     try:
-        print("-------------------------------")
-        location = input("Your move (row,col): ")
+        print("-----------------------------------")
+        location = input("Your move O(row,col): ")
         if isinstance(location, str):
             location = [int(n, 10) for n in location.split(",")]
         if len(location) != 2:
@@ -310,6 +312,15 @@ def get_ai_move(s1, s2):
     return list(zip(d[0], d[1]))[0]
 
 
+def clean():
+    ''' clean the command window '''
+    os_name = platform.system().lower()
+    if 'windows' in os_name:
+        os.system('cls')
+    else:
+        os.system('clear')
+
+
 # ----------------------------------------------------------------
 # THE MAIN LOOP
 # ----------------------------------------------------------------
@@ -323,6 +334,7 @@ if __name__ == "__main__":
         # player move
         move1 = get_action(state)
         state = state.move(move1)
+        clean()
         draw(state)
         if game_over(state):
             break
@@ -338,8 +350,9 @@ if __name__ == "__main__":
         state = best_move.state
 
         # show the move
-        print("_______________________________")
-        print(f"AI's move (row,col): {move[0]},{move[1]}")
+        clean()
+        print("___________________________________")
+        print(f"AI's move X(row,col): {move[0]},{move[1]}")
         draw(state)
         if game_over(state):
             break
