@@ -50,7 +50,7 @@
 <li><a href="#the-code-structure">The Code Structure</a>
 <ul>
 <li><a href="#task-2-implement-the-minimax-algorithm">Task 2: Implement the minimax algorithm</a></li>
-<li><a href="#task-3-introduce-pruning-or-other-improvements">Task 3: Introduce Pruning or Other Improvements</a></li>
+<li><a href="#task-3-introduce-improvements">Task 3: Introduce Improvements</a></li>
 <li><a href="#task-4-optional-the-nim-game">Task 4 (Optional): The Nim Game</a></li>
 </ul>
 </li>
@@ -95,16 +95,16 @@
 <pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code>procedure MINIMAX<span class="token punctuation">(</span>state<span class="token punctuation">,</span> currentPlayer<span class="token punctuation">)</span>
     <span class="token keyword keyword-if">if</span> state <span class="token operator">=</span><span class="token operator">=</span> terminal <span class="token keyword keyword-then">then</span>
         <span class="token keyword keyword-return">return</span> game over
-    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> currentPlayer <span class="token operator">=</span><span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword keyword-then">then</span>
-        bestValue <span class="token operator">=</span> <span class="token operator">-</span>∞
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> currentPlayer <span class="token operator">=</span><span class="token operator">=</span> maximise <span class="token keyword keyword-then">then</span>
+        initialise bestValue
         <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> possible nextState <span class="token keyword keyword-do">do</span>
-            v <span class="token operator">=</span> MINIMAX<span class="token punctuation">(</span>nextState<span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">-</span>currentPlayer<span class="token punctuation">)</span>
+            v <span class="token operator">=</span> MINIMAX<span class="token punctuation">(</span>nextState<span class="token punctuation">,</span> minimise<span class="token punctuation">)</span>
             bestValue <span class="token operator">=</span> MAX<span class="token punctuation">(</span>bestValue<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
         <span class="token keyword keyword-return">return</span> bestValue
-    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> currentPlayer <span class="token operator">=</span><span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword keyword-then">then</span>
-        bestValue <span class="token operator">=</span> <span class="token operator">+</span>∞
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> currentPlayer <span class="token operator">=</span><span class="token operator">=</span> minimise <span class="token keyword keyword-then">then</span>
+        initialise bestValue
         <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> possible nextState <span class="token keyword keyword-do">do</span>
-            v <span class="token operator">=</span> MINIMAX<span class="token punctuation">(</span>nextState<span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">-</span>currentPlayer<span class="token punctuation">)</span>
+            v <span class="token operator">=</span> MINIMAX<span class="token punctuation">(</span>nextState<span class="token punctuation">,</span> maximise<span class="token punctuation">)</span>
             bestValue <span class="token operator">=</span> MIN<span class="token punctuation">(</span>bestValue<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
         <span class="token keyword keyword-return">return</span> bestValue
     <span class="token keyword keyword-end">end</span> <span class="token keyword keyword-if">if</span>
@@ -163,13 +163,21 @@
 <h2 id="task-2-implement-the-minimax-algorithm">Task 2: Implement the minimax algorithm </h2>
 <p><a href="#top">Top</a></p>
 <ul>
-<li>You will not be able to play the game until both functions are completed.</li>
-<li>Refer to <a href="#further-reading">Further Reading</a> or lecture slides about the <code>minimax</code> algorithm.</li>
+<li>You won’t be able to play the game until both functions are completed.</li>
+<li>Please refer to <a href="#further-reading">Further Reading</a> or the lecture slides for insights on the <code>minimax</code> algorithm.</li>
+<li>Given that the minimax search algorithm possesses complete knowledge of the game tree, a flawless implementation should be unbeatable—the worst outcome it can achieve is a <code>tie/draw</code> state.</li>
 </ul>
-<h2 id="task-3-introduce-pruning-or-other-improvements">Task 3: Introduce Pruning or Other Improvements </h2>
+<h2 id="task-3-introduce-improvements">Task 3: Introduce Improvements </h2>
 <p><a href="#top">Top</a></p>
 <ul>
-<li>Revisit your implementation to explore potential enhancements like alpha-beta pruning or other methods to halt exhaustive searching.</li>
+<li>Revisit your implementation to explore potential enhancements to halt exhaustive searching like:
+<ul>
+<li>early-stop</li>
+<li>alpha-beta pruning</li>
+<li>or any other methods you come up.</li>
+</ul>
+</li>
+<li>Play the game and validate your implementation</li>
 </ul>
 <h2 id="task-4-optional-the-nim-game">Task 4 (Optional): The Nim Game </h2>
 <p><a href="#top">Top</a></p>

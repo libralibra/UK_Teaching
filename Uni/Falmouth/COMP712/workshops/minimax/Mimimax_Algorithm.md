@@ -24,7 +24,7 @@ Dr Daniel Zhang @ Falmouth University\
   - [Task 1: Play the demo](#task-1-play-the-demo)
 - [The Code Structure](#the-code-structure)
   - [Task 2: Implement the minimax algorithm](#task-2-implement-the-minimax-algorithm)
-  - [Task 3: Introduce Pruning or Other Improvements](#task-3-introduce-pruning-or-other-improvements)
+  - [Task 3: Introduce Improvements](#task-3-introduce-improvements)
   - [Task 4 (Optional): The Nim Game](#task-4-optional-the-nim-game)
 - [Further Reading](#further-reading)
 
@@ -69,16 +69,16 @@ The `Minimax` algorithm serves as a fundamental approach in decision-making with
 procedure MINIMAX(state, currentPlayer)
     if state == terminal then
         return game over
-    else if currentPlayer == 1 then
-        bestValue = -∞
+    else if currentPlayer == maximise then
+        initialise bestValue
         for each possible nextState do
-            v = MINIMAX(nextState, 3-currentPlayer)
+            v = MINIMAX(nextState, minimise)
             bestValue = MAX(bestValue, v)
         return bestValue
-    else if currentPlayer == 2 then
-        bestValue = +∞
+    else if currentPlayer == minimise then
+        initialise bestValue
         for each possible nextState do
-            v = MINIMAX(nextState, 3-currentPlayer)
+            v = MINIMAX(nextState, maximise)
             bestValue = MIN(bestValue, v)
         return bestValue
     end if
@@ -137,13 +137,19 @@ The code structure is very simply:
 ## Task 2: Implement the minimax algorithm
 [Top](#top)
 
-- You will not be able to play the game until both functions are completed.
-- Refer to [Further Reading](#further-reading) or lecture slides about the `minimax` algorithm.
+- You won't be able to play the game until both functions are completed.
+- Please refer to [Further Reading](#further-reading) or the lecture slides for insights on the `minimax` algorithm.
+- Given that the minimax search algorithm possesses complete knowledge of the game tree, a flawless implementation should be unbeatable—the worst outcome it can achieve is a `tie/draw` state.
 
-## Task 3: Introduce Pruning or Other Improvements
+
+## Task 3: Introduce Improvements
 [Top](#top)
 
-- Revisit your implementation to explore potential enhancements like alpha-beta pruning or other methods to halt exhaustive searching.
+- Revisit your implementation to explore potential enhancements to halt exhaustive searching like:
+  - early-stop 
+  - alpha-beta pruning 
+  - or any other methods you come up.
+- Play the game and validate your implementation
 
 ## Task 4 (Optional): The Nim Game
 [Top](#top)

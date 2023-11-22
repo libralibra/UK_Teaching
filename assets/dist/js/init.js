@@ -224,8 +224,8 @@ Reveal.initialize({
     // chalkboard options
     chalkboard: {
         // marker width
-        boardmarkerWidth: 5,
-        chalkWidth: 7,
+        boardmarkerWidth: 2,
+        chalkWidth: 5,
         chalkEffect: 1.0,
         storage: null,
         src: null,

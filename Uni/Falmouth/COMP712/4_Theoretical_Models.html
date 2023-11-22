@@ -602,22 +602,6 @@
             bestValue = MIN(bestValue, v)
         return bestValue
                         </code></pre>
-                        <!-- <pre><code class="bigtext vbnet" data-trim data-line-numbers="1-3|4-9|10-15">                           procedure MINIMAX(state, currentPlayer)
-                    if state == terminal then
-                      return game over
-                          else if currentPlayer == 1 then
-                    bestValue = -&infin;
-                                    for each possible nextState do
-                                                    v = MINIMAX(nextState, 3-currentPlayer)
-                                          bestValue = MAX(bestValue, v)
-                      return bestValue
-                          else if currentPlayer == 1 then
-                    bestValue = +&infin;
-                                    for each possible nextState do
-                                                    v = MINIMAX(nextState, 3-currentPlayer)
-                                          bestValue = MIN(bestValue, v)
-                      return bestValue
-                        </code></pre> -->
                     </section>
 
                     <section id="improvement">
@@ -632,6 +616,58 @@
                             <li>Similarly when <span class="pink">minimising</span> if <code class="pink">bestValue = MIN_Value</code></li>
                             <li>There are techniques for smarter early stopping, e.g. <a href="https://www.javatpoint.com/ai-alpha-beta-pruning" target="_blank">alpha-beta pruning</a> </li>
                         </ul>
+                    </section>
+
+                    <!-- reference: https://www.javatpoint.com/ai-alpha-beta-pruning -->
+                    <section id="alpha_beta_1" data-auto-animate>
+                        <h1 data-id="ht">Minimax: Alpha-Beta Pruning (1/6)</h1>
+                        <img data-id="hd" src="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step1.png" alt="Alpha-Beta Pruning 1" class="r-stretch">
+                        <p class="tinytext">Source: <a href="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step1.png" target="_blank">https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step1.png</a></p>
+                        <div class="box-top-left img-width-400 smalltext lightpink fragment" data-fragment-index="1">Initial values of $\alpha$ and $\beta$ pass to Node D, α ($-\infty$) is compared with firstly 2 and then 3, and the $max(max(-\infty,2), 3) = 3$ will be the value of $α$ at Node D and node value will also 3.</div>
+                        <div class="box-top-right img-width-450 smalltext lightyellow fragment fade-out" data-fragment-index="1">Remember: <br>
+                            1. Max updates $\alpha$ and Min updates $\beta$<br>
+                            2. Initialisation: <span class="smalltext">$\alpha = -\infty$ and $\beta = +\infty$</span><br>
+                            3. Only pass $\alpha$ and $\beta$ down from top<br>
+                            4. When backtracking, only pass node value rather than $\alpha$ and $\beta$<br>
+                            5. Prune if <span class="lightred bold">$\alpha >= \beta$</span>
+                        </div>
+                    </section>
+
+                    <section id="alpha_beta_2" data-auto-animate>
+                        <h1 data-id="ht">Minimax: Alpha-Beta Pruning (2/6)</h1>
+                        <img data-id="hd" src="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step3.png" alt="Alpha-Beta Pruning 2" class="r-stretch">
+                        <p class="tinytext">Source: <a href="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step3.png" target="_blank">https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step3.png</a></p>
+                        <div class="box-top-right img-width-400 smalltext lightcyan">At Node B, $β= +∞$, will compare with the available subsequent nodes value, i.e. $min (∞, 3) = 3$, hence at Node B now $α= -∞$, and $β= 3$.</div>
+                    </section>
+
+                    <section id="alpha_beta_3" data-auto-animate>
+                        <h1 data-id="ht">Minimax: Alpha-Beta Pruning (3/6)</h1>
+                        <img data-id="hd" src="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step4.png" alt="Alpha-Beta Pruning 3" class="r-stretch">
+                        <p class="tinytext">Source: <a href="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step4.png" target="_blank">https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step4.png</a></p>
+                        <div class="box-top-right img-width-400 smalltext lightpurple">At Node E, $α$ will be compared with 5, $max(-∞, 5) = 5$, so $α= 5$ and $β= 3$, where $α>=β$, so the right successor of E will be pruned, and algorithm will not traverse it, and the value at node E will be 5.</div>
+                    </section>
+
+                    <section id="alpha_beta_4" data-auto-animate>
+                        <h1 data-id="ht">Minimax: Alpha-Beta Pruning (4/6)</h1>
+                        <img data-id="hd" src="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step6.png" alt="Alpha-Beta Pruning 4" class="r-stretch">
+                        <p class="tinytext">Source: <a href="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step6.png" target="_blank">https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step6.png</a></p>
+                        <div class="box-top-left img-width-450 smalltext lightorange">At node A, the value of $α$ will be changed the maximum <span class="bold yellow">node</span> value 3 as $max (-∞, 3)= 3$, and $β= +∞$, these two values now passes to Node C and then Node F.<br>
+                            At Node F, the $α$ will not be updated since no node value is bigger than its current value 3. Note the node value of F is <span class="yellow">1</span>!
+                        </div>
+                    </section>
+
+                    <section id="alpha_beta_5" data-auto-animate>
+                        <h1 data-id="ht">Minimax: Alpha-Beta Pruning (5/6)</h1>
+                        <img data-id="hd" src="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step7.png" alt="Alpha-Beta Pruning 5" class="r-stretch">
+                        <p class="tinytext">Source: <a href="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step7.png" target="_blank">https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step7.png</a></p>
+                        <div class="box-top-left img-width-450 smalltext lightblue">Node F returns the node value 1 to node C, at C $α= 3$ and $β= +∞$, here the value of $β$ will be changed since $min (∞, 1) = 1$. Now at C, $α=3$ and $β= 1$, and again it satisfies the condition $α>=β$, so the next child of C which is G will be pruned, and the algorithm will not compute the entire sub-tree G.</div>
+                    </section>
+
+                    <section id="alpha_beta_6" data-auto-animate>
+                        <h1 data-id="ht">Minimax: Alpha-Beta Pruning (6/6)</h1>
+                        <img data-id="hd" src="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step8.png" alt="Alpha-Beta Pruning 6" class="r-stretch">
+                        <p class="tinytext">Source: <a href="https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step8.png" target="_blank">https://static.javatpoint.com/tutorial/ai/images/alpha-beta-pruning-step8.png</a></p>
+                        <div class="box-top-right img-width-350 smalltext lime">Node C now returns the value of 1 to A here the best value for A is $max (3, 1) = 3$. Hence the optimal value for the maximiser is 3 for this example.</div>
                     </section>
 
                     <section id="using_minimax">
