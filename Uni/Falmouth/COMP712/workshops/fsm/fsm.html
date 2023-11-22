@@ -40,23 +40,20 @@
 <ul>
 <li><a href="#components-of-a-finite-state-machine">Components of a Finite State Machine</a></li>
 <li><a href="#a-practical-example-traffic-lights-fsm">A Practical Example: Traffic Lights FSM</a></li>
+<li><a href="#the-logic">The Logic</a></li>
 <li><a href="#adjacency-list">Adjacency List</a></li>
 </ul>
 </li>
-<li><a href="#your-task">Your Task</a>
-<ul>
-<li><a href="#1-traffic-light-fsm">1. Traffic Light FSM</a>
+<li><a href="#task-1--traffic-light-fsm">Task 1:  Traffic Light FSM</a>
 <ul>
 <li><a href="#the-repository">The Repository</a></li>
 <li><a href="#the-code-structure">The Code Structure</a></li>
-<li><a href="#exercise"><strong>Exercise</strong></a></li>
+<li><a href="#the-task"><strong>The Task</strong></a></li>
 </ul>
 </li>
-<li><a href="#2-vending-machine-fsm">2. Vending Machine FSM</a>
+<li><a href="#task-2-vending-machine-fsm">Task 2: Vending Machine FSM</a>
 <ul>
-<li><a href="#exercise-1"><strong>Exercise</strong></a></li>
-</ul>
-</li>
+<li><a href="#the-task-1"><strong>The Task</strong></a></li>
 </ul>
 </li>
 <li><a href="#submit-your-code">Submit Your Code</a></li>
@@ -92,7 +89,7 @@
 <h2 id="a-practical-example-traffic-lights-fsm">A Practical Example: Traffic Lights FSM </h2>
 <p><a href="#top">Top</a></p>
 <p>Let’s consider a simple example of a traffic lights model. The FSM for the traffic lights could have states like ‘<code>Red</code>’, ‘<code>Green</code>’, ‘<code>Amber</code>’, etc. Signals occur as the time elapses or pedestrians pushed the button for crossing. The transition operations need to change the lights’ states.</p>
-<p><img src="traffic_lights.png" alt=""></p>
+<p><img src="traffic_lights_gui.png" alt=""></p>
 <p>The state diagram of the Traffic Light FSM is illustrated below.</p>
 <div class="mermaid">graph TD
 
@@ -100,24 +97,60 @@ title[&lt;u&gt;Traffic Lights FSM&lt;/u&gt;]
 title --&gt; A(Start)
 style title fill:#FFF,stroke:#FFF
 linkStyle 0 stroke:#FFF,stroke-width:0;
-
-A -- Power On --&gt; B(Red)
-B -- Time Out --&gt; C(Green)
-C -- Time Out --&gt; D(Amber)
+B(Red) 
+C(Green)
+D(Amber)
+E(Wait)
+F(Error)
+A -- Power On --&gt; B
+B -- Power On --&gt; B
+C -- Power On --&gt; C
+D -- Power On --&gt; D
+E -- Power On --&gt; E
+F -- Power On --&gt; F
+A -- Time Out --&gt; A
+B -- Time Out --&gt; C
+C -- Time Out --&gt; D
 D -- Time Out --&gt; B
-A -- System Error --&gt; E(Error)
-B -- System Error --&gt; E
-C -- System Error --&gt; E
-D -- System Error --&gt; E
+E -- Time Out --&gt; D 
+F -- Time Out --&gt; F
+A -- System Error --&gt; F
+B -- System Error --&gt; F
+C -- System Error --&gt; F
+D -- System Error --&gt; F
+E -- System Error --&gt; F
+F -- System Error --&gt; F
+A -- Push Button --&gt; A
 B -- Push Button --&gt; B
-C -- Push Button --&gt; F(Wait)
-D -- Push Button --&gt; F
+C -- Push Button --&gt; E
+D -- Push Button --&gt; D
+E -- Push Button --&gt; E
 F -- Push Button --&gt; F
-F -- Time Out --&gt; B
-F -- System Error --&gt; E
+A -- Power Off --&gt; A
 B -- Power Off --&gt; A
-E -- Restart --&gt; B
-</div><p>When comparing the state transition diagram above to the definition in the previous section, we can describe the Traffic Light FSM as follows:</p>
+C -- Power Off --&gt; A
+D -- Power Off --&gt; A
+E -- Power Off --&gt; A
+F -- Power Off --&gt; A
+A -- Restart --&gt; A
+B -- Restart --&gt; A
+C -- Restart --&gt; A
+D -- Restart --&gt; A
+E -- Restart --&gt; A
+E -- Restart --&gt; A
+</div><h2 id="the-logic">The Logic </h2>
+<p><a href="#top">Top</a></p>
+<p>The logic follows a specific sequence of states in a finite state machine (FSM) based on time intervals and certain conditions:</p>
+<ul>
+<li>From <code>RED</code>, <code>GREEN</code>, and <code>AMBER</code> states, after a designated timeout duration, it transitions sequentially through each state.</li>
+<li>Pressing the button during <code>GREEN</code> shifts the state to <code>WAIT</code> and restarts the timeout.</li>
+<li>In <code>AMBER</code> and <code>RED</code>, pressing the button won’t trigger a transition to <code>WAIT</code> since it has already waited.</li>
+<li>After a specific timeout on <code>WAIT</code>, it moves to <code>AMBER</code>, and subsequently to <code>RED</code>.</li>
+<li>If an error occurs at any time, it switches to the <code>ERROR</code> state.</li>
+<li>Upon receiving the power-on signal, if any light is already ON, it remains unchanged except for transitioning from <code>START</code> to <code>RED</code>.</li>
+<li>Restart or power-off signals force the FSM to return to the <code>START</code> status.</li>
+</ul>
+<p>When comparing the state transition diagram above to the definition in the previous section, we can describe the Traffic Light FSM as follows:</p>
 <ul>
 <li><strong><code>State</code></strong>: The Traffic Light FSM encompasses the states of <code>Start</code>, <code>Red</code>, <code>Green</code>, <code>Amber</code>, <code>Wait</code>, and <code>Error</code>.</li>
 <li><strong><code>Signals</code></strong>: The FSM responds to signals including <code>Power On</code>, <code>Power Off</code>, <code>Time Out</code>, <code>Push Button</code>, <code>Restart</code>, and <code>System Error</code>.</li>
@@ -129,7 +162,7 @@ E -- Restart --&gt; B
 <p><a href="#top">Top</a></p>
 <p>In practical applications, an adjacency list becomes particularly useful when the state diagram grows too complex to explore easily. It serves as a collection of unordered lists, primarily used to represent a finite graph. Each unordered list within an adjacency list describes the set of transitions originating from a specific vertex in the graph. This representation is one of several commonly employed methods for graph representation in computer programming.</p>
 <p>For relatively simple state machines, explicitly writing out adjacency lists might seem unnecessary. However, for more intricate systems, you’ll likely find yourself creating a form of it, making it a valuable practice.</p>
-<p>In the context of this specific discussion, we won’t adhere to the precise definition of an adjacency list, as we’re not describing a “<strong>set of neighbours</strong>” but rather a “<strong>set of transitions</strong>”, as shown in the table below.</p>
+<p>In the context of this specific discussion, we won’t adhere to the precise definition of an adjacency list, as we’re not describing a “<strong>set of neighbours</strong>” but rather a “<strong>set of transitions</strong>”, as shown in the table below (it doesn’t list all of the transitions illustrated in the above state diagram).</p>
 <table>
 <thead>
 <tr>
@@ -140,45 +173,43 @@ E -- Restart --&gt; B
 <tbody>
 <tr>
 <td><code>Start</code></td>
-<td><code>Red</code> or <code>Error</code></td>
+<td><code>Red</code> or <code>Error</code> or <code>Start</code>…</td>
 </tr>
 <tr>
 <td><code>Red</code></td>
-<td><code>Start</code> or <code>Green</code> or <code>Error</code></td>
+<td><code>Start</code> or <code>Green</code> or <code>Error</code>…</td>
 </tr>
 <tr>
 <td><code>Green</code></td>
-<td><code>Amber</code> or <code>Wait</code> or <code>Error</code></td>
+<td><code>Amber</code> or <code>Wait</code> or <code>Error</code>…</td>
 </tr>
 <tr>
 <td><code>Amber</code></td>
-<td><code>Red</code> or <code>Wait</code> or <code>Error</code></td>
+<td><code>Red</code> or <code>Wait</code> or <code>Error</code>…</td>
 </tr>
 <tr>
 <td><code>Wait</code></td>
-<td><code>Red</code> or <code>Error</code></td>
+<td><code>Red</code> or <code>Error</code>…</td>
 </tr>
 <tr>
 <td><code>Error</code></td>
-<td><code>Red</code></td>
+<td><code>Error</code> or <code>Start</code>…</td>
 </tr>
 </tbody>
 </table>
-<h1 id="your-task">Your Task </h1>
-<p><a href="#top">Top</a></p>
-<h2 id="1-traffic-light-fsm">1. Traffic Light FSM </h2>
+<h1 id="task-1–traffic-light-fsm">Task 1:  Traffic Light FSM </h1>
 <p><a href="#top">Top</a></p>
 <p>This task is to implement the FSM for this Traffic Lights model according to the state diagram above.</p>
-<h3 id="the-repository">The Repository </h3>
+<h2 id="the-repository">The Repository </h2>
 <p><a href="#top">Top</a></p>
 <p>The repository below contains the template code of an FSM implementation in Python.</p>
 <p><strong>Fork the repository</strong> (NOT clone!) and work on your fork. This will enable you to submit a pull request in the end.</p>
 <blockquote>
 <p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git</strong></a></p>
 </blockquote>
-<h3 id="the-code-structure">The Code Structure </h3>
+<h2 id="the-code-structure">The Code Structure </h2>
 <p><a href="#top">Top</a></p>
-<p>The repository contains 3 file.</p>
+<p>The repository contains 4 python file.</p>
 <ul>
 <li><code>fsm.py</code>: it is the implementation of a simple FSM with all the components introduced above except <code>Actions</code>, which is the task for you to implement in a separate script during this workshop. <em>This design will make sure the <code>FSM</code> model response to any model if the <code>transitions</code> and <code>actions</code> are defined properly somewhere</em>.</li>
 <li><code>fsm_demo.py</code>: it is a template python script that you are going to working on.</li>
@@ -187,8 +218,9 @@ E -- Restart --&gt; B
 <li>It was compiled using <code>python 3.10.11</code>, which should work with all python <code>3.x</code> version. Please let the tutor know if it doesn’t work and a newer version will be updated.</li>
 </ul>
 </li>
+<li><code>demo_gui.pyc</code>: This interactive version features a simple GUI that fully implements the FSM diagram you’ve seen above. It aids in completing tasks by visualizing transitions between different states. Run it using <code>python demo_gui.pyc</code>.</li>
 </ul>
-<h3 id="exercise"><strong>Exercise</strong> </h3>
+<h2 id="the-task"><strong>The Task</strong> </h2>
 <p><a href="#top">Top</a></p>
 <ul>
 <li>complete the implementation of the Traffic Lights FSM
@@ -198,8 +230,9 @@ E -- Restart --&gt; B
 <li>add one or more states to the model</li>
 </ul>
 </li>
+<li>You don’t need to create a GUI; a command-line demonstration suffices.</li>
 </ul>
-<h2 id="2-vending-machine-fsm">2. Vending Machine FSM </h2>
+<h1 id="task-2-vending-machine-fsm">Task 2: Vending Machine FSM </h1>
 <p><a href="#top">Top</a></p>
 <p>This task is to implement a Vending Machine FSM that sells Coca to the user. This special machine only accepts 50p, £1, and £2 coins and each can of Coca costs £2.5 (a little bit expensive 😃). Additionally, we will assume the vending machine never runs out of stock for economic reasons. Similarly, it never runs out of change. This example is a perfect computational problem to model with a finite state machine!</p>
 <p>The state diagram is illustrated below.</p>
@@ -246,13 +279,17 @@ F -- Cancel --&gt; J
 G -- Cancel --&gt; J
 H -- Cancel --&gt; J
 J ---&gt; B
-</div><h3 id="exercise-1"><strong>Exercise</strong> </h3>
+</div><h2 id="the-task-1"><strong>The Task</strong> </h2>
 <p><a href="#top">Top</a></p>
 <ul>
 <li>Work out the adjacency list to help you understand the diagram if necessary.</li>
 <li>Create a new Python file (<code>.py</code>), either inherit from the FSM model defined in <code>fsm.py</code> or start from scratch.</li>
 <li>Implement the Vending Machine FSM to meet the requirements outlined in the state diagram.</li>
+<li>You don’t need to create a GUI; a command-line demonstration suffices.</li>
 </ul>
+<blockquote>
+<p><em><strong>Hint</strong></em>: you might want to make use of the last state data member defined in <code>FSM</code> class.</p>
+</blockquote>
 <h1 id="submit-your-code">Submit Your Code </h1>
 <p><a href="#top">Top</a></p>
 <p>Feel free to submit a pull request to the original repository to showcase your work if you wish to share your solution with others.</p>
