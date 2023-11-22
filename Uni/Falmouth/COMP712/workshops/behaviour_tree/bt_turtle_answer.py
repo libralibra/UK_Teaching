@@ -249,13 +249,14 @@ def main_loop():
     while wait_root.execute() != NodeStatus.FAILURE:
         pass
 
-    # Run Behaviour Tree
-    # for _ in range(math.floor(360/turn_angle)+1):
+    # no BT version
     # for _ in range(100):
     #     log('='*40)
+    #     for _ in range(4):
+    #         move_forward()
+    #         turn_left()
     #     turtle.left(turn_angle)
     #     get_new_colour()
-    #     draw_square.execute()
 
     turtle.done()
 

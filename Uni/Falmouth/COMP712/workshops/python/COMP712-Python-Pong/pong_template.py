@@ -47,14 +47,14 @@ ball_dy = 0.2
 # board creation
 ##################################
 
-# Creating the main board
+# creating the main board
 window = t.Screen()
 window.title("The Pong Game")
 window.bgcolor(board_bg_colour)
 window.setup(width = board_width, height = board_height)
 window.tracer(0)
 
-# Creating the left paddle
+# creating the left paddle
 left_paddle = t.Turtle()
 left_paddle.speed(0)
 left_paddle.shape("square")
@@ -63,7 +63,7 @@ left_paddle.shapesize(stretch_wid=paddle_length, stretch_len=paddle_width)
 left_paddle.penup()
 left_paddle.goto(-int(board_width/2),0)
 
-# Creating the right paddle
+# creating the right paddle
 right_paddle=t.Turtle()
 right_paddle.speed(0)
 right_paddle.shape("square")
@@ -72,7 +72,7 @@ right_paddle.shapesize(stretch_wid=paddle_length, stretch_len=paddle_width)
 right_paddle.penup()
 right_paddle.goto(int(board_width/2)-paddle_width,0)
 
-# Creating the ball
+# creating the ball
 ball = t.Turtle()
 ball.speed(0)
 ball.shape("circle")
@@ -80,7 +80,7 @@ ball.color(ball_colour)
 ball.penup()
 ball.goto(ball_radius, ball_radius)
 
-#Code for creating pen for scorecard update
+# creating pen for scorecard update
 pen = t.Turtle()
 pen.speed(0)
 pen.color("Blue")
@@ -149,15 +149,11 @@ while True:
 
     # BALL HIT BOARD TOP
     if # BALL HIT BOARD TOP:
-
         # YOUR CODE HERE
-
         # msgbox('hit top')
 
     if # BALL HIT BOARD BOTTOM:
-
         # YOUR CODE HERE
-
         # msgbox('HIT bottom')
     
     # collisions with right paddle
@@ -167,21 +163,15 @@ while True:
 
     # collisions with left paddle
     if # BALL HIT THE LEFT PADDLE:
-        
         # YOUR CODE HERE
-
         # msgbox('left catches!')
     
     # right paddle missed
     if # RIGHT PADDLE MISSED:
-        
         # YOUR CODE HERE
-
-        msgbox('Player B missed, and Player A scored!')
+        # msgbox('Player B missed, and Player A scored!')
 
     # left paddle missed
     if # LEFT PADDLE MISSED:
-        
         # YOUR CODE HERE
-
-        msgbox('Player A missed, and Player B scored!')
+        # msgbox('Player A missed, and Player B scored!')

@@ -1,12 +1,12 @@
 <!DOCTYPE html><html><head>
-      <title>Pong</title>
+      <title>Mimimax_Algorithm</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
-      <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.0/dist/mermaid.min.js"></script>
+      
       
       
       <style>
@@ -26,155 +26,162 @@
       
 <p><img src="../../../../Falmouth/common/ga_uni_logo.png" alt=""></p>
 <h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence </h1>
-<h1 id="workshop-pong-game-implementation">Workshop: Pong Game Implementation </h1>
+<h1 id="workshop-unbeatable-ai-with-minimax">Workshop: Unbeatable AI with Minimax </h1>
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
-<p><img src="pong_gui.png" alt=""></p>
+<p><img src="game.png" alt=""></p>
 <div id="top"></div>
 <h1 id="table-of-contents">Table of Contents </h1>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
-<li><a href="#workshop-pong-game-implementation">Workshop: Pong Game Implementation</a></li>
+<li><a href="#workshop-unbeatable-ai-with-minimax">Workshop: Unbeatable AI with Minimax</a></li>
 <li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#workshop-pong-game-implementation-1">Workshop: Pong Game Implementation</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#the-game">The Game</a></li>
+<li><a href="#the-game-tree">The Game Tree</a></li>
+<li><a href="#strategy-analysis-minimax">Strategy Analysis: Minimax</a></li>
+<li><a href="#minimax-pseudocode">Minimax Pseudocode</a></li>
 <li><a href="#the-repository">The Repository</a></li>
-<li><a href="#game-play">Game Play</a></li>
-<li><a href="#game-controls">Game Controls</a></li>
-<li><a href="#the-code">The Code</a></li>
-<li><a href="#the-functions">The Functions</a></li>
-<li><a href="#your-task">Your Task</a></li>
+<li><a href="#your-task">Your Task</a>
+<ul>
+<li><a href="#task-1-play-the-demo">Task 1: Play the demo</a></li>
 </ul>
-<h1 id="workshop-pong-game-implementation-1">Workshop: Pong Game Implementation </h1>
+</li>
+<li><a href="#the-code-structure">The Code Structure</a>
+<ul>
+<li><a href="#task-2-implement-the-minimax-algorithm">Task 2: Implement the minimax algorithm</a></li>
+<li><a href="#task-3-introduce-pruning-or-other-improvements">Task 3: Introduce Pruning or Other Improvements</a></li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<h1 id="introduction">Introduction </h1>
+<p><a href="#tpp">Top</a></p>
+<p>In this session, we’ll delve into the core concepts of the <code>Minimax</code> algorithm, a fundamental technique in game theory and artificial intelligence. Through practical exercises and discussions, you’ll gain a comprehensive understanding of how <code>Minimax</code> works and its application in determining optimal strategies in games.</p>
+<h1 id="the-game">The Game </h1>
+<p><a href="#tpp">Top</a></p>
+<p>We will use a very simple game <strong><a href="https://www.wikiwand.com/en/Tic-tac-toe">Tic-Tac-Toe</a></strong> to demonstrate how the algorithm works. The rule is: 2 players play in turns on a 3x3 board - one marks <strong>X</strong> and tie other marks <strong>O</strong>. The one who get 3 on a row, a column, or a diagonal first wins.</p>
+<p>Since the game board is 3x3 small grid, the game tree is relatively simple by comparing to other large games like <strong><a href="https://www.wikiwand.com/en/Gomoku">Gomoku</a></strong> and <strong><a href="https://www.wikiwand.com/en/Go_(game)">Go</a></strong>. Therefore, an extensive search of the game tree using the <code>minimax</code> algorithm.</p>
+<h1 id="the-game-tree">The Game Tree </h1>
+<p><a href="#tpp">Top</a></p>
+<p><img src="https://www.researchgate.net/profile/Partha-Sarathi-Chakraborty-2/publication/290786914/figure/fig2/AS:408033621495809@1474294204841/Game-Tree-for-Tic-Tac-Toe_W640.jpg" alt=""><br>
+<em>Source: <a href="https://www.researchgate.net/profile/Partha-Sarathi-Chakraborty-2/publication/290786914/figure/fig2/AS:408033621495809@1474294204841/Game-Tree-for-Tic-Tac-Toe_W640.jpg">https://www.researchgate.net/profile/Partha-Sarathi-Chakraborty-2/publication/290786914/figure/fig2/AS:408033621495809@1474294204841/Game-Tree-for-Tic-Tac-Toe_W640.jpg</a></em></p>
+<p>As shown in the picture above, in this partial representation of the Tic-Tac-Toe game tree, we start from the initial state of the game and showcase a few layers to demonstrate the branching structure.</p>
+<p><strong>Observations</strong>:</p>
+<ul>
+<li>First Layer:
+<ul>
+<li>Only 2 nodes are illustrated here, but theoretically, there should be 9 nodes representing all possible moves for the first player.</li>
+</ul>
+</li>
+<li>Subsequent Layers:
+<ul>
+<li>Each node in the first layer should have 8 child nodes in the second layer, representing the possible moves at the second player.</li>
+<li>Following this pattern, the third layer should have 7 child nodes for each node in the third layer, and so on.</li>
+</ul>
+</li>
+<li>Total Nodes:
+<ul>
+<li>The total number of nodes in the tree can be calculated as <code>9*8*7*...*1 + 1 = 362,881</code>.</li>
+<li>There might be duplicated nodes due to identical board configurations, but this does not alter the strategic analysis in the next section.</li>
+</ul>
+</li>
+</ul>
+<h1 id="strategy-analysis-minimax">Strategy Analysis: Minimax </h1>
+<p><a href="#tpp">Top</a></p>
+<p>The <code>Minimax</code> algorithm serves as a fundamental approach in decision-making within adversarial games like Tic-Tac-Toe. Its primary objective is to compute the optimal move for a player, taking into account potential moves by the opponent. Operating on the principle of searching through the game tree, <code>Minimax</code> assesses each possible move and assigns a value to nodes representing game states. It utilises a recursive depth-first search (<code>DFS</code>) approach to navigate the tree, evaluating each possible move and its subsequent outcomes. The algorithm assumes rational adversaries, aiming to maximize their advantage while minimizing their opponent’s advantage. By simulating hypothetical gameplay, Minimax identifies the most favourable move for a player, considering all potential sequences of moves by both players until a terminal state or a predefined depth is reached.</p>
+<h1 id="minimax-pseudocode">Minimax Pseudocode </h1>
+<pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code>procedure MINIMAX<span class="token punctuation">(</span>state<span class="token punctuation">,</span> currentPlayer<span class="token punctuation">)</span>
+    <span class="token keyword keyword-if">if</span> state <span class="token operator">=</span><span class="token operator">=</span> terminal <span class="token keyword keyword-then">then</span>
+        <span class="token keyword keyword-return">return</span> game over
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> currentPlayer <span class="token operator">=</span><span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword keyword-then">then</span>
+        bestValue <span class="token operator">=</span> <span class="token operator">-</span>∞
+        <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> possible nextState <span class="token keyword keyword-do">do</span>
+            v <span class="token operator">=</span> MINIMAX<span class="token punctuation">(</span>nextState<span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">-</span>currentPlayer<span class="token punctuation">)</span>
+            bestValue <span class="token operator">=</span> MAX<span class="token punctuation">(</span>bestValue<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> bestValue
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> currentPlayer <span class="token operator">=</span><span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword keyword-then">then</span>
+        bestValue <span class="token operator">=</span> <span class="token operator">+</span>∞
+        <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> possible nextState <span class="token keyword keyword-do">do</span>
+            v <span class="token operator">=</span> MINIMAX<span class="token punctuation">(</span>nextState<span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">-</span>currentPlayer<span class="token punctuation">)</span>
+            bestValue <span class="token operator">=</span> MIN<span class="token punctuation">(</span>bestValue<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> bestValue
+    <span class="token keyword keyword-end">end</span> <span class="token keyword keyword-if">if</span>
+<span class="token keyword keyword-end">end</span>
+</code></pre><h1 id="the-repository">The Repository </h1>
 <p><a href="#top">Top</a></p>
-<p>During this workshop, you will put your Python skills to the test by completing the implementation of the Pong game.</p>
-<h1 id="the-repository">The Repository </h1>
-<p><a href="#top">Top</a></p>
-<p>The repository linked below contains the code for a basic 2-player PONG game.</p>
+<p>The repository linked below contains the code for the Tic-Tac-Toe game.</p>
 <p><strong>Fork the repository</strong> (do not clone!) and work on your fork. This will enable you to submit a pull request at the end.</p>
 <blockquote>
-<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Python-Pong.git</strong></a></p>
+<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Mimimax.git"><strong>https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Mimimax.git</strong></a></p>
 </blockquote>
-<h1 id="game-play">Game Play </h1>
-<p><a href="#top">Top</a></p>
-<p>Ensure that you have successfully downloaded <code>demo.pyc</code>. Then, open a command window in the folder and run the game by executing:</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>python demo.pyc
-</code></pre><p>If everything is working correctly, you should see a GUI similar to the screenshot above.</p>
-<p><strong>Note</strong>:</p>
-<p>The <code>.pyc</code> file was compiled using <code>Python 3.12.0</code> and should work with any <code>Python 3.x</code> versions. However, if you encounter any issues while running the script, please let me know, and a newer version of the script can be uploaded to the repository.</p>
-<h1 id="game-controls">Game Controls </h1>
-<p><a href="#top">Top</a></p>
-<p>This is a 2-player game. Player A can control the left paddle using <kbd>W</kbd> and <kbd>S</kbd> for up and down, while Player B uses <kbd>↑</kbd> and <kbd>↓</kbd>.</p>
-<h1 id="the-code">The Code </h1>
-<p><a href="#top">Top</a></p>
-<p>The implementation is relatively straightforward. Let’s take a closer look at the detailed structure of the code:</p>
-<div class="mermaid">flowchart TD
-
-A(game start) ---&gt; B(define global variables)
-B ---&gt; C(draw the board)
-B ---&gt; D(draw the paddles)
-B ---&gt; E(draw the ball)
-C ---&gt; F(the main loop)
-D ---&gt; F
-E ---&gt; F
-F -- listen to keyboard events --&gt; F
-</div><p>The main loop can be illustrated as:</p>
-<div class="mermaid">flowchart TD
-
-A(the main loop) ---&gt; B(update the window)
-B ---&gt; C(update ball)
-B ---&gt; D(update paddles)
-B ---&gt; E(update scores)
-B -- perform collision test --&gt; B
-</div><h1 id="the-functions">The Functions </h1>
-<p><a href="#top">Top</a></p>
-<p>There are four functions defined for keyboard controls:</p>
-<ol>
-<li><code>left_paddle_up()</code>: Move the left paddle upwards with <kbd>W</kbd>.</li>
-<li><code>left_paddle_down()</code>: Move the left paddle downwards with <kbd>S</kbd>.</li>
-<li><code>right_paddle_up()</code>: Move the right paddle upwards with <kbd>↑</kbd>.</li>
-<li><code>right_paddle_down()</code>: Move the right paddle downwards with <kbd>↓</kbd>.</li>
-</ol>
-<p>Additionally, there are two functions for displaying messages and drawing text on the board:</p>
-<ol>
-<li><code>msgbox(msg)</code>: Display a modal dialogue box with the given msg string.</li>
-<li><code>write_text(txt)</code>: Display the provided txt string on the board.</li>
-</ol>
-<p><strong>Note:</strong></p>
-<ul>
-<li>
-<p>The last two functions are primarily for debugging purposes and do not affect gameplay. They are useful for checking collision with window borders and paddles.</p>
-</li>
-<li>
-<p>You may need to improve the control functions to prevent paddles from moving out of the window in some cases.</p>
-</li>
-</ul>
+<p>There are 2 python files in the folder: <code>demo.pyc</code> and <code>minimax.py</code>. As usual, the <code>demo.pyc</code> is a compiled and completed version of the game. And the <code>minimax.py</code> is the template file you should be working on in this workshop.</p>
 <h1 id="your-task">Your Task </h1>
 <p><a href="#top">Top</a></p>
-<ol>
-<li>
-<p>Implement collisions with the board’s top and bottom, as well as the left and right paddles to make the game complete.</p>
+<h2 id="task-1-play-the-demo">Task 1: Play the demo </h2>
+<p><a href="#top">Top</a></p>
+<p>You can play the game by typing the following command:</p>
+<blockquote>
+<p>python <a href="http://demo.py">demo.py</a></p>
+</blockquote>
+<p><strong>Try hard to beat the AI if you can</strong>!</p>
+<h1 id="the-code-structure">The Code Structure </h1>
+<p><a href="#top">Top</a></p>
+<p>The code structure is very simply:</p>
+<ul>
+<li><code>State</code>: This class represents the current game state, containing the board and the next player. It includes several member functions facilitating comprehension:
+<ul>
+<li><code>winner</code>: Decorated as a property of the <code>State</code> class, it returns the winner (1 for AI, -1 for human, and 0 for a tie) if the game reaches a terminal state; otherwise, it returns <code>None</code>.</li>
+<li><code>move</code>: Executes a move in the current state and returns the new state after the action, swapping the players.</li>
+<li><code>undo</code>: Reverses the last move and swaps the players accordingly. A new state is returned after the operation.</li>
+<li><code>is_valid</code>: Verifies if a given move is valid or not.</li>
+<li><code>get_valid_moves</code>: Provides a list of all possible moves from the current state.</li>
+</ul>
 </li>
-<li>
-<p>Change the ball’s starting speed using the random module.</p>
+<li>Several auxiliary functions manage UI updates and coordinate calculations, which should <strong>remain unchanged</strong>:
+<ul>
+<li><code>draw_line</code>: Simply draws a line from one point to another.</li>
+<li><code>draw_circle</code>: Draws a circle centred at the given point with a specified radius.</li>
+<li><code>draw_square</code>: Renders a filled square at the specified point with a defined side length.</li>
+<li><code>ui_init</code>: Initializes the board.</li>
+<li><code>ui_update</code>: Updates the game state.</li>
+<li><code>get_ui_pos</code>: Converts matrix indices <code>(row, column)</code> to UI coordinates <code>(x, y)</code>.</li>
+<li><code>get_mat_index</code>: Converts UI coordinates <code>(x, y)</code> to matrix indices <code>(row, column)</code>.</li>
+</ul>
 </li>
-<li>
-<p>Adjust the size and moving speed of the paddles.</p>
+<li>The last two functions are awaiting completion:
+<ul>
+<li><code>minimax</code>: This function is the primary algorithm that you’ll implement, returning the AI’s best move from a given state.</li>
+<li><code>game_play</code>: This function defines the main interaction of the gameplay.</li>
+</ul>
 </li>
-<li>
-<p>Add more fun by speeding up the ball after a certain number of catches.</p>
-</li>
-<li>
-<p>Increase the excitement by adding a ‘random’ direction change for each collision with the board or paddle.</p>
-</li>
-<li>
-<p>Implement any other improvements you can imagine!</p>
-</li>
-</ol>
+</ul>
+<h2 id="task-2-implement-the-minimax-algorithm">Task 2: Implement the minimax algorithm </h2>
+<p><a href="#top">Top</a></p>
+<ul>
+<li>You will not be able to play the game until both functions are completed.</li>
+<li>Refer to <a href="#further-reading">Further Reading</a> or lecture slides about the <code>minimax</code> algorithm.</li>
+</ul>
+<h2 id="task-3-introduce-pruning-or-other-improvements">Task 3: Introduce Pruning or Other Improvements </h2>
+<p><a href="#top">Top</a></p>
+<ul>
+<li>Revisit your implementation to explore potential enhancements like alpha-beta pruning or other methods to halt exhaustive searching.</li>
+</ul>
 <p><strong>Note:</strong></p>
 <p>You can submit a pull request to the original repository to showcase your work if you like.</p>
+<h1 id="further-reading">Further Reading </h1>
+<ul>
+<li><a href="https://victorz.ca/game/t3">Online Tic-Tac-Toe Analyser</a></li>
+<li><a href="https://medium.com/@elissa.matsushita/understanding-the-game-tree-with-tic-tac-toe-de64fad94afd">Understanding the Game Tree with Tic Tac Toe</a></li>
+<li><a href="http://www.goodmath.org/blog/2008/07/30/solving-tic-tac-toe-game-tree-basics/">Solving Tic-Tac-Toe: Game Tree Basics</a></li>
+</ul>
 
       </div>
       
       
     
     
-    <script type="module">
-// TODO: If ZenUML gets integrated into mermaid in the future,
-//      we can remove the following lines.
-
-
-var MERMAID_CONFIG = ({"startOnLoad":false});
-if (typeof MERMAID_CONFIG !== 'undefined') {
-  MERMAID_CONFIG.startOnLoad = false
-  MERMAID_CONFIG.cloneCssStyles = false
-  MERMAID_CONFIG.theme = "forest"
-}
-
-mermaid.initialize(MERMAID_CONFIG || {})
-if (typeof(window['Reveal']) !== 'undefined') {
-  function mermaidRevealHelper(event) {
-    var currentSlide = event.currentSlide
-    var diagrams = currentSlide.querySelectorAll('.mermaid')
-    for (var i = 0; i < diagrams.length; i++) {
-      var diagram = diagrams[i]
-      if (!diagram.hasAttribute('data-processed')) {
-        mermaid.init(null, diagram, ()=> {
-          Reveal.slide(event.indexh, event.indexv)
-        })
-      }
-    }
-  }
-  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
-  Reveal.addEventListener('ready', mermaidRevealHelper)
-  await mermaid.run({
-    nodes: document.querySelectorAll('.mermaid')
-  })
-} else {
-  await mermaid.run({
-    nodes: document.querySelectorAll('.mermaid')
-  })
-}
-</script>
+    
     
     
     

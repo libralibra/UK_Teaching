@@ -14,7 +14,7 @@ class Move(object):
         self.y = y
         self.player = player
 
-    def __repr__(self):
+    def __str__(self):
         return f'Move (x: {self.x}, y: {self.y}, p: {self.player})'
 
 
@@ -73,7 +73,7 @@ class State(object):
         # make the move
         new_board[move.x, move.y] = move.player
         # swap player
-        next_player = State.o if move.player == State.x else State.x
+        next_player = State.o if self.next_player == State.x else State.x
         # return the new board after move
         return State(new_board, next_player)
 

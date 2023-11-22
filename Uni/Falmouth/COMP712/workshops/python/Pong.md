@@ -41,10 +41,10 @@ The repository linked below contains the code for a basic 2-player PONG game.
 # Game Play
 <a href="#top">Top</a>
 
-Ensure that you have successfully downloaded `pong.pyc`. Then, open a command window in the folder and run the game by executing:
+Ensure that you have successfully downloaded `demo.pyc`. Then, open a command window in the folder and run the game by executing:
 
 ```bash
-python pong.pyc
+python demo.pyc
 ```
 
 If everything is working correctly, you should see a GUI similar to the screenshot above.

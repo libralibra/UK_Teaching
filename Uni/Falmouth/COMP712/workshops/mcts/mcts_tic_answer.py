@@ -18,7 +18,7 @@ class Move(object):
         self.y = y
         self.player = player
 
-    def __repr__(self):
+    def __str__(self):
         return f'Move (x: {self.x}, y: {self.y}, p: {self.player})'
 
 
@@ -29,11 +29,12 @@ class State(object):
     x = 1
     o = -1
 
-    def __init__(self, board, next_player=1):
+    def __init__(self, board, next_player=1, win_num=3):
         if len(board.shape) != 2 or board.shape[0] != board.shape[1]:
             raise ValueError("Board must be a 2D square matrix")
         self.board = board
         self.board_size = board.shape[0]
+        self.win_num = win_num
         self.next_player = next_player
 
     def __str__(self) -> str:
@@ -51,9 +52,9 @@ class State(object):
         # connect them together as a single list
         all_sums = row_sum + col_sum + diag_main + diag_second
 
-        if self.board_size in all_sums:
+        if self.win_num in all_sums:
             return 1
-        elif -self.board_size in all_sums:
+        elif -self.win_num in all_sums:
             return -1
         elif np.all(self.board != 0):
             return 0
@@ -77,9 +78,9 @@ class State(object):
         # make the move
         new_board[move.x, move.y] = move.player
         # swap player
-        next_player = State.o if move.player == State.x else State.x
+        next_player = State.o if self.next_player == State.x else State.x
         # return the new board after move
-        return State(new_board, next_player)
+        return State(new_board, next_player, self.win_num)
 
     def get_valid_moves(self):
         ''' all empty cells would be valid '''
@@ -280,17 +281,20 @@ def get_ai_move(s1, s2):
 # ----------------------------------------------------------------
 if __name__ == "__main__":
     steps, c = 1000, 0
+    # possible gomoku style to increase the board size, winning size, and winner check rule
+    bd_size, win_num = 3, 3
 
     clean()
     print('AI    player: X')
     print('Human player: O')
-    board = np.zeros((3, 3))
-    state = State(board=board, next_player=1)
+    board = np.zeros((bd_size, bd_size))
+
+    state = State(board=board, next_player=1, win_num=win_num)
 
     # main loop
     while not game_over(state):
         # AI move
-        state = State(board=board, next_player=1)
+        state = State(board=board, next_player=1, win_num=win_num)
         root = Node(state=state, parent=None)
         mcts = MCTS(root, steps=steps, c=c)
         best_move = mcts.UCT_search()

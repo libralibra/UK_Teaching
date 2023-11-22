@@ -140,8 +140,8 @@ The repository contains 3 file.
 
 - `fsm.py`: it is the implementation of a simple FSM with all the components introduced above except `Actions`, which is the task for you to implement in a separate script during this workshop. _This design will make sure the `FSM` model response to any model if the `transitions` and `actions` are defined properly somewhere_.
 - `fsm_demo.py`: it is a template python script that you are going to working on.
-- `fsm_example.pyc`: it is an example of completed implementation of Traffic Light FSM, which can be simulated by running `python fsm_example.pyc`
-   - It was compiled using `python 3.12.0`, which should work with all python `3.x` version. Please let the tutor know if it doesn't work and a newer version will be updated.
+- `demo.pyc`: it is an example of completed implementation of Traffic Light FSM, which can be simulated by running `python demo.pyc`
+   - It was compiled using `python 3.10.11`, which should work with all python `3.x` version. Please let the tutor know if it doesn't work and a newer version will be updated.
 
 ### **Exercise**
 <a href="#top">Top</a>

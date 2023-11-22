@@ -270,13 +270,17 @@ The repository below contains the template code of an Behaviour Tree implementat
 ## Your Task
 <a href="#top">Top</a>
 
-In the folder, you'll find 2 python files `bt_turtle.py` and `demo.pyc`. The `demo.pyc` is a compiled version providing a glimpse into the functionality of a complete behaviour tree.
+In the folder, you'll find 3 python files `bt_turtle.py`, `demo.pyc`, and `demo_no_bt.pyc`. The `demo.pyc` is a compiled version providing a glimpse into the functionality of a complete behaviour tree, while `demo_no_bt.pyc` is the demo without using behaviour tree. You can compare how the turtle moves at each step between the two versions.
 
 ### Task 1: Running the demo
 
 Upon forking the repository, you can explore the completed demo by executing the command:
 
 > `python demo.pyc`
+
+and 
+
+> `python demo_no_bt.pyc`
 
 This command will trigger the display of informative output in the command line window, illustrating the running process, as shown in the screenshot below.
 

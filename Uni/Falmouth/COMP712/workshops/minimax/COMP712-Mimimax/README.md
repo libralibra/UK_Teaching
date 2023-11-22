@@ -1,9 +1,11 @@
-# COMP712: Classical Artificial Intelligence
+Workshop material for COMP712 23-24
+
+# COMP712: Minimax
 
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
 
-# Finite-State-Machine
+# The Tasks
 
 **Fork (NOT clone!) this template repository** and work on your fork 
 

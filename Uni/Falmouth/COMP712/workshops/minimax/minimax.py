@@ -5,6 +5,8 @@ import platform
 import time
 from os import system
 
+# https://github.com/hrbang/Minimax-algorithm-PY/blob/master/py_version/minimax.py
+
 """
 An implementation of Minimax AI Algorithm in Tic Tac Toe,
 using Python.

@@ -53,32 +53,32 @@ ball_dy = 0.2
 # board creation
 ##################################
 
-# Creating the main board
+# creating the main board
 window = t.Screen()
 window.title("The Pong Game")
 window.bgcolor(board_bg_colour)
-window.setup(width = board_width, height = board_height)
+window.setup(width=board_width, height=board_height)
 window.tracer(0)
 
-# Creating the left paddle
+# creating the left paddle
 left_paddle = t.Turtle()
 left_paddle.speed(0)
 left_paddle.shape("square")
 left_paddle.color(paddle_colour)
 left_paddle.shapesize(stretch_wid=paddle_length, stretch_len=paddle_width)
 left_paddle.penup()
-left_paddle.goto(-int(board_width/2),0)
+left_paddle.goto(-int(board_width/2), 0)
 
-# Creating the right paddle
-right_paddle=t.Turtle()
+# creating the right paddle
+right_paddle = t.Turtle()
 right_paddle.speed(0)
 right_paddle.shape("square")
 right_paddle.color(paddle_colour)
 right_paddle.shapesize(stretch_wid=paddle_length, stretch_len=paddle_width)
 right_paddle.penup()
-right_paddle.goto(int(board_width/2)-paddle_width,0)
+right_paddle.goto(int(board_width/2)-paddle_width, 0)
 
-# Creating the ball
+# creating the ball
 ball = t.Turtle()
 ball.speed(0)
 ball.shape("circle")
@@ -86,62 +86,68 @@ ball.color(ball_colour)
 ball.penup()
 ball.goto(ball_radius, ball_radius)
 
-#Code for creating pen for scorecard update
+# Code for creating pen for scorecard update
 pen = t.Turtle()
 pen.speed(0)
 pen.color("Blue")
 pen.penup()
 pen.hideturtle()
-pen.goto(0,0)
-pen.write("score",align="center",font=('Arial',24,'normal'))
+pen.goto(0, 0)
+pen.write("score", align="center", font=('Arial', 24, 'normal'))
 
 ##################################
 # Helper functions
 ##################################
 
+
 def left_paddle_up():
     ''' moving the left paddle up '''
-    y=left_paddle.ycor()
+    y = left_paddle.ycor()
     y += paddle_speed
-    y = min(y,int(board_height/2-paddle_length*10))
+    y = min(y, int(board_height/2-paddle_length*10))
     left_paddle.sety(y)
+
 
 def left_paddle_down():
     ''' moving the left paddle down '''
-    y=left_paddle.ycor()
+    y = left_paddle.ycor()
     y -= paddle_speed
-    y = max(y,int(-board_height/2+paddle_length*10))
+    y = max(y, int(-board_height/2+paddle_length*10))
     left_paddle.sety(y)
+
 
 def right_paddle_up():
     ''' moving the right paddle up '''
-    y=right_paddle.ycor()
+    y = right_paddle.ycor()
     y += paddle_speed
-    y = min(y,int(board_height/2-paddle_length*10))
+    y = min(y, int(board_height/2-paddle_length*10))
     right_paddle.sety(y)
+
 
 def right_paddle_down():
     ''' moving the right paddle down '''
-    y=right_paddle.ycor()
+    y = right_paddle.ycor()
     y -= paddle_speed
-    y = max(y,int(-board_height/2+paddle_length*10))
+    y = max(y, int(-board_height/2+paddle_length*10))
     right_paddle.sety(y)
+
 
 def msgbox(msg):
     ''' show a message box for debugging '''
     t.TK.messagebox.showinfo(title="The Turtle says:", message=msg)
 
+
 def write_text(txt):
     ''' write text '''
     pen.clear()
-    pen.write(txt,align="center",font=('Monaco',24,"normal"))
+    pen.write(txt, align="center", font=('Monaco', 24, "normal"))
 
 # assign keys to move paddles
 window.listen()
-window.onkeypress(left_paddle_up,'w')
-window.onkeypress(left_paddle_down,'s')
-window.onkeypress(right_paddle_up,'Up')
-window.onkeypress(right_paddle_down,'Down')
+window.onkeypress(left_paddle_up, 'w')
+window.onkeypress(left_paddle_down, 's')
+window.onkeypress(right_paddle_up, 'Up')
+window.onkeypress(right_paddle_down, 'Down')
 
 ##################################
 # The main loop for the game
@@ -169,7 +175,7 @@ while True:
         ball.sety(-board_height/2 + 2*ball_radius)
         ball_dy *= -1
         # msgbox('tap bottom')
-    
+
     # collisions with right paddle
     if (ball.xcor() >= right_paddle.xcor() - 3*ball_radius) and (right_paddle.ycor() - paddle_length*10 < ball.ycor() < right_paddle.ycor() + paddle_length*10):
         ball.setx(right_paddle.xcor() - 3*ball_radius)
@@ -181,10 +187,10 @@ while True:
         ball.setx(left_paddle.xcor() + 3*ball_radius)
         ball_dx *= -1
         # msgbox('left catches!')
-    
+
     # right paddle missed
     if ball.xcor() > board_width/2 - 2*ball_radius:
-        ball.goto(0,0)
+        ball.goto(0, 0)
         ball_dx *= -1
         player_a_score += 1
         msg = f'Player A: {player_a_score} <=> Player B: {player_b_score}\n'
@@ -195,8 +201,8 @@ while True:
         msgbox('Player B missed, and Player A scored!')
 
     # left paddle missed
-    if (ball.xcor()) < -board_width/2 + ball_radius: 
-        ball.goto(0,0)
+    if (ball.xcor()) < -board_width/2 + ball_radius:
+        ball.goto(0, 0)
         ball_dx *= -1
         player_b_score += 1
         msg = f'Player A: {player_a_score} <=> Player B: {player_b_score}\n'
