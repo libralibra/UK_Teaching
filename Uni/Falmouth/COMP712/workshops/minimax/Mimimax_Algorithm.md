@@ -132,6 +132,8 @@ The code structure is very simply:
   - `minimax`: This function is the primary algorithm that you'll implement, returning the AI's best move from a given state.
   - `game_play`: This function defines the main interaction of the gameplay.
 
+> **Note**: The mouse click event will be automatically monitored by the turtle module. Therefore, there's no need to concern yourself with human-computer interaction in the `game_play` or `minimax` functions—simply concentrate on the algorithm and game logic.
+
 ## Task 2: Implement the minimax algorithm
 [Top](#top)
 
