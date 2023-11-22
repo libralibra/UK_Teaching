@@ -183,7 +183,7 @@ Execute the demo to experience playing the game and observe how the AI responds 
 
 If it runs properly, you should be able to play the game as shown in the screenshot below. 
 
-![Tic Tac Toe Game Play](game_play.png)
+![Tic Tac Toe Game Play](../minimax/game.png)
 
 > **Note**: This code employs the `numpy` library to streamline the implementation. If you haven't installed it yet, you can do so using the command `pip install numpy`.
 

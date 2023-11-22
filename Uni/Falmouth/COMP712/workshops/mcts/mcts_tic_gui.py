@@ -153,39 +153,52 @@ class MCTS:
 
     def UCT_search(self):
         ''' find the best move after simulation '''
-        # ---------------------------------------------------
-        # YOUR CODE HERE
-        # ---------------------------------------------------
+        for _ in range(self.steps):
+            v = self.tree_policy()
+            w = self.default_policy(v)
+            self.back_propagate(v, w)
+        # 0 means exploitation only
+        return self.best_child(self.root, 0.)
 
     def expansion(self, node):
         ''' make expansion from the given node '''
-        # ---------------------------------------------------
-        # YOUR CODE HERE
-        # ---------------------------------------------------
+        action = node.valid_moves.pop()
+        next_state = node.state.move(action)
+        child_node = Node(next_state, parent=node)
+        node.children.append(child_node)
+        return child_node
 
     def best_child(self, node, c_param):
         ''' find the best child node with best payoff '''
-        # ---------------------------------------------------
-        # YOUR CODE HERE
-        # ---------------------------------------------------
+        choices_weights = [(c.q / (c.n)) + c_param *
+                           np.sqrt((2 * np.log(node.n) / (c.n))) for c in node.children]
+        return node.children[np.argmax(choices_weights)]
 
     def tree_policy(self):
         ''' MCTS tree policy that combines selection and expansion process '''
-        # ---------------------------------------------------
-        # YOUR CODE HERE
-        # ---------------------------------------------------
+        current_node = self.root
+        while not current_node.is_terminal():
+            if not current_node.fully_expanded():
+                return self.expansion(current_node)
+            else:
+                current_node = self.best_child(current_node, self.c)
+        return current_node
 
     def default_policy(self, node):
         ''' random play from the current state '''
-        # ---------------------------------------------------
-        # YOUR CODE HERE
-        # ---------------------------------------------------
+        current_state = node.state
+        while current_state.winner is None:
+            possible_moves = current_state.get_valid_moves()
+            action = possible_moves[np.random.randint(len(possible_moves))]
+            current_state = current_state.move(action)
+        return current_state.winner
 
     def back_propagate(self, v, winner):
         ''' back propagation from node v to the root '''
-        # ---------------------------------------------------
-        # YOUR CODE HERE
-        # ---------------------------------------------------
+        v.visits_ += 1
+        v.results[winner] += 1
+        if v.parent:
+            self.back_propagate(v.parent, winner)
 
 
 # ----------------------------------------------------------------
