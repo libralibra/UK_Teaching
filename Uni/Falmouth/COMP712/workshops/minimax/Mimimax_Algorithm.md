@@ -25,6 +25,7 @@ Dr Daniel Zhang @ Falmouth University\
 - [The Code Structure](#the-code-structure)
   - [Task 2: Implement the minimax algorithm](#task-2-implement-the-minimax-algorithm)
   - [Task 3: Introduce Pruning or Other Improvements](#task-3-introduce-pruning-or-other-improvements)
+  - [Task 4 (Optional): The Nim Game](#task-4-optional-the-nim-game)
 - [Further Reading](#further-reading)
 
 # Introduction
@@ -141,6 +142,14 @@ The code structure is very simply:
 [Top](#top)
 
 - Revisit your implementation to explore potential enhancements like alpha-beta pruning or other methods to halt exhaustive searching.
+
+## Task 4 (Optional): The Nim Game
+[Top](#top)
+
+- Implement an AI agent to play the [Nim Game](https://www.wikiwand.com/en/Nim).
+- GUI is not necessary; concentrate on the algorithm part.
+- Create necessary functions and classes as required.
+
 
 
 **Note:**
