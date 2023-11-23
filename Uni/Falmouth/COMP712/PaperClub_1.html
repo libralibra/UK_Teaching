@@ -59,22 +59,22 @@
                         <h1>Overview</h1>
                         <p class="cyan">A Methodology for requirements analysis in AI architecture authoring tools</p><br>
                         <ul>
-                            <li><span class="blue">Understanding the Methodology</span>: an in-depth comprehension of the paper.</li>
-                            <li><span class="lime">Critical Analysis</span>: critical thinking and discussions about the strengths, weaknesses, and practical applicability of the proposed methodology.</li>
-                            <li><span class="pink">Application and Relevance</span>: how the methodology aligns with contemporary practices in AI architecture design and how it addresses existing challenges.</li>
-                            <li><span class="purple">Engaging Discussions</span>: an interactive session to share insights, pose questions, and engage in meaningful discussions about the paper's contributions.</li>
-                            <li><span class="lightblue">Knowledge Exchange</span>: exchange of ideas, experiences, and perspectives.</li>
+                            <li><span class="blue">Understanding the Methodology</span>: in-depth comprehension of the paper</li>
+                            <li><span class="lime">Critical Analysis</span>: critical thinking and discussions about the strengths, weaknesses, and practical applicability of the proposed methodology</li>
+                            <li><span class="pink">Application and Relevance</span>: how the methodology aligns with contemporary practices in AI architecture design and how it addresses existing challenges</li>
+                            <li><span class="purple">Engaging Discussions</span>: interactive session to share insights, pose questions, and engage in meaningful discussions about the paper's contributions</li>
+                            <li><span class="lightblue">Knowledge Exchange</span>: exchange of ideas, experiences, and perspectives</li>
                         </ul>
                     </section>
                 </section>
 
                 <section id="contribution_chap">
                     <section id="contribution_title">
-                        <h1 class="r-frame-text">Key Contributions</h1>
+                        <h1 class="r-frame-text">Main Contributions</h1>
                         <ul class="fragment">
                             <li>SSS requirements analysis</li>
-                            <li>Case study approach</li>
                             <li>Process mapping techniques</li>
+                            <li>Case study approach</li>
                         </ul>
                     </section>
 
@@ -109,7 +109,7 @@
                             <li>Extracted the SSS and the SSS Components of each architecture
                                 <dd>- similarities, differences, and trade-offs between architectures</dd>
                             </li>
-                            <li>Proposed authoring support strategies to reduce the authoring burden.</li>
+                            <li>Proposed authoring support strategies to reduce the authoring burden</li>
                         </ul>
                     </section>
 
@@ -129,16 +129,20 @@
                     </section>
 
                     <section id="key_points">
-                        <h1>Key Components of the Methodology</h1>
+                        <h1>Key Components</h1>
                         <ul>
                             <li><span class="lightred">Requirement Elicitation Techniques</span>
-                                <dd class="fragment">Emphasise employing a diverse set of requirement elicitation techniques, including <span class="lightcyan">interviews and case studies</span></dd>
+                                <dd class="fragment">- a diverse set of such techniques, including <span class="lightcyan">interviews and case studies</span></dd>
                             </li>
                             <li><span class="lime">Domain Analysis and Knowledge Gathering</span>
-                                <dd class="fragment">To understand the context, domain-specific requirements, constraints, and challenges pertinent to the AI architecture being developed; examining existing systems, standards, and best practices in the IVA domain.</dd>
+                                <dd class="fragment">- To understand the context, domain-specific requirements, constraints, and challenges<br>
+                                    - examining existing systems, standards, and best practices in the IVA domain
+                                </dd>
                             </li>
                             <li><span class="lightpurple">Use Case Scenarios and Prototyping</span>
-                                <dd class="fragment">Creates use case scenarios to capture user interactions and system behaviours while prototyping plays a crucial role in visualising and validating requirements.</dd>
+                                <dd class="fragment">- create use case scenarios to capture user interactions and system behaviours<br>
+                                    - prototyping plays a crucial role in visualising and validating requirements
+                                </dd>
                             </li>
                         </ul>
                     </section>
@@ -149,8 +153,8 @@
                     </section>
 
                     <section id="sss_methodology">
-                        <h1>SSS Methodology</h1>
-                        <ul>
+                        <h1>Applying SSS Methodology</h1>
+                        <ul class="fragment">
                             <li>Intermediate-expert authors paired with an analyst who is no an expert in the architecture</li>
                             <li>Translate the work into <span class="italic">Process map</span></li>
                             <li>Create a visual representation of the procedure similar to flowcharts</li>
@@ -161,19 +165,22 @@
                     <section id="the_scenario">
                         <h1>The Scenario</h1>
                         <ul>
-                            <li>Lost Interpreter: armed soldiers searching for their lost interpreter via a photograph
-                                <dd>A simplified version of IMMERSE group in ABL</dd>
+                            <li>Lost Interpreter: armed soldiers searching for their lost interpreter via a photograph (A simplified version of IMMERSE group in ABL)
                             </li>
-                            <li>Exercises a wide range of capabilities of interactive characters:
-                                <dd>- player<br>
-                                    - multiple NPCs with different attitudes<br>
-                                    - physical objects<br>
-                                    - communication between NPCs and PC<br>
-                                    - multiple outcomes
-                                </dd>
-                            </li>
-                            <li>Simple enough to reach a pseudocode state in a reasonable amount of time (1-3 hours)
-                                <dd>get rid of IMMERSE's original non-verbal communication via gesture recognition</dd>
+                            <li class="fragment">Why this scenario?
+                                <ul class="fragment">
+                                    <li>Exercises a wide range of capabilities of interactive characters:
+                                        <dd>- player<br>
+                                            - multiple NPCs with different attitudes<br>
+                                            - physical objects<br>
+                                            - communication between NPCs and PC<br>
+                                            - multiple outcomes
+                                        </dd>
+                                    </li>
+                                    <li>Simple enough to reach a pseudocode state in a reasonable amount of time (1-3 hours)
+                                        <dd>- get rid of IMMERSE's original non-verbal communication via gesture recognition</dd>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </section>
@@ -187,163 +194,171 @@
                         <li>Provides a description of the authoring process associated with the architecture</li>
                         <li>Creates a list of the SSS components abstracted from the authoring description</li>
                         <li>Includes a description of authoring support strategies that could reduce the authoring burden of the particular SSS.</li>
-                        <li>Problem? - <span class="fragment">no standardised method for testing and debugging</span></li>
+                        <li>Problem found? - <span class="fragment lightpink">no standardised method for testing and debugging</span></li>
                     </ul>
                 </section>
 
-                <section id="study_1">
-                    <h1>Case Study 1: BOD using POSH</h1>
-                    <ul>
-                        <li>BOD: Behaviour-Oriented Design that combined Object-Oriented Design and Behaviour-Based AI</li>
-                        <li>POSH: Parallel-rooted, Ordered Slip-stack Hierarchical planner - Why?
-                            <ul class="fragment">
-                                <li>simplicity and iteration</li>
-                                <li>low barrier to entry for novice authors</li>
-                                <li>encoded in the least amount of time</li>
-                            </ul>
-                        </li>
-                        <li>Unique case? - <span class="fragment">to have an explicit authoring approach as well as the graphical design tool (ABODE)</span></li>
-                    </ul>
+                <section id="chap_case_study_1">
+                    <section id="study_1">
+                        <h1>Case Study 1: BOD using POSH</h1>
+                        <ul>
+                            <li>BOD: Behaviour-Oriented Design that combined Object-Oriented Design and Behaviour-Based AI</li>
+                            <li>POSH: Parallel-rooted, Ordered Slip-stack Hierarchical planner - Why?
+                                <ul class="fragment">
+                                    <li>simplicity and iteration</li>
+                                    <li>low barrier to entry for novice authors</li>
+                                    <li>encoded in the least amount of time</li>
+                                </ul>
+                            </li>
+                            <li>Unique case? - <span class="fragment">to have an explicit authoring approach as well as the graphical design tool (ABODE)</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="bod_good">
+                        <h1>Design Philosophy of BOD</h1>
+                        <ul class="fragment">
+                            <li>BOD designer never needs to encounter anything more complicated than graphical interface</li>
+                            <li>Separation of the two roles: designer and programmer to be the most independent</li>
+                        </ul>
+                    </section>
+
+                    <section id="bod">
+                        <h1>BOD/POSH</h1>
+                        <span class="smalltext">Behaviour-Oriented Design + Parallel-rooted, Ordered Slip-stack Hierarchical planner</span>
+                        <img class="r-stretch" src="img/bod.png" alt="BOD">
+                    </section>
+
+                    <section id="sss_bod">
+                        <h1>SSS Components in BOD</h1>
+                        <ul>
+                            <li>Start Minimally: only 4 primitives in the first version of the plan</li>
+                            <li>Decompose Iteratively: agility for both designer and programmer as they can move freely between phases of the process</li>
+                            <li>Minimise and Encapsulate: the most unique but easy to mess up by most novice BOD/POSH authors - how?
+                                <dd class="fragment">- the logic of the tree is getting complex IF more than 3 sensors are needed to trigger a competence<br>
+                                    - flag the programmer to offload the logic from the tree onto a new sensor for simplification
+
+                                </dd>
+                            </li>
+                        </ul>
+                    </section>
                 </section>
 
-                <section id="bod_good">
-                    <h1>Design Philosophy of BOD</h1>
-                    <ul class="fragment">
-                        <li>BOD designer never needs to encounter anything more complicated than graphical interface</li>
-                        <li>Separation of the two roles: designer and programmer to be the most independent</li>
-                    </ul>
+                <section id="chap_case_study_2">
+                    <section id="study_2">
+                        <h1>Case Study 2: FAtiMA</h1>
+                        <ul>
+                            <li>FAtiMA: multi-agent architecture, each agent has an emotional state and plans future actions to achieve a specify goal</li>
+                            <li>Goals can be weighted according to importance</li>
+                            <li>How to perform authoring in FAtiMA?
+                                <dd class="fragment">by editing several separate XML files</dd>
+                            </li>
+                            <li class="fragment">The process started by considering the motivations of the NPCs
+                                <dd>either corporative or uncooperative</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="fatima_code">
+                        <h1>Active Pursuit Goal of NPC</h1>
+                        <img class="r-stretch" src="img/fatima.png" alt="FAtiMA code">
+                    </section>
+
+                    <section id="sss_fatima">
+                        <h1>SSS Components in FAtiMA</h1>
+                        <ul>
+                            <li>Goals first: two teams are working on defining the goals</li>
+                            <li>Find Decision Point: the decision making points are motivated by a goal
+                                <dd>- temporal ordering of decision by creating goal preconditions</dd>
+                            </li>
+                            <li>Goal Weighting and Tuning: goal weights completely control how different agents act - what is consequence? -
+                                <dd class="fragment">- the most time-consuming process to manipulate the personality files</dd>
+                            </li>
+                            <li>Intent Goals for Future Consequences: not part of the scenario, but opens discussions for additional FAtiMA SSS
+                                <dd class="fragment">- some claimed that FAtiMA cannot have more than one active pursuit goal at a time, but one team of this case study showed that it's possible.</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="support">
+                        <h1>Authoring Support Strategy</h1>
+                        What did they do?
+                        <ul class="fragment">
+                            <li>proposed an interface where authors can create example sequences of events schematically</li>
+                            <li>prompt the user to create the corresponding goals when a denison is needed</li>
+                        </ul>
+                    </section>
                 </section>
 
-                <section id="bod">
-                    <h1>BOD/POSH</h1>
-                    <span class="smalltext">Behaviour-Oriented Design + Parallel-rooted, Ordered Slip-stack Hierarchical planner</span>
-                    <img class="r-stretch" src="img/bod.png" alt="BOD">
-                </section>
+                <section id="chap_case_study_3">
+                    <section id="case_study_3">
+                        <h1 class="r-frame-text">Case Study 3: ABL</h1>
+                    </section>
 
-                <section id="sss_bod">
-                    <h1>SSS Components in BOD</h1>
-                    <ul>
-                        <li>Start Minimally: only 4 primitives in the first version of the plan</li>
-                        <li>Decompose Iteratively: agility for both designer and programmer as they can move freely between phases of the process</li>
-                        <li>Minimise and Encapsulate: the most unique but easy to mess up by most novice BOD/POSH authors - how?
-                            <dd class="fragment">- the logic of the tree is getting complex IF more than 3 sensors are needed to trigger a competence<br>
-                                - flag the programmer to offload the logic from the tree onto a new sensor for simplification
+                    <section id="abl">
+                        <h1>ABL</h1>
+                        <ul>
+                            <li>Designed to focus on the creation of expressive IVAs</li>
+                            <li>Provides a feature-full reactive planning language </li>
+                            <li>High degree of interactivity</li>
+                            <li>Primary structure primitive in ABL is the behaviour</li>
+                            <li>Active Behaviour Tree (ABT) for structure with potential executable steps as leaves</li>
+                            <li>Working Memory Elements (WMEs) hold information to be shared throughout the ABT</li>
+                        </ul>
+                    </section>
 
-                            </dd>
-                        </li>
-                    </ul>
-                </section>
+                    <section id="abl_abt">
+                        <h1>ABL ABT</h1>
+                        <img class="r-stretch" src="img/abt.png" alt="ABL ABT">
+                        <p class="like-li">Example behaviour for a character to hand an object to another</p>
+                    </section>
 
-                <section id="study_2">
-                    <h1>Case Study 2: FAtiMA</h1>
-                    <ul>
-                        <li>FAtiMA: multi-agent architecture, each agent has an emotional state and plans future actions to achieve a specify goal</li>
-                        <li>Goals can be weighted according to importance</li>
-                        <li>How to perform authoring in FAtiMA?
-                            <dd class="fragment">by editing several separate XML files</dd>
-                        </li>
-                        <li class="fragment">The process started by considering the motivations of the NPCs
-                            <dd>either corporative or uncooperative</dd>
-                        </li>
-                    </ul>
-                </section>
+                    <section id="sss_abl">
+                        <h1>SSS Components in ABL</h1>
+                        <ul>
+                            <li>ABL shared the same SSS components as BOD/POSH
+                                <ul>
+                                    <li>Start Minimally: only 4 primitives in the first version of the plan</li>
+                                    <li>Decompose Iteratively: agility for both designer and programmer as they can move freely between phases of the process</li>
+                                </ul>
+                            </li>
+                            <li>Define coding idioms: ABL is unique to keep the complexity within the denison making process of the agent</li>
+                            <li>Consider Interruption: the behaviour may have to multitask with other behaviours so need to carefully thinking of interrupting at some point.</li>
+                        </ul>
+                    </section>
 
-                <section id="fatima_code">
-                    <h1>Active Pursuit Goal of NPC</h1>
-                    <img class="r-stretch" src="img/fatima.png" alt="FAtiMA code">
-                </section>
-
-                <section id="sss_fatima">
-                    <h1>SSS Components in FAtiMA</h1>
-                    <ul>
-                        <li>Goals first: two teams are working on defining the goals</li>
-                        <li>Find Decision Point: the decision making points are motivated by a goal
-                            <dd>- temporal ordering of decision by creating goal preconditions</dd>
-                        </li>
-                        <li>Goal Weighting and Tuning: goal weights completely control how different agents act - what is consequence? -
-                            <dd class="fragment">- the most time-consuming process to manipulate the personality files</dd>
-                        </li>
-                        <li>Intent Goals for Future Consequences: not part of the scenario, but opens discussions for additional FAtiMA SSS
-                            <dd class="fragment">- some claimed that FAtiMA cannot have more than one active pursuit goal at a time, but one team of this case study showed that it's possible.</dd>
-                        </li>
-                    </ul>
-                </section>
-
-                <section id="support">
-                    <h1>Authoring Support Strategy</h1>
-                    What did they do?
-                    <ul class="fragment">
-                        <li>proposed an interface where authors can create example sequences of events schematically</li>
-                        <li>prompt the user to create the corresponding goals when a denison is needed</li>
-                    </ul>
-                </section>
-
-                <section id="case_study_3">
-                    <h1 class="r-frame-text">Case Study 3: ABL</h1>
-                </section>
-
-                <section id="abl">
-                    <h1>ABL</h1>
-                    <ul>
-                        <li>Designed to focus on the creation of expressive IVAs</li>
-                        <li>Provides a feature-full reactive planning language </li>
-                        <li>High degree of interactivity</li>
-                        <li>Primary structure primitive in ABL is the behaviour</li>
-                        <li>Active Behaviour Tree (ABT) for structure with potential executable steps as leaves</li>
-                        <li>Working Memory Elements (WMEs) hold information to be shared throughout the ABT</li>
-                    </ul>
-                </section>
-
-                <section id="abl_abt">
-                    <h1>ABL ABT</h1>
-                    <img class="r-stretch" src="img/abt.png" alt="ABL ABT">
-                    <p class="like-li">Example behaviour for a character to hand an object to another</p>
-                </section>
-
-                <section id="sss_abl">
-                    <h1>SSS Components in ABL</h1>
-                    <ul>
-                        <li>ABL shared the same SSS components as BOD/POSH
-                            <ul>
-                                <li>Start Minimally: only 4 primitives in the first version of the plan</li>
-                                <li>Decompose Iteratively: agility for both designer and programmer as they can move freely between phases of the process</li>
-                            </ul>
-                        </li>
-                        <li>Define coding idioms: ABL is unique to keep the complexity within the denison making process of the agent</li>
-                        <li>Consider Interruption: the behaviour may have to multitask with other behaviours so need to carefully thinking of interrupting at some point.</li>
-                    </ul>
-                </section>
-
-                <section id="support">
-                    <h1>Authoring Support Strategy</h1>
-                    What did they find?
-                    <ul class="fragment">
-                        <li>Discuss ABL SSS with authors of different levels of experiences
-                            <dd>ABL meta-behaviours feature was not utilised by some</dd>
-                        </li>
-                        <li>ABL is hard to visualise</li>
-                        <li>ABL debugger was not used for the usage barriers</li>
-                        <li>What are they going to do?
-                            <dd class="fragment">- create a graphical ABT representation for: parallel views of ABT, saving snapshots, and saving viewing locations</dd>
-                        </li>
-                    </ul>
+                    <section id="support">
+                        <h1>Authoring Support Strategy</h1>
+                        What did they find?
+                        <ul class="fragment">
+                            <li>Discuss ABL SSS with authors of different levels of experiences
+                                <dd>ABL meta-behaviours feature was not utilised by some</dd>
+                            </li>
+                            <li>ABL is hard to visualise</li>
+                            <li>ABL debugger was not used for the usage barriers</li>
+                            <li>What are they going to do?
+                                <dd class="fragment">- create a graphical ABT representation for: parallel views of ABT, saving snapshots, and saving viewing locations</dd>
+                            </li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="conclusion">
-                    <h1>Conclusion</h1>
-                    <ul>
-                        <li>Proposed SSS requirement methodology</li>
-                        <li>Carried out interviews with groups using different authoring processes</li>
-                        <li>Proposed authoring strategies that may ease their authoring burdens</li>
-                        <li>Potentially be applied to other IVA architectures as well.</li>
-                    </ul>
-                </section>
+                    <section id="conclusion">
+                        <h1>Conclusion</h1>
+                        <ul>
+                            <li>Proposed SSS requirement methodology</li>
+                            <li>Carried out interviews with groups using different authoring processes</li>
+                            <li>Proposed authoring strategies that may ease their authoring burdens</li>
+                            <li>Potentially be applied to other IVA architectures as well.</li>
+                        </ul>
+                    </section>
 
-                <section id="questions">
-                    <h2><span class="bold purple">Questions?</span></h2>
-                    <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
-                    <h5>Email: <a class="emaillink"></a></h5>
-                    <span class="office cyan"></span>
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                    </section>
                 </section>
             </div>
         </div>
