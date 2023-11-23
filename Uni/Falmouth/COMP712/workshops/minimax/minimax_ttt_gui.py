@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tkinter import messagebox
 import turtle
 import numpy as np
 
@@ -17,7 +16,7 @@ pen.speed('fastest')
 board = np.zeros((3, 3))
 screen = turtle.Screen()
 screen.setup(400, 400)
-turtle.title("COMP712 - Minimax Demo")
+turtle.title("COMP712/Minimax Demo - Falmouth University 2023-2024")
 
 
 # ----------------------------------------------------------------
@@ -128,6 +127,8 @@ def minimax(state: State):
 # ----------------------------------------------------------------
 # MAIN GAME PLAY PROCESS
 # ----------------------------------------------------------------
+
+
 def game_play(x, y):
     ''' main logic here, player plays first '''
     global board

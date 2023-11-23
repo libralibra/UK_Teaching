@@ -13,7 +13,7 @@ pen.speed('fastest')
 board = np.zeros((3, 3))
 screen = turtle.Screen()
 screen.setup(400, 400)
-turtle.title("COMP712 - MCTS Demo")
+turtle.title("COMP712/MCTS Demo - Falmouth University 2023-2024")
 
 # ----------------------------------------------------------------
 # MOVE CLASS: (x, y, who to play)

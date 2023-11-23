@@ -49,6 +49,10 @@ ball_radius = 10
 ball_dx = 0.2
 ball_dy = 0.2
 
+# speed addition after each catch
+speed_addition = 1.0
+catch_num = 0
+
 ##################################
 # board creation
 ##################################
@@ -142,6 +146,7 @@ def write_text(txt):
     pen.clear()
     pen.write(txt, align="center", font=('Monaco', 24, "normal"))
 
+
 # assign keys to move paddles
 window.listen()
 window.onkeypress(left_paddle_up, 'w')
@@ -156,8 +161,8 @@ while True:
     window.update()
 
     # moving the ball
-    ball.setx(ball.xcor() + ball_dx)
-    ball.sety(ball.ycor() + ball_dy)
+    ball.setx(ball.xcor() + ball_dx * speed_addition)
+    ball.sety(ball.ycor() + ball_dy * speed_addition)
 
     # draw the message
     msg = f'Player A: {player_a_score} <=> Player B: {player_b_score}\n'
@@ -180,12 +185,18 @@ while True:
     if (ball.xcor() >= right_paddle.xcor() - 3*ball_radius) and (right_paddle.ycor() - paddle_length*10 < ball.ycor() < right_paddle.ycor() + paddle_length*10):
         ball.setx(right_paddle.xcor() - 3*ball_radius)
         ball_dx *= -1
+        catch_num += 1
+        if catch_num % 4 == 0:
+            speed_addition += 0.3
         # msgbox('right catches!')
 
     # collisions with left paddle
     if (ball.xcor() < left_paddle.xcor() + 3*ball_radius) and (left_paddle.ycor() - paddle_length*10 < ball.ycor() < left_paddle.ycor() + paddle_length*10):
         ball.setx(left_paddle.xcor() + 3*ball_radius)
         ball_dx *= -1
+        catch_num += 1
+        if catch_num % 4 == 0:
+            speed_addition += 0.3
         # msgbox('left catches!')
 
     # right paddle missed
@@ -198,7 +209,9 @@ while True:
         # msg += f'left({left_paddle.xcor():.0f},{left_paddle.ycor():.0f})\n'
         # msg += f'right({right_paddle.xcor():.0f},{right_paddle.ycor():.0f})'
         write_text(msg)
-        msgbox('Player B missed, and Player A scored!')
+        msgbox('Player B missed, and Player A scored!\nRestart!')
+        speed_addition = 1.0
+        catch_num = 0
 
     # left paddle missed
     if (ball.xcor()) < -board_width/2 + ball_radius:
@@ -210,4 +223,6 @@ while True:
         # msg += f'left({left_paddle.xcor():.0f},{left_paddle.ycor():.0f})\n'
         # msg += f'right({right_paddle.xcor():.0f},{right_paddle.ycor():.0f})'
         write_text(msg)
-        msgbox('Player A missed, and Player B scored!')
+        msgbox('Player A missed, and Player B scored!\nRestart!')
+        speed_addition = 1.0
+        catch_num = 0
