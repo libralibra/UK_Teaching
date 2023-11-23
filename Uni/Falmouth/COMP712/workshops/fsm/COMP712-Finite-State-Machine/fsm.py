@@ -59,12 +59,16 @@ class FSM(object):
             else:
                 handler = self.handlers[self.currentState]
 
-    def __str__(self) -> str:
+    def __str__(self, full=False) -> str:
         ''' response the print() and str() calls '''
-        s = f'\nFinite State Machine with {len(self.handlers)} states\n'
-        s += f'Transitions are: {self.handlers.keys()}\n'
-        s += f'Start state is: {self.startState}\n'
-        s += f'End states are: {self.endStates}\n'
-        s += f'Last state is: {self.lastState}\n'
-        s += f'Current state is: {self.currentState}\n'
+        if full:
+            s = f'\nFinite State Machine with {len(self.handlers)} states\n'
+            s += f'Transitions are: {self.handlers.keys()}\n'
+            s += f'Start state is: {self.startState}\n'
+            s += f'End states are: {self.endStates}\n'
+            s += f'Last state is: {self.lastState}\n'
+            s += f'Current state is: {self.currentState}\n'
+        else:
+            s = f'\nLast state is: {self.lastState}\n'
+            s += f'Current state is: {self.currentState}\n'
         return s
