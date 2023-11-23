@@ -2,11 +2,15 @@
     Daniel Zhang, Oct 2023
 */
 
+/* original reset */
 @import url(reset.css);
+/* modified global reveal */
 @import url(reveal.css);
-@import url(../theme/black.css);
-@import url(../../plugin/highlight/monokai.css);
+/* chalkboard style */
 @import url(../../plugin/chalkboard/style.css);
+/* custom controls style */
 @import url(../../plugin/customcontrols/style.css);
+/* multi-row and column support */
 @import url(row_col.css);
+/* turn mouse to pointer by pressing Q */
 @import url(../../plugin/pointer/pointer.css);

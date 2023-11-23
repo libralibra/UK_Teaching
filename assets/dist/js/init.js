@@ -196,6 +196,20 @@ Reveal.initialize({
         // when 'themes' is set to 'true'. If you provide your own
         // list of themes or 'themes' is set to 'false' the
         // 'themesPath' option is ignored.
+        // [
+        //     { name: 'Black', theme: 'dist/theme/black.css' },
+        //     { name: 'White', theme: 'dist/theme/white.css' },
+        //     { name: 'League', theme: 'dist/theme/league.css' },
+        //     {
+        //       name: 'Dark',
+        //       theme: 'lib/reveal.js/dist/theme/black.css',
+        //       highlightTheme: 'lib/reveal.js/plugin/highlight/monokai.css'
+        //     },
+        //     {
+        //       name: 'Code: Zenburn',
+        //       highlightTheme: 'lib/reveal.js/plugin/highlight/zenburn.css'
+        //     }
+        // ]
         themes: true,
         // with last slash
         themesPath: '../../../assets/dist/theme/',
@@ -273,7 +287,7 @@ Reveal.initialize({
             // },
             {
                 id: 'toggle-chalkboard',
-                icon: '<i class="fa fa-pen-square"></i>',
+                icon: '<i id="overview_button" class="fa fa-pen-square"></i>',
                 title: 'Toggle chalkboard (B)',
                 action: 'RevealChalkboard.toggleChalkboard();'
             },
@@ -285,14 +299,14 @@ Reveal.initialize({
             },
             {
                 id: 'toggle-pause',
-                icon: '<i class="fa fa-eye-slash"></i>',
+                icon: '<i id="pause_button" class="fa fa-eye-slash"></i>',
                 title: 'Black out the slides (.)',
                 action: 'Reveal.togglePause();'
             },
             {
                 id: 'toggle-fullscreen',
                 // or 'fa fa-expand' for another icon
-                icon: '<i class="fa fa-expand"></i>',
+                icon: '<i id="fullscreen_button" class="fa fa-expand"></i>',
                 title: 'Toggle fullscreen (F)',
                 action: 'document.documentElement.requestFullscreen();'
 

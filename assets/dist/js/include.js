@@ -48,9 +48,6 @@ document.write(`
 <!-- copy code -->
 <script src="../../../assets/plugin/copycode/copycode.js"></script>
 
-<!-- reveal initialisation -->
-<script id="reveal_init" src="../../../assets/dist/js/init.js"></script>
-
 <!-- make long slides overflow -->
 <script id="overflow" src="../../../assets/dist/js/overflow.js"></script>
 
@@ -70,4 +67,7 @@ document.write(`
     but not in the ctrl+p generated pdf file, so wont' be printed.
     wait for bug fix -->
 <script id="copy_logo" src="../../../assets/dist/js/copy_logo.js"></script>
+
+<!-- reveal initialisation -->
+<script id="reveal_init" src="../../../assets/dist/js/init.js"></script>
 `);
