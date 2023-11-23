@@ -43,7 +43,11 @@ HEADERS = r'''<!doctype html>
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+        <!-- all css in the master css file -->
         <link rel="stylesheet" href="./assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="./assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="./plugin/highlight/monokai.css" id="theme">
 
         <!-- all links open in new tab -->
         <!-- <base target="_blank"> -->
@@ -420,26 +424,31 @@ FOOTER = r'''</div>
 </html>'''
 
 # #################################################################
+
+
 def get_all_files(d_path):
     ''' get all files with relative links to a dict of dict: {uni: {module: html_list}} '''
-    # get all html file paths 
-    htmls = [x[x.index(d_path)+len(d_path)+1:] for x in glob(d_path+r'/**/*.html',recursive=True)]
+    # get all html file paths
+    htmls = [x[x.index(d_path)+len(d_path)+1:]
+             for x in glob(d_path+r'/**/*.html', recursive=True)]
     # get all pdf files
-    pdfs = [x[x.index(d_path)+len(d_path)+1:] for x in glob(d_path+r'/**/*.pdf',recursive=True)]
+    pdfs = [x[x.index(d_path)+len(d_path)+1:]
+            for x in glob(d_path+r'/**/*.pdf', recursive=True)]
     all_files = htmls + pdfs
     # sort out after split: uni -> module -> htmls
     all_dict = {}
     for x in all_files:
         parts = x.split(os.sep)
-        u,m,f = parts[0],parts[1],os.sep.join(parts[2:])
+        u, m, f = parts[0], parts[1], os.sep.join(parts[2:])
         if u in all_dict:
             if m in all_dict[u]:
                 all_dict[u][m].append(f)
             else:
                 all_dict[u][m] = [f]
         else:
-            all_dict[u] = {m:[f]}
+            all_dict[u] = {m: [f]}
     return all_dict
+
 
 # #################################################################
 SECTION_START = r'''<section id="chapter_UNIVERSITY">
@@ -447,15 +456,18 @@ SECTION_START = r'''<section id="chapter_UNIVERSITY">
                         <h1 class="r-frame-text">UNIVERSITY</h1>
                     </section>'''
 SECTION_END = r'</section>'
+
+
 def get_uni_section(base_path, u_name, u_modules):
     ''' create a section (a new vertical slide deck) for each university
         base_path: where start the search
         u_name: university name
         u_modules: a dict of m_name -> list of html files
     '''
-    return SECTION_START.replace('UNIVERSITY',u_name) + '\n'.join([get_module_slide(base_path+'/'+u_name,k,v) for k,v in u_modules.items()]) + SECTION_END
+    return SECTION_START.replace('UNIVERSITY', u_name) + '\n'.join([get_module_slide(base_path+'/'+u_name, k, v) for k, v in u_modules.items()]) + SECTION_END
 
-# #################################################################  
+
+# #################################################################
 MODULE_LEFT = r'''
 <section id="MODULE">
     <h1>MODULE</h1><ol>
@@ -468,6 +480,8 @@ MODULE_RIGHT = r'''</div>
 '''
 MODULE_END = r'''</div></div></ol>
 </section>'''
+
+
 def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
     ''' get a module page using it's name (slide id), and all it's children html files as the page content 
         u_name: university name (added to the path)
@@ -477,17 +491,25 @@ def get_module_slide(u_name, m_name, m_htmls, sec_num=12):
     '''
     all_sections = []
     if len(m_htmls) > sec_num:
-        html_slices = [m_htmls[i:i+sec_num] for i in range(0, len(m_htmls), sec_num)]
-        for i,one_slice in enumerate(html_slices):
-            left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in one_slice[:round(len(one_slice)/2+0.5)]]
-            right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in one_slice[round(len(one_slice)/2+0.5):]]
-            all_sections.append(MODULE_LEFT.replace('MODULE',m_name+' - '+str(i+1)) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END)
+        html_slices = [m_htmls[i:i+sec_num]
+                       for i in range(0, len(m_htmls), sec_num)]
+        for i, one_slice in enumerate(html_slices):
+            left = [
+                f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in one_slice[:round(len(one_slice)/2+0.5)]]
+            right = [
+                f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in one_slice[round(len(one_slice)/2+0.5):]]
+            all_sections.append(MODULE_LEFT.replace('MODULE', m_name+' - '+str(i+1)) +
+                                '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END)
         return '\n\n'.join(all_sections)
     else:
-        left = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[:round(len(m_htmls)/2+0.5)]]
-        right = [f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[round(len(m_htmls)/2+0.5):]]
-        return MODULE_LEFT.replace('MODULE',m_name) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END
+        left = [
+            f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[:round(len(m_htmls)/2+0.5)]]
+        right = [
+            f'<li><a href="{u_name}/{m_name}/{h}">{h}</a></li>' for h in m_htmls[round(len(m_htmls)/2+0.5):]]
+        return MODULE_LEFT.replace('MODULE', m_name) + '\n'.join(left) + MODULE_RIGHT + '\n'.join(right) + MODULE_END
 # #################################################################
+
+
 def show_info(htmls):
     ''' display dict information: uni -> module -> htmls '''
     print('\n'+'='*50)
@@ -498,10 +520,12 @@ def show_info(htmls):
         print(f'  University [{uni_name}] has {len(md_list)} {md_str}:')
         for md_name, html_list in md_list.items():
             html_str = len(html_list) > 1 and 'files' or 'file'
-            print(f'    Module [{md_name}] has {len(html_list)} {html_str}:\n      ',end='')
+            print(
+                f'    Module [{md_name}] has {len(html_list)} {html_str}:\n      ', end='')
             print('\n      '.join(html_list))
         print('-'*40)
     print('-'*50)
+
 
 # #################################################################
 # global definitions
@@ -509,10 +533,13 @@ BASE_UNI_URL = r'https://pages.github.falmouth.ac.uk/Daniel-Zhang/UK_Teaching/'
 BASE_PRI_URL = r'https://libralibra.github.io/UK_Teaching/'
 SOURCE_PATH = r'Uni'
 OUTPUT_PATH = r'all_links.html'
+
+
 def get_html(base_path, h_dict):
     ''' write out the html file: '''
-    with open(OUTPUT_PATH,'w',encoding="utf-8") as fout:
-        fout.write(HEADERS + '\n'.join([get_uni_section(SOURCE_PATH,u,m) for u,m in h_dict.items()]) + FOOTER)
+    with open(OUTPUT_PATH, 'w', encoding="utf-8") as fout:
+        fout.write(HEADERS + '\n'.join([get_uni_section(SOURCE_PATH, u, m)
+                   for u, m in h_dict.items()]) + FOOTER)
     print(f'{OUTPUT_PATH} has been updated!')
 
 
@@ -520,5 +547,4 @@ def get_html(base_path, h_dict):
 if __name__ == '__main__':
     htmls = get_all_files(SOURCE_PATH)
     show_info(htmls)
-    get_html(SOURCE_PATH,htmls)
-
+    get_html(SOURCE_PATH, htmls)
