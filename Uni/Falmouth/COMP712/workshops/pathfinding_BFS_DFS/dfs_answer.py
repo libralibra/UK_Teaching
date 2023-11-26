@@ -14,10 +14,11 @@ class DFS(Canvas):
     def __init__(self, title, width, height, bgcolour='white', animate=False, nb_size=4, clever=False, ran_nb=False) -> None:
         super().__init__(title, width, height, bgcolour)
         self.animate = animate
+        # neighbourhood size
         self.nb_size = nb_size
-        # search towards target
+        # search towards targets
         self.clever = clever
-        # randomise neighbours
+        # random search surrounding area
         self.ran_nb = ran_nb
         self.showHelp()
 

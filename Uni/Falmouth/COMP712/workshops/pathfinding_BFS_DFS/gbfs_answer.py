@@ -14,7 +14,9 @@ class GBFS(Canvas):
     def __init__(self, title, width, height, bgcolour='white', animate=False, nb_size=4, euclidean_dist=False) -> None:
         super().__init__(title, width, height, bgcolour)
         self.animate = animate
+        # neighbourhood size
         self.nb_size = nb_size
+        # use Euclidean distance rather than Manhattan distance
         self.euc_dist = euclidean_dist
         self.showHelp()
 
