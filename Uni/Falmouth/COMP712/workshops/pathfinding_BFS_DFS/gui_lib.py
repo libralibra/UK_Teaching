@@ -106,6 +106,8 @@ class Canvas:
         self.on_move = False
         # gray colour to highlight the searching process
         self.search_colour = (128, 128, 128)
+        # path colour
+        self.path_colour = 'cyan'
         # searching in progress
         self.searching = False
         self.registerAll()
@@ -462,15 +464,19 @@ class Canvas:
             self.searching = True
             # change the searching colour to complimentary colour
             if self.search_colour == (128, 128, 128):
-                self.search_colour = (random.choice(range(50, 200)),
-                                      random.choice(range(50, 200)),
-                                      random.choice(range(50, 200)))
+                self.search_colour = (random.choice(range(100, 200)),
+                                      random.choice(range(100, 200)),
+                                      random.choice(range(100, 200)))
             else:
                 self.search_colour = tuple(255-x for x in self.search_colour)
             if self.search():
                 self.colourCell(self.path[0], 'lime')
                 self.colourCell(self.path[-1], 'red')
-                [self.colourCell(v, 'cyan') for v in self.path[1:-1]]
+                [self.colourCell(v, self.path_colour) for v in self.path[1:-1]]
+                if self.path_colour == 'cyan':
+                    self.path_colour = 'purple'
+                else:
+                    self.path_colour = 'cyan'
             else:
                 msgbox(
                     f"Cannot find path from {self.start} to {self.end}", "COMP712 - Pathfinding Demo")
