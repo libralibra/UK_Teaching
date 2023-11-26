@@ -170,12 +170,11 @@ class DFS(Canvas):
             if self.animate and c != self.start:
                 self.colourCell(c, 'gray')
                 self.update()
+            # get neighbours
+            nbs = self.neighbours(c)
             if self.clever:
-                q += [n for n in self.neighbours2(c)
-                      if n not in v and n not in q]
-            else:
-                q += [n for n in self.neighbours(c)
-                      if n not in v and n not in q]
+                nbs = self.neighbours2(c)
+            [q.append(n) for n in nbs if n not in v and n not in q]
         # backtrack
         if c == self.end:
             self.path = []

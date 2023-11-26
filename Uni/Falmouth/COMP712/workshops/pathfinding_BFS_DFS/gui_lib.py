@@ -68,14 +68,14 @@ class Cell:
         self.parent = p
 
     def __str__(self) -> str:
-        return f'Position({self.row}, {self. col})'
+        return f'Cell({self.row}, {self. col})'
 
     def __eq__(self, v) -> bool:
         return self.row == v.row and self.col == v.col
 
     def __lt__(self, v) -> bool:
         # for PriorityQueue() if the priority for some items is equal
-        return self.row <= v.row or self.col <= v.col
+        return self.row < v.row or self.col < v.col
 
 
 def msgbox(message, title='COMP712/Pathfinding Demo'):
@@ -105,7 +105,7 @@ class Canvas:
         # press left button for continuous drawing
         self.on_move = False
         # gray colour to highlight the searching process
-        self.gray_colour = (128, 128, 128)
+        self.search_colour = (128, 128, 128)
         # searching in progress
         self.searching = False
         self.registerAll()
@@ -187,7 +187,7 @@ class Canvas:
         self.start, self.end = None, None
         self.grids = [[0]*self.x_grid_num for _ in range(self.y_grid_num)]
         self.path = []
-        self.gray_colour = (128, 128, 128)
+        self.search_colour = (128, 128, 128)
         self.searching = False
         self.drawGridLines()
         self.registerAll()
@@ -242,6 +242,10 @@ class Canvas:
         ''' work out Manhattan distance between 2 cells '''
         return abs(c1.row-c2.row)+abs(c1.col-c2.col)
 
+    def getGridEuclideanDist2(self, c1: Cell, c2: Cell):
+        ''' work out Manhattan distance between 2 cells '''
+        return (c1.row-c2.row)**2+(c1.col-c2.col)**2
+
     def getGridIndices(self, x, y):
         ''' convert position (x,y) to grid indices (row, col) like matrix '''
         if not -self.width/2 <= x <= self.width/2 or not -self.height/2 <= y <= self.height/2:
@@ -294,12 +298,12 @@ class Canvas:
         if 0 <= v.row < self.y_grid_num and 0 <= v.col < self.x_grid_num:
             # change the colour a little bit in case running for multiple times
             centre = self.getGridCentre(v.row, v.col)
-            if colour.lower() == 'gray' or colour.lower() == 'grey' or colour == (128, 128, 128):
-                colour = self.gray_colour
+            if (isinstance(colour, str) and (colour.lower() == 'gray' or colour.lower() == 'grey')) or colour == (128, 128, 128):
+                colour = self.search_colour
             # fill it
             self.pen.drawRect(centre,
-                              self.x_grid_size * ratio,
-                              self.y_grid_size*ratio,
+                              self.x_grid_size * max(min(ratio, 1.0), 0.1),
+                              self.y_grid_size * max(min(ratio, 1.0), 0.1),
                               colour)
             self.setPenColour('black')
 
@@ -457,13 +461,15 @@ class Canvas:
             # start the search
             self.searching = True
             # change the searching colour to complimentary colour
-            if self.gray_colour == (128, 128, 128):
-                self.gray_colour = (random.choice(range(50, 200)),
-                                    random.choice(range(50, 200)),
-                                    random.choice(range(50, 200)))
+            if self.search_colour == (128, 128, 128):
+                self.search_colour = (random.choice(range(50, 200)),
+                                      random.choice(range(50, 200)),
+                                      random.choice(range(50, 200)))
             else:
-                self.gray_colour = tuple(255-x for x in self.gray_colour)
+                self.search_colour = tuple(255-x for x in self.search_colour)
             if self.search():
+                self.colourCell(self.path[0], 'lime')
+                self.colourCell(self.path[-1], 'red')
                 [self.colourCell(v, 'cyan') for v in self.path[1:-1]]
             else:
                 msgbox(

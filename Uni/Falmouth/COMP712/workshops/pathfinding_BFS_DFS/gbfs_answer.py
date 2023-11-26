@@ -5,15 +5,17 @@
     2023 - 2024
 '''
 
+import sys
 from gui_lib import *
 from queue import PriorityQueue
 
 
 class GBFS(Canvas):
-    def __init__(self, title, width, height, bgcolour='white', animate=False, nb_size=4) -> None:
+    def __init__(self, title, width, height, bgcolour='white', animate=False, nb_size=4, euclidean_dist=False) -> None:
         super().__init__(title, width, height, bgcolour)
         self.animate = animate
         self.nb_size = nb_size
+        self.euc_dist = euclidean_dist
         self.showHelp()
 
     def neighbours(self, c: Cell):
@@ -55,9 +57,12 @@ class GBFS(Canvas):
             return False
         # to visit
         q = PriorityQueue()
-        q.put((self.getGridDist(self.start, self.end), self.start))
+        if self.euc_dist:
+            q.put((self.getGridEuclideanDist2(self.start, self.end), self.start))
+        else:
+            q.put((self.getGridDist(self.start, self.end), self.start))
         # item in q
-        qlist = []
+        qlist = [self.start]
         # visited
         v = []
         # the checking cell
@@ -69,11 +74,18 @@ class GBFS(Canvas):
             if c == self.end:
                 break
             if self.animate and c != self.start:
-                self.colourCell(c, 'gray')
+                self.colourCell(c, self.search_colour)
                 self.update()
-            # add to PriorityQueue
-            [q.put((self.getGridDist(n, self.end), n))
-             for n in self.neighbours(c) if n not in v and n not in qlist]
+            # get neighbours and add to PriorityQueue
+            for n in self.neighbours(c):
+                if n in v or n in qlist:
+                    continue
+                if self.euc_dist:
+                    q.put((self.getGridEuclideanDist2(n, self.end), n))
+                    qlist.append(n)
+                else:
+                    q.put((self.getGridDist(n, self.end), n))
+                    qlist.append(n)
         # backtrack
         if c == self.end:
             self.path = []
@@ -87,9 +99,12 @@ class GBFS(Canvas):
 
 
 if __name__ == '__main__':
+    euclidean_dist = False
+    if len(sys.argv) > 1 and int(sys.argv[1]) == 1:
+        euclidean_dist = True
     animate = True
     neighbours = 4
     gbfs = GBFS(
-        "COMP712/Pathfinding GBFS Demo - Falmouth University 2023-2024", 800, 600, 'white', animate, neighbours)
+        "COMP712/Pathfinding GBFS Demo - Falmouth University 2023-2024", 800, 600, 'white', animate, neighbours, euclidean_dist)
     gbfs.setGridNum(40, 30)
     gbfs.mainloop()

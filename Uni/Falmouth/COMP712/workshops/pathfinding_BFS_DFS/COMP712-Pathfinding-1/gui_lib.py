@@ -298,8 +298,8 @@ class Canvas:
                 colour = self.gray_colour
             # fill it
             self.pen.drawRect(centre,
-                              self.x_grid_size * ratio,
-                              self.y_grid_size*ratio,
+                              self.x_grid_size * max(min(ratio, 1.0), 0.1),
+                              self.y_grid_size * max(min(ratio, 1.0), 0.1),
                               colour)
             self.setPenColour('black')
 
