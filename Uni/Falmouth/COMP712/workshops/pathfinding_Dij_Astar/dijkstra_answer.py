@@ -4,13 +4,13 @@
     Dr Daniel Zhang @ Falmouth University
     2023 - 2024
 '''
-import sys
+
 from gui_lib import *
 from queue import PriorityQueue
 
 
 class DIJKSTRA(Canvas):
-    def __init__(self, title, width, height, bgcolour='white', animate=True, nb_size=4, euclidean_dist=False) -> None:
+    def __init__(self, title, width, height, bgcolour='white', animate=True, nb_size=4) -> None:
         ''' nb_size controls how may neighbours to search: 4 or 8 '''
         super().__init__(title, width, height, bgcolour)
         self.animate = animate
@@ -18,8 +18,6 @@ class DIJKSTRA(Canvas):
         self.nb_size = nb_size
         # neighbourhood size
         self.nb_size = nb_size
-        # use Euclidean distance rather than Manhattan distance
-        self.euc_dist = euclidean_dist
         self.showHelp()
 
     def neighbours(self, c: Cell):
@@ -56,19 +54,57 @@ class DIJKSTRA(Canvas):
         return n
 
     def search(self):
-        ''' BFS search from start to the end, record the path list '''
-        # ----------------------------------------------
-        # YOU CODE HERE, CREATE OTHER HELPER FUNCTIONS AS YOU NEED
-        # ----------------------------------------------
+        ''' Dijkstra search from start to the end, record the path list '''
+        if not self.start or not self.end or self.y_grid_num == 0 or self.x_grid_num == 0:
+            return False
+        # initialise the cost dict
+        cost = {(row, col): self.y_grid_num*self.x_grid_num
+                for row in range(self.y_grid_num) for col in range(self.x_grid_num)}
+        # to visit
+        q = PriorityQueue()
+        q.put((0, self.start))
+        # mark items in q, list is ok, but dict can check existence very quickly
+        # 1 for valid, 0 for excluded
+        qdict = {(self.start.row, self.start.col): 1}
+        # the moving cost from start to any node
+        cost[(self.start.row, self.start.col)] = 0
+        while not q.empty():
+            # pop up the head cell
+            c = q.get()[-1]
+            qdict[(c.row, c.col)] = -1
+            if c == self.end:
+                break
+            if self.animate and c != self.start:
+                self.animateCell(c)
+                self.update()
+            # get neighbours and add to PriorityQueue
+            for n in self.neighbours(c):
+                # the cost move from c to n
+                new_cost = cost[(c.row, c.col)] + self.grids[n.row][n.col]
+                # not in the queue, added
+                if (n.row, n.col) not in qdict:
+                    q.put((new_cost, n))
+                    qdict[(n.row, n.col)] = 1
+                    cost[(n.row, n.col)] = new_cost
+                # in the queue, cost was saved before, update the cost
+                elif new_cost < cost[(n.row, n.col)]:
+                    cost[(n.row, n.col)] = new_cost
+        # backtrack
+        if c == self.end:
+            self.path = []
+            while c.parent:
+                self.path.append(c)
+                c = c.parent
+            self.path.append(self.start)
+            # reverse to get from the start to end
+        self.path = self.path[::-1]
+        return len(self.path) > 0
 
 
 if __name__ == '__main__':
-    euclidean_dist = False
-    if len(sys.argv) > 1 and int(sys.argv[1]) == 1:
-        euclidean_dist = True
     animate = True
     neighbours = 4
     dijkstra = DIJKSTRA(
-        "COMP712/Pathfinding BFS Demo - Falmouth University 2023-2024", 800, 600, 'white', animate, neighbours, euclidean_dist)
+        "COMP712/Pathfinding Dijkstra Demo - Falmouth University 2023-2024", 800, 600, 'white', animate, neighbours)
     dijkstra.setGridNum(40, 30)
     dijkstra.mainloop()

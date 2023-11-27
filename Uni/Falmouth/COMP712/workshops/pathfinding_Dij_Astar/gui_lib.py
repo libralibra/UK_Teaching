@@ -41,6 +41,8 @@ log = Log()
 
 # status of the three special keys
 ctrl_flag, shift_flag, alt_flag = False, False, False
+# change more cells at a time
+ck_flag = False
 
 
 def ctrlDown():
@@ -71,6 +73,16 @@ def altDown():
 def altUp():
     global alt_flag
     alt_flag = False
+
+
+def cKeyDown():
+    global ck_flag
+    ck_flag = True
+
+
+def cKeyUp():
+    global ck_flag
+    ck_flag = False
 
 
 class WrongParameterError(Exception):
@@ -226,17 +238,22 @@ class Canvas:
     def showHelp(self):
         ''' help information messagebox '''
         s = 'BFS Pathfinding Demo\n'
-        s += 'Mark START  - The 1st right-click\n'
-        s += 'Mark END    - The 2nd right-click\n'
+        s += '=======================================\n'
+        s += 'Mark START  - The 1st Right-click\n'
+        s += 'Mark END    - The 2nd Right-click\n'
         s += 'Reset Cell  - Right-click on the cell\n'
         s += 'Mark BLOCK  - Left-click\n'
         s += 'Mark GRASS  - CTRL + Left-click\n'
         s += 'Mark SAND   - SHIFT + Left-click\n'
         s += 'Mark WATER  - ALT + Left-click\n'
+        s += 'Multiple Cell Operation - Press C with others\n'
+        s += '-------------------------------------------\n'
         s += 'Search Path - SPACE or ENTER\n'
         s += 'New board   - DELETE, ESC, or middle-click\n'
+        s += '-------------------------------------------\n'
         s += 'Save board  - S or W\n'
         s += 'Load board  - L or O\n'
+        s += '-------------------------------------------\n'
         s += 'Show help   - H'
         # self.pen.writeText(Point(self.width/25, -self.width/7), s)
         msgbox(s, "Pathfinding Demo Help")
@@ -443,17 +460,12 @@ class Canvas:
         self.registerKey(self.processSpaceKey, 'Return')
         # save
         self.registerKey(self.processSaveKey, 's')
-        self.registerKey(self.processSaveKey, 'S')
         self.registerKey(self.processSaveKey, 'w')
-        self.registerKey(self.processSaveKey, 'W')
         # load
         self.registerKey(self.processLoadKey, 'l')
         self.registerKey(self.processLoadKey, 'o')
-        self.registerKey(self.processLoadKey, 'L')
-        self.registerKey(self.processLoadKey, 'O')
         # help
         self.registerKey(self.showHelp, 'h')
-        self.registerKey(self.showHelp, 'H')
         # mark special grid
         self.screen.onkeypress(ctrlDown, 'Control_L')
         self.screen.onkeyrelease(ctrlUp, 'Control_L')
@@ -461,6 +473,11 @@ class Canvas:
         self.screen.onkeyrelease(shiftUp, 'Shift_L')
         self.screen.onkeypress(altDown, 'Alt_L')
         self.screen.onkeyrelease(altUp, 'Alt_L')
+        # clear 9 cells at a time
+        self.screen.onkeypress(cKeyDown, 'c')
+        self.screen.onkeyrelease(cKeyUp, 'c')
+        self.screen.onkeypress(cKeyDown, 'C')
+        self.screen.onkeyrelease(cKeyUp, 'C')
 
         self.screen.listen()
 
@@ -510,7 +527,6 @@ class Canvas:
 
     def processLeftClick(self, x, y):
         ''' left click to mark blocks '''
-        global ctrl_flag, shift_flag, alt_flag
         if self.searching:
             return
         pos = self.getGridIndices(x, y)
@@ -529,10 +545,22 @@ class Canvas:
             elif alt_flag:
                 colour = GridColour.WATER
                 c_type = CellType.WATER
-            # if self.grids[pos.row][pos.col] == CellType.BLOCK:
-            #     return
-            self.colourCell(pos, colour, 0.8)
-            self.grids[pos.row][pos.col] = c_type
+            # one or more
+            if ck_flag:
+                sm_row = max(0, pos.row-1)
+                mk_row = min(pos.row+1, self.y_grid_num)
+                sm_col = max(0, pos.col-1)
+                mk_col = min(pos.col+1, self.x_grid_num)
+                for row in range(sm_row, mk_row+1):
+                    for col in range(sm_col, mk_col+1):
+                        cur_cell = Cell(row, col)
+                        if (self.start and cur_cell == self.start) or (self.end and cur_cell == self.end):
+                            continue
+                        self.colourCell(cur_cell, colour, 0.8)
+                        self.grids[row][col] = c_type
+            else:
+                self.colourCell(pos, colour, 0.8)
+                self.grids[pos.row][pos.col] = c_type
 
     def processRightClick(self, x, y):
         ''' record start/end of the searching or reset a cell  '''
@@ -541,8 +569,21 @@ class Canvas:
             return
         pos = self.getGridIndices(x, y)
         if pos:
+            if ck_flag:
+                sm_row = max(0, pos.row-1)
+                mk_row = min(pos.row+1, self.y_grid_num)
+                sm_col = max(0, pos.col-1)
+                mk_col = min(pos.col+1, self.x_grid_num)
+                for row in range(sm_row, mk_row+1):
+                    for col in range(sm_col, mk_col+1):
+                        if self.grids[row][col] == CellType.START:
+                            self.start = None
+                        elif self.grids[row][col] == CellType.END:
+                            self.end = None
+                        self.colourCell(Cell(row, col), GridColour.EMPTY, 0.8)
+                        self.grids[row][col] = CellType.EMPTY
             # log.log(f'pos get: ({pos.row},{pos.col})')
-            if self.grids[pos.row][pos.col] == CellType.EMPTY:
+            elif self.grids[pos.row][pos.col] == CellType.EMPTY:
                 # log.log('empty')
                 if self.start is None:
                     # log.log('mark start')
@@ -554,9 +595,9 @@ class Canvas:
                     self.end = pos
                     self.colourCell(pos, GridColour.END, 0.8)
                     self.grids[pos.row][pos.col] = CellType.END
-                else:
-                    msgbox(
-                        "Both START and END are ready\nRight-click to reset a cell\nPress SPACE or ENTER to search!\nPress DEL/ESC to clear!\nL to load a map or S to save the current map\nH for help information")
+                # else:
+                #     msgbox(
+                #         "Both START and END are ready\nRight-click to reset a cell\nPress SPACE or ENTER to search!\nPress DEL/ESC to clear!\nL to load a map or S to save the current map\nH for help information")
             else:
                 # log.log('not empty')
                 # log.log(f'cell value: {self.grids[pos.row][pos.col]}')
@@ -569,7 +610,10 @@ class Canvas:
 
     def processSpaceKey(self):
         ''' space/enter keypress: has been setup properly to call .search() method '''
-        if self.searching or self.start is None or self.end is None:
+        if self.searching:
+            return
+        if self.start is None or self.end is None:
+            msgbox('Both START and END must be defined using right-click!')
             return
         ask = turtle.TK.messagebox.askquestion(
             "COMP712 - Pathfinding Demo", "Start search?")

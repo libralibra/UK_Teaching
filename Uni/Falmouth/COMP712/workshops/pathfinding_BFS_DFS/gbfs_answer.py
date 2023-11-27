@@ -67,8 +67,6 @@ class GBFS(Canvas):
         qlist = [self.start]
         # visited
         v = []
-        # the checking cell
-        c = self.start
         while not q.empty():
             c = q.get()[-1]
             v.append(c)

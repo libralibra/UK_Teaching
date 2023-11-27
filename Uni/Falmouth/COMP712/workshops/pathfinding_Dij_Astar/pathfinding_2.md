@@ -7,7 +7,7 @@
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
 
-![The Pathfinding Demo](../pathfinding_BFS_DFS/ai_pathfinding_0.apng)
+![The Pathfinding Demo](ai_pathfinding_2.apng)
 
 <div id="top"></div>
 
@@ -20,8 +20,6 @@ Dr Daniel Zhang @ Falmouth University\
   - [The Pseudocode](#the-pseudocode)
 - [`A*` Algorithm](#a-algorithm)
   - [The Pseudocode](#the-pseudocode-1)
-- [Greedy Best-First Search (GBFS)](#greedy-best-first-search-gbfs)
-  - [The Pseudocode](#the-pseudocode-2)
 - [The Repository](#the-repository)
   - [The Code Structure](#the-code-structure)
 - [Your Task](#your-task)
@@ -109,13 +107,13 @@ The `A*` algorithm, renowned for its heuristic-based approach to pathfinding, st
 
 `A*` balances between the '`g`' and '`h`' values, aiming to minimise the total estimated cost ('`f`' value) for reaching the destination node. It traverses the graph by expanding the nodes with the lowest '`f`' values, effectively combining the benefits of both `Dijkstra's` Algorithm and `greedy best-first` search. This integration of a heuristic function ensures efficiency by favouring paths that appear to be more promising, significantly reducing the number of nodes explored compared to uninformed search algorithms. The `A*` algorithm's adaptability to various domains, its optimality under certain conditions, and its balance between completeness and efficiency have made it a cornerstone in various applications, such as route planning, game AI, and robotics.
 
-> The `A*` algorithm is a generalization of `Dijkstra's` algorithm that cuts down on the size of the subgraph that must be explored, if additional information is available that provides a lower bound on the "distance" to the target.
+> The `A*` algorithm is a generalisation of `Dijkstra's` algorithm that cuts down on the size of the subgraph that must be explored, if additional information is available that provides a lower bound on the "distance" to the target.
 
 ## The Pseudocode
 [Top](#top)
 
 
-```java
+```c++
 function reconstruct_path(cameFrom, current)
     total_path := {current}
     while current in cameFrom.Keys:
@@ -167,48 +165,18 @@ function A_Star(start, goal, h)
     return failure
 ```
 
-# Greedy Best-First Search (GBFS)
-[Top](#top)
-
-Greedy Best-First Search (GBFS) is another algorithm used in graph traversal and pathfinding. It's `heuristic-based` and aims to reach the goal by consistently selecting the node that ***appears to be the most promising***. Instead of exploring all possibilities equally, GBFS prioritises nodes that are closer to the goal based on a heuristic function. This function estimates the cost or distance from the current node to the goal, allowing GBFS to always expand the node that seems ***most likely*** to lead to the goal.
-
-In GBFS, the open list stores nodes yet to be explored, and at each step, it selects the node from this list that appears to be the closest to the goal. This decision is based on the heuristic function's estimation, which evaluates the potential of each node. While GBFS can be highly efficient when the heuristic provides accurate guidance towards the goal, *it might not always guarantee the shortest path*. If the heuristic function doesn't accurately reflect the actual distance to the goal, GBFS *might prioritise nodes that lead to dead ends or away from the optimal path*.
-
-GBFS is commonly used in scenarios where a rough estimate of the distance to the goal is available and where finding an exact solution is less critical than reaching a reasonably good solution quickly. It's widely used in applications such as navigation systems and maze-solving algorithms.
-
-## The Pseudocode
-[Top](#top)
-
-```vb
-procedure GBFS(G, v) is:
-  mark v as visited
-  add v to queue S
-  while S is not empty do:
-    current_node ← vertex of queue with min_distance to goal
-    remove current_node from queue
-    foreach neighbour n of current_node do:
-      if n not in visited then:
-        if n is goal:
-          return n
-        else:
-          mark n as visited
-          add n to queue
-  return failure
-  ```
-
 # The Repository
 [Top](#top)
 
 This repository contains the materials for COMP712 - Pathfinding (1) workshop.
 
-> **[https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Pathfinding-1.git](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Pathfinding-1.git)**
+> **[https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Pathfinding-2.git](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Pathfinding-2.git)**
 
 There are three demos available:
 
-- `demo_bfs.pyc`: Demonstrates Breadth-first search
-- `demo_dfs.pyc`: Demonstrates Depth-first search
-- `demo_gbfs.pyc`: Demonstrates Greedy best-first search 
-- 3 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
+- `demo_dijkstra.pyc`: Demonstrates Breadth-first search
+- `demo_a_star.pyc`: Demonstrates Depth-first search
+- 2 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
 
 ## The Code Structure
 [Top](#top)
