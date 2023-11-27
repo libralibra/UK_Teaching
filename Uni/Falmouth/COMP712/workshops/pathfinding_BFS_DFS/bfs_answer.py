@@ -160,7 +160,7 @@ class BFS(Canvas):
             if c == self.end:
                 break
             if self.animate and c != self.start:
-                self.colourCell(c, 'gray')
+                self.animateCell(c)
                 self.update()
             # get neighbours
             nbs = self.neighbours(c)

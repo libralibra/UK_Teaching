@@ -76,7 +76,7 @@ class GBFS(Canvas):
             if c == self.end:
                 break
             if self.animate and c != self.start:
-                self.colourCell(c, self.search_colour)
+                self.animateCell(c)
                 self.update()
             # get neighbours and add to PriorityQueue
             for n in self.neighbours(c):

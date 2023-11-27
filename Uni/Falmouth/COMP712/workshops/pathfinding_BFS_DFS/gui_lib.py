@@ -6,6 +6,10 @@
 
     ChangeLog: 
 
+    v 0.0.3 - 27 Nov 2023
+        1. add GridColour enum to distinguish different areas
+        2. update CellType to reflect the change
+
     v 0.0.2 - 23 Nov 2023
         1. add grid controls
         2. add key board and mouse click events
@@ -22,6 +26,7 @@
 '''
 
 import random
+from re import search
 from tkinter import filedialog
 import turtle
 import logging
@@ -33,7 +38,41 @@ class Log:
         logging.info(s)
 
 
+# global logger
 log = Log()
+
+# status of the three special keys
+ctrl_flag, shift_flag, alt_flag = False, False, False
+
+
+def ctrlDown():
+    global ctrl_flag
+    ctrl_flag = True
+
+
+def ctrlUp():
+    global ctrl_flag
+    ctrl_flag = False
+
+
+def shiftDown():
+    global shift_flag
+    shift_flag = True
+
+
+def shiftUp():
+    global shift_flag
+    shift_flag = False
+
+
+def altDown():
+    global alt_flag
+    alt_flag = True
+
+
+def altUp():
+    global alt_flag
+    alt_flag = False
 
 
 class WrongParameterError(Exception):
@@ -45,9 +84,28 @@ class WrongParameterError(Exception):
 class CellType:
     ''' hardcoded cell type enums '''
     BLOCK = -1
-    EMPTY = 0
-    START = 1
-    END = 2
+    EMPTY = 1
+    START = 2
+    END = 3
+    GRASS = 4
+    SAND = 5
+    WATER = 6
+
+
+class GridColour:
+    ''' grid colour enums
+        https://trinket.io/docs/colors
+    '''
+    BLOCK = 'black'
+    EMPTY = 'white'
+    START = 'blue'
+    END = 'red'
+    GRASS = 'spring green'
+    SAND = 'orange'
+    WATER = 'dodger blue'
+    PATH = 'cyan'
+    PATH_ALTER = 'purple'
+    SEARCH = 'gray'
 
 
 class Point:
@@ -100,14 +158,14 @@ class Canvas:
         # the grid size and grid number
         self.x_grid_size, self.y_grid_size = self.width, self.height
         self.x_grid_num, self.y_grid_num = 1, 1
-        self.grids, self.path = [[0]], []
+        self.grids, self.path = [[CellType.EMPTY]], []
         self.start, self.end = None, None
         # press left button for continuous drawing
         self.on_move = False
         # gray colour to highlight the searching process
-        self.search_colour = (128, 128, 128)
+        self.search_colour = GridColour.SEARCH
         # path colour
-        self.path_colour = 'cyan'
+        self.path_colour = GridColour.PATH
         # searching in progress
         self.searching = False
         self.registerAll()
@@ -175,10 +233,14 @@ class Canvas:
         s += 'Mark END    - The 2nd right-click\n'
         s += 'Reset Cell  - Right-click on the cell\n'
         s += 'Mark BLOCK  - Left-click\n'
+        s += 'Mark GRASS  - CTRL + Left-click\n'
+        s += 'Mark SAND   - SHIFT + Left-click\n'
+        s += 'Mark WATER  - ALT + Left-click\n'
         s += 'Search Path - SPACE or ENTER\n'
         s += 'New board   - DELETE, ESC, or middle-click\n'
-        s += 'Save board  - S\n'
-        s += 'Load board  - L or O'
+        s += 'Save board  - S or W\n'
+        s += 'Load board  - L or O\n'
+        s += 'Show help   - H'
         # self.pen.writeText(Point(self.width/25, -self.width/7), s)
         msgbox(s, "Pathfinding Demo Help")
 
@@ -187,9 +249,10 @@ class Canvas:
         self.screen.clear()
         self.init()
         self.start, self.end = None, None
-        self.grids = [[0]*self.x_grid_num for _ in range(self.y_grid_num)]
+        self.grids = [[CellType.EMPTY] *
+                      self.x_grid_num for _ in range(self.y_grid_num)]
         self.path = []
-        self.search_colour = (128, 128, 128)
+        self.search_colour = GridColour.SEARCH
         self.searching = False
         self.drawGridLines()
         self.registerAll()
@@ -211,7 +274,8 @@ class Canvas:
             self.x_grid_num, self.y_grid_num = int(x_num), int(y_num)
             self.x_grid_size = self.width / self.x_grid_num
             self.y_grid_size = self.height / self.y_grid_num
-            self.grids = [[0]*self.x_grid_num for _ in range(self.y_grid_num)]
+            self.grids = [[CellType.EMPTY] *
+                          self.x_grid_num for _ in range(self.y_grid_num)]
             self.drawGridLines()
 
     # def setGridSize(self, x_size, y_size):
@@ -220,13 +284,13 @@ class Canvas:
     #         self.y_grid_size = y_size
     #         self.x_grid_num = int(self.width / x_size)
     #         self.y_grid_num = int(self.height / y_size)
-    #         self.grids = [[0]*self.x_grid_num for _ in range(self.y_grid_num)]
+    #         self.grids = [[CellType.EMPTY]*self.x_grid_num for _ in range(self.y_grid_num)]
     #         self.drawGridLines()
 
     def getGridCentre(self, row, col):
         ''' get the grid centre using row(y) and col(x) index like matrix '''
         if not 0 <= col < self.x_grid_num or not 0 <= row < self.y_grid_num:
-            log.log(f'The input indices ({row}, {col}) is not permitted')
+            # log.log(f'The input indices ({row}, {col}) is not permitted')
             return Point(0, 0)
         # find the left half num
         x_half_num, y_half_num = self.x_grid_num/2., self.y_grid_num/2.
@@ -251,7 +315,7 @@ class Canvas:
     def getGridIndices(self, x, y):
         ''' convert position (x,y) to grid indices (row, col) like matrix '''
         if not -self.width/2 <= x <= self.width/2 or not -self.height/2 <= y <= self.height/2:
-            log.log('Outside the main grid')
+            # log.log('Outside the main grid')
             return None
         row, col = -1, -1
         x_half_num, y_half_num = self.x_grid_num/2., self.y_grid_num/2.
@@ -309,10 +373,27 @@ class Canvas:
                               colour)
             self.setPenColour('black')
 
+    def animateCell(self, c: Cell):
+        ''' animate cell colour during the search for special cells '''
+        if self.grids[c.row][c.col] != CellType.BLOCK:
+            self.colourCell(c, self.search_colour, 0.8)
+        if self.grids[c.row][c.col] == CellType.START:
+            self.colourCell(c, GridColour.START, 0.8)
+        elif self.grids[c.row][c.col] == CellType.END:
+            self.colourCell(c, GridColour.END, 0.8)
+        elif self.grids[c.row][c.col] == CellType.GRASS:
+            self.colourCell(c, GridColour.GRASS, 0.8)
+        elif self.grids[c.row][c.col] == CellType.SAND:
+            self.colourCell(c, GridColour.SAND, 0.8)
+        elif self.grids[c.row][c.col] == CellType.WATER:
+            self.colourCell(c, GridColour.WATER, 0.8)
+
     def drawGrids(self):
         ''' fill a grid with reduced size unless it's the white background '''
-        colours = {CellType.BLOCK: 'black', CellType.EMPTY: 'white',
-                   CellType.START: 'lime', CellType.END: 'red'}
+        colours = {CellType.BLOCK: GridColour.BLOCK, CellType.EMPTY: GridColour.EMPTY,
+                   CellType.START: GridColour.START, CellType.END: GridColour.END,
+                   CellType.SAND: GridColour.SAND, CellType.WATER: GridColour.WATER,
+                   CellType.GRASS: GridColour.GRASS}
         ratios = {CellType.BLOCK: 0.8, CellType.EMPTY: 1.0,
                   CellType.START: 0.8, CellType.END: 0.8}
         if len(self.grids) > 0 and len(self.grids[0]) > 0:
@@ -355,6 +436,7 @@ class Canvas:
         self.registerRightClick(self.processRightClick)
         # clear
         self.registerMiddleClick(self.processMiddleClick)
+        # key maps: https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
         self.registerKey(self.processDelKey, 'Delete')
         self.registerKey(self.processDelKey, 'Escape')
         # run
@@ -363,11 +445,25 @@ class Canvas:
         # save
         self.registerKey(self.processSaveKey, 's')
         self.registerKey(self.processSaveKey, 'S')
+        self.registerKey(self.processSaveKey, 'w')
+        self.registerKey(self.processSaveKey, 'W')
         # load
         self.registerKey(self.processLoadKey, 'l')
         self.registerKey(self.processLoadKey, 'o')
         self.registerKey(self.processLoadKey, 'L')
         self.registerKey(self.processLoadKey, 'O')
+        # help
+        self.registerKey(self.showHelp, 'h')
+        self.registerKey(self.showHelp, 'H')
+        # mark special grid
+        self.screen.onkeypress(ctrlDown, 'Control_L')
+        self.screen.onkeyrelease(ctrlUp, 'Control_L')
+        self.screen.onkeypress(shiftDown, 'Shift_L')
+        self.screen.onkeyrelease(shiftUp, 'Shift_L')
+        self.screen.onkeypress(altDown, 'Alt_L')
+        self.screen.onkeyrelease(altUp, 'Alt_L')
+
+        self.screen.listen()
 
     def processSaveKey(self):
         ''' save the current map to disk '''
@@ -415,6 +511,7 @@ class Canvas:
 
     def processLeftClick(self, x, y):
         ''' left click to mark blocks '''
+        global ctrl_flag, shift_flag, alt_flag
         if self.searching:
             return
         pos = self.getGridIndices(x, y)
@@ -422,35 +519,53 @@ class Canvas:
             # do not change start and end
             if self.start and pos == self.start or self.end and pos == self.end:
                 return
-            if self.grids[pos.row][pos.col] == CellType.BLOCK:
-                return
-            self.colourCell(pos, 'black', 0.8)
-            self.grids[pos.row][pos.col] = CellType.BLOCK
+            colour = GridColour.BLOCK
+            c_type = CellType.BLOCK
+            if ctrl_flag:
+                colour = GridColour.GRASS
+                c_type = CellType.GRASS
+            elif shift_flag:
+                colour = GridColour.SAND
+                c_type = CellType.SAND
+            elif alt_flag:
+                colour = GridColour.WATER
+                c_type = CellType.WATER
+            # if self.grids[pos.row][pos.col] == CellType.BLOCK:
+            #     return
+            self.colourCell(pos, colour, 0.8)
+            self.grids[pos.row][pos.col] = c_type
 
     def processRightClick(self, x, y):
         ''' record start/end of the searching or reset a cell  '''
+        # log.log('in right click')
         if self.searching:
             return
         pos = self.getGridIndices(x, y)
         if pos:
+            # log.log(f'pos get: ({pos.row},{pos.col})')
             if self.grids[pos.row][pos.col] == CellType.EMPTY:
+                # log.log('empty')
                 if self.start is None:
+                    # log.log('mark start')
                     self.start = pos
-                    self.colourCell(pos, 'lime', 0.8)
+                    self.colourCell(pos, GridColour.START, 0.8)
                     self.grids[pos.row][pos.col] = CellType.START
                 elif self.end is None:
+                    # log.log('mark end')
                     self.end = pos
-                    self.colourCell(pos, 'red', 0.8)
+                    self.colourCell(pos, GridColour.END, 0.8)
                     self.grids[pos.row][pos.col] = CellType.END
                 else:
                     msgbox(
-                        "Both START and END are ready\nRight-click to reset a cell\nPress SPACE or ENTER to search!\nPress DEL/ESC to clear!\nL to load a map or S to save the current map")
+                        "Both START and END are ready\nRight-click to reset a cell\nPress SPACE or ENTER to search!\nPress DEL/ESC to clear!\nL to load a map or S to save the current map\nH for help information")
             else:
+                # log.log('not empty')
+                # log.log(f'cell value: {self.grids[pos.row][pos.col]}')
                 if self.grids[pos.row][pos.col] == CellType.START:
                     self.start = None
                 elif self.grids[pos.row][pos.col] == CellType.END:
                     self.end = None
-                self.colourCell(pos, 'white', 0.9)
+                self.colourCell(pos, GridColour.EMPTY, 0.8)
                 self.grids[pos.row][pos.col] = CellType.EMPTY
 
     def processSpaceKey(self):
@@ -463,20 +578,36 @@ class Canvas:
             # start the search
             self.searching = True
             # change the searching colour to complimentary colour
-            if self.search_colour == (128, 128, 128):
-                self.search_colour = (random.choice(range(100, 200)),
-                                      random.choice(range(100, 200)),
-                                      random.choice(range(100, 200)))
+            if self.search_colour == GridColour.SEARCH or isinstance(self.search_colour, str):
+                self.search_colour = (random.choice(range(120, 150)),
+                                      random.choice(range(120, 150)),
+                                      random.choice(range(120, 150)))
             else:
                 self.search_colour = tuple(255-x for x in self.search_colour)
             if self.search():
-                self.colourCell(self.path[0], 'lime')
-                self.colourCell(self.path[-1], 'red')
-                [self.colourCell(v, self.path_colour) for v in self.path[1:-1]]
-                if self.path_colour == 'cyan':
-                    self.path_colour = 'purple'
+                # self.colourCell(self.path[0], 'lime')
+                # self.colourCell(self.path[-1], 'red')
+                for v in self.path:
+                    c = self.grids[v.row][v.col]
+                    colour = self.path_colour
+                    if c == CellType.START:
+                        colour = GridColour.START
+                    elif c == CellType.END:
+                        colour = GridColour.END
+                    elif c == CellType.BLOCK:
+                        colour = GridColour.BLOCK
+                    elif c == CellType.GRASS:
+                        colour = GridColour.GRASS
+                    elif c == CellType.SAND:
+                        colour = GridColour.SAND
+                    elif c == CellType.WATER:
+                        colour = GridColour.WATER
+                    self.colourCell(v, colour)
+
+                if self.path_colour == GridColour.PATH:
+                    self.path_colour = GridColour.PATH_ALTER
                 else:
-                    self.path_colour = 'cyan'
+                    self.path_colour = GridColour.PATH
             else:
                 msgbox(
                     f"Cannot find path from {self.start} to {self.end}", "COMP712 - Pathfinding Demo")

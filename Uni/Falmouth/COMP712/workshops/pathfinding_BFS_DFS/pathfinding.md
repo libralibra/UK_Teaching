@@ -162,7 +162,7 @@ The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't
 
 Each algorithm should be implemented in its respective `.py` file:
 
-- The `search()` function is mandatory in each file as the main lib relies on it for the search process.
+- The `search()` function is mandatory in each file as the main lib relies on it for the search process. It should return `True` or `False` to indicate if a path can be found from `start` to `end`.
 - Feel free to create additional helper functions as required.
 
 # Your Task
@@ -188,6 +188,11 @@ Run the demos to see how each of the algorithms work differently. You can either
   - `python demo_bfs.pyc 1`: which make the `BFS` search towards the target.
   - `python demo_bfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order.
 - Try to implement these two behaviour in your code.
+
+> **RECALL**: 
+> - The `self.search()` function is mandatory.
+> - It should return `True` or `False` to indicate if a path can be found from `self.start` to `self.end`.
+> - Make sure you fill up the `self.path` list with cells on the found path.
 
 ## Task 3: implement `DFS`
 [Top](#top)
