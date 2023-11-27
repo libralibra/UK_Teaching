@@ -193,6 +193,14 @@ Run the demos to see how each of the algorithms work differently. You can either
 > - The `self.search()` function is mandatory.
 > - It should return `True` or `False` to indicate if a path can be found from `self.start` to `self.end`.
 > - Make sure you fill up the `self.path` list with cells on the found path.
+> - To enable animation, make use of the following code snippets in your `search()` function.
+> ```python
+> # other code blocks ...
+> if self.animate:
+>     self.animateCell(c)
+>     self.update()
+> # other code blocks ...
+> ```
 
 ## Task 3: implement `DFS`
 [Top](#top)

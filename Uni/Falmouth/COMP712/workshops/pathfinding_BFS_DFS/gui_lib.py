@@ -27,6 +27,7 @@
 
 import random
 from re import search
+import time
 from tkinter import filedialog
 import turtle
 import logging
@@ -104,7 +105,6 @@ class GridColour:
     SAND = 'orange'
     WATER = 'dodger blue'
     PATH = 'cyan'
-    PATH_ALTER = 'purple'
     SEARCH = 'gray'
 
 
@@ -364,8 +364,6 @@ class Canvas:
         if 0 <= v.row < self.y_grid_num and 0 <= v.col < self.x_grid_num:
             # change the colour a little bit in case running for multiple times
             centre = self.getGridCentre(v.row, v.col)
-            if (isinstance(colour, str) and (colour.lower() == 'gray' or colour.lower() == 'grey')) or colour == (128, 128, 128):
-                colour = self.search_colour
             # fill it
             self.pen.drawRect(centre,
                               self.x_grid_size * max(min(ratio, 1.0), 0.1),
@@ -377,6 +375,7 @@ class Canvas:
         ''' animate cell colour during the search for special cells '''
         if self.grids[c.row][c.col] != CellType.BLOCK:
             self.colourCell(c, self.search_colour, 0.8)
+        self.update()
         if self.grids[c.row][c.col] == CellType.START:
             self.colourCell(c, GridColour.START, 0.8)
         elif self.grids[c.row][c.col] == CellType.END:
@@ -387,6 +386,7 @@ class Canvas:
             self.colourCell(c, GridColour.SAND, 0.8)
         elif self.grids[c.row][c.col] == CellType.WATER:
             self.colourCell(c, GridColour.WATER, 0.8)
+        self.update()
 
     def drawGrids(self):
         ''' fill a grid with reduced size unless it's the white background '''
@@ -395,7 +395,9 @@ class Canvas:
                    CellType.SAND: GridColour.SAND, CellType.WATER: GridColour.WATER,
                    CellType.GRASS: GridColour.GRASS}
         ratios = {CellType.BLOCK: 0.8, CellType.EMPTY: 1.0,
-                  CellType.START: 0.8, CellType.END: 0.8}
+                  CellType.START: 0.8, CellType.END: 0.8,
+                  CellType.SAND: 0.8, CellType.WATER: 0.8,
+                  CellType.GRASS: 0.8}
         if len(self.grids) > 0 and len(self.grids[0]) > 0:
             for row in range(len(self.grids)):
                 for col in range(len(self.grids[0])):
@@ -577,16 +579,9 @@ class Canvas:
         if ask is not None and ask.lower().startswith('y'):
             # start the search
             self.searching = True
-            # change the searching colour to complimentary colour
-            if self.search_colour == GridColour.SEARCH or isinstance(self.search_colour, str):
-                self.search_colour = (random.choice(range(120, 150)),
-                                      random.choice(range(120, 150)),
-                                      random.choice(range(120, 150)))
-            else:
-                self.search_colour = tuple(255-x for x in self.search_colour)
+            self.drawGrids()
+            self.drawGridLines()
             if self.search():
-                # self.colourCell(self.path[0], 'lime')
-                # self.colourCell(self.path[-1], 'red')
                 for v in self.path:
                     c = self.grids[v.row][v.col]
                     colour = self.path_colour
@@ -603,11 +598,6 @@ class Canvas:
                     elif c == CellType.WATER:
                         colour = GridColour.WATER
                     self.colourCell(v, colour)
-
-                if self.path_colour == GridColour.PATH:
-                    self.path_colour = GridColour.PATH_ALTER
-                else:
-                    self.path_colour = GridColour.PATH
             else:
                 msgbox(
                     f"Cannot find path from {self.start} to {self.end}", "COMP712 - Pathfinding Demo")

@@ -202,8 +202,14 @@
 <li>The <code>self.search()</code> function is mandatory.</li>
 <li>It should return <code>True</code> or <code>False</code> to indicate if a path can be found from <code>self.start</code> to <code>self.end</code>.</li>
 <li>Make sure you fill up the <code>self.path</code> list with cells on the found path.</li>
+<li>To enable animation, make use of the following code snippts in your <code>search()</code> function.</li>
 </ul>
-</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># other code blocks ...</span>
+<span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>animate<span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>animateCell<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># other code blocks ...</span>
+</code></pre></blockquote>
 <h2 id="task-3-implement-dfs">Task 3: implement <code>DFS</code> </h2>
 <p><a href="#top">Top</a></p>
 <ul>
