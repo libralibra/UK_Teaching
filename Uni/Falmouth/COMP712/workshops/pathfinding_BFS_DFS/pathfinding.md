@@ -155,11 +155,24 @@ There are three demos available:
 
 The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't be altered. However, some functions might aid in pathfinding visualisation:
 
+- `Cell`: Represents a grid on the board, with `row` and `col` in the same way as `Point` class's `y` and `x` fields. It also has a `parent` field for easy tracing the found path if needed.
+- `CellType`: enum contains the pre-defined types of the Cell
+  - `BLOCK`: marks the cell that is unreachable
+  - `EMPTY`: marks the empty cell, reachable
+  - `START`: marks the starting cell for searching
+  - `END`: marks the target cell for searching
+  - `GRASS`: marks a grass cell (will be used in the next workshop)
+  - `SAND`: marks a desert cell (will be used in the next workshop)
+  - `WATER`: marks a water cell (will be used in the next workshop)
+- `Canvas`: The base class of all sub-classes including `BFS`, `DFS`, `GBFS`, and the other 2 of the next workshop -- `DIJKSTRA` and `ASTAR`.
+  - `x_grid_num`: the number of grid horizontally. It remains unchanged unless you call `setGridNum()` explicitly.
+  - `y_grid_num`: the number of grid vertically. It remains unchanged unless you call `setGridNum()` explicitly.
+  - `grids[][]`: the 2D matrix (list of list in python) holds the cell values.
 - `getValidNeighbour(Cell, direction):` Retrieves the neighbour on the specified `direction`.
   - `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
 - `colourCell(Cell, colour, ratio=0.8)`: Fills the specified `Cell` with the given `colour`. The default `ratio` is `0.8`, filling `80%` of the cell with the colour.
 - `animateCell(Cell)`: Changes the cell colour during the searching process. It takes care about the cell type so that you don't need to worries about which colour to use - simply call the function by providing the cell itself.
-- The start and target cells are saved as `self.start` and `self.end`, while the finding path should be saved as a list of `Cell` objects in `self.path`.
+- The start and target cells are saved as `self.start` and `self.end`, while the path found should be saved as a list of `Cell` objects in `self.path`.
 
 Each algorithm should be implemented in its respective `.py` file:
 

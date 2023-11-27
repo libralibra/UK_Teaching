@@ -11,7 +11,7 @@ from queue import PriorityQueue
 
 
 class GBFS(Canvas):
-    def __init__(self, title, width, height, bgcolour='white', animate=False, nb_size=4,  euclidean_dist=False) -> None:
+    def __init__(self, title, width, height, bgcolour='white', animate=False, nb_size=4, euclidean_dist=False) -> None:
         ''' nb_size controls how may neighbours to search: 4 or 8 '''
         super().__init__(title, width, height, bgcolour)
         self.animate = animate

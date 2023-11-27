@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>pathfinding</title>
+      <title>pathfinding_2</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -26,23 +26,23 @@
       
 <p><img src="../../../../Falmouth/common/ga_uni_logo.png" alt=""></p>
 <h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence </h1>
-<h1 id="workshop-pathfinding-1">Workshop: Pathfinding (1) </h1>
+<h1 id="workshop-pathfinding-2">Workshop: Pathfinding (2) </h1>
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
-<p><img src="ai_pathfinding_0.apng" alt=""></p>
+<p><img src="../pathfinding_BFS_DFS/ai_pathfinding_0.apng" alt=""></p>
 <div id="top"></div>
 <h1 id="table-of-contents">Table of Contents </h1>
 <ul>
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
-<li><a href="#workshop-pathfinding-1">Workshop: Pathfinding (1)</a></li>
+<li><a href="#workshop-pathfinding-2">Workshop: Pathfinding (2)</a></li>
 <li><a href="#table-of-contents">Table of Contents</a></li>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<li><a href="#dijkstras-algorithm"><code>Dijkstra's</code> Algorithm</a>
 <ul>
 <li><a href="#the-pseudocode">The Pseudocode</a></li>
 </ul>
 </li>
-<li><a href="#depth-first-search-dfs">Depth-First Search (DFS)</a>
+<li><a href="#a-algorithm"><code>A*</code> Algorithm</a>
 <ul>
 <li><a href="#the-pseudocode-1">The Pseudocode</a></li>
 </ul>
@@ -70,57 +70,118 @@
 </ul>
 <h1 id="introduction">Introduction </h1>
 <p><a href="#top">Top</a></p>
-<p>It’s a very common and important problem in most of the games with a grid-like world maps. The pathfinding algorithm is crucial for the AI to move efficiently from one position to another. Most of the bugs in game productions are related to an ineffective or buggy pathfinding implementation.</p>
-<p>We’ve learnt different pathfinding algorithms during the lecture. In the following 2 workshops, you are required to revisit the theories of some of the popular pathfinding algorithms and implement them to help your understanding.</p>
-<p>This is the part 1 of the 2 workshops: <code>Breadth-First Search (BFS)</code>, <code>Depth-First Search (DFS)</code>, and <code>Greedy Best-First Search (GBFS)</code>.</p>
-<p><strong>Note</strong>: While this workshop outlines three main tasks and this second one has two, you have the flexibility to manage the content across the two workshops at your own pace. You can continue to work on the tasks listed below in the second workshop.</p>
-<h1 id="breadth-first-search-bfs">Breadth-First Search (BFS) </h1>
+<p>This is the second workshop on the topic of pathfinding. After implementing <code>BFS</code>, <code>DFS</code>, and <code>GBFS</code>, you will focus on <code>Dijkstra's</code> and <code>A*</code> Algorithms in this session, which are very useful for pathfinding in <strong>weighted</strong> graphs.</p>
+<p><strong>Note</strong>: While the first workshop outlines three main tasks and this one has two, you have the flexibility to manage the content across the two workshops at your own pace. If you haven’t completed the initial three implementations, it’s recommended to continue working on those tasks before proceeding with the exercises assigned for this session.</p>
+<h1 id="dijkstras-algorithm"><code>Dijkstra's</code> Algorithm </h1>
 <p><a href="#top">Top</a></p>
-<p>Breadth-first search (BFS) is an algorithm used in graph traversal and pathfinding. It systematically explores all the neighbour nodes at the present depth level before moving on to nodes at the next level of depth. It starts from a specified node and explores all its neighbours before moving to the next set of neighbours. This technique follows the principle of visiting all immediate neighbours before exploring the neighbours’ neighbours, ensuring that nodes closer to the starting point are visited first before venturing further away.</p>
-<p>The algorithm employs a <code>queue</code> data structure to maintain the order of nodes to be visited. Starting from the initial node, it examines its neighbours, adding them to the queue. It then proceeds to visit the next node in the queue, exploring its neighbours and enqueuing them if they haven’t been visited yet. This process continues until all reachable nodes have been visited. BFS is often used to find the <code>shortest path</code> between two nodes or to explore a graph systematically, level by level, ensuring that the algorithm visits nodes in increasing order of their distance from the starting node. Its ability to find the shortest path makes it an essential tool in various applications, from network routing to game development.</p>
+<p><code>Dijkstra's</code> Algorithm, named after computer scientist <a href="https://www.wikiwand.com/en/Edsger_W._Dijkstra">Edsger W. Dijkstra</a>, stands as one of the fundamental algorithms in graph theory and network analysis. Primarily used to find the shortest path in a <em><strong>weighted</strong></em> graph, it operates effectively on graphs where all the edge weights are non-negative. The algorithm commences by designating a source node and initially assigning tentative distances to all other nodes, with the source set at zero and the rest at infinity. It then systematically explores neighbouring nodes, continually updating the shortest known distances from the source as it traverses the graph. Through a process of relaxation, where it reassesses and refines the distances, <code>Dijkstra's</code> Algorithm gradually reveals the shortest path from the source to every other node in the graph.</p>
+<p>Its methodology revolves around a priority queue or min-heap, selecting the node with the smallest tentative distance as it proceeds, ensuring an efficient exploration of nodes in order of their shortest potential distance from the source. Dijkstra’s Algorithm is a notable and widely implemented tool in network routing protocols, transportation networks, and various applications requiring efficient pathfinding in weighted graphs. Its simplicity, optimality for non-negative edges, and ability to efficiently find the shortest path make it a cornerstone in various computational fields.</p>
+<blockquote>
+<p><code>BFS</code> can be considered as a special case of <code>Dijkstra's</code> Algorithm on unweighted graphs.</p>
+</blockquote>
 <h2 id="the-pseudocode">The Pseudocode </h2>
 <p><a href="#top">Top</a></p>
-<p>The BFS algorithm can be presented using the following pseudocode:</p>
-<pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code>procedure BFS<span class="token punctuation">(</span>G<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
-    clear Q
-    label v <span class="token keyword keyword-as">as</span> explored
-    Q<span class="token punctuation">.</span>enqueue<span class="token punctuation">(</span>v<span class="token punctuation">)</span>
-    <span class="token keyword keyword-while">while</span> Q <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> empty <span class="token keyword keyword-do">do</span>
-        <span class="token keyword keyword-get">get</span> the head node from Q
-        <span class="token keyword keyword-if">if</span> v <span class="token keyword keyword-is">is</span> the goal <span class="token keyword keyword-then">then</span>
-            <span class="token keyword keyword-return">return</span> v
-        <span class="token keyword keyword-for">for</span> all edges from v <span class="token keyword keyword-to">to</span> w <span class="token keyword keyword-in">in</span> G<span class="token punctuation">.</span>adjacentEdges<span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token keyword keyword-do">do</span>
-            <span class="token keyword keyword-if">if</span> w <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> labelled <span class="token keyword keyword-as">as</span> explored <span class="token keyword keyword-then">then</span>
-                label w <span class="token keyword keyword-as">as</span> explored
-                mark v <span class="token keyword keyword-as">as</span> w<span class="token comment">'s parent node</span>
-                add w <span class="token keyword keyword-to">to</span> Q
-</code></pre><h1 id="depth-first-search-dfs">Depth-First Search (DFS) </h1>
+<p>The <code>Dijkstra's</code> algorithm can be presented using the following pseudocode<a href="https://www.wikiwand.com/en/Dijkstra's_algorithm#Pseudocode"><sup>1</sup></a>:</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code><span class="token keyword keyword-function">function</span> Dijkstra<span class="token punctuation">(</span>Graph<span class="token punctuation">,</span> source<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> vertex v <span class="token keyword keyword-in">in</span> Graph<span class="token punctuation">.</span>Vertices<span class="token punctuation">:</span>
+        dist[v] ← INFINITY
+        prev[v] ← UNDEFINED
+        add v <span class="token keyword keyword-to">to</span> Q
+    dist[source] ← <span class="token number">0</span>
+    
+    <span class="token keyword keyword-while">while</span> Q <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> empty<span class="token punctuation">:</span>
+        u ← vertex <span class="token keyword keyword-in">in</span> Q <span class="token keyword keyword-with">with</span> min dist[u]
+        <span class="token keyword keyword-if">if</span> u <span class="token keyword keyword-is">is</span> the target
+            break
+        remove u from Q
+        
+        <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> neighbour v <span class="token keyword keyword-of">of</span> u still <span class="token keyword keyword-in">in</span> Q<span class="token punctuation">:</span>
+            alt ← dist[u] <span class="token operator">+</span> Graph<span class="token punctuation">.</span>Edges<span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span> alt <span class="token operator">&lt;</span> dist[v]<span class="token punctuation">:</span>
+                dist[v] ← alt
+                prev[v] ← u
+
+    <span class="token keyword keyword-return">return</span> dist[]<span class="token punctuation">,</span> prev[]
+</code></pre><p>The following version of pseudocode<a href="https://www.wikiwand.com/en/Dijkstra's_algorithm#Using_a_priority_queue"><sup>2</sup></a> makes use of the <code>PriorityQueue</code> data structure we saw in the last workshop.</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code><span class="token keyword keyword-function">function</span> Dijkstra<span class="token punctuation">(</span>Graph<span class="token punctuation">,</span> source<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    dist[source] ← <span class="token number">0</span>                           <span class="token operator">/</span><span class="token operator">/</span> Initialisation
+    create vertex priority queue Q
+	
+    <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> vertex v <span class="token keyword keyword-in">in</span> Graph<span class="token punctuation">.</span>Vertices<span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> v ≠ source
+            dist[v] ← INFINITY                 <span class="token operator">/</span><span class="token operator">/</span> Unknown distance from source <span class="token keyword keyword-to">to</span> v
+            prev[v] ← UNDEFINED                <span class="token operator">/</span><span class="token operator">/</span> Predecessor <span class="token keyword keyword-of">of</span> v
+        Q<span class="token punctuation">.</span>add_with_priority<span class="token punctuation">(</span>v<span class="token punctuation">,</span> dist[v]<span class="token punctuation">)</span>
+		
+    <span class="token keyword keyword-while">while</span> Q <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> empty<span class="token punctuation">:</span>                      <span class="token operator">/</span><span class="token operator">/</span> The main <span class="token keyword keyword-loop">loop</span>
+        u ← Q<span class="token punctuation">.</span>extract_min<span class="token punctuation">(</span><span class="token punctuation">)</span>                    <span class="token operator">/</span><span class="token operator">/</span> Remove <span class="token keyword keyword-and">and</span> <span class="token keyword keyword-return">return</span> best vertex
+        <span class="token keyword keyword-if">if</span> u <span class="token keyword keyword-is">is</span> the target<span class="token punctuation">:</span>
+            break
+        <span class="token keyword keyword-for">for</span> <span class="token keyword keyword-each">each</span> neighbour v <span class="token keyword keyword-of">of</span> u<span class="token punctuation">:</span>              <span class="token operator">/</span><span class="token operator">/</span> Go through all v neighbours <span class="token keyword keyword-of">of</span> u
+            alt ← dist[u] <span class="token operator">+</span> Graph<span class="token punctuation">.</span>Edges<span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span> alt <span class="token operator">&lt;</span> dist[v]<span class="token punctuation">:</span>
+                dist[v] ← alt
+                prev[v] ← u
+                Q<span class="token punctuation">.</span>decrease_priority<span class="token punctuation">(</span>v<span class="token punctuation">,</span> alt<span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> dist[]<span class="token punctuation">,</span> prev[]
+</code></pre><h1 id="a-algorithm"><code>A*</code> Algorithm </h1>
 <p><a href="#top">Top</a></p>
-<p>Similarly, Depth-First Search (DFS) is a traversing algorithm that explores as far as possible along a branch and then backtracks to explore other branches. It starts at a designated node and visits one of its children repeatedly until it reaches the deepest level of the tree or graph. Once it reaches the end, it backtracks to the last node with unexplored branches and continues until it explores all possible paths. This process continues until all nodes in the graph have been visited.</p>
-<p>The DFS algorithm employs a <code>stack</code> to keep track of visited nodes and navigate through the graph or tree. It explores each branch entirely before backtracking, making it more memory-efficient than BFS. However, DFS might not always find the shortest path because it doesn’t guarantee visiting the closest nodes first. It’s a popular algorithm used in maze-solving problems, topological sorting, and cycle detection in graphs due to its ability to systematically explore all possibilities within a branch before moving on to others.</p>
+<p>The <code>A*</code> algorithm, renowned for its heuristic-based approach to pathfinding, stands as a pivotal algorithm in computer science, particularly in traversing <em><strong>weighted</strong></em> graphs and searching for the shortest path. Building on the foundation of <code>Dijkstra's</code> Algorithm, <code>A*</code> integrates a heuristic function that guides its exploration, enabling more informed decisions about which paths to explore. This heuristic estimates the distance from the current node to the target node, influencing the algorithm to prioritize paths that appear to be closer to the goal. <code>A*</code> uses a blend of two types of costs for each node: the <code>actual cost</code> from the start node to the current node (known as the ‘<code>g</code>’ value) and the <code>estimated cost</code> from the current node to the target (the ‘<code>h</code>’ value).</p>
+<p><code>A*</code> balances between the ‘<code>g</code>’ and ‘<code>h</code>’ values, aiming to minimise the total estimated cost (‘<code>f</code>’ value) for reaching the destination node. It traverses the graph by expanding the nodes with the lowest ‘<code>f</code>’ values, effectively combining the benefits of both <code>Dijkstra's</code> Algorithm and <code>greedy best-first</code> search. This integration of a heuristic function ensures efficiency by favouring paths that appear to be more promising, significantly reducing the number of nodes explored compared to uninformed search algorithms. The <code>A*</code> algorithm’s adaptability to various domains, its optimality under certain conditions, and its balance between completeness and efficiency have made it a cornerstone in various applications, such as route planning, game AI, and robotics.</p>
+<blockquote>
+<p>The <code>A*</code> algorithm is a generalization of <code>Dijkstra's</code> algorithm that cuts down on the size of the subgraph that must be explored, if additional information is available that provides a lower bound on the “distance” to the target.</p>
+</blockquote>
 <h2 id="the-pseudocode-1">The Pseudocode </h2>
 <p><a href="#top">Top</a></p>
-<p>Due to the natural of DFS algorithm, it can be implemented either recursively or non-recursively.</p>
-<ul>
-<li><strong>The recursive version</strong></li>
-</ul>
-<pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code>procedure DFS<span class="token punctuation">(</span>G<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token keyword keyword-is">is</span>
-    label v <span class="token keyword keyword-as">as</span> discovered
-    <span class="token keyword keyword-for">for</span> all directed edges from v <span class="token keyword keyword-to">to</span> w that are <span class="token keyword keyword-in">in</span> G<span class="token punctuation">.</span>adjacentEdges<span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token keyword keyword-do">do</span>
-        <span class="token keyword keyword-if">if</span> vertex w <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> labeled <span class="token keyword keyword-as">as</span> discovered <span class="token keyword keyword-then">then</span>
-            recursively <span class="token keyword keyword-call">call</span> DFS<span class="token punctuation">(</span>G<span class="token punctuation">,</span> w<span class="token punctuation">)</span>
-</code></pre><ul>
-<li><strong>The non-recursive version</strong></li>
-</ul>
-<pre data-role="codeBlock" data-info="vb" class="language-vb vb"><code>procedure DFS<span class="token punctuation">(</span>G<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token keyword keyword-is">is</span>
-    <span class="token keyword keyword-let">let</span> S be a stack
-    S<span class="token punctuation">.</span>push<span class="token punctuation">(</span>v<span class="token punctuation">)</span>
-    <span class="token keyword keyword-while">while</span> S <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> empty <span class="token keyword keyword-do">do</span>
-        remove tail node n from s
-        <span class="token keyword keyword-if">if</span> n <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> labeled <span class="token keyword keyword-as">as</span> discovered <span class="token keyword keyword-then">then</span>
-            label n <span class="token keyword keyword-as">as</span> discovered
-            <span class="token keyword keyword-for">for</span> all edges from n <span class="token keyword keyword-to">to</span> w <span class="token keyword keyword-in">in</span> G<span class="token punctuation">.</span>adjacentEdges<span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token keyword keyword-do">do</span> 
-                S<span class="token punctuation">.</span>push<span class="token punctuation">(</span>w<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code>function <span class="token function">reconstruct_path</span><span class="token punctuation">(</span>cameFrom<span class="token punctuation">,</span> current<span class="token punctuation">)</span>
+    total_path <span class="token operator">:</span><span class="token operator">=</span> <span class="token punctuation">{</span>current<span class="token punctuation">}</span>
+    <span class="token keyword keyword-while">while</span> current in <span class="token class-name"><span class="token namespace">cameFrom<span class="token punctuation">.</span></span>Keys</span><span class="token operator">:</span>
+        current <span class="token operator">:</span><span class="token operator">=</span> cameFrom<span class="token punctuation">[</span>current<span class="token punctuation">]</span>
+        total_path<span class="token punctuation">.</span><span class="token function">prepend</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> total_path
+
+<span class="token comment">// A* finds a path from start to goal.</span>
+<span class="token comment">// h is the heuristic function. h(n) estimates the cost to reach goal from node n.</span>
+function <span class="token class-name">A_Star</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> goal<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+    <span class="token comment">// The set of discovered nodes that may need to be (re-)expanded.</span>
+    <span class="token comment">// Initially, only the start node is known.</span>
+    <span class="token comment">// This is usually implemented as a min-heap or priority queue rather than a hash-set.</span>
+    openSet <span class="token operator">:</span><span class="token operator">=</span> <span class="token punctuation">{</span>start<span class="token punctuation">}</span>
+
+    <span class="token comment">// For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from the start</span>
+    <span class="token comment">// to n currently known.</span>
+    cameFrom <span class="token operator">:</span><span class="token operator">=</span> an empty map
+
+    <span class="token comment">// For node n, gScore[n] is the cost of the cheapest path from start to n currently known.</span>
+    gScore <span class="token operator">:</span><span class="token operator">=</span> map <span class="token keyword keyword-with">with</span> <span class="token keyword keyword-default">default</span> value of <span class="token class-name">Infinity</span>
+    gScore<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">:</span><span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token comment">// For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to</span>
+    <span class="token comment">// how cheap a path could be from start to finish if it goes through n.</span>
+    fScore <span class="token operator">:</span><span class="token operator">=</span> map <span class="token keyword keyword-with">with</span> <span class="token keyword keyword-default">default</span> value of <span class="token class-name">Infinity</span>
+    fScore<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">:</span><span class="token operator">=</span> <span class="token function">h</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-while">while</span> openSet is not empty
+        <span class="token comment">// This operation can occur in O(Log(N)) time if openSet is a min-heap or a priority queue</span>
+        current <span class="token operator">:</span><span class="token operator">=</span> the node in openSet having the lowest fScore<span class="token punctuation">[</span><span class="token punctuation">]</span> value
+        <span class="token keyword keyword-if">if</span> current <span class="token operator">=</span> goal
+            <span class="token keyword keyword-return">return</span> <span class="token function">reconstruct_path</span><span class="token punctuation">(</span>cameFrom<span class="token punctuation">,</span> current<span class="token punctuation">)</span>
+
+        <span class="token class-name"><span class="token namespace">openSet<span class="token punctuation">.</span></span>Remove</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span>
+        <span class="token keyword keyword-for">for</span> each neighbor of current
+            <span class="token comment">// d(current,neighbor) is the weight of the edge from current to neighbor</span>
+            <span class="token comment">// tentative_gScore is the distance from start to the neighbor through current</span>
+            tentative_gScore <span class="token operator">:</span><span class="token operator">=</span> gScore<span class="token punctuation">[</span>current<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token function">d</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> neighbor<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span> tentative_gScore <span class="token operator">&lt;</span> gScore<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span>
+                <span class="token comment">// This path to neighbor is better than any previous one. Record it!</span>
+                cameFrom<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span> <span class="token operator">:</span><span class="token operator">=</span> current
+                gScore<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span> <span class="token operator">:</span><span class="token operator">=</span> tentative_gScore
+                fScore<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span> <span class="token operator">:</span><span class="token operator">=</span> tentative_gScore <span class="token operator">+</span> <span class="token function">h</span><span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+                <span class="token keyword keyword-if">if</span> neighbor not in openSet
+                    openSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+
+    <span class="token comment">// Open set is empty but goal was never reached</span>
+    <span class="token keyword keyword-return">return</span> failure
 </code></pre><h1 id="greedy-best-first-search-gbfs">Greedy Best-First Search (GBFS) </h1>
 <p><a href="#top">Top</a></p>
 <p>Greedy Best-First Search (GBFS) is another algorithm used in graph traversal and pathfinding. It’s <code>heuristic-based</code> and aims to reach the goal by consistently selecting the node that <em><strong>appears to be the most promising</strong></em>. Instead of exploring all possibilities equally, GBFS prioritises nodes that are closer to the goal based on a heuristic function. This function estimates the cost or distance from the current node to the goal, allowing GBFS to always expand the node that seems <em><strong>most likely</strong></em> to lead to the goal.</p>
@@ -153,39 +214,19 @@
 <li><code>demo_bfs.pyc</code>: Demonstrates Breadth-first search</li>
 <li><code>demo_dfs.pyc</code>: Demonstrates Depth-first search</li>
 <li><code>demo_gbfs.pyc</code>: Demonstrates Greedy best-first search</li>
-<li>5 pre-defined maps are provided, which can be loaded by key <kbd><code>L</code></kbd></li>
+<li>3 pre-defined maps are provided, which can be loaded by key <kbd><code>L</code></kbd></li>
 </ul>
 <h2 id="the-code-structure">The Code Structure </h2>
 <p><a href="#top">Top</a></p>
 <p>The <code>gui_lib.py</code> file contains all the necessary GUI capabilities that shouldn’t be altered. However, some functions might aid in pathfinding visualisation:</p>
 <ul>
-<li><code>Cell</code>: Represents a grid on the board, with <code>row</code> and <code>col</code> in the same way as <code>Point</code> class’s <code>y</code> and <code>x</code> fields. It also has a <code>parent</code> field for easy tracing the found path if needed.</li>
-<li><code>CellType</code>: enum contains the pre-defined types of the Cell
-<ul>
-<li><code>BLOCK</code>: marks the cell that is unreachable</li>
-<li><code>EMPTY</code>: marks the empty cell, reachable</li>
-<li><code>START</code>: marks the starting cell for searching</li>
-<li><code>END</code>: marks the target cell for searching</li>
-<li><code>GRASS</code>: marks a grass cell (will be used in the next workshop)</li>
-<li><code>SAND</code>: marks a desert cell (will be used in the next workshop)</li>
-<li><code>WATER</code>: marks a water cell (will be used in the next workshop)</li>
-</ul>
-</li>
-<li><code>Canvas</code>: The base class of all sub-classes including <code>BFS</code>, <code>DFS</code>, <code>GBFS</code>, and the other 2 of the next workshop – <code>DIJKSTRA</code> and <code>ASTAR</code>.
-<ul>
-<li><code>x_grid_num</code>: the number of grid horizontally. It remains unchanged unless you call <code>setGridNum()</code> explicitly.</li>
-<li><code>y_grid_num</code>: the number of grid vertically. It remains unchanged unless you call <code>setGridNum()</code> explicitly.</li>
-<li><code>grids[][]</code>: the 2D matrix (list of list in python) holds the cell values.</li>
-</ul>
-</li>
 <li><code>getValidNeighbour(Cell, direction):</code> Retrieves the neighbour on the specified <code>direction</code>.
 <ul>
 <li><code>Cell</code> represents a cell object, while <code>direction</code> can be one of <code>east</code>, <code>north-east</code>, <code>north</code>, <code>north-west</code>, <code>west</code>, <code>south-west</code>, <code>south</code>, <code>south-east</code>.</li>
 </ul>
 </li>
 <li><code>colourCell(Cell, colour, ratio=0.8)</code>: Fills the specified <code>Cell</code> with the given <code>colour</code>. The default <code>ratio</code> is <code>0.8</code>, filling <code>80%</code> of the cell with the colour.</li>
-<li><code>animateCell(Cell)</code>: Changes the cell colour during the searching process. It takes care about the cell type so that you don’t need to worries about which colour to use - simply call the function by providing the cell itself.</li>
-<li>The start and target cells are saved as <code>self.start</code> and <code>self.end</code>, while the path found should be saved as a list of <code>Cell</code> objects in <code>self.path</code>.</li>
+<li>The start and target cells are saved as <code>self.start</code> and <code>self.end</code>, while the finding path should be saved as a list of <code>Cell</code> objects in <code>self.path</code>.</li>
 </ul>
 <p>Each algorithm should be implemented in its respective <code>.py</code> file:</p>
 <ul>
@@ -263,7 +304,7 @@
 </blockquote>
 <h2 id="task-5-different-number-of-neighbours">Task 5: different number of neighbours </h2>
 <p><a href="#top">Top</a></p>
-<p>The default implementation focuses on exploring 4 neighbours around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.</p>
+<p>The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.</p>
 <p><img src="48_neighbourhood.png" alt=""><br>
 <em>Source: <a href="https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1">https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1</a></em></p>
 <ul>

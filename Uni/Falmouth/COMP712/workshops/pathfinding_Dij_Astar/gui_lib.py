@@ -25,9 +25,6 @@
 
 '''
 
-import random
-from re import search
-import time
 from tkinter import filedialog
 import turtle
 import logging
