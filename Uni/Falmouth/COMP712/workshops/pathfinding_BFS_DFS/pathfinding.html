@@ -73,7 +73,7 @@
 <p>It’s a very common and important problem in most of the games with a grid-like world maps. The pathfinding algorithm is crucial for the AI to move efficiently from one position to another. Most of the bugs in game productions are related to an ineffective or buggy pathfinding implementation.</p>
 <p>We’ve learnt different pathfinding algorithms during the lecture. In the following 2 workshops, you are required to revisit the theories of some of the popular pathfinding algorithms and implement them to help your understanding.</p>
 <p>This is the part 1 of the 2 workshops: <code>Breadth-First Search (BFS)</code>, <code>Depth-First Search (DFS)</code>, and <code>Greedy Best-First Search (GBFS)</code>.</p>
-<p><strong>Note</strong>: although 3 main tasks are assigned in this workshop, you are free to span the contents between the two workshops based on your own pace.</p>
+<p><strong>Note</strong>: While this workshop outlines three main tasks and this second one has two, you have the flexibility to manage the content across the two workshops at your own pace. You can continue to work on the tasks listed below in the second workshop.</p>
 <h1 id="breadth-first-search-bfs">Breadth-First Search (BFS) </h1>
 <p><a href="#top">Top</a></p>
 <p>Breadth-first search (BFS) is an algorithm used in graph traversal and pathfinding. It systematically explores all the neighbour nodes at the present depth level before moving on to nodes at the next level of depth. It starts from a specified node and explores all its neighbours before moving to the next set of neighbours. This technique follows the principle of visiting all immediate neighbours before exploring the neighbours’ neighbours, ensuring that nodes closer to the starting point are visited first before venturing further away.</p>
@@ -153,7 +153,7 @@
 <li><code>demo_bfs.pyc</code>: Demonstrates Breadth-first search</li>
 <li><code>demo_dfs.pyc</code>: Demonstrates Depth-first search</li>
 <li><code>demo_gbfs.pyc</code>: Demonstrates Greedy best-first search</li>
-<li>3 pre-defined maps are provided, which can be loaded by key <kbd><code>L</code></kbd></li>
+<li>5 pre-defined maps are provided, which can be loaded by key <kbd><code>L</code></kbd></li>
 </ul>
 <h2 id="the-code-structure">The Code Structure </h2>
 <p><a href="#top">Top</a></p>
@@ -165,6 +165,7 @@
 </ul>
 </li>
 <li><code>colourCell(Cell, colour, ratio=0.8)</code>: Fills the specified <code>Cell</code> with the given <code>colour</code>. The default <code>ratio</code> is <code>0.8</code>, filling <code>80%</code> of the cell with the colour.</li>
+<li><code>animateCell(Cell)</code>: Changes the cell colour during the searching process. It takes care about the cell type so that you don’t need to worries about which colour to use - simply call the function by providing the cell itself.</li>
 <li>The start and target cells are saved as <code>self.start</code> and <code>self.end</code>, while the finding path should be saved as a list of <code>Cell</code> objects in <code>self.path</code>.</li>
 </ul>
 <p>Each algorithm should be implemented in its respective <code>.py</code> file:</p>
@@ -202,7 +203,7 @@
 <li>The <code>self.search()</code> function is mandatory.</li>
 <li>It should return <code>True</code> or <code>False</code> to indicate if a path can be found from <code>self.start</code> to <code>self.end</code>.</li>
 <li>Make sure you fill up the <code>self.path</code> list with cells on the found path.</li>
-<li>To enable animation, make use of the following code snippts in your <code>search()</code> function.</li>
+<li>To enable animation, make use of the following code snippets in your <code>search()</code> function.</li>
 </ul>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># other code blocks ...</span>
 <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>animate<span class="token punctuation">:</span>
@@ -243,7 +244,7 @@
 </blockquote>
 <h2 id="task-5-different-number-of-neighbours">Task 5: different number of neighbours </h2>
 <p><a href="#top">Top</a></p>
-<p>The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.</p>
+<p>The default implementation focuses on exploring 4 neighbours around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.</p>
 <p><img src="48_neighbourhood.png" alt=""><br>
 <em>Source: <a href="https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1">https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1</a></em></p>
 <ul>

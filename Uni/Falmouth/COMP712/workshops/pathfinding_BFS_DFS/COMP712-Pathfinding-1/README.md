@@ -18,5 +18,7 @@ The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't
 Each algorithm should be implemented in its respective `.py` file:
 
 - The `search()` function is mandatory in each file as the main lib relies on it for the search process.
+- The `search()` function must return either `True` or `False`
+- You may want to call `animateCell(c)` to animate the searching process. But you don't have to as it shouldn't affect the result.
 - Feel free to create additional helper functions as required.
 

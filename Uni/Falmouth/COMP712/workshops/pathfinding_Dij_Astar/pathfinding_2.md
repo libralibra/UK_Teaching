@@ -2,23 +2,23 @@
 
 # COMP712: Classical Artificial Intelligence 
 
-# Workshop: Pathfinding (1)
+# Workshop: Pathfinding (2)
 
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
 
-![The Pathfinding Demo](ai_pathfinding_0.apng)
+![The Pathfinding Demo](../pathfinding_BFS_DFS/ai_pathfinding_0.apng)
 
 <div id="top"></div>
 
 # Table of Contents
 - [COMP712: Classical Artificial Intelligence](#comp712-classical-artificial-intelligence)
-- [Workshop: Pathfinding (1)](#workshop-pathfinding-1)
+- [Workshop: Pathfinding (2)](#workshop-pathfinding-2)
 - [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
-- [Breadth-First Search (BFS)](#breadth-first-search-bfs)
+- [`Dijkstra's` Algorithm](#dijkstras-algorithm)
   - [The Pseudocode](#the-pseudocode)
-- [Depth-First Search (DFS)](#depth-first-search-dfs)
+- [`A*` Algorithm](#a-algorithm)
   - [The Pseudocode](#the-pseudocode-1)
 - [Greedy Best-First Search (GBFS)](#greedy-best-first-search-gbfs)
   - [The Pseudocode](#the-pseudocode-2)
@@ -35,76 +35,136 @@ Dr Daniel Zhang @ Falmouth University\
 # Introduction
 [Top](#top)
 
-It's a very common and important problem in most of the games with a grid-like world maps. The pathfinding algorithm is crucial for the AI to move efficiently from one position to another. Most of the bugs in game productions are related to an ineffective or buggy pathfinding implementation. 
+This is the second workshop on the topic of pathfinding. After implementing `BFS`, `DFS`, and `GBFS`, you will focus on `Dijkstra's` and `A*` Algorithms in this session, which are very useful for pathfinding in **weighted** graphs.
 
-We've learnt different pathfinding algorithms during the lecture. In the following 2 workshops, you are required to revisit the theories of some of the popular pathfinding algorithms and implement them to help your understanding.
+**Note**: While the first workshop outlines three main tasks and this one has two, you have the flexibility to manage the content across the two workshops at your own pace. If you haven't completed the initial three implementations, it's recommended to continue working on those tasks before proceeding with the exercises assigned for this session.
 
-This is the part 1 of the 2 workshops: `Breadth-First Search (BFS)`, `Depth-First Search (DFS)`, and `Greedy Best-First Search (GBFS)`. 
-
-**Note**: While this workshop outlines three main tasks and this second one has two, you have the flexibility to manage the content across the two workshops at your own pace. You can continue to work on the tasks listed below in the second workshop.
-
-# Breadth-First Search (BFS)
+# `Dijkstra's` Algorithm
 [Top](#top)
 
-Breadth-first search (BFS) is an algorithm used in graph traversal and pathfinding. It systematically explores all the neighbour nodes at the present depth level before moving on to nodes at the next level of depth. It starts from a specified node and explores all its neighbours before moving to the next set of neighbours. This technique follows the principle of visiting all immediate neighbours before exploring the neighbours' neighbours, ensuring that nodes closer to the starting point are visited first before venturing further away. 
+`Dijkstra's` Algorithm, named after computer scientist [Edsger W. Dijkstra](https://www.wikiwand.com/en/Edsger_W._Dijkstra), stands as one of the fundamental algorithms in graph theory and network analysis. Primarily used to find the shortest path in a ***weighted*** graph, it operates effectively on graphs where all the edge weights are non-negative. The algorithm commences by designating a source node and initially assigning tentative distances to all other nodes, with the source set at zero and the rest at infinity. It then systematically explores neighbouring nodes, continually updating the shortest known distances from the source as it traverses the graph. Through a process of relaxation, where it reassesses and refines the distances, `Dijkstra's` Algorithm gradually reveals the shortest path from the source to every other node in the graph.
 
-The algorithm employs a `queue` data structure to maintain the order of nodes to be visited. Starting from the initial node, it examines its neighbours, adding them to the queue. It then proceeds to visit the next node in the queue, exploring its neighbours and enqueuing them if they haven't been visited yet. This process continues until all reachable nodes have been visited. BFS is often used to find the `shortest path` between two nodes or to explore a graph systematically, level by level, ensuring that the algorithm visits nodes in increasing order of their distance from the starting node. Its ability to find the shortest path makes it an essential tool in various applications, from network routing to game development.
+Its methodology revolves around a priority queue or min-heap, selecting the node with the smallest tentative distance as it proceeds, ensuring an efficient exploration of nodes in order of their shortest potential distance from the source. Dijkstra's Algorithm is a notable and widely implemented tool in network routing protocols, transportation networks, and various applications requiring efficient pathfinding in weighted graphs. Its simplicity, optimality for non-negative edges, and ability to efficiently find the shortest path make it a cornerstone in various computational fields.
+
+> `BFS` can be considered as a special case of `Dijkstra's` Algorithm on unweighted graphs.
 
 ## The Pseudocode
 [Top](#top)
 
-The BFS algorithm can be presented using the following pseudocode:
+The `Dijkstra's` algorithm can be presented using the following pseudocode[<sup>1</sup>](https://www.wikiwand.com/en/Dijkstra's_algorithm#Pseudocode):
 
 ```vb
-procedure BFS(G, v)
-    clear Q
-    label v as explored
-    Q.enqueue(v)
-    while Q is not empty do
-        get the head node from Q
-        if v is the goal then
-            return v
-        for all edges from v to w in G.adjacentEdges(v) do
-            if w is not labelled as explored then
-                label w as explored
-                mark v as w's parent node
-                add w to Q
+function Dijkstra(Graph, source):
+    for each vertex v in Graph.Vertices:
+        dist[v] ← INFINITY
+        prev[v] ← UNDEFINED
+        add v to Q
+    dist[source] ← 0
+    
+    while Q is not empty:
+        u ← vertex in Q with min dist[u]
+        if u is the target
+            break
+        remove u from Q
+        
+        for each neighbour v of u still in Q:
+            alt ← dist[u] + Graph.Edges(u, v)
+            if alt < dist[v]:
+                dist[v] ← alt
+                prev[v] ← u
+
+    return dist[], prev[]
 ```
 
-# Depth-First Search (DFS)
+The following version of pseudocode[<sup>2</sup>](https://www.wikiwand.com/en/Dijkstra's_algorithm#Using_a_priority_queue) makes use of the `PriorityQueue` data structure we saw in the last workshop.
+
+```vb
+function Dijkstra(Graph, source):
+    dist[source] ← 0                           // Initialisation
+    create vertex priority queue Q
+	
+    for each vertex v in Graph.Vertices:
+        if v ≠ source
+            dist[v] ← INFINITY                 // Unknown distance from source to v
+            prev[v] ← UNDEFINED                // Predecessor of v
+        Q.add_with_priority(v, dist[v])
+		
+    while Q is not empty:                      // The main loop
+        u ← Q.extract_min()                    // Remove and return best vertex
+        if u is the target:
+            break
+        for each neighbour v of u:              // Go through all v neighbours of u
+            alt ← dist[u] + Graph.Edges(u, v)
+            if alt < dist[v]:
+                dist[v] ← alt
+                prev[v] ← u
+                Q.decrease_priority(v, alt)
+    return dist[], prev[]
+```
+
+# `A*` Algorithm
 [Top](#top)
 
-Similarly, Depth-First Search (DFS) is a traversing algorithm that explores as far as possible along a branch and then backtracks to explore other branches. It starts at a designated node and visits one of its children repeatedly until it reaches the deepest level of the tree or graph. Once it reaches the end, it backtracks to the last node with unexplored branches and continues until it explores all possible paths. This process continues until all nodes in the graph have been visited.
+The `A*` algorithm, renowned for its heuristic-based approach to pathfinding, stands as a pivotal algorithm in computer science, particularly in traversing ***weighted*** graphs and searching for the shortest path. Building on the foundation of `Dijkstra's` Algorithm, `A*` integrates a heuristic function that guides its exploration, enabling more informed decisions about which paths to explore. This heuristic estimates the distance from the current node to the target node, influencing the algorithm to prioritize paths that appear to be closer to the goal. `A*` uses a blend of two types of costs for each node: the `actual cost` from the start node to the current node (known as the '`g`' value) and the `estimated cost` from the current node to the target (the '`h`' value).
 
-The DFS algorithm employs a `stack` to keep track of visited nodes and navigate through the graph or tree. It explores each branch entirely before backtracking, making it more memory-efficient than BFS. However, DFS might not always find the shortest path because it doesn't guarantee visiting the closest nodes first. It's a popular algorithm used in maze-solving problems, topological sorting, and cycle detection in graphs due to its ability to systematically explore all possibilities within a branch before moving on to others.
+`A*` balances between the '`g`' and '`h`' values, aiming to minimise the total estimated cost ('`f`' value) for reaching the destination node. It traverses the graph by expanding the nodes with the lowest '`f`' values, effectively combining the benefits of both `Dijkstra's` Algorithm and `greedy best-first` search. This integration of a heuristic function ensures efficiency by favouring paths that appear to be more promising, significantly reducing the number of nodes explored compared to uninformed search algorithms. The `A*` algorithm's adaptability to various domains, its optimality under certain conditions, and its balance between completeness and efficiency have made it a cornerstone in various applications, such as route planning, game AI, and robotics.
+
+> The `A*` algorithm is a generalization of `Dijkstra's` algorithm that cuts down on the size of the subgraph that must be explored, if additional information is available that provides a lower bound on the "distance" to the target.
 
 ## The Pseudocode
 [Top](#top)
 
-Due to the natural of DFS algorithm, it can be implemented either recursively or non-recursively.
 
-- **The recursive version**
+```java
+function reconstruct_path(cameFrom, current)
+    total_path := {current}
+    while current in cameFrom.Keys:
+        current := cameFrom[current]
+        total_path.prepend(current)
+    return total_path
 
-```vb
-procedure DFS(G, v) is
-    label v as discovered
-    for all directed edges from v to w that are in G.adjacentEdges(v) do
-        if vertex w is not labeled as discovered then
-            recursively call DFS(G, w)
-```
+// A* finds a path from start to goal.
+// h is the heuristic function. h(n) estimates the cost to reach goal from node n.
+function A_Star(start, goal, h)
+    // The set of discovered nodes that may need to be (re-)expanded.
+    // Initially, only the start node is known.
+    // This is usually implemented as a min-heap or priority queue rather than a hash-set.
+    openSet := {start}
 
-- **The non-recursive version**
+    // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from the start
+    // to n currently known.
+    cameFrom := an empty map
 
-```vb
-procedure DFS(G, v) is
-    let S be a stack
-    S.push(v)
-    while S is not empty do
-        remove tail node n from s
-        if n is not labeled as discovered then
-            label n as discovered
-            for all edges from n to w in G.adjacentEdges(n) do 
-                S.push(w)
+    // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
+    gScore := map with default value of Infinity
+    gScore[start] := 0
+
+    // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
+    // how cheap a path could be from start to finish if it goes through n.
+    fScore := map with default value of Infinity
+    fScore[start] := h(start)
+
+    while openSet is not empty
+        // This operation can occur in O(Log(N)) time if openSet is a min-heap or a priority queue
+        current := the node in openSet having the lowest fScore[] value
+        if current = goal
+            return reconstruct_path(cameFrom, current)
+
+        openSet.Remove(current)
+        for each neighbor of current
+            // d(current,neighbor) is the weight of the edge from current to neighbor
+            // tentative_gScore is the distance from start to the neighbor through current
+            tentative_gScore := gScore[current] + d(current, neighbor)
+            if tentative_gScore < gScore[neighbor]
+                // This path to neighbor is better than any previous one. Record it!
+                cameFrom[neighbor] := current
+                gScore[neighbor] := tentative_gScore
+                fScore[neighbor] := tentative_gScore + h(neighbor)
+                if neighbor not in openSet
+                    openSet.add(neighbor)
+
+    // Open set is empty but goal was never reached
+    return failure
 ```
 
 # Greedy Best-First Search (GBFS)
@@ -148,7 +208,7 @@ There are three demos available:
 - `demo_bfs.pyc`: Demonstrates Breadth-first search
 - `demo_dfs.pyc`: Demonstrates Depth-first search
 - `demo_gbfs.pyc`: Demonstrates Greedy best-first search 
-- 5 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
+- 3 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
 
 ## The Code Structure
 [Top](#top)
@@ -158,7 +218,6 @@ The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't
 - `getValidNeighbour(Cell, direction):` Retrieves the neighbour on the specified `direction`.
   - `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
 - `colourCell(Cell, colour, ratio=0.8)`: Fills the specified `Cell` with the given `colour`. The default `ratio` is `0.8`, filling `80%` of the cell with the colour.
-- `animateCell(Cell)`: Changes the cell colour during the searching process. It takes care about the cell type so that you don't need to worries about which colour to use - simply call the function by providing the cell itself.
 - The start and target cells are saved as `self.start` and `self.end`, while the finding path should be saved as a list of `Cell` objects in `self.path`.
 
 Each algorithm should be implemented in its respective `.py` file:
@@ -230,7 +289,7 @@ Run the demos to see how each of the algorithms work differently. You can either
 ## Task 5: different number of neighbours
 [Top](#top)
 
-The default implementation focuses on exploring 4 neighbours around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.
+The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.
 
 ![4-Neighbourhood vs 8-Neighbourhood](48_neighbourhood.png)
 *Source: https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1*

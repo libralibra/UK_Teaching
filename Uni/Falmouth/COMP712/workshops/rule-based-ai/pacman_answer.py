@@ -113,7 +113,7 @@ def draw_dot(p: vector, c: str, s=20, pen=None) -> None:
 def draw_board():
     """ Draw board using path. """
     bgcolor('black')
-    path.color('blue')
+    path.color('green')
     # each tile
     for index, tile in enumerate(tiles):
         if tile > 0:

@@ -62,7 +62,8 @@ tiles = [
 ]
 # fmt: on
 
-def draw_grid(x:int, y:int) -> None:
+
+def draw_grid(x: int, y: int) -> None:
     """ Draw a grid (one tile) using path at (x, y). """
     path.up()
     path.goto(x, y)
@@ -73,13 +74,15 @@ def draw_grid(x:int, y:int) -> None:
         path.left(90)
     path.end_fill()
 
-def get_coords(index:int) -> vector:
+
+def get_coords(index: int) -> vector:
     ''' convert from 1d index to 2d coordiantes '''
     x = (index % 20) * 20 - 200
     y = 180 - (index // 20) * 20
-    return vector(x,y)
+    return vector(x, y)
 
-def get_index(p:vector) -> int:
+
+def get_index(p: vector) -> int:
     """ Return offset of point in tiles: the index of the point """
     # column
     x = (floor(p.x, 20) + 200) / 20
@@ -87,7 +90,8 @@ def get_index(p:vector) -> int:
     y = (180 - floor(p.y, 20)) / 20
     return int(x + y * 20)
 
-def is_valid(p:vector) -> bool:
+
+def is_valid(p: vector) -> bool:
     """ Return True if point is is_valid in tiles. """
     index = get_index(p)
     if tiles[index] == 0:
@@ -97,7 +101,8 @@ def is_valid(p:vector) -> bool:
         return False
     return p.x % 20 == 0 or p.y % 20 == 0
 
-def draw_dot(p:vector,c:str,s=20,pen=None) -> None:
+
+def draw_dot(p: vector, c: str, s=20, pen=None) -> None:
     ''' draw either the pacman or the ghost at vector P(x,y) with size s and colour c, if no pen was defined, use the global pen '''
     if pen:
         pen.up()
@@ -108,17 +113,19 @@ def draw_dot(p:vector,c:str,s=20,pen=None) -> None:
         goto(p.x + 10, p.y + 10)
         dot(s, c)
 
+
 def draw_board():
     """ Draw board using path. """
     bgcolor('black')
-    path.color('blue')
+    path.color('green')
     # each tile
     for index, tile in enumerate(tiles):
         if tile > 0:
             p = get_coords(index)
             draw_grid(p.x, p.y)
             if tile == 1:
-                draw_dot(p,'white',pellet_size,path)
+                draw_dot(p, 'white', pellet_size, path)
+
 
 def random_direction():
     ''' return a vector represent the random movement '''
@@ -129,16 +136,18 @@ def random_direction():
         vector(0, -5)]
     return choice(options)
 
+
 def change(x, y):
     """ Change pacman aim if is_valid ."""
     if is_valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
-        
+
+
 def play():
     """ Move pacman and all ghosts. """
     writer.undo()
-    writer.write(state['score'],font=('Monaco',20,"bold"))
+    writer.write(state['score'], font=('Monaco', 20, "bold"))
     clear()
 
     # move pacman
@@ -152,7 +161,7 @@ def play():
         p = get_coords(index)
         draw_grid(p.x, p.y)
 
-    draw_dot(pacman,'yellow')
+    draw_dot(pacman, 'yellow')
 
     for point, direction in ghosts:
         if is_valid(point + direction):
@@ -161,7 +170,7 @@ def play():
             new_dir = random_direction()
             direction.x = new_dir.x
             direction.y = new_dir.y
-        draw_dot(point,'red')
+        draw_dot(point, 'red')
 
     update()
 
@@ -171,6 +180,7 @@ def play():
 
     ontimer(play, 100)
 
+
 def init():
     ''' initialise the board '''
     setup(420, 420)
@@ -179,7 +189,8 @@ def init():
     title('COMP712/Rule-based AI - PACMAN: Falmouth University, 2023-2024')
     writer.goto(160, 160)
     writer.color('white')
-    writer.write(state['score'],font=('Monaco',20,"bold"))
+    writer.write(state['score'], font=('Monaco', 20, "bold"))
+
 
 def keyboard():
     ''' listen to keyboard events '''
@@ -188,6 +199,7 @@ def keyboard():
     onkey(lambda: change(-5, 0), 'Left')
     onkey(lambda: change(0, 5), 'Up')
     onkey(lambda: change(0, -5), 'Down')
+
 
 if __name__ == '__main__':
     init()

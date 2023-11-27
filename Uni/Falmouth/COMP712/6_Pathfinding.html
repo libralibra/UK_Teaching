@@ -265,7 +265,7 @@
                     <!-- reference: https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search -->
                     <section id="a_star_pseudo_code">
                         <h1>$A^*$ Pseudocode</h1>
-                        <pre><code class="java">function A_star(Graph, s, e):
+                        <pre><code class="java smalltext">function A_star(Graph, s, e):
     for each vertex v in Graph.Vertices:
         gScore[v] ← INFINITY; fScore[v] ← INFINITY; prev[v] ← UNDEFINED
     gScore[s] ← 0; fScore[s] ← h(s)
@@ -346,7 +346,7 @@
                             <ul class="col-60" data-id="hd">
                                 <li>$A^*$ works on any <span class="lightblue">graph</span>
                                     <ul>
-                                        <li>One of the most, of not <span class="lime">THE</span> most used algorithm in game dev today</li>
+                                        <li>One of the most, if not <span class="lime">THE</span> most used algorithm in game dev today</li>
                                         <li>In many cases, it's the best choice</li>
                                     </ul>
                                 </li>
@@ -487,6 +487,57 @@
                             </li>
                             <li><span class="lime">Steering:</span> don't have your AI agent follow the path exactly, but try to stay close to it</li>
                             <li><span class="cyan">Dynamic environment:</span> may need to re-run pathfinder if environment changes (e.g. movable obstacles, destructible terrain)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="review">
+
+                    <section id="review_algorithms">
+                        <h1>Review</h1>
+                        <ul>
+                            <li>Pathfinding and why it matters</li>
+                            <li>BFS
+                                <ul>
+                                    <li><span class="lightblue">FIFO</span>: utilise <code class="lime">queues</code> structure, expand the shallowest node</li>
+                                    <li><span class="lightpurple">Complete</span>: always finds a solution, if one exists</li>
+                                    <li><span class="lightpink">Optimal</span>: finds the best solution if all actions have the same cost</li>
+                                </ul>
+                            </li>
+                            <li>DFS
+                                <ul>
+                                    <li><span class="lightpurle">LIFO/FILO</span>: utilise stack data structure, expand the deepest node</li>
+                                    <li><span class="lightblue">Not complete</span>: might never find a solution, if m is infinite</li>
+                                    <li><span class="lightcyan">Not optimal</span>: returned solution is rarely the best one</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="review_algorithms_2">
+                        <h1>Review (cont.)</h1>
+                        <ul>
+                            <li>GBFS
+                                <ul>
+                                    <li><span class="lightorange">Heuristic</span>: uses heuristic function to guide search</li>
+                                    <li><span class="lightpurple">Complete</span>: always finds a solution, if one exists</li>
+                                    <li><span class="lightcyan">Not optimal</span>: returned solution is rarely the best one</li>
+                                </ul>
+                            </li>
+                            <li>Dijkstra's Algorithm
+                                <ul>
+                                    <li><span class="lightblue">Uniform cost search (UCS)</span>: like BFS, but for actions have different costs</li>
+                                    <li><span class="lightpink">Complete</span>: always finds a solution, if one exists</li>
+                                    <li><span class="lightgreen">Optimal</span>: finds the best solution</li>
+                                </ul>
+                            </li>
+                            <li>A* Algorithm
+                                <ul>
+                                    <li><span class="lightpink">Non-uniform cost</span>: like UCS but adds an estimate of the remaining path</li>
+                                    <li><span class="lightpink">Complete</span>: always finds a solution, if one exists</li>
+                                    <li><span class="lightgreen">Optimal</span>: finds the best solution</li>
+                                </ul>
+                            </li>
                         </ul>
                     </section>
 
