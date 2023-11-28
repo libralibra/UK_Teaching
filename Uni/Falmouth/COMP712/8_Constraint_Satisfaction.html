@@ -128,6 +128,38 @@
                         </div>
                     </section>
 
+                    <section id="sudoku_csp_2">
+                        <h1>SUDOKU as a CSP (cont.)</h1>
+                        <div class="row">
+                            <div class="col-60">
+                                <ul>
+                                    <li><span class="half-out">81 variables, each representing the value of a cell</span></li>
+                                    <li><span class="half-out">Values: <dd>a fixed value for those cells that are already filled in, ${1\dots 9}$ for those cells that are empty</dd></span></li>
+                                    <li><span class="lightpurple">Solution</span>:
+                                        <dd>a value for each cell satisfying the constraints (shown in previous slide)</dd>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/sudoku.png" alt="Sudoku Puzzle">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="solve_csp">
+                        <h1>Solving CSP</h1>
+                        <ul>
+                            <li>CSP can be solved by a specialised version of DFS</li>
+                            <li>Key intuitions:
+                                <ul>
+                                    <li>We can build up to a solution by searching through the space of partial assignments</li>
+                                    <li>Order in which we assign the variables does not matter -- eventually they all have to be assigned.</li>
+                                    <li>If during the process of building up a solution we falsify a constraint, we can immediately reject all possible ways of extending the current partial assignment.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
                     <section id="sudoku_solver">
                         <h1>Solving Sudoku via Backtracking</h1>
                         <ul>
