@@ -29,7 +29,7 @@
 <h1 id="workshop-pathfinding-1">Workshop: Pathfinding (1) </h1>
 <p>Dr Daniel Zhang @ Falmouth University<br>
 2023-2024 Study Block 1</p>
-<p><img src="ai_pathfinding_0.apng" alt=""></p>
+<p><img src="ai_pathfinding_1.apng" alt=""></p>
 <div id="top"></div>
 <h1 id="table-of-contents">Table of Contents </h1>
 <ul>
@@ -238,7 +238,7 @@
 <li><strong>§</strong> Run the <code>demo_dfs.pyc</code> with extra input parameters and compare the results. Think about where the differences come from.
 <ul>
 <li><code>python demo_dfs.pyc 1</code>: which make the <code>DFS</code> search towards the target.</li>
-<li><code>python demo_dfs.pyc 2</code>: which randomly explore the surrounding area rather than searching by following a fixed order.</li>
+<li><code>python demo_dfs.pyc 2</code>: which randomly explore the surrounding area rather than searching by following a fixed order. Run the demo with parameter <code>2</code> for several times to see how the found path changes.</li>
 </ul>
 </li>
 <li>Try to implement these two behaviour in your code.</li>
@@ -247,16 +247,17 @@
 <p><a href="#top">Top</a></p>
 <ul>
 <li>complete the implementation of <code>GBFS</code> algorithm</li>
-<li>the heuristic function used in the <code>gbfs_demo.pyc</code> is the <a href="https://www.wikiwand.com/simple/Manhattan_Distance">Manhattan distance</a>. You can define your own heuristic function used as <code>Cell</code> priority.</li>
+<li>the heuristic function used in the <code>gbfs_demo.pyc</code> is the <a href="https://www.wikiwand.com/en/Euclidean_distance">Euclidean Distance</a>. You can define your own heuristic function used as <code>Cell</code> priority.</li>
 <li>Compare the <code>GBFS</code> with <code>BFS</code> and <code>DFS</code> using the same map.</li>
 <li>Try to use other heuristic functions.</li>
+<li><code>map5.txt</code> has been purposefully crafted for utilisation with <code>GBFS</code>.</li>
 </ul>
 <blockquote>
 <p><strong>Note</strong>: The <code>gui_lib.py</code> contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.</p>
 </blockquote>
 <blockquote>
 <ul>
-<li><code>getGridDist(c1, c2)</code>: Retrieves the Manhattan distance between two Cells by applying the equation <code>abs(c1.row - c2.row) + abs(c1.col - c2.col)</code>.</li>
+<li><code>getGridDist(c1, c2)</code>: Retrieves the <a href="https://www.wikiwand.com/simple/Manhattan_Distance">Manhattan Distance</a> between two Cells by applying the equation <code>abs(c1.row - c2.row) + abs(c1.col - c2.col)</code>.</li>
 <li><code>getGridEuclideanDist2(c1, c2)</code>: Determines the squared Euclidean distance between two cells using the equation <code>(c1.row - c2.row)</code><sup>2</sup> + <code>(c1.col - c2.col)</code><sup>2</sup>. The actual Euclidean distance involves the <code>sqrt</code> operation, but for comparison purposes, the squared value is calculated for faster computation.</li>
 <li>You can utilise Python’s built-in data type <code>list</code> to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the <code>PriorityQueue</code> class can be quite helpful in managing prioritised elements.</li>
 </ul>

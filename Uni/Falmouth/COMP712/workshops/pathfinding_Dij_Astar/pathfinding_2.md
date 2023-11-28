@@ -24,10 +24,9 @@ Dr Daniel Zhang @ Falmouth University\
   - [The Code Structure](#the-code-structure)
 - [Your Task](#your-task)
   - [Task 1: run the demos](#task-1-run-the-demos)
-  - [Task 2: implement `BFS`](#task-2-implement-bfs)
-  - [Task 3: implement `DFS`](#task-3-implement-dfs)
-  - [Task 4: implement `GBFS`](#task-4-implement-gbfs)
-  - [Task 5: different number of neighbours](#task-5-different-number-of-neighbours)
+  - [Task 2: implement `Dijkstra'a Algorithm`](#task-2-implement-dijkstraa-algorithm)
+  - [Task 3: implement `A* Algorithm`](#task-3-implement-a-algorithm)
+  - [Task 3: different number of neighbours](#task-3-different-number-of-neighbours)
 - [Further Reading](#further-reading)
 
 # Introduction
@@ -176,22 +175,15 @@ There are three demos available:
 
 - `demo_dijkstra.pyc`: Demonstrates Breadth-first search
 - `demo_a_star.pyc`: Demonstrates Depth-first search
-- 2 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
+- 3 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
 
 ## The Code Structure
 [Top](#top)
 
-The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't be altered. However, some functions might aid in pathfinding visualisation:
+In this workshop, the existing `gui_lib` remains a fundamental tool for your tasks, and the core structures of the code remain consistent with previous sessions. You're encouraged to refer back to the materials provided in the prior workshop for guidance.
 
-- `getValidNeighbour(Cell, direction):` Retrieves the neighbour on the specified `direction`.
-  - `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
-- `colourCell(Cell, colour, ratio=0.8)`: Fills the specified `Cell` with the given `colour`. The default `ratio` is `0.8`, filling `80%` of the cell with the colour.
-- The start and target cells are saved as `self.start` and `self.end`, while the finding path should be saved as a list of `Cell` objects in `self.path`.
+However, the new challenge lies in utilising additional features within the `gui_lib` to mark specific cells like `GRASS`, `DESERT`, or `WATER`, as their traversal will incur different costs. Moving from an `EMPTY` cell to an adjacent `EMPTY` cell, the default cost remains **`1`**—however, transitions to `GRASS` carry a cost of **`4`**, `DESERT` costs **`5`**, and `WATER` incurs a cost of **`6`**. Your task is to implement a solution capable of determining the shortest path considering these varied costs.
 
-Each algorithm should be implemented in its respective `.py` file:
-
-- The `search()` function is mandatory in each file as the main lib relies on it for the search process. It should return `True` or `False` to indicate if a path can be found from `start` to `end`.
-- Feel free to create additional helper functions as required.
 
 # Your Task
 [Top](#top)
@@ -205,17 +197,15 @@ Run the demos to see how each of the algorithms work differently. You can either
    - right-click once to mark the start cell if no start defined
    - right-click again to mark the end cell if no end defined
    - right-click on any marked cell (start, end, or block) to reset the cell 
-   - try to run the `demo_gbfs.pyc` with pre-defined map `map3.txt` to see how it can be simply trapped in the local optimal
+   - make use of the <kbd>CTRL</kbd>, <kbd>SHIFT</kbd>, and <kbd>ALT</kbd> to mark special cells of `GRASS`, `DESERT`, and `WATER`.
+   - Press <kbd>C</kbd> at the same time for block operation (9 cells at the same time).
 
 
-## Task 2: implement `BFS`
+## Task 2: implement `Dijkstra'a Algorithm`
 [Top](#top)
 
-- Complete the implementation of `BFS` algorithm in `bfs.py`. Again, you only need to make sure the `self.path` list has bee filled by `Cell` objects from the start to the end. Make use of the `parent` data field of the `Cell` class.
-- **§** Run the `demo_bfs.pyc` with extra input parameters and compare the results. Think about where the differences come from.
-  - `python demo_bfs.pyc 1`: which make the `BFS` search towards the target.
-  - `python demo_bfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order.
-- Try to implement these two behaviour in your code.
+- Complete the implementation of `Dijkstra'a Algorithm` algorithm in `dijkstra.py`. You only need to make sure the `self.path` list has bee filled by `Cell` objects from the start to the end. 
+- Create new maps and try to run your code.
 
 > **RECALL**: 
 > - The `self.search()` function is mandatory.
@@ -230,39 +220,19 @@ Run the demos to see how each of the algorithms work differently. You can either
 > # other code blocks ...
 > ```
 
-## Task 3: implement `DFS`
+## Task 3: implement `A* Algorithm`
 [Top](#top)
 
-- Complete the implementation of `DFS`
-- Compare the behaviour of `DFS` with `BFS` you implemented in the last task.
-- **§** Run the `demo_dfs.pyc` with extra input parameters and compare the results. Think about where the differences come from.
-  - `python demo_dfs.pyc 1`: which make the `DFS` search towards the target.
-  - `python demo_dfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order.
-- Try to implement these two behaviour in your code.
+- Complete the implementation of `A* Algorithm` algorithm in `a_star.py`. You only need to make sure the `self.path` list has bee filled by `Cell` objects from the start to the end. 
+- Create new maps and try to run your code.
+- The heuristic function used is the Euclidean Distance, the same one as the last session. You can define your own function if you like.
 
-## Task 4: implement `GBFS`
+## Task 3: different number of neighbours
 [Top](#top)
 
-- complete the implementation of `GBFS` algorithm
-- the heuristic function used in the `gbfs_demo.pyc` is the [Manhattan distance](https://www.wikiwand.com/simple/Manhattan_Distance). You can define your own heuristic function used as `Cell` priority.
-- Compare the `GBFS` with `BFS` and `DFS` using the same map.
-- Try to use other heuristic functions.
+The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as described in last workshop session.
 
->**Note**: The `gui_lib.py` contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.
-
-> - `getGridDist(c1, c2)`: Retrieves the Manhattan distance between two Cells by applying the equation `abs(c1.row - c2.row) + abs(c1.col - c2.col)`.
-> - `getGridEuclideanDist2(c1, c2)`: Determines the squared Euclidean distance between two cells using the equation `(c1.row - c2.row)`<sup>2</sup> + `(c1.col - c2.col)`<sup>2</sup>. The actual Euclidean distance involves the `sqrt` operation, but for comparison purposes, the squared value is calculated for faster computation.
-> - You can utilise Python's built-in data type `list` to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the `PriorityQueue` class can be quite helpful in managing prioritised elements.
-
-## Task 5: different number of neighbours
-[Top](#top)
-
-The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as depicted in the image below.
-
-![4-Neighbourhood vs 8-Neighbourhood](48_neighbourhood.png)
-*Source: https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1*
-
-- To accommodate this, consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.
+- Consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.
 
 **Note:**
 
@@ -271,9 +241,7 @@ You can submit a pull request to the original repository to showcase your work i
 # Further Reading
 [Top](#top)
 
-1. [MIT OpenCourse: Breadth-first Search](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/lecture-9-breadth-first-search/)
-2. [Breadth-first Search with Example](https://www.guru99.com/breadth-first-search-bfs-graph-example.html#the-architecture-of-bfs-algorithm)
-3. [MIT OpenCourse: Depth-first Search](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/f3e349e0eb3288592289d2c81e0c4f4d_MIT6_006S20_lec10.pdf)
-4. [Introduction to DFS](https://www.baeldung.com/cs/depth-first-search-intro)
-5. [Best-first Search Algorithm](https://iq.opengenus.org/best-first-search/)
+1. [Dijkstra's Algorithm for Shortest Paths](https://math.libretexts.org/Bookshelves/Combinatorics_and_Discrete_Mathematics/Applied_Combinatorics_(Keller_and_Trotter)/12%3A_Graph_Algorithms/12.03%3A_Dijkstra's_Algorithm_for_Shortest_Paths)
+2. [A* Search](https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search)
+3. [Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
 

@@ -7,7 +7,7 @@
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
 
-![The Pathfinding Demo](ai_pathfinding_0.apng)
+![The Pathfinding Demo](ai_pathfinding_1.apng)
 
 <div id="top"></div>
 
@@ -223,20 +223,21 @@ Run the demos to see how each of the algorithms work differently. You can either
 - Compare the behaviour of `DFS` with `BFS` you implemented in the last task.
 - **§** Run the `demo_dfs.pyc` with extra input parameters and compare the results. Think about where the differences come from.
   - `python demo_dfs.pyc 1`: which make the `DFS` search towards the target.
-  - `python demo_dfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order.
+  - `python demo_dfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order. Run the demo with parameter `2` for several times to see how the found path changes.
 - Try to implement these two behaviour in your code.
 
 ## Task 4: implement `GBFS`
 [Top](#top)
 
 - complete the implementation of `GBFS` algorithm
-- the heuristic function used in the `gbfs_demo.pyc` is the [Manhattan distance](https://www.wikiwand.com/simple/Manhattan_Distance). You can define your own heuristic function used as `Cell` priority.
+- the heuristic function used in the `gbfs_demo.pyc` is the [Euclidean Distance](https://www.wikiwand.com/en/Euclidean_distance). You can define your own heuristic function used as `Cell` priority.
 - Compare the `GBFS` with `BFS` and `DFS` using the same map.
 - Try to use other heuristic functions.
+- `map5.txt` has been purposefully crafted for utilisation with `GBFS`.
 
 >**Note**: The `gui_lib.py` contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.
 
-> - `getGridDist(c1, c2)`: Retrieves the Manhattan distance between two Cells by applying the equation `abs(c1.row - c2.row) + abs(c1.col - c2.col)`.
+> - `getGridDist(c1, c2)`: Retrieves the [Manhattan Distance](https://www.wikiwand.com/simple/Manhattan_Distance) between two Cells by applying the equation `abs(c1.row - c2.row) + abs(c1.col - c2.col)`.
 > - `getGridEuclideanDist2(c1, c2)`: Determines the squared Euclidean distance between two cells using the equation `(c1.row - c2.row)`<sup>2</sup> + `(c1.col - c2.col)`<sup>2</sup>. The actual Euclidean distance involves the `sqrt` operation, but for comparison purposes, the squared value is calculated for faster computation.
 > - You can utilise Python's built-in data type `list` to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the `PriorityQueue` class can be quite helpful in managing prioritised elements.
 

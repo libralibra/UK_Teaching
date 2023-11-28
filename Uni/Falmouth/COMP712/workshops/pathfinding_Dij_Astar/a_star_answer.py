@@ -1,21 +1,24 @@
 '''
-    Pathfinding workshop using Dijkstra's Algorithm (Uniform Cost Search)
+    Pathfinding workshop using A* Algorithm (Non-Uniform Cost Search)
 
     Dr Daniel Zhang @ Falmouth University
     2023 - 2024
 '''
 
+import sys
 from gui_lib import *
 from queue import PriorityQueue
 
 
-class DIJKSTRA(Canvas):
-    def __init__(self, title, width, height, bgcolour='white', animate=True, nb_size=4) -> None:
+class ASTAR(Canvas):
+    def __init__(self, title, width, height, bgcolour='white', animate=True, nb_size=4, euclidean_dist=False) -> None:
         ''' nb_size controls how may neighbours to search: 4 or 8 '''
         super().__init__(title, width, height, bgcolour)
         self.animate = animate
         # neighbourhood size
         self.nb_size = nb_size
+        # use Euclidean distance rather than Manhattan distance
+        self.euc_dist = euclidean_dist
         self.showHelp()
 
     def neighbours(self, c: Cell):
@@ -55,15 +58,9 @@ class DIJKSTRA(Canvas):
         ''' Dijkstra search from start to the end, record the path list '''
         if not self.start or not self.end or self.y_grid_num == 0 or self.x_grid_num == 0:
             return False
-        # # initialise the cost dict
-        # cost = {(row, col): self.y_grid_num*self.x_grid_num
-        #         for row in range(self.y_grid_num) for col in range(self.x_grid_num)}
         # to visit
         q = PriorityQueue()
         q.put((0, self.start))
-        # mark items in q, list is ok, but dict can check existence very quickly
-        # 1 for valid, 0 for excluded
-        qdict = {(self.start.row, self.start.col): 1}
         # the moving cost from start to any node
         cost = {(self.start.row, self.start.col): 0}
         while not q.empty():
@@ -83,10 +80,13 @@ class DIJKSTRA(Canvas):
                 # the cost move from c to n
                 g_cost = cost[(c.row, c.col)] + self.grids[n.row][n.col]
                 t = (n.row, n.col)
-                # not visited or find a lower cost
                 if t not in cost or g_cost < cost[t]:
+                    if self.euc_dist:
+                        h_cost = self.getGridEuclideanDist2(n, self.end)
+                    else:
+                        h_cost = self.getGridDist(n, self.end)
                     cost[t] = g_cost
-                    q.put((g_cost, n))
+                    q.put((g_cost+h_cost, n))
                     if self.animate:
                         self.animateCell(n, GridColour.TOUCH)
                         self.update()
@@ -103,9 +103,12 @@ class DIJKSTRA(Canvas):
 
 
 if __name__ == '__main__':
+    euclidean_dist = True
+    if len(sys.argv) > 1 and int(sys.argv[1]) == 0:
+        euclidean_dist = False
     animate = True
     neighbours = 4
-    dijkstra = DIJKSTRA(
-        "COMP712/Pathfinding Dijkstra Demo - Falmouth University 2023-2024", 800, 600, 'white', animate, neighbours)
-    dijkstra.setGridNum(40, 30)
-    dijkstra.mainloop()
+    a_star = ASTAR(
+        "COMP712/Pathfinding A* Demo - Falmouth University 2023-2024", 800, 600, 'white', animate, neighbours, euclidean_dist)
+    a_star.setGridNum(40, 30)
+    a_star.mainloop()

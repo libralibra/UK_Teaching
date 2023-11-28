@@ -78,8 +78,15 @@ class GBFS(Canvas):
                 self.update()
             # get neighbours and add to PriorityQueue
             for n in self.neighbours(c):
+                # early break
+                if n == self.end:
+                    q.put((0, n))
+                    break
                 if n in v or n in qlist:
                     continue
+                if self.animate:
+                    self.colourCell(n, GridColour.TOUCH, 0.8)
+                    self.update()
                 if self.euc_dist:
                     q.put((self.getGridEuclideanDist2(n, self.end), n))
                     qlist.append(n)
@@ -99,9 +106,9 @@ class GBFS(Canvas):
 
 
 if __name__ == '__main__':
-    euclidean_dist = False
-    if len(sys.argv) > 1 and int(sys.argv[1]) == 1:
-        euclidean_dist = True
+    euclidean_dist = True
+    if len(sys.argv) > 1 and int(sys.argv[1]) == 0:
+        euclidean_dist = False
     animate = True
     neighbours = 4
     gbfs = GBFS(

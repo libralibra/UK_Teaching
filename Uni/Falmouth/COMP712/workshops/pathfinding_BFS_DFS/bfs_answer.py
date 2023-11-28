@@ -166,7 +166,17 @@ class BFS(Canvas):
             nbs = self.neighbours(c)
             if self.clever:
                 nbs = self.neighbours2(c)
-            [q.append(n) for n in nbs if n not in v and n not in q]
+            for n in nbs:
+                # early break
+                if n == self.end:
+                    q.insert(0, n)
+                    break
+                if n in v or n in q:
+                    continue
+                q.append(n)
+                if self.animate:
+                    self.colourCell(n, GridColour.TOUCH, 0.8)
+                    self.update()
         # backtrack
         if c == self.end:
             self.path = []

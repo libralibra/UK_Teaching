@@ -97,9 +97,9 @@ class CellType:
     EMPTY = 1
     START = 2
     END = 3
-    GRASS = 4
-    SAND = 5
-    WATER = 6
+    GRASS = 5
+    SAND = 10
+    WATER = 15
 
 
 class GridColour:
@@ -110,11 +110,13 @@ class GridColour:
     EMPTY = 'white'
     START = 'blue'
     END = 'red'
-    GRASS = 'spring green'
+    GRASS = 'dark green'
     SAND = 'orange'
     WATER = 'dodger blue'
-    PATH = 'cyan'
-    SEARCH = 'gray'
+    PATH = 'purple'
+    SEARCH = 'light cyan'
+    TOUCH = 'light green'
+    PATH_BK = 'pink'
 
 
 class Point:
@@ -169,12 +171,6 @@ class Canvas:
         self.x_grid_num, self.y_grid_num = 1, 1
         self.grids, self.path = [[CellType.EMPTY]], []
         self.start, self.end = None, None
-        # press left button for continuous drawing
-        self.on_move = False
-        # gray colour to highlight the searching process
-        self.search_colour = GridColour.SEARCH
-        # path colour
-        self.path_colour = GridColour.PATH
         # searching in progress
         self.searching = False
         self.registerAll()
@@ -237,7 +233,7 @@ class Canvas:
 
     def showHelp(self):
         ''' help information messagebox '''
-        s = 'BFS Pathfinding Demo\n'
+        s = 'Pathfinding Demo\n'
         s += '=======================================\n'
         s += 'Mark START  - The 1st Right-click\n'
         s += 'Mark END    - The 2nd Right-click\n'
@@ -266,7 +262,7 @@ class Canvas:
         self.grids = [[CellType.EMPTY] *
                       self.x_grid_num for _ in range(self.y_grid_num)]
         self.path = []
-        self.search_colour = GridColour.SEARCH
+        # self.search_colour = GridColour.SEARCH
         self.searching = False
         self.drawGridLines()
         self.registerAll()
@@ -291,15 +287,6 @@ class Canvas:
             self.grids = [[CellType.EMPTY] *
                           self.x_grid_num for _ in range(self.y_grid_num)]
             self.drawGridLines()
-
-    # def setGridSize(self, x_size, y_size):
-    #     if 1 <= x_size < self.width and 1 <= y_size < self.height:
-    #         self.x_grid_size = x_size
-    #         self.y_grid_size = y_size
-    #         self.x_grid_num = int(self.width / x_size)
-    #         self.y_grid_num = int(self.height / y_size)
-    #         self.grids = [[CellType.EMPTY]*self.x_grid_num for _ in range(self.y_grid_num)]
-    #         self.drawGridLines()
 
     def getGridCentre(self, row, col):
         ''' get the grid centre using row(y) and col(x) index like matrix '''
@@ -343,8 +330,6 @@ class Canvas:
             if y_bot + k*self.y_grid_size <= y <= y_bot + (k+1)*self.y_grid_size:
                 row = self.y_grid_num-1-k
                 break
-        # log.log(
-        #     f' Bot left ({x_left,y_bot}) - grid size ({self.x_grid_size, self.y_grid_size})')
         return Cell(int(row), int(col))
 
     def drawGridLines(self):
@@ -385,10 +370,10 @@ class Canvas:
                               colour)
             self.setPenColour('black')
 
-    def animateCell(self, c: Cell):
+    def animateCell(self, c: Cell, colour=GridColour.SEARCH):
         ''' animate cell colour during the search for special cells '''
         if self.grids[c.row][c.col] != CellType.BLOCK:
-            self.colourCell(c, self.search_colour, 0.8)
+            self.colourCell(c, colour, 0.8)
         self.update()
         if self.grids[c.row][c.col] == CellType.START:
             self.colourCell(c, GridColour.START, 0.8)
@@ -569,6 +554,7 @@ class Canvas:
             return
         pos = self.getGridIndices(x, y)
         if pos:
+            # c was pressed, block process
             if ck_flag:
                 sm_row = max(0, pos.row-1)
                 mk_row = min(pos.row+1, self.y_grid_num)
@@ -582,7 +568,7 @@ class Canvas:
                             self.end = None
                         self.colourCell(Cell(row, col), GridColour.EMPTY, 0.8)
                         self.grids[row][col] = CellType.EMPTY
-            # log.log(f'pos get: ({pos.row},{pos.col})')
+            # empty, mark start or end
             elif self.grids[pos.row][pos.col] == CellType.EMPTY:
                 # log.log('empty')
                 if self.start is None:
@@ -595,12 +581,8 @@ class Canvas:
                     self.end = pos
                     self.colourCell(pos, GridColour.END, 0.8)
                     self.grids[pos.row][pos.col] = CellType.END
-                # else:
-                #     msgbox(
-                #         "Both START and END are ready\nRight-click to reset a cell\nPress SPACE or ENTER to search!\nPress DEL/ESC to clear!\nL to load a map or S to save the current map\nH for help information")
             else:
-                # log.log('not empty')
-                # log.log(f'cell value: {self.grids[pos.row][pos.col]}')
+                # clear the cell
                 if self.grids[pos.row][pos.col] == CellType.START:
                     self.start = None
                 elif self.grids[pos.row][pos.col] == CellType.END:
@@ -623,15 +605,14 @@ class Canvas:
             self.drawGrids()
             self.drawGridLines()
             if self.search():
+                last_node = None
                 for v in self.path:
                     c = self.grids[v.row][v.col]
-                    colour = self.path_colour
+                    colour = GridColour.PATH_BK
                     if c == CellType.START:
                         colour = GridColour.START
                     elif c == CellType.END:
                         colour = GridColour.END
-                    elif c == CellType.BLOCK:
-                        colour = GridColour.BLOCK
                     elif c == CellType.GRASS:
                         colour = GridColour.GRASS
                     elif c == CellType.SAND:
@@ -639,6 +620,12 @@ class Canvas:
                     elif c == CellType.WATER:
                         colour = GridColour.WATER
                     self.colourCell(v, colour)
+                    # draw the path
+                    if last_node is not None:
+                        p1 = self.getGridCentre(last_node.row, last_node.col)
+                        p2 = self.getGridCentre(v.row, v.col)
+                        self.pen.drawBoldLine(p1, p2, GridColour.PATH)
+                    last_node = v
             else:
                 msgbox(
                     f"Cannot find path from {self.start} to {self.end}", "COMP712 - Pathfinding Demo")
@@ -689,6 +676,11 @@ class Pen:
         self.pen.goto(p2.x, p2.y)
         self.pen.up()
         self.setColour('black')
+
+    def drawBoldLine(self, p1: Point, p2: Point, colour='black', pen_wid=3):
+        self.setPenWidth(pen_wid)
+        self.drawLine(p1, p2, colour)
+        self.setPenWidth(1)
 
     def drawCircle(self, c: Point, r, colour='black') -> None:
         ''' draw a circle centred at c with radius r '''
