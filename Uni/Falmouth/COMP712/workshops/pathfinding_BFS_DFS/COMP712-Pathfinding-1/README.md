@@ -8,6 +8,7 @@ There are three demos available:
 - `demo_dfs.pyc`: Demonstrates Depth-first search
 - `demo_gbfs.pyc`: Demonstrates Greedy best-first search 
 - 5 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
+- Press <kbd>`H`</kbd> for help
 
 The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't be altered. However, some functions might aid in pathfinding visualisation:
 

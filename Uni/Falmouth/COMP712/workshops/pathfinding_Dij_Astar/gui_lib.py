@@ -6,6 +6,12 @@
 
     ChangeLog: 
 
+    v 0.0.5 - 28 Nov 2023
+        1. add keyboard shortcuts to change all settings for the searching algorithms
+    v 0.0.4 - 28 Nov 2023
+        1. visualise the touch process and search process
+        2. improve the path illustration
+        3. enable block operation
     v 0.0.3 - 27 Nov 2023
         1. add GridColour enum to distinguish different areas
         2. update CellType to reflect the change
@@ -43,6 +49,16 @@ log = Log()
 ctrl_flag, shift_flag, alt_flag = False, False, False
 # change more cells at a time
 ck_flag = False
+# animation
+ak_flag = True
+# euclidean distance
+ek_flag = True
+# neighbourhood number
+nk_flag = 4
+# random neighbour order
+rk_flag = False
+# clever search
+vk_flag = False
 
 
 def ctrlDown():
@@ -83,6 +99,31 @@ def cKeyDown():
 def cKeyUp():
     global ck_flag
     ck_flag = False
+
+
+def aKeyPress():
+    global ak_flag
+    ak_flag = not ak_flag
+
+
+def eKeyPress():
+    global ek_flag
+    ek_flag = not ek_flag
+
+
+def nKeyPress():
+    global nk_flag
+    nk_flag = 12 - nk_flag
+
+
+def rKeyPress():
+    global rk_flag
+    rk_flag = not rk_flag
+
+
+def vKeyPress():
+    global vk_flag
+    vk_flag = not vk_flag
 
 
 class WrongParameterError(Exception):
@@ -173,6 +214,16 @@ class Canvas:
         self.start, self.end = None, None
         # searching in progress
         self.searching = False
+        # animation
+        self.animate = True
+        # neighbourhood size
+        self.nb_size = 4
+        # euclidean distance
+        self.euc_dist = True
+        # random neighbour order
+        self.ran_nb = False
+        # clever search
+        self.clever = False
         self.registerAll()
         self.init()
 
@@ -249,6 +300,12 @@ class Canvas:
         s += '-------------------------------------------\n'
         s += 'Save board  - S or W\n'
         s += 'Load board  - L or O\n'
+        s += '-------------------------------------------\n'
+        s += 'Switch Animation - A\n'
+        s += 'Switch Neighbourhood - N\n'
+        s += 'Switch Euclidean Distance - E\n'
+        s += 'Switch Random Neighbour Cells - R (BFS, DFS)\n'
+        s += 'Switch Clever Search Order - V (BFS, DFS)\n'
         s += '-------------------------------------------\n'
         s += 'Show help   - H'
         # self.pen.writeText(Point(self.width/25, -self.width/7), s)
@@ -458,13 +515,53 @@ class Canvas:
         self.screen.onkeyrelease(shiftUp, 'Shift_L')
         self.screen.onkeypress(altDown, 'Alt_L')
         self.screen.onkeyrelease(altUp, 'Alt_L')
-        # clear 9 cells at a time
+        # change 9 cells at a time
         self.screen.onkeypress(cKeyDown, 'c')
         self.screen.onkeyrelease(cKeyUp, 'c')
         self.screen.onkeypress(cKeyDown, 'C')
         self.screen.onkeyrelease(cKeyUp, 'C')
+        # switch animation
+        self.registerKey(self.processAnimation, 'a')
+        self.registerKey(self.processAnimation, 'A')
+        # switch neighbourhood
+        self.registerKey(self.processNeighbourhood, 'n')
+        self.registerKey(self.processNeighbourhood, 'N')
+        # switch euclidean distance
+        self.registerKey(self.processEuclideanDist, 'e')
+        self.registerKey(self.processEuclideanDist, 'E')
+        # random neighbour order
+        self.registerKey(self.processRandomNeighour, 'r')
+        self.registerKey(self.processRandomNeighour, 'R')
+        # clever search
+        self.registerKey(self.processCleverSearch, 'v')
+        self.registerKey(self.processCleverSearch, 'V')
 
         self.screen.listen()
+
+    def processAnimation(self):
+        aKeyPress()
+        self.animate = ak_flag
+        msgbox(f'Show animation? {ak_flag}')
+
+    def processNeighbourhood(self):
+        nKeyPress()
+        self.nb_size = nk_flag
+        msgbox(f'Neighbourhood number: {nk_flag}')
+
+    def processEuclideanDist(self):
+        eKeyPress()
+        self.euc_dist = ek_flag
+        msgbox(f'Use Euclidean distance? {ek_flag}')
+
+    def processRandomNeighour(self):
+        rKeyPress()
+        self.ran_nb = rk_flag
+        msgbox(f'Random neighbour order? {rk_flag}')
+
+    def processCleverSearch(self):
+        vKeyPress()
+        self.clever = vk_flag
+        msgbox(f'Clever search? {vk_flag}')
 
     def processSaveKey(self):
         ''' save the current map to disk '''

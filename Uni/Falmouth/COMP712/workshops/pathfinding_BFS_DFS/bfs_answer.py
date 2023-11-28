@@ -192,11 +192,6 @@ class BFS(Canvas):
 if __name__ == '__main__':
     clever = False
     randomise_neighbour = False
-    if len(sys.argv) > 1:
-        if int(sys.argv[1]) == 1:
-            clever = True
-        elif int(sys.argv[1]) == 2:
-            randomise_neighbour = True
     animate = True
     neighbours = 4
     bfs = BFS(

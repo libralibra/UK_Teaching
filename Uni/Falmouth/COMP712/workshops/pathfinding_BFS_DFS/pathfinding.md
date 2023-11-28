@@ -153,24 +153,33 @@ There are three demos available:
 ## The Code Structure
 [Top](#top)
 
-The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't be altered. However, some functions might aid in pathfinding visualisation:
+The `gui_lib.pyc` file contains all the necessary GUI capabilities that shouldn't be altered. However, some functions might aid in pathfinding visualisation. 
+
+The important pieces are:
 
 - `Cell`: Represents a grid on the board, with `row` and `col` in the same way as `Point` class's `y` and `x` fields. It also has a `parent` field for easy tracing the found path if needed.
+
 - `CellType`: enum contains the pre-defined types of the Cell
   - `BLOCK`: marks the cell that is unreachable
   - `EMPTY`: marks the empty cell, reachable
   - `START`: marks the starting cell for searching
   - `END`: marks the target cell for searching
-  - `GRASS`: marks a grass cell (will be used in the next workshop)
-  - `SAND`: marks a desert cell (will be used in the next workshop)
-  - `WATER`: marks a water cell (will be used in the next workshop)
+
+- The following cell types will be used in next session.
+  - `GRASS`: marks a grass cell with a cost of `5`
+  - `DESERT`: marks a desert cell with a cost of `10`
+  - `WATER`: marks a water cell with a cost of `15`
+
 - `Canvas`: The base class of all sub-classes including `BFS`, `DFS`, `GBFS`, and the other 2 of the next workshop -- `DIJKSTRA` and `ASTAR`.
   - `x_grid_num`: the number of grid horizontally. It remains unchanged unless you call `setGridNum()` explicitly.
   - `y_grid_num`: the number of grid vertically. It remains unchanged unless you call `setGridNum()` explicitly.
   - `grids[][]`: the 2D matrix (list of list in python) holds the cell values.
+
 - `getValidNeighbour(Cell, direction):` Retrieves the neighbour on the specified `direction`.
   - `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
+
 - `colourCell(Cell, colour, ratio=0.8)`: Fills the specified `Cell` with the given `colour`. The default `ratio` is `0.8`, filling `80%` of the cell with the colour.
+
 - `animateCell(Cell)`: Changes the cell colour during the searching process. It takes care about the cell type so that you don't need to worries about which colour to use - simply call the function by providing the cell itself.
 - The start and target cells are saved as `self.start` and `self.end`, while the path found should be saved as a list of `Cell` objects in `self.path`.
 
@@ -199,8 +208,8 @@ Run the demos to see how each of the algorithms work differently. You can either
 
 - Complete the implementation of `BFS` algorithm in `bfs.py`. Again, you only need to make sure the `self.path` list has bee filled by `Cell` objects from the start to the end. Make use of the `parent` data field of the `Cell` class.
 - **§** Run the `demo_bfs.pyc` with extra input parameters and compare the results. Think about where the differences come from.
-  - `python demo_bfs.pyc 1`: which make the `BFS` search towards the target.
-  - `python demo_bfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order.
+  - switch <kbd>V</kbd>: which make the `BFS` search towards the target.
+  - switch <kbd>R</kbd>: which randomly explore the surrounding area rather than searching by following a fixed order.
 - Try to implement these two behaviour in your code.
 
 > **RECALL**: 
@@ -222,8 +231,8 @@ Run the demos to see how each of the algorithms work differently. You can either
 - Complete the implementation of `DFS`
 - Compare the behaviour of `DFS` with `BFS` you implemented in the last task.
 - **§** Run the `demo_dfs.pyc` with extra input parameters and compare the results. Think about where the differences come from.
-  - `python demo_dfs.pyc 1`: which make the `DFS` search towards the target.
-  - `python demo_dfs.pyc 2`: which randomly explore the surrounding area rather than searching by following a fixed order. Run the demo with parameter `2` for several times to see how the found path changes.
+  - switch <kbd>V</kbd>: which make the `DFS` search towards the target.
+  - switch <kbd>R</kbd>: which randomly explore the surrounding area rather than searching by following a fixed order. Run the demo with parameter `2` for several times to see how the found path changes.
 - Try to implement these two behaviour in your code.
 
 ## Task 4: implement `GBFS`
@@ -233,10 +242,9 @@ Run the demos to see how each of the algorithms work differently. You can either
 - the heuristic function used in the `gbfs_demo.pyc` is the [Euclidean Distance](https://www.wikiwand.com/en/Euclidean_distance). You can define your own heuristic function used as `Cell` priority.
 - Compare the `GBFS` with `BFS` and `DFS` using the same map.
 - Try to use other heuristic functions.
-- `map5.txt` has been purposefully crafted for utilisation with `GBFS`.
+- `map3.txt` and `map5.txt` have been purposefully crafted for utilisation with `GBFS`.
 
->**Note**: The `gui_lib.py` contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.
-
+>**Note**: The `gui_lib.pyc` contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.
 > - `getGridDist(c1, c2)`: Retrieves the [Manhattan Distance](https://www.wikiwand.com/simple/Manhattan_Distance) between two Cells by applying the equation `abs(c1.row - c2.row) + abs(c1.col - c2.col)`.
 > - `getGridEuclideanDist2(c1, c2)`: Determines the squared Euclidean distance between two cells using the equation `(c1.row - c2.row)`<sup>2</sup> + `(c1.col - c2.col)`<sup>2</sup>. The actual Euclidean distance involves the `sqrt` operation, but for comparison purposes, the squared value is calculated for faster computation.
 > - You can utilise Python's built-in data type `list` to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the `PriorityQueue` class can be quite helpful in managing prioritised elements.
@@ -249,6 +257,7 @@ The default implementation focuses on exploring 4 neighbours around a given cell
 ![4-Neighbourhood vs 8-Neighbourhood](48_neighbourhood.png)
 *Source: https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1*
 
+- Run the demos and switch the neighbourhood selection by pressing <kbd>N</kbd> to see the differences.
 - To accommodate this, consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.
 
 **Note:**

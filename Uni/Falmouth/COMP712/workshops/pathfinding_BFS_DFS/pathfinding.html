@@ -157,35 +157,52 @@
 </ul>
 <h2 id="the-code-structure">The Code Structure </h2>
 <p><a href="#top">Top</a></p>
-<p>The <code>gui_lib.py</code> file contains all the necessary GUI capabilities that shouldn’t be altered. However, some functions might aid in pathfinding visualisation:</p>
+<p>The <code>gui_lib.pyc</code> file contains all the necessary GUI capabilities that shouldn’t be altered. However, some functions might aid in pathfinding visualisation.</p>
+<p>The important pieces are:</p>
 <ul>
-<li><code>Cell</code>: Represents a grid on the board, with <code>row</code> and <code>col</code> in the same way as <code>Point</code> class’s <code>y</code> and <code>x</code> fields. It also has a <code>parent</code> field for easy tracing the found path if needed.</li>
-<li><code>CellType</code>: enum contains the pre-defined types of the Cell
+<li>
+<p><code>Cell</code>: Represents a grid on the board, with <code>row</code> and <code>col</code> in the same way as <code>Point</code> class’s <code>y</code> and <code>x</code> fields. It also has a <code>parent</code> field for easy tracing the found path if needed.</p>
+</li>
+<li>
+<p><code>CellType</code>: enum contains the pre-defined types of the Cell</p>
 <ul>
 <li><code>BLOCK</code>: marks the cell that is unreachable</li>
 <li><code>EMPTY</code>: marks the empty cell, reachable</li>
 <li><code>START</code>: marks the starting cell for searching</li>
 <li><code>END</code>: marks the target cell for searching</li>
-<li><code>GRASS</code>: marks a grass cell (will be used in the next workshop)</li>
-<li><code>SAND</code>: marks a desert cell (will be used in the next workshop)</li>
-<li><code>WATER</code>: marks a water cell (will be used in the next workshop)</li>
 </ul>
 </li>
-<li><code>Canvas</code>: The base class of all sub-classes including <code>BFS</code>, <code>DFS</code>, <code>GBFS</code>, and the other 2 of the next workshop – <code>DIJKSTRA</code> and <code>ASTAR</code>.
+<li>
+<p>The following cell types will be used in next session.</p>
+<ul>
+<li><code>GRASS</code>: marks a grass cell with a cost of <code>5</code></li>
+<li><code>DESERT</code>: marks a desert cell with a cost of <code>10</code></li>
+<li><code>WATER</code>: marks a water cell with a cost of <code>15</code></li>
+</ul>
+</li>
+<li>
+<p><code>Canvas</code>: The base class of all sub-classes including <code>BFS</code>, <code>DFS</code>, <code>GBFS</code>, and the other 2 of the next workshop – <code>DIJKSTRA</code> and <code>ASTAR</code>.</p>
 <ul>
 <li><code>x_grid_num</code>: the number of grid horizontally. It remains unchanged unless you call <code>setGridNum()</code> explicitly.</li>
 <li><code>y_grid_num</code>: the number of grid vertically. It remains unchanged unless you call <code>setGridNum()</code> explicitly.</li>
 <li><code>grids[][]</code>: the 2D matrix (list of list in python) holds the cell values.</li>
 </ul>
 </li>
-<li><code>getValidNeighbour(Cell, direction):</code> Retrieves the neighbour on the specified <code>direction</code>.
+<li>
+<p><code>getValidNeighbour(Cell, direction):</code> Retrieves the neighbour on the specified <code>direction</code>.</p>
 <ul>
 <li><code>Cell</code> represents a cell object, while <code>direction</code> can be one of <code>east</code>, <code>north-east</code>, <code>north</code>, <code>north-west</code>, <code>west</code>, <code>south-west</code>, <code>south</code>, <code>south-east</code>.</li>
 </ul>
 </li>
-<li><code>colourCell(Cell, colour, ratio=0.8)</code>: Fills the specified <code>Cell</code> with the given <code>colour</code>. The default <code>ratio</code> is <code>0.8</code>, filling <code>80%</code> of the cell with the colour.</li>
-<li><code>animateCell(Cell)</code>: Changes the cell colour during the searching process. It takes care about the cell type so that you don’t need to worries about which colour to use - simply call the function by providing the cell itself.</li>
-<li>The start and target cells are saved as <code>self.start</code> and <code>self.end</code>, while the path found should be saved as a list of <code>Cell</code> objects in <code>self.path</code>.</li>
+<li>
+<p><code>colourCell(Cell, colour, ratio=0.8)</code>: Fills the specified <code>Cell</code> with the given <code>colour</code>. The default <code>ratio</code> is <code>0.8</code>, filling <code>80%</code> of the cell with the colour.</p>
+</li>
+<li>
+<p><code>animateCell(Cell)</code>: Changes the cell colour during the searching process. It takes care about the cell type so that you don’t need to worries about which colour to use - simply call the function by providing the cell itself.</p>
+</li>
+<li>
+<p>The start and target cells are saved as <code>self.start</code> and <code>self.end</code>, while the path found should be saved as a list of <code>Cell</code> objects in <code>self.path</code>.</p>
+</li>
 </ul>
 <p>Each algorithm should be implemented in its respective <code>.py</code> file:</p>
 <ul>
@@ -210,8 +227,8 @@
 <li>Complete the implementation of <code>BFS</code> algorithm in <code>bfs.py</code>. Again, you only need to make sure the <code>self.path</code> list has bee filled by <code>Cell</code> objects from the start to the end. Make use of the <code>parent</code> data field of the <code>Cell</code> class.</li>
 <li><strong>§</strong> Run the <code>demo_bfs.pyc</code> with extra input parameters and compare the results. Think about where the differences come from.
 <ul>
-<li><code>python demo_bfs.pyc 1</code>: which make the <code>BFS</code> search towards the target.</li>
-<li><code>python demo_bfs.pyc 2</code>: which randomly explore the surrounding area rather than searching by following a fixed order.</li>
+<li>switch <kbd>V</kbd>: which make the <code>BFS</code> search towards the target.</li>
+<li>switch <kbd>R</kbd>: which randomly explore the surrounding area rather than searching by following a fixed order.</li>
 </ul>
 </li>
 <li>Try to implement these two behaviour in your code.</li>
@@ -237,8 +254,8 @@
 <li>Compare the behaviour of <code>DFS</code> with <code>BFS</code> you implemented in the last task.</li>
 <li><strong>§</strong> Run the <code>demo_dfs.pyc</code> with extra input parameters and compare the results. Think about where the differences come from.
 <ul>
-<li><code>python demo_dfs.pyc 1</code>: which make the <code>DFS</code> search towards the target.</li>
-<li><code>python demo_dfs.pyc 2</code>: which randomly explore the surrounding area rather than searching by following a fixed order. Run the demo with parameter <code>2</code> for several times to see how the found path changes.</li>
+<li>switch <kbd>V</kbd>: which make the <code>DFS</code> search towards the target.</li>
+<li>switch <kbd>R</kbd>: which randomly explore the surrounding area rather than searching by following a fixed order. Run the demo with parameter <code>2</code> for several times to see how the found path changes.</li>
 </ul>
 </li>
 <li>Try to implement these two behaviour in your code.</li>
@@ -250,12 +267,10 @@
 <li>the heuristic function used in the <code>gbfs_demo.pyc</code> is the <a href="https://www.wikiwand.com/en/Euclidean_distance">Euclidean Distance</a>. You can define your own heuristic function used as <code>Cell</code> priority.</li>
 <li>Compare the <code>GBFS</code> with <code>BFS</code> and <code>DFS</code> using the same map.</li>
 <li>Try to use other heuristic functions.</li>
-<li><code>map5.txt</code> has been purposefully crafted for utilisation with <code>GBFS</code>.</li>
+<li><code>map3.txt</code> and <code>map5.txt</code> have been purposefully crafted for utilisation with <code>GBFS</code>.</li>
 </ul>
 <blockquote>
-<p><strong>Note</strong>: The <code>gui_lib.py</code> contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.</p>
-</blockquote>
-<blockquote>
+<p><strong>Note</strong>: The <code>gui_lib.pyc</code> contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.</p>
 <ul>
 <li><code>getGridDist(c1, c2)</code>: Retrieves the <a href="https://www.wikiwand.com/simple/Manhattan_Distance">Manhattan Distance</a> between two Cells by applying the equation <code>abs(c1.row - c2.row) + abs(c1.col - c2.col)</code>.</li>
 <li><code>getGridEuclideanDist2(c1, c2)</code>: Determines the squared Euclidean distance between two cells using the equation <code>(c1.row - c2.row)</code><sup>2</sup> + <code>(c1.col - c2.col)</code><sup>2</sup>. The actual Euclidean distance involves the <code>sqrt</code> operation, but for comparison purposes, the squared value is calculated for faster computation.</li>
@@ -268,6 +283,7 @@
 <p><img src="48_neighbourhood.png" alt=""><br>
 <em>Source: <a href="https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1">https://www.researchgate.net/publication/329579183_Membrane_Computing_for_Real_Medical_Image_Segmentation/figures?lo=1</a></em></p>
 <ul>
+<li>Run the demos and switch the neighbourhood selection by pressing <kbd>N</kbd> to see the differences.</li>
 <li>To accommodate this, consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.</li>
 </ul>
 <p><strong>Note:</strong></p>

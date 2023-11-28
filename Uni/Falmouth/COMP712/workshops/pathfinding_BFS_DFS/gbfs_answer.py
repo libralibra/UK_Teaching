@@ -107,8 +107,6 @@ class GBFS(Canvas):
 
 if __name__ == '__main__':
     euclidean_dist = True
-    if len(sys.argv) > 1 and int(sys.argv[1]) == 0:
-        euclidean_dist = False
     animate = True
     neighbours = 4
     gbfs = GBFS(

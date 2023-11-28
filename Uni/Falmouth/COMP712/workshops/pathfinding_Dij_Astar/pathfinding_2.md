@@ -182,7 +182,12 @@ There are three demos available:
 
 In this workshop, the existing `gui_lib` remains a fundamental tool for your tasks, and the core structures of the code remain consistent with previous sessions. You're encouraged to refer back to the materials provided in the prior workshop for guidance.
 
-However, the new challenge lies in utilising additional features within the `gui_lib` to mark specific cells like `GRASS`, `DESERT`, or `WATER`, as their traversal will incur different costs. Moving from an `EMPTY` cell to an adjacent `EMPTY` cell, the default cost remains **`1`**—however, transitions to `GRASS` carry a cost of **`4`**, `DESERT` costs **`5`**, and `WATER` incurs a cost of **`6`**. Your task is to implement a solution capable of determining the shortest path considering these varied costs.
+However, the new challenge lies in utilising additional features within the `gui_lib` to mark specific cells like `GRASS`, `DESERT`, or `WATER`, as their traversal will incur different costs. 
+
+- Moving from an `EMPTY` cell to an adjacent `EMPTY` cell, the default cost remains **`1`**.
+- Moving to `GRASS` carry a cost of **`5`**, `DESERT` costs **`10`**, and `WATER` incurs a cost of **`15`**.
+
+>Your task is to implement a solution capable of determining the shortest path considering these varied costs.
 
 
 # Your Task
@@ -197,9 +202,10 @@ Run the demos to see how each of the algorithms work differently. You can either
    - right-click once to mark the start cell if no start defined
    - right-click again to mark the end cell if no end defined
    - right-click on any marked cell (start, end, or block) to reset the cell 
-   - make use of the <kbd>CTRL</kbd>, <kbd>SHIFT</kbd>, and <kbd>ALT</kbd> to mark special cells of `GRASS`, `DESERT`, and `WATER`.
-   - Press <kbd>C</kbd> at the same time for block operation (9 cells at the same time).
-   - The default `A*` uses the Euclidean Distance as the heuristic function. You can switch to Manhattan Distance using the command: `python demo_a_star.pyc 0` to see the differences.
+   - Create your own map by pressing <kbd>CTRL</kbd>, <kbd>SHIFT</kbd>, and <kbd>ALT</kbd> to mark special cells of `GRASS`, `DESERT`, and `WATER`.
+     - Press <kbd>C</kbd> at the same time for block operation (9 cells at the same time).
+   - The default `A*` uses the Euclidean Distance as the heuristic function. You can switch to Manhattan Distance by pressing <kbd>E</kbd>.
+   - Other keyboard shortcuts are available - show help using <kbd>H</kbd>.
 
 
 ## Task 2: implement `Dijkstra'a Algorithm`
