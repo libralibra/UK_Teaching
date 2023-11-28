@@ -201,6 +201,7 @@ Run the demos to see how each of the algorithms work differently. You can either
    - right-click again to mark the end cell if no end defined
    - right-click on any marked cell (start, end, or block) to reset the cell 
    - try to run the `demo_gbfs.pyc` with pre-defined map `map3.txt` to see how it can be simply trapped in the local optimal
+   - - Switch <kbd>N</kbd>, <kbd>V</kbd>, <kbd>R</kbd>, <kbd>E</kbd> and <kbd>A</kbd> and search on the same map to see the differences.
 
 
 ## Task 2: implement `BFS`

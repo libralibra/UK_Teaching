@@ -176,6 +176,7 @@ There are three demos available:
 - `demo_dijkstra.pyc`: Demonstrates Breadth-first search
 - `demo_a_star.pyc`: Demonstrates Depth-first search
 - 3 pre-defined maps are provided, which can be loaded by key <kbd>`L`</kbd>
+- Switch <kbd>N</kdb> and <kdb>E</kbd> and search on the same map to see the differences
 
 ## The Code Structure
 [Top](#top)
