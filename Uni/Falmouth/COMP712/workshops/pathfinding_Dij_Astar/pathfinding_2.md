@@ -199,6 +199,7 @@ Run the demos to see how each of the algorithms work differently. You can either
    - right-click on any marked cell (start, end, or block) to reset the cell 
    - make use of the <kbd>CTRL</kbd>, <kbd>SHIFT</kbd>, and <kbd>ALT</kbd> to mark special cells of `GRASS`, `DESERT`, and `WATER`.
    - Press <kbd>C</kbd> at the same time for block operation (9 cells at the same time).
+   - The default `A*` uses the Euclidean Distance as the heuristic function. You can switch to Manhattan Distance using the command: `python demo_a_star.pyc 0` to see the differences.
 
 
 ## Task 2: implement `Dijkstra'a Algorithm`
