@@ -63,7 +63,7 @@
     border-radius: 0;
     border-radius: calc(var(--cc-radius, 0) * 1em);
     font-size: calc(var(--cc-scale, 1) * 1.5rem);
-    line-height: 1.25em;
+    line-height: 1em;
     -webkit-user-select: none;
     user-select: none;
     transform: translate3d(0, 0, 0);
@@ -75,7 +75,7 @@
 
 .codeblock>button svg {
     fill: var(--cc-copy-color);
-    height: 1.25em;
+    height: 1em;
     width: 0.8em;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .codeblock>button[data-cc-display=icons] span {
-    line-height: 1.25em;
+    line-height: 1em;
     transform: translate3d(-100%, -50%, 1px);
     pointer-events: none;
     opacity: 0;

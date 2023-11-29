@@ -107,49 +107,34 @@
                     <section id="sudoku_csp">
                         <h1>SUDOKU as a CSP</h1>
                         <div class="row">
-                            <div class="col-60">
+                            <div class="col-65">
                                 <ul>
                                     <li><span class="lightgreen">Variables</span>: a subset of <span class="smalltext">$\{X_{1,1},X_{1,2},\cdots,X_{9,9}\}$</span>
-                                        <dd>One variable per empty cell</dd>
+                                        <dd>One variable per empty cell (less than 81)</dd>
                                     </li>
-                                    <li>All have the same <span class="lightorange">domain</span>: <span class="smalltext">$D_{i,j}=\{1,\cdots,9\}$</span></li>
+                                    <li>All empty cells have the same <span class="lightorange">domain</span>: <span class="smalltext">$D_{i,j}=\{1,\cdots,9\}$</span></li>
                                     <li><span class="lightpink">Constraints</span>:
                                         <ul>
-                                            <li>$X_{i,j} \ne X_{i,k}$ for all $i,j,k$ with $j \ne k$</li>
-                                            <li>$X_{j,i} \ne X_{k,i}$ for all $i,j,k$ with $j \ne k$</li>
-                                            <li>$X_{i,j} \ne X_{k,l}$ for $i,j$ and $k$ in the same $3 \times 3$ square</li>
+                                            <li><span class="smalltext">$X_{i,j} \ne X_{i,k}$</span> for all <span class="smalltext">$i,j,k$</span> with <span class="smalltext">$j \ne k$</span></li>
+                                            <li><span class="smalltext">$X_{j,i} \ne X_{k,i}$</span> for all <span class="smalltext">$i,j,k$</span> with <span class="smalltext">$j \ne k$</span></li>
+                                            <li><span class="smalltext">$X_{i,j} \ne X_{k,l}$</span> for <span class="smalltext">$i,j$</span> and <span class="smalltext">$k$</span> in the same <span class="smalltext">$3 \times 3$</span> square</li>
                                         </ul>
                                     </li>
-                                </ul>
-                            </div>
-                            <div class="col-40">
-                                <img class="img-width-400" src="img/sudoku.png" alt="Sudoku Puzzle">
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="sudoku_csp_2">
-                        <h1>SUDOKU as a CSP (cont.)</h1>
-                        <div class="row">
-                            <div class="col-60">
-                                <ul>
-                                    <li><span class="half-out">81 variables, each representing the value of a cell</span></li>
-                                    <li><span class="half-out">Values: <dd>a fixed value for those cells that are already filled in, ${1\dots 9}$ for those cells that are empty</dd></span></li>
                                     <li><span class="lightpurple">Solution</span>:
-                                        <dd>a value for each cell satisfying the constraints (shown in previous slide)</dd>
+                                        <dd>a value for each cell satisfying the constraints</dd>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-40">
+                            <div class="col-30">
                                 <img class="img-width-400" src="img/sudoku.png" alt="Sudoku Puzzle">
                             </div>
                         </div>
                     </section>
 
                     <section id="solve_csp">
-                        <h1>Solving CSP</h1>
+                        <h1>Solving SUDOKU as CSP</h1>
                         <ul>
-                            <li>CSP can be solved by a specialised version of DFS</li>
+                            <li>CSP can be solved by a <span class="lightpink">specialised version</span> of DFS</li>
                             <li>Key intuitions:
                                 <ul>
                                     <li>We can build up to a solution by searching through the space of partial assignments</li>
@@ -161,33 +146,72 @@
                     </section>
 
                     <section id="sudoku_solver">
-                        <h1>Solving Sudoku via Backtracking</h1>
+                        <h1>Solving Sudoku via Backtracking Search</h1>
                         <ul>
-                            <li>Pick an empty cell</li>
-                            <li>Try a possible value for that empty cell</li>
-                            <li>Try to solve the rest of the puzzle (recursively)</li>
-                            <li>If we run into a dead end, go back and try a different value</li>
+                            <li>Basic uniformed search for solving CSPs</li>
+                            <li>Get rid of unnecessary permutations in search tree $\implies$ significantly reduces search space</li>
+                            <li class="fragment"><span class="lightblue">Sudoku Example:</span>
+                                <ul>
+                                    <li>Pick an empty cell</li>
+                                    <li>Try a possible value for that empty cell</li>
+                                    <li>Try to solve the rest of the puzzle (recursively)</li>
+                                    <li>If we run into a dead end, go back and try a different value</li>
+                                </ul>
+                            </li>
                         </ul>
                     </section>
 
                     <section id="backtracking_pseudocode">
                         <h1>Backtracking Pseudocode</h1>
-                        <pre><code class="vb">Procedure SolveBacktracking(cell)
+                        <pre><code class="r-stretch vb smalltext" data-line-numbers>Procedure SolveBacktracking(cell)
     For n = 1,...,9
         If cell can have value n
             Set value of cell to n 
             If cell is the last empty cell or SolveBacktracking(next_empty_square)
                 Return true 
-            End If
-        End If
-    End For 
-    Clear the value of cell 
-    Return False
+
+    For each constraint C such that all cells have been assigned
+        If failed to satisfy C
+            Clear the value of cell 
+            Return False
+    
+    Return True
 End Procedure</code></pre>
                     </section>
 
+                    <section id="bt_problem">
+                        <h1>Problem with Plain Backtracking</h1>
+                        <div class="row">
+                            <div class="col-40 mermaid fragment fade-out" style="position: absolute;">
+                                <pre>
+                                    %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                                    flowchart TB
+                                    G(No possible value)
+                                    subgraph SearchTree
+                                        direction TB
+                                        A( ) --> B( )
+                                        B -.-> C( )
+                                        C -.-> E( )
+                                        E -.-> F[/3x3 Grid Filled\]
+                                    end
+                                    G -.-> F
+                                </pre>
+                            </div>
+                            <div class="col-40 fragment fade-in" data-fragment-index="1">
+                                <img src="img/bt_problem.png" alt="Backtracking problem">
+                            </div>
+                            <div class="col-60">
+                                <ul>
+                                    <li>In the backtracking search, we won't detect that a cell has no possible value until all variables of the involving row/column or $3\times 3$ subgrid are assigned. So we have the situation showing on the left.</li>
+                                    <li class="fragment" data-fragment-index="1">The cell (3,3) has no possible value!</p>
+                                    <li class="fragment" data-fragment-index="2">Leads to the concept of <span class="lightred">constraint propagation</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
                     <section id="sudoku_constraint">
-                        <h1>Solving Sudoku Constraint Propagation</h1>
+                        <h1>Solving Sudoku via Constraint Propagation</h1>
                         <ul>
                             <li>Each empty cell keeps track of which numbers it could possibly contain</li>
                             <li>Update every cell one after another</li>
@@ -198,7 +222,7 @@ End Procedure</code></pre>
 
                     <section id="sudoku_constraint_propagation">
                         <h1>Constraint Propagation Pseudocode</h1>
-                        <pre><code class="vb">Procedure SolveConstraintPropagation()
+                        <pre><code class="r-stretch vb smalltext" data-line-numbers>Procedure SolveConstraintPropagation()
     Repeat
         For each empty cell
             Determine the list of possible numbers that could go in the cell
@@ -211,6 +235,142 @@ End Procedure</code></pre>
     Until no changes are made
     Return true
 End Procedure</code></pre>
+                    </section>
+                </section>
+
+                <section id="chap_steps">
+                    <!-- source: https://www.boristhebrave.com/2020/04/13/wave-function-collapse-explained/ -->
+                    <section id="example_1" data-auto-animate>
+                        <h1>Simplified Example - Sudoku 4</h1>
+                        <div class="r-hstack justify-center" data-id="hd">
+                            <img src="img/sudo4_1.png" alt="Sudoku 4">
+                            <img class="fragment custom blur" src="img/sudo4_solution.png" alt="Sudoku 4 solution">
+                        </div>
+                        <p>A simplified version of Sudoku in a $4\times 4$ grid with the same constraints</p>
+                        <p>A <span class="lightgreen">variable</span> is an unknown value to solve, which is different from the definition in programming</p>
+                    </section>
+
+                    <section id="example_2" data-auto-animate>
+                        <h1>Sudoku 4 - CSP Solving</h1>
+                        <div class="r-hstack justify-center" data-id="hd">
+                            <img src="img/csp1.png" alt="Sudoku 4">
+                            <img class="fragment custom blur" src="img/csp2.png" alt="Sudoku 4 solution" data-fragment-index="1">
+                        </div>
+                        <p>Multiple possible values for empty cells and a fixed one for non-empty cells</p>
+                        <p class="fragment" data-fragment-index="1">Let's consider the first constraint of the top row:<br>
+                            as 4 presents already we can safely delete 4 from the others.</p>
+                        <p class="fragment"><span class="lightpurple">Constraint propagates</span> from one variable to another</p>
+                    </section>
+
+                    <section id="example_3" data-auto-animate>
+                        <h1>Sudoku - CSP Solving</h1>
+                        <img class="r-stretch" src="img/csp_sudoku.png" alt="CSP Sudoku" data-id="hdd">
+                        <p>Sounds very promising, let's try to solve the big game</p>
+                    </section>
+
+                    <section id="example_4" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (2)</h1>
+                        <img class="r-stretch" src="img/csp_fail.png" alt="CSP fail" data-id="hdd">
+                        <p>All constraints are fully propagated, but that's not enough. What to do next?</p>
+                    </section>
+
+                    <section id="example_5" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (3)</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li>What to do if we were stuck using CSP?</li>
+                                    <li class="fragment">What will you do if you are solving this problem?
+                                        <dd class="fragment">- Human has more complicated logics to inference<br>
+                                            - E.g. cell (3,2) in sub-grid (2,3) has to be 7. Similarly, cell (2,2) in the centre grid has to be 5...</dd>
+                                    </li>
+                                    <li class="fragment">But for computer, we need something more <span class="lightblue">generic</span> to solve any set of constraint problem, not specifically for Sudoku. - <span class="fragment lightpurple">it simply guesses!</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-50 r-stretch"><img src="img/csp_fail.png" alt="CSP Sudoku" data-id="hdd"></div>
+                        </div>
+                    </section>
+
+                    <section id="example_6" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (4)</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li>Let's start by guessing the centre cell is 1 (blue)</li>
+                                    <li class="fragment">Then, we can continue to propagate the constraint to get more cells</li>
+                                </ul>
+                            </div>
+                            <div class="col-50 r-stretch"><img src="img/csp_guess_1.png" alt="CSP Sudoku" data-id="hdd">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="example_7" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (5)</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li><span class="half-out">Let's start by guessing the centre cell is 1 (blue)</span> </li>
+                                    <li><span class="half-out">Then, we can continue to propagate the constraint to get more cells</span></li>
+                                    <li>E.g. 9 below 1</li>
+                                </ul>
+                            </div>
+                            <div class="col-50 r-stretch"><img src="img/csp_guess_2.png" alt="CSP Sudoku" data-id="hdd">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="example_8" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (6)</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li><span class="half-out">Let's start by guessing the centre cell is 1 (blue)</span></li>
+                                    <li><span class="half-out">Then, we can continue to propagate the constraint to get more cells</span></li>
+                                    <li><span class="half-out">E.g. 9 below 1</span></li>
+                                    <li>Then, 2 and 8 above 1</li>
+                                </ul>
+                            </div>
+                            <div class="col-50 r-stretch"><img src="img/csp_guess_3.png" alt="CSP Sudoku" data-id="hdd">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="example_9" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (7)</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li><span class="half-out">Let's start by guessing the centre cell is 1 (blue)</span></li>
+                                    <li><span class="half-out">Then, we can continue to propagate the constraint to get more cells</span></li>
+                                    <li><span class="half-out">E.g. 9 below 1</span></li>
+                                    <li><span class="half-out">Then, 2 and 8 above 1</span></li>
+                                    <li>Ops, it leads to an empty cell above the blue 2 we just filled</li>
+                                    <li class="fragment">The initial guess of centre 1 must be <span class="red">wrong</span>!</li>
+                                </ul>
+                            </div>
+                            <div class="col-50 r-stretch"><img src="img/csp_guess_4.png" alt="CSP Sudoku" data-id="hdd">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="example_10" data-auto-animate>
+                        <h1>Sudoku - CSP Solving (8)</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li><span class="half-out">Let's start by guessing the centre cell is 1 (blue)</span></li>
+                                    <li><span class="half-out">Then, we can continue to propagate the constraint to get more cells</span></li>
+                                    <li><span class="half-out">E.g. 9 below 1</span></li>
+                                    <li><span class="half-out">Then, 2 and 8 above 1</span></li>
+                                    <li><span class="half-out">Ops, it leads to an empty cell above the blue 2 we just filled</span></li>
+                                    <li><span class="half-out"></span>The initial guess of centre 1 must be wrong!</span></li>
+                                    <li>Go back and try another guess - <span class="lightpink">sounds familiar? backtracking!</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-50 r-stretch"><img src="img/csp_guess_5.png" alt="CSP Sudoku" data-id="hdd">
+                            </div>
+                        </div>
                     </section>
 
                     <section id="backtracking_vs_constraint_propagation">
@@ -229,10 +389,10 @@ End Procedure</code></pre>
                     </section>
 
                     <section id="back_plus_prop">
-                        <h1>Backtracking + Constraint Propagation</h1>
+                        <h1>Constraint Propagation + Backtracking</h1>
                         <div class="row">
                             <div class="col-50">
-                                <pre class="img-height-400"><code class="vb smalltext">Procedure SolveConstraintPropagation()
+                                <pre class="img-height-450 r-stretch"><code class="vb smalltext" data-line-numbers>Procedure SolveConstraintPropagation()
     Repeat
         For each empty cell
             Determine the list of possible numbers
@@ -240,27 +400,19 @@ End Procedure</code></pre>
                 Return false // unsolvable
             Else if the list has a single element
                 Fill in the number
-            End If
-        End For
-        Until no changes are made
-        If the puzzle is solved
-            Return true
-        Else
-            Return SolveBacktracking(first empty cell)
+    Until no changes are made
+    Call SolveBacktracking(first empty cell) if puzzle is not solved
 End Procedure</code></pre>
                             </div>
                             <div class="col-50">
-                                <pre class="img-height-400"><code class="vb smalltext">Procedure SolveBacktracking(cell)
+                                <pre class="img-height-450 r-stretch"><code class="vb smalltext" data-line-numbers>Procedure SolveBacktracking(cell)
     For n = 1, … , 9
         If cell can have value n
             Save the state of the board
             Set value of cell to n
             If SolveConstraintPropagation()
                 Return true
-            End If
             Restore the saved state of the board
-        End If
-    End For
     Clear the value of cell
     Return false
 End Procedure
@@ -268,15 +420,16 @@ End Procedure
                             </div>
                         </div>
                     </section>
+
                 </section>
 
-                <section id="chap_wave_function">
+                <section id="chap_wave_function" data-animate>
                     <section class="wave_function_title">
                         <h1 class="r-frame-text">Wave Function Collapse</h1>
                     </section>
 
                     <section id="wave_function">
-                        <h1>Wave Function Collapse</h1>
+                        <h1>Wave Function Collapse (WFC)</h1>
                         <div class="row">
                             <div class="col-70">
                                 <ul>
@@ -294,7 +447,7 @@ End Procedure
                     </section>
 
                     <section id="wave_function_idea">
-                        <h1>Wave Function Collapse: The Idea</h1>
+                        <h1>Wave Function Collapse (WFC): The Idea</h1>
                         <ul>
                             <li>Space is divided into cells, each of which has a <span class="lightpink">state</span>
                                 <dd>E.g. pixels with a colour; voxels with a 3D mesh from a modular kit</dd>
@@ -311,15 +464,172 @@ End Procedure
                         </ul>
                     </section>
 
+                    <section id="wfc_is_csp">
+                        <h1>WFC is CSP</h1>
+                        <ul>
+                            <li>Wave Function Collapse is a constraint satisfaction problem with a twist</li>
+                            <li>There are so many possible solutions</li>
+                            <li>What we get in the end is not a solver, but a generator!</li>
+                            <li>It still obeys all the constraints defined in advance</li>
+                            <li>More controllable than a lot of other procedural generation methods</li>
+                        </ul>
+                    </section>
+
+                    <section id="wfc_as_csp">
+                        <h1>WFC as CSP</h1>
+                        <ul>
+                            <li>Variable: each cell represent the choice of tile</li>
+                            <li>Constraint: nearby tiles match with each other</li>
+                            <li>The goal: fill in a grid with tiles</li>
+                            <li>Maxim discovered that with a reasonable choice of tiles, and a sensible randomisation routine, it’s rarely necessary to backtrack</li>
+                        </ul>
+                    </section>
+
+                    <section id="wfc_pseudocode">
+                        <h1>WFC Pseudocode</h1>
+                        <div>
+                            <pre><code class="vb" data-line-numbers>Procedure WFC(grid)
+    For each cell of the grid
+        create a boolean array representing the domain of that variable.
+    While there are still cells that have multiple items in the domain
+        Pick a random cell using the “least entropy” heuristic.
+        Pick a random tile from that cell’s domain, and remove all other tiles from the domain.
+        Repeatedly update the domains of other cells based on this new information, i.e. propagate cells. 
+End Procedure</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_1" data-auto-animate>
+                        <h1>WFC in Action</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li>Fill the $3\times 3$ grid using the 4 tile patterns</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_init.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_2" data-auto-animate>
+                        <h1>WFC in Action (2)</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li><span class="half-out">Fill the $3\times 3$ grid using the 4 tile patterns</span></li>
+                                <li>Each variable has 4 possible tiles to select</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_grid.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_3" data-auto-animate>
+                        <h1>WFC in Action (3)</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li><span class="half-out">Fill the $3\times 3$ grid using the 4 tile patterns</span></li>
+                                <li><span class="half-out">Each variable has 4 possible tiles to select</span></li>
+                                <li>Randomly choose one cell to fill, let's say the top-left cell this time</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_fill_1.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_4" data-auto-animate>
+                        <h1>WFC in Action (4)</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li><span class="half-out">Fill the $3\times 3$ grid using the 4 tile patterns</span></li>
+                                <li><span class="half-out">Each variable has 4 possible tiles to select</span></li>
+                                <li><span class="half-out">Randomly choose one cell to fill, let's say the top-left cell this time</span></li>
+                                <li>Then, update its adjacent cells to match the edge pixels</li>
+                                <li class="fragment lightpink">Can we do more?</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_update_1.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_5" data-auto-animate>
+                        <h1>WFC in Action (5)</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li><span class="half-out">Fill the $3\times 3$ grid using the 4 tile patterns</span></li>
+                                <li><span class="half-out">Each variable has 4 possible tiles to select</span></li>
+                                <li><span class="half-out">Randomly choose one cell to fill, and update its adjacent cells</span></li>
+                                <li><span class="half-out">Then, update its adjacent cells to match the edge pixels</span></li>
+                                <li><span class="lightpurple">Yes</span>! Sometimes, we can actually update more cells</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_update_more.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_6" data-auto-animate>
+                        <h1>WFC in Action (6)</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li><span class="half-out">Fill the $3\times 3$ grid using the 4 tile patterns</span></li>
+                                <li><span class="half-out">Each variable has 4 possible tiles to select</span></li>
+                                <li><span class="half-out">Randomly choose one cell to fill, and update its adjacent cells</span></li>
+                                <li><span class="half-out">Then, update its adjacent cells to match the edge pixels</span></li>
+                                <li><span class="half-out"><span class="lightpurple">Yes</span>! Sometimes, we can actually update more cells</span></li>
+                                <li>Then, select the next tile. Let's say it's the top-centre this time</li>
+                                <li>Do more eliminations according to the constraints</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_fill_2.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="wfc_example_7" data-auto-animate>
+                        <h1>WFC in Action (7)</h1>
+                        <div class="row">
+                            <ul class="col-55">
+                                <li><span class="half-out"><span class="lightpurple">Yes</span>! Sometimes, we can actually update more cells</span></li>
+                                <li><span class="half-out">Then, select the next tile. Let's say it's the top-centre this time</span></li>
+                                <li><span class="half-out">Do more eliminations according to the constraints</span></li>
+                                <li>Then, we fill another one - middle-left this time</li>
+                                <li>It leads to a fixed tile to be filled in the cell in the middle</li>
+                                <li>We can do some eliminations after that</li>
+                                <li>I'll stop here as the idea is clear now!</li>
+                            </ul>
+                            <div class="col-40">
+                                <img class="img-width-400" src="img/wfc_tiles.png" alt="WFC tiles">
+                                <img data-id="hdd" class="r-stretch img-width-400" src="img/wfc_fill_3.png" alt="WFC grids">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="online_demo">
+                        <h1>Online Demo of WFC</h1>
+                        <a href="https://oskarstalberg.com/game/wave/wave.html" target="_blank">Online WFC playground by Oskar Stålberg.</a>
+                    </section>
+
                     <section id="chooosing_next_cell">
                         <h1>Choosing the Next Cell</h1>
                         <ul>
-                            <li>A cell is chosen which has minimal Shannon Entropy
+                            <li>Randomly pick the cell with the fewest possible values remaining in the domain
+                                <dd>- May work but sometimes cause problem</dd>
+                            </li>
+                            <li class="fragment" data-fragment-index="1">A cell is chosen which has "<span class="lime">minimal</span>" <span class="lightpurple">Shannon Entropy</span>
                                 <dd>$\qquad\qquad\qquad\qquad S = -\displaystyle\sum_i P_i log{P_i}$</dd>
                             </li>
-                            <p class="fragment lightskyblue">Named after Claude Shannon (1916-2001),
+                            <p class="fragment lightskyblue" data-fragment-index="2">Named after Claude Shannon (1916-2001),
                                 the “father of Information Theory”</p>
-                            <li>Lower Shannon Entropy = less uncertainty about the possible value of the cell</li>
+                            <li class="fragment" data-fragment-index="1">Lower <span class="lightpurple">Shannon Entropy</span> = less uncertainty about the possible value of the cell</li>
                         </ul>
                     </section>
 
