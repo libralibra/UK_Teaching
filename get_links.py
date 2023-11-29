@@ -47,7 +47,7 @@ HEADERS = r'''<!doctype html>
         <link rel="stylesheet" href="./assets/dist/css/master.css">
         <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
         <link rel="stylesheet" href="./assets/dist/theme/black.css" id="theme">
-        <link rel="stylesheet" href="./plugin/highlight/monokai.css" id="theme">
+        <link rel="stylesheet" href="./assets/plugin/highlight/monokai.css" id="theme">
 
         <!-- all links open in new tab -->
         <!-- <base target="_blank"> -->
