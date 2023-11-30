@@ -329,7 +329,7 @@
 
                     <section id="the_agent">
                         <h1>The Agent</h1>
-                        <pre><code class="vbnet smalltext" data-line-numbers="1|2-5|7-28">class HumanAgent {
+                        <pre><code class="vbnet smalltext" data-line-numbers="1|2-5|7-12|14-18|19-23|24-28">class HumanAgent {
     [Traits]
     name : String
     strength : Int
@@ -372,10 +372,10 @@
                         <h1>PAR Tree: PickUp (3)</h1>
                         <img class="r-stretch" src="img/par_tree.png" alt="PAR tree for PickUp">
                         <ul>
-                            <li>The PAR tree can be invoked by the lookup node - PickUp with a single argument</li>
-                            <li>Another subtree can be created to ensure the agent is close enough to the pot
-                                <dd>- a selector node with 2 children<br>
-                                    - an assertion node: is close enough?<br>
+                            <li>The PAR tree can be invoked by the lookup node - <span class="lime">PickUp</span> with a single argument</li>
+                            <li>Another <span class="blue">subtree</span> can be created to ensure the agent is close enough to the pot
+                                <dd>- a <span class="pink">selector</span> node with 2 children<br>
+                                    - an assertion node: is the agent close enough?<br>
                                     - a subtree: navigates the agent closer</dd>
                             </li>
                     </section>
@@ -383,8 +383,8 @@
                     <section id="par_tree_2">
                         <h1>Agents with Same Type but Different BTs</h1>
                         <img class="r-stretch" src="img/par_tree_2.png" alt="PAR Tree">
-                        <p><code class="lime">Wait(5.0s)</code> is a global capability<br>
-                            Seller has a <span class="pink">stochastic</span> sequence node that ticks its children randomly</p>
+                        <p><code class="lime">Wait(5.0s)</code> is a global capability - not defined for HumanAgent<br>
+                            Seller has a <span class="pink">stochastic</span> sequence node that ticks its children <span class="orange">randomly</span></p>
                     </section>
 
                     <section id="event_tree_example">
