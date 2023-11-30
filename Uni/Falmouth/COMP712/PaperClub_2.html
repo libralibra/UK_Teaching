@@ -31,7 +31,7 @@
                 ['course', 'Classical Artificial Intelligence'],
                 ['coursecode', 'COMP712'],
                 ['week', ''],
-                ['topic', ' PaperClub - 1'],
+                ['topic', ' PaperClub - 2'],
             ]);
         </script>
         <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
@@ -60,300 +60,391 @@
 
                     <section id="overview">
                         <h1>Overview</h1>
-                        <p class="cyan">A Methodology for requirements analysis in AI architecture authoring tools</p><br>
+                        <p class="cyan">Parameterizing Behavior Trees</p><br>
                         <ul>
-                            <li><span class="blue">Understanding the Methodology</span>: in-depth comprehension of the paper</li>
-                            <li><span class="lime">Critical Analysis</span>: critical thinking and discussions about the strengths, weaknesses, and practical applicability of the proposed methodology</li>
-                            <li><span class="pink">Application and Relevance</span>: how the methodology aligns with contemporary practices in AI architecture design and how it addresses existing challenges</li>
-                            <li><span class="purple">Engaging Discussions</span>: interactive session to share insights, pose questions, and engage in meaningful discussions about the paper's contributions</li>
-                            <li><span class="lightblue">Knowledge Exchange</span>: exchange of ideas, experiences, and perspectives</li>
+                            <li><span class="blue">What?</span> <span class="fragment">a method for parametrising behaviour trees</span></li>
+                            <li><span class="lime">Why?</span> <span class="fragment">traditional behaviour tree is <span class="lightpink">limited to non-parametric tasks</span> - lack <span class="lightpink">flexibility</span> and <span class="lightblue">reusability</span></span></li>
+                            <li><span class="orange">How?</span> <span class="fragment">expose parameter interface of an encapsulated subtree by a lookup node</span></li>
+                            <li><span class="purple">Benefits?</span>
+                                <ul class="fragment">
+                                    <li>make BTs adaptable to various scenarios without substantial modifications</li>
+                                    <li>empower the creation of more versatile and scalable AI systems</li>
+                                    <li>allow recast <span class="skyblue">Smart Event</span></li>
+                                    <li>a tool called <span class="lightred">Topiary</span> - graphically-oriented testbed</li>
+                                </ul>
+                            </li>
                         </ul>
                     </section>
                 </section>
 
                 <section id="contribution_chap">
                     <section id="contribution_title">
-                        <h1 class="r-frame-text">Main Contributions</h1>
-                        <ul class="fragment">
-                            <li>SSS requirements analysis</li>
-                            <li>Process mapping techniques</li>
-                            <li>Case study approach</li>
+                        <h1 class="r-frame-text">Traditional BTs</h1>
+                    </section>
+
+                    <section id="bt_strength">
+                        <h1>Traditional BT: Strength</h1>
+                        <ul>
+                            <li class="fragment"><span class="lightpink">Readable and Understandable</span>: visually intuitive, easy to comprehend, simplified debugging and modification</li>
+                            <li class="fragment"><span class="lightblue">Modularity and Flexibility</span>: hierarchical structure, easy organisation of complex behaviours into modular units (nodes)</li>
+                            <li class="fragment"><span class="lightorange">Dynamic Decision Making</span>: allow for the prioritisation of actions, enable AI agents to react dynamically</li>
+                            <li class="fragment"><span class="lightcyan">Scalability</span>: easy to scale up/down by adding/pruning nodes to/from the tree structure</li>
                         </ul>
                     </section>
 
-                    <section id="sss">
-                        <h1>SSS Component Analysis</h1>
+                    <section id="bt_limitations">
+                        <h1>Traditional BT: Limitations</h1>
                         <ul>
-                            <li>Proposed a process to identify and improve the authoring challenges of different interactive virtual agent (IVA) architectures</li>
-                            <li>Used SSS to capture architecture-specific challenges and opportunities for IVA authoring process</li>
-                            <li>They found that SSS Components are the common patterns of authoring difficulty within each SSS</li>
+                            <li class="fragement"><span class="lightblue">Complexity Management</span>: manage large and deep trees becomes challenging, often lead to spaghetti-like structures, impact readability and maintenance</li>
+                            <li class="fragment"><span class="lightorange">Lack of Sequentiality</span>: may struggle to represent sequential actions or enforce strict ordering, can affect scenarios requiring precise sequential execution</li>
+                            <li class="fragment"><span class="lightpink">Difficulty in Debugging</span>: In complex BTs, diagnosing issues or bugs within the tree structure can be challenging due to the distributed nature of decision-making</li>
+                            <li class="fragment"><span class="lightgreen">Customisation and Adaptability</span>: difficult to customise AI behaviours, involve changing the core logic of the tree</li>
                         </ul>
                     </section>
 
-                    <section id="process_mapping_techniques">
-                        <h1>Process Mapping Techniques</h1>
+                    <section id="traditional_bt">
+                        <h1>The Motivation</h1>
                         <ul>
-                            <li>A tool for creating a visual representation of the authoring procedure</li>
-                            <li>Making explicit steps, sub-steps, durations, bottlenecks, and dependencies involved</li>
-                            <li>Helped to validate the SSS components and authoring support strategies</li>
+                            <li>Traditional BT invokes tasks solely without explicit parameters. While it works well most of the time, the author would like to enable parameterisation of BT in 2 scenarios. <span class="lightpurple fragment">What are they?</span></li>
                         </ul>
                     </section>
 
-                    <section id="case_studies">
-                        <h1>Case Study Approach</h1>
-                        <ul>
-                            <li>Applied SSS components to three case studies of different IVA architectures
-                                <dd>- BOD/POSH<br>
-                                    - FAtiMA<br>
-                                    - ABL
+                    <section id="traditional_bt_motivation_1">
+                        <h1>The Motivation (1)</h1>
+                        <ul>Communication between nodes and invoke functions
+                            <li>Traditional BT: <span class="fragment">reply on <span class="lightgreen">blackboard</span></span>
+                                <dd class="fragment">- <span class="lightpink">centralised, flat</span> repository that all parties have access to<br>
+                                    - <span class="lightorange">lack of encapsulation</span> and frustrates <span class="lightpurple">subtree reuse</span><br>
+                                    - <span class="lightgreen">difficult to track</span> the data flow
                                 </dd>
                             </li>
-                            <li>Used a simple scenario of "Lost Interpreter" to compare the authoring processes and outcomes of each architecture</li>
-                            <li>Extracted the SSS and the SSS Components of each architecture
-                                <dd>- similarities, differences, and trade-offs between architectures</dd>
-                            </li>
-                            <li>Proposed authoring support strategies to reduce the authoring burden</li>
                         </ul>
                     </section>
 
-                    <section id="discussion">
-                        <h1>Discussion of SSS and Its Implications</h1>
-                        <ul>
-                            <li>Discussed the benefits and limitations of their methodology</li>
-                            <li>Clarified common authoring challenges and strategies that emerged from the case studies</li>
-                            <li>Suggested how the SSS methodology can be used to compare and evaluate different IVA architectures and their authoring affordances</li>
+                    <section id="traditional_bt_motivation_1">
+                        <h1>The Motivation (2)</h1>
+                        <ul>External parameterisation, e.g. a subtree where AI agent sleeps for $N$ hours
+                            <li>Traditional BT: <span class="fragment">possible using blackboard</span>
+                                <dd class="fragment">- clumsy and unintuitive<br>
+                                    - no explicit visualisation of causality<br>
+                                    - race conditions can occur in the use of <span class="lightpink">parallel</span> node<br>
+                                    - contradicts the simplicity of BTs
+                                </dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="the_solution">
+                        <h1>Their Solution</h1>
+                        <ul>A system that reduces BT's reliance on <span class="lightgreen">blackboard</span> fields, which:
+                            <li class="fragment">was inspired by <span class="lightblue">Parameterised Action Representations (PARs)</span> - <span class="purple">generalised form</span> for any BT</li>
+                            <li class="fragment">exposes the <span class="lightpink">parameters of the function</span> that leaves node invoke</li>
+                            <li class="fragment"><span class="lightorange">parameterises the subtree</span> as a node - parameter <span class="lime">encapsulation</span></li>
+                            <li class="fragment">improves code <span class="lightcyan">flexibility and reusability</span></li>
+                            <li class="fragment">enables <span class="lightred">Smart Events</span> in BT framework</li>
                         </ul>
                     </section>
                 </section>
 
-                <section id="methodology">
-                    <section id="methodology_title">
-                        <h1 class="r-frame-text">The Methodology</h1>
-                    </section>
-
-                    <section id="key_points">
-                        <h1>Key Components</h1>
+                <section id="chap_paper">
+                    <section id="agent_model">
+                        <h1>The Agent Model</h1>
                         <ul>
-                            <li><span class="lightred">Requirement Elicitation Techniques</span>
-                                <dd class="fragment">- a diverse set of such techniques, including <span class="lightcyan">interviews, survey, and case studies</span></dd>
-                            </li>
-                            <li><span class="lime">Domain Analysis and Knowledge Gathering</span>
-                                <dd class="fragment">- To understand the context, domain-specific requirements, constraints, and challenges<br>
-                                    - examining existing systems, standards, and best practices in the IVA domain
-                                </dd>
-                            </li>
-                            <li><span class="lightpurple">Use Case Scenarios and Prototyping</span>
-                                <dd class="fragment">- create use case scenarios to capture user interactions and system behaviours<br>
-                                    - prototyping plays a crucial role in visualising and validating requirements
-                                </dd>
+                            <li><span class="lightgreen">Traits</span>: <span class="fragment">the data it stores</span></li>
+                            <li><span class="lightorange">Capabilities</span>: <span class="fragment">actions it can perform</span></li>
+                            <li class="fragment">In an OO environment, they are <span class="fragment"><span class="lightblue">member variables</span> and <span class="lightpink">member functions</span></span></li>
+                            <li class="fragment">They need to be distinguished from <code class="lightcyan">internal data</code> and <code class="lightorange">helper functions</code>
+                                <dd>- the information that should not be exposed</dd>
                             </li>
                         </ul>
                     </section>
 
-                    <section id="sss">
-                        <h1>The System Specific Step (SSS)</h1>
-                        <img class="r-stretch" src="img/sss.png" alt="The System Specific Step (SSS)">
-                    </section>
-
-                    <section id="sss_methodology">
-                        <h1>Applying SSS Methodology</h1>
-                        <ul class="fragment">
-                            <li>Conducted interview with 5 institutions, survey 6+ local and remote ABL authors</li>
-                            <li>Intermediate-expert authors paired with an analyst who is no an expert in the architecture</li>
-                            <li>Translate the work into <span class="italic lightpink">Process map</span></li>
-                            <li>Create a visual representation of the procedure similar to flowcharts</li>
-                            <li>Make as mush as the authoring process as explicit as possible for analysis</li>
+                    <section id="traits">
+                        <h1>Traits and Capabilities</h1>
+                        <ul>
+                            <li><span class="lightgreen">Traits</span>: key components of an agent's <span class="lightpurple">state</span>
+                                <dd>- any information necessary for <span class="lightpink">decision-making</span></dd>
+                            </li>
+                            <li class="fragment"><span class="lightorange">Capabilities</span>: all mechanics to perform the atomic tasks
+                                <dd>- capability may act on data: either <span class="lightred">its parameters</span> or <span class="lightblue">stored in or perceived by</span> the agent<br>
+                                    - <code class="lime">yawn</code> capability to <span class="lightcyan">play an animation</span> and <span class="lightpink">play a sound</span></dd>
+                            </li>
                         </ul>
                     </section>
 
-                    <section id="the_scenario">
-                        <h1>The Scenario</h1>
+                    <section id="traits_capabilities">
+                        <h1>Traits and Capabilities Representation</h1>
                         <ul>
-                            <li>Lost Interpreter: armed soldiers searching for their lost interpreter via a photograph (A simplified version of IMMERSE group in ABL)
+                            <li>Traits and Capabilities have <span class="orange">parallel representations</span> as BT <span class="lime">leaf node</span></li>
+                            <li class="fragment">Traits: <span class="italic pink">assertion</span> leaf nodes
+                                <dd>- compares the given trait's value to an expression (<code class="green">Succeed</code> if <code class="lime">True</code>)<br>
+                                    - assertion nodes take parameters that form the expression</dd>
                             </li>
-                            <li class="fragment">Why this scenario?
+                            <li class="fragment">Capabilities: <span class="italic purple">actions</span> leaf nodes
+                                <dd>- invoke the underlying function and return its status (<code class="green">Succeed</code>, <code class="red">Fail</code>, or <code class="orange">Running</code>)<br>
+                                    - action nodes take parameters that the underlying function requires</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="parameters">
+                        <h1>Parameters</h1>
+                        <ol>Three ways of defining parameters:
+                            <li class="fragment"><span class="green">hard-coded literals</span> embedded in BT</li>
+                            <li class="fragment"><span class="yellow">from the traits</span> of the world or the agent
+                                <dd>- e.g. yawn capability: the time of day in the environment, or the agent's "tiredness" trait</dd>
+                            </li>
+                            <li class="fragment"><span class="pink">PAR argument</span> - detailed in the next slide</li>
+                        </ol>
+                    </section>
+
+                    <section id="par_argument">
+                        <h1>PAR Arguments</h1>
+                        <ul>
+                            <li>They are <span class="green">parameters</span> of specific <span class="orange">subtree</span></li>
+                            <li class="fragment"><span class="blue">Created</span> by tree designer, can be <span class="pink">reused</span> in multiple places by multiple tree nodes</li>
+                            <li class="fragment">Useful idea for BT <span class="lightpurple">Abstraction</span> and <span class="lightorange">Encapsulation</span>
                                 <ul class="fragment">
-                                    <li>Exercises a wide range of capabilities of interactive characters:
-                                        <dd>- player<br>
-                                            - multiple NPCs with different attitudes<br>
-                                            - physical objects<br>
-                                            - communication between NPCs and PC<br>
-                                            - multiple outcomes
-                                        </dd>
-                                    </li>
-                                    <li>Simple enough to reach a pseudocode state in a reasonable amount of time (1-3 hours)
-                                        <dd>- get rid of IMMERSE's original non-verbal communication via gesture recognition</dd>
-                                    </li>
+                                    <li>BTs use <code class="green">lookup</code> nodes as the root of a subtree</li>
+                                    <li><code class="green">lookup</code> nodes with <span class="yellow">PAR arguments</span> - same as action nodes take parameters (recall <span class="purple">capabilities</span> definition above)</li>
                                 </ul>
                             </li>
                         </ul>
                     </section>
-                </section>
 
-                <section id="case_studies">
-                    <h1>The Case Studies</h1>
-                    <ul>
-                        <li>Three teams with 1, 2, and 5 interview participants</li>
-                        <li>Each team with a different design philosophy</li>
-                        <li>Provides a description of the authoring process associated with the architecture</li>
-                        <li>Creates a list of the SSS components abstracted from the authoring description</li>
-                        <li>Includes a description of authoring support strategies that could reduce the authoring burden of the particular SSS.</li>
-                        <li>Problem found? - <span class="fragment lightpink">no standardised method for testing and debugging</span></li>
-                    </ul>
-                </section>
-
-                <section id="chap_case_study_1">
-                    <section id="study_1">
-                        <h1>Case Study 1: BOD using POSH</h1>
+                    <section id="par_2">
+                        <h1>PAR Arguments (2)</h1>
                         <ul>
-                            <li>BOD: Behaviour-Oriented Design that combined Object-Oriented Design and Behaviour-Based AI</li>
-                            <li>POSH: Parallel-rooted, Ordered Slip-stack Hierarchical planner - Why?
+                            <li>PAR arguments <span class="lightred">propagate down nested layers</span> and <span class="cyan">can change names</span> (if needed)
+                                <dd class="fragment">- subtree's PAR arguments can be altered by top-level PAR arguments<br>
+                                    - in the same way as nested function calls</dd>
+                            </li>
+                            <li class="fragment"><span class="purple">PAR trees</span>: <span class="green">take</span> various parameters and <span class="lightblue">reuse</span> the logic without the need of <span class="pink">blackboard</span></li>
+                            <li class="fragment">Parent-child message passing can be achieved without external data structures</li>
+                            <li class="fragment">Improves <span class="cyan">subtree encapsulation</span> as <span class="lightorange">hierarchy-based abstraction</span> is natural in BT</li>
+                        </ul>
+                    </section>
+
+                    <section id="smart_event">
+                        <h1>Smart Events</h1>
+                        <ul>
+                            <li>Provides an <span class="lime">event-centric</span> behaviour authoring approach to BTs</li>
+                            <li class="fragment">Events are <span class="blue">desired or scheduled</span> <span class="purple">occurrences</span> in the environment</li>
+                            <li class="fragment">Events <span class="lightred">contain all the information</span> that the involved agents require to participate
+                            </li>
+                            <li class="fragment">Can be used to <span class="lime">simultaneously</span> control <span class="orange">multiple</span> agents</li>
+                            <li class="fragment">E.g.: a conversation between 3 or more agents
+                                <dd class="fragment">- <span class="pink">traditional way</span>: design BTs for each agent to act<br>
+                                    - <span class="cyan">smart events</span>: consider the event as a single BT, dictate who to act</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="smart_events_difference">
+                        <h1>Smart Events (2)</h1>
+                        <ul>
+                            <li>Traditional Smart Events: <span class="red">how</span> does it work?
                                 <ul class="fragment">
-                                    <li>simplicity and iteration</li>
-                                    <li>low barrier to entry for novice authors</li>
-                                    <li>encoded in the least amount of time</li>
+                                    <li>use of a <span class="pink">message board</span></li>
+                                    <li>agents <span class="green">regularly</span> visit the message board</li>
+                                    <li>agents make decision to retrieve the appropriate action and follow the behaviour sequence</li>
                                 </ul>
                             </li>
-                            <li>Unique case? - <span class="fragment">to have an explicit authoring approach as well as the graphical design tool (ABODE)</span></li>
+                            <li class="fragment">Events-based BT need to <span class="purple">manipulate</span> active node <span class="blue">execution order</span> sometimes
+                                <dd class="fragment">- externally manipulate the active BTs may yield undesired results<br>
+                                    - split behaviours into multiple subtrees rather than </dd>
+                            </li>
                         </ul>
                     </section>
 
-                    <section id="bod_good">
-                        <h1>Design Philosophy of BOD</h1>
-                        <ul class="fragment">
-                            <li>BOD designer never needs to encounter anything more complicated than graphical interface</li>
-                            <li>Separation of the two roles: designer and programmer to be the most independent</li>
-                        </ul>
-                    </section>
-
-                    <section id="bod">
-                        <h1>BOD/POSH</h1>
-                        <span class="smalltext">Behaviour-Oriented Design + Parallel-rooted, Ordered Slip-stack Hierarchical planner</span>
-                        <img class="r-stretch" src="img/bod.png" alt="BOD">
-                    </section>
-
-                    <section id="sss_bod">
-                        <h1>SSS Components in BOD</h1>
+                    <section id="event_trees">
+                        <h1>Smart Event as BT</h1>
                         <ul>
-                            <li>Start Minimally: only 4 primitives in the first version of the plan</li>
-                            <li>Decompose Iteratively: agility for both designer and programmer as they can move freely between phases of the process</li>
-                            <li>Minimise and Encapsulate: the most unique but easy to mess up by most novice BOD/POSH authors - how?
-                                <dd class="fragment">- the logic of the tree is getting complex IF more than 3 sensors are needed to trigger a competence<br>
-                                    - flag the programmer to offload the logic from the tree onto a new sensor for simplification
-
-                                </dd>
-                            </li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section id="chap_case_study_2">
-                    <section id="study_2">
-                        <h1>Case Study 2: FAtiMA</h1>
-                        <ul>
-                            <li>FAtiMA: multi-agent architecture, each agent has an emotional state and plans future actions to achieve a specify goal</li>
-                            <li>Goals can be weighted according to importance</li>
-                            <li>How to perform authoring in FAtiMA?
-                                <dd class="fragment">by editing several separate XML files</dd>
-                            </li>
-                            <li class="fragment">The process started by considering the motivations of the NPCs
-                                <dd>either corporative or uncooperative</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="fatima_code">
-                        <h1>Active Pursuit Goal of NPC</h1>
-                        <img class="r-stretch" src="img/fatima.png" alt="FAtiMA code">
-                    </section>
-
-                    <section id="sss_fatima">
-                        <h1>SSS Components in FAtiMA</h1>
-                        <ul>
-                            <li>Goals first: two teams are working on defining the goals</li>
-                            <li>Find Decision Point: the decision making points are motivated by a goal
-                                <dd>- temporal ordering of decision by creating goal preconditions</dd>
-                            </li>
-                            <li>Goal Weighting and Tuning: goal weights completely control how different agents act - what is consequence? -
-                                <dd class="fragment">- the most time-consuming process to manipulate the personality files</dd>
-                            </li>
-                            <li>Intent Goals for Future Consequences: not part of the scenario, but opens discussions for additional FAtiMA SSS
-                                <dd class="fragment">- some claimed that FAtiMA cannot have more than one active pursuit goal at a time, but one team of this case study showed that it's possible.</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="support">
-                        <h1>Authoring Support Strategy</h1>
-                        What did they do?
-                        <ul class="fragment">
-                            <li>proposed an interface where authors can create example sequences of events schematically</li>
-                            <li>prompt the user to create the corresponding goals when a denison is needed</li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section id="chap_case_study_3">
-                    <section id="case_study_3">
-                        <h1 class="r-frame-text">Case Study 3: ABL</h1>
-                    </section>
-
-                    <section id="abl">
-                        <h1>ABL</h1>
-                        <ul>
-                            <li>Designed to focus on the creation of expressive IVAs</li>
-                            <li>Provides a feature-full reactive planning language </li>
-                            <li>High degree of interactivity</li>
-                            <li>Primary structure primitive in ABL is the behaviour</li>
-                            <li>Active Behaviour Tree (ABT) for structure with potential executable steps as leaves</li>
-                            <li>Working Memory Elements (WMEs) hold information to be shared throughout the ABT</li>
-                        </ul>
-                    </section>
-
-                    <section id="abl_abt">
-                        <h1>ABL ABT</h1>
-                        <img class="r-stretch" src="img/abt.png" alt="ABL ABT">
-                        <p class="like-li">Example behaviour for a character to hand an object to another</p>
-                    </section>
-
-                    <section id="sss_abl">
-                        <h1>SSS Components in ABL</h1>
-                        <ul>
-                            <li>ABL shared the same SSS components as BOD/POSH
+                            <li>Behaviours in event is repented as a BT</li>
+                            <li class="fragment">Agents <span class="lime">outside of events</span>: act normally - traverse the environment, accomplish tasks, etc.</li>
+                            <li class="fragment">Agents <span class="purple">in an event</span>:
                                 <ul>
-                                    <li>Start Minimally: only 4 primitives in the first version of the plan</li>
-                                    <li>Decompose Iteratively: agility for both designer and programmer as they can move freely between phases of the process</li>
+                                    <li>Internal BT is <span class="lightred">stopped</span></li>
+                                    <li>Temporarily strip of all autonomy</li>
                                 </ul>
                             </li>
-                            <li>Define coding idioms: ABL is unique to keep the complexity within the denison making process of the agent</li>
-                            <li>Consider Interruption: the behaviour may have to multitask with other behaviours so need to carefully thinking of interrupting at some point.</li>
+                            <li class="fragment">Smart Events BT starts to act upon the involved agent</li>
+                            <li class="fragment">When the event ends, the agent "<span class="cyan">restarts</span>" its own internal BT rather than "<span class="lightred">resume</span>" it
+                                <dd>- BT design makes sure it behaves appropriately based on that context</dd>
+                            </li>
                         </ul>
                     </section>
 
-                    <section id="support">
-                        <h1>Authoring Support Strategy</h1>
-                        What did they find?
-                        <ul class="fragment">
-                            <li>Discuss ABL SSS with authors of different levels of experiences
-                                <dd>ABL meta-behaviours feature was not utilised by some</dd>
+                    <section id="smart_events_bt_2">
+                        <h1>Smart Events as BT (2)</h1>
+                        <ul>For events involving multiple agents:
+                            <li class="fragment">one <span class="blue">centralised</span> tree was built</li>
+                            <li class="fragment">treat all involved agents as limbs of the same entity</li>
+                            <li class="fragment">the events BT's assertion and action nodes take an <span class="lime">additional</span> parameter that specifies which agent to perform</li>
+                            <li class="fragment">Certain assertion and action nodes are <span class="purple">restricted to</span> agents with appropriate traits and capabilities</li>
+                            <li class="fragment">participating agents become <span class="lightblue">parameters</span> of the <span class="lightorange">event PAR tree</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="event_par_tree">
+                        <h1>Encapsulated PAR Trees</h1>
+                        <ul>
+                            <li><span class="lime">PAR tree</span> design for one or more agents</li>
+                            <li class="fragment">Stored as an <span class="pink">encapsulated subtree</span> with <span class="orange">agent type(s)</span> description</li>
+                            <li class="fragment">Can be invoked by the agent's own internal BT, or by any event that has the agent type</li>
+                        </ul>
+                    </section>
+
+                    <section id="events_variable">
+                        <h1>Events Variable Scope</h1>
+                        <ul>
+                            <li>Events has their own <span class="lightcyan">variable scope</span> that can be modified:
+                                <dd class="fragment">- at any time<br>
+                                    <span class="fragment">- by the event's internal PAR tree</span><br>
+                                    <span class="fragment">- by external components to manipulate the events progress</span>
+                                </dd>
                             </li>
-                            <li>ABL is hard to visualise</li>
-                            <li>ABL debugger was not used for the usage barriers</li>
-                            <li>What are they going to do?
-                                <dd class="fragment">- create a graphical ABT representation for: parallel views of ABT, saving snapshots, and saving viewing locations</dd>
+                            <li class="fragment">Top-level PAR tree for an event <span class="lightred">cannot</span> have <span class="lime">PAR arguments</span> - <span class="lightpurple">WHY</span>?
+                                <dd class="fragment">- recall that the PAR argument is analogous to <span class="yellow">nested function calls</span><br>
+                                    <span class="fragment">- it shouldn't take any other PAR arguments <span class="pink">otherwise</span> it must not be the <span class="purple">top-level</span> tree of an event</span>
+                                </dd>
+                            </li>
+                            <li class="fragment">Three qualities of an event:
+                                <dd>- the <span class="green">agents</span> involved and their types<br>
+                                    - the <span class="orange">fields</span> in its scope<br>
+                                    - the <span class="cyan">behaviour tree</span> to dispatch the actions</dd>
                             </li>
                         </ul>
                     </section>
                 </section>
 
-                <section id="conclusion">
+                <section id="chap_example">
+                    <section id="title_example">
+                        <h1 class="r-frame-text">Example</h1>
+                        <ul class="fragment">
+                            <li>2 human agents haggling over a flow pot on the ground</li>
+                            <li>upon purchase, the buyer can pick the pot and leave</li>
+                        </ul>
+                    </section>
+
+                    <section id="the_agent">
+                        <h1>The Agent</h1>
+                        <pre><code class="vbnet smalltext" data-line-numbers="1|2-5|7-28">class HumanAgent {
+    [Traits]
+    name : String
+    strength : Int
+    tiredness : Int
+
+    [Capabilities] 
+    function perform(act_name : String) {
+        // Perform the named animation and/or sound
+        ...
+        return Success
+    }
+
+    function Grasp(item_reference : Item) {
+        // Reach out and grab the referenced item
+        ...
+        return Success
+    }
+    function WalkTo(location_name : String) {
+        // Walk towards the named location in the environment
+        ...
+        return Success
+    }
+    function Wander() {
+        // Wander around the environment
+        ...
+        return Success
+    }
+}
+                        </code></pre>
+                    </section>
+
+                    <section id="tree_design">
+                        <h1>PAR Tree: PickUp</h1>
+                        <img class="r-stretch" src="img/par_tree.png" alt="PAR tree for PickUp">
+                        <p>The PAR tree consists of one <span class="lime">assertion</span> node and three <span class="pink">action</span> nodes<br>
+                            The lookup node called <span class="orange">PickUp</span> can only be invoked by HumanAgent - <span class="pink">why</span>?</p>
+                    </section>
+
+                    <section id="tree_design_3">
+                        <h1>PAR Tree: PickUp (3)</h1>
+                        <img class="r-stretch" src="img/par_tree.png" alt="PAR tree for PickUp">
+                        <ul>
+                            <li>The PAR tree can be invoked by the lookup node - PickUp with a single argument</li>
+                            <li>Another subtree can be created to ensure the agent is close enough to the pot
+                                <dd>- a selector node with 2 children<br>
+                                    - an assertion node: is close enough?<br>
+                                    - a subtree: navigates the agent closer</dd>
+                            </li>
+                    </section>
+
+                    <section id="par_tree_2">
+                        <h1>Agents with Same Type but Different BTs</h1>
+                        <img class="r-stretch" src="img/par_tree_2.png" alt="PAR Tree">
+                        <p><code class="lime">Wait(5.0s)</code> is a global capability<br>
+                            Seller has a <span class="pink">stochastic</span> sequence node that ticks its children randomly</p>
+                    </section>
+
+                    <section id="event_tree_example">
+                        <h1>Event Tree of Transaction</h1>
+                        <img src="img/event_tree.png" alt="Event Tree" class="r-stretch">
+                        <p><span class="red">read</span> the tree and <span class="purple">discuss</span> what happened there</p>
+                    </section>
+
+                    <section id="event_tree_example">
+                        <h1>Event Tree of Transaction</h1>
+                        <div class="row">
+                            <div class="col-55">
+                                <ul>
+                                    <li>Focus on the <span class="lime">bottom sequence</span> node - haggling process
+                                        <ul class="fragment">
+                                            <li>seller <span class="orange">randomly</span> agrees on the price buyer offered</li>
+                                            <li>Otherwise, the parent sequence node <span class="pink">failed and terminates</span> the loop node</li>
+                                            <li>The failure was <span class="blue">inverted to enable</span> the root sequence continue to perform</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment">How about the <span class="yellow">right-most selector</span> node?
+                                        <ul class="fragment">
+                                            <li>It makes sure the buyer can only pick up and walk away <span class="purple">if and only if</span> <span class="lime smalltext">$price <= 4$</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-45"><img src="img/event_tree.png" alt="Event Tree" class="r-stretch img-width-500">
+                                <ul class="fragment smalltext">
+                                    <li>Only PickUp complex acton was encapsulated as a PAR tree</li>
+                                    <li>No external process modified the <code class="lime">event.price</code> but it's doable</li>
+                                    <li>Buyer and Seller are roles to the event rather than the global environment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="topiary">
+                        <h1>Topiary</h1>
+                        <img class="r-stretch" src="img/topiary.png" alt="Topiary">
+                        <ul>
+                            <li>PAR tree visualisation tool</li>
+                            <li>Works with ADAPT (Agent Development And Prototyping Testbed) and Unity engine</li>
+                            <li>PAR trees can be saved and used in other PAR trees with parameters using lookup nodes</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section id="chap_conclusion">
                     <section id="conclusion">
                         <h1>Conclusion</h1>
                         <ul>
-                            <li>Proposed SSS requirement methodology</li>
-                            <li>Carried out interviews with groups using different authoring processes</li>
-                            <li>Proposed authoring strategies that may ease their authoring burdens</li>
-                            <li>Potentially be applied to other IVA architectures as well.</li>
+                            <li>BTs are a <span class="pink">powerful tool</span> for authoring agent behaviours</li>
+                            <li class="fragment">Parameterised BTs improves the capabilities of <span class="lime">encapsulation</span> and <span class="blue">code reusability</span></li>
+                            <li class="fragment">PAR trees enables <span class="purple">penetration</span> through BT layers and <span class="yellow">propagation</span> of arguments while decorators <span class="orange">can only</span> loop subtree or prevent its execution</li>
+                            <li class="fragment">Smart Events can be organised as <span class="lightgreen">encapsulated PAR tree</span></li>
+                            <li class="fragment"><span class="skyblue">Does not entirely eliminate</span> the need of blackboard in case information need to be <span class="lightpink">passed between distinct branches</span> of a tree</li>
+                            <li class="fragment"><span class="cyan">Topiary tool</span> for PAR tree design and visualisation</li>
                         </ul>
                     </section>
 
