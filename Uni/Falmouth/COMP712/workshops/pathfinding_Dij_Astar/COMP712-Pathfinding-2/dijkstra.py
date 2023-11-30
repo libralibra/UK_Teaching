@@ -16,8 +16,6 @@ class DIJKSTRA(Canvas):
         self.animate = animate
         # neighbourhood size
         self.nb_size = nb_size
-        # neighbourhood size
-        self.nb_size = nb_size
         self.showHelp()
         # ----------------------------------------------
         # YOU MAY ADD OTHER CODE HERE IF NEEDED
