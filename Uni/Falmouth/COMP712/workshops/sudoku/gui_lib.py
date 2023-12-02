@@ -11,6 +11,7 @@
 '''
 
 from random import sample, choice
+import time
 from tkinter import filedialog
 import turtle
 import logging
@@ -42,6 +43,8 @@ class FillColour:
     GUESS = 'light green'
     # 3x3 subgrid background colour
     FILL = 'peach puff'
+    # the current checking cell
+    CURRENT = 'yellow'
 
 
 class DrawColour:
@@ -116,9 +119,13 @@ class Canvas:
         # the original board - the puzzle
         self.board = [[0]*9 for _ in range(9)]
         # animation
-        self.animate = True
+        self.animate = animate
         # has a puzzle
         self.ready = False
+        # forward checking for backtracking
+        self.forward = True
+        # enable backtracking for CSP
+        self.backtrack = True
         self.registerAll()
         self.init()
         self.showHelp()
@@ -145,8 +152,8 @@ class Canvas:
         ''' clear the canvas and redraw grid lines '''
         self.screen.clear()
         self.init()
+        self.grids = [[col for col in row] for row in self.board]
         self.drawGrids()
-        self.update()
         self.drawGridLines()
         self.update()
         self.registerAll()
@@ -195,6 +202,8 @@ class Canvas:
         s += '=[ Operation ]==============================\n'
         s += 'Solve puzzle - SPACE or ENTER\n'
         s += 'Reset puzzle - DELETE, ESC, or right-click\n'
+        s += 'Forward checking (for backtracking) - F\n'
+        s += 'Enable backtracking (for CSP) - B\n'
         s += 'Switch animation - A\n'
         # E, M, D, X, T
         s += '-[ Levels ]----------------------------------\n'
@@ -229,8 +238,9 @@ class Canvas:
             2: 51-52
             3: 53-54
             4: 55-56
+            for illustration purpose, less number are removed
         '''
-        df = {0: [45, 47], 1: [48, 50], 2: [51, 53], 3: [54, 56], 4: [57, 58]}
+        df = {0: [33, 36], 1: [37, 40], 2: [41, 44], 3: [45, 47], 4: [48, 50]}
         # how many numbers to delete
         num = choice(range(df[v][0], df[v][1]+1))
         cnt = 0
@@ -388,8 +398,6 @@ class Canvas:
             if n in s:
                 self.pen.writeText(
                     pt-Point(0, (n-1)//3*25)+Point(((n-1) % 3-1)*20, 12), str(n), colour, True, 15)
-                # self.pen.writeText(
-                #     pt-Point((4-n % 3)*25, (n-1)//3 * 25)+Point(self.x_grid_size-10, 10), str(n), colour, True, 15)
         if force_update:
             self.update()
 
@@ -425,64 +433,42 @@ class Canvas:
             if v.row in [0, 2, 3, 5, 6, 8] or v.col in [0, 2, 3, 5, 6, 8]:
                 self.drawGridLines()
             self.writeDomain(v, s, force_update)
-            log.log(f'{v} - domain: {s}')
-
-    def domainUpdate(self):
-        ''' update domains, return 
-            ck: list of (row,col) where self.grids[row][col] is fixed
-            d: dict of (row,col)->list of possible values for empty cell
-        '''
-        ck = []
-        d = {}
-        for row in range(9):
-            for col in range(9):
-                if self.grids[row][col] == 0:
-                    sg = self.getSubGridCell(row, col)
-                    rows = self.getRow(row)
-                    cols = self.getCol(col)
-                    subs = self.getSubGrid(sg.row, sg.col)
-                    nums = rows+cols+subs
-                    d[(row, col)] = [x for x in range(1, 10) if x not in nums]
-                else:
-                    ck.append((row, col, self.grids[row][col]))
-        return ck, d
-
-    def cspUpdate(self, force_update=False):
-        ck, d = self.domainUpdate()
-        log.log(f'CSP update: {len(ck)} information got')
-        for (r, c, n) in ck:
-            # row
-            for col in range(9):
-                if (r, col) in d:
-                    d[(r, col)] = [x for x in d[(r, col)] if x != n]
-                    if force_update:
-                        self.animateCell(Cell(r, col))
-                    self.fillDomain(Cell(r, col), d[(r, col)], force_update)
-            # col
-            for row in range(9):
-                if (row, c) in d:
-                    d[(row, c)] = [x for x in d[(row, c)] if x != n]
-                    if force_update:
-                        self.animateCell(Cell(row, c))
-                    self.fillDomain(Cell(row, c), d[(row, c)], force_update)
-            # sub grid
-            sg = self.getSubGridCell(r, c)
-            for row in range(sg.row*3, sg.row*3+3):
-                for col in range(sg.col*3, sg.col*3+3):
-                    if (row, col) in d:
-                        d[(row, col)] = [x for x in d[(row, col)] if x != n]
-                        if force_update:
-                            self.animateCell(Cell(row, col))
-                        self.fillDomain(
-                            Cell(row, col), d[(row, col)], force_update)
-        log.log(
-            f'CSP update: {len(ck)} information updated <-----------------')
+            # log.log(f'{v} - domain: {s}')
 
     def animateCell(self, c: Cell, colour='white'):
         ''' animate cell colour during the search for special cells '''
         self.colourCell(c, colour)
         self.update()
         self.fillCell(c, self.grids[c.row][c.col], True)
+
+    def flashRelatedCell(self, ce: Cell):
+        ''' flash the row, column, and sub grid of the cell '''
+        row, col = ce.row, ce.col
+        for c in range(9):
+            self.colourCell(Cell(row, c), FillColour.GUESS)
+            if self.grids[row][c] > 0:
+                self.writeCell(Cell(row, c), self.grids[row][c])
+        for r in range(9):
+            self.colourCell(Cell(r, col), FillColour.GUESS)
+            if self.grids[r][col] > 0:
+                self.writeCell(Cell(r, col), self.grids[r][col])
+        sg = self.getSubGridCell(row, col)
+        for r in range(sg.row*3, sg.row*3+3):
+            for c in range(sg.col*3, sg.col*3+3):
+                self.colourCell(Cell(r, c), FillColour.GUESS)
+                if self.grids[r][c] > 0:
+                    self.writeCell(Cell(r, c), self.grids[r][c])
+        self.colourCell(Cell(row, col), FillColour.CURRENT)
+        self.update()
+        # self.drawGrids()
+        for c in range(9):
+            self.fillCell(Cell(row, c), self.grids[row][c])
+        for r in range(9):
+            self.fillCell(Cell(r, col), self.grids[r][col])
+        sg = self.getSubGridCell(row, col)
+        for r in range(sg.row*3, sg.row*3+3):
+            for c in range(sg.col*3, sg.col*3+3):
+                self.fillCell(Cell(r, c), self.grids[r][c])
 
     def getSubGridCell(self, row, col) -> Cell:
         ''' work out the sub grid row and column '''
@@ -497,20 +483,21 @@ class Canvas:
 
     def getRow(self, row) -> list:
         ''' get a row of non-zero cell values '''
-        if 0 <= row <= self.y_grid_num:
+        if 0 <= row < self.y_grid_num:
             return [x for x in self.grids[row] if x > 0]
         return []
 
     def getCol(self, col) -> list:
         ''' get a column of non-zero cell values '''
-        if 0 <= col <= self.x_grid_num:
+        if 0 <= col < self.x_grid_num:
             return [x for x in [row[col] for row in self.grids] if x > 0]
         return []
 
-    def getSubGrid(self, r, c) -> list:
-        ''' get all cell values in the sub grid (row, col) '''
-        if 0 <= r <= 2 and 0 <= c <= 2:
-            return [x for x in [self.grids[row][col] for row in range(r*3, r*3+3) for col in range(c*3, c*3+3)] if x > 0]
+    def getSubGrid(self, row, col) -> list:
+        ''' get all cell values in the sub grid '''
+        if 0 <= row < self.y_grid_num and 0 <= col < self.x_grid_num:
+            sg = self.getSubGridCell(row, col)
+            return [x for x in [self.grids[r][c] for r in range(sg.row*3, sg.row*3+3) for c in range(sg.col*3, sg.col*3+3)] if x > 0]
         return []
 
     def isValid(self, row, col, num) -> bool:
@@ -523,9 +510,8 @@ class Canvas:
         cols = self.getCol(col)
         if num in cols:
             return False
-        sc = self.getSubGridCell(row, col)
-        sb = self.getSubGrid(sc.row, sc.col)
-        if num in sb:
+        sc = self.getSubGrid(row, col)
+        if num in sc:
             return False
         return True
 
@@ -551,15 +537,27 @@ class Canvas:
         self.registerKey(self.processHard, 'd')
         self.registerKey(self.processExpert, 'x')
         self.registerKey(self.processMaster, 't')
+        # forward checking for backtracking
+        self.registerKey(self.processForward, 'f')
+        # backtracking search for CSP
+        self.registerKey(self.processBacktracking, 'b')
         # help
         self.registerKey(self.processAnimate, 'a')
         self.registerKey(self.showHelp, 'h')
 
         self.screen.listen()
 
+    def processBacktracking(self):
+        self.backtrack = not self.backtrack
+        msgbox(f'Backtracking is {self.backtrack and "ON" or "OFF"}')
+
+    def processForward(self):
+        self.forward = not self.forward
+        msgbox(f'Forward checking is {self.forward and "ON" or "OFF"}')
+
     def processAnimate(self):
         self.animate = not self.animate
-        msgbox(f'Animate turned {self.animate and "ON" or "OFF"}')
+        msgbox(f'Animate is {self.animate and "ON" or "OFF"}')
 
     def processEasy(self):
         ask = turtle.TK.messagebox.askquestion(
