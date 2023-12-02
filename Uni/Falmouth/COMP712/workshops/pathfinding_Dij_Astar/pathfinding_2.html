@@ -237,7 +237,15 @@ function <span class="token function">A_Star</span><span class="token punctuatio
     self<span class="token punctuation">.</span>animateCell<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
     self<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token comment"># other code blocks ...</span>
-</code></pre></blockquote>
+</code></pre><ul>
+<li>How do the keyboard shortcuts affect the behaviours?
+<ul>
+<li><kbd>A</kbd>: animation ON/OFF, switch <strong><code>self.animate</code></strong> (<code>True/False</code>)</li>
+<li><kbd>E</kbd>: Euclidean distance ON/OFF, switch <strong><code>self.euc_dist</code></strong> (<code>True/False</code>)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h2 id="task-3-implement-a-algorithm">Task 3: implement <code>A* Algorithm</code> </h2>
 <p><a href="#top">Top</a></p>
 <ul>
@@ -250,6 +258,7 @@ function <span class="token function">A_Star</span><span class="token punctuatio
 <p>The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as described in last workshop session.</p>
 <ul>
 <li>Consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.</li>
+<li><kbd>N</kbd>: 8-neighbourhood ON/OFF, switch <strong><code>self.nb_size</code></strong> (<code>4 or 8</code>)</li>
 </ul>
 <p><strong>Note:</strong></p>
 <p>You can submit a pull request to the original repository to showcase your work if you like.</p>

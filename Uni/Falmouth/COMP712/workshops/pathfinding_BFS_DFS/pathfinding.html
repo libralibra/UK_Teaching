@@ -220,11 +220,7 @@
 <li>right-click again to mark the end cell if no end defined</li>
 <li>right-click on any marked cell (start, end, or block) to reset the cell</li>
 <li>try to run the <code>demo_gbfs.pyc</code> with pre-defined map <code>map3.txt</code> to see how it can be simply trapped in the local optimal</li>
-<li>
-<ul>
-<li>Switch <kbd>N</kbd>, <kbd>V</kbd>, <kbd>R</kbd>, <kbd>E</kbd> and <kbd>A</kbd> and search on the same map to see the differences.</li>
-</ul>
-</li>
+<li>Press <kbd>H</kbd> for more information.</li>
 </ul>
 <h2 id="task-2-implement-bfs">Task 2: implement <code>BFS</code> </h2>
 <p><a href="#top">Top</a></p>
@@ -239,19 +235,36 @@
 <li>Try to implement these two behaviour in your code.</li>
 </ul>
 <blockquote>
-<p><strong>RECALL</strong>:</p>
+<p><strong>NOTE</strong>:</p>
 <ul>
-<li>The <code>self.search()</code> function is mandatory.</li>
-<li>It should return <code>True</code> or <code>False</code> to indicate if a path can be found from <code>self.start</code> to <code>self.end</code>.</li>
-<li>Make sure you fill up the <code>self.path</code> list with cells on the found path.</li>
-<li>To enable animation, make use of the following code snippets in your <code>search()</code> function.</li>
+<li>
+<p>The <strong><code>self.search()</code></strong> function is mandatory.</p>
+</li>
+<li>
+<p>It should return <strong><code>True</code></strong> or <strong><code>False</code></strong> to indicate if a path can be found from <strong><code>self.start</code></strong> to <strong><code>self.end</code></strong>.</p>
+</li>
+<li>
+<p>Make sure you fill up the <strong><code>self.path</code></strong> list with cells on the found path.</p>
+</li>
+<li>
+<p>To enable animation, make use of the following code snippets in your **<code>self.search()</code> **function.</p>
+</li>
 </ul>
 <pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># other code blocks ...</span>
 <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>animate<span class="token punctuation">:</span>
     self<span class="token punctuation">.</span>animateCell<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
     self<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token comment"># other code blocks ...</span>
-</code></pre></blockquote>
+</code></pre><ul>
+<li>How do the keyboard shortcuts affect the behaviours?
+<ul>
+<li><kbd>A</kbd>: animation ON/OFF, switch <strong><code>self.animate</code></strong> (<code>True/False</code>)</li>
+<li><kbd>R</kbd>: Random neighbour order ON/OFF, switch <strong><code>self.ran_nb</code></strong> (<code>True/False</code>)</li>
+<li><kbd>V</kbd>: Toward target ON/OFF, switch <strong><code>self.clever</code></strong> (<code>True/False</code>)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h2 id="task-3-implement-dfs">Task 3: implement <code>DFS</code> </h2>
 <p><a href="#top">Top</a></p>
 <ul>
@@ -275,11 +288,17 @@
 <li><code>map3.txt</code> and <code>map5.txt</code> have been purposefully crafted for utilisation with <code>GBFS</code>.</li>
 </ul>
 <blockquote>
-<p><strong>Note</strong>: The <code>gui_lib.pyc</code> contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.</p>
+<p><strong>Note</strong>:<br>
+The <code>gui_lib.pyc</code> contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.</p>
 <ul>
-<li><code>getGridDist(c1, c2)</code>: Retrieves the <a href="https://www.wikiwand.com/simple/Manhattan_Distance">Manhattan Distance</a> between two Cells by applying the equation <code>abs(c1.row - c2.row) + abs(c1.col - c2.col)</code>.</li>
-<li><code>getGridEuclideanDist2(c1, c2)</code>: Determines the squared Euclidean distance between two cells using the equation <code>(c1.row - c2.row)</code><sup>2</sup> + <code>(c1.col - c2.col)</code><sup>2</sup>. The actual Euclidean distance involves the <code>sqrt</code> operation, but for comparison purposes, the squared value is calculated for faster computation.</li>
-<li>You can utilise Python’s built-in data type <code>list</code> to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the <code>PriorityQueue</code> class can be quite helpful in managing prioritised elements.</li>
+<li><strong><code>getGridDist(c1, c2)</code></strong>: Retrieves the <a href="https://www.wikiwand.com/simple/Manhattan_Distance">Manhattan Distance</a> between two Cells by applying the equation <code>abs(c1.row - c2.row) + abs(c1.col - c2.col)</code>.</li>
+<li><strong><code>getGridEuclideanDist2(c1, c2)</code></strong>: Determines the squared Euclidean distance between two cells using the equation <code>(c1.row - c2.row)</code><sup>2</sup> + <code>(c1.col - c2.col)</code><sup>2</sup>. The actual Euclidean distance involves the <code>sqrt</code> operation, but for comparison purposes, the squared value is calculated for faster computation.</li>
+<li>You can utilise Python’s built-in data type <strong><code>list</code></strong> to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the <strong><code>heapq</code></strong> and <strong><code>PriorityQueue</code></strong> can be quite helpful in managing prioritised elements. Refer to <a href="https://builtin.com/data-science/priority-queues-in-python">Introduction to Priority Queues in Python</a> for more detailed usages.</li>
+<li>The keyboard shortcuts:
+<ul>
+<li><kbd>E</kbd>: Euclidean distance ON/OFF, switch <strong><code>self.euc_dist</code></strong> (<code>True/False</code>)</li>
+</ul>
+</li>
 </ul>
 </blockquote>
 <h2 id="task-5-different-number-of-neighbours">Task 5: different number of neighbours </h2>
@@ -290,6 +309,11 @@
 <ul>
 <li>Run the demos and switch the neighbourhood selection by pressing <kbd>N</kbd> to see the differences.</li>
 <li>To accommodate this, consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.</li>
+<li>The keyboard shortcut:
+<ul>
+<li><kbd>N</kbd>: 8-neighbourhood ON/OFF, switch <strong><code>self.nb_size</code></strong> (<code>4 or 8</code>)</li>
+</ul>
+</li>
 </ul>
 <p><strong>Note:</strong></p>
 <p>You can submit a pull request to the original repository to showcase your work if you like.</p>

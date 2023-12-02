@@ -201,7 +201,7 @@ Run the demos to see how each of the algorithms work differently. You can either
    - right-click again to mark the end cell if no end defined
    - right-click on any marked cell (start, end, or block) to reset the cell 
    - try to run the `demo_gbfs.pyc` with pre-defined map `map3.txt` to see how it can be simply trapped in the local optimal
-   - - Switch <kbd>N</kbd>, <kbd>V</kbd>, <kbd>R</kbd>, <kbd>E</kbd> and <kbd>A</kbd> and search on the same map to see the differences.
+   - Press <kbd>H</kbd> for more information.
 
 
 ## Task 2: implement `BFS`
@@ -213,11 +213,15 @@ Run the demos to see how each of the algorithms work differently. You can either
   - switch <kbd>R</kbd>: which randomly explore the surrounding area rather than searching by following a fixed order.
 - Try to implement these two behaviour in your code.
 
-> **RECALL**: 
-> - The `self.search()` function is mandatory.
-> - It should return `True` or `False` to indicate if a path can be found from `self.start` to `self.end`.
-> - Make sure you fill up the `self.path` list with cells on the found path.
-> - To enable animation, make use of the following code snippets in your `search()` function.
+> **NOTE**: 
+> - The **`self.search()`** function is mandatory.
+> 
+> - It should return **`True`** or **`False`** to indicate if a path can be found from **`self.start`** to **`self.end`**.
+> 
+> - Make sure you fill up the **`self.path`** list with cells on the found path.
+> 
+> - To enable animation, make use of the following code snippets in your **`self.search()` **function.
+> 
 > ```python
 > # other code blocks ...
 > if self.animate:
@@ -225,6 +229,11 @@ Run the demos to see how each of the algorithms work differently. You can either
 >     self.update()
 > # other code blocks ...
 > ```
+>
+> - How do the keyboard shortcuts affect the behaviours?
+>   - <kbd>A</kbd>: animation ON/OFF, switch **`self.animate`** (`True/False`)
+>   - <kbd>R</kbd>: Random neighbour order ON/OFF, switch **`self.ran_nb`** (`True/False`)
+>   - <kbd>V</kbd>: Toward target ON/OFF, switch **`self.clever`** (`True/False`)
 
 ## Task 3: implement `DFS`
 [Top](#top)
@@ -245,10 +254,13 @@ Run the demos to see how each of the algorithms work differently. You can either
 - Try to use other heuristic functions.
 - `map3.txt` and `map5.txt` have been purposefully crafted for utilisation with `GBFS`.
 
->**Note**: The `gui_lib.pyc` contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.
-> - `getGridDist(c1, c2)`: Retrieves the [Manhattan Distance](https://www.wikiwand.com/simple/Manhattan_Distance) between two Cells by applying the equation `abs(c1.row - c2.row) + abs(c1.col - c2.col)`.
-> - `getGridEuclideanDist2(c1, c2)`: Determines the squared Euclidean distance between two cells using the equation `(c1.row - c2.row)`<sup>2</sup> + `(c1.col - c2.col)`<sup>2</sup>. The actual Euclidean distance involves the `sqrt` operation, but for comparison purposes, the squared value is calculated for faster computation.
-> - You can utilise Python's built-in data type `list` to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the `PriorityQueue` class can be quite helpful in managing prioritised elements.
+> **Note**: 
+> The `gui_lib.pyc` contains two helper functions that might assist in your implementation. Feel free to use alternative methods if preferred.
+> - **`getGridDist(c1, c2)`**: Retrieves the [Manhattan Distance](https://www.wikiwand.com/simple/Manhattan_Distance) between two Cells by applying the equation `abs(c1.row - c2.row) + abs(c1.col - c2.col)`.
+> - **`getGridEuclideanDist2(c1, c2)`**: Determines the squared Euclidean distance between two cells using the equation `(c1.row - c2.row)`<sup>2</sup> + `(c1.col - c2.col)`<sup>2</sup>. The actual Euclidean distance involves the `sqrt` operation, but for comparison purposes, the squared value is calculated for faster computation.
+> - You can utilise Python's built-in data type **`list`** to serve as a priority queue by creating your own priority function if you prefer. Alternatively, the **`heapq`** and **`PriorityQueue`** can be quite helpful in managing prioritised elements. Refer to [Introduction to Priority Queues in Python](https://builtin.com/data-science/priority-queues-in-python) for more detailed usages.
+> - The keyboard shortcuts:
+>   - <kbd>E</kbd>: Euclidean distance ON/OFF, switch **`self.euc_dist`** (`True/False`)
 
 ## Task 5: different number of neighbours
 [Top](#top)
@@ -260,6 +272,8 @@ The default implementation focuses on exploring 4 neighbours around a given cell
 
 - Run the demos and switch the neighbourhood selection by pressing <kbd>N</kbd> to see the differences.
 - To accommodate this, consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.
+- The keyboard shortcut:
+  - <kbd>N</kbd>: 8-neighbourhood ON/OFF, switch **`self.nb_size`** (`4 or 8`)
 
 **Note:**
 

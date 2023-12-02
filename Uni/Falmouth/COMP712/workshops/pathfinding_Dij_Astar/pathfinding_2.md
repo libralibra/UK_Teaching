@@ -227,6 +227,9 @@ Run the demos to see how each of the algorithms work differently. You can either
 >     self.update()
 > # other code blocks ...
 > ```
+> - How do the keyboard shortcuts affect the behaviours?
+>   - <kbd>A</kbd>: animation ON/OFF, switch **`self.animate`** (`True/False`)
+>   - <kbd>E</kbd>: Euclidean distance ON/OFF, switch **`self.euc_dist`** (`True/False`)
 
 ## Task 3: implement `A* Algorithm`
 [Top](#top)
@@ -241,6 +244,7 @@ Run the demos to see how each of the algorithms work differently. You can either
 The default implementation focuses on exploring 4 neighbors around a given cell: north, south, east, and west. However, in certain games, characters are capable of moving in 8 different directions rather than just 4, as described in last workshop session.
 
 - Consider modifying your code to implement an 8-neighbourhood search and subsequently compare the outcomes with the 4-neighbourhood version.
+- <kbd>N</kbd>: 8-neighbourhood ON/OFF, switch **`self.nb_size`** (`4 or 8`)
 
 **Note:**
 
