@@ -52,9 +52,7 @@ This repository contains the materials for COMP712 - CSP workshop.
 
 https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-CSP.git
 
-There are 2 demos available:
-
-This repository contains the materials for COMP712 - CSP workshop.
+There are 2 demos available. For demonstration purpose the GUI was refreshed more frequently than usual:
 
 - `demo_sudoku_bt.pyc`: demo of solving Sudoku using Backtracking algorithm (BT)
 - `demo_sudoku_cp.pyc`: demo of solving Sudoku using Constraint Propagation (CP)
