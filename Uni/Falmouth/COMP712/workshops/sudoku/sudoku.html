@@ -36,8 +36,118 @@
 <li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
 <li><a href="#workshop-constraint-satisfaction-problem-csp">Workshop: Constraint Satisfaction Problem (CSP)</a></li>
 <li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#csp">CSP</a></li>
+<li><a href="#the-game">The Game</a></li>
+</ul>
+</li>
+<li><a href="#the-repository">The Repository</a>
+<ul>
+<li><a href="#code-structure">Code Structure</a></li>
+</ul>
+</li>
+<li><a href="#your-task">Your Task</a>
+<ul>
+<li><a href="#task-1-implement-backtracking-algorithm-bt">Task 1: implement <code>backtracking</code> algorithm (BT)</a></li>
+<li><a href="#task-2-implement-constraint-propagation-cp">Task 2: implement <code>constraint propagation</code> (CP)</a></li>
+<li><a href="#task-3-combine-bt-and-cp">Task 3: combine <code>BT</code> and <code>CP</code></a></li>
+</ul>
+</li>
 <li><a href="#further-reading">Further Reading</a></li>
 </ul>
+<h1 id="introduction">Introduction </h1>
+<p><a href="#top">Top</a></p>
+<p>We’ve learnt Constraint Satisfaction Problem (CSP) during the lecture. Now, you know that there are two popular ways of solving the CSP: the Backtracking algorithm (BT) and Constraint Propagation (CP). In this workshop, you will implement these two methods to solve <a href="https://sudoku.com/">Sudoku</a> puzzles.</p>
+<h2 id="csp">CSP </h2>
+<p><a href="#top">Top</a></p>
+<p>CSP is a powerful framework used in artificial intelligence and computer science to represent and solve problems where a set of variables must satisfy certain constraints. At its core, a CSP involves a collection of variables, each with a domain of possible values, and a set of constraints that limit the permissible combinations of values for these variables. The primary goal in a CSP is to find a solution that satisfies all the constraints simultaneously, adhering to the specified criteria without violating any constraints. The challenge in CSPs lies in efficiently exploring the solution space to identify valid assignments that meet all constraints, often employing algorithms like <code>backtracking</code> or <code>constraint propagation</code> to navigate the possibilities and arrive at a satisfactory solution.</p>
+<h2 id="the-game">The Game </h2>
+<p><a href="#top">Top</a></p>
+<p>The <a href="https://sudoku.com/">Sudoku</a> puzzle is a popular and captivating example of a CSP. It consists of a 9x9 grid divided into nine 3x3 subgrids. The objective is to fill each cell in the grid with a digit from 1 to 9, ensuring that each row, column, and subgrid contains all digits exactly once. The clues provided at the beginning create constraints, restricting the potential values that can be placed in specific cells, thereby turning the puzzle into a classic CSP.</p>
+<p>This puzzle perfectly encapsulates the fundamental components of a CSP: <code>variables</code> (the cells), <code>domains</code> (allowable digits), and <code>constraints</code> (the rules governing placement). Solving Sudoku involves deducing the valid assignment of digits that meets all constraints, typically leveraging CSP-solving techniques like <code>backtracking</code> or <code>constraint propagation</code>. The interplay of logical deduction and constraint satisfaction in Sudoku showcases the application of CSPs in solving complex, structured problems across various domains, offering a tangible and enjoyable demonstration of this computational concept.</p>
+<h1 id="the-repository">The Repository </h1>
+<p><a href="#top">Top</a></p>
+<p>This repository contains the materials for COMP712 - CSP workshop.</p>
+<p><a href="https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-CSP.git">https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-CSP.git</a></p>
+<p>There are 2 demos available:</p>
+<p>This repository contains the materials for COMP712 - CSP workshop.</p>
+<ul>
+<li><code>demo_sudoku_bt.pyc</code>: demo of solving Sudoku using Backtracking algorithm (BT)</li>
+<li><code>demo_sudoku_cp.pyc</code>: demo of solving Sudoku using Constraint Propagation (CP)</li>
+<li>2 predefined puzzles</li>
+<li>Press <kbd>H</kbd> for help</li>
+</ul>
+<h2 id="code-structure">Code Structure </h2>
+<p><a href="#top">Top</a></p>
+<ul>
+<li><code>bt_sudoku.py</code>: the template for the backtracking algorithm that you are going to implement.</li>
+<li><code>cp_sudoku.py</code>: the template for constraint propagation that you are going to implement.</li>
+</ul>
+<p>The <code>gui_lib</code> contains helper functions for visualisation. Some of them are:</p>
+<ul>
+<li><code>fillCell(v: Cell, s: int, force_update=False)</code>: fills a specific cell <code>v</code> using the number <code>s</code>, update the board if <code>force_update</code> is <code>True</code></li>
+<li><code>clearCell(v: Cell, force_update=False)</code>: clears a cell <code>v</code> and update the board if <code>force_update</code> is <code>True</code></li>
+<li><code>animateCell(c: Cell, colour='white')</code>: changes the specified cell <strong><code>c</code></strong>’s background colour with <code>colour</code>, then resets it to the default colour</li>
+<li><code>getRow(row)</code>: returns a list of the numbers in the <code>row</code></li>
+<li><code>getCol(col)</code>: returns a list of the numbers in the <code>col</code></li>
+<li><code>getSubGrid(row, col)</code>: returns a list of the numbers in the sub-grid which the cell <code>(row, col)</code> belongs to, it will automatically calculate the grid position</li>
+<li><code>getDomain(row, col)</code>: combines <code>getRow()</code>, <code>getCol()</code>, and <code>getSubGrid()</code> that returns the possible options to fill for the specified cell <code>(row, col)</code></li>
+<li><code>isValid(row, col, num)</code>: returns <code>True</code> if the number <code>num</code> can be filled at cell <code>(row, col)</code></li>
+</ul>
+<h1 id="your-task">Your Task </h1>
+<p><a href="#top">Top</a></p>
+<h2 id="task-1-implement-backtracking-algorithm-bt">Task 1: implement <code>backtracking</code> algorithm (BT) </h2>
+<p><a href="#top">Top</a></p>
+<ul>
+<li>
+<p>implement the Backtracking (BT) algorithm in <code>bt_sudoku.py</code></p>
+</li>
+<li>
+<p>you don’t need to implement any GUI functionalities as long as <strong>the <code>.solve()</code> function was implemented properly</strong>. It should return either <code>True</code> or <code>False</code> to indicate the solvability of the Sudoku puzzle.</p>
+</li>
+<li>
+<p>play the <code>demo_sudoku_bt.pyc</code> after pressing <kbd>F</kbd> to turn on the constraint forward checking during BT search. Compare the searching behaviour to the routine without this functionality enabled.</p>
+</li>
+</ul>
+<h2 id="task-2-implement-constraint-propagation-cp">Task 2: implement <code>constraint propagation</code> (CP) </h2>
+<p><a href="#top">Top</a></p>
+<ul>
+<li>
+<p>implement Constraint Propagation (CP) in <code>cp_sudoku.py</code></p>
+</li>
+<li>
+<p>you don’t need to implement any GUI functionalities as long as <strong>the <code>.solve()</code> function was implemented properly</strong>. It should return either <code>True</code> or <code>False</code> to indicate the solvability of the Sudoku puzzle.</p>
+</li>
+<li>
+<p>play the <code>demo_sudoku.pyc</code> after pressing <kbd>B</kbd> to turn on the backtracking if CP is stuck. Compare the behaviour to the one without this functionality turned on.</p>
+</li>
+</ul>
+<h2 id="task-3-combine-bt-and-cp">Task 3: combine <code>BT</code> and <code>CP</code> </h2>
+<p><a href="#top">Top</a></p>
+<ul>
+<li>
+<p>introduce <code>CP</code> into your <code>BT</code> implementation – you don’t need to do anything more other than checking the <code>self.forward</code> status between <code>True</code> and <code>False</code></p>
+<ul>
+<li>By introducing <code>CP</code> into <code>BT</code>, it significantly reduces the search space during <code>BT</code> process</li>
+</ul>
+</li>
+<li>
+<p>introduce <code>BT</code> into your <code>CP</code> implementation – you don’t need to do anything more other than checking the <code>self.backtrack</code> status between <code>True</code> and <code>False</code></p>
+<ul>
+<li>continue searching with <code>BT</code> if <code>CP</code> cannot proceed further to find a solution</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note</p>
+<ol>
+<li>All the Sudoku puzzles generated by pressing the keyboard shortcuts are solvable.</li>
+<li>Those loaded externally might not be solvable.</li>
+</ol>
+</blockquote>
+<p><strong>Your Code:</strong></p>
+<p>You can submit a pull request to the original repository to showcase your work if you like.</p>
 <h1 id="further-reading">Further Reading </h1>
 <ol>
 <li><a href="https://www.learn-sudoku.com/">Sudoku Online</a></li>

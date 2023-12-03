@@ -118,7 +118,7 @@ class Canvas:
         self.grids = [[0]*9 for _ in range(9)]
         # the original board - the puzzle
         self.board = [[0]*9 for _ in range(9)]
-        # domain for csp
+        # domain for cp
         self.domains = {}
         # animation
         self.animate = animate
@@ -126,7 +126,7 @@ class Canvas:
         self.ready = False
         # forward checking for backtracking
         self.forward = True
-        # enable backtracking for CSP
+        # enable backtracking for CP
         self.backtrack = True
         # verbose animation
         self.verbose = False
@@ -207,8 +207,8 @@ class Canvas:
         s += '=[ Operation ]==============================\n'
         s += 'Solve puzzle - SPACE or ENTER\n'
         s += 'Reset puzzle - DELETE, ESC, or right-click\n'
-        s += 'Enable CSP Forward checking (for Backtracking) - F\n'
-        s += 'Enable backtracking (for CSP) - B\n'
+        s += 'Enable CP Forward checking (for Backtracking) - F\n'
+        s += 'Enable backtracking (for CP) - B\n'
         s += 'Switch animation - A\n'
         s += 'Very detailed animation - V\n'
         # E, M, D, X, T
@@ -431,7 +431,7 @@ class Canvas:
                 self.update()
 
     def fillDomain(self, v: Cell, s: list, force_update=False):
-        ''' write domain numbers to the cell for csp '''
+        ''' write domain numbers to the cell for cp '''
         if 0 <= v.row < self.y_grid_num and 0 <= v.col < self.x_grid_num and self.grids[v.row][v.col] == 0 and len(s) > 0:
             g = self.getSubGridCell(v.row, v.col)
             colour = FillColour.EMPTY
@@ -661,7 +661,7 @@ class Canvas:
         self.registerKey(self.processMaster, 't')
         # forward checking for backtracking
         self.registerKey(self.processForward, 'f')
-        # backtracking search for CSP
+        # backtracking search for CP
         self.registerKey(self.processBacktracking, 'b')
         # help
         self.registerKey(self.processVerbose, 'v')
