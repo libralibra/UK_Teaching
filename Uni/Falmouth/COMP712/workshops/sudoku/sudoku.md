@@ -123,4 +123,5 @@ You can submit a pull request to the original repository to showcase your work i
 1. [Sudoku Online](https://www.learn-sudoku.com/)
 2. [Sudoku Difficulty Analysis](https://www.sudokuoftheday.com/difficulty)
 3. [Mathematical Analysis of Sudoku](https://ar5iv.labs.arxiv.org/html/1403.7373)
+4. [Sudoku as a CSP](https://www.codeproject.com/articles/34403/sudoku-as-a-csp)
     

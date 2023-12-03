@@ -3,8 +3,8 @@ Constraint Satisfaction Problem (CSP) Workshop
 
 This repository contains the materials for COMP712 - CSP workshop.
 
-- `demo_bt_sudoku.pyc`: demo of solving Sudoku using Backtracking algorithm (BT)
-- `demo_cp_sudoku.pyc`: demo of solving Sudoku using Constraint Propagation (CP)
+- `demo_sudoku_bt.pyc`: demo of solving Sudoku using Backtracking algorithm (BT)
+- `demo_sudoku_cp.pyc`: demo of solving Sudoku using Constraint Propagation (CP)
 - 2 predefined puzzles
 - Press <kbd>H</kbd> for help
 
