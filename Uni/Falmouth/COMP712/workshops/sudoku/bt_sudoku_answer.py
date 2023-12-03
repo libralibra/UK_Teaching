@@ -38,29 +38,25 @@ class BackTracking(Canvas):
                 f'({row}, {col}) has been filled with {self.grids[row][col]}')
             return self.solve(row, col + 1)
 
-        if self.animate:
+        if self.verbose:
             self.flashRelatedCell(Cell(row, col))
-        # else:
-        #     self.animateCell(Cell(row, col), FillColour.GUESS)
+        elif self.animate:
+            self.animateCell(Cell(row, col), FillColour.GUESS)
 
         # all domains
         domains = list(range(1, 10))
         if self.forward:
-            rows = self.getRow(row)
-            cols = self.getCol(col)
-            grid = self.getSubGrid(row, col)
-            nums = rows+cols+grid
-            domains = [x for x in domains if x not in nums]
+            domains = self.getDomain(row, col)
 
         log.log(f'({row},{col}) - domain: {domains}')
 
         # try
         for n in domains:
-            # log.log(f' \tTrying ({n}) for ({row}, {col})')
+            log.log(f' \tTrying ({n}) for ({row}, {col})')
 
             # check each one of them
             if self.isValid(row, col, n):
-                # log.log(f' \t\t({n}) can be filled at ({row}, {col})')
+                log.log(f' \t\t({n}) can be filled at ({row}, {col})')
 
                 # make a guess ...
                 self.fillCell(Cell(row, col), n, True)
@@ -70,8 +66,8 @@ class BackTracking(Canvas):
                     return True
 
             # the guess is wrong, clear the cell and try next number
+            log.log(f' \t\t --> clear ({n}) at ({row}, {col})')
             self.clearCell(Cell(row, col), True)
-            # log.log(f' -- clearing {n} for  ({row}, {col})')
 
         return False
 

@@ -118,6 +118,8 @@ class Canvas:
         self.grids = [[0]*9 for _ in range(9)]
         # the original board - the puzzle
         self.board = [[0]*9 for _ in range(9)]
+        # domain for csp
+        self.domains = {}
         # animation
         self.animate = animate
         # has a puzzle
@@ -126,6 +128,8 @@ class Canvas:
         self.forward = True
         # enable backtracking for CSP
         self.backtrack = True
+        # verbose animation
+        self.verbose = False
         self.registerAll()
         self.init()
         self.showHelp()
@@ -153,6 +157,7 @@ class Canvas:
         self.screen.clear()
         self.init()
         self.grids = [[col for col in row] for row in self.board]
+        self.domains = {}
         self.drawGrids()
         self.drawGridLines()
         self.update()
@@ -202,9 +207,10 @@ class Canvas:
         s += '=[ Operation ]==============================\n'
         s += 'Solve puzzle - SPACE or ENTER\n'
         s += 'Reset puzzle - DELETE, ESC, or right-click\n'
-        s += 'Forward checking (for backtracking) - F\n'
+        s += 'Enable CSP Forward checking (for Backtracking) - F\n'
         s += 'Enable backtracking (for CSP) - B\n'
         s += 'Switch animation - A\n'
+        s += 'Very detailed animation - V\n'
         # E, M, D, X, T
         s += '-[ Levels ]----------------------------------\n'
         s += 'New EASY game - E\n'
@@ -274,6 +280,7 @@ class Canvas:
         self.defineLevel(v)
         # copy to grids
         self.grids = [[x for x in row] for row in self.board]
+        self.domains = {}
         # update ui
         self.drawGrids()
         self.drawGridLines()
@@ -392,12 +399,14 @@ class Canvas:
         ''' write several numbers to the same cell'''
         if len(s) == 0:
             return
+        elif len(s) == 1:
+            self.fillCell(v, s[0], force_update)
+            return
         pt = self.getGridCentre(v.row, v.col)
-        colour = DrawColour.FILL
         for n in range(1, 10):
             if n in s:
                 self.pen.writeText(
-                    pt-Point(0, (n-1)//3*25)+Point(((n-1) % 3-1)*20, 12), str(n), colour, True, 15)
+                    pt-Point(0, (n-1)//3*25)+Point(((n-1) % 3-1)*20, 12), str(n), DrawColour.FILL, True, 15)
         if force_update:
             self.update()
 
@@ -423,7 +432,7 @@ class Canvas:
 
     def fillDomain(self, v: Cell, s: list, force_update=False):
         ''' write domain numbers to the cell for csp '''
-        if 0 <= v.row < self.y_grid_num and 0 <= v.col < self.x_grid_num and len(s) > 0:
+        if 0 <= v.row < self.y_grid_num and 0 <= v.col < self.x_grid_num and self.grids[v.row][v.col] == 0 and len(s) > 0:
             g = self.getSubGridCell(v.row, v.col)
             colour = FillColour.EMPTY
             if (g.row+g.col) % 2 == 0:
@@ -432,7 +441,12 @@ class Canvas:
             # may need to draw the sub grid
             if v.row in [0, 2, 3, 5, 6, 8] or v.col in [0, 2, 3, 5, 6, 8]:
                 self.drawGridLines()
-            self.writeDomain(v, s, force_update)
+            if len(s) > 1:
+                self.writeDomain(v, s, force_update)
+            else:
+                self.writeCell(v, s[0])
+                if force_update:
+                    self.update()
             # log.log(f'{v} - domain: {s}')
 
     def animateCell(self, c: Cell, colour='white'):
@@ -444,31 +458,102 @@ class Canvas:
     def flashRelatedCell(self, ce: Cell):
         ''' flash the row, column, and sub grid of the cell '''
         row, col = ce.row, ce.col
+        sg = self.getSubGridCell(row, col)
         for c in range(9):
+            if c == col and c in range(sg.col*3, sg.col*3+3):
+                continue
             self.colourCell(Cell(row, c), FillColour.GUESS)
             if self.grids[row][c] > 0:
                 self.writeCell(Cell(row, c), self.grids[row][c])
         for r in range(9):
+            if r == row and r in range(sg.row*3, sg.row*3+3):
+                continue
             self.colourCell(Cell(r, col), FillColour.GUESS)
             if self.grids[r][col] > 0:
                 self.writeCell(Cell(r, col), self.grids[r][col])
-        sg = self.getSubGridCell(row, col)
         for r in range(sg.row*3, sg.row*3+3):
             for c in range(sg.col*3, sg.col*3+3):
+                if r == row and c == col:
+                    continue
                 self.colourCell(Cell(r, c), FillColour.GUESS)
                 if self.grids[r][c] > 0:
                     self.writeCell(Cell(r, c), self.grids[r][c])
         self.colourCell(Cell(row, col), FillColour.CURRENT)
         self.update()
-        # self.drawGrids()
         for c in range(9):
-            self.fillCell(Cell(row, c), self.grids[row][c])
+            if c not in range(sg.col*3, sg.col*3+3):
+                self.fillCell(Cell(row, c), self.grids[row][c])
         for r in range(9):
-            self.fillCell(Cell(r, col), self.grids[r][col])
-        sg = self.getSubGridCell(row, col)
+            if r not in range(sg.row*3, sg.row*3+3):
+                self.fillCell(Cell(r, col), self.grids[r][col])
         for r in range(sg.row*3, sg.row*3+3):
             for c in range(sg.col*3, sg.col*3+3):
                 self.fillCell(Cell(r, c), self.grids[r][c])
+
+    def flashRelatedDomain(self, ce: Cell):
+        row, col = ce.row, ce.col
+        sg = self.getSubGridCell(row, col)
+
+        for c in range(9):
+            # no the the current one and not in it's sub grid
+            if c == col or c in range(sg.col*3, sg.col*3+3):
+                continue
+            self.colourCell(Cell(row, c), FillColour.GUESS)
+            if self.grids[row][c] > 0:
+                self.writeCell(Cell(row, c), self.grids[row][c])
+            else:
+                self.domains[(row, c)] = self.getDomain(row, c)
+                self.writeDomain(Cell(row, c), self.domains[(row, c)])
+
+        for r in range(9):
+            if r == row or r in range(sg.row*3, sg.row*3+3):
+                continue
+            self.colourCell(Cell(r, col), FillColour.GUESS)
+            if self.grids[r][col] > 0:
+                self.writeCell(Cell(r, col), self.grids[r][col])
+            else:
+                self.domains[(r, col)] = self.getDomain(r, col)
+                self.writeDomain(Cell(r, col), self.domains[(r, col)])
+
+        for r in range(sg.row*3, sg.row*3+3):
+            for c in range(sg.col*3, sg.col*3+3):
+                if r == row and c == col:
+                    continue
+                self.colourCell(Cell(r, c), FillColour.GUESS)
+                if self.grids[r][c] > 0:
+                    self.writeCell(Cell(r, c), self.grids[r][c])
+                else:
+                    self.domains[(r, c)] = self.getDomain(r, c)
+                    self.writeDomain(Cell(r, c), self.domains[(r, c)])
+
+        self.colourCell(Cell(row, col), FillColour.CURRENT)
+        self.writeCell(Cell(row, col), self.grids[row][col])
+        self.update()
+
+        for c in range(9):
+            if c in range(sg.col*3, sg.col*3+3):
+                continue
+            at = Cell(row, c)
+            if self.grids[row][c] > 0:
+                self.fillCell(at, self.grids[row][c])
+            else:
+                self.fillDomain(at, self.getDomain(row, c))
+        for r in range(9):
+            if r in range(sg.row*3, sg.row*3+3):
+                continue
+            at = Cell(r, col)
+            if self.grids[r][col] > 0:
+                self.fillCell(at, self.grids[r][col])
+            else:
+                self.fillDomain(at, self.getDomain(r, col))
+        for r in range(sg.row*3, sg.row*3+3):
+            for c in range(sg.col*3, sg.col*3+3):
+                at = Cell(r, c)
+                if self.grids[r][c] > 0:
+                    self.fillCell(at, self.grids[r][c])
+                else:
+                    self.fillDomain(Cell(r, c), self.getDomain(r, c))
+        self.update()
 
     def getSubGridCell(self, row, col) -> Cell:
         ''' work out the sub grid row and column '''
@@ -500,19 +585,56 @@ class Canvas:
             return [x for x in [self.grids[r][c] for r in range(sg.row*3, sg.row*3+3) for c in range(sg.col*3, sg.col*3+3)] if x > 0]
         return []
 
+    def getDomain(self, row, col) -> list:
+        ''' get possible domain of a cell that combines getRow, getCol, and getSubGrid '''
+        rows = self.getRow(row)
+        cols = self.getCol(col)
+        subs = self.getSubGrid(row, col)
+        nums = rows+cols+subs
+        return [x for x in range(1, 10) if x not in nums]
+
     def isValid(self, row, col, num) -> bool:
         ''' check if the value can be filled in that cell '''
         if self.board[row][col] > 0 and num == self.board[row][col]:
             return True
         rows = self.getRow(row)
         if num in rows:
+            log.log(f'{num} find in row')
             return False
         cols = self.getCol(col)
         if num in cols:
+            log.log(f'{num} find in col')
             return False
         sc = self.getSubGrid(row, col)
         if num in sc:
+            log.log(f'{num} find in sub grid')
             return False
+        # 2 cells have exactly same single domain
+        d = self.getDomain(row, col)
+        if len(d) == 1:
+            for c in range(9):
+                if c != col and self.grids[row][c] == 0:
+                    c_domain = self.getDomain(row, c)
+                    if d == c_domain:
+                        log.log(
+                            f'row: ({row},{c}) has the same domain {d[0]} as ({row},{col})')
+                        return False
+            for r in range(9):
+                if r != row and self.grids[r][col] == 0:
+                    c_domain = self.getDomain(r, col)
+                    if d == c_domain:
+                        log.log(
+                            f'col: ({r},{col}) has the same domain {d[0]} as ({row},{col})')
+                        return False
+            sg = self.getSubGridCell(row, col)
+            for r in range(sg.row*3, sg.row*3+3):
+                for c in range(sg.col*3, sg.col*3+3):
+                    if r != row and c != col and self.grids[r][c] == 0:
+                        c_domain = self.getDomain(r, c)
+                        if d == c_domain:
+                            log.log(
+                                f'sub-grid: ({r},{c}) has the same domain {d[0]} as ({row},{col})')
+                            return False
         return True
 
     def registerAll(self):
@@ -542,10 +664,15 @@ class Canvas:
         # backtracking search for CSP
         self.registerKey(self.processBacktracking, 'b')
         # help
+        self.registerKey(self.processVerbose, 'v')
         self.registerKey(self.processAnimate, 'a')
         self.registerKey(self.showHelp, 'h')
 
         self.screen.listen()
+
+    def processVerbose(self):
+        self.verbose = not self.verbose
+        msgbox(f'Detailed animation is {self.verbose and "ON" or "OFF"}')
 
     def processBacktracking(self):
         self.backtrack = not self.backtrack
@@ -592,7 +719,7 @@ class Canvas:
     def processSaveKey(self):
         ''' save the current map to disk '''
         s = '\n'.join([','.join([str(col) for col in row])
-                      for row in self.grids])
+                      for row in self.board])
         f = filedialog.asksaveasfile(mode='w', defaultextension=".txt")
         if f is None:
             return
