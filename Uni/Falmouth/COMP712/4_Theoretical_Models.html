@@ -623,7 +623,8 @@
                         <pre><code class="r-stretch vbnet">for each possible nextState do
     v = MINMAX(nextState, 3-currentPlayer)
     bestValue = MAX(bestValue, v)
-                        </code></pre>
+    if bestValue == MAX_Value(or MIN_Value)
+        break</code></pre>
                         <ul>
                             <li>State values are always between <span class="pink">MIN_Value</span> and <span class="lime">MAX_Value</span> (designed value function)</li>
                             <li>So if we have <code class="lime">bestValue = MAX_Value</code>, we can stop early when <span class="lime">maximising</span></li>
