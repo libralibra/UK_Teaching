@@ -274,6 +274,19 @@ darkpurple {
 
 /* custom fragment blur */
 
+/* custom fragment delete (strike has been used) */
+.reveal .fragment.delete {
+    text-decoration-line: underline;
+}
+
+.reveal .fragment.delete.visible {
+    text-decoration-line: line-through;
+    text-decoration-color: #ff2c2d;
+    text-decoration-thickness: 20%;
+}
+
+/* custom fragment delete */
+
 /* half out text */
 .reveal .half-out {
     opacity: 0.5;
