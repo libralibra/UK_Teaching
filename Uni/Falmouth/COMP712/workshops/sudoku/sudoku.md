@@ -56,7 +56,7 @@ There are 2 demos available. For demonstration purpose the GUI was refreshed mor
 
 - `demo_sudoku_bt.pyc`: demo of solving Sudoku using Backtracking algorithm (BT)
 - `demo_sudoku_cp.pyc`: demo of solving Sudoku using Constraint Propagation (CP)
-- 2 predefined puzzles
+- several predefined puzzles
 - Press <kbd>H</kbd> for help
 
 ## Code Structure

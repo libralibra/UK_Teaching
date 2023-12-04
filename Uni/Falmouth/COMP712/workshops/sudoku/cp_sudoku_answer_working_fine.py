@@ -5,6 +5,7 @@
     2023-2024
 '''
 
+from numpy import true_divide
 from gui_lib import *
 
 
@@ -25,7 +26,7 @@ class CP(Canvas):
         ''' propagate the new filled number '''
         log.log(f'propagate ({row},{col}) - {self.grids[row][col]}')
         for c in range(9):
-            if c != col and (row, c) in self.domains and self.grids[row][col] in self.domains[(row, c)]:
+            if c != col and (row, c) in self.domains:
                 self.domains[(row, c)] = [
                     x for x in self.domains[(row, c)] if x != self.grids[row][col]]
 
@@ -43,7 +44,7 @@ class CP(Canvas):
                     self.fillDomain(
                         Cell(row, c), self.domains[(row, c)], True)
         for r in range(9):
-            if r != row and (r, col) in self.domains and self.grids[row][col] in self.domains[(r, col)]:
+            if r != row and (r, col) in self.domains:
                 self.domains[(r, col)] = [
                     x for x in self.domains[(r, col)] if x != self.grids[row][col]]
 
@@ -63,7 +64,7 @@ class CP(Canvas):
         sg = self.getSubGridCell(row, col)
         for r in range(sg.row*3, sg.row*3+3):
             for c in range(sg.col*3, sg.col*3+3):
-                if r != row and c != col and (r, c) in self.domains and self.grids[row][col] in self.domains[(r, c)]:
+                if r != row and c != col and (r, c) in self.domains:
                     self.domains[(r, c)] = [
                         x for x in self.domains[(r, c)] if x != self.grids[row][col]]
 
@@ -105,7 +106,7 @@ class CP(Canvas):
             return self.bt(row, col + 1)
 
         # do not flash the related cells
-        if self.verbose or self.animate:
+        if self.verbose:
             self.animateCell(Cell(row, col), FillColour.GUESS)
 
         # all domains
@@ -136,8 +137,9 @@ class CP(Canvas):
 
         return False
 
-    def solve(self) -> bool:
+    def solve2(self) -> bool:
         ''' solving Sudoku using CP '''
+
         # update domains to see if changes
         # scan
         for row in range(9):
@@ -154,7 +156,9 @@ class CP(Canvas):
                     self.clearCell(Cell(row, col), self.animate)
                 # get all domains
                 d = self.getDomain(row, col)
-                if len(d) > 1:
+                if len(d) == 0:
+                    return False
+                elif len(d) > 1:
                     self.fillDomain(Cell(row, col), d, True)
                     self.domains[(row, col)] = d
                 elif len(d) == 1:
@@ -167,9 +171,9 @@ class CP(Canvas):
                     self.domains.pop((row, col), None)
                     # propagate to row, col, and sub grid
                     self.propagete(row, col)
-            if not self.hasEmptyCell():
-                msgbox('Solved!')
-                return True
+        if not self.hasEmptyCell():
+            msgbox('Solved!')
+            return True
 
         # no change with empty cell(s)
         if self.backtrack:
@@ -178,100 +182,12 @@ class CP(Canvas):
 
         return False
 
-    def propagete2(self, row, col, checked=dict()):
-        ''' propagate the new filled number '''
-        log.log(f'propagate ({row},{col}) - {self.grids[row][col]}')
-        for c in range(9):
-            if c != col and self.grids[row][c] == 0 and (row, c) not in checked:
-                checked[(row, c)] = 1
-                if (row, c) in self.domains:
-                    self.domains[(row, c)] = [
-                        x for x in self.domains[(row, c)] if x != self.grids[row][col]]
-                else:
-                    self.domains[(row, c)] = [
-                        x for x in self.getDomain(row, c) if x != self.grids[row][col]]
-
-                if self.verbose:
-                    self.flashRelatedDomain(Cell(row, c))
-                elif self.animate:
-                    self.animateCell(Cell(row, c), FillColour.GUESS)
-
-                if len(self.domains[(row, c)]) == 1:
-                    self.grids[row][c] = self.domains.pop((row, c))[0]
-                    self.fillCell(
-                        Cell(row, c), self.grids[row][c], True)
-                    self.propagete2(row, c, checked)
-                else:
-                    self.fillDomain(
-                        Cell(row, c), self.domains[(row, c)], True)
-        for r in range(9):
-            if r != row and self.grids[r][col] == 0 and (r, col) not in checked:
-                checked[(r, col)] = 1
-                if (r, col) in self.domains:
-                    self.domains[(r, col)] = [
-                        x for x in self.domains[(r, col)] if x != self.grids[row][col]]
-                else:
-                    self.domains[(r, col)] = [
-                        x for x in self.getDomain(r, col) if x != self.grids[row][col]]
-
-                if self.verbose:
-                    self.flashRelatedDomain(Cell(r, col))
-                elif self.animate:
-                    self.animateCell(Cell(r, col), FillColour.GUESS)
-
-                if len(self.domains[(r, col)]) == 1:
-                    self.grids[r][col] = self.domains.pop((r, col))[0]
-                    self.fillCell(
-                        Cell(r, col), self.grids[r][col], True)
-                    self.propagete2(r, col, checked)
-                else:
-                    self.fillDomain(
-                        Cell(r, col), self.domains[(r, col)], True)
-
-        sg = self.getSubGridCell(row, col)
-        for r in range(sg.row*3, sg.row*3+3):
-            for c in range(sg.col*3, sg.col*3+3):
-                if r != row and c != col and self.grids[r][c] == 0 and (r, c) not in checked:
-                    checked[(r, c)] = 1
-                    if (r, c) in self.domains:
-                        self.domains[(r, c)] = [
-                            x for x in self.domains[(r, c)] if x != self.grids[row][col]]
-                    else:
-                        self.domains[(r, c)] = [
-                            x for x in self.getDomain(r, c) if x != self.grids[row][col]]
-
-                    if self.verbose:
-                        self.flashRelatedDomain(Cell(r, c))
-                    elif self.animate:
-                        self.animateCell(Cell(r, c), FillColour.GUESS)
-
-                    if len(self.domains[(r, c)]) == 1:
-                        self.grids[r][c] = self.domains.pop((r, c))[0]
-                        self.fillCell(
-                            Cell(r, c), self.grids[r][c], True)
-                        self.propagete2(r, c, checked)
-                    else:
-                        self.fillDomain(
-                            Cell(r, c), self.domains[(r, c)], True)
-
-    def solve3(self):
+    def solve(self):
         ''' solving Sudoku using CP '''
-        for row in range(9):
-            for col in range(9):
-                if self.grids[row][col] > 0:
-                    self.propagete2(row, col, {(row, col): 1})
-                    if not self.hasEmptyCell():
-                        msgbox('Solved!')
-                        return True
-        if self.hasEmptyCell():
-            if self.backtrack:
-                log.log('CSP cannot solve it, try backtrack')
-                return self.bt(0, 0)
-        return False
 
 
 if __name__ == '__main__':
-    animate = True
+    animate = False
     backtrack = True
     cp = CP("COMP712/Sudoku CP Demo - Falmouth University 2023-2024",
             630, 630, 'white', animate, backtrack)

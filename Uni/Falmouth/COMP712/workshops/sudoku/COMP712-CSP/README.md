@@ -5,7 +5,7 @@ This repository contains the materials for COMP712 - CSP workshop.
 
 - `demo_sudoku_bt.pyc`: demo of solving Sudoku using Backtracking algorithm (BT)
 - `demo_sudoku_cp.pyc`: demo of solving Sudoku using Constraint Propagation (CP)
-- 2 predefined puzzles
+- several predefined puzzles
 - Press <kbd>H</kbd> for help
 
 The `gui_lib` contains helper functions for visualisation. Some of them are:
