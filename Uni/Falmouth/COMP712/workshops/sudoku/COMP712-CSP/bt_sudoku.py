@@ -24,7 +24,7 @@ class BackTracking(Canvas):
 
 
 if __name__ == '__main__':
-    animate = False
+    animate = True
     forward = True
     bt = BackTracking("COMP712/Sudoku Backtracking Demo - Falmouth University 2023-2024",
                       630, 630, 'white', animate, forward)

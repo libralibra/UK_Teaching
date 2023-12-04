@@ -23,7 +23,7 @@ class CP(Canvas):
 
 
 if __name__ == '__main__':
-    animate = False
+    animate = True
     backtrack = True
     cp = CP("COMP712/Sudoku CP Demo - Falmouth University 2023-2024",
             630, 630, 'white', animate, backtrack)

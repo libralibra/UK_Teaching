@@ -399,7 +399,7 @@ darkpurple {
 /* table cell style */
 .reveal .gray-bg,
 .reveal .grey-bg {
-    background-color: rgb(165, 165, 165);
+    background-color: rgb(75, 75, 75);
 }
 
 .reveal .red-bg {
@@ -475,8 +475,9 @@ darkpurple {
     text-align: right !important;
 }
 
-.reveal table:not(.hljs-ln) td:hover {
-    background-color: #3c3636;
+.reveal table:not(.hljs-ln) td:hover,
+.reveal table:not(.hljs-ln) th:hover {
+    background-color: #3d3030;
 }
 
 /* .reveal td:not(.hljs-ln-line .hljs-ln-code),
@@ -507,6 +508,11 @@ bold {
     font-size: 110% !important;
     font-weight: bold !important;
     text-shadow: 2px 2px 2px black !important;
+}
+
+.mediumtext,
+mediumtext {
+    font-size: 1.25em !important;
 }
 
 .bigtext,
