@@ -127,22 +127,22 @@
                     </section>
 
                     <section id="probability_logic_multiplication_rule">
-                        <h1>Probability "Logic"</h1>
+                        <h1>Probability "Logic": <code>AND</code></h1>
                         <div class="row">
                             <div class="col-30"><img src="img/multiplication_rule.jpg" alt="Multiplication Theorem of Probabilities">
                                 <p class="hidden">source: https://media.geeksforgeeks.org/wp-content/uploads/20201201222946/multiplicationtheoremgfg2.jpg</p>
-                                <p class="green-bg smalltext">In sample space $S$ with $n$ events, let $m1$, $m2$, and $m$ be the number of elementary events favourable to $A$, $B$, and $A\cap B$ respectively.</p>
+                                <p class="green-bg smalltext"><span class="black no-shadow">In sample space $S$ with $n$ events, let $m1$, $m2$, and $m$ be the number of elementary events favourable to $A$, $B$, and $A\cap B$ respectively.</span></p>
                             </div>
                             <div class="col-70 smalltext">
                                 <ul>
                                     <li class="fragment smalltext">$P(A$ <span class="lightgreen">AND</span> $B)=P(A\>$<span class="lightgreen">$\cap$</span>$\> B) = P(A) \times P(B|A) = P(B) \times P(A|B)$
                                         <dd>- $P(B|A)$ means "<span class="italic">the probability of $B$, if $A$ has already happened"</span></dd>
                                     </li>
-                                    <li class="fragment orange-bg smalltext"> Proof: <br>
-                                        $\because P(A) = \frac{m_1}{n}, P(B)=\frac{m_2}{n}, and P(A\cap B)=\frac{m}{n}$<br>
-                                        $\quad P(B|A) = \frac{m}{m_1} and P(A|B) = \frac{m}{m_2}$<br>
-                                        $\therefore P(A\cap B) = \frac{m}{n} = \frac{m_1}{n} \times \frac{m}{m_1} = P(A)\times P(B|A)$
-                                        $\qquad P(A\cap B) = \frac{m}{n} = \frac{m_2}{n} \times \frac{m}{m_2} = P(B)\times P(A|B)$
+                                    <li class="fragment orange-bg smalltext"><span class="black no-shadow"> Proof: <br>
+                                            $\because P(A) = \frac{m_1}{n}, P(B)=\frac{m_2}{n}, and \space P(A\cap B)=\frac{m}{n}$<br>
+                                            $\quad P(B|A) = \frac{m}{m_1} \space and \space P(A|B) = \frac{m}{m_2}$<br>
+                                            $\therefore P(A\cap B) = \frac{m}{n} = \frac{m_1}{n} \times \frac{m}{m_1} = P(A)\times P(B|A)$<br>
+                                            $\quad P(A\cap B) = \frac{m}{n} = \frac{m_2}{n} \times \frac{m}{m_2} = P(B)\times P(A|B)$</span>
                                     </li>
                                     <li class="fragment">E.g. drawing 2 black cards from a standard deck of $52$ without replacement <span class="fragment">$\to \frac{26}{52}\times \frac{25}{51} = \frac{650}{2652} \approx 24.5\%$</span></li>
                                     <li class="fragment">If $A$ and $B$ are independent events, <span class="smalltext">$$P(A|B) = P(B|A) = 1 \implies P(A\cap B) = P(A)\times P(B)$$</span></li>
@@ -153,16 +153,16 @@
                     </section>
 
                     <section id="probability_logic_additon_rule">
-                        <h1>Probability "Logic"</h1>
+                        <h1>Probability "Logic": <code>OR</code> and <code>NOT</code></h1>
                         <div class="row">
                             <div class="col-70 smalltext">
                                 <ul>
                                     <li class="fragment smalltext">$P(A$ <span class="lightpurple">OR</span> $B)= P(A\>$<span class="lightpurple">$\cup$</span>$\> B) = P(A)+P(B)-P(A\>$<span class="lightgreen">$\cap$</span>$\> B)$</li>
-                                    <li class="fragment orange-bg smalltext">Proof: $P(A\cup B) \\
-                                        = P[(only A)\cup (A\cap B) \cup (only B)] \\
-                                        = P(only A) + P(A\cap B) + P(only B) \\
-                                        = [P(A)-P(A\cap B)] + P(A\cap B) + [P(B)-P(A\cap B)] \\
-                                        = P(A) + P(B) - P(A\cap B)$
+                                    <li class="fragment orange-bg smalltext"><span class="black no-shadow"> Proof: $P(A\cup B) \\
+                                            \enspace\quad = P[(only A)\cup (A\cap B) \cup (only B)] \\
+                                            \enspace\quad = P(only A) + P(A\cap B) + P(only B) \\
+                                            \enspace\quad = [P(A)-P(A\cap B)] + P(A\cap B) + [P(B)-P(A\cap B)] \\
+                                            \enspace\quad = P(A) + P(B) - P(A\cap B)$</span>
                                     </li>
                                     <li class="fragment smalltext">E.g. two dice are rolled together. Find the probability of <span class="blue-bg">getting a doublet (event A)</span> or <span class="pink-bg">sum of faces as 4 (event B)</span>.
                                         <dd class="fragment">In total, there are $6\times 6=36$ outcomes. <br>
@@ -178,7 +178,7 @@
                             <div class="col-30">
                                 <img class="img-height-250" src="img/addition_rule.png" alt="Addition Theorem of Probabilities">
                                 <p class="hidden">source: https://img.brainkart.com/imagebk40/uHuOMj4.jpg</p>
-                                <p class="green-bg smalltext">In sample space $S$ shown on the above Venn diagram, we have "$only A$", "$A\cap B$", and "$only B$" are mutually exclusive and their union is $A\cup B$.</p>
+                                <p class="green-bg smalltext"><span class="black no-shadow">In sample space $S$ shown on the above Venn diagram, we have "$only A$", "$A\cap B$", and "$only B$" are mutually exclusive and their union is $A\cup B$.</span></p>
                             </div>
                         </div>
                     </section>
