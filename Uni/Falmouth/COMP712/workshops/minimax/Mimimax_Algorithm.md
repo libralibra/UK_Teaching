@@ -50,10 +50,10 @@ As shown in the picture above, in this partial representation of the Tic-Tac-Toe
 
 **Observations**:
 - First Layer:
-    - Only 2 nodes are illustrated here, but theoretically, there should be 9 nodes representing all possible moves for the first player.
+    - Only 2 nodes are illustrated here, but theoretically, there should be 9 nodes representing all possible moves from the root to reach a state in the first player.
 - Subsequent Layers:
-    - Each node in the first layer should have 8 child nodes in the second layer, representing the possible moves at the second player.
-    - Following this pattern, the third layer should have 7 child nodes for each node in the third layer, and so on.
+    - Each node in the first layer should have 8 child nodes in the second layer, representing the possible moves from the first player.
+    - Following this pattern, the third layer should have 7 child nodes for each node in the second layer, and 6 child nodes for each node in the third layer, so on.
 - Total Nodes:
     - The total number of nodes in the tree can be calculated as `9*8*7*...*1 + 1 = 362,881`.
     - There might be duplicated nodes due to identical board configurations, but this does not alter the strategic analysis in the next section.

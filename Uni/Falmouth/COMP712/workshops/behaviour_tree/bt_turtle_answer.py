@@ -214,9 +214,8 @@ def change_speed():
 
 
 def main_loop():
-    # draw one line with random
     draw_line = SelectorNode("Move, Turn, and Random Fail Sequence", [
-        SequenceNode("Draw Line and Turn Sequence", [
+        SequenceNode("Draw Line and Turn Left Sequence", [
             ActionNode("Draw Line Action", move_forward),
             ActionNode("Turn Left Action", turn_left)
         ]),
@@ -232,22 +231,20 @@ def main_loop():
     ])
 
     draw_square = RepeaterNode("Draw Square Repeater", repeat_num, draw_line)
-
     colour_act = ActionNode("Change Colour", get_new_colour)
-
     new_dir = ActionNode("Change Direction", get_new_dir)
 
     many_square = SequenceNode(
-        "Draw More Square", [colour_act, new_dir, draw_square])
+        "Draw More Squares", [colour_act, new_dir, draw_square])
 
     wait_root = WaitNode(
         f"Wait {running_time} Seconds", running_time, many_square)
 
-    # draw_line.execute()
-    # draw_square.execute()
-
     while wait_root.execute() != NodeStatus.FAILURE:
         pass
+
+    # draw_line.execute()
+    # draw_square.execute()
 
     # no BT version
     # for _ in range(100):
