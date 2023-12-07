@@ -92,352 +92,394 @@
 
                     <section id="traditional_method">
                         <h1>Different Approaches</h1>
-                        <ul>Most of them are rule-based, general techniques
+                        <p class="like-li">Most of them are <span class="blue">rule-based</span>, <span class="green">general techniques</span></p>
+                        <ul>
                             <li>genetic algorithm</li>
                             <li>neural networks</li>
                             <li>search trees</li>
                             <li>really successful between 2007 and 2011</li>
                         </ul>
+                        <p class="like-li fragment">MCTS agent won the game for the first time in 2011 <span class="fragment lightpurple">- what are the challenges?</span></p>
+                        <p class="fragment like-li">- uncertainty, large state space, open-endedness</p>
                     </section>
 
-                    <section id="bt_limitations">
-                        <h1>Traditional BT: Limitations</h1>
-                        <ul>
-                            <li class="fragement"><span class="lightblue">Complexity Management</span>: manage large and deep trees becomes challenging, often lead to spaghetti-like structures, impact readability and maintenance</li>
-                            <li class="fragment"><span class="lightorange">Lack of Sequentiality</span>: may struggle to represent sequential actions or enforce strict ordering, can affect scenarios requiring precise sequential execution</li>
-                            <li class="fragment"><span class="lightpink">Difficulty in Debugging</span>: In complex BTs, diagnosing issues or bugs within the tree structure can be challenging due to the distributed nature of decision-making</li>
-                            <li class="fragment"><span class="lightgreen">Customisation and Adaptability</span>: difficult to customise AI behaviours, involve changing the core logic of the tree</li>
+                    <section id="improvements_recall" data-auto-animate>
+                        <h1 data-id="ht">MCTS Improvements</h1>
+                        <ul data-id="hd">Recall the improvements they've made:
+                            <li>variable-depth tree</li>
+                            <li>simulation strategies for both parties</li>
+                            <li>consider long-term goals in scoring</li>
+                            <li>reuse the tree with a decay factor</li>
                         </ul>
+                        <p class="like-li fragment lightred">Why did they choose these approaches?</p>
                     </section>
 
-                    <section id="traditional_bt">
-                        <h1>The Motivation</h1>
-                        <ul>
-                            <li>Traditional BT invokes tasks solely without explicit parameters. While it works well most of the time, the author would like to enable parameterisation of BT in 2 scenarios. <span class="lightpurple fragment">What are they?</span></li>
-                        </ul>
-                    </section>
-
-                    <section id="traditional_bt_motivation_1">
-                        <h1>The Motivation (1)</h1>
-                        <ul>Communication between nodes and invoke functions
-                            <li>Traditional BT: <span class="fragment">reply on <span class="lightgreen">blackboard</span></span>
-                                <dd class="fragment">- <span class="lightpink">centralised, flat</span> repository that all parties have access to<br>
-                                    - <span class="lightorange">lack of encapsulation</span> and frustrates <span class="lightpurple">subtree reuse</span><br>
-                                    - <span class="lightgreen">difficult to track</span> the data flow
-                                </dd>
+                    <section id="improvements_reason" data-auto-animate>
+                        <h1 data-id="ht">MCTS Improvements - Why?</h1>
+                        <ul data-id="hd">Recall the improvements they've made:
+                            <li>variable-depth tree
+                                <dd class="fragment">- strict <span class="pink">time limit of 40ms</span></dd>
+                            </li>
+                            <li>simulation strategies for both parties
+                                <dd class="fragment">- ghost: <span class="lime">$\epsilon-greedy$</span> strategy<br>
+                                    - Pac-Man: prioritised based on <span class="orange">safety</span> and <span class="cyan">rewards</span></dd>
+                            </li>
+                            <li>consider long-term goals in scoring
+                                <dd class="fragment">- <span class="lightpink">competitions rules:</span> eat ghosts quickly, higher scores, and clear the level</dd>
+                            </li>
+                            <li>reuse the tree with a decay factor
+                                <dd class="fragment">- <span class="blue">increase the number</span> of simulations, enable <span class="lightcyan">long-term planning</span> while <span class="lightred">overcoming bias</span> of history</dd>
                             </li>
                         </ul>
                     </section>
 
-                    <section id="traditional_bt_motivation_1">
-                        <h1>The Motivation (2)</h1>
-                        <ul>External parameterisation, e.g. a subtree where AI agent sleeps for $N$ hours
-                            <li>Traditional BT: <span class="fragment">possible using blackboard</span>
-                                <dd class="fragment">- clumsy and unintuitive<br>
-                                    - no explicit visualisation of causality<br>
-                                    - race conditions can occur in the use of <span class="lightpink">parallel</span> node<br>
-                                    - contradicts the simplicity of BTs
-                                </dd>
-                            </li>
+                    <section id="the_game">
+                        <h1>The Game: Ms Pac-Man</h1>
+                        <ul>
+                            <li>A <span class="lightcyan">variant</span> of the original Pac-Man</li>
+                            <li><span class="lime">Three</span> lives initially, <span class="pink">four</span> different levels</li>
+                            <li>Losing a life? <span class="purple">reset</span> both Pac-Man and Ghosts</li>
+                            <li>Tick every <span class="orange">40 ms</span> without <span class="yellow">skip</span></li>
+                            <li>Ghosts only make moves <span class="lightred">at junctions</span> - possible global reverse (0.0015)</li>
+                            <li>Pac-Man can move <span class="lightblue">forward</span>, <span class="lightpurple">reverse</span>, or technically "<span class="lightgreen">wait</span>"</li>
+                            <li>If Pac-Man eats a pill: <span class="lightorange">extra power, ghosts reversed, ghosts slowed down</span> </li>
+                            <li><span class="lime">Extra life</span> for every <span class="red">10,000</span> scores</li>
                         </ul>
                     </section>
 
-                    <section id="the_solution">
-                        <h1>Their Solution</h1>
-                        <ul>A system that reduces BT's reliance on <span class="lightgreen">blackboard</span> fields, which:
-                            <li class="fragment">was inspired by <span class="lightblue">Parameterised Action Representations (PARs)</span> - <span class="purple">generalised form</span> for any BT</li>
-                            <li class="fragment">exposes the <span class="lightpink">parameters of the function</span> that leaves node invoke</li>
-                            <li class="fragment"><span class="lightorange">parameterises the subtree</span> as a node - parameter <span class="lime">encapsulation</span></li>
-                            <li class="fragment">improves code <span class="lightcyan">flexibility and reusability</span></li>
-                            <li class="fragment">enables <span class="lightred">Smart Events</span> in BT framework</li>
+                    <section id="mcts">
+                        <h1>MCTS</h1>
+                        <ul>Recall the challenges in real-time games like Ms Pac-Man:
+                            <li>uncertainty</li>
+                            <li>large state space</li>
+                            <li>open-endedness</li>
                         </ul>
+                        <ul class="fragment lightpink">Advantages of MCTS:
+                            <li class="fragment">stop at any time</li>
+                            <li class="fragment">built-in randomness</li>
+                            <li class="fragment">no heuristic evaluation is required</li>
+                        </ul>
+                    </section>
+
+                    <section id="mcts">
+                        <h1>MCTS Process</h1>
+                        <img class="r-stretch" src="img/paper_mcts.png" alt="MCTS Steps">
                     </section>
                 </section>
 
-                <section id="chap_paper">
-                    <section id="agent_model">
-                        <h1>The Agent Model</h1>
-                        <ul>
-                            <li><span class="lightgreen">Traits</span>: <span class="fragment">the data it stores</span></li>
-                            <li><span class="lightorange">Capabilities</span>: <span class="fragment">actions it can perform</span></li>
-                            <li class="fragment">In an OO environment, they are <span class="fragment"><span class="lightblue">member variables</span> and <span class="lightpink">member functions</span></span></li>
-                            <li class="fragment">They need to be distinguished from <code class="lightcyan">internal data</code> and <code class="lightorange">helper functions</code>
-                                <dd>- the information that should not be exposed</dd>
-                            </li>
-                        </ul>
+                <section id="chap_implement">
+                    <section id="implementation">
+                        <h1 class="r-frame-text">MCTS for Ms Pac-Man</h1>
                     </section>
 
-                    <section id="traits">
-                        <h1>Traits and Capabilities</h1>
-                        <ul>
-                            <li><span class="lightgreen">Traits</span>: key components of an agent's <span class="lightpurple">state</span>
-                                <dd>- any information necessary for <span class="lightpink">decision-making</span></dd>
-                            </li>
-                            <li class="fragment"><span class="lightorange">Capabilities</span>: all mechanics to perform the atomic tasks
-                                <dd>- capability may act on data: either <span class="lightred">its parameters</span> or <span class="lightblue">stored in or perceived by</span> the agent<br>
-                                    - <code class="lime">yawn</code> capability to <span class="lightcyan">play an animation</span> and <span class="lightpink">play a sound</span></dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="traits_capabilities">
-                        <h1>Traits and Capabilities Representation</h1>
-                        <ul>
-                            <li>Traits and Capabilities have <span class="orange">parallel representations</span> as BT <span class="lime">leaf node</span></li>
-                            <li class="fragment">Traits: <span class="italic pink">assertion</span> leaf nodes
-                                <dd>- compares the given trait's value to an expression (<code class="green">Succeed</code> if <code class="lime">True</code>)<br>
-                                    - assertion nodes take parameters that form the expression</dd>
-                            </li>
-                            <li class="fragment">Capabilities: <span class="italic purple">actions</span> leaf nodes
-                                <dd>- invoke the underlying function and return its status (<code class="green">Succeed</code>, <code class="red">Fail</code>, or <code class="orange">Running</code>)<br>
-                                    - action nodes take parameters that the underlying function requires</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="parameters">
-                        <h1>Parameters</h1>
-                        <ol>Three ways of defining parameters:
-                            <li class="fragment"><span class="green">hard-coded literals</span> embedded in BT</li>
-                            <li class="fragment"><span class="yellow">from the traits</span> of the world or the agent
-                                <dd>- e.g. yawn capability: the time of day in the environment, or the agent's "tiredness" trait</dd>
-                            </li>
-                            <li class="fragment"><span class="pink">PAR argument</span> - detailed in the next slide</li>
-                        </ol>
-                    </section>
-
-                    <section id="par_argument">
-                        <h1>PAR Arguments</h1>
-                        <ul>
-                            <li>They are <span class="green">parameters</span> of specific <span class="orange">subtree</span></li>
-                            <li class="fragment"><span class="blue">Created</span> by tree designer, can be <span class="pink">reused</span> in multiple places by multiple tree nodes</li>
-                            <li class="fragment">Useful idea for BT <span class="lightpurple">Abstraction</span> and <span class="lightorange">Encapsulation</span>
-                                <ul class="fragment">
-                                    <li>BTs use <code class="green">lookup</code> nodes as the root of a subtree</li>
-                                    <li><code class="green">lookup</code> nodes with <span class="yellow">PAR arguments</span> - same as action nodes take parameters (recall <span class="purple">capabilities</span> definition above)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="par_2">
-                        <h1>PAR Arguments (2)</h1>
-                        <ul>
-                            <li>PAR arguments <span class="lightred">propagate down nested layers</span> and <span class="cyan">can change names</span> (if needed)
-                                <dd class="fragment">- subtree's PAR arguments can be altered by top-level PAR arguments<br>
-                                    - in the same way as nested function calls</dd>
-                            </li>
-                            <li class="fragment"><span class="purple">PAR trees</span>: <span class="green">take</span> various parameters and <span class="lightblue">reuse</span> the logic without the need of <span class="pink">blackboard</span></li>
-                            <li class="fragment">Parent-child message passing can be achieved without external data structures</li>
-                            <li class="fragment">Improves <span class="cyan">subtree encapsulation</span> as <span class="lightorange">hierarchy-based abstraction</span> is natural in BT</li>
-                        </ul>
-                    </section>
-
-                    <section id="smart_event">
-                        <h1>Smart Events</h1>
-                        <ul>
-                            <li>Provides an <span class="lime">event-centric</span> behaviour authoring approach to BTs</li>
-                            <li class="fragment">Events are <span class="blue">desired or scheduled</span> <span class="purple">occurrences</span> in the environment</li>
-                            <li class="fragment">Events <span class="lightred">contain all the information</span> that the involved agents require to participate
-                            </li>
-                            <li class="fragment">Can be used to <span class="lime">simultaneously</span> control <span class="orange">multiple</span> agents</li>
-                            <li class="fragment">E.g.: a conversation between 3 or more agents
-                                <dd class="fragment">- <span class="pink">traditional way</span>: design BTs for each agent to act<br>
-                                    - <span class="cyan">smart events</span>: consider the event as a single BT, dictate who to act</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="smart_events_difference">
-                        <h1>Smart Events (2)</h1>
-                        <ul>
-                            <li>Traditional Smart Events: <span class="red">how</span> does it work?
-                                <ul class="fragment">
-                                    <li>use of a <span class="pink">message board</span></li>
-                                    <li>agents <span class="green">regularly</span> visit the message board</li>
-                                    <li>agents make decision to retrieve the appropriate action and follow the behaviour sequence</li>
-                                </ul>
-                            </li>
-                            <li class="fragment">Events-based BT need to <span class="purple">manipulate</span> active node <span class="blue">execution order</span> sometimes
-                                <dd class="fragment">- externally manipulate the active BTs may yield undesired results<br>
-                                    - split behaviours into multiple subtrees rather than </dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="event_trees">
-                        <h1>Smart Event as BT</h1>
-                        <ul>
-                            <li>Behaviours in event is repented as a BT</li>
-                            <li class="fragment">Agents <span class="lime">outside of events</span>: act normally - traverse the environment, accomplish tasks, etc.</li>
-                            <li class="fragment">Agents <span class="purple">in an event</span>:
-                                <ul>
-                                    <li>Internal BT is <span class="lightred">stopped</span></li>
-                                    <li>Temporarily strip of all autonomy</li>
-                                </ul>
-                            </li>
-                            <li class="fragment">Smart Events BT starts to act upon the involved agent</li>
-                            <li class="fragment">When the event ends, the agent "<span class="cyan">restarts</span>" its own internal BT rather than "<span class="lightred">resume</span>" it
-                                <dd>- BT design makes sure it behaves appropriately based on that context</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="smart_events_bt_2">
-                        <h1>Smart Events as BT (2)</h1>
-                        <ul>For events involving multiple agents:
-                            <li class="fragment">one <span class="blue">centralised</span> tree was built</li>
-                            <li class="fragment">treat all involved agents as limbs of the same entity</li>
-                            <li class="fragment">the events BT's assertion and action nodes take an <span class="lime">additional</span> parameter that specifies which agent to perform</li>
-                            <li class="fragment">Certain assertion and action nodes are <span class="purple">restricted to</span> agents with appropriate traits and capabilities</li>
-                            <li class="fragment">participating agents become <span class="lightblue">parameters</span> of the <span class="lightorange">event PAR tree</span></li>
-                        </ul>
-                    </section>
-
-                    <section id="event_par_tree">
-                        <h1>Encapsulated PAR Trees</h1>
-                        <ul>
-                            <li><span class="lime">PAR tree</span> design for one or more agents</li>
-                            <li class="fragment">Stored as an <span class="pink">encapsulated subtree</span> with <span class="orange">agent type(s)</span> description</li>
-                            <li class="fragment">Can be invoked by the agent's own internal BT, or by any event that has the agent type</li>
-                        </ul>
-                    </section>
-
-                    <section id="events_variable">
-                        <h1>Events Variable Scope</h1>
-                        <ul>
-                            <li>Events has their own <span class="lightcyan">variable scope</span> that can be modified:
-                                <dd class="fragment">- at any time<br>
-                                    <span class="fragment">- by the event's internal PAR tree</span><br>
-                                    <span class="fragment">- by external components to manipulate the events progress</span>
-                                </dd>
-                            </li>
-                            <li class="fragment">Top-level PAR tree for an event <span class="lightred">cannot</span> have <span class="lime">PAR arguments</span> - <span class="lightpurple">WHY</span>?
-                                <dd class="fragment">- recall that the PAR argument is analogous to <span class="yellow">nested function calls</span><br>
-                                    <span class="fragment">- it shouldn't take any other PAR arguments <span class="pink">otherwise</span> it must not be the <span class="purple">top-level</span> tree of an event</span>
-                                </dd>
-                            </li>
-                            <li class="fragment">Three qualities of an event:
-                                <dd>- the <span class="green">agents</span> involved and their types<br>
-                                    - the <span class="orange">fields</span> in its scope<br>
-                                    - the <span class="cyan">behaviour tree</span> to dispatch the actions</dd>
-                            </li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section id="chap_example">
-                    <section id="title_example">
-                        <h1 class="r-frame-text">Example</h1>
-                        <ul class="fragment">
-                            <li>2 human agents haggling over a flower pot on the ground</li>
-                            <li>upon purchase, the buyer can pick the pot and leave</li>
-                        </ul>
-                    </section>
-
-                    <section id="the_agent">
-                        <h1>The Agent</h1>
-                        <pre><code class="vbnet smalltext" data-line-numbers="1|2-5|7-12|14-18|19-23|24-28">class HumanAgent {
-    [Traits]
-    name : String
-    strength : Int
-    tiredness : Int
-
-    [Capabilities] 
-    function perform(act_name : String) {
-        // Perform the named animation and/or sound
-        ...
-        return Success
-    }
-
-    function Grasp(item_reference : Item) {
-        // Reach out and grab the referenced item
-        ...
-        return Success
-    }
-    function WalkTo(location_name : String) {
-        // Walk towards the named location in the environment
-        ...
-        return Success
-    }
-    function Wander() {
-        // Wander around the environment
-        ...
-        return Success
-    }
-}
-                        </code></pre>
-                    </section>
-
-                    <section id="tree_design">
-                        <h1>PAR Tree: PickUp</h1>
-                        <img class="r-stretch" src="img/par_tree.png" alt="PAR tree for PickUp">
-                        <p>The PAR tree consists of one <span class="lime">assertion</span> node and three <span class="pink">action</span> nodes<br>
-                            The lookup node called <span class="orange">PickUp</span> can only be invoked by <span class="lightblue">HumanAgent</span> - <span class="pink">why</span>?</p>
-                    </section>
-
-                    <section id="tree_design_3">
-                        <h1>PAR Tree: PickUp (3)</h1>
-                        <img class="r-stretch" src="img/par_tree.png" alt="PAR tree for PickUp">
-                        <ul>
-                            <li>The PAR tree can be invoked by the lookup node - <span class="lime">PickUp</span> with a single argument</li>
-                            <li>Another <span class="blue">subtree</span> can be created to ensure the agent is close enough to the pot
-                                <dd>- a <span class="pink">selector</span> node with 2 children<br>
-                                    - an assertion node: is the agent close enough?<br>
-                                    - a subtree: navigates the agent closer</dd>
-                            </li>
-                    </section>
-
-                    <section id="par_tree_2">
-                        <h1>Agents with Same Type but Different BTs</h1>
-                        <img class="r-stretch" src="img/par_tree_2.png" alt="PAR Tree">
-                        <p><code class="lime">Wait(5.0s)</code> is a global capability - not defined for HumanAgent<br>
-                            Seller has a <span class="pink">stochastic</span> sequence node that ticks its children <span class="orange">randomly</span></p>
-                    </section>
-
-                    <section id="event_tree_example">
-                        <h1>Event Tree of Transaction</h1>
-                        <img src="img/event_tree.png" alt="Event Tree" class="r-stretch">
-                        <p><span class="red">read</span> the tree and <span class="purple">discuss</span> what happened there</p>
-                    </section>
-
-                    <section id="event_tree_example">
-                        <h1>Event Tree of Transaction Analysis</h1>
+                    <section id="search_tree">
+                        <h1>Game Graph and Search Tree</h1>
                         <div class="row">
-                            <div class="col-55">
+                            <div class="col-30"><img class="img-height-400" src="img/paper_3_map.png" alt="Ms Pac-Man"></div>
+                            <div class="col-70"><img class="img-height-400" src="img/paper_3_tree.png" alt="MCTS Tree"></div>
+                        </div>
+                    </section>
+
+                    <section id="tree">
+                        <h1>Search Tree and Variable Depth</h1>
+                        <div class="row">
+                            <div class="col-10"></div>
+                            <div class="col-30"><img class="img-height-400" src="img/paper_3_map.png" alt="Ms Pac-Man"></div>
+                            <div class="col-60">
                                 <ul>
-                                    <li>Focus on the <span class="lime">bottom sequence</span> node - haggling process
-                                        <ul class="fragment">
-                                            <li>seller <span class="orange">randomly</span> agrees on the price buyer offered</li>
-                                            <li>Otherwise, the parent sequence node <span class="pink">failed and terminates</span> the loop node</li>
-                                            <li>The failure was <span class="blue">inverted to enable</span> the root sequence continue to perform</li>
-                                        </ul>
+                                    <li>junctions are <span class="blue">nodes</span></li>
+                                    <li>corridors are <span class="lime">edges</span></li>
+                                    <li>ghosts <span class="orange">don't have a tree</span> <span class="lightred">!</span></li>
+                                    <li>game states are <span class="lightcyan">approximations</span></li>
+                                    <li>no <span class="lightred">reverse moves</span>
+                                        <dd>- reduce simulation numbers</dd>
                                     </li>
-                                    <li class="fragment">How about the <span class="yellow">right-most selector</span> node?
-                                        <ul class="fragment">
-                                            <li>It makes sure the buyer can only pick up and walk away <span class="purple">if and only if</span> <span class="lime smalltext">$price <= 4$</span>
-                                            </li>
-                                        </ul>
+                                    <li>search path is restricted by a distance limit $T_{path}$
+                                        <dd>- avoid dangerous moves <br>
+                                            - normalise path potential scores</dd>
                                     </li>
-                                </ul>
-                            </div>
-                            <div class="col-45"><img src="img/event_tree.png" alt="Event Tree" class="r-stretch img-width-500">
-                                <ul class="fragment smalltext">
-                                    <li>Only PickUp complex acton was encapsulated as a PAR tree</li>
-                                    <li>No external process modified the <code class="lime">event.price</code> but it's doable</li>
-                                    <li>Buyer and Seller are roles to the event rather than the global environment</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
-                    <section id="topiary">
-                        <h1>Topiary</h1>
-                        <img class="r-stretch" src="img/topiary.png" alt="Topiary">
+                    <section id="reward">
+                        <h1>Reward Values for Nodes</h1>
                         <ul>
-                            <li>PAR tree visualisation tool</li>
-                            <li>Works with ADAPT (Agent Development And Prototyping Testbed) and Unity engine</li>
-                            <li>PAR trees can be saved and used in other PAR trees with parameters using lookup nodes</li>
+                            <li>Each node stores three values: <span class="lightblue">$tactic \in \{ghost, pill, survival\}$</span></li>
+                            <li class="fragment">The cumulative sum of rewards:
+                                <span class="lime">$S_{tactic}^p=\sum_{n=1}^N R_{tactic,n}^p$</span>
+                                <dd>- node $p$ with children set $C(p)$, visited $N$ times</dd>
+                            </li>
+                            <li class="fragment">The mean reward: <span class="orange">${\bar S}_{tactic}^p=\frac{S_{tactic}^p}{N}$</span></li>
+                            <li class="fragment">The maximum mean reward:
+                                <span class="pink">$$M_{tactic}^p=\begin{cases}
+                                    {\bar S}_{tactic}^p &\text{if } p \text{ is a leaf} \\
+                                    -\infty &\text{if } p \text{ is not in the tree} \\
+                                    max_{i\in C(p)}M_{tactic}^i &\text{otherwise}
+                                    \end{cases}$$</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="tactic_selection">
+                        <h1>Tactic Selection</h1>
+                        <ul>
+                            <li>A tactic is chosen based on a constant threshold <span class="lime">$T_{survival}$</span></li>
+                            <li class="fragment"><span class="lightblue">$tactic=ghost$</span> if (1) power pill was eaten; (2) edible ghosts are in the range; (3) the maximum survival rate is above the threshold</li>
+                            <li class="fragment"><span class="lightpurple">$tactic=pill$</span> is the default tactic if (1) no edible ghosts in range; (2) the maximum survival rate is above the threshold</li>
+                            <li class="fragment"><span class="lightorange">$tactic=survival$</span> if the maximum survival rate of <span class="purple">previous or current</span> search is below the threshold</li>
+                        </ul>
+                    </section>
+
+                    <section id="rewards_values">
+                        <h1>Node Values for Tactics</h1>
+                        <ul>
+                            <li>Tactic selection before MCTS starts and reassessed at every search</li>
+                            <li class="fragment">The value $v_i$ used for selection, backpropagation, and best move selection is:
+                                $$v_i = \begin{cases}
+                                M_{ghost}^i \times M_{survival}^i &\text{if tactic is ghost} \\
+                                M_{pill}^i \times M_{survival}^i &\text{if tatic is pill} \\
+                                M_{survival}^i &\text{if tactic is survival}
+                                \end{cases}$$
+                            </li>
+                            <li>The maximum survival rate $M_{survival}^i$ is used as a predictive node reward indicator</li>
+                        </ul>
+                    </section>
+
+                    <section id="tree_reuse">
+                        <h1>Search Tree Reuse</h1>
+                        <p class="lightred">Why do they want to reuse the tree?</p>
+                        <ul class="fragment">
+                            <li>40 ms time frame <span class="purple">significantly</span> restricts the number pf simulations per move</li>
+                            <li>MCTS method quality depends heavily on the number of simulations</li>
+                            <li>try to enable long-term reasoning via preference relation over goals
+                                <dd>- in danger in a later turn<br>
+                                    - alternative path for potential higher score</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="how_to_reuse">
+                        <h1>Search Tree Reuse (2)</h1>
+                        <ul>
+                            <li>Without tree reuse:
+                                <dd>- time-consuming<br>
+                                    - no long-term planning<br>
+                                    - agent become fickle and constantly switch back and forth between preferences</dd>
+                            </li>
+                            <li>Reuse the tree without modification:
+                                <dd>- agent becomes too stubborn</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="reuse_method">
+                        <h1>Search Tree Reuse (3)</h1>
+                        <ul>
+                            <li>Rule-based method to determine when to rebuild the tree
+                                <dd class="fragment">- dealing with significant changes in the game state<br>
+                                    - the stored information is outdated</dd>
+                            </li>
+                            <li class="fragment">Decay the values stored between successive turns
+                                <dd class="fragment">- previous turns still plays a role<br>
+                                    - changes between turns are often small in real-time games<br>
+                                    - the importance of past lowers over time</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="reuse">
+                        <h1>Rule-based Tree Reuse</h1>
+                        <p>The tree will be rebuilt if:</p>
+                        <ul>
+                            <li>Pac-Man dies or new maze starts</li>
+                            <li>Pac-Man ata a <span class="blue">blue ghost</span> or a <span class="lime">power pill</span>
+                                <dd>- focus on eating remaining ghosts</dd>
+                            </li>
+                            <li>global reverse (0.0015) happens</li>
+                        </ul>
+                    </section>
+
+                    <section id="decay">
+                        <h1>Continuous Decay</h1>
+                        <p>Values stores at each node are decayed over time:</p>
+                        <ul>
+                            <li>early searches are biased by less simulation</li>
+                            <li>multiply the node's cumulative scores and visit count by a decay factor <span class="lime">$\gamma$</span></li>
+                            <li>final move selection combines the <span class="pink">decayed values</span> and <span class="orange">simulation rewards</span></li>
+                            <li>Traditional discounting UCT</li>
+                            <li>The experiment results confirmed that <span class="cyan">decaying values ($0<\gamma <1$)</span> helps the game play compared to <span class="purple">no decay ($\gamma = 1$)</span> and <span class="blue">no reuse ($\gamma = 0$)</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="selction">
+                        <h1>Selection</h1>
+                        <ul>
+                            <li>The UCT policy was used in selection to balance exploitation and exploration
+                                $$X_i=v_i+C\sqrt{\frac{\ln n_p}{n_i}}$$
+                            </li>
+                            <li><span class="lime">$v_i$</span> the score of the node, <span class="blue">$n_i$</span> the visit count, <span class="pink">$C$</span> the exploration constant</li>
+                            <li>UCT policy is used when:
+                                <dd>- all children's visit counts is above a threshold <span class="purple">$T_{visit}$</span> (15)<br>
+                                    - or random uniform selection</dd>
+                            </li>
+                            <li>Less visits may miscategorise a safe and /or rewarding node due to a random loss in the first time it was expanded</li>
+                        </ul>
+                    </section>
+
+                    <section id="simulation">
+                        <h1>Simulation</h1>
+                        <ul>
+                            <li>combines 2 steps:
+                                <dd>- selection steps as described above<br>
+                                    - playout step</dd>
+                            </li>
+                            <li>The selection may be interrupted due to unpredictable game changes:
+                                <dd>- Pac-Man dies: playout starts from the last visited junction<br>
+                                    - Pac-Man eats a ghost or power pill: simulation terminates immediately, don't waste time</dd>
+                            </li>
+                            <li>The backpropagation started from an <span class="pink">internal node</span> rather than the <span class="lime">leaf node</span> if the selection was interrupted</li>
+                        </ul>
+                    </section>
+
+                    <section id="playout">
+                        <h1>Playout</h1>
+                        <ul>
+                            <li>The goal of playout is both short- and long-term <span class="lime">safety</span> and <span class="orange">reward</span></li>
+                            <li>If the selection was not interrupted, the playout always starts from a junction leaf node</li>
+                            <li>Recall the game ending state: (1) no more lives; (2) after 24,000 time units</li>
+                        </ul>
+                    </section>
+
+                    <section id="stopping">
+                        <h1>Playout Stopping Conditions</h1>
+                        <ul>
+                            <li>Pac-Man dies</li>
+                            <li>New maze started</li>
+                            <li>A preset number of time units have passed: <span class="pink">$T_{time}=T_{path}+T_{simulation}$</span> (add distance limit of a path and simulation time constraint)
+                                <dd>- ensure each simulation has the same length in time and the same scoring potential</dd>
+                            </li>
+                            <li>Three scores for each simulation: $(R_{survival}, R_{pill}, R_{ghost})$
+                                <dd>- $R_{survival}$ is either 0 or 1<br>
+                                    - $R_{pill} \in [0,1]$ number of pills eaten normalised by total number of pills<br>
+                                    - $R_{ghost} \in [0,1]$ number of ghosts eaten normalised by total edible time</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="ghost_move">
+                        <h1>Ghost Move</h1>
+                        <ul>
+                            <li><span class="lime">$\epsilon -greedy$</span> strategy
+                                <dd>- $\epsilon < 0.2$: random move at junctions<br>
+                                        - otherwise, strategic rules</dd>
+                            </li>
+                            <li>It tries to:
+                                <dd>- ensure Pac-Man loses a life<br>
+                                    - ensure the lowest ghost rewards $R_{ghost}$ for Pac-Man<br>
+                                    - limit the number of pills Pac-Man can eat</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="ghost_moves">
+                        <h1>Ghost Move (2)</h1>
+                        <ul>
+                            <li>It's not edible
+                                <ul>
+                                    <li>immediately traps Pac-Man if it can</li>
+                                    <li>follow the shortest path to Pac-Man if it in the immediate vicinity</li>
+                                    <li>closer to a junction than Pac-Man, block</li>
+                                    <li>Pac-Man is on adjacent edge and no other ghosts in the same direction, go to the edge to block</li>
+                                    <li>otherwise, move closer to the junction in front or behind Pac-Man</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="ghost_moves_3">
+                        <h1>Ghost Move (3)</h1>
+                        <ul>
+                            <li>It's edible
+                                <dd>- move as far as possible from Pac-Man</dd>
+                            </li>
+                            <li>On an edge that has another ghost in same direction
+                                <dd>- avoid this move and choose another move<br>
+                                    - spread out the map for trapping Pac-Man</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="pac_man_move">
+                        <h1>Pac-Mac at Junction</h1>
+                        <p>Safe move: (1) no non-edible ghost on its direction <span class="red">and</span> (2) next junction is safe</p>
+                        <ul>
+                            <li>Reachable edible ghost: time to eat is smaller than edible time left</li>
+                            <li>Safe move leads to edge with pills</li>
+                            <li>All safe edges are cleared, random choice</li>
+                            <li>No safe move, random move</li>
+                        </ul>
+                    </section>
+
+                    <section id="reverse">
+                        <h1>Pac-Man on Edge</h1>
+                        <ul>
+                            <li>Maintain it's direction until</li>
+                            <li>Reverse is necessary
+                                <dd>- non-edible ghost heading for it on the path<br>
+                                    - a power pill was eaten, move to the closet edible ghost if available</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="long_term_goal">
+                        <h1>Long-term Goal</h1>
+                        <ul>
+                            <li>Time is an important aspect of Ms Pac-Man</li>
+                            <li>Eat ghosts as fast as possible</li>
+                            <li>Gain a life for every 10,000 points</li>
+                            <li><span class="blue">$R_{ghost}$</span> is the edible time remaining before eaten</li>
+                            <li>After eating a pill, she must achieve a ghost score higher than 0.5 or have 0 reward
+                                <dd>- ate ghost after eating pill: <span class="lime">$R_{pill} = R_{pill} + R_{ghost}$</span><br>
+                                    - otherwise, <span class="pink">$R_{pill} = 0$</span></dd>
+                            </li>
+                            <li>Try to clear long edges when it's safe to do so:
+                                <dd><span class="orange">$R_{edge}=num\_pills(e_i)^p$</span> as edge score where <span class="cyan">$1< p< 2$</span>
+                                </dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="backpropagate">
+                        <h1>Backpropagation</h1>
+                        <ul>
+                            <li>May happen from an internal nodes in the interrupted selection step</li>
+                            <li>Propagate maximum children scores</li>
+                            <li>Recursively executed til root node</li>
+                        </ul>
+                    </section>
+
+                    <section id="final_move">
+                        <h1>Final Move</h1>
+                        <ul>
+                            <li>if the maximum survival rate is below a threshold: fall back to the survival tactic</li>
+                            <li>otherwise, determine scores based on the current tactic</li>
+                            <li>no feasible rewards, switch between <span class="lime">$ghost, pill, survival$</span> in turns</li>
+                        </ul>
+                    </section>
+
+                    <section id="results">
+                        <h1>Experiment Results</h1>
+                        <ul>
+                            <li>carry out experiments against 5 different ghost models</li>
+                            <li>prove effectiveness of the improvements to MCTS</li>
+                            <li>compare the results of turning off the 4 improvements one at a time
+                                <dd>- simulation strategy has the biggest impact</dd>
+                            </li>
+                            <li>ranked <span class="pink">2nd</span> in WCCI'12 among <span class="blue">63</span> teams</li>
+                            <li><span class="lime">winner</span> of CIG'12 among <span class="blue">36</span> teams with <span class="orange">67.6%</span> winning rate</li>
+                            <li>possible future improvements if ghost models are publicly available</li>
                         </ul>
                     </section>
 
@@ -445,7 +487,7 @@
 
                 <section id="chap_conclusion">
                     <section id="conclusion">
-                        <h1>Lessons We've Learnt</h1>
+                        <h1>Lessons Learnt</h1>
                         <ul>
                             <li>MCTS can be a powerful tool in real-time domains</li>
                             <li class="fragment">Think carefully about the structure of your writing</li>
@@ -458,6 +500,7 @@
                             <li class="fragment">Avoid repeating yourself - even a few sentences</li>
                         </ul>
                     </section>
+
 
                     <section id="questions">
                         <h2><span class="bold purple">Questions?</span></h2>
@@ -473,7 +516,7 @@
         <div id="header">
             <!-- <div id="header-left">HEADER-LEFT</div> -->
             <!-- <div id="header-right">HEADER-RIGHT</div> -->
-            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-50 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
             <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
         </div>
 
