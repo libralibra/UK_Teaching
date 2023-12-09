@@ -76,7 +76,7 @@
                         <h1>Fuzzy Logic</h1>
                         <ul>
                             <li><span class="lightblue">Boolean</span> logic: variables are either <code class="lightgreen">true</code> or <span class="lightpink">false</span></li>
-                            <li><span class="lightorange">Fuzzy logic</span> was introduced in 1960s to model this
+                            <li><span class="lightorange">Fuzzy logic</span> was introduced in 1960s to model uncertainty
                                 <dd>- Variables have a <span class="lightpurple">truth value</span> between <code class="lightgreen">0</code> and <code class="lightpink">1</code></dd>
                             </li>
                             <li>Related to <span class="lime">fuzzy set theory</span>: instead of elements being either <code class="lightgreen">in</code> or <code class="lightpink">not in</code> a set, they have a <span class="lightred">degree of membership</span> between 0 and 1</li>
@@ -86,6 +86,7 @@
                         </ul>
                     </section>
 
+                    <!-- reference: https://www.tutorialspoint.com/artificial_intelligence/artificial_intelligence_fuzzy_logic_systems.htm -->
                     <section id="fuzzy_logic_example">
                         <h1>Fuzzy Logic Example</h1>
                         <ul>
@@ -98,6 +99,36 @@
                             <img src="img/fuzzy_compare.png" alt="fuzzy boolean comparison" class="fragment img-height-300">
                             <p class="hidden">source: https://media.geeksforgeeks.org/wp-content/uploads/fuzzy-logic_1.png</p>
                         </div>
+                    </section>
+
+                    <section id="fuzzy_game_character">
+                        <h1>Fuzzy Logic for Game Character</h1>
+                        <div class="row">
+                            <div class="col-30">
+                                <ul>
+                                    <br>
+                                    <li><code class="lime">HP=100</code>: healthy</li>
+                                    <li><code class="orange">HP=40</code>: hurt</li>
+                                    <li><code class="red">HP=0</code>: critical</li>
+                                    <li class="fragment">How about <code class="purple">HP=65</code>?</li>
+                                </ul>
+                            </div>
+                            <div class="col-70"><img src="img/fuzzy_game_character.png" alt="Fuzzy Logic of Game Character" class="img-width-700"></div>
+                        </div>
+
+
+                    </section>
+
+                    <section id="fuzzy_system">
+                        <h1>Fuzzy System</h1>
+                        <img class="r-stretch" src="img/fuzzy_modules.png" alt="Fuzzy Logic System">
+                        <!-- source: https://www.tutorialspoint.com/artificial_intelligence/images/fuzzylogic_system.jpg -->
+                        <ul class="fragment">
+                            <li>Fuzzification module: transform crisp input to fuzzy set</li>
+                            <li>Knowledge base: rules pre-defined by experts</li>
+                            <li>Inference engine: fuzzy inference to simulate human reasoning process</li>
+                            <li>Defuzzification module: convert fuzzy set to crisp output</li>
+                        </ul>
                     </section>
 
                     <section id="fuzzy_logic_operators">
@@ -121,7 +152,7 @@
                                     <li>Probability: There's a 1% chance the liquid is acid, 99% chance it's beer.</li>
                                     <li>Fuzzy logic: The liquid has 99% the characteristics of beer, 1% characteristics of acid.</li>
                                 </ul>
-                                <dd class="text-right italic"> - courtesy of Prof. Jerry Mendel, University of Southern California</dd>
+                                <dd class="text-right italic brown"> - courtesy of Prof. Jerry Mendel, University of Southern California</dd>
                             </li>
                         </ul>
                     </section>

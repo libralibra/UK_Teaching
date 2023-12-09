@@ -839,6 +839,11 @@ table thead {
     width: 100px !important;
 }
 
+.img-width-150 {
+    max-width: 150px !important;
+    width: 150px !important;
+}
+
 .img-width-200 {
     max-width: 200px !important;
     width: 200px !important;
@@ -902,6 +907,26 @@ table thead {
 .img-width-800 {
     max-width: 800px !important;
     width: 800px !important;
+}
+
+.img-width-850 {
+    max-width: 850px !important;
+    width: 850px !important;
+}
+
+.img-width-900 {
+    max-width: 900px !important;
+    width: 900px !important;
+}
+
+.img-width-950 {
+    max-width: 950px !important;
+    width: 950px !important;
+}
+
+.img-width-1000 {
+    max-width: 1000px !important;
+    width: 1000px !important;
 }
 
 /* pdf download corner, position only, the colour is different for 

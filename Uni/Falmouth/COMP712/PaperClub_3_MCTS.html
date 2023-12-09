@@ -106,9 +106,9 @@
                     <section id="improvements_recall" data-auto-animate>
                         <h1 data-id="ht">MCTS Improvements</h1>
                         <ul data-id="hd">Recall the improvements they've made:
-                            <li>variable-depth tree</li>
+                            <li>variable-depth tree construction</li>
                             <li>simulation strategies for both parties</li>
-                            <li>consider long-term goals in scoring</li>
+                            <li>consider long-term goals in scoring process</li>
                             <li>reuse the tree with a decay factor</li>
                         </ul>
                         <p class="like-li fragment lightred">Why did they choose these approaches?</p>
@@ -251,7 +251,7 @@
                         <h1>Search Tree Reuse</h1>
                         <p class="lightred">Why do they want to reuse the tree?</p>
                         <ul class="fragment">
-                            <li>40 ms time frame <span class="purple">significantly</span> restricts the number pf simulations per move</li>
+                            <li>40 ms time frame <span class="purple">significantly</span> restricts the number of simulations per move</li>
                             <li>MCTS method quality depends heavily on the number of simulations</li>
                             <li>try to enable long-term reasoning via preference relation over goals
                                 <dd>- in danger in a later turn<br>

@@ -65,9 +65,7 @@
                             <li>Towards Machine Learning for the next study block</li>
                         </ul>
                     </section>
-                </section>
 
-                <section id="data_science">
                     <section id="classical_ai_statistical_ai">
                         <h1>Approaches of Creating AI</h1>
                         <ul><span class="lightgreen">Symbolic</span> approaches:
@@ -94,19 +92,24 @@
                             <li>Various libraries for machine learning like <code class="lightcyan">PyTorch</code> and <code class="lightgreen">TensorFlow</code>, which will be covered in COMP714</li>
                         </ul>
                     </section>
+                </section>
 
+                <section id="chap_numpy">
                     <section id="numpy">
                         <h1>NumPy</h1>
+                        <img src="img/numpy.png" alt="NumPy Logo" class="box-top-right">
                         <ul>
                             <li>Open-source, high-performance mathematical library</li>
                             <li>Support Matlab-like N-D arrays</li>
                             <li>Active community and fast iterations</li>
-                            <li>Can be installed via: <code class="python lime">pip install numpy</code> or other environment/package management tools like <code class="purple">conda</code></li>
+                            <li>Can be installed via: <code class="python lime">pip install numpy</code> or other $\qquad \qquad$<br>
+                                environment/package management tools like <code class="purple">conda</code></li>
                         </ul>
                     </section>
 
                     <section id="why_numpy">
                         <h1>Why NumPy?</h1>
+                        <img src="img/numpy_arr.png" alt="NumPy Array">
                         <ul>
                             <li>high-level syntax of common operations</li>
                             <li>easy to handle large amount of "<span class="lime">homogeneous</span>" (same-type) data
@@ -153,6 +156,7 @@ arr.shape    # (3,4)</code></pre>
                                 </dd>
                             </li>
                         </ul>
+                        <img class="img-width-900 img-height-200" src="img/numpy_index.png" alt="NumPy Index">
                     </section>
 
                     <section id="more_funcs">
@@ -225,22 +229,71 @@ print(np.sqrt(x))</code></pre>
                             <li><a href="https://numpy.org/doc/stable/reference/" target="_blank">NumPy Reference</a></li>
                             <li><a href="https://www.labri.fr/perso/nrougier/from-python-to-numpy/#simple-example" target="_blank">From Python to NumPy</a></li>
                             <li><a href="https://github.com/rougier/numpy-100" target="_blank">100 Exercises in NumPy</a></li>
+                            <li><a href="https://numpy.org/devdocs/user/absolute_beginners.html" target="_blank">NumPy for Absolute Beginners</a></li>
+                            <li><a href="https://images.datacamp.com/image/upload/v1676302459/Marketing/Blog/Numpy_Cheat_Sheet.pdf" target="_blank">NumPy Cheat Sheet</a></li>
+                            <!-- <li><a href="https://jalammar.github.io/visual-numpy/" target="_blank">A Visual Intro to NumPy and Data Representation</a></li> -->
+                            <!-- <li><a href="https://cs231n.github.io/python-numpy-tutorial/" target="_blank">Stanford CS231n: Deep Learning for Computer Vision</a></li> -->
                         </ul>
                     </section>
                 </section>
 
                 <section id="chap_scipy">
-
                     <section id="scipy">
                         <h1>SciPy</h1>
+                        <img src="img/scipy.png" alt="SciPy Logo" class="box-top-right">
                         <ul>
-                            <li><span class="lightblue">Scientific Computing Library</span>: an open-source Python library widely used in scientific computing, engineering, and data analysis</li>
-                            <li class="fragment"><span class="lightgreen">Built on NumPy</span>: built on top of NumPy and extends its capabilities</li>
-                            <li class="fragment"><span class="lightorange">Modules for Diverse Applications</span>: provides modules such as <code class="lightcyan">scipy.optimize</code> for optimisation and root-finding, <span class="fragment"><code class="lightpink">scipy.integrate</code> for numerical integration,</span> <span class="fragment"><code class="lightpurple">scipy.linalg</code> for linear algebra operations,</span> <span class="fragment">and <code class="lightred">scipy.signal</code> for signal processing</span></li>
+                            <li><span class="lightblue">Scientific Computing Library</span>: an open-source Python library $\qquad$<br>
+                                widely used in scientific computing, engineering, data analysis</li>
+                            <li class="fragment"><span class="lightgreen">Built on NumPy</span>: built on top of NumPy, extends its capabilities</li>
+                            <li class="fragment"><span class="lightorange">Modules for Diverse Applications</span>: provides modules such as<br> <code class="lightcyan">scipy.optimize</code> for optimisation and root-finding, <span class="fragment"><code class="lightpink">scipy.integrate</code> for numerical integration,</span> <span class="fragment"><code class="lightpurple">scipy.linalg</code> for linear algebra operations,</span> <span class="fragment">and <code class="lightred">scipy.signal</code> for signal processing</span></li>
                             <li class="fragment"><span class="pink">Interoperability</span>: works seamlessly with other scientific Python libraries like <code class="blue">Matplotlib</code> for plotting and <code class="yellow">NumPy</code> for numerical computations</li>
                             <li class="fragment"><span class="lightpurple">Community-Driven</span>: developed and maintained by a community of contributors
                             </li>
                         </ul>
+                    </section>
+
+                    <section id="curve_fitting">
+                        <h1>Curve Fitting using <code>SciPy</code></h1>
+                        <pre><code class="python smalltext" data-line-numbers="">from scipy import optimize
+import matplotlib.pyplot as plt
+x_data = np.linspace(-5, 5, num=50)
+y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
+
+fig, ax = plt.subplots(dpi=153)
+
+def test_func(x, a, b):
+    return a * np.sin(b * x)
+
+params, params_covariance = optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
+print(params)
+ax.scatter(x_data,y_data)
+ax.plot(x_data, test_func(x_data,params[0], params[1]), c='r')
+plt.show()</code></pre>
+                        <img src="img/scipy_fitting.png" alt="SciPy Curve Fitting" class="img-width-500 box-top-right fragment">
+                    </section>
+
+                    <section id="interpolation">
+                        <h1>Interpolation</h1>
+                        <pre><code class="python smalltext" data-line-numbers="">import matplotlib.pyplot as plt
+measured_time = np.linspace(0, 1, 10)
+noise = (np.random.random(10)*2 - 1) * 1e-1
+measures = np.sin(2 * np.pi * measured_time) + noise
+fig, ax = plt.subplots(dpi=153)
+ax.scatter(measured_time, measures) # Blue dots
+
+# Interpolation time
+from scipy.interpolate import interp1d
+interpolation_time = np.linspace(0, 1, 50)
+linear_interp = interp1d(measured_time, measures)
+linear_results = linear_interp(interpolation_time)
+cubic_interp = interp1d(measured_time, measures, kind='cubic')
+cubic_results = cubic_interp(interpolation_time)
+
+ax.plot(interpolation_time, linear_results, c='r', label='linear results')
+ax.plot(interpolation_time, cubic_results, c='g', label='cubic results')
+ax.legend()
+plt.show()</code>
+                        <img src="img/interpolation.png" alt="SciPy Interpolation" class="img-width-500 box-bottom-right fragment"></pre>
                     </section>
 
                     <section id="scipy_reading">
@@ -248,41 +301,204 @@ print(np.sqrt(x))</code></pre>
                         <ul>
                             <li>SciPy provides some similar functions (almost identical names) as Matlab for image processing and scientific computations</li>
                             <li>SciPy can read/write Matlab <code class="blue">.mat</code> file using <code class="green">scipy.io.loadmat</code> and <code class="pink">scipy.io.writemat</code></li>
+                            <li>SciPy includes a multidimensional image processing package <code class="purple">scipy.ndimage</code></li>
                             <li><a href="https://docs.scipy.org/doc/scipy/reference/index.html" target="_blank">Scipy Reference</a></li>
+                            <li><a href="https://lectures.scientific-python.org/index.html" target="_blank">Scientific Python Lectures</a></li>
+                            <li><a href="https://images.datacamp.com/image/upload/v1676303474/Marketing/Blog/SciPy_Cheat_Sheet.pdf" target="_blank" rel="noopener noreferrer">SciPy Cheat Sheet</a></li>
                         </ul>
                     </section>
 
-                    <section id="pygame">
-                        <h1>Pygame</h1>
+                    <section id="packages">
+                        <h1>SciPy Sub-packages</h1>
+                        <div class="row">
+                            <div class="col-50">
+                                <ul>
+                                    <li>File input/putput: <code class="lime">scipy.io</code></li>
+                                    <li>Special Function: <code class="pink">scipy.special</code></li>
+                                    <li>Linear Algebra Operation: <code class="orange">scipy.linalg</code></li>
+                                    <li>Optimisation and fit: <code class="purple">scipy.optimize</code></li>
+                                    <li>Statistics and random numbers: <code class="lightred">scipy.stats</code></li>
+                                </ul>
+                            </div>
+                            <div class="col-50">
+                                <ul>
+                                    <li>Interpolation: <code class="blue">scipy.interpolate</code></li>
+                                    <li>Numerical Integration: <code class="cyan">scipy.integrate</code></li>
+                                    <li>Fast Fourier Transformations: <code class="yellow">scipy.fftpack</code></li>
+                                    <li>Signal Processing: <code class="brown">scipy.signal</code></li>
+                                    <li>Image Manipulation: <code class="lightred">scipy.ndimage</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_pandas">
+
+                    <section id="pandas">
+                        <h1>Pandas</h1>
+                        <img src="img/pandas_logo.png" alt="Pandas Logo" class="box-top-right img-width-450 img-width-100">
                         <ul>
-                            <li>Cross-platform Python modules for game development</li>
-                            <li>Includes features for managing multimedia elements using SDL (Simple DirectMedia Layer)</li>
-                            <li>Provides functionality for capturing and responding to user input</li>
-                            <li>Allows low-level control over the game loop</li>
+                            <li>Pandas is a fast, powerful, flexible and $\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                and easy to use open source</li>
+                            <li>Data analysis and manipulation tool</li>
+                            <li>Provides 2 primary data structure: 1D <code class="lime">Series</code> and 2D <code class="pink">DataFrame</code></li>
+                            <li>Powerful I/O tools that support various file formats like <code class="purple">CSV, Excel, JSON, SQL</code>, and more</li>
+                            <li>Allows for easy filtering, selections, and indexing of data</li>
                         </ul>
                     </section>
 
-                    <section id="main_loop">
-                        <h1>The Main Game Loop</h1>
-                        <p class="left">Most main loops in games follow the same basic pattern:</p>
-                        <pre><code class="pascal">repeat
-    handle events
-    update game state
-    draw graphics
-    maintain frame rate
-    swap buffers
-until "quit" signal received
-
-                        </code></pre>
+                    <section id="pandas_series">
+                        <h1>Pandas <code>Series</code></h1>
+                        <pre><code class="python" data-line-numbers>import pandas as pd                   
+a = [1, 7, 2]
+myvar = pd.Series(a)
+print(myvar)</code></pre>
+                        <span class="fragment">The output is:
+                            <pre><code class="python" data-line-number>0   1
+1   7
+2   2
+dtype: int64</code></pre>
+                        </span>
                     </section>
 
-                    <section id="python_console">
-                        <h1>Interactive Python Console</h1>
-                        <iframe class="img-height-400 img-width-800" src="https://jupyterlite.github.io/demo/repl/?toolbar=1&kernel=python&code=import%20numpy%20as%20np" frameborder="0"></iframe>
-                        <p class="tinytext">A WebAssembly-powered Python kernel borrowed from <a href="https://numpy.org/" target="_blank">NumPy</a><br>
-                            Click "<code class="cyan bigtext">&#9658;</code>" on the top-left corner or hit <code class="lightcyan">SHIFT+ENTER</code> to execute code<br>
-                            Support <code class="lightcyan">TAB</code> for code completion
-                        </p>
+                    <section id="pandas_labels">
+                        <h1>Pandas Data Labels</h1>
+                        <pre><code class="python" data-line-numbers>import pandas as pd                   
+a = [1, 7, 2]
+myvar = pd.Series(a, index = ["x", "y", "z"])
+print(myvar)</code></pre>
+                        <span class="fragment">The output is:
+                            <pre><code class="python" data-line-number>x   1
+y   7
+z   2
+dtype: int64</code></pre>
+                        </span>
+                    </section>
+
+
+                    <section id="pandas_example">
+                        <h1>Pandas <code>DataFrame</code></h1>
+                        <pre><code class="python" data-line-numbers>import pandas as pd
+mydataset = {
+            'cars': ["BMW", "Volvo", "Ford"],
+            'passings': [3, 7, 2]
+            }
+myvar = pd.DataFrame(mydataset)
+print(myvar)</code></pre>
+                        <span class="fragment">The output would be:
+                            <pre><code class="python">  cars  passings
+0 BMW       3
+1 Volvo     7
+2 Ford      2</code></pre>
+                            <p class="like-li"><code class="lime">myvar.loc[[0, 1]]</code> can be used to access rows</p>
+                        </span>
+                    </section>
+
+                    <section id="read_csv">
+                        <h1>Reading Other Formats</h1>
+                        <pre><code class="python">import pandas as pd
+df = pd.read_csv('data.csv')
+print(df.to_string())</code></pre>
+                        <p class="like-li">Reading from <code class="lime">CSV</code> file</p>
+                        <pre class="fragment"><code class="python" data-line_number="">    Duration Pulse Maxpulse Calories
+0   6        110   130      409.1
+1   6        117   145      479.0
+2   6        103   135      340.0
+...
+166 60       115   145      310.2
+167 75       120   150      320.4
+168 75       125   150      330.4</code></pre>
+                    </section>
+
+                    <section id="read_json">
+                        <h1>Reading Other Formats (2)</h1>
+                        <pre><code class="python">import pandas as pd
+df = pd.read_json('data.json')
+print(df.to_string())</code></pre>
+                        <p class="like-li">Reading from <code class="lime">JSON</code> file</p>
+                        <pre class="fragment"><code class="python" data-line_number="">    Duration Pulse Maxpulse Calories
+0   6        110   130      409.1
+1   6        117   145      479.0
+2   6        103   135      340.0
+...
+166 60       115   145      310.2
+167 75       120   150      320.4
+168 75       125   150      330.4</code></pre>
+                    </section>
+
+                    <section id="pandas_reading">
+                        <h1>More Information about Pandas</h1>
+                        <ul>
+                            <li><a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank">Pandas User Guide</a></li>
+                            <li><a href="https://pandas.pydata.org/docs/reference/index.html" target="_blank" rel="noopener noreferrer">Pandas API Reference</a></li>
+                            <li><a href="https://pythonexamples.org/pandas-examples/" target="_blank">Pandas Tutorial</a></li>
+                            <li><a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" target="_blank" rel="noopener noreferrer">Pandas Cheat Sheet</a></li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_matplotlib">
+                    <section id="matplotlib">
+                        <h1>Matplotlib</h1>
+                        <img src="img/matplotlib.png" alt="Matplotlib Logo" class="img-width-200 box-top-right">
+                        <ul>
+                            <li>A powerful Python library for creating static, animated, <br>interactive, and publication-quality visualisations</li>
+                            <li>Support wide range of plots such as <code class="pink">line plot, bar chart, <br>histogram, scatter plot, pie chart, heatmap, 3D<br> plot</code>, and more</li>
+                            <li>Multiple interface: MATLAB-like interface through <code class="lime">pyplot</code>, or object-oriented interface that has more control and customisations</li>
+                            <li>Interoperability: seamlessly integrates with other libraries like <code class="orange">NumPy, Scipy, and Pandas</code></li>
+                            <li>Integration: works well within <code class="lightred">JupyterLab</code> (notebook) and <span class="lightpurple">Graphical User Interface</span> (GUI)</li>
+                        </ul>
+                    </section>
+
+                    <section id="reading_matplotlib">
+                        <h1>More Information about Matplotlib</h1>
+                        <ul>
+                            <li><a href="https://matplotlib.org/stable/users/index.html" target="_blank">Matplotlib User Manual</a></li>
+                            <li><a href="https://matplotlib.org/stable/tutorials/index.html" target="_blank">Matplotlib Tutorial</a></li>
+                            <li><a href="https://matplotlib.org/stable/api/index.html" target="_blank">API Reference</a></li>
+                            <li><a href="https://images.datacamp.com/image/upload/v1676360378/Marketing/Blog/Matplotlib_Cheat_Sheet.pdf" target="_blank">Matplotlib Cheat Sheet</a></li>
+                            <li><a href="https://matplotlib.org/cheatsheets/_images/cheatsheets-2.png" target="_blank">Layout and Colours</a></li>
+                            <li><a href="https://matplotlib.org/cheatsheets/" target="_blank">More Handouts</a></li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_data_science">
+
+                    <section id="jupyterlab">
+                        <h1>JupyterLab</h1>
+                        <img src="img/jupyterlab.png" alt="JupyterLab Logo" class="img-width-200 box-top-right">
+                        <ul><br>
+                            <li>A web-based and interactive computing environment</li>
+                            <li>Has a classical interface called Jupyter Notebook</li>
+                            <li>Supports over 40 programming languages including Python, R, <br>Julia, Scala, and others</li>
+                            <li>Extensible and Customizable: supports extensions and customisations to the interface with themes, shortcuts, and add-ons.</li>
+                        </ul>
+                    </section>
+
+                    <section id="tensorflow">
+                        <h1>TensorFlow</h1>
+                        <img src="img/tensorflow.png" alt="TensorFlow Logo" class="img-width-200 box-top-right">
+                        <ul>
+                            <li>an open-source machine learning framework by Google</li>
+                            <li>enables scaling from single CPU or GPU to distributed computing <br>across multiple devices and servers</li>
+                            <li>supports a range of machine learning tasks: <span class="pink">neural nets, regression, classification, clustering, and reinforcement learning</span></li>
+                            <li>has an integrated visualisation tool - <span class="lime">TensorBoard</span> - to visualise model graphs, plot quantitative metrics about the execution of models, and view histograms of activations and gradients</li>
+                        </ul>
+                    </section>
+
+                    <section id="pytorch">
+                        <h1>PyTorch</h1>
+                        <img src="img/pytorch.png" alt="PyTorch Logo" class="img-width-300 img box-top-right">
+                        <ul>
+                            <li>a flexible and Pythonic framework for machine learning <br>and deep learning</li>
+                            <li>is known for its <span class="orange">dynamic</span> computation graph mechanism <br>- <code class="purple">TensorFlow</code> is static</li>
+                            <li>NumPy-like tensor operations for easy manipulation and computation on multi-dimensional arrays</li>
+                            <li>the <code class="blue">autograd</code> package provides automatic differentiation, allowing efficient gradients calculation</li>
+                            <li>seamlessly integrates with CUDA and supports GPU acceleration</li>
+                            <li>has <code class="brown">TorchScript</code> for model serialisation and deployment</li>
+                        </ul>
                     </section>
                 </section>
 
