@@ -29,17 +29,17 @@ Table of Contents
 - [Further Reading](#further-reading)
 
 # Introduction
-<a href="#top">Top</a>
+[Top](#top)
 
 Finite State Machines (FSMs) are powerful tools in computer science and programming. They provide a structured way to model complex systems, making them an essential concept for any aspiring programmer or computer scientist. In this session, we will delve into the world of Finite State Machines, exploring their fundamental principles and applications. We'll also demonstrate how to implement FSMs using Python, a versatile and popular programming language.
 
 # Understanding Finite State Machines
-<a href="#top">Top</a>
+[Top](#top)
 
 At its core, a Finite State Machine is a mathematical model that describes a system's behaviour by dividing it into a finite number of states, transitions between these states, and the conditions triggering these transitions. FSMs are excellent for representing systems with distinct modes or conditions. They are widely used in various domains, such as robotics, gaming, natural language processing, and more.
 
 ## Components of a Finite State Machine
-<a href="#top">Top</a>
+[Top](#top)
 
 Before we delve into Python programming, let's understand the essential components of an FSM:
 
@@ -56,7 +56,7 @@ Before we delve into Python programming, let's understand the essential componen
 **Note**: In certain FSMs, `transitions` and `actions` may be very similar, as no additional actions are required beyond state transitions.
 
 ## A Practical Example: Traffic Lights FSM
-<a href="#top">Top</a>
+[Top](#top)
 
 Let's consider a simple example of a traffic lights model. The FSM for the traffic lights could have states like '`Red`', '`Green`', '`Amber`', etc. Signals occur as the time elapses or pedestrians pushed the button for crossing. The transition operations need to change the lights' states.
 
@@ -115,7 +115,7 @@ E -- Restart --> A
 ```
 
 ## The Logic
-<a href="#top">Top</a>
+[Top](#top)
 
 The logic follows a specific sequence of states in a finite state machine (FSM) based on time intervals and certain conditions:
 
@@ -136,7 +136,7 @@ When comparing the state transition diagram above to the definition in the previ
 - **`Final State`**: The determination of the final state is context-dependent. For instance, `Error` might be considered the final state, although the `Restart` signal can trigger a transition to change the light to the `Red` state. Multiple states can be included in the final state set to terminate the FSM at various points.
 
 ## Adjacency List
-<a href="#top">Top</a>
+[Top](#top)
 
 In practical applications, an adjacency list becomes particularly useful when the state diagram grows too complex to explore easily. It serves as a collection of unordered lists, primarily used to represent a finite graph. Each unordered list within an adjacency list describes the set of transitions originating from a specific vertex in the graph. This representation is one of several commonly employed methods for graph representation in computer programming.
 
@@ -155,12 +155,12 @@ In the context of this specific discussion, we won't adhere to the precise defin
 
 
 # Task 1:  Traffic Light FSM
-<a href="#top">Top</a>
+[Top](#top)
 
 This task is to implement the FSM for this Traffic Lights model according to the state diagram above. 
 
 ## The Repository
-<a href="#top">Top</a>
+[Top](#top)
 
 The repository below contains the template code of an FSM implementation in Python.
 
@@ -169,7 +169,7 @@ The repository below contains the template code of an FSM implementation in Pyth
 > [**https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git**](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Finite-State-Machine.git)
 
 ## The Code Structure
-<a href="#top">Top</a>
+[Top](#top)
 
 The repository contains 4 python file.
 
@@ -181,7 +181,7 @@ The repository contains 4 python file.
 
 
 ## **The Task**
-<a href="#top">Top</a>
+[Top](#top)
 
 - complete the implementation of the Traffic Lights FSM
   - make sure it works as expected
@@ -190,7 +190,7 @@ The repository contains 4 python file.
 - You don't need to create a GUI; a command-line demonstration suffices.
 
 # Task 2: Vending Machine FSM
-<a href="#top">Top</a>
+[Top](#top)
 
 This task is to implement a Vending Machine FSM that sells Coca to the user. This special machine only accepts 50p, £1, and £2 coins and each can of Coca costs £2.5 (a little bit expensive :-)). Additionally, we will assume the vending machine never runs out of stock for economic reasons. Similarly, it never runs out of change. This example is a perfect computational problem to model with a finite state machine! 
 
@@ -243,7 +243,7 @@ J ---> B
 ```
 
 ## **The Task**
-<a href="#top">Top</a>
+[Top](#top)
 
 - Work out the adjacency list to help you understand the diagram if necessary.
 - Create a new Python file (`.py`), either inherit from the FSM model defined in `fsm.py` or start from scratch.
@@ -253,12 +253,12 @@ J ---> B
 > ***Hint***: you might want to make use of the last state data member defined in `FSM` class.
 
 # Submit Your Code
-<a href="#top">Top</a>
+[Top](#top)
 
 Feel free to submit a pull request to the original repository to showcase your work if you wish to share your solution with others.
 
 # Further Reading
-<a href="#top">Top</a>
+[Top](#top)
 
 - [Wiki - Finite State Machine](https://www.wikiwand.com/en/Finite-state_machine)
 - [Python State Machine](https://python-statemachine.readthedocs.io/en/latest/index.html)
