@@ -5,3 +5,4 @@
 Dr Daniel Zhang @ Falmouth University\
 2023-2024 Study Block 1
 
+Tasks are set in the Jupyter notebook
