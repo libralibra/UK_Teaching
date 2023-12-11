@@ -175,8 +175,7 @@ The important pieces are:
   - `y_grid_num`: the number of grid vertically. It remains unchanged unless you call `setGridNum()` explicitly.
   - `grids[][]`: the 2D matrix (list of list in python) holds the cell values.
 
-- `getValidNeighbour(Cell, direction):` Retrieves the neighbour on the specified `direction`.
-  - `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
+- `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
 
 - `colourCell(Cell, colour, ratio=0.8)`: Fills the specified `Cell` with the given `colour`. The default `ratio` is `0.8`, filling `80%` of the cell with the colour.
 

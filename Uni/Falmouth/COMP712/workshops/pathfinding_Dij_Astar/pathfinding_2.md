@@ -181,7 +181,7 @@ There are three demos available:
 ## The Code Structure
 [Top](#top)
 
-In this workshop, the existing `gui_lib` remains a fundamental tool for your tasks, and the core structures of the code remain consistent with previous sessions. You're encouraged to refer back to the materials provided in the prior workshop for guidance.
+In this workshop, the existing `gui_lib` remains a fundamental tool for your tasks, and the core structures of the code remain consistent with previous sessions. You're encouraged to refer back to the materials provided in the previous workshop for guidance.
 
 However, the new challenge lies in utilising additional features within the `gui_lib` to mark specific cells like `GRASS`, `DESERT`, or `WATER`, as their traversal will incur different costs. 
 
