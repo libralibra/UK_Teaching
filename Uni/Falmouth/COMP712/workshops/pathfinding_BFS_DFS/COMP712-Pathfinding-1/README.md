@@ -12,8 +12,6 @@ There are three demos available:
 
 The `gui_lib.py` file contains all the necessary GUI capabilities that shouldn't be altered. However, some functions might aid in pathfinding visualisation:
 
-- `getValidNeighbour(Cell, direction):` Retrieves the neighbour on the specified `direction`.
-  - `Cell` represents a cell object, while `direction` can be one of `east`, `north-east`, `north`, `north-west`, `west`, `south-west`, `south`, `south-east`.
 - `colourCell(Cell, colour, ratio=0.8)`: Fills the specified `Cell` with the given `colour`. The default `ratio` is `0.8`, filling `80%` of the cell with the colour.
 
 Each algorithm should be implemented in its respective `.py` file:

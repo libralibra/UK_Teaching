@@ -291,6 +291,31 @@ darkpurple {
 
 /* custom fragment delete */
 
+/* custom fragment line-below (underline has been used) */
+.reveal .fragment.line-below {
+    text-decoration-line: none;
+}
+
+.reveal .fragment.line-below.visible {
+    text-decoration-line: underline;
+    text-decoration-color: #ff2c2d;
+    text-decoration-thickness: 20%;
+}
+
+/* custom fragment delete */
+
+/* custom fragment red box */
+.reveal .fragment.red-box {
+    border-style: none;
+}
+
+.reveal .fragment.red-box.visible {
+    border-style: dashed;
+    border-color: #ff2c2d;
+}
+
+/* custom fragment delete */
+
 /* half out text */
 .reveal .half-out {
     opacity: 0.5;
@@ -1016,7 +1041,7 @@ html.print-pdf .pdf_div {
     /* font-size: var(--r-heading1-size); */
     /* text-shadow: var(--r-heading1-text-shadow); */
     text-shadow: 2px 1px 5px black;
-    border-bottom: thick double rgb(153, 153, 153);
+    border-bottom: thick double rgb(237, 207, 207);
 }
 
 /* linkify function style for links, as Firefox doesn't support :has() so it will 

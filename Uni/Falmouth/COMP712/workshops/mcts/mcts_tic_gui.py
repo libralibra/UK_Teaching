@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import random
 import numpy as np
 import turtle
 
@@ -189,7 +190,8 @@ class MCTS:
         current_state = node.state
         while current_state.winner is None:
             possible_moves = current_state.get_valid_moves()
-            action = possible_moves[np.random.randint(len(possible_moves))]
+            # action = possible_moves[np.random.randint(len(possible_moves))]
+            action = random.choice(possible_moves)
             current_state = current_state.move(action)
         return current_state.winner
 
@@ -216,6 +218,8 @@ def game_play(x, y):
     ui_update(state)
 
     if game_over(state):
+        board = np.zeros((bd_size, bd_size))
+        ui_init()
         return
 
     # AI move
@@ -234,6 +238,8 @@ def game_play(x, y):
     print(f"AI's move X(row,col): {ai_move[0]},{ai_move[1]}")
 
     if game_over(state):
+        board = np.zeros((bd_size, bd_size))
+        ui_init()
         return
 
 
@@ -252,7 +258,6 @@ def game_over(state: State):
     elif state.winner == -1:
         s = "Yeah, you WIN!"
     msgbox(s, 'Game Over:')
-    turtle.exitonclick()
     return True
 
 
@@ -309,6 +314,7 @@ def ui_init(ui_size=300):
     draw_line((-s-hs, hs), (s+hs, hs), 'black', 5)
     draw_line((-hs, -s-hs), (-hs, s+hs), 'black', 5)
     screen.tracer(False)
+    turtle.onscreenclick(game_play)
 
 
 def get_ui_pos(row, col, ui_size=300):
@@ -363,6 +369,5 @@ if __name__ == "__main__":
     state = State(board=board, next_player=1, win_num=win_num)
 
     ui_init()
-    turtle.onscreenclick(game_play)
     turtle.mainloop()
     turtle.done()
