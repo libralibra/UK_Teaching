@@ -113,7 +113,7 @@
                     <section id="example_chip">
                         <h1>Applications of Pathfinding: Chip Design</h1>
                         <img src="img/chip.png" alt="Chip Design" class="r-stretch">
-                        <div class="box-top-left fragment">routing optimisation<br>design checking<br>minimising wirelength<br>avoid obstacles<br>multi-Layer routing</div>
+                        <div class="box-top-left fragment">routing optimisation<br>design checking<br>minimising wirelength<br>avoid obstacles<br>multi-layer routing</div>
                     </section>
 
                     <section id="example_game">
@@ -160,13 +160,13 @@
                         <h1>Graph Traversal</h1>
                         <ul>
                             <li><span class="pink">Breadth-first Search (BFS)</span> or <span class="lime">Depth-first Search (DFS)</span></li>
-                            <li>Can be implemented with the open set as a <span class="cyan">stack</span> or a <span class="orange">queue</span></li>
+                            <li>Can be implemented with the open set as a <span class="cyan">stack (FIFO)</span> or a <span class="orange">queue (LIFO or FILO)</span></li>
                             <li>Inefficient - generally has to explore the <span class="green">entire map</span></li>
                             <li>Finds a path, but probably not the <span class="blue">shortest</span></li>
                             <li>Third type of traversal: <span class="purple">best-first search</span>
                                 <ul>
                                     <li>"<span class="lime">Best</span>" according to some heuristic evaluation</li>
-                                    <li>Often implemented with he open set as a <span class="cyan">priority queue</span> - a data structure optimised for finding the <span class="yellow">highest priority</span> item</li>
+                                    <li>Often implemented with the open set as a <span class="cyan">priority queue</span> - a data structure optimised for finding the <span class="yellow">highest priority</span> item</li>
                                 </ul>
                             </li>
                         </ul>

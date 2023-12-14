@@ -390,6 +390,16 @@ darkpurple {
     right: 0px !important;
 }
 
+.box-centre {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    /* margin-top: -50px; */
+    /* this is half the height of your div*/
+    /* margin-left: -100px; */
+    /*this is half of width of your div*/
+}
+
 .box-bottom-right {
     position: absolute !important;
     bottom: 20px !important;
@@ -542,6 +552,7 @@ bold {
 .mediumtext,
 mediumtext {
     font-size: 1.25em !important;
+    line-height: 0.9;
 }
 
 .bigtext,
@@ -561,11 +572,13 @@ bigtext2 {
 .smalltext,
 smalltext {
     font-size: 0.8em !important;
+    line-height: 0.7;
 }
 
 .tinytext,
 tinytext {
     font-size: 0.5em !important;
+    line-height: 0.5;
 }
 
 .underline,
@@ -679,6 +692,7 @@ table thead {
 .img-zoom-15,
 .img-zoom-17,
 .img-zoom-2,
+.img-zoom-25,
 .img-zoom-3 {
     transition: transform .2s;
 }
@@ -687,22 +701,32 @@ table thead {
 .img-zoom:hover,
 .img-zoom-12:hover {
     transform: scale(1.2);
+    z-index: 1000 !important;
 }
 
 .img-zoom-2:hover {
     transform: scale(2);
+    z-index: 1000 !important;
+}
+
+.img-zoom-25:hover {
+    transform: scale(2.5);
+    z-index: 1000 !important;
 }
 
 .img-zoom-17:hover {
     transform: scale(1.75);
+    z-index: 1000 !important;
 }
 
 .img-zoom-15:hover {
     transform: scale(1.5);
+    z-index: 1000 !important;
 }
 
 .img-zoom-3:hover {
     transform: scale(3);
+    z-index: 1000 !important;
 }
 
 /* move image lower to inline with text */

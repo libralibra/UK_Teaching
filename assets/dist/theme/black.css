@@ -389,6 +389,11 @@ section.has-light-background h6 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
+.reveal .r-frame-red {
+    border: 4px solid #FF7D7D;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
 /* title or section header, compare to r-fit-text, it's not that big */
 .reveal .r-frame-text {
     /* border: 4px solid var(--r-main-color); */
