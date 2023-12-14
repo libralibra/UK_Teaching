@@ -529,9 +529,41 @@
                         <ul>
                             <li>ML techniques such as NN, CNN, GAN are good at understanding 2D images</li>
                             <li>CFD flow field depicts important information about the engine performance</li>
-                            <li>2D reduces the size of the data that need to be processed, hence find a solution faster</li>
-                            <li>CAD/CAE <span class="fragment">$\overset{CD99asdfadfadf}{\to}$ FEA/CFD</span> <span class="fragment">$\implies$ Post-Processing</span> <span class="fragment">$\implies$ 2D Sections</span> <span class="fragment">$\implies$ Neural Nets</span> <span class="fragment">$\implies$ Novel Solutions</span> <span class="fragment">$\implies$ New 3D Design</span></li>
+                            <li>2D reduces the size of the data for processing, hence find solutions faster</li>
+                            <li>Workflow:
+                                <dd class="smalltext">Original CAD <span class="fragment"><span class="lime">$\xRightarrow[CFD\; Pre-processing]{cd99,\; C++,\; bash}$</span>
+                                        $\stackrel{FEA/CFD\; Ready}{Geometry}$</span>
+                                    <span class="fragment"><span class="cyan">$\xRightarrow[Aero,\; Thermal,\; and\; Stress\; Simulation]{Ansys\; ICEM,\; Fluent;\; RR\; Precise-UNS}$</span>
+                                        Simulation Results</span>
+                                    <span class="fragment"><span class="purple">$\xRightarrow[Flowfield,\; Post-processing]{Matlab,\; Python}$</span>
+                                        2D Image Dataset</span>
+                                    <span class="fragment"><span class="pink">$\xRightarrow[Network\; Training]{Matlab,\; Python}$</span> <br>
+                                        Neural Nets Model</span> <span class="fragment"><span class="blue">$\xRightarrow[NeuralNets\; Prediction]{Matlab,\; PyTorch,\; TensorFlow}$</span>
+                                        Novel Solutions</span> <span class="fragment"><span class="yellow">$\xRightarrow[Design\; Parameter\; Decoding]{Matlab,\; Python}$</span> <br>
+                                        New Parameter Set</span> <span class="fragment"><span class="green">$\xRightarrow[Validation\; \& \; Update\; CAD\; Model]{Siemens\; NX}$</span> New CAD</span>
+                                </dd>
+                            </li>
                         </ul>
+                    </section>
+
+                    <section id="engan_structure">
+                        <h1>Conditional Generative <span class="hover-text" id="bottom">Adversarial <span class="tooltip-text">/ˌædvɜːˈsɛərɪəl/</span> Network</h1>
+                        <img class="r-stretch" src="img/enga_structure.png" alt="ENGAN Structure"><br>
+                        <span class="purple">EN</span>gineering <span class="purple">G</span>enerative <span class="purple">A</span>dversarial <span class="purple">N</span>etwork (ENGAN)<br>
+                        <span class="smalltext">It has been delivered to Rolls-Royce in Jun 2023.</span>
+                    </section>
+
+                    <section id="engan_application">
+                        <h1>ENGAN Applications</h1>
+                        <img style="height: 280px;" src="img/turbine_blade.png" alt="Turbine Blade">
+                        <img style="height: 280px;" src="img/fsn.png" alt="Fuel Spray Nozzle"><br>
+                        ENGAN for <span class="lightblue">Gas Turbine Blade</span> Design (left) and <span class="lightgreen">Fuel Spray Nozzle</span> Design (right)
+                    </section>
+
+                    <section id="engan_results">
+                        <h1>ENGAN Experiments</h1>
+                        <img src="img/engan_blade.png" alt="ENGAN Turbine Blade Training" class="fragment fade-in-then-out" style="position: absolute;">
+                        <img src="img/engan_fsn.apng" alt="ENGAN FSN Training" class="fragment">
                     </section>
                 </section>
 
