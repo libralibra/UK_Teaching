@@ -502,7 +502,7 @@
                 </section>
 
                 <section id="review">
-
+                    <!-- srouce: https://ai-master.gitbooks.io/classic-search/content/what-is-uniform-cost-search.html -->
                     <section id="review_algorithms">
                         <h1>Review</h1>
                         <ul>
@@ -516,7 +516,7 @@
                             </li>
                             <li>DFS
                                 <ul>
-                                    <li><span class="lightpurle">LIFO/FILO</span>: utilise stack data structure, expand the deepest node</li>
+                                    <li><span class="lightpurle">LIFO/FILO</span>: utilise <code class="cyan">stack</code> data structure, expand the deepest node</li>
                                     <li><span class="lightblue">Not complete</span>: might never find a solution, if m is infinite</li>
                                     <li><span class="lightcyan">Not optimal</span>: returned solution is rarely the best one</li>
                                 </ul>
@@ -536,14 +536,14 @@
                             </li>
                             <li>Dijkstra's Algorithm
                                 <ul>
-                                    <li><span class="lightblue">Uniform cost search (UCS)</span>: like BFS, but for actions have different costs</li>
+                                    <li><span class="lightblue">Weighted graph search</span>: like BFS, but for actions have different costs</li>
                                     <li><span class="lightpink">Complete</span>: always finds a solution, if one exists</li>
                                     <li><span class="lightgreen">Optimal</span>: finds the best solution</li>
                                 </ul>
                             </li>
                             <li>A* Algorithm
                                 <ul>
-                                    <li><span class="lightpink">Non-uniform cost</span>: like UCS but adds an estimate of the remaining path</li>
+                                    <li><span class="lightpink">Weighted graph search</span>: like Dijkstra's but adds an estimate of the remaining path</li>
                                     <li><span class="lightpink">Complete</span>: always finds a solution, if one exists</li>
                                     <li><span class="lightgreen">Optimal</span>: finds the best solution</li>
                                 </ul>
