@@ -226,7 +226,7 @@
 
                     <section id="dijkstra_pseudo_code">
                         <h1>Dijkstra's Algorithm Pseudocode</h1>
-                        <pre><code class="java">function Dijkstra(Graph, source):
+                        <pre><code class="java" data-line-numbers="|2-6|8|9-10|12-16|13|14-16|17">function Dijkstra(Graph, source):
     for each vertex v in Graph.Vertices:
         dist[v] ← INFINITY
         prev[v] ← UNDEFINED
@@ -269,15 +269,21 @@
                     <!-- reference: https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search -->
                     <section id="a_star_pseudo_code">
                         <h1>$A^*$ Pseudocode</h1>
-                        <pre><code class="java smalltext">function A_star(Graph, s, e):
+                        <pre><code class="java" data-line-numbers="|2-5|7-10|12-24|13|14-15|16|17|18|19-24">function A_star(Graph, s, e):
     for each vertex v in Graph.Vertices:
-        gScore[v] ← INFINITY; fScore[v] ← INFINITY; prev[v] ← UNDEFINED
-    gScore[s] ← 0; fScore[s] ← h(s)
+        gScore[v] ← INFINITY
+        fScore[v] ← INFINITY
+        prev[v] ← UNDEFINED
+    
+    openSet ← {s}
+    closedSet ← {}
+    gScore[s] ← 0
+    fScore[s] ← h(s)
 
-    openSet ← {s}; closedSet ← {}
     while openSet is not empty:
         u ← vertex in openSet with min fScore[u]
-        if u is e: return gScore[], fScore[], prev[]!
+        if u is e: 
+            return gScore[], fScore[], prev[]
         openSet.remove(u)
         for each neighbour v of u:
             temp_gScore ← gScore[u] + dist(u,v)
