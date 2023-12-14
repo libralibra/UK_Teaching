@@ -176,7 +176,11 @@
                         <h1>BFS vs. DFS</h1>
                         <div class="r-stack">
                             <img src="img/bfs_dfs_1.png" alt="BFS vs DFS" class="r-stretch fragment fade-out img-height-400">
-                            <img src="img/bfs_dfs_2.png" alt="BFS vs DFS" class="r-stretch fragment fade-in img-height-400">
+                            <span class="fragment fade-in">
+                                <img src="img/bfs_dfs_2.png" alt="BFS vs DFS" class="r-stretch img-height-400"><br>
+                                <span class="fragment">What can you find from this illustration (esp. DFS)?</span>
+                            </span>
+
                         </div>
                         <p class="hidden">source: https://miro.medium.com/v2/resize:fit:1400/1*xtwZnK6KCMX5pkAdd4pS3A.jpeg</p>
                         <p class="hidden">source: https://dev-to-uploads.s3.amazonaws.com/i/e2ru41fjhqs4ombbcedf.png</p>
@@ -210,8 +214,8 @@
                             <li>Let $g(x)$ be the sum of edge weights of the $\qquad \qquad \qquad \qquad \qquad$<br>
                                 path found from the start node to $x$</li>
                             <li>Choose a node that minimises $g(x)$</li>
-                            <li>Need to handle cases where a shorter path<br>
-                                to a node is discovered later in the search</li>
+                            <!-- <li>Need to handle cases where a shorter path<br>
+                                to a node is discovered later in the search</li> -->
                             <li><span class="lightred">Guaranteed</span> to find the shortest path</li>
                             <li class="fragment">... but it is not the most efficient algorithm<br>
                                 for doing so</li>
