@@ -13,13 +13,18 @@ I make **2** versions of the same source code: one with university internal acce
 ---
 
 ## ToDos:
-- [ ] fix the pre/code alignment problem (probably caused by css, data-line-number)
+
 - [ ] find a good way of showing all slides in overview mode (**requires modification of the original javascript in node.js environment and rebuild the whole package**)
 - [ ] simplify the code for deployment
 
 
 ## Extras:
 
+- [x] show a digital clock at the top-right conner
+  ![Digital Clock](./examples/assets/clock.png)
+- [x] show a python console by clicking on the digital clock
+  ![Python console](./examples/assets/python_console.png)
+- [x] fix the pre/code alignment problem (probably caused by css, data-line-number)
 - [x] add extra plugins: menu, chalkboard, extra controls
     * [x] More controls:
         - [x] menu (1st icon) to show slide list, change theme, change transition style
