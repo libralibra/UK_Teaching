@@ -441,6 +441,10 @@ darkpurple {
     background-color: rgb(75, 75, 75);
 }
 
+.reveal .silver-bg {
+    background-color: rgb(167, 165, 165);
+}
+
 .reveal .red-bg {
     background-color: #971414;
 }
@@ -813,6 +817,11 @@ table thead {
     height: 100px !important;
 }
 
+.img-height-150 {
+    max-height: 150px !important;
+    height: 150px !important;
+}
+
 .img-height-200 {
     max-height: 200px !important;
     height: 200px !important;
@@ -858,9 +867,19 @@ table thead {
     height: 600px !important;
 }
 
+.img-height-650 {
+    max-height: 650px !important;
+    height: 650px !important;
+}
+
 .img-height-700 {
     max-height: 700px !important;
     height: 700px !important;
+}
+
+.img-height-750 {
+    max-height: 750px !important;
+    height: 750px !important;
 }
 
 .img-height-800 {
