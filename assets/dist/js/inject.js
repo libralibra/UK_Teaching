@@ -51,9 +51,9 @@ function GetTime() {
     //     GetCurrentTime += "a.m."
     // }
 
-    // update the time
+    // update the time, and restore the linkify effect
     let div = document.getElementsByClassName("pdf_link")[0];
-    div.innerHTML = '<a class="link_no_change" href="#" onclick="GeneratePDF();">⇩PDF</a><br><span class="yellow">' + GetCurrentTime + '</span>';
+    div.innerHTML = '<a class="link_no_change roll" href="#" onclick="GeneratePDF();"><span data-title="⇩PDF">⇩PDF</span></a><br><span class="yellow">' + GetCurrentTime + '</span>';
     // update every 10 seconds, doesn't need to be very accurate
     setTimeout(GetTime, 10000);
 }
