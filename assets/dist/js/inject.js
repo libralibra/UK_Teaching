@@ -52,7 +52,8 @@ function GetTime() {
     // }
 
     // update the time
-    document.getElementsByClassName("pdf_link")[0].innerHTML = '<a class="link_no_change" href="#" onclick="GeneratePDF();">⇩PDF</a><br><span class="yellow">' + GetCurrentTime + '</span>';
+    let div = document.getElementsByClassName("pdf_link")[0];
+    div.innerHTML = '<a class="link_no_change" href="#" onclick="GeneratePDF();">⇩PDF</a><br><span class="yellow">' + GetCurrentTime + '</span>';
     // update every 10 seconds, doesn't need to be very accurate
     setTimeout(GetTime, 10000);
 }
