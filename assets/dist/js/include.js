@@ -51,9 +51,6 @@ document.write(`
 <!-- make long slides overflow -->
 <script id="overflow" src="../../../assets/dist/js/overflow.js"></script>
 
-<!-- change overview scale -->
-<script id="overview_scale" src="../../../assets/dist/js/overview_scale.js"></script>
-
 <!-- ===============INJECT NAME, EMAIL, OFFICE ============== -->
 <script id="inject_data" src="../../../assets/dist/js/inject.js"></script>
 
@@ -70,4 +67,7 @@ document.write(`
 
 <!-- reveal initialisation -->
 <script id="reveal_init" src="../../../assets/dist/js/init.js"></script>
+
+<!-- change overview scale, has to be after the initialisation of reveal -->
+<script id="overview_scale" src="../../../assets/dist/js/overview_scale.js"></script>
 `);

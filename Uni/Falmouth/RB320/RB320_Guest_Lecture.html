@@ -8,7 +8,7 @@
         <meta charset="utf-8">
 
         <!-- meta data -->
-        <meta name="author" content="Dr Xu Zhang">
+        <meta name="author" content="Dr Daniel Zhang">
         <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
 
         <!-- disable search engine robots -->
@@ -39,7 +39,7 @@
 
     <body>
         <div class="pdf_div">
-            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+            <div class="pdf_link" title="Save Slides as PDF"><a class="link_no_change" href='#' onclick="GeneratePDF();">⇩PDF</a><br></div>
         </div>
 
         <!-- main content of the slides -->
@@ -63,9 +63,17 @@
                         <h1>Overview</h1>
                         <ul>
                             <li>A brief introduction about myself</li>
-                            <li>My journey to Computational Engineering</li>
-                            <li>An exploration to the AI world</li>
-                            <li>Future Work</li>
+                            <li class="fragment">My journey to Computational Engineering
+                                <ul>
+                                    <li>What is Computation Engineering?</li>
+                                    <li>My Research Projects
+                                        <dd>- PROMETHEUS: a generic design and optimisation platform<br>
+                                            - DYANMO: an add-on to Prometheus for heat transfer simulation<br>
+                                            - TilePack: an automatic feed hole optimisation package</dd>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="fragment">My exploration to the AI world</li>
                         </ul>
                     </section>
                 </section>
@@ -111,8 +119,8 @@
                                     <li>Worked at <brown>Rolls-Royce UTC</brown> at <pink>University of <br>
                                             Southampton</pink>
                                     </li>
-                                    <li>Specialised in <lime>CAD</lime> optimisations and <blue>AI/ML</blue> <br>
-                                        applications in Aerospace Engineering</li>
+                                    <li>Specialised in <lime>CAD</lime> optimisations and <blue>AI/ML</blue> appli-<br>
+                                        cations in Aerospace Engineering</li>
                                     <li>Delivered <cyan>over 10</cyan> successful software and production tools to <brown>Rolls-Royce</brown> to solve their computational engineering problems</li>
                                 </ul>
                             </li>
@@ -127,11 +135,11 @@
                                 <green>Industrial & Academic Links: </green>
                                 <ul>
                                     <br>
-                                    <li>Provided support to Rolls-Royce engineers across <br>
-                                        <span class="cyan bold">5</span> R&D Centres: <purple>Bristol</purple> (UK), <orange>Derby</orange> (UK), <br>
-                                        <red>Dahlewitz</red> (Germany), <blue>Illinois</blue> (US), <br>
-                                        <green>Bangalore</green> (India)
+                                    <li>Supported Rolls-Royce engineers across <span class="cyan bold">5</span> R&D <br>
+                                        Centres: <purple>Bristol</purple> (UK), <orange>Derby</orange> (UK), <blue>Illinois</blue> (US),<br>
+                                        <red>Dahlewitz</red> (Germany), <green>Bangalore</green> (India)
                                     </li>
+                                    <br>
                                     <li>Collaborated with prominent industrial organisations including <span class="lightblue">Rolls-Royce, Airbus, UKRI, ATI, DSTL, RAF, MoD</span>, and esteemed universities like <span class="lightred">Oxford, Cambridge, Cranfield, Sheffield, Queen</span>, and others</li>
                                 </ul>
                             </li>
@@ -149,22 +157,23 @@
                         <h1>Computational Engineering</h1>
                         <ul data-id="dt">
                             <li><span class="fragment custom delete">Computer Science</span> or <span class="fragment custom delete">Computer Engineering</span> <span class="fragment">- use <span class="orange">some domains</span> in the former and can <span class="cyan">solve some problems</span> in the latter</span></li>
-                            <li class="fragment">deals with the development and application of computational models for engineering, known as <span class="pink">Computational Engineering Models</span> or <span class="pink">CEM</span></li>
-                            <li class="fragment">employs <span class="blue">computational geometry</span> and <span class="lime">virtual design</span> for engineering tasks in a <span class="pink">simulation-driven</span> approach</li>
+                            <li class="fragment">Generally, it's the <span class="purple">intersection</span> of computer science and engineering</li>
+                            <li class="fragment">Utilising <span class="lightblue">computer power</span> to solve complex <span class="pink">engineering problems</span></li>
+                            <li class="fragment">More specifically, it employs <span class="blue">computational models</span> and <span class="lime">virtual design</span> for engineering tasks in a <span class="pink">simulation-driven</span> approach</li>
                         </ul>
                     </section>
 
                     <section id="cad_2" data-auto-animate>
                         <h1>Computational Engineering (cont.)</h1>
                         <ul data-id="dt">
-                            <li>often involves <span class="lightblue">high-performance computing (HPC)</span>, <span class="lightorange">parallel computing</span>, <span class="lightcyan">algorithms & data structure</span>, <span class="yellow">numerical methods</span>, <span class="lime">modelling & simulation</span>, <span class="pink">data visualisation</span>, etc.</li>
-                            <li class="fragment">includes <span class="lightred">CAD, CAE, FEA, CFD, DSO, DoE</span></li>
-                            <li class="fragment">widely applied to <span class="fragment custom line-below">Aerospace Engineering, Mechanical Engineering</span>, Nuclear Engineering, Civil Engineering, Environmental Engineering, Material Science, Physics, and so on</li>
+                            <li>Often involves <span class="lightblue">high-performance computing (HPC)</span>, <span class="lightorange">parallel computing</span>, <span class="lightcyan">algorithms & data structure</span>, <span class="yellow">numerical methods</span>, <span class="lime">modelling & simulation</span>, <span class="pink">data visualisation</span>, etc.</li>
+                            <li class="fragment">Includes <span class="lightred">CAD, CAE, FEA, CFD, DSO, DoE</span></li>
+                            <li class="fragment">Widely applied to <span class="fragment custom line-below">Aerospace Engineering, Mechanical Engineering</span>, Nuclear Engineering, Civil Engineering, Environmental Engineering, Material Science, Physics, and so on</li>
                         </ul>
                     </section>
 
                     <section id="engine" data-auto-animate>
-                        <h1>Aircraft Gas Turbine Engine Components</h1>
+                        <h1>Aircraft Gas Turbine Engine</h1>
                         <div data-id="dt" style="position: absolute;">
                             <p class="like-li text-left">Worked with: Fuel Spray Nozzles, Combustors, Turbine Blades, Afterburners</p>
                             <img class="col-45 img-height-450" src="img/engine_no_tips.png" alt="Jet Engine">
@@ -203,7 +212,7 @@
                             <li><span class="golden">Dynamo</span>: A Smart System for Thermal Analysis of Combustor</li>
                             <li><span class="pink">TilePack</span>: A Pedestal Tile Cooling Feed Hole Optimisation Package</li>
                             <li><span class="purple">GEMNiDS</span>: Hot-2-Cold Mesh Transformation</li>
-                            <li><span class="blue">Afterburner Integration</span>: Award-winning Prometheus v2 in LEGO Blocks</li>
+                            <li><span class="blue">Afterburner Integration</span>: Award-winning Prometheus v2 as LEGO Blocks</li>
                             <li><span class="green">COLIBRI</span>: AI/ML-enabled Design & Optimisation</li>
                         </ul>
                     </section>
@@ -230,12 +239,13 @@
                         </div>
                         <div class="box-top-right fragment">Plays a <span class="purple">crucial</span> role<br>
                             to engine characteristics<br>
-                            <span class="lightred">fuel efficiency</span>, <span class="lightblue">emissions</span><br>
+                            <span class="lightred">fuel efficiency</span>, <span class="lightblue">emissions</span>,<br>
                             <span class="green">performance</span>, etc.
                         </div>
                         <div class="box-bottom-left fragment">
-                            Main <span class="lime">stable</span> combustion<br>
-                            in a <span class="pink">high pressure</span>,<br>
+                            Maintains <span class="lime">stable</span> <br>
+                            combustion in a <br>
+                            <span class="pink">high pressure</span>,<br>
                             <span class="cyan">high velocity</span><br>
                             airflow condition
                         </div>
@@ -243,7 +253,7 @@
                             Working temperature <br>
                             may <span class="purple">exceed 1,500 °C</span><br>
                             Some components start <br>
-                            melting at <span class="lightred">1,300 °C</span>
+                            melting at <span class="lightred">1,300 °C</span> <span class="bigtext2">😱</span>
                         </div>
                     </section>
 
@@ -328,7 +338,7 @@
                             <img class="box-top-left img-width-450 img-height-250 img-zoom-15" src="img/Zeppelin_Fluid_Vol_t1.png" alt="Zeppelin Can Volume">
                             <img class="fragment box-top-right img-width-450 img-height-250" src="img/Zeppelin_3_1.jpg" alt="Zeppelin Can Mesh" data-fragment-index="1">
                             <img class="fragment box-bottom-left img-width-450 img-height-250" src="img/zeppelin_cfd_2.png" alt="Zeppelin Can CFD" data-fragment-index="2">
-                            <img class="fragment box-bottom-right img-width-450 img-height-250 r-frame img-zoom-15" src="img/Lean_Burn_Rear_Test.png" alt="Lean Burn Volume" data-fragment-index="3">
+                            <img class="fragment box-bottom-right img-width-450 img-height-250 r-frame-red img-zoom-15" src="img/Lean_Burn_Rear_Test.png" alt="Lean Burn Volume" data-fragment-index="3">
                             &larr; Zeppelin Can <br>Fluid Volume (left)
                             <br><br>
                             <span class="fragment" data-fragment-index="1">Zeppelin Can <br>Mesh (right) &rarr;</span>
@@ -344,7 +354,7 @@
                         <h1 data-id="dh">Showcase: Rolls-Royce Trent XWB</h1>
                         <span data-id="dt">
                             <img class="img-height-450 " src="img/XWB_Goem.png" alt="Trent XWB Geometry"><br>
-                            <span class="smalltext">Daniel Zhang. <span class="italic">et
+                            $^{[1]}$ <span class="smalltext">Daniel Zhang. <span class="italic">et
                                     al.</span>, “Isothermal Combustor Prediffuser & Fuel Injector Feed Arm Design Optimisation Using the Prometheus Design System”, J. Eng. Gas Turbines Power, (2015)</span>
                         </span>
                     </section>
@@ -476,7 +486,7 @@
                     </section>
 
                     <section id="tile_results">
-                        <h1>Optimisation Results</h1>
+                        <h1>Tile Optimisation Results</h1>
                         <img class="img-width-900" src="img/tile_simulation.png" alt="Tile Simulation" style="position: absolute;">
                         <span class="fragment fade-in-then-out" style="position: absolute;">
                             <img class="img-width-900" src="img/tile_optimisation.png" alt="Tile Optimisation"><br>
@@ -550,7 +560,7 @@
                         <h1>Conditional Generative <span class="hover-text" id="bottom">Adversarial <span class="tooltip-text">/ˌædvɜːˈsɛərɪəl/</span> Network</h1>
                         <img class="r-stretch" src="img/enga_structure.png" alt="ENGAN Structure"><br>
                         <span class="purple">EN</span>gineering <span class="purple">G</span>enerative <span class="purple">A</span>dversarial <span class="purple">N</span>etwork (ENGAN)<br>
-                        <span class="smalltext">It has been delivered to Rolls-Royce in Jun 2023.</span>
+                        <span class="smalltext">This tool has been delivered to Rolls-Royce in Jun 2023.</span>
                     </section>
 
                     <section id="engan_application">

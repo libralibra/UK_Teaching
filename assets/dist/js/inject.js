@@ -28,3 +28,31 @@ let getMetaContent = (n) => document.querySelector("meta[name='" + n + "']").get
 
 console.log(getMetaContent('author'));
 // console.log(getMetaContent('og:author'));
+
+// show the current time at the top-right corner
+GetTime();
+
+function GetTime() {
+    let CurrentTime = new Date()
+    let hour = CurrentTime.getHours()
+    let minute = CurrentTime.getMinutes();
+    let second = CurrentTime.getSeconds();
+
+    hour = hour < 10 ? "0" + hour : hour;
+    minute = minute < 10 ? "0" + minute : minute;
+    second = second < 10 ? "0" + second : minute;
+
+    // let GetCurrentTime = hour + ":" + minute + ":" + second;
+    let GetCurrentTime = hour + ":" + minute;
+
+    // if (hour > 11) {
+    //     GetCurrentTime += "p.m."
+    // } else {
+    //     GetCurrentTime += "a.m."
+    // }
+
+    // update the time
+    document.getElementsByClassName("pdf_link")[0].innerHTML = '<a class="link_no_change" href="#" onclick="GeneratePDF();">⇩PDF</a><br><span class="yellow">' + GetCurrentTime + '</span>';
+    // update every 10 seconds, doesn't need to be very accurate
+    setTimeout(GetTime, 10000);
+}
