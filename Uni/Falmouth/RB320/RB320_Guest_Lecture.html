@@ -39,8 +39,13 @@
 
     <body>
         <div class="pdf_div">
-            <div class="pdf_link" title="Save Slides as PDF"><a class="link_no_change" href='#' onclick="GeneratePDF();">⇩PDF</a><br></div>
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
         </div>
+        <iframe id="mid-iframe" src="https://console.python.org/python-dot-org-console/" title="Click this gray border to hide python console"></iframe>
 
         <!-- main content of the slides -->
         <div class="reveal">
@@ -510,6 +515,12 @@
                             <li>Applied to <span class="skyblue">8 sets</span> of tile design and optimisation for an engine commissioned by Airbus</li>
                         </ul>
                     </section>
+
+                    <section id="future_work">
+                        <h1>Future Work</h1>
+                        <img class="r-stretch" src="img/tile-organic-auto-spacing.gif" alt="Organic Auto Spacing"><br>
+                        Respect geometry restrictions by introducing organic spacing
+                    </section>
                 </section>
 
                 <section id="chap_ai">
@@ -520,7 +531,7 @@
                     <section id="ai_generation">
                         <h1>AI Blooming</h1>
                         <span class="fragment"><img class="img-height-550" src="img/ai_generation.png" alt="AI Generation">
-                            <div class="fragment fade-out gray-gb box-bottom-left" style="position: absolute; left: 0px; bottom: 20px; width: 100%; height: 20px;">Which are AI generated? Which are real pictures?</div>
+                            <div class="fragment fade-out gray-gb box-bottom-left" style="position: absolute; bottom: 0px; width: 100%; height: 40px;">Which are AI generated? Which are real pictures?</div>
                         </span>
                     </section>
 

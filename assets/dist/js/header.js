@@ -31,8 +31,6 @@ authorData.set('fullname', authorData.get('name') + ' (PhD, MSc, BEng)');
 // overview scale
 overview_scale = 0.2;
 
-
-
 // generate pdf link, click the button, then press CTRL+P
 // remember to follow these steps to get rid of the borders:
 //  1. select 'save as PDF' for printer

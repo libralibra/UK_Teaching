@@ -39,8 +39,13 @@
 
     <body>
         <div class="pdf_div">
-            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
         </div>
+        <iframe id="mid-iframe" src="https://console.python.org/python-dot-org-console/" title="Click this gray border to hide python console"></iframe>
 
         <!-- main content of the slides -->
         <div class="reveal">

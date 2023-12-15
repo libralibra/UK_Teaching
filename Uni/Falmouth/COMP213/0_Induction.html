@@ -38,27 +38,14 @@
     </head>
 
     <body>
-        <script>
-            // generate pdf link, click the button, then press CTRL+P
-            // remember to follow these steps to get rid of the borders:
-            //  1. select 'save as PDF' for printer
-            //  2. advanced settings or something similar
-            //  3. margin -> None if needed
-            //  4. tick 'background graphics' if needed
-            function GeneratePDF() {
-                let url = window.location.href;
-                let pos = url.indexOf(".html");
-                url = url.substr(0, pos + ".html".length);
-                window.location.href = url + "?print-pdf";
-            }
-        </script>
-        <!-- pdf printing by showing a corner strip+
-                    put pdf button before anything else, as the z-index makes sure later elements has a 
-                    higher z-index than those before. In overview mode, the slides should be in the front.
-                -->
         <div class="pdf_div">
-            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
         </div>
+        <iframe id="mid-iframe" src="https://console.python.org/python-dot-org-console/" title="Click this gray border to hide python console"></iframe>
 
         <!-- main content of the slides -->
         <div class="reveal">

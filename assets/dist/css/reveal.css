@@ -416,6 +416,19 @@ darkpurple {
     padding: 5px !important;
 }
 
+/* the ipython console in the centre of the screen */
+#mid-iframe {
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    height: 41%;
+    border: 15px solid #666;
+    background-color: #b9faac;
+    z-index: -10;
+    position: fixed;
+    opacity: 0;
+}
+
 /* enlarge image on hover */
 .fix-bottom-left {
     transform-origin: bottom left;

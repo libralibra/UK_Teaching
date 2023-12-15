@@ -36,14 +36,14 @@ function GetTime() {
     let CurrentTime = new Date()
     let hour = CurrentTime.getHours()
     let minute = CurrentTime.getMinutes();
-    let second = CurrentTime.getSeconds();
+    // let second = CurrentTime.getSeconds();
 
     hour = hour < 10 ? "0" + hour : hour;
     minute = minute < 10 ? "0" + minute : minute;
-    second = second < 10 ? "0" + second : minute;
+    // second = second < 10 ? "0" + second : minute;
 
     // let GetCurrentTime = hour + ":" + minute + ":" + second;
-    let GetCurrentTime = hour + ":" + minute;
+    let current_time_str = hour + ":" + minute;
 
     // if (hour > 11) {
     //     GetCurrentTime += "p.m."
@@ -51,9 +51,37 @@ function GetTime() {
     //     GetCurrentTime += "a.m."
     // }
 
-    // update the time, and restore the linkify effect
-    let div = document.getElementsByClassName("pdf_link")[0];
-    div.innerHTML = '<a class="link_no_change roll" href="#" onclick="GeneratePDF();"><span data-title="⇩PDF">⇩PDF</span></a><br><span class="yellow">' + GetCurrentTime + '</span>';
+    let span = document.getElementById("time_placeholder");
+    span.innerHTML = current_time_str;
     // update every 10 seconds, doesn't need to be very accurate
     setTimeout(GetTime, 10000);
 }
+
+// add python console appear and disappear function
+const iframe = document.getElementById('mid-iframe');
+const textElement = document.getElementById('time_placeholder');
+
+textElement.addEventListener('click', () => {
+    iframe.style.display = 'block';
+    // Apply ease effect to animate the iframe's position to the center
+    // iframe.style.left = '50%';
+    // iframe.style.top = '50%';
+    iframe.style.left = '50%';
+    iframe.style.top = '50%';
+    iframe.style.width = '80%';
+    iframe.style.height = '41%';
+    // width: 80 %;
+    // height: 41 %;
+    iframe.style.transform = 'translate(-50%, -50%)';
+    iframe.style.transition = 'all 0.5s ease';
+    iframe.style.opacity = '1';
+    iframe.style.zIndex = '1000';
+});
+
+iframe.addEventListener('click', () => {
+    // Reverse the transform to hide the iframe
+    iframe.style.transform = 'translate(-50%, -50%) scaleX(0) scaleY(0)';
+    iframe.style.transition = 'all 0.3s ease-out';
+    iframe.style.opacity = '0';
+    iframe.style.zIndex = '-10';
+});
