@@ -32,7 +32,7 @@ v 0.1 (2023-2024)
     - [Attend the Viva](#attend-the-viva)
   - [Additional Guidance](#additional-guidance)
   - [FAQ](#faq)
-  - [Marking Rubic](#marking-rubic)
+  - [Marking Rubrics](#marking-rubrics)
 
 
 
@@ -123,7 +123,7 @@ Developing AI using symbolic and non-symbolic approaches demands significant eff
 
 >**Note**: Please refer to the marking rubric for more detailed information regarding the criteria.
 
-## Marking Rubic
+## Marking Rubrics
 [Top](#top)
 
 

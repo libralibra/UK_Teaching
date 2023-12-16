@@ -34,7 +34,7 @@ v 0.1 (2023-2024)
     - [Part D: Submission](#part-d-submission)
   - [Additional Guidance](#additional-guidance)
   - [FAQ](#faq)
-  - [Marking Rubic](#marking-rubic)
+  - [Marking Rubrics](#marking-rubrics)
 
 
 
@@ -143,7 +143,7 @@ Utilize the journal to capture dialogues between yourself, tutors, and peers dur
 
 >**Note**: Please refer to the marking rubric for more detailed information regarding the criteria.
 
-## Marking Rubic
+## Marking Rubrics
 [Top](#top)
 
 

@@ -53,35 +53,37 @@ function GetTime() {
 
     let span = document.getElementById("time_placeholder");
     span.innerHTML = current_time_str;
+    // clear the title of python console notification
+    span.title = '';
     // update every 10 seconds, doesn't need to be very accurate
     setTimeout(GetTime, 10000);
 }
 
-// add python console appear and disappear function
-const iframe = document.getElementById('mid-iframe');
-const textElement = document.getElementById('time_placeholder');
+// // add python console appear and disappear function
+// const iframe = document.getElementById('mid-iframe');
+// const textElement = document.getElementById('time_placeholder');
 
-textElement.addEventListener('click', () => {
-    iframe.style.display = 'block';
-    // Apply ease effect to animate the iframe's position to the center
-    // iframe.style.left = '50%';
-    // iframe.style.top = '50%';
-    iframe.style.left = '50%';
-    iframe.style.top = '50%';
-    iframe.style.width = '80%';
-    iframe.style.height = '41%';
-    // width: 80 %;
-    // height: 41 %;
-    iframe.style.transform = 'translate(-50%, -50%)';
-    iframe.style.transition = 'all 0.5s ease';
-    iframe.style.opacity = '1';
-    iframe.style.zIndex = '1000';
-});
+// textElement.addEventListener('click', () => {
+//     iframe.style.display = 'block';
+//     // Apply ease effect to animate the iframe's position to the center
+//     // iframe.style.left = '50%';
+//     // iframe.style.top = '50%';
+//     iframe.style.left = '50%';
+//     iframe.style.top = '50%';
+//     iframe.style.width = '80%';
+//     iframe.style.height = '43%';
+//     // width: 80 %;
+//     // height: 41 %;
+//     iframe.style.transform = 'translate(-50%, -50%)';
+//     iframe.style.transition = 'all 0.5s ease';
+//     iframe.style.opacity = '1';
+//     iframe.style.zIndex = '1000';
+// });
 
-iframe.addEventListener('click', () => {
-    // Reverse the transform to hide the iframe
-    iframe.style.transform = 'translate(-50%, -50%) scaleX(0) scaleY(0)';
-    iframe.style.transition = 'all 0.3s ease-out';
-    iframe.style.opacity = '0';
-    iframe.style.zIndex = '-10';
-});
+// iframe.addEventListener('click', () => {
+//     // Reverse the transform to hide the iframe
+//     iframe.style.transform = 'translate(-50%, -50%) scaleX(0) scaleY(0)';
+//     iframe.style.transition = 'all 0.3s ease-out';
+//     iframe.style.opacity = '0';
+//     iframe.style.zIndex = '-10';
+// });
