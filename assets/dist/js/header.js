@@ -15,12 +15,15 @@ authorData.set('nickname', 'Daniel');
 // add the dynamic item
 authorData.set('year', new Date().getFullYear() + " - " + (new Date().getFullYear() + 1));
 authorData.set('emaillink', 'mailto:' + authorData.get('email'));
+// find course code
+let course_code = (authorData.has('coursecode') && authorData.get('coursecode') != '') ? authorData.get('coursecode') + ' - ' : '';
+
 // add title
-if (authorData.has('week')) {
-    let topic = authorData.has('topic') ? (': ' + authorData.get('topic')) : '';
-    authorData.set('title', authorData.get('course') + '-' + authorData.get('week') + topic);
+if (authorData.has('week') && authorData.get('week') != '') {
+    let topic = (authorData.has('topic') && authorData.get('topic') != '') ? ' ' + authorData.get('topic') : '';
+    authorData.set('title', course_code + authorData.get('course') + ' (' + authorData.get('week') + ') ' + topic);
 } else {
-    authorData.set('title', authorData.get('course'));
+    authorData.set('title', course_code + authorData.get('course'));
 }
 // module name = course name
 authorData.set('modulename', authorData.get('course'));
