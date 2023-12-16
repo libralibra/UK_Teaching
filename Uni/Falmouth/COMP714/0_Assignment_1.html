@@ -1,0 +1,208 @@
+<!DOCTYPE html><html><head>
+      <title>0_Assignment_1</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<p><img src="../../Falmouth/common/ga_uni_logo.png" alt=""></p>
+<p><img src="./img/assessment_banner.png" alt=""><br>
+Source: image generated by <a href="https://huggingface.co/Joeythemonster/anything-midjourney-v-4-1" target="_blank">Joeythemonster/anything-midjourney-v-4-1</a><br>
+Prompt: “<em>A sci-fi scene with dark background shown robots connect to neural networks</em>”</p>
+<h1 id="applications-of-machine-learning-techniques">Applications of Machine Learning Techniques </h1>
+<p><strong>COMP714: Machine Learning</strong><br>
+<strong>Brief of Assignment 1</strong></p>
+<p>Dr Daniel Zhang</p>
+<p>Games Academy, Falmouth University<br>
+v 0.1 (2023-2024)</p>
+<hr>
+<div id="top" style="visibility: hidden;"></div>
+<h1 id="table-of-contents">Table of Contents </h1>
+<ul>
+<li><a href="#applications-of-machine-learning-techniques">Applications of Machine Learning Techniques</a></li>
+<li><a href="#table-of-contents">Table of Contents</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#problem-definition-and-data-preparation">Problem Definition and Data Preparation</a></li>
+<li><a href="#feature-selection">Feature Selection</a></li>
+<li><a href="#fundamental-machine-learning-experiments">Fundamental Machine Learning Experiments</a></li>
+</ul>
+</li>
+<li><a href="#assignment-format">Assignment Format</a>
+<ul>
+<li><a href="#project-outline">Project Outline</a></li>
+<li><a href="#monitoring-your-progress">Monitoring Your Progress</a></li>
+<li><a href="#submit-a-demonstration-video">Submit a Demonstration Video</a></li>
+<li><a href="#attend-the-viva">Attend the Viva</a></li>
+</ul>
+</li>
+<li><a href="#additional-guidance">Additional Guidance</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#marking-rubic">Marking Rubic</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">Introduction </h2>
+<p><a href="#top">Top</a></p>
+<p>This assignment entails a research project to showcase your comprehension of Machine Learning (ML) techniques. It provides an opportunity to experiment with ML frameworks explored during lectures and workshops. The objective is to create a small-scale machine-learning solution applicable to a specific task, such as controlling a game agent, content generation, analyzing game-related datasets for prediction, or other suitable pursuits.</p>
+<p>The project aims to address two fundamental ML questions for game-related AI:</p>
+<ul>
+<li>Can ML effectively accomplish a game-related task?</li>
+<li>How do varying parameters impact ML algorithm performance?</li>
+</ul>
+<p>The assignment comprises the following sections:</p>
+<h3 id="problem-definition-and-data-preparation">Problem Definition and Data Preparation </h3>
+<p><a href="#top">Top</a></p>
+<p>Commence your project by selecting a suitable problem and sourcing data for algorithmic work. This could involve a simple 2D game, an existing game framework, a dataset from the ML literature, or unconventional applications of well-known datasets like <code>mnist</code>. The choice must demonstrate originality or a new perspective. Familiarity with Python or <code>ML.Net</code> is recommended, with tools such as <code>PyGame</code>, <code>Turtle</code> for Python, and MonoGame for C# development.</p>
+<p>Utilize learned techniques from <code>COMP712 - Classical Artificial Intelligence</code> for symbolic AI to generate training data. Design an easily adaptable AI for data output, essential for online learning.</p>
+<h3 id="feature-selection">Feature Selection </h3>
+<p><a href="#top">Top</a></p>
+<p>Many datasets or games offer varied fields for ML algorithm training, necessitating adjustments or the creation of new features for optimal performance. Iterating on feature selection is integral to the ML process. Explore different features for AI input, selecting and modifying them based on feedback and experimentation stages.</p>
+<blockquote>
+<p>NOTE:<br>
+Maintain records of attempted strategies and outcomes for the second assignment.</p>
+</blockquote>
+<h3 id="fundamental-machine-learning-experiments">Fundamental Machine Learning Experiments </h3>
+<p><a href="#top">Top</a></p>
+<p>Experiment with your chosen approach’s parameters to assess algorithmic performance. Given the limited timeline (6 weeks), swift iterations and start of evaluation by week 3 are crucial. Avoid last-minute attempts at AI training, as it won’t yield results.</p>
+<h2 id="assignment-format">Assignment Format </h2>
+<p><a href="#top">Top</a></p>
+<p>The assignment includes these parts:</p>
+<h3 id="project-outline">Project Outline </h3>
+<p><a href="#top">Top</a></p>
+<p>This single <strong>formative</strong> assessment involves presenting your research plan during the week 2 workshop. Briefly outline your chosen application as a testbed, targeted AI for ML, and an overview of data and ML processing.</p>
+<h3 id="monitoring-your-progress">Monitoring Your Progress </h3>
+<p><a href="#top">Top</a></p>
+<p>A series of continuous <strong>formative</strong> assessments during weekly workshop sessions allow discussions on research progress, providing informal feedback.</p>
+<h3 id="submit-a-demonstration-video">Submit a Demonstration Video </h3>
+<p><a href="#top">Top</a></p>
+<p>This <strong>summative</strong> submission involves preparing a 2-5 minute video demonstrating your ML application. Submit the video link via <a href="https://www.microsoft365.com/launch/stream">Microsoft Streams</a> alongside your project repository link. Advanced editing is unnecessary; a raw screen capture is sufficient.</p>
+<p>Formal feedback will be provided within 3 weeks.</p>
+<h3 id="attend-the-viva">Attend the Viva </h3>
+<p><a href="#top">Top</a></p>
+<p>Participate in the scheduled viva session to discuss your work, constituting a <strong>summative</strong> submission. Informal feedback will be given during the viva.</p>
+<h2 id="additional-guidance">Additional Guidance </h2>
+<p><a href="#top">Top</a></p>
+<p>This research project requires careful planning and management. Approach it as an experiment, meticulously documenting each step and iteration in the ML process. Planning and time management are critical; commence work early and maintain a consistent pace, avoiding last-minute rushes.</p>
+<p>Developing AI using symbolic and non-symbolic approaches demands significant effort and cannot be crammed before deadlines. There’s a crucial phase of testing involved. Initiate work early, sustaining steady progress throughout the assignment.</p>
+<h2 id="faq">FAQ </h2>
+<p><a href="#top">Top</a></p>
+<ol>
+<li>
+<p><strong>Q: What is the deadline of this assignment?</strong><br>
+<strong>A</strong>: <em><a href="https://myfalmouth.falmouth.ac.uk/" target="_blank">MyFalmouth</a></em> system is the only place where you should be able to find all deadline information according to the requirements and the policies of Falmouth University.</p>
+</li>
+<li>
+<p><strong>Q: How can I seek help?</strong><br>
+<strong>A</strong>: You can email the tutor for any informal clarifications. For short question, MS Teams message would work as well.</p>
+</li>
+<li>
+<p><strong>Q: Will there be feedback on my work?</strong><br>
+<strong>A</strong>: You will be given verbal feedback on your work during the assessment session. Please consider to book an appointment with the tutor if you need in-depth discussions.</p>
+</li>
+<li>
+<p><strong>Q: Any other issues?</strong><br>
+<strong>A</strong>: Any other issues or mistakes in this brief, please inform the tutor.</p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>Note</strong>: Please refer to the marking rubric for more detailed information regarding the criteria.</p>
+</blockquote>
+<h2 id="marking-rubic">Marking Rubic </h2>
+<p><a href="#top">Top</a></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Weight</th>
+<th>Near Pass</th>
+<th>Pass</th>
+<th>Merit</th>
+<th>Distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maintainability of data processing</td>
+<td>20%</td>
+<td>Data processing appears adhoc and/or difficult to follow</td>
+<td>Clear approach to data processing Some consideration to repeatability, although data processing steps may not be clear</td>
+<td>Clear data processing process Some consideration given to meta-training Some consideration given to robustness Some consideration given to repeatability</td>
+<td>Clear data processing process Much consideration given to meta-training Robustness considerations form a core part of the solution Repeatability considerations form a core part of the solution</td>
+</tr>
+<tr>
+<td>ML Pipeline</td>
+<td>10%</td>
+<td>There is no clear pipeline, or the program architecture is poorly considered.</td>
+<td>There is some attempt at a pipeline within the program, with a clear sequence of steps.</td>
+<td>There is a clear separation between learning/data processing and induction/‘production’ usage.</td>
+<td>Pipeline is clear, and follows industry conventions. There is evidence of evaluation/iteration over the parameters or structure (and how this has been accomplished)</td>
+</tr>
+<tr>
+<td>Robustness of ML integration</td>
+<td>20%</td>
+<td>ML solution implemented but largely non-functional / non-working</td>
+<td>Project implements ML functionality, but it is largely derived from off-the-shelf components</td>
+<td>Project implements ML functionality, with some consideration to parameter choice.</td>
+<td>Project implements ML functionality, with some novel or interesting insights</td>
+</tr>
+<tr>
+<td>Maintainability of Solutions</td>
+<td>10%</td>
+<td>The code submitted is hard to follow, and lacks either documentation or comments.</td>
+<td>The solution is documented and is reasonably easy to follow Limited consideration for repeatability</td>
+<td>Game AI is well-suited to ML approaches Comments are clear and understandable Good consideration for repeatability (eg, all required libraries and steps are documented in a readme)</td>
+<td>Game AI that incredibly well suited to ML approaches Near industry standard level of commenting Very good consideration for repeatability</td>
+</tr>
+<tr>
+<td>Scope of ML techniques</td>
+<td>20%</td>
+<td>Little consideration of ML techniques within submission</td>
+<td>Some considerations for parameters and data processing Some evidence of investigation into different AI techniques or parameters</td>
+<td>Reasonable consideration features, parameters, or hyper-parameters Good evidence of investigation into different AI techniques or parameters</td>
+<td>Good consideration of the chosen features, parameters, or hyper-parameters Excellent evidence of investigation into different AI techniques or parameters</td>
+</tr>
+<tr>
+<td>Suitability of chosen algorithms and topic</td>
+<td>20%</td>
+<td>Topic chosen is not suitable for the given project.</td>
+<td>The topic chosen is reasonable if poorly scoped. The algorithm choice is reasonable for the task being considered</td>
+<td>The topic chosen is a good fit for the assignment and is well-scoped. The algorithm choice is suitable for the task being considered</td>
+<td>The topic chosen is a good fit for the assignment and shows an innovative approach. Algorithm choice is informed by existing work and is well suited for the task</td>
+</tr>
+</tbody>
+</table>
+<p>*The above table was generated on <a href="https://www.tablesgenerator.com/markdown_tables" target="_blank">https://www.tablesgenerator.com/markdown_tables</a></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
