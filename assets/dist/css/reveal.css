@@ -329,6 +329,16 @@ darkpurple {
     color: #00ffd5;
 }
 
+.like-li-2::before {
+    content: "➣";
+    color: #00ffd5;
+}
+
+.like-li-3::before {
+    content: "‣";
+    color: #00ffd5;
+}
+
 /* hidden titles or other items */
 .hidden {
     position: absolute !important;
