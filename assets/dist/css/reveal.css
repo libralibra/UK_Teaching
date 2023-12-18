@@ -355,26 +355,33 @@ darkpurple {
 }
 
 /* left, right align */
-.text-left {
+.text-left,
+.left-text {
     text-align: left !important;
 }
 
-.text-right {
+.text-right,
+.right-text {
     text-align: right !important;
 }
 
-.text-center {
+.text-center,
+.centre-text,
+.text-center,
+.center-text {
     text-align: center !important;
 }
 
-.float-left {
+.float-left,
+.left-float {
     position: absolute !important;
     left: 0px !important;
     margin-left: 0 !important;
 }
 
 /* absolute position */
-.box-top-left {
+.box-top-left,
+.box-left-top {
     position: absolute !important;
     top: 80px !important;
     left: 0px !important;
@@ -382,12 +389,14 @@ darkpurple {
     padding: 5px !important;
 }
 
-.box-left {
+.box-left,
+.left-box {
     position: absolute !important;
     left: 0px !important;
 }
 
-.box-top-right {
+.box-top-right,
+.box-right-top {
     position: absolute !important;
     top: 80px !important;
     right: 0px !important;
@@ -395,22 +404,27 @@ darkpurple {
     padding: 5px !important;
 }
 
-.box-right {
+.box-right,
+.right-box {
     position: absolute !important;
     right: 0px !important;
 }
 
-.box-centre {
+.box-centre,
+.box-center,
+.centre-box,
+.center-box {
     position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
+    top: 50%;
+    left: 50%;
     /* margin-top: -50px; */
     /* this is half the height of your div*/
     /* margin-left: -100px; */
     /*this is half of width of your div*/
 }
 
-.box-bottom-right {
+.box-bottom-right,
+.box-right-bottom {
     position: absolute !important;
     bottom: 20px !important;
     right: 0px !important;
@@ -418,7 +432,8 @@ darkpurple {
     padding: 5px !important;
 }
 
-.box-bottom-left {
+.box-bottom-left,
+.box-left-bottom {
     position: absolute !important;
     bottom: 20px !important;
     left: 0px !important;
@@ -1067,6 +1082,23 @@ table thead {
     font-family: Arial;
     text-align: center;
 } */
+
+/* rotate div, must be div */
+.rotate-45 {
+    rotate: 45deg;
+}
+
+.rotate-minus-45 {
+    rotate: -45deg;
+}
+
+.rotate-90 {
+    rotate: 90deg;
+}
+
+.rotate-minus-90 {
+    rotate: -90deg;
+}
 
 /* don't show in print-pdf and overview */
 html.print-pdf .pdf_div {

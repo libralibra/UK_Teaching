@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '3'],
+                ['topic', ' - Supervised Learning (Classification)'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+        <!-- <iframe id="mid-iframe" src="https://console.python.org/python-dot-org-console/" title="Click this gray border to hide python console"></iframe> -->
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Briefly explain supervised learning</li>
+                            <li>Focus on classification problem</li>
+                            <li>Discuss the performance measurement for classification</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_ml">
+                    <section id="ml_approaches">
+                        <h1>Different ML Approaches</h1>
+                        <img src="img/ml_approach.jpg" alt="Machine Learning Approaches: https://www.researchgate.net/publication/347890941/figure/fig1/AS:11431281102724490@1669515651453/A-brief-overview-of-ML-approaches-including-three-major-categories-known-as-supervised_W640.jpg" class="r-stretch">
+                        <div class="box-top-left fragment">Supervised<br>Learning</div>
+                        <div class="fragment box-top-right">Unsupervised<br>Learning</div>
+                        <div class="fragment box-bottom-left">Semi-supervised<br>Learning</div>
+                        <div class="fragment box-bottom-right">Reinforcement<br>Learning</div>
+                        <div class="box-top-left fragment highlight-bckg-danger">Supervised<br>Learning</div>
+                        <div class="box-centre fragment highlight-bckg-info" style="left:25%;top:35%">ML is a fairly broad term<br>
+                            break down these techniques into groups<br>
+                            easier for us to talk about<br>
+                            ML <span class="lightred">$\not =$</span> Neural Networks</div>
+                    </section>
+
+                    <section id="title_ml">
+                        <h1 class="r-frame-text">Supervised Learning</h1>
+                    </section>
+
+                    <section id="supervised_learning">
+                        <h1>Supervised Learning</h1>
+                        <ul>
+                            <li>For supervised learning tasks, we have data that already has the '<span class="lime">thing</span>' we want to know (sometimes called <span class="lightblue">outputs</span> or <span class="skyblue">labels</span>) and a set of related parameters </li>
+                            <dd class="fragment">
+                                <span class="like-li-2">House price: year of sale, number of bedrooms, total area, ...</span><br>
+                                <span class="like-li-2">Car or Dog: pointy ears, colour, length of tail, breed, ...</span><br>
+                                <span class="like-li-2">Game score: number of players, current game state, number of lives, ...</span>
+                            </dd>
+                            <li><span class="fragment blue">What's the point in asking the question if we already know the answer?</span>
+                                <dd class="fragment like-li-2">use the data to <span class="lime">train</span> a model to <span class="orange">make predictions</span> when we <span class="purple">don't</span> know the answer</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="supervised_learning_2">
+                        <h1>Supervised Learning (2)</h1>
+                        <ul>
+                            <li>We have a set of labelled data (from somewhere)</li>
+                            <li><span class="blue">Labels</span> = the thing we want to know</li>
+                            <li><span class="orange">‘Correctness’</span> is how well it maps input data to labels</li>
+                            <li>• Two major ‘types’ of label: <span class="red">categorical</span> and <span class="lime">continuous</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="classification_example" data-auto-animate>
+                        <h1 data-id="dh">Classification Example (Recall)</h1>
+                        <img data-id="dm" class="box-left img-height-500" src="img/classification_anime.gif" alt="Classification Process: https://miro.medium.com/v2/resize:fit:828/format:webp/1*PQ8tdohapfm-YHlrRIRuOA.gif">
+                        <div data-id="dv" class="box-right col-40 text-left">
+                            <br><br>
+                            <span class="like-li">Classification is for when the data is <span class="lime italic">categorical</span> (object type, activity, etc...)</span><br>
+                            <span class="like-li">We're essentially sorting the data into '<span class="red italic">regions</span>'</span><br>
+                            <span class="like-li">e.g. text categorisation, face detection, object recognition, quality control, ...</span>
+                        </div>
+                    </section>
+
+                    <section id="regression_example" data-auto-animate>
+                        <h1 data-id="dh">Regression Example (Recall)</h1>
+                        <img data-id="dm" class="box-top-right img-width-750 img-height-400" src="img/regression_anime.gif" alt="Regression Process: https://miro.medium.com/v2/resize:fit:828/format:webp/1*0Ve21Rildq950wRrlJvdLQ.gif">
+                        <div data-id="dv" class="box-left col-40 text-left">
+                            <br>
+                            <span class="like-li">Regression is for when the data is <span class="lime italic">continuous</span></span><br>
+                            <span class="like-li">We're essentially finding a '<span class="red italic">line of best fit</span>' in multiple dimensions</span><br>
+                            <span class="like-li">e.g. stock price, driving speed, estimated score when game over, ...</span>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_classification">
+                    <section id="title_classification">
+                        <h1 class="r-frame-text">Classification</h1>
+                    </section>
+
+                    <section id="scenario">
+                        <h1>Classification Scenarios</h1>
+                        <p class="text-left">Recognising the type of situation you are in right now is a basic agent task:</p>
+                        <ul>
+                            <li>Robotics: misidentifying a human body with some part of a car on the assembly line would be disastrous</li>
+                            <li>Military: friend or enemy?</li>
+                            <li>Financial transactions: was it a fraud or normal transaction?</li>
+                            <li>Plant recognition: which plant in the picture?</li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section id="classification_types">
+                        <h1>Classification Approaches</h1>
+                        <ul>
+                            <li><span class="lightblue">Top-down</span>: breaking down the task into smaller, more manageable steps, gradually building towards a complete solution
+                                <dd class="like-li-2">inspiration from higher abstraction levels</dd>
+                            </li>
+                            <li><span class="lightgreen">Bottom-up</span>: starting with individual components and gradually building a comprehensive classification solution
+                                <dd class="like-li-2">inspiration from biology, e.g. neural networks</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="binary_classification">
+                        <h1>Binary Classification</h1>
+                        <ul>
+                            <li>There are only 2 labels: <span class="lime">yes/no</span>, <span class="blue">1/0</span>, <span class="orange">green/red</span>, etc...</li>
+                            <li>Example: spam filter, fraud detection, ...</li>
+                            <br>
+                            <li><span class="lightred">MNIST</span> dataset </li>
+                            <span class="like-li-2">Contains 70,000 small images of digits</span><br>
+                            <span class="like-li-2">Handwritten by high school students and employees of the US census Bureau</span>
+                        </ul>
+                        <img src="img/mnist.png" alt="MNIST dataset: https://www.wikiwand.com/en/MNIST_database#Media/File:MnistExamplesModified.png" class="box-top-right img-width-350">
+                    </section>
+
+                    <section id="measure">
+                        <h1>Model Measurement</h1>
+                        <ul>
+                            <li>Labels are <span class="lime italic">categorised</span> - <span class="lightgreen">non-continuous</span></li>
+                            <li><span class="red">Error</span> is a little bit harder to define - not as easy as '<span class="orange">$a-b$</span>' </li>
+                            <li>There isn't a <span class="pink">distance</span> between the predicted label and true label
+                                <dd class="like-li-2">e.g. how far is a 'flower' from a 'car'?</dd>
+                            </li>
+                            <li>Number of <span class="purple">correct guesses</span> can be used as the measurement</li>
+                        </ul>
+                    </section>
+
+                    <section id="performance_measure">
+                        <h1>Performance </h1>
+                        <ul>
+                            <li>Goal: measure the <span class="lime">goodness</span> of the ML model</li>
+                            <li>Standard performance metrics:</li>
+                            <dd class="fragment like-li-2"><span class="lightblue">Root Mean Square Error (RMSE)</span>:
+                                $$RMSE(X, h)=\sqrt{\frac{1}{m}\sum_{i=1}^{m}\big( h(x^{(i)})-y^{(i)} \big)^2}$$</dd>
+                            <dd class="fragment like-li-2"><span class="orange">Mean Absolute Error (MAE)</span>:
+                                $$MAE(X, h) = \frac{1}{m}\sum_{i=1}^{m}\vert h(x^{(i)})-y^{(i)} \vert$$
+                            </dd>
+                        </ul>
+                    </section>
+
+                    <section id="performance_measure_2">
+                        <h1>Performance (2)</h1>
+                        <ul>
+                            <span class="half-out">
+                                <li>Standard performance metrics:</li>
+                                <dd class="like-li-2"><span class="lightblue">Root Mean Square Error (RMSE)</span>: <span class="tinytext">$RMSE(X, h)=\sqrt{\frac{1}{m}\sum_{i=1}^{m}\big( h(x^{(i)})-y^{(i)} \big)^2}$</span></dd>
+                                <dd class="like-li-2"><span class="orange">Mean Absolute Error (MAE)</span>: <span class="tinytext">$MAE(X, h) = \frac{1}{m}\sum_{i=1}^{m}\vert h(x^{(i)})-y^{(i)} \vert$</span></dd>
+                            </span>
+                            <li>The small the error, the more accurate</li>
+                            <li>
+                                <italic>RMSE</italic> and <italic>MAE</italic> are typically used in regression models (will cover this later)
+                            </li>
+                            <li>For classification, we use other (simple) functions</li>
+                            <li>e.g. <span class="lime">Number of correct guesses</span>: simply enough to implement, refer to this as <span class="purple">accuracy</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="accuracy">
+                        <h1>Accuracy as Performance Metric</h1>
+                        <ul>
+                            <li>Example: Predicting whether an asthma attack will follow a coughing episode</li>
+                            <li class="lightblue">$99\%$ cases: no attack after coughing</li>
+                            <li class="lightred">$1\%$ cases: asthma attack</li>
+                            <br>
+                            <li class="fragment">If we design a fancy ML algorithm for the prediction, we get $99\%$ accuracy</li>
+                            <li class="fragment yellow">Is this good enough? Why?</li>
+                        </ul>
+                    </section>
+
+                    <section id="accuracy_2">
+                        <h1>Accuracy as Performance Metric (2)</h1>
+                        <ul>
+                            <span class="half-out">
+                                <li>Example: Predicting whether an asthma attack will follow a coughing episode</li>
+                                <li class="lightblue">$99\%$ cases: no attack after coughing</li>
+                                <li class="lightred">$1\%$ cases: asthma attack</li>
+                            </span>
+                            <br>
+                            <li>Think about this: a very dumb algorithm - always says <span class="lime">NO</span></li>
+                            <li>What's the accuracy of this algorithm? <span class="fragment purple">$99\%(!!!)$</span></li>
+                            <br>
+                            <li class="fragment">What's the reason behind this?</li>
+                            <li class="fragment">Answer: <span class="cyan">imbalanced</span> (skewed) dataset</li>
+                        </ul>
+                    </section>
+
+                    <section id="accuracy_3">
+                        <h1>Accuracy as Performance Metric (3)</h1>
+                        <ul>
+                            <li>Accuracy is <span class="red">not</span> a good performance metric for classifiers!</li>
+                            <li>What we need is a new technique which can <span class="lightgreen">capture misclassification separately</span> for each class instead of showing the aggregated accuracy</li>
+                            <li>This is very important <span class="blue">especially</span> in training with imbalanced dataset</li>
+                        </ul>
+                    </section>
+
+                    <section id="confusion_matrix" data-auto-animate>
+                        <h1 data-id="dh">Confusion Matrix</h1>
+                        <img data-id="dm" src="img/confusion_matrix.png" alt="Confusion Matrix" class="box-top-right img-width-400 img-height-250">
+                        <ul data-id="dd">
+                            <li>Example: classify whether the given digit is 5 $\qquad\qquad\qquad\qquad\quad$</li>
+                            <li><span class="orange">True Position (TP)</span>:
+                                <dd class="like-li-2"><span class="lime">YES</span> data correctly predicted as <span class="lime">YES</span></dd>
+                            </li>
+                            <li><span class="blue">True Negative (TN)</span>:
+                                <dd class="like-li-2"><span class="red">NO</span> data correctly predicted as <span class="red">NO</span></dd>
+                            </li>
+                            <li><span class="cyan">False Positive (FP)</span>:
+                                <dd class="like-li-2"><span class="red">NO</span> data incorrectly predicted as <span class="lime">YES</span> (<span class="purple">Type I</span> error)</dd>
+                            </li>
+                            <li><span class="yellow">False Negative (FN)</span>:
+                                <dd class="like-li-2"><span class="lime">YES</span> data incorrectly predicted as <span class="red">NO</span> (<span class="purple">Type II</span> error)</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="precision_recall" data-auto-animate>
+                        <h1 data-id="dh">Precision-Recall Rate</h1>
+                        <img data-id="dm" src="img/confusion_matrix_precision_recall.png" alt="Precision Recall Rate" class="box-top-right img-width-400 img-height-250">
+                        <ul data-id="dd">
+                            <li>With $TP$, $TN$, $FP$, and $FN$ defined as previous $\qquad\qquad\qquad\qquad\qquad$ <br>
+                                slide, we have: </li>
+                            <li><span class="pink">Precision</span> rate: $\frac{TP}{TP+FP}$
+                                <dd class="like-li-2">ratio of correct ones among <span class="lime">YES</span> predictions</dd>
+                            </li>
+                            <li><span class="orange">Recall</span> rate: $\frac{TP}{TP+FN}$
+                                <dd class="like-li-2">ratio of <span class="lime">YES</span> among correct predictions</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="precision_recall_2" data-auto-animate>
+                        <h1 data-id="dh">Precision-Recall Rate (2)</h1>
+                        <ul data-id="dd">
+                            <li>Example: Predicting whether an asthma attack will follow a coughing episode</li>
+                            <li class="lightblue">$99\%$ cases: no attack after coughing</li>
+                            <li class="lightred">$1\%$ cases: asthma attack</li>
+                            <li class="purple">The dumb algorithm always says NO</li>
+                            <br><br>
+                            <li class="smalltext">$TP = 0; TN = 0.99; FP = 0; FN = 0.1$</li>
+                            <li>Precision: $\frac{TP}{TP+FP}=\frac{0}{0+0}=$ <span class="red">$NaN$</span> </li>
+                            <li>Recall: $\frac{TP}{TP+FN}=\frac{0}{0+0.1}=$ <span class="red">$0$</span></li>
+                        </ul>
+                        <table class="box-bottom-right img-width-600 img-height-350">
+                            <tr>
+                                <td rowspan="2" colspan="2" class="highlight-bckg-info">Confusion<br>
+                                    Matrix</td>
+                                <td colspan="3" class="highlight-bckg-warning">Predicted</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight-bckg-muted">Negative</td>
+                                <td class="highlight-bckg-danger">Positive</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" class="highlight-bckg-success">
+                                    <div class="fa-rotate-270 " style="margin-top: 20px;">Actual$\qquad$</div>
+                                </td>
+                                <td class="highlight-bckg-muted"><br>Negative</td>
+                                <td class="blue">True Negative<br>(TN)</td>
+                                <td class="purple">False Positive<br>(FP)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight-bckg-danger"><br>Positive</td>
+                                <td class="orange">False Negative<br>(FN)</td>
+                                <td class="red">True Positive<br>(TP)</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="f1_score">
+                        <h1>F-Score (F1 Score)</h1>
+                        <p>$F_1=\frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\times \frac{precision\times recall}{precision+recall}=\frac{TP}{TP+\frac{FN+FP}{2}}$</p>
+                        <ul>
+                            <li>Captures <span class="pink">both precision and recall</span> in a concise way</li>
+                            <li>F1 score is the <span class="lime">harmonic mean</span> of the 2 values: <span class="smalltext">$\frac{TP}{TP+FP}$(precision) and $\frac{TP}{TP+FN}$(recall)</span></li>
+                            <li>F1 is high only if both values are (<span class="purple">similarly</span>) <span class="yellow">high</span></li>
+                            <li class="fragment">Not always good, as we might <span class="cyan">only care about 1</span> value</li>
+                            <li class="fragment"><span class="orange">Example 1</span>: children friendly video detection - prefer to reject many good videos (low recall) but keeps only safe ones (high precision)</li>
+                            <li class="fragment"><span class="orange">Example 2</span>: detect shoplifters on surveillance images - it's fine to have only 40% precision as long as it has 99% recall (i.e. we allow false alerts, but we want almost all shoplifters to be caught)</li>
+                        </ul>
+                    </section>
+
+                    <section id="trade_off" data-auto-animate>
+                        <h1 data-id="dh">Precision/Recall Trade-Off</h1>
+                        <p data-id="dp" class="text-left">Unfortunately, we can’t have both precision and recall high. If you increase precision, it will reduce recall, and vice versa.</p>
+                        <p data-id="dp2" class="like-li left-text">some classifiers use a decision function with a <span class="lime">threshold</span></p>
+                        <img data-id="dm" src="img/tradeoff1.png" alt="Precision/Recall Trade-Off" class="r-stretch">
+                    </section>
+
+                    <section id="trade_off_2" data-auto-animate>
+                        <h1 data-id="dh">Precision/Recall Trade-Off (2)</h1>
+                        <p data-id="dp" class="text-left">Another way to select a good precision/recall trade-off is to plot precision against recall directly</p>
+                        <img data-id="dm" src="img/tradeoff2.png" alt="Precision/Recall Trade-Off Plot" class="r-stretch">
+                        <p data-id="dp2">For example: a good precision/recall combination would be $\big(~80\%,~80\%\big)$</p>
+                    </section>
+
+                    <section id="roc_curve">
+                        <h1>ROC Curve</h1>
+                        <ul>
+                            <li>Receiver Operating Characteristic (ROC) curve: another common tool used with binary classifier, it's vary similar to the precision/recall curve</li>
+                            <li>Plot <span class="lime">True Positive Rate</span> (TPR, actually it's <span class="cyan">recall</span>, a.k.a span.skyblue sensitivity) against the <span class="blue">False Positive Rate</span> (FPR) rather than precision against recall</li>
+                            <li><span class="lightblue">FPR</span> is the ratio of negative data incorrectly classified as positive, hence <span class="pink">$FPR=1-TNR$</span></li>
+                            <li><span class="purple">TNR</span> (True Negative Rate) is the ratio of negative data correctly classified as negative, also known as specificity</li>
+                            <li>ROC curve plots: <span class="yellow">sensitivity (recall)</span> versus <span class="red">1-specificity</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="all_terms">
+                        <h1>TPR, TNR, FPR, FNR</h1>
+                        <ul>
+                            <li><span class="lime">True Positive Rate</span>: TPR, sensitivity, recall, hit-rate
+                                <dd>$TPR = \frac{TP}{P} = \frac{TP}{TP+FN}$</dd>
+                            </li>
+                            <li><span class="blue">True Negative Rate</span>: TNR, specificity, selectivity
+                                <dd>$TNR = \frac{TN}{N} = \frac{TN}{TN+FP}$</dd>
+                            </li>
+                            <li><span class="orange">False Positive Rate</span>: Type I error, false-alarm
+                                <dd>$FPR = \frac{FP}{N} = \frac{FP}{TN+FP}$</dd>
+                            </li>
+                            <li><span class="purple">False Negative Rate</span>: Type II error, miss-rate
+                                <dd>$FNR = \frac{FN}{P} = \frac{FN}{TP+FN}$</dd>
+                            </li>
+                        </ul>
+                        <p class="lightred">ROC plots: TPR vs. FPR</p>
+                    </section>
+
+                    <section id="roc_curve_2" data-auto-animate>
+                        <h1 data-id="dh">ROC Curve: Example</h1>
+                        <img data-id="dm" src="img/roc_curve.png" alt="ROC Curve: https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-01-at-3.44.15-PM.png" class="r-stretch">
+                    </section>
+
+                    <section id="compare_classifiers" data-auto-animate>
+                        <h1 data-id="dh">Compare Classifiers</h1>
+                        <img class="box-top-right img-height-350" data-id="dm" src="img/roc_curve.png" alt="ROC Curve: https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-01-at-3.44.15-PM.png">
+                        <ul>
+                            <li>Measure the area under the ROC (AUC)</li>
+                            <li>A perfect classifier will have a<br>
+                                ROC where $AUC=1$</li>
+                            <li>A purely random classifier will<br>
+                                have a ROC where $AUC=0.5$ <span class="fragment bold lightred" data-fragment-index="1">- ?</span></li>
+                            <li class="fragment" data-fragment-index="1">Recall: $TPR = \frac{TP}{P} = \frac{TP}{TP+FN}$ and <br>
+                                $FPR = \frac{FP}{N} = \frac{FP}{TN+FP}$</li>
+                            <br>
+                            <li class="fragment">e.g. if the random classifier predict positive with a probability of $\rho$ <br>
+                                $TPR = \frac{TP}{P} = \frac{\rho P}{P} = \rho$ and $FPR = \frac{FP}{N} = \frac{\rho N}{N} = \rho$</li>
+                        </ul>
+                    </section>
+
+                    <section id="multiclass_classification">
+                        <h1>Multi-class Classification</h1>
+                        <ul>
+                            <li><span class="red">More than 2</span> labels (e.g., digits from 0-9)</li>
+                            <li>Some classifiers can handle multiple classes by default (e.g. random forest, naive Bayes)</li>
+                            <li>Others require non-trivial modifications (e.g. SVM)</li>
+                            <li><span class="lime">One-versus-All</span> (OvA) strategy: use multiple binary classifiers, one for each class, choose the one with highest decision score</li>
+                            <li><span class="cyan">One-versus-One</span> (OvO) strategy: one binary classifier for each pair of classes, choose the one with highest average decision score
+                                <dd>more computations, but easier to scale with large training sets</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="other_types">
+                        <h1>Other Classification Types</h1>
+                        <ul>
+                            <li>Multi-label classification: assign multiple labels to data
+                                <dd class="like-li-2">Example: face recognition in pictures - can be more than 1 person</dd>
+                                <dd class="like-li-2">Not all classifiers can support multi-label classification</dd>
+                            </li>
+                            <li>Multi-output classification: the model will give two or more outputs after making any prediction
+                                <dd class="like-li-2">Example: predicts the type and color of fruit simultaneously</dd>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>Classification Problem</li>
+                            <li>Performance Measurement</li>
+                            <li>More classification types</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>
