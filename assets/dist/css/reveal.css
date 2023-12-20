@@ -337,6 +337,7 @@ darkpurple {
 .like-li-3::before {
     content: "‣";
     color: #00ffd5;
+    margin-left: 30px;
 }
 
 /* hidden titles or other items */
@@ -529,6 +530,10 @@ darkpurple {
 
 .reveal .lime-bg {
     background-color: rgb(153, 255, 153);
+}
+
+.reveal .no-bg {
+    background-color: inherit;
 }
 
 /* increase the table width */

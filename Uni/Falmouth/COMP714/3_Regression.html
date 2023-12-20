@@ -31,7 +31,7 @@
                 ['course', 'Machine Learning'],
                 ['coursecode', 'COMP714'],
                 ['week', '3'],
-                ['topic', ' - Supervised Learning (Classification)'],
+                ['topic', ' - Regression'],
             ]);
         </script>
         <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
@@ -45,7 +45,6 @@
                 <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
             </div>
         </div>
-        <!-- <iframe id="mid-iframe" src="https://console.python.org/python-dot-org-console/" title="Click this gray border to hide python console"></iframe> -->
 
         <!-- main content of the slides -->
         <div class="reveal">
@@ -68,7 +67,8 @@
                         <ul>
                             <li>Briefly explain supervised learning</li>
                             <li>Focus on classification problem</li>
-                            <li>Discuss the performance measurement for classification</li>
+                            <li>Discuss linear and non-linear regressions</li>
+                            <li>Find out how to convert regression problems to classification problems</li>
                         </ul>
                     </section>
                 </section>
@@ -88,10 +88,6 @@
                             ML <span class="lightred">$\not =$</span> Neural Networks</div>
                     </section>
 
-                    <section id="title_ml">
-                        <h1 class="r-frame-text">Supervised Learning</h1>
-                    </section>
-
                     <section id="supervised_learning">
                         <h1>Supervised Learning</h1>
                         <ul>
@@ -101,9 +97,9 @@
                                 <span class="like-li-2">Car or Dog: pointy ears, colour, length of tail, breed, ...</span><br>
                                 <span class="like-li-2">Game score: number of players, current game state, number of lives, ...</span>
                             </dd>
-                            <li><span class="fragment blue">What's the point in asking the question if we already know the answer?</span>
-                                <dd class="fragment like-li-2">use the data to <span class="lime">train</span> a model to <span class="orange">make predictions</span> when we <span class="purple">don't</span> know the answer</dd>
+                            <li class="fragment"><span class="blue">What's the point in asking the question if we already know the answer?</span>
                             </li>
+                            <dd class="fragment like-li-2">use the data to <span class="lime">train</span> a model to <span class="orange">make predictions</span> when we <span class="purple">don't</span> know the answer</dd>
                         </ul>
                     </section>
 
@@ -113,330 +109,228 @@
                             <li>We have a set of labelled data (from somewhere)</li>
                             <li><span class="blue">Labels</span> = the thing we want to know</li>
                             <li><span class="orange">‘Correctness’</span> is how well it maps input data to labels</li>
-                            <li>• Two major ‘types’ of label: <span class="red">categorical</span> and <span class="lime">continuous</span></li>
+                            <li>Two major ‘types’ of label: <span class="red">categorical</span> and <span class="lime">continuous</span></li>
                         </ul>
                     </section>
+                </section>
 
-                    <section id="classification_example" data-auto-animate>
-                        <h1 data-id="dh">Classification Example (Recall)</h1>
-                        <img data-id="dm" class="box-left img-height-500" src="img/classification_anime.gif" alt="Classification Process: https://miro.medium.com/v2/resize:fit:828/format:webp/1*PQ8tdohapfm-YHlrRIRuOA.gif">
-                        <div data-id="dv" class="box-right col-40 text-left">
-                            <br><br>
-                            <span class="like-li">Classification is for when the data is <span class="lime italic">categorical</span> (object type, activity, etc...)</span><br>
-                            <span class="like-li">We're essentially sorting the data into '<span class="red italic">regions</span>'</span><br>
-                            <span class="like-li">e.g. text categorisation, face detection, object recognition, quality control, ...</span>
-                        </div>
+                <section id="chap_regression">
+                    <section id="title_regression">
+                        <h1 class="r-frame-text">Regression</h1>
                     </section>
 
                     <section id="regression_example" data-auto-animate>
                         <h1 data-id="dh">Regression Example (Recall)</h1>
                         <img data-id="dm" class="box-top-right img-width-750 img-height-400" src="img/regression_anime.gif" alt="Regression Process: https://miro.medium.com/v2/resize:fit:828/format:webp/1*0Ve21Rildq950wRrlJvdLQ.gif">
                         <div data-id="dv" class="box-left col-40 text-left">
-                            <br>
                             <span class="like-li">Regression is for when the data is <span class="lime italic">continuous</span></span><br>
                             <span class="like-li">We're essentially finding a '<span class="red italic">line of best fit</span>' in multiple dimensions</span><br>
-                            <span class="like-li">e.g. stock price, driving speed, estimated score when game over, ...</span>
+                            <span class="like-li">e.g. stock price, driving speed, estimated score when game over, ...</span><br>
+                            <span class="like-li"><span class="cyan">Linear</span> Regression or <span class="brown">Nonlinear</span> Regression</span>
                         </div>
+                    </section>
+
+                    <section id="linear_nonlinear">
+                        <h1>Linear vs. Non-Linear Regression</h1>
+                        <img src="img/linear_nonlinear.png" alt="Linear vs. Non-Linear Regression: https://deepstash.com/_next/image?url=https:%2F%2Fd1dfxfqogsjixt.cloudfront.net%2F231700-1651922343.png&w=828&q=75" class="r-stretch">
+                        <p class="like-li text-left">Can be roughly seen from <span class="lime">Scatter Plot</span> of the raw data</p>
+                        <p class="like-li text-left">Data points have a pattern that looks like a <span class="brown">Straight Line</span> indicates a linear regression problem</p>
                     </section>
                 </section>
 
-                <section id="chap_classification">
-                    <section id="title_classification">
-                        <h1 class="r-frame-text">Classification</h1>
+                <section id="chap_linear">
+
+                    <section id="title_linear">
+                        <h1 class="r-frame-text">Linear Regression</h1>
                     </section>
 
-                    <section id="scenario">
-                        <h1>Classification Scenarios</h1>
-                        <p class="text-left">Recognising the type of situation you are in right now is a basic agent task:</p>
+                    <section id="linear_regression">
+                        <h1>Linear Regression</h1>
                         <ul>
-                            <li>Robotics: misidentifying a human body with some part of a car on the assembly line would be disastrous</li>
-                            <li>Military: friend or enemy?</li>
-                            <li>Financial transactions: was it a fraud or normal transaction?</li>
-                            <li>Plant recognition: which plant in the picture?</li>
-                            <li>...</li>
+                            <li>Input: $X$, output: $Y$</li>
+                            <li><span class="lime">Linear</span> correlation between $X$ and $Y$ (with some noises) $\qquad\qquad\qquad\quad\;\;$</li>
+                            <dd class="like-li-2">Hours of studying vs. final marks</dd>
+                            <dd class="like-li-2">Bottles of beers at night vs. coding skill</dd>
                         </ul>
+                        <img src="img/lineaer.png" alt="Linear Regression: https://th.bing.com/th/id/OIP.GE8pmX9MGqxWu5m5bowRyAAAAA?rs=1&pid=ImgDetMain" class="box-top-right">
                     </section>
 
-                    <section id="classification_types">
-                        <h1>Classification Approaches</h1>
+                    <section id="linear_regression_2">
+                        <h1>Linear Regression (2)</h1>
+                        <p class="lightred">$\hat{y}=\theta_0 +\theta_1 x_1+\theta_2 x_2+\cdots+\theta_n x_n$</p>
                         <ul>
-                            <li><span class="lightblue">Top-down</span>: breaking down the task into smaller, more manageable steps, gradually building towards a complete solution
-                                <dd class="like-li-2">inspiration from higher abstraction levels</dd>
+                            <dd class="like-li-3">$\^{y}$ is the predicted value</dd>
+                            <dd class="like-li-3">$n$ is the number of features</dd>
+                            <dd class="like-li-3">$x_i$ is the $i^{th}$ feature value</dd>
+                            <dd class="like-li-3">$\theta_j$ is the $j^{th}$ model parameter (including the bias term $\theta_0$ and the feature weights $\theta_1, \theta_2, \cdots, \theta_n$</dd>
+                        </ul>
+                    </section>
+
+                    <section id="linear_regression_3">
+                        <h1>Linear Regression (3)</h1>
+                        <p class="text-left">More concisely:
+                            $$\^{y} = h_{\theta}(x) = \theta^T \cdot x$$
+                        </p>
+                        <dd class="like-li-3 text-left">$\theta$ is the model's <span class="lime">parameter vector</span>, containing the <span class="pink">bias term</span> $\theta_0$ and the <span class="brown">feature weights</span> $\theta_1$ to $\theta_n$</dd>
+                        <dd class="like-li-3 text-left">$\theta^T$ is the <span class="skyblue">transpose</span> of $\theta$ (a row vector instead of a column vector)</dd>
+                        <dd class="like-li-3 text-left">$x$ is the instance's <span class="blue">feature vector</span>, containing $x_0$ to $x_n$ with $x_0 \equiv 1$</dd>
+                        <dd class="like-li-3 text-left">$\theta^T\cdot x$ is the <span class="orange">dot product</span> of $\theta^T$ and $x$</dd>
+                        <dd class="like-li-3 text-left">$h_{\theta}$ is the <span class="lightred">hypothesis function</span>, using the model parameters $\theta$</dd>
+                    </section>
+
+                    <section id="linear_regression_4">
+                        <h1>Linear Regression (4)</h1>
+                        <p class="blue">Which hypothesis model/model parameters would be the best?</p>
+                        <span class="smalltext">$$J(\theta) = MSE(X, h_{\theta}) = \frac{1}{m}\sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^{(i)})^2$$</span>
+                        <dd class="like-li-3 text-left">$m$: number of data points</dd>
+                        <dd class="like-li-3 text-left">$h_{\theta}(x^{(i)})$: predicted value using $x^{(i)} \in X$</dd>
+                        <dd class="like-li-3 text-left">$y$: true value (target value)</dd>
+                        <p class="fragment like-li text-left">Objective: <span class="lime">minimise</span> loss function $J(\theta)$ (e.g. MSE)</p>
+                        <span class="fragment">
+                            <p class="like-li text-left">Analytical solution for $\^{\theta}$ minimises $J(\theta)$:</p>
+                            <dd class="like-li-2 text-left">use <span class="pink">Normal Equation</span> <span class="smalltext">$\^{\theta} = (X^T\cdot X)^{-1}\cdot X^T\cdot y$</span></dd>
+                        </span>
+                    </section>
+                </section>
+
+                <section id="chap_non_linear">
+                    <section id="title_non_linear">
+                        <h1 class="r-frame-text">Polynomial Regression</h1>
+                    </section>
+
+                    <section id="polynomial_regression">
+                        <h1>Polynomial Regression</h1>
+                        Solve the problems that are more complex than linear, e.g. Ballmer's peak<br>
+                        <img src="img/ballmer_peak.png" alt="Ballmer's Peak: https://imgs.xkcd.com/comics/ballmer_peak.png" class="img-height-550">
+                    </section>
+
+                    <section id="polynomial_regression_2" data-auto-animate>
+                        <h1 data-id="dh">Polynomial Regression (2)</h1>
+                        More seriously ... <br>
+                        <img data-id="dm" src="img/poly_fit.png" alt="Polynomial Regression" class="r-stretch"><br>
+                        Increase the <span class="pink">degrees/order</span> of the polynomial equation
+                    </section>
+
+                    <section id="polynomial_regression_3" data-auto-animate>
+                        <h1 data-id="dh">Polynomial Regression (3)</h1>
+                        How to choose the <span class="cyan">best degree</span> for polynomial model? <br>
+                        <img data-id="dm" src="img/poly_fit_2.png" alt="Polynomial Regression Problems" class="r-stretch"><br>
+                        What happened in the case of $d=300$? How about $d=1$?<br>
+                        <span class="fragment"><span class="lime">overfitting</span> if $d=300$ and <span class="red">underfitting</span> if $d=1$</span>
+                    </section>
+
+                    <section id="underfitting_check" data-auto-animate>
+                        <h1 data-id="dh">Polynomial Regression (4)</h1>
+                        How can we tell if the model suffers from <span class="lightred">underfitting</span>? <br>
+                        <img data-id="dm" src="img/underfitting.png" alt="Polynomial Regression Underfitting" class="r-stretch"><br>
+                        <span class="fragment">
+                            <span class="blue">Hint:</span> loss on both training and validation sets converges to a large value<br>
+                            <span class="orange">Fix: </span> increase model complexity
+                        </span>
+                    </section>
+
+                    <section id="overfitting_check" data-auto-animate>
+                        <h1 data-id="dh">Polynomial Regression (5)</h1>
+                        How can we tell if the model suffers from <span class="purple">overfitting</span>? <br>
+                        <img data-id="dm" src="img/overfitting.png" alt="Polynomial Regression Overfitting" class="r-stretch"><br>
+                        <span class="fragment">
+                            <span class="blue">Hint:</span> there is a big gap in losses for training and validation sets<br>
+                            <span class="orange">Fix: </span> increase training data size, reduce training time
+                        </span>
+                    </section>
+                </section>
+
+                <section id="chap_generalisation">
+                    <section id="title_generalisation" data-auto-animate>
+                        <h1 data-id="dh">Regularisation</h1>
+                        <ul data-id="du">
+                            <li>Occam's razor (Ockham, $14^{th}$ century)
+                                <blockquote class="skyblue">Entities should not be multiplied unnecessarily</blockquote>
                             </li>
-                            <li><span class="lightgreen">Bottom-up</span>: starting with individual components and gradually building a comprehensive classification solution
-                                <dd class="like-li-2">inspiration from biology, e.g. neural networks</dd>
+                            <li class="fragment">Make it more clear:
+                                <blockquote class="pink">when you have two competing theories that make exactly the same predictions, the simpler one is the better</blockquote>
+                            </li>
+                            <li class="fragment"><span class="lime">Idea</span>: capture model complexity in the cost function
+                                <dd class="like-li-2">i.e. cost function = loss + model complexity</dd>
                             </li>
                         </ul>
                     </section>
 
-                    <section id="binary_classification">
-                        <h1>Binary Classification</h1>
+                    <section id="generalisation" data-auto-animate>
+                        <h1 data-id="dh">Regularisation (2)</h1>
+                        <ul data-id="du">
+                            <li><span class="lime">Idea</span>: capture model complexity in the cost function
+                                <dd class="like-li-2">i.e. cost function = loss + model complexity</dd>
+                            </li>
+                            <li><span class="blue">Ridge</span> regression (Tikhonov regularisation): linear regression + regularisation</li>
+                            <dd class="like-li-2">$J(\theta)=MSE(\theta)+\alpha \frac{1}{2} \sum_{i=1}^n \theta_i^2$</dd>
+                            <li><span class="orange">LASSO</span> (Least Absolute Shrinkage and Selection Operator Regression)</li>
+                            <dd class="like-li-2">$J(\theta)=MSE(\theta)+\alpha \sum_{i=1}^n \vert \theta_i \vert$</dd>
+                            <li><span class="pink">Elastic Net</span>:</li>
+                            <dd class="like-li-2">$J(\theta)=MSE(\theta)+r \alpha \sum_{i=1}^n \vert \theta_i \vert + \frac{1-r}{2} \alpha \sum_{i=1}^n \theta_i^2$</dd>
+                        </ul>
+                    </section>
+
+                    <section id="solve_regularised_model" data-auto-animate>
+                        <h1 data-id="dh2">Solve Regularised Model</h1>
+                        <p class="like-li text-left">Closed form solution for ridge regression:
+                            $$ \^{\theta} = (X^T \cdot X + \alpha A)^{-1}\cdot X^T \cdot y $$
+                        </p>
+                        <p class="like-li text-left">LASSO + Elastic Net: gradient descent approach</p>
+                        <img data-id="dm2" src="img/gradient_descent.png" alt="Gradient Descent: https://media.geeksforgeeks.org/wp-content/uploads/20230424151248/Gradient-Descent-for-ML-Linear-Regression-(1).webp" class="r-stretch">
+                    </section>
+
+                    <section id="gradient_descent" data-auto-animate>
+                        <h1 data-id="dh2">Gradient Descent</h1>
+                        <img data-id="dm2" src="img/gradient_descent.png" alt="Gradient Descent: https://media.geeksforgeeks.org/wp-content/uploads/20230424151248/Gradient-Descent-for-ML-Linear-Regression-(1).webp" class="r-stretch"><br>
+                        <span class="smalltext">$\theta^{next \> step} = \theta - \gamma \nabla_{\theta} MSE(\theta) $</span><br>
+                        <p class="like-li text-left"><span class="lime">Main issue</span>: need whole training set to calculate the error and the gradients</p>
+                        <dd class="like-li-2 text-left"><span class="blue">Stochastic gradient descent (SGD)</span>: randomly choose one data point and calculate the error function and its gradient for the single data point</dd>
+                    </section>
+
+                    <section id="regression_as_classifier">
+                        <h1>Regression as Classifier</h1>
                         <ul>
-                            <li>There are only 2 labels: <span class="lime">yes/no</span>, <span class="blue">1/0</span>, <span class="orange">green/red</span>, etc...</li>
-                            <li>Example: spam filter, fraud detection, ...</li>
-                            <br>
-                            <li><span class="lightred">MNIST</span> dataset </li>
-                            <span class="like-li-2">Contains 70,000 small images of digits</span><br>
-                            <span class="like-li-2">Handwritten by high school students and employees of the US census Bureau</span>
+                            <li><span class="lime">Logistic regression</span>: computes the probability that $\qquad\qquad\qquad\qquad\qquad$<br>
+                                the data belongs to a certain type
+                                <dd class="like-li-2 smalltext">$\qquad\qquad \^{p} = h_{\theta}(x) = \sigma (\theta^T \cdot x)$</dd>
+                            </li>
+                            <li>Linear regression $\implies$ logistic regression (<span class="lightgreen">sigma</span>)</li>
+                            <dd class="like-li-2">the logistic (logit) is a <span class="cyan">sigmoid</span> function</dd>
+                            <dd class="like-li-2 smalltext">$\qquad\qquad
+                                \^{y} =
+                                \begin{cases}
+                                0 & if \> \^{p} \lt 0.5 \\
+                                1 & if \> \^{p} \ge 0.5
+                                \end{cases} $</dd>
+                            <img class="box-bottom-right img-width-400" src="img/sigmoid.png" alt="Sigmoid Function: https://miro.medium.com/v2/resize:fit:650/1*Eo-AiyPjNO7lSL1PzgVQ-Q.png">
                         </ul>
-                        <img src="img/mnist.png" alt="MNIST dataset: https://www.wikiwand.com/en/MNIST_database#Media/File:MnistExamplesModified.png" class="box-top-right img-width-350">
                     </section>
 
-                    <section id="measure">
-                        <h1>Model Measurement</h1>
+                    <section id="regression_as_classifier_2">
+                        <h1>Regression as Classifier (2)</h1>
                         <ul>
-                            <li>Labels are <span class="lime italic">categorised</span> - <span class="lightgreen">non-continuous</span></li>
-                            <li><span class="red">Error</span> is a little bit harder to define - not as easy as '<span class="orange">$a-b$</span>' </li>
-                            <li>There isn't a <span class="pink">distance</span> between the predicted label and true label
-                                <dd class="like-li-2">e.g. how far is a 'flower' from a 'car'?</dd>
+                            <li>Train the <span class="pink">logistic regression</span> model:
+                                $$J(\theta)= - \frac{1}{m} \sum_{i=1}^m [y^{(i)}log(\^{p}^{(i)}) + (1-y^{(i)})log(1-\^{p}{(i)})]$$
                             </li>
-                            <li>Number of <span class="purple">correct guesses</span> can be used as the measurement</li>
+                            <li>This is the log loss:</li>
+                            <dd class="like-li-2">No closed form solution</dd>
+                            <dd class="like-li-2"><span class="lightblue">SGD</span> can find a local minimum efficiently</dd>
                         </ul>
                     </section>
 
-                    <section id="performance_measure">
-                        <h1>Performance </h1>
+                    <section id="regression_as_classifier_3">
+                        <h1>Regression as Classifier (3)</h1>
                         <ul>
-                            <li>Goal: measure the <span class="lime">goodness</span> of the ML model</li>
-                            <li>Standard performance metrics:</li>
-                            <dd class="fragment like-li-2"><span class="lightblue">Root Mean Square Error (RMSE)</span>:
-                                $$RMSE(X, h)=\sqrt{\frac{1}{m}\sum_{i=1}^{m}\big( h(x^{(i)})-y^{(i)} \big)^2}$$</dd>
-                            <dd class="fragment like-li-2"><span class="orange">Mean Absolute Error (MAE)</span>:
-                                $$MAE(X, h) = \frac{1}{m}\sum_{i=1}^{m}\vert h(x^{(i)})-y^{(i)} \vert$$
-                            </dd>
-                        </ul>
-                    </section>
-
-                    <section id="performance_measure_2">
-                        <h1>Performance (2)</h1>
-                        <ul>
-                            <span class="half-out">
-                                <li>Standard performance metrics:</li>
-                                <dd class="like-li-2"><span class="lightblue">Root Mean Square Error (RMSE)</span>: <span class="tinytext">$RMSE(X, h)=\sqrt{\frac{1}{m}\sum_{i=1}^{m}\big( h(x^{(i)})-y^{(i)} \big)^2}$</span></dd>
-                                <dd class="like-li-2"><span class="orange">Mean Absolute Error (MAE)</span>: <span class="tinytext">$MAE(X, h) = \frac{1}{m}\sum_{i=1}^{m}\vert h(x^{(i)})-y^{(i)} \vert$</span></dd>
-                            </span>
-                            <li>The small the error, the more accurate</li>
-                            <li>
-                                <italic>RMSE</italic> and <italic>MAE</italic> are typically used in regression models (will cover this later)
-                            </li>
-                            <li>For classification, we use other (simple) functions</li>
-                            <li>e.g. <span class="lime">Number of correct guesses</span>: simply enough to implement, refer to this as <span class="purple">accuracy</span></li>
-                        </ul>
-                    </section>
-
-                    <section id="accuracy">
-                        <h1>Accuracy as Performance Metric</h1>
-                        <ul>
-                            <li>Example: Predicting whether an asthma attack will follow a coughing episode</li>
-                            <li class="lightblue">$99\%$ cases: no attack after coughing</li>
-                            <li class="lightred">$1\%$ cases: asthma attack</li>
-                            <br>
-                            <li class="fragment">If we design a fancy ML algorithm for the prediction, we get $99\%$ accuracy</li>
-                            <li class="fragment yellow">Is this good enough? Why?</li>
-                        </ul>
-                    </section>
-
-                    <section id="accuracy_2">
-                        <h1>Accuracy as Performance Metric (2)</h1>
-                        <ul>
-                            <span class="half-out">
-                                <li>Example: Predicting whether an asthma attack will follow a coughing episode</li>
-                                <li class="lightblue">$99\%$ cases: no attack after coughing</li>
-                                <li class="lightred">$1\%$ cases: asthma attack</li>
-                            </span>
-                            <br>
-                            <li>Think about this: a very dumb algorithm - always says <span class="lime">NO</span></li>
-                            <li>What's the accuracy of this algorithm? <span class="fragment purple">$99\%(!!!)$</span></li>
-                            <br>
-                            <li class="fragment">What's the reason behind this?</li>
-                            <li class="fragment">Answer: <span class="cyan">imbalanced</span> (skewed) dataset</li>
-                        </ul>
-                    </section>
-
-                    <section id="accuracy_3">
-                        <h1>Accuracy as Performance Metric (3)</h1>
-                        <ul>
-                            <li>Accuracy is <span class="red">not</span> a good performance metric for classifiers!</li>
-                            <li>What we need is a new technique which can <span class="lightgreen">capture misclassification separately</span> for each class instead of showing the aggregated accuracy</li>
-                            <li>This is very important <span class="blue">especially</span> in training with imbalanced dataset</li>
-                        </ul>
-                    </section>
-
-                    <section id="confusion_matrix" data-auto-animate>
-                        <h1 data-id="dh">Confusion Matrix</h1>
-                        <img data-id="dm" src="img/confusion_matrix.png" alt="Confusion Matrix" class="box-top-right img-width-400 img-height-250">
-                        <ul data-id="dd">
-                            <li>Example: classify whether the given digit is 5 $\qquad\qquad\qquad\qquad\quad$</li>
-                            <li><span class="orange">True Position (TP)</span>:
-                                <dd class="like-li-2"><span class="lime">YES</span> data correctly predicted as <span class="lime">YES</span></dd>
-                            </li>
-                            <li><span class="blue">True Negative (TN)</span>:
-                                <dd class="like-li-2"><span class="red">NO</span> data correctly predicted as <span class="red">NO</span></dd>
-                            </li>
-                            <li><span class="cyan">False Positive (FP)</span>:
-                                <dd class="like-li-2"><span class="red">NO</span> data incorrectly predicted as <span class="lime">YES</span> (<span class="purple">Type I</span> error)</dd>
-                            </li>
-                            <li><span class="yellow">False Negative (FN)</span>:
-                                <dd class="like-li-2"><span class="lime">YES</span> data incorrectly predicted as <span class="red">NO</span> (<span class="purple">Type II</span> error)</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="precision_recall" data-auto-animate>
-                        <h1 data-id="dh">Precision-Recall Rate</h1>
-                        <img data-id="dm" src="img/confusion_matrix_precision_recall.png" alt="Precision Recall Rate" class="box-top-right img-width-400 img-height-250">
-                        <ul data-id="dd">
-                            <li>With $TP$, $TN$, $FP$, and $FN$ defined as previous $\qquad\qquad\qquad\qquad\qquad$ <br>
-                                slide, we have: </li>
-                            <li><span class="pink">Precision</span> rate: $\frac{TP}{TP+FP}$
-                                <dd class="like-li-2">ratio of correct ones among <span class="lime">YES</span> predictions</dd>
-                            </li>
-                            <li><span class="orange">Recall</span> rate: $\frac{TP}{TP+FN}$
-                                <dd class="like-li-2">ratio of <span class="lime">YES</span> among correct predictions</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="precision_recall_2" data-auto-animate>
-                        <h1 data-id="dh">Precision-Recall Rate (2)</h1>
-                        <ul data-id="dd">
-                            <li>Example: Predicting whether an asthma attack will follow a coughing episode</li>
-                            <li class="lightblue">$99\%$ cases: no attack after coughing</li>
-                            <li class="lightred">$1\%$ cases: asthma attack</li>
-                            <li class="purple">The dumb algorithm always says NO</li>
-                            <br><br>
-                            <li class="smalltext">$TP = 0; TN = 0.99; FP = 0; FN = 0.1$</li>
-                            <li>Precision: $\frac{TP}{TP+FP}=\frac{0}{0+0}=$ <span class="red">$NaN$</span> </li>
-                            <li>Recall: $\frac{TP}{TP+FN}=\frac{0}{0+0.1}=$ <span class="red">$0$</span></li>
-                        </ul>
-                        <table class="box-bottom-right img-width-600 img-height-350">
-                            <tr>
-                                <td rowspan="2" colspan="2" class="highlight-bckg-info">Confusion<br>
-                                    Matrix</td>
-                                <td colspan="3" class="highlight-bckg-warning">Predicted</td>
-                            </tr>
-                            <tr>
-                                <td class="highlight-bckg-muted">Negative</td>
-                                <td class="highlight-bckg-danger">Positive</td>
-                            </tr>
-                            <tr>
-                                <td rowspan="2" class="highlight-bckg-success">
-                                    <div class="fa-rotate-270 " style="margin-top: 20px;">Actual$\qquad$</div>
-                                </td>
-                                <td class="highlight-bckg-muted"><br>Negative</td>
-                                <td class="blue">True Negative<br>(TN)</td>
-                                <td class="purple">False Positive<br>(FP)</td>
-                            </tr>
-                            <tr>
-                                <td class="highlight-bckg-danger"><br>Positive</td>
-                                <td class="orange">False Negative<br>(FN)</td>
-                                <td class="red">True Positive<br>(TP)</td>
-                            </tr>
-                        </table>
-                    </section>
-
-                    <section id="f1_score">
-                        <h1>F-Score (F1 Score)</h1>
-                        <p>$F_1=\frac{2}{\frac{1}{precision}+\frac{1}{recall}}=2\times \frac{precision\times recall}{precision+recall}=\frac{TP}{TP+\frac{FN+FP}{2}}$</p>
-                        <ul>
-                            <li>Captures <span class="pink">both precision and recall</span> in a concise way</li>
-                            <li>F1 score is the <span class="lime">harmonic mean</span> of the 2 values: <span class="smalltext">$\frac{TP}{TP+FP}$(precision) and $\frac{TP}{TP+FN}$(recall)</span></li>
-                            <li>F1 is high only if both values are (<span class="purple">similarly</span>) <span class="yellow">high</span></li>
-                            <li class="fragment">Not always good, as we might <span class="cyan">only care about 1</span> value</li>
-                            <li class="fragment"><span class="orange">Example 1</span>: children friendly video detection - prefer to reject many good videos (low recall) but keeps only safe ones (high precision)</li>
-                            <li class="fragment"><span class="orange">Example 2</span>: detect shoplifters on surveillance images - it's fine to have only 40% precision as long as it has 99% recall (i.e. we allow false alerts, but we want almost all shoplifters to be caught)</li>
-                        </ul>
-                    </section>
-
-                    <section id="trade_off" data-auto-animate>
-                        <h1 data-id="dh">Precision/Recall Trade-Off</h1>
-                        <p data-id="dp" class="text-left">Unfortunately, we can’t have both precision and recall high. If you increase precision, it will reduce recall, and vice versa.</p>
-                        <p data-id="dp2" class="like-li left-text">some classifiers use a decision function with a <span class="lime">threshold</span></p>
-                        <img data-id="dm" src="img/tradeoff1.png" alt="Precision/Recall Trade-Off" class="r-stretch">
-                    </section>
-
-                    <section id="trade_off_2" data-auto-animate>
-                        <h1 data-id="dh">Precision/Recall Trade-Off (2)</h1>
-                        <p data-id="dp" class="text-left">Another way to select a good precision/recall trade-off is to plot precision against recall directly</p>
-                        <img data-id="dm" src="img/tradeoff2.png" alt="Precision/Recall Trade-Off Plot" class="r-stretch">
-                        <p data-id="dp2">For example: a good precision/recall combination would be $\big(~80\%,~80\%\big)$</p>
-                    </section>
-
-                    <section id="roc_curve">
-                        <h1>ROC Curve</h1>
-                        <ul>
-                            <li>Receiver Operating Characteristic (ROC) curve: another common tool used with binary classifier, it's vary similar to the precision/recall curve</li>
-                            <li>Plot <span class="lime">True Positive Rate</span> (TPR, actually it's <span class="cyan">recall</span>, a.k.a span.skyblue sensitivity) against the <span class="blue">False Positive Rate</span> (FPR) rather than precision against recall</li>
-                            <li><span class="lightblue">FPR</span> is the ratio of negative data incorrectly classified as positive, hence <span class="pink">$FPR=1-TNR$</span></li>
-                            <li><span class="purple">TNR</span> (True Negative Rate) is the ratio of negative data correctly classified as negative, also known as specificity</li>
-                            <li>ROC curve plots: <span class="yellow">sensitivity (recall)</span> versus <span class="red">1-specificity</span></li>
-                        </ul>
-                    </section>
-
-                    <section id="all_terms">
-                        <h1>TPR, TNR, FPR, FNR</h1>
-                        <ul>
-                            <li><span class="lime">True Positive Rate</span>: TPR, sensitivity, recall, hit-rate
-                                <dd>$TPR = \frac{TP}{P} = \frac{TP}{TP+FN}$</dd>
-                            </li>
-                            <li><span class="blue">True Negative Rate</span>: TNR, specificity, selectivity
-                                <dd>$TNR = \frac{TN}{N} = \frac{TN}{TN+FP}$</dd>
-                            </li>
-                            <li><span class="orange">False Positive Rate</span>: Type I error, false-alarm
-                                <dd>$FPR = \frac{FP}{N} = \frac{FP}{TN+FP}$</dd>
-                            </li>
-                            <li><span class="purple">False Negative Rate</span>: Type II error, miss-rate
-                                <dd>$FNR = \frac{FN}{P} = \frac{FN}{TP+FN}$</dd>
-                            </li>
-                        </ul>
-                        <p class="lightred">ROC plots: TPR vs. FPR</p>
-                    </section>
-
-                    <section id="roc_curve_2" data-auto-animate>
-                        <h1 data-id="dh">ROC Curve: Example</h1>
-                        <img data-id="dm" src="img/roc_curve.png" alt="ROC Curve: https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-01-at-3.44.15-PM.png" class="r-stretch">
-                    </section>
-
-                    <section id="compare_classifiers" data-auto-animate>
-                        <h1 data-id="dh">Compare Classifiers</h1>
-                        <img class="box-top-right img-height-350" data-id="dm" src="img/roc_curve.png" alt="ROC Curve: https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-01-at-3.44.15-PM.png">
-                        <ul>
-                            <li>Measure the area under the ROC (AUC)</li>
-                            <li>A perfect classifier will have a<br>
-                                ROC where $AUC=1$</li>
-                            <li>A purely random classifier will<br>
-                                have a ROC where $AUC=0.5$ <span class="fragment bold lightred" data-fragment-index="1">- ?</span></li>
-                            <li class="fragment" data-fragment-index="1">Recall: $TPR = \frac{TP}{P} = \frac{TP}{TP+FN}$ and <br>
-                                $FPR = \frac{FP}{N} = \frac{FP}{TN+FP}$</li>
-                            <br>
-                            <li class="fragment">e.g. if the random classifier predict positive with a probability of $\rho$ <br>
-                                $TPR = \frac{TP}{P} = \frac{\rho P}{P} = \rho$ and $FPR = \frac{FP}{N} = \frac{\rho N}{N} = \rho$</li>
-                        </ul>
-                    </section>
-
-                    <section id="multiclass_classification">
-                        <h1>Multi-class Classification</h1>
-                        <ul>
-                            <li><span class="red">More than 2</span> labels (e.g., digits from 0-9)</li>
-                            <li>Some classifiers can handle multiple classes by default (e.g. random forest, naive Bayes)</li>
-                            <li>Others require non-trivial modifications (e.g. SVM)</li>
-                            <li><span class="lime">One-versus-All</span> (OvA) strategy: use multiple binary classifiers, one for each class, choose the one with highest decision score</li>
-                            <li><span class="cyan">One-versus-One</span> (OvO) strategy: one binary classifier for each pair of classes, choose the one with highest average decision score
-                                <dd>more computations, but easier to scale with large training sets</dd>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section id="other_types">
-                        <h1>Other Classification Types</h1>
-                        <ul>
-                            <li>Multi-label classification: assign multiple labels to data
-                                <dd class="like-li-2">Example: face recognition in pictures - can be more than 1 person</dd>
-                                <dd class="like-li-2">Not all classifiers can support multi-label classification</dd>
-                            </li>
-                            <li>Multi-output classification: the model will give two or more outputs after making any prediction
-                                <dd class="like-li-2">Example: predicts the type and color of fruit simultaneously</dd>
-                            </li>
+                            <li><span class="purple">Softmax</span> regression: <span class="lime">multi-class</span> classification</li>
+                            <dd class="like-li-2">Idea: maintain a score for each class</dd>
+                            <dd class="like-li-2">Use these scores to calculate the probability of likelihood</dd>
+                            <li>Softmax score: $s_k (x) = \theta_k^T \cdot x$</li>
+                            <li>Softmax function:</li>
+                            <dd class="like-li-2">$\^{p} = \sigma(s(x))_k = \frac{exp(s_k(x))}{\sum_{j=1}^K exp(s_j (x))}$</dd>
+                            <dd class="like-li-3">$K$ is the <span class="blue">number</span> of classes</dd>
+                            <dd class="like-li-3">$s(x)$ is a vector containing the <span class="orange">scores</span> of each class for the instance $x$</dd>
+                            <dd class="like-li-3">$\sigma(s(x))_k$ is the estimated <span class="red">probability</span> that the instance $x$ belongs to class $k$</dd>
                         </ul>
                     </section>
                 </section>
@@ -445,9 +339,9 @@
                     <section id="summary">
                         <h1>Summary</h1>
                         <ul>
-                            <li>Classification Problem</li>
-                            <li>Performance Measurement</li>
-                            <li>More classification types</li>
+                            <li>Review supervised learning</li>
+                            <li>Explain regression problem</li>
+                            <li>When regression becomes classification (next session)</li>
                         </ul>
                     </section>
 

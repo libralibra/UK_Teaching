@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'SJTU青学论坛报告'],
+                ['coursecode', ''],
+                ['week', ''],
+                ['topic', '面向几何模型与人工智能的航空发动机设计与优化'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <p><span class="bold bigtext2 brown">面向 <span class="lime">几何模型</span> 与 <span class="purple">人工智能</span> 的<br>
+                                航空发动机设计与优化</span></p>
+                        <br><br>
+                        <p>
+                            <span class="cyan">张旭 博士</span> <br>
+                            <span class="blue smalltext">2023.12.21</span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>报告结构</h1>
+                        <ol>
+                            <li>研究背景介绍</li>
+                            <li>核心科研成果</li>
+                            <li>未来研究方向</li>
+                        </ol>
+                    </section>
+                </section>
+
+                <section id="chap_research">
+                    <section id="research">
+                        <h1>研究背景介绍</h1>
+                        <ul>
+                            <li>研究领域：
+                                <dd class="like-li-2">专注于 <span class="lightblue">航空发动机</span> 各部件的 <span class="pink">设计</span> 与 <span class="lime">优化</span> 问题</dd>
+                            </li>
+                            <li>个人专长：
+                                <dd class="like-li-2"><span class="skyblue">深度参与</span> 多个航空发动机、燃烧室、隔热瓦、喷油嘴、涡轮叶片、战斗机加力燃烧室的设计与优化项目（<span class="lightorange">军用、民用</span>）</dd>
+                            </li>
+                            <li>科研方向：
+                                <dd class="like-li-2"><span class="lightred">人工智能与机器学习</span> 与 <span class="yellow">航发设计</span> 领域的交叉研究与应用</dd>
+                            </li>
+                            <li class="fragment">广泛合作：
+                                <dd class="like-li-2"><span class="purple">业界</span>：英国罗罗公司、空客公司、英国国防部、英国皇家空军、英国国防科技实验室、英国航天科技中心、罗罗公司全球五大研发中心（德比，布里斯托，印度班加罗尔，美国伊利诺伊，德国达勒维茨）
+                                </dd>
+                                <dd class="like-li-2"><span class="lime">院校</span>：剑桥大学空气动力学中心、牛津大学空气动力实验室、克兰菲尔德大学、拉夫堡大学、女王贝尔法斯特大学等
+                                </dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="project_overview">
+                        <h1>科研项目纵览</h1>
+                        <ol>
+                            <li>创新型航空 <span class="lime">发动机燃烧室</span> <span class="blue">三维</span> 综合 <span class="pink">设计与优化</span> 平台</li>
+                            <li>发动机燃烧室 <span class="lightred">智能热力学分析</span> 系统（欧盟FP7 Clean Sky2）</li>
+                            <li>柱基型发动机燃烧室 <span class="skyblue">隔热瓦冷却孔优化</span> 平台</li>
+                            <li>三维 <span class="lightblue">有限元模型冷热网格转换</span> 工具</li>
+                            <li>某新型 <span class="yellow">战斗机加力燃烧室</span> 优化（<span class="red">军用</span>）</li>
+                            <li>发动机设计中的 <span class="cyan">人工智能与机器学习</span> 应用</li>
+                        </ol>
+                    </section>
+                </section>
+
+                <section id="prometheus">
+                    <section id="prometheus_1" data-auto-animate>
+                        <h1 data-id="dh">成果(1): 航发燃烧室三维设计与优化平台</h1>
+                        <ul data-id="dt">
+                            <li>发动机基础设计环节的 <span class="lime">核心综合优化系统</span> - <span class="red">普罗米修斯</span></li>
+                            <li><span class="lightblue">减少</span>人工干预，<span class="lightgreen">提高</span>优化效率（罗罗公司白皮书）</li>
+                            <li>整合研发工程师的 <span class="pink">专家经验</span> 与罗罗公司的 <span class="lightpurple">最佳实践</span> </li>
+                            <li>正式列装罗罗公司 <span class="skyblue">核心工具库</span>（工程软件环境）</li>
+                            <li>部署于全球 <span class="orange">五大研发中心</span> , 服务多个项目小组</li>
+                            <li>已成功应用于 <span class="yellow">十余款</span> 发动机的设计与优化流程</li>
+                        </ul>
+                    </section>
+
+                    <section id="prometheus_2" data-auto-animate>
+                        <h1 class="mediumtext" data-id="dh">普罗米修斯: 以优化工具为中心 vs. 以几何模型为中心</h1>
+                        <div data-id="dt">
+                            传统优化流程 - <span class="lightgreen">以优化工具为中心</span>(<span class="purple">6-8 周</span>)
+                            <img src="img/opt1.png" width="70%"><br>
+                            <span class="fragment">创新优化流程 - <span class="purple">以几何模型为中心</span>(<span class="lime">&lt; 1 分钟</span>)
+                                <img src="img/opt2.png" width="70%"></span>
+                        </div>
+                        <div class="box-top-left fragment highlight-bckg-warning">打通设计与优化流程<br>
+                            上下游数据流通
+                        </div>
+                        <div class="box-top-right fragment highlight-bckg-info">
+                            自适应拓扑结构变化<br>
+                            精简交互流程
+                        </div>
+                        <div class="box-bottom-left fragment highlight-bckg-success">
+                            模块化设计<br>
+                            无限应用扩展
+                        </div>
+                        <div class="box-bottom-right fragment highlight-bckg-danger">
+                            智能特征提取<br>
+                            可扩充规则库
+                        </div>
+                        <!-- <div class="box-centre fragment highlight-bckg-muted bold bigtext" style="left: 33%; top:30%;">
+                            <span class="yellow">军民两用<br>
+                                获得唯一代码名称</span>
+                        </div> -->
+                    </section>
+
+                    <!-- <section id="prometheus_3" data-auto-animate>
+                        <h1 data-id="dh">普罗米修斯: 简洁灵活的平台架构</h1>
+                        <img data-id="dt" src="img/prometheus_structure.png" alt="普罗米修斯系统架构" class="r-stretch"><br>
+                        <span class="tinytext">$^{[1]}$ Xu Zhang, <italic>et al.</italic> “Prometheus: a geometry-centric optimisation system for combustor design”, ASME Turbo Expo 2014.</span>
+                    </section> -->
+                </section>
+
+                <section id="chap_dynamo">
+                    <section id="dynamo" data-auto-animate>
+                        <h1 data-id="dhd">成果(2)：发动机燃烧室智能热力学分析系统</h1>
+                        <ul data-id="dhu">
+                            <li>欧盟FP7 <span class="lightpurple">€4bn 洁净天空-2</span> 项目的成员课题</li>
+                            <li><span class="red">新！</span> 全自动 <span class="lightblue">有限元分析 (FEA)</span> 功能</li>
+                            <li><span class="red">新！</span> 全自动 <span class="pink">气-热</span> 与 <span class="purple">热-声</span> 分析网络生成</li>
+                            <li><span class="red">新！</span> 支持 <span class="brown">稀薄燃烧</span> 发动机的 <span class="lightred">流体动力学</span> 与 <span class="yellow">热-机械力学</span> 模拟</li>
+                            <li><span class="red">新！</span> 打通 <span class="yellow">西门子 NX CAD</span> 软件 与 <span class="lightgreen">罗罗公司 SC03 FEA</span> 模拟软件$\qquad\qquad\quad$</li>
+                            <li>基于成功的 <span class="lightcyan">普罗米修斯</span> 优化平台，扩展系统功能</li>
+                        </ul>
+                        <img data-id="dmm" src="img/cleansky2.png" alt="CleanSky2 Logo" class="img-round-corner-10 box-top-right img-width-200">
+                    </section>
+
+                    <section id="showcase" data-auto-animate>
+                        <h1 data-id="dhd">成果展示 （1） + （2）</h1>
+                        <div data-id="dmm" class="img-height-600 text-left">
+                            <span class="fragment fade-in-then-out" style="position: absolute;">
+                                <img src="img/case1.png" alt="成果展示" class="img-height-500"><br>
+                                <span class="tinytext">$^{[1]}$ Xu Zhang, <italic>et al.</italic> “Prometheus: a geometry-centric optimisation system for combustor design”, ASME Turbo Expo 2014.</span>
+                            </span>
+                            <img src="img/case2.png" alt="成果展示" class="fragment fade-in-then-out img-height-550" style="position: absolute;">
+                            <span class="fragment fade-down ">
+                                <img src="img/case3.png" alt="成果展示" class="img-height-550">$\qquad$
+                                <span class="box-top-right no-bg">
+                                    <ul>
+                                        <br>
+                                        <li>全自动气-热网络生成</li><br>
+                                        <li>智能细分网络划分</li><br>
+                                        <li>喷油嘴几何模型自适应替换</li><br>
+                                        <li>无须人工干预</li><br>
+                                    </ul><br>
+                                    <span class="tinytext">$^{[1]}$ Daniel Zhang. <span class="italic">et
+                                            al.</span>, “Isothermal
+                                        Combustor Prediffuser & Fuel Injector <br>
+                                        Feed Arm Design Optimisation Using the Prometheus Design System”, J. Eng.<br>
+                                        Gas Turbines Power, (2015)<br><br><br>
+                                    </span>
+                                </span>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_tile">
+                    <section id="tile" data-auto-animate>
+                        <h1 data-id="dh">成果(3)：柱基型隔热瓦冷却孔优化平台</h1>
+                        <ul data-id="du">
+                            <li>罗罗公司 <span class="lime">首个</span> <span class="lightred">全自动</span> <span class="lightblue">并行</span> 隔热瓦优化系统
+                            </li>
+                            <li>支持 <span class="yellow">本地</span> 与 <span class="purple">远程</span> 求解，灵活部署与扩展 </li>
+                            <li>可作为 <span class="lightorange">即插即用组件</span> 参与整体优化流程
+                            </li>
+                            <li><span class="cyan">全自动</span>：调整冷却孔参数、完成几何约束求解、<br>
+                                生成气热分析网络、执行thermal-mechanical有限元仿真、$\qquad\qquad\qquad$<br>
+                                自动采集归档实验结果数据
+                            </li>
+                            <br><br><br><br><br><br>
+                        </ul>
+                        <img src="img/tile1.png" alt="隔热瓦" class="img-round-corner-10 box-top-right" style="width: 280px; height: 250px">
+                        <img data-id="dm" src="img/tile_workflow.png" alt="隔热瓦优化流程" class="img-round-corner-10 box-bottom-right" style="width: 1500px; height: 220px">
+                    </section>
+
+                    <section id="showcase_3" data-auto-animate>
+                        <h1 data-id="dh">成果展示 （3）</h1>
+                        <img data-id="dm" src="img/tile_results.png" alt="隔热瓦优化结果" class="r-stretch"><br>
+                        <span class="tinytext">$^{[1]}$ Daniel Zhang, <span class="italic">et al.</span> (2017) Surrogate based design optimisation of combustor tile cooling. 2017 Gas Turbine India Conference, Bangalore, India.</span>
+                        <div class="fragment box-centre highlight-bckg-info" style="left:10%;top:30%;">
+                            优化结果经拉夫堡大学实验台采集数据验证<br>
+                            空客采购的某机型的发动机全部八组隔热瓦均采用此平台优化<br>
+                            极大的改进空气质量流率，节省燃油成本极为可观<br>
+                            （罗罗报告估算以百万英镑计）
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_hot2cold">
+                    <section id="hot2cold" data-auto-animate>
+                        <h1 data-id="dhd">成果(4)：三维有限元模型冷热状态转换工具</h1>
+                        <ul data-id="dud">
+                            <br>
+                            <li>冷热状态FEA与CFD模型 <span class="lightred">全自动</span> 匹配 （网格精度不同）$\qquad\qquad\qquad$</li>
+                            <li>基于FEA仿真结果 <span class="purple">自动转换</span> CFD流体网格</li>
+                            <li>可以做CFD $\iff$ FEA <span class="lightorange">闭环优化</span> </li>
+                            <li><span class="yellow">模型无关</span>，可 <span class="lightgreen">独立使用</span> 也可接入 <span class="brown">普罗米修斯</span> 系统</li>
+                        </ul>
+                        <img data-id="dmd" src="img/tet_map.png" alt="四面体插值" class="img-round-corner-10 box-top-right" style="width: 280px; height: 250px">
+                    </section>
+
+                    <section id="showcase_4" data-auto-animate>
+                        <h1 data-id="dhd">成果展示 （4）</h1>
+                        <img data-id="dmd" src="img/hot2cold.png" alt="冷热状态转换" class="r-stretch"><br>
+                        <div class="fragment box-centre highlight-bckg-muted" style="left:28%;top:45%;">
+                            <br>
+                            移交布里斯托 <span class="red">军用部门</span> 由专人维护<br>
+                            $\qquad$
+                        </div>
+                    </section>
+                </section>
+
+                <section id="chap_afterburner">
+                    <section id="afterburner">
+                        <h1 data-id="dhd">成果(5)：某型战斗机发动机加力燃烧室优化</h1>
+                        <ul data-id="dud">
+                            <br>
+                            <li>英国国防部与皇家空军委托项目</li>
+                            <li><span class="brown">普罗米修斯</span> 优化平台全面升级，更加简洁和灵活 </li>
+                            <dd class="like-li-2">乐高积木式、即插即用型功能模块(v2)
+                            </dd>
+                            <li>实现真正的<span class="lightgreen">“黑箱”</span> 系统</li>
+                            <dd class="like-li-2">面对新模型，用户无须访问源代码
+                            </dd>
+                            <li><span class="purple">荣获2020罗罗公司数字先锋大奖</span></li>
+                        </ul>
+                        <br><br>
+                        <p class="bigtext highlight-bckg-muted"><span class="lightred">保密项目</span>，无法展示结果</p>
+                    </section>
+                </section>
+
+                <section id="chap_ai">
+                    <section id="ai" data-auto-animate>
+                        <h1 data-id="dh" class="mediumtext">成果(6)：发动机设计中的人工智能与机器学习应用</h1>
+                        <ul data-id="du">
+                            <li>前沿领域：AI大模型 <span class="pink">并未成熟的用于解决工程问题</span></li>
+                            <li>数据驱动：需要 <span class="lightblue">庞大的</span> 三维模型、仿真结果 <span class="lightblue">数据</span></li>
+                            <dd class="like-li-2"><span class="orange">耗时</span>：喷油嘴设计，<span class="blue">4-5年</span> 持续采集，<span class="blue">2万2千余</span> 成功收敛的CFD模拟数据</dd>
+                            <dd class="like-li-2"><span class="lightgreen">存储</span>：涡轮叶片设计，<span class="red">约1年</span>，<span class="red">上千</span> CFD数据，<span class="red">$3\times 18TB$</span> 大容量硬盘</dd>
+                            <dd class="like-li-2"><span class="brown">设备</span>：<span class="cyan">$2 \times$</span> $\Big($ <span class="skyblue">$4 \times$</span> $Nvidia\> $ <span class="lightblue">$A100\> (80G)$</span> $\> GPU \Big)$(约<span class="lime">$£20,000/GPU$</span>) </dd>
+                            <li>解决思路：从 <span class="pink">二维切片</span> 入手，<span class="cyan">简化</span> 数据、<span class="orange">加速</span> 训练流程</li>
+                            <dd class="like-li-2">结果驱动的 <span class="purple">反向设计</span>：发动机性能目标 $\implies$ 设计参数</dd>
+                            <dd class="like-li-3">NN $\implies$ CNN $\implies$ GAN $\implies$ cGAN</dd>
+                            <dd class="like-li-2"><span class="yellow">已交付</span> 罗罗公司使用：应用于喷油嘴、涡轮叶片、与密封圈的设计优化</dd>
+                        </ul>
+                    </section>
+
+                    <section id="showcase_6" data-auto-animate>
+                        <h1 data-id="dh">成果展示 （6）</h1>
+                        <span class="fragment fade-in-then-out" style="position: absolute;">
+                            <img data-id="du" src="img/engan_fsn.apng" alt="ENGAN FSN Training" class="img-width-950 img-height-400"><br>
+                            <span class="green-bg">喷油嘴设计训练过程</span>
+                        </span>
+                        <span class="fragment">
+                            <img data-id="dm" src="img/cnn_r2.png" alt="CNN R2" class="img-width-950 img-height-400"><br>
+                            <span class="blue-bg">模型预测与真实CFD模拟的判定系数 $R^2 > 98\%$!（最新数据）</span>
+                        </span>
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>研究展望</h1>
+                        <ul>
+                            <li><span class="lime">通用</span> 三维几何模型综合设计与优化平台</li>
+                            <dd class="like-li-2"><span class="yellow">模型无关</span>：通用、智能、规则可扩展</dd>
+                            <li>基于人工智能与机器学习的 <span class="lightblue">三维</span> 几何模型生成研究
+                            </li>
+                            <dd class="like-li-2">数据：<span class="skyblue">超大规模</span> 三维数据库（模型+仿真结果）</dd>
+                            <dd class="like-li-2">模型：二维到三维，<span class="pink">半自动、全自动</span> 生成</dd>
+                            <li><span class="purple">工业级</span> 的智能设计与优化系统 <span class="purple">应用</span></li>
+                            <dd class="like-li-2">大型应用：大规模部署，提高企业产能</dd>
+                            <dd class="like-li-2">产研结合：联合头部企业，设置研发项目</dd>
+                            <li><span class="orange">跨学科</span> 研究，数字孪生</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2 class="r-frame-text">非常感谢!</h2>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

@@ -237,6 +237,18 @@ section.has-light-background h6 {
 .reveal ol ol,
 .reveal ol ul {
     display: block;
+    margin-left: 20px;
+}
+
+.reveal ol ol ol,
+.reveal ol ol ul,
+.reveal ol ul ol,
+.reveal ol ul ul,
+.reveal ul ol ol,
+.reveal ul ol ul,
+.reveal ul ul ol,
+.reveal ul ul ul {
+    display: block;
     margin-left: 40px;
 }
 

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="theme">
+
+        <!-- define data but update later -->
+        <!-- reference for this slides: https://www.danli.org/2021/06/06/hands-on-machine-learning/#non-linear-classification -->
+        <!-- another reference: https://medium.com/low-code-for-advanced-data-science/support-vector-machines-svm-an-intuitive-explanation-b084d6238106 -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '5'],
+                ['topic', ' - Support Vector Machine'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Discuss Linear Classification</li>
+                            <li>Explain Support Vector Machine</li>
+                            <li>Explore Non-Linear SVM</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_svm">
+                    <section id="svm">
+                        <h1 class="r-frame-text">Support Vector Machine</h1>
+                    </section>
+
+                    <section id="linear_classification">
+                        <h1 data-id="dh">Linear Classification</h1>
+                        <ul data-id="du">
+                            <br>
+                            <li>Decision surfaces are <span class="lime">linear function</span> of training data</li>
+                            <li>In $d$ dimensions, it is defined by a vector of parameters $\theta \in \R^d$ and scalar $\theta_0 \in \R$</li>
+                            <li>
+                                <span class="italic blue">d</span>-dimensional hyperplanes in the <span class="italic purple">(d+1)</span>-dimensional input space
+                            </li>
+                            <li>The <span class="lightgreen">hypothesis function</span> is defined by:<br>
+                                $$ h(x;\theta,\theta_0) = sign(\theta^T x + \theta_0) =
+                                \begin{cases}
+                                +1 & if \> \theta^T x + \theta_0 >0 \\
+                                -1 & otherwise
+                                \end{cases} $$
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="hyperplane">
+                        <h1>Hyperplane: <code>$\theta^T x + \theta_0$</code></h1>
+                        <img class="r-stretch" src="img/hyperplanes.png" alt="Hyper Planes: https://miro.medium.com/v2/resize:fit:828/format:webp/1*ZpkLQf2FNfzfH4HXeMw4MQ.png"><br>
+                        <span>Difficult to imagine when the number of features exceeds 3</span>
+                    </section>
+
+                    <section id="recall_linear_classification" data-auto-animate>
+                        <h1 data-id="dh">Linear Classification</h1>
+                        <img data-id="dm" src="img/linear_sep.png" alt="Linear Classifier: https://miro.medium.com/v2/resize:fit:600/format:webp/0*9jEWNXTAao7phK-5.png" class="r-stretch"><br>
+                        <span class="pink">Which line is better? And why?</span><br>
+                    </section>
+
+                    <section id="recall_linear_classification_2" data-auto-animate>
+                        <h1 data-id="dh">Linear Classification</h1>
+                        <img data-id="dm" class="box-top-right img-height-500" src="img/linear_spe2.png" alt="Linear Classification: https://miro.medium.com/v2/resize:fit:600/format:webp/0*0o8xIA4k3gXUDCFU.png"><br>
+                        <ul data-id="du">
+                            <li>What we actually want is this &#128073;</li>
+                            <li>No the "<span class="lime">empty</span>" strip (street)</li>
+                            <dd class="like-li-2">Most data are "<span class="pink">off the street</span>"</dd>
+                            <dd class="like-li-2">3 data points are on the <span class="blue">edge</span>$\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                of the street</dd>
+                        </ul>
+                    </section>
+
+                    <section id="recall_linear_classification_3" data-auto-animate>
+                        <h1 data-id="dh">Large Margin Classification</h1>
+                        <img data-id="dm" class="box-top-right img-height-400" src="img/linear_spe2.png" alt="Linear Classification: https://miro.medium.com/v2/resize:fit:600/format:webp/0*0o8xIA4k3gXUDCFU.png"><br>
+                        <ul data-id="du">
+                            <li>Fitting the <span class="lime">widest possible</span> street between the <br>
+                                classes (wide <span class="lightgreen">margin</span>)</li>
+                            <li>Adding more training data "off the street" <br>
+                                <span class="yellow">does not</span> affect the decision boundary at all <br>
+                                (the street remains unchanged)
+                            </li>
+                            <li>Fully determined (<span class="lightred">supported</span>) by data lying on $\qquad\qquad\qquad\qquad\qquad$<br>
+                                the edge $\implies$ <span class="bold purple">Support Vector</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="svm_classifier" data-auto-animate>
+                        <h1 data-id="dh">Support Vector Classifier/SVM</h1>
+                        <img data-id="dm" src="img/large_margin.png" alt="SVM Margin: https://miro.medium.com/v2/resize:fit:828/format:webp/0*ecA4Ls8kBYSM5nza.jpg" class="r-stretch">
+                        <ul data-id="du">
+                            <li>Questions: </li>
+                            <dd class="like-li-2">How wide the margin should be?</dd>
+                            <dd class="like-li-2">What happens with data within the margin (i.e. violations)?</dd>
+                        </ul>
+                    </section>
+
+                    <section id="feature_scaling">
+                        <h1>SVM: Feature Scaling</h1>
+                        <img class="r-stretch" src="img/feataure_scaling.png" alt="Feature Scaling: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_13_1.png">
+                        <ul>
+                            <li>SVMs are sensitive to the scale of features (distance matters)</li>
+                            <li>Scaled and non-scaled data leads to different SVM models</li>
+                            <li>Mapping all features to the same scale without changing their relative relationships</li>
+                        </ul>
+                    </section>
+
+                    <section id="hard_margin" data-auto-animate>
+                        <h1 data-id="dh">SVM: Hard Margin</h1>
+                        <p data-id="dp" class="like-li text-left">Hard margin classification: none of the data points can be within the margin (impossible to achieve in many cases)</p>
+                        <img data-id="dm" src="img/hard_margin.png" alt="Hard Margin: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_16_1.png" class="r-stretch"><br>
+                        <span data-id="ds">In general: linearly non-separable data</span>
+                    </section>
+
+                    <section id="soft_margin" data-auto-animate>
+                        <h1 data-id="dh">SVM: Soft Margin</h1>
+                        <p data-id="dp" class="like-li text-left">Soft margin classification: data points can be within the margin (allow violations)</p>
+                        <img data-id="dm" src="img/soft_margin.png" alt="Soft Margin: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_16_1.png" class="r-stretch"><br>
+                        <span data-id="ds">Challenge: need to minimise the number of violations</span>
+                    </section>
+                </section>
+
+                <section id="chap_non_linear_svm">
+                    <section id="title_non_linear_svm">
+                        <h1 class="r-frame-text">Non-Linear SVM</h1>
+                    </section>
+
+                    <section id="non_linear_1d" data-auto-animate>
+                        <h1 data-id="dh">Not Linear-Separable Data</h1>
+                        <img class="r-stretch" data-id="dm" src="img/non_linear_1d.png" alt="Not Linear-Separable Data: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_32_1.png"><br>
+                        How to separate the data?
+                    </section>
+
+                    <section id="non_linear_1d_2" data-auto-animate>
+                        <h1 data-id="dh">Polynomial Features</h1>
+                        <img class="box-top-left img-height-400" data-id="dm" src="img/non_linear_1d_2.png" alt="Not Linear-Separable Data: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_32_1.png">$\qquad\qquad\qquad\qquad\qquad$
+                        <ul>
+                            <li>Idea: adding new "polynomial" features</li>
+                            <li>Example: $x_1$ is a $1D$ feature</li>
+                            <dd class="like-li-2">adding $x_2 = x_1^2$ of degree 2</dd>
+                            <dd class="like-li-2">Data becomes linearly separable</dd>
+                            <span class="fragment">
+                                <li>In general: add all the combinations of possible <br>
+                                    expansions with degree $d$</li>
+                                <dd class="like-li-2">number of added features: $\frac{(n+d)!}{d!n!}$</dd>
+                                <dd class="like-li-2">e.g. for 2 features $a$ and $b$, with expansion <br>
+                                    degree $d=3$, we have: $a^3, b^3, a^2b, ab^2$</dd>
+                            </span>
+                        </ul>
+                    </section>
+
+                    <section id="polynomial_feature_1">
+                        <h1>Polynomial Features Example</h1>
+                        <img class="img-height-400 img-width-550" src="img/poly_svm_1.png" alt="Polynomial Feature: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_35_0.png">
+                        <img class="img-height-400 img-width-550" src="img/poly_svm_2.png" alt="Polynomial Feature: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_37_1.png"><br>
+                        Polynomial feature expansion with $d = 3$
+                    </section>
+
+                    <section id="non_linear_data" data-auto-animate>
+                        <h1 data-id="dh">Data Transformation</h1>
+                        <img class="img-height-400" src="img/non_linear_1.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*9_wDX4PS5_Yg4KYUGM-nwg.png">
+                        <img data-id="dm" class="img-height-400" src="img/non_linear_2.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*FNz5m_tLa8hVXHpGBSjJLg.png"><br>
+                        Can transform the original data to make it linear separable <br>
+                        (e.g. $Z = f(x,y) = \sqrt{x^2+y^2}$)
+                    </section>
+
+                    <section id="non_linear_data_2" data-auto-animate>
+                        <h1 data-id="dh">Transformation Problem</h1>
+                        <img data-id="dm" class="box-top-right img-height-300" src="img/non_linear_2.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*FNz5m_tLa8hVXHpGBSjJLg.png">
+                        <ul>
+                            <li><span class="red">Heavy load</span> of calculations</li>
+                            <li>Non-concentric data points can be separated,$\qquad\qquad\qquad\qquad\qquad\quad$<br>
+                                but</li>
+                            <dd class="like-li-2">distance calculation: $n(n-1)/2$</dd>
+                            <dd class="like-li-2">square root: $O(log(n))$ for power and<br>
+                                $O(1)$ for addition</dd>
+                            <dd class="like-li-2">In total: $O(n^2 log(n))$</dd>
+                            <li>Can be simplified by using the squared distance directly: $O(n^2)$</li>
+                            <dd class="like-li-2">Any other approach?</dd>
+                        </ul>
+                    </section>
+
+                    <section id="kernel">
+                        <h1>Kernel Trick</h1>
+                        <ul>
+                            <li>The <span class="lime">Kernel Trick</span>: don’t need to find a suitable set of features here, but find <span class="pink">similarity</span> that it is valid for all sets of features</li>
+                            <dd class="like-li-2">not finding the transformation function $f(x,y)$ directly</dd>
+                            <dd class="like-li-2">finding similarity of data points using a <span class="yellow">kernel function</span> $g(x,y)$ (can be <span class="red">any</span> function)</dd>
+                            <li>As is many polynomial features are added <span class="purple">without</span> actually adding them</li>
+                            <dd class="like-li-2 skyblue">No more new features, but new measurement</dd>
+                            <li>Useful trick for non-linear data</li>
+                        </ul>
+                    </section>
+
+                    <section id="kernel_function">
+                        <h1>Kernel Functions</h1>
+                        <span class="box-top-right">
+                            <img class="img-height-200" src="img/rbf.png" alt="RBF Kernel: https://miro.medium.com/v2/resize:fit:828/format:webp/1*2syBCIlXnIwF6LNjRrObeQ.png"><br>
+                            <span class="tinytext">$\gamma=1$ (left) and $\gamma=0.01$ (right)</span>
+                        </span>
+                        <ul>
+                            <li><span class="lightgreen">Gaussian</span> kernel: $f(x) = ae^{-\frac{(x-b)^2}{2c^2}}$</li>
+                            <dd class="like-li-3">$a$: the <span class="lightblue">height</span> of the peak</dd>
+                            <dd class="like-li-3">$b$: the <span class="orange">position</span> of the peak centre</dd>
+                            <dd class="like-li-3">$c$: the <span class="skyblue">standard deviation</span> of the data</dd>
+                            <!-- https://pages.cs.wisc.edu/~matthewb/pages/notes/pdf/svms/RBFKernel.pdf#:~:text=The%20Radial%20basis%20function%20kernel%2C%20also%20called%20the,parameter%20that%20sets%20the%20%E2%80%9Cspread%E2%80%9D%20of%20the%20kernel. -->
+                            <li><span class="cyan">Radial Basis Function (RBF)</span> kernel: $K_{RBF}(x, x') = e^{-\gamma \Vert x-x' \Vert ^2}$</li>
+                            <dd class="like-li-3">$\gamma$: the hyperparameter that controls the lineality of the model $\qquad\quad$</dd>
+                            <dd class="like-li-3">$x,x'$: represent the 2 data point vectors</dd>
+                            <li>More kernel functions available: <span class="brown">how to choose a good one</span>?</li>
+                            <dd class="like-li-2">Rule of thumb: try <span class="blue">linear kernel</span> first; then <span class="lime">Gaussian RBF</span> kernel, then <span class="purple">others</span></dd>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>Linear Classification</li>
+                            <li>Support Vector Machine</li>
+                            <li>Non-Linear SVM and the use of kernel functions</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

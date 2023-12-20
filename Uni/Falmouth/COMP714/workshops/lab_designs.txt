@@ -1,0 +1,4 @@
+https://tdgunes.com/COMP6246-2019Fall/
+
+Google colab has GPU and TPU support in a Jupyter environment: https://colab.research.google.com
+You should be able to get $300 of Google Cloud Credits here: https://cloud.google.com/free/

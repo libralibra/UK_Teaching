@@ -171,6 +171,15 @@ Reveal.initialize({
             'ol li': {
                 "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
             },
+            '.like-li': {
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
+            },
+            '.like-li-2': {
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
+            },
+            '.like-li-3': {
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
+            },
             // 'img': 'animate__fadeIn',
         },
     },
