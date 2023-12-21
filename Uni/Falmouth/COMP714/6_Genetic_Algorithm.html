@@ -8,7 +8,7 @@
         <meta charset="utf-8">
 
         <!-- meta data -->
-        <meta name="author" content="Dr Daniel Zhang">
+        <meta name="author" content="Dr Xu Zhang">
         <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
 
         <!-- disable search engine robots -->
@@ -111,11 +111,11 @@
                     </section>
 
                     <section id="recall_linear_classification_2" data-auto-animate>
-                        <h1 data-id="dh">Linear Classification (2)</h1>
+                        <h1 data-id="dh">Linear Classification</h1>
                         <img data-id="dm" class="box-top-right img-height-500" src="img/linear_spe2.png" alt="Linear Classification: https://miro.medium.com/v2/resize:fit:600/format:webp/0*0o8xIA4k3gXUDCFU.png"><br>
                         <ul data-id="du">
                             <li>What we actually want is this &#128073;</li>
-                            <li>Note the large "<span class="lime">empty</span>" strip (street)</li>
+                            <li>No the "<span class="lime">empty</span>" strip (street)</li>
                             <dd class="like-li-2">Most data are "<span class="pink">off the street</span>"</dd>
                             <dd class="like-li-2">3 data points are on the <span class="blue">edge</span>$\qquad\qquad\qquad\qquad\qquad\qquad$<br>
                                 of the street</dd>
@@ -230,8 +230,8 @@
                         <img data-id="dm" class="box-top-right img-height-300" src="img/non_linear_2.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*FNz5m_tLa8hVXHpGBSjJLg.png">
                         <ul>
 
-                            <li><span class="purple">Iterative</span> process if data is still not linearly <br>
-                                separable after adding a new feature</li>
+                            <li><span class="purple">Endless</span> process if data is still not linearly <br>
+                                separable after adding new feature</li>
                             <li><span class="red">Heavy load</span> of calculations in high-dimension $\qquad\qquad\qquad\qquad\qquad$<br>
                                 space</li>
                             <li>Any other approach?</li>
@@ -298,24 +298,6 @@
                                 <span class="like-li-2">The original data dimension <span class="red">doesn't matter</span>!</span>
                             </dd>
                         </ul>
-                    </section>
-
-                    <section id="svm_regression">
-                        <h1>SVM Regression</h1>
-                        <ul>
-                            <li>The Trick: <span class="lime">reverse</span> the SVM classifier <span class="pink">objectives</span></li>
-                            <dd class="like-li-2">fit as many instances as possible <span class="blue">on the street</span> while limiting margin violations (i.e., instances off the street)</dd>
-                            <dd class="like-li-2">margin width can be controlled by <span class="purple">hyperparameter $\varepsilon$</span></dd>
-                        </ul>
-                        <img src="img/svm_regression.png" alt="SVM Regression: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_64_1.png" class="r-stretch">
-                    </section>
-
-                    <section id="svm_regression_2">
-                        <h1>Non-Linear SVM Regression</h1>
-                        <ul>
-                            <li>The kernel trick works too!</li>
-                        </ul>
-                        <img class="r-stretch" src="img/svm_regression_2.png" alt="Non-Linear SVM Regression: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_73_1.png">
                     </section>
                 </section>
 

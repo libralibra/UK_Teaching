@@ -9,7 +9,7 @@
 
         <!-- meta data -->
         <meta name="author" content="Dr Daniel Zhang">
-        <meta name="generator" content="VS Code">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
 
         <!-- disable search engine robots -->
         <meta name="robots" content="none">
@@ -44,7 +44,11 @@
                     higher z-index than those before. In overview mode, the slides should be in the front.
                 -->
         <div class="pdf_div">
-            <div class="pdf_link" title="Save Slides as PDF" onclick="GeneratePDF();"><a class="link_no_change" href='#'>⇩PDF</a></div>
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
         </div>
 
         <!-- main content of the slides -->
@@ -57,14 +61,16 @@
                         <h3>
                             <orange><span class="coursecode"></span></orange>
                         </h3>
+                        <p class="tinytext text-left"><a class="invisible" href="./all_links.html">All Links</a></p>
                         <p>
                             <bigtext><span class="week"></span><span class="topic"></span></bigtext>
                         </p>
                         <p>
                             <cyan class="fullname"></cyan> <br>
-                            <span class="uni"></span> v. <span class="year"></span>
+                            v. <span class="year"></span>
                         </p>
-                        <p><a class="invisible" href="./all_links.html">All Links</a></p>
+
+
                     </section>
 
                     <section id="1st">
