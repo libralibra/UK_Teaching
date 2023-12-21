@@ -151,24 +151,24 @@
                         <h1>SVM: Feature Scaling</h1>
                         <img class="r-stretch" src="img/feataure_scaling.png" alt="Feature Scaling: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_13_1.png">
                         <ul>
-                            <li>SVMs are sensitive to the scale of features (distance matters)</li>
-                            <li>Scaled and non-scaled data leads to different SVM models</li>
-                            <li>Mapping all features to the same scale without changing their relative relationships</li>
+                            <li>SVMs are <span class="pink">sensitive</span> to the scale of features (distance matters)</li>
+                            <li>Scaled and non-scaled data leads to <span class="lime">different</span> SVM models</li>
+                            <li>Mapping all features to the <span class="blue">same scale</span> without changing their relative relationships</li>
                         </ul>
                     </section>
 
                     <section id="hard_margin" data-auto-animate>
                         <h1 data-id="dh">SVM: Hard Margin</h1>
-                        <p data-id="dp" class="like-li text-left">Hard margin classification: none of the data points can be within the margin (impossible to achieve in many cases)</p>
+                        <p data-id="dp" class="like-li text-left"><span class="cyan">Hard margin</span> classification: <span class="red">none</span> of the data points can be within the margin (impossible to achieve in many cases)</p>
                         <img data-id="dm" src="img/hard_margin.png" alt="Hard Margin: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_16_1.png" class="r-stretch"><br>
-                        <span data-id="ds">In general: linearly non-separable data</span>
+                        <span data-id="ds">In general: <span class="purple">linearly non-separable</span> data</span>
                     </section>
 
                     <section id="soft_margin" data-auto-animate>
                         <h1 data-id="dh">SVM: Soft Margin</h1>
-                        <p data-id="dp" class="like-li text-left">Soft margin classification: data points can be within the margin (allow violations)</p>
+                        <p data-id="dp" class="like-li text-left"><span class="orange">Soft margin</span> classification: data points <span class="skyblue">can be</span> within the margin (allow violations)</p>
                         <img data-id="dm" src="img/soft_margin.png" alt="Soft Margin: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_16_1.png" class="r-stretch"><br>
-                        <span data-id="ds">Challenge: need to minimise the number of violations</span>
+                        <span data-id="ds">Challenge: need to <span class="lightred">minimise</span> the number of violations</span>
                     </section>
                 </section>
 
@@ -180,23 +180,23 @@
                     <section id="non_linear_1d" data-auto-animate>
                         <h1 data-id="dh">Not Linear-Separable Data</h1>
                         <img class="r-stretch" data-id="dm" src="img/non_linear_1d.png" alt="Not Linear-Separable Data: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_32_1.png"><br>
-                        How to separate the data?
+                        How to separate the data? - <span class="brown">any thoughts</span>?
                     </section>
 
                     <section id="non_linear_1d_2" data-auto-animate>
                         <h1 data-id="dh">Polynomial Features</h1>
                         <img class="box-top-left img-height-400" data-id="dm" src="img/non_linear_1d_2.png" alt="Not Linear-Separable Data: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_32_1.png">$\qquad\qquad\qquad\qquad\qquad$
                         <ul>
-                            <li>Idea: adding new "polynomial" features</li>
+                            <li>Idea: adding <span class="red">new</span> "<span class="lime">polynomial</span>" features</li>
                             <li>Example: $x_1$ is a $1D$ feature</li>
                             <dd class="like-li-2">adding $x_2 = x_1^2$ of degree 2</dd>
-                            <dd class="like-li-2">Data becomes linearly separable</dd>
+                            <dd class="like-li-2">Data becomes <span class="yellow">linearly separable</span></dd>
                             <span class="fragment">
-                                <li>In general: add all the combinations of possible <br>
+                                <li>In general: add <span class="blue">all the combinations</span> of possible <br>
                                     expansions with degree $d$</li>
                                 <dd class="like-li-2">number of added features: $\frac{(n+d)!}{d!n!}$</dd>
-                                <dd class="like-li-2">e.g. for 2 features $a$ and $b$, with expansion <br>
-                                    degree $d=3$, we have: $a^3, b^3, a^2b, ab^2$</dd>
+                                <dd class="like-li-2">e.g. for 2 features $x_1$ and $x_2$, with expansion <br>
+                                    degree $d=3$, we have: $x_1^3, x_2^3, x_1^2x_2, x_1x_2^2$</dd>
                             </span>
                         </ul>
                     </section>
@@ -205,62 +205,98 @@
                         <h1>Polynomial Features Example</h1>
                         <img class="img-height-400 img-width-550" src="img/poly_svm_1.png" alt="Polynomial Feature: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_35_0.png">
                         <img class="img-height-400 img-width-550" src="img/poly_svm_2.png" alt="Polynomial Feature: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_37_1.png"><br>
-                        Polynomial feature expansion with $d = 3$
+                        Polynomial <span class="lime">feature expansion</span> with $d = 3$
+                    </section>
+
+                    <section id="data_transform" data-auto-animate>
+                        <h1 data-id="dh">Data Transformation</h1>
+                        <img data-id="dm2" class="img-width-500 img-height-400" src="img/data_transform_1.png" alt="Data Transformation: https://miro.medium.com/v2/resize:fit:828/format:webp/1*p_Dp2O_NqWPmcp8s9-NmFQ.png">
+                        <img data-id="dm1" class="img-width-500 img-height-400" src="img/data_transform_2.png" alt="Data Transformation: https://miro.medium.com/v2/resize:fit:828/format:webp/1*KRLG3ZX8F3p6H0qMyl8sLw.png">
+                        <br>
+                        $X$ vs. $Y$ vs. $XY$ $\qquad\qquad\qquad X^2$ vs. $Y^2$ vs. $XY$<br>
+                        <span class="pink">Not all terms are useful</span> (right is better than left)
                     </section>
 
                     <section id="non_linear_data" data-auto-animate>
-                        <h1 data-id="dh">Data Transformation</h1>
-                        <img class="img-height-400" src="img/non_linear_1.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*9_wDX4PS5_Yg4KYUGM-nwg.png">
-                        <img data-id="dm" class="img-height-400" src="img/non_linear_2.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*FNz5m_tLa8hVXHpGBSjJLg.png"><br>
-                        Can transform the original data to make it linear separable <br>
-                        (e.g. $Z = f(x,y) = \sqrt{x^2+y^2}$)
+                        <h1 data-id="dh">Data Transformation (2)</h1>
+                        <img data-id="dm1" class="img-height-400" src="img/non_linear_1.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*9_wDX4PS5_Yg4KYUGM-nwg.png">
+                        <img data-id="dm2" class="img-height-400" src="img/non_linear_2.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*FNz5m_tLa8hVXHpGBSjJLg.png"><br>
+                        Other functions: <span class="purple">Transform</span> the original data to make it <span class="yellow">linearly separable</span> <br>
+                        (e.g. $Z = f(x,y) = \sqrt{x^2+y^2}$, $X$ vs. $Y$ vs. $Z$)
                     </section>
 
                     <section id="non_linear_data_2" data-auto-animate>
-                        <h1 data-id="dh">Transformation Problem</h1>
+                        <h1 data-id="dh">The Problem</h1>
                         <img data-id="dm" class="box-top-right img-height-300" src="img/non_linear_2.png" alt="Not Linear-Separable Data: https://miro.medium.com/v2/resize:fit:828/format:webp/1*FNz5m_tLa8hVXHpGBSjJLg.png">
                         <ul>
-                            <li><span class="red">Heavy load</span> of calculations</li>
-                            <li>Non-concentric data points can be separated,$\qquad\qquad\qquad\qquad\qquad\quad$<br>
-                                but</li>
-                            <dd class="like-li-2">distance calculation: $n(n-1)/2$</dd>
-                            <dd class="like-li-2">square root: $O(log(n))$ for power and<br>
-                                $O(1)$ for addition</dd>
-                            <dd class="like-li-2">In total: $O(n^2 log(n))$</dd>
-                            <li>Can be simplified by using the squared distance directly: $O(n^2)$</li>
-                            <dd class="like-li-2">Any other approach?</dd>
+
+                            <li><span class="purple">Endless</span> process if data is still not linearly <br>
+                                separable after adding new feature</li>
+                            <li><span class="red">Heavy load</span> of calculations in high-dimension $\qquad\qquad\qquad\qquad\qquad$<br>
+                                space</li>
+                            <li>Any other approach?</li>
                         </ul>
                     </section>
 
                     <section id="kernel">
                         <h1>Kernel Trick</h1>
                         <ul>
-                            <li>The <span class="lime">Kernel Trick</span>: don’t need to find a suitable set of features here, but find <span class="pink">similarity</span> that it is valid for all sets of features</li>
-                            <dd class="like-li-2">not finding the transformation function $f(x,y)$ directly</dd>
+                            <li>The <span class="lime">Kernel Trick</span>: don’t need to find a suitable set of features here, but find <span class="pink">similarity</span> that it is valid for all sets of features - <span class="purple">no new dimensions</span></li>
+                            <dd class="like-li-2">not finding the <span class="lightgreen">transformation function</span> $f(x,y)$ directly</dd>
                             <dd class="like-li-2">finding similarity of data points using a <span class="yellow">kernel function</span> $g(x,y)$ (can be <span class="red">any</span> function)</dd>
-                            <li>As is many polynomial features are added <span class="purple">without</span> actually adding them</li>
+                            <li>As if many polynomial features are added <span class="purple">without</span> actually adding them</li>
                             <dd class="like-li-2 skyblue">No more new features, but new measurement</dd>
                             <li>Useful trick for non-linear data</li>
                         </ul>
                     </section>
 
-                    <section id="kernel_function">
-                        <h1>Kernel Functions</h1>
+                    <section id="kernel_function" data-auto-animate>
+                        <h1 data-id="dh">Kernel Functions</h1>
                         <span class="box-top-right">
-                            <img class="img-height-200" src="img/rbf.png" alt="RBF Kernel: https://miro.medium.com/v2/resize:fit:828/format:webp/1*2syBCIlXnIwF6LNjRrObeQ.png"><br>
-                            <span class="tinytext">$\gamma=1$ (left) and $\gamma=0.01$ (right)</span>
+                            <span class="tinytext">$\gamma=1$ (left) $\qquad\qquad \gamma=0.01$ (right)</span><br>
+                            <img data-id="dm" style="height: 180px;" src="img/rbf.png" alt="RBF Kernel: https://miro.medium.com/v2/resize:fit:828/format:webp/1*2syBCIlXnIwF6LNjRrObeQ.png">
+
                         </span>
-                        <ul>
+                        <ul data-id="du">
+                            <br>
                             <li><span class="lightgreen">Gaussian</span> kernel: $f(x) = ae^{-\frac{(x-b)^2}{2c^2}}$</li>
                             <dd class="like-li-3">$a$: the <span class="lightblue">height</span> of the peak</dd>
                             <dd class="like-li-3">$b$: the <span class="orange">position</span> of the peak centre</dd>
                             <dd class="like-li-3">$c$: the <span class="skyblue">standard deviation</span> of the data</dd>
                             <!-- https://pages.cs.wisc.edu/~matthewb/pages/notes/pdf/svms/RBFKernel.pdf#:~:text=The%20Radial%20basis%20function%20kernel%2C%20also%20called%20the,parameter%20that%20sets%20the%20%E2%80%9Cspread%E2%80%9D%20of%20the%20kernel. -->
-                            <li><span class="cyan">Radial Basis Function (RBF)</span> kernel: $K_{RBF}(x, x') = e^{-\gamma \Vert x-x' \Vert ^2}$</li>
-                            <dd class="like-li-3">$\gamma$: the hyperparameter that controls the lineality of the model $\qquad\quad$</dd>
+                            <li><span class="cyan">Gaussian Radial Basis Function (RBF)</span> kernel: $K_{RBF}(x, x') = e^{-\gamma \Vert x-x' \Vert ^2}$</li>
+                            <dd class="like-li-3">$\gamma$: the hyperparameter that controls the <span class="pink">lineality</span> of the model $\qquad\quad$</dd>
                             <dd class="like-li-3">$x,x'$: represent the 2 data point vectors</dd>
                             <li>More kernel functions available: <span class="brown">how to choose a good one</span>?</li>
-                            <dd class="like-li-2">Rule of thumb: try <span class="blue">linear kernel</span> first; then <span class="lime">Gaussian RBF</span> kernel, then <span class="purple">others</span></dd>
+                            <dd class="like-li-2">Rule of thumb: <span class="blue">linear kernel</span> first; then <span class="lime">Gaussian RBF</span> kernel, then <span class="purple">others</span></dd>
+                        </ul>
+                    </section>
+
+                    <section id="rbf_example" data-auto-animate>
+                        <h1 data-id="dh">Example: Gaussian RBF</h1>
+                        <img data-id="dm" class="r-stretch" src="img/rbf_example.png" alt="Gaussian RBF: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_48_1.png"><br>
+                        <ul data-id="du">
+                            <li>Compare data similarity to some <span class="lime">landmarks</span> (RBF kernels)</li>
+                            <li>Work out the new <span class="pink">similarity space</span></li>
+                            <li>The data is <span class="red">linearly separable</span> in the new space</li>
+                        </ul>
+                    </section>
+
+                    <section id="rbf_example_2" data-auto-animate>
+                        <h1 data-id="dh">Example: Gaussian RBF (2)</h1>
+                        <img data-id="dm" class="box-top-right" style="width: 520px;height: 280px;" src="img/rbf_example.png" alt="Gaussian RBF: https://www.danli.org/2021/06/06/hands-on-machine-learning/05_support_vector_machines_files/05_support_vector_machines_48_1.png">
+                        <ul data-id="du">
+                            $K_{RBF}(x, x') = e^{-\gamma \Vert x-x' \Vert ^2}$ if $\gamma = 0.3$ $\qquad\qquad\qquad\qquad\qquad\qquad\quad$
+                            <br><br><br>
+                            <li>Take $x_1 = -1$ as example, 2 chosen $\qquad\qquad\qquad\qquad\qquad$<br>
+                                landmarks are $x_2'=-2$ and $x_3'=1$</li>
+                            <li>$dist(x_1,x_2')=1$ and $dist(x_1,x_3')=2$</li>
+                            <li>$x_2 = e^{-0.3 \times 1^2} \approx 0.74$ and $x_3 = e^{-0.3 \times 2^2} \approx 0.30 \implies \braket{0.74,0.3}$</li>
+                            <li>Apply the same process to other data points - <span class="orange">linearly separable</span> in $\braket{x2,x3}$</li>
+                            <li class="fragment"><span class="purple">Question</span>: looks like we're increasing the features again? why is it useful?</li>
+                            <dd class="fragment like-li-2">The number of dimension replies <span class="lime">purely on the number of kernels</span>!<br>
+                                <span class="like-li-2">The original data dimension <span class="red">doesn't matter</span>!</span>
+                            </dd>
                         </ul>
                     </section>
                 </section>
