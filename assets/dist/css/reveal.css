@@ -329,15 +329,23 @@ darkpurple {
     color: #00ffd5;
 }
 
+.like-li-2 {
+    margin-left: -0px !important;
+}
+
 .like-li-2::before {
     content: "➣";
     color: #00ffd5;
 }
 
+.like-li-3 {
+    margin-left: 30px !important;
+}
+
 .like-li-3::before {
-    content: "‣";
+    content: "▻";
     color: #00ffd5;
-    margin-left: 30px;
+    /* margin-left: 30px; */
 }
 
 /* hidden titles or other items */
@@ -377,7 +385,14 @@ darkpurple {
 .left-float {
     position: absolute !important;
     left: 0px !important;
-    margin-left: 0 !important;
+    margin-left: 0px !important;
+}
+
+.float-right,
+.right-float {
+    position: absolute !important;
+    right: 0px !important;
+    margin-right: 0px !important;
 }
 
 /* absolute position */
@@ -396,6 +411,12 @@ darkpurple {
     left: 0px !important;
 }
 
+.box-right,
+.right-box {
+    position: absolute !important;
+    right: 0px !important;
+}
+
 .box-top-right,
 .box-right-top {
     position: absolute !important;
@@ -403,12 +424,6 @@ darkpurple {
     right: 0px !important;
     background-color: #333;
     padding: 5px !important;
-}
-
-.box-right,
-.right-box {
-    position: absolute !important;
-    right: 0px !important;
 }
 
 .box-centre,
