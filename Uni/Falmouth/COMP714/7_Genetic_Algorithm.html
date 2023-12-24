@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '6'],
+                ['topic', ' - Genetic Algorithm'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p class="menu-title"><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Describe genetic programming and its applications</li>
+                            <li>Explain the steps involved in genetic algorithm</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_background">
+                    <section id="title_background">
+                        <h1 class="r-frame-text">Learning from Nature</h1>
+                    </section>
+
+                    <section id="why_learn">
+                        <h1>Learning from Nature</h1>
+                        <div class="row">
+                            <img class="img-width-300 img-height-250" src="img/neurons.png" alt="Neurons: https://www.researchgate.net/publication/359434644/figure/fig20/AS:1147622081470472@1650625834171/a-Typical-structure-of-biological-neuron-b-typical-structure-and-operation-of-ANN_W640.jpg">
+                            <img src="img/birds.png" alt="Bird: https://scx2.b-cdn.net/gfx/news/hires/2011/secretsofflo.jpg" class="img-width-300 img-height-250">
+                            <img src="img/giraffe.png" alt="Giraffe: https://live.staticflickr.com/2598/3709737684_3aa837e39f.jpg" class="img-width-300 img-height-250">
+                        </div>
+                        <div class="row">
+                            <img src="img/bees.png" alt="Bees: https://th.bing.com/th/id/OIP.tAnk2wPmtm2L5dv03wmShgHaFj?rs=1&pid=ImgDetMain" class="img-width-300 img-height-250">
+                            <img src="img/ants.png" alt="Ants: https://th.bing.com/th/id/OIP.ZeeH2ngmE83D_kywgVATZAHaE_?rs=1&pid=ImgDetMain" class="img-width-300 img-height-250">
+                            <img src="img/fish.png" alt="Fish: https://th.bing.com/th/id/OIP.vdEjsVLjT-_Q29xmDb4iTgHaFj?w=1024&h=768&rs=1&pid=ImgDetMain" class="img-width-300 img-height-250">
+                        </div>
+                        <div class="fragment highlight-bckg-warning box-centre" style="left:30%;top:52%;">Why do we want to learn from nature?</div>
+                    </section>
+
+                    <section id="learn_reason" data-auto-animate>
+                        <h1 data-id="dh">Learning from Nature (2)</h1>
+                        <img data-id="dm" src="img/bees.png" alt="Bees: https://th.bing.com/th/id/OIP.tAnk2wPmtm2L5dv03wmShgHaFj?rs=1&pid=ImgDetMain" class="box-top-right" style="width:280px;height:230px;">
+                        <p class="left-text">Biology/nature is a good metaphor:</p>
+                        <ul data-id="du">
+                            <li>Results of 3.8 billion years of <span class="lime">best-to-fit</span> natural selection</li>
+                            <li>Biological organisms resolved many of nature's challenges <br>
+                                leading to <span class="yellow">lasting solutions</span> with <span class="cyan">maximal performance</span></li>
+                            <li>Very <span class="blue">economic</span>, using <span class="pink">minimal resources</span></li>
+                            <li>Highly <span class="orange">adaptive</span> to different environments, including even some extreme conditions</li>
+                        </ul>
+                    </section>
+
+                    <section id="real_world" data-auto-animate>
+                        <h1 data-id="dh">Real World</h1>
+                        <img data-id="dm" src="img/dna.png" alt="DNA: https://geneticliteracyproject.org/wp-content/uploads/2017/06/DNA-1024x960.png" class="box-top-left" style="width:300px; height:300px;">
+                        $\qquad\qquad$
+                        <ul data-id="du">
+                            <li><span class="lime">Genotype</span>: DNA</li>
+                            <li><span class="pink">Phenotype</span>: Organism</li>
+                            <li><span class="cyan">one-way</span> - changes to the phenotype do not<br>
+                                change the genotype (<span class="purple">simplification</span>) </li>
+                            <li>Genotype is <span class="orange">information</span></li>
+                            <li>Phenotype is <span class="blue">physical organism</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="fitness" data-auto-animate>
+                        <h1 data-id="dh">Fitness</h1>
+                        <img src="img/fitness.png" alt="Fitness: https://geneticliteracyproject.org/wp-content/uploads/2018/01/gene-editing-1-3-18.jpg" data-id="dm" class="box-top-right img-height-550">
+                        <ul data-id="du">
+                            <br>
+                            <li>In Biology: how likely the object is to <span class="lime">survive to <br>
+                                    reproduce</span></li>
+                            <br>
+                            <li>Fitness is <span class="pink">not</span> a measure of '<span class="blue">goodness</span>', but adaption $\qquad\qquad\qquad\qquad$<br>
+                                to an environment</li>
+                            <br>
+                            <li>A product of the environment (<span class="orange">endogenous</span>)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_ga">
+                    <section id="title_ga">
+                        <h1 class="r-frame-text">Genetic Algorithm</h1>
+                    </section>
+
+                    <section id="ga">
+                        <h1>Genetic Algorithm</h1>
+                        <ul>
+                            <li>A type of <span class="pink">evolutionary algorithms</span> that are inspired by natural selection</li>
+                            <li><span class="lime">Population-based</span> search algorithm</li>
+                            <li>Hav a population of <span class="blue">individuals</span> that are represented by genotypes</li>
+                            <li>Converted to Phenotype for <span class="red">evaluation</span></li>
+                            <li>Based on Charles Darwin's <span class="purple">theory of evolution</span></li>
+                            <dd class="like-li-2">Evolutionary computing evolved in the 1962's</dd>
+                            <dd class="like-li-2">GA were proposed by John Hollan in the middle of 1970's</dd>
+                        </ul>
+                    </section>
+
+                    <section id="theory_of_evolution">
+                        <h1>Theory of Evolution</h1>
+                        <ul>
+                            <li>An offspring has many of the characteristics of its parents, which implies that the population is stable</li>
+                            <li>There are <span class="pink">variations</span> in characteristics between individuals that can be passed from one generation to the next</li>
+                            <li>Biological populations survive by <span class="cyan">reproduction</span></li>
+                            <li>Only a <span class="purple">small percentage</span> of the offspring produced survive to adulthood</li>
+                            <li>Which of the offspring survive depends on their <span class="blue">inherited characteristics</span></li>
+                            <dd class="like-li-2">Survival of the <span class="lightred">fittest</span> - traits which are <span class="orange">valuable for survival</span> tend to propagate
+                            </dd>
+                        </ul>
+                    </section>
+
+                    <section id="advantages">
+                        <h1>Advantages</h1>
+                        <ul>
+                            <li>Optimise with <span class="pink">continuous or discrete</span> variables</li>
+                            <li>Derivative information is <span class="cyan">not required</span></li>
+                            <li>Able to deal with a <span class="yellow">large number</span> of decision variables</li>
+                            <li>Optimise decision variables with extremely <span class="purple">complex cost function</span> </li>
+                            <li>Is <span class="blue">less likely</span> trapped in local optimum </li>
+                            <li>Tends to search for <span class="lightred">global optimum</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="basic_idea">
+                        <h1>Basic Idea</h1>
+                        <img class="img-height-500" src="img/ga_cycle.png" alt="Genetic ALgorithm Cycle: https://www.mdpi.com/water/water-14-00080/article_deploy/html/images/water-14-00080-g004.png">
+                        <ul>
+                            <li><span class="lime">Initialise</span> the population</li><br>
+                            <li><span class="skyblue">Evaluation</span>: if good enough, stop; otherwise ...</li>
+                            <dd class="like-li-2"><span class="purple">Select</span> individuals for reproduction</dd>
+                            <dd class="like-li-2"><span class="blue">Crossover</span> for recombination</dd>
+                            <dd class="like-li-2"><span class="red">Mutation</span> to introduce variations</dd><br>
+                            <!-- <dd class="like-li-2"><span class="cyan">Calculate</span> the fitness for the new members</dd><br> -->
+                            <li><span class="orange">Evaluate</span> the new generation</li>
+                            <br><br>
+                        </ul>
+                    </section>
+
+                    <section id="pseudocode">
+                        <h1>GA - Pseudocode</h1>
+                        <pre><code class="python" data-line-numbers>(1) Randomly initialise populations p
+(2) Determine fitness of population
+(3) Until convergence repeat:
+    (a) Select parents from population
+    (b) Crossover and generate new population
+    (c) Perform mutation on new population
+    (d) Calculate fitness for new population</code></pre>
+                    </section>
+
+                    <section id="individuals">
+                        <h1>Individuals</h1>
+                        <img src="img/individual.png" alt="Genes Individual Population: https://media.geeksforgeeks.org/wp-content/uploads/genetic-algorithm.png">
+                        <ul>
+                            <li><span class="lime">Each individual</span> is one <span class="pink">solution</span> for the given problem</li>
+                            <dd class="like-li-2">Sometimes called <span class="blue">chromosomes</span></dd>
+                            <li>An individual contains or is characterised by a set of parameters called <span class="orange">Genes</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="population">
+                        <h1>Population</h1>
+                        <img src="img/genetic-algorithm.png" alt="Genes Individual Population: https://media.geeksforgeeks.org/wp-content/uploads/genetic-algorithm.png">
+                        <ul>
+                            <li><span class="blue">Population</span> is a set of individuals - <span class="red">population size</span> is fixed</li>
+                            <li>Population collects a group of potential solutions, which will be <span class="lime">evolved</span> to improve their quality in each generation</li>
+                            <li>How do we create the initial population?</li>
+                            <ul>
+                                <li>Completely random</li>
+                                <li>Bias random</li>
+                                <li>Bias towards known good individuals (bootstrapping)</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section id="stop_criteria">
+                        <h1>Termination</h1>
+                        <ul>
+                            <li class="highlight-bckg-info">When to stop?</li>
+                            <li>Run out of time</li>
+                            <dd class="like-li-2">Number of generations</dd>
+                            <dd class="like-li-2">Real time 'wall time'</dd>
+                            <dd class="like-li-2">CPU time</dd>
+                            <li>Solution is good enough</li>
+                            <li>Stagnation (no progress being made) - converged</li>
+                        </ul>
+                    </section>
+
+                    <section id="selection">
+                        <h1>Selection</h1>
+                        <ul>
+                            <li class="highlight-bckg-success">How do we select individuals?</li>
+                            <dd class="like-li-2">Top $n$ individuals</dd>
+                            <dd class="like-li-2">Tournament - select $n$ individuals and evaluate their fitness</dd>
+                            <dd class="like-li-2">Fitness proportional selection - give each individual a chance based on their fitness</dd>
+                        </ul>
+                    </section>
+
+                    <section id="fitness_function">
+                        <h1>Fitness Function</h1>
+                        <ul>
+                            <li>The ability of an individual to <span class="lime">compete</span> with other individuals</li>
+                            <li><span class="pink">Fitness score</span> determines the probability of being selected for reproduction</li>
+                            <li>Thus, each new generations have better “<span class="skyblue">partial solutions</span>” than previous generations</li>
+                            <li>How do we decide who is a good member?</li>
+                            <dd class="like-li-2"><span class="yellow">Domain specific</span> - you make the choice</dd>
+                        </ul>
+                    </section>
+
+                    <section id="reproduction">
+                        <h1>Reproduction</h1>
+                        <ul>
+                            <li>There are 2/3 main ways of generating the offspring:</li>
+                            <li><span class="lime">Crossover</span>: pick two individuals and combine them into a new individual</li>
+                            <li><span class="red">Mutation</span>: randomly alter an individual</li>
+                            <li><span class="purple">Elitism</span>: copy an individual directly into the new generation</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_example">
+                    <section id="title_example">
+                        <h1 class="r-frame-text">Binary Genetic Algorithm</h1>
+                    </section>
+
+                    <section id="binary_encoding">
+                        <h1>Binary Encoding and Decoding</h1>
+                        <p class="text-left">Chromosomes (individuals) are represented by binary string<br>
+                            <span class="lime">Decimal to binary</span>: convert $25.3125$ to binary</span>
+                        <div class="col-45 fragment">The integer part: $25$<br>
+                            $\begin{array}{rrr}
+                            25 / 2 & = & 12 & \to \boxed{1} \\
+                            12 / 2 & = & 6 & \to \boxed{0} \\
+                            6 / 2 & = & 3 & \to \boxed{0} \\
+                            3 / 2 & = & 1 & \to \boxed{1} \\
+                            1 /2 & = & 0 & \to \boxed{1}
+                            \end{array}$
+                        </div>
+                        <div class="fragment" style="position: absolute; top:30%;left: 50%">The fractional part: $0.3125$<br>
+                            $\begin{array}{rll}
+                            0.3125 \times 2 & = & 0.625 & \to \boxed{0} \\
+                            0.625 \times 2 & = & 1.25 & \to \boxed{1} \\
+                            0.25 \times 2 & = & 0.5 & \to \boxed{0} \\
+                            0.5 \times 2 & = & 1 & \to \boxed{1}
+                            \end{array}$<br>
+                            <span class="fragment smalltext r-frame">$25.3125_{10} = 11001.0101_2$</span>
+                        </div>
+                        <span class="fragment smalltext"><span class="red">Binary to decimal</span>: $(1\times 2^4+1\times 2^3+0\times 2^2+0\times 2^1+1\times 2^0).(0\times 2^{-1}+1\times 2^{-2}+0\times 2^{-3}+1\times 2^{-4})$</span>
+                    </section>
+
+                    <section id="binary_encode_decode" data-auto-animate>
+                        <h1 data-id="dh">Binary Bit Length</h1>
+                        <ul data-id="du">
+                            <li>Given a number $x \in [x_{low},x_{high}]$, how many bits ($m$) are required to achieve precision of $d$ decimal places?
+                                $$ \frac{x_{high}-x_{low}}{10^{-d}} \le 2^m -1$$
+                            </li>
+                            <li>Example: $x \in [25,100]$, precision 2 decimal places
+                                $$ \frac{100-25}{10^{-2}} \le 2^m-1 \implies 7501 \le 2^m \implies m = 12.8729 \approx 13\> bits $$
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="binary_encode_decode_2" data-auto-animate>
+                        <h1 data-id="dh">Binary Bit Length (2)</h1>
+                        <ul data-id="du">
+                            <li>Example: $x \in [25,100]$, precision 2 decimal places
+                                $$ \frac{100-25}{10^{-2}} \le 2^m-1 \implies 7501 \le 2^m \implies m = 12.8729 \approx 13\> bits $$
+                            </li>
+                            <li>$\begin{array}{lll}
+                                0000000000000 \to 25 + 0 \times \frac{100-25}{2^{13}-1} = 25 \\
+                                0000000000001 \to 25 + 1 \times \frac{100-25}{2^{13}-1} = 25.0092 \\
+                                0000000000010 \to 25 + 2 \times \frac{100-25}{2^{13}-1} = 25.0183
+                                \end{array}$</li>
+                            <li class="r-frame">Decoding: $x=x_{low}+decimal(1001 \cdots 001_2)\times \frac{x_{high}-x_{low}}{2^m-1}$</li>
+                        </ul>
+                    </section>
+
+                    <section id="crossover">
+                        <h1>Crossover</h1>
+                        <img class="box-top-right img-width-600" src="img/single_double.png" alt="Crossover: https://www.researchgate.net/profile/Junaid-Qadir-2/publication/268525551/figure/fig5/AS:295386582405135@1447437057836/Illustration-of-examples-of-one-point-two-points-and-uniform-crossover-methods-Adapted.png">
+                        <ul>
+                            <li>Three approaches: </li>
+                            <dd class="like-li-2">Single-point crossover</dd>
+                            <dd class="like-li-2">Double-point crossover</dd>
+                            <dd class="like-li-2">Uniform crossover</dd>
+                            <br><br>
+                            <li>Purpose: create offspring from the <br>
+                                parents selected in the selection $\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                process by <span class="lime">exchanging information</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="single_crossover" data-auto-animate>
+                        <h1 data-id="dh">Single-Point Crossover</h1>
+                        <p data-id="dp" class="left-text">Select a <span class="pink">random point</span> in the genome, swap the right (or left) sections of parents $p_1$ and $p_2$</p>
+                        <span data-id="ds">
+                            $\begin{array}{c|c|c}
+                            p_1 & \color{red} 1 \quad 0 \quad 0 & \color{red} 0 \quad 0 \quad 0 \quad 0 \quad 1 \\
+                            p_2 & \color{lime} 1 \quad 1 \quad 1& \color{lime} 1 \quad 0 \quad 1 \quad 1 \quad 0 \\ \hline
+                            offspring_1 & \color{red} 1 \quad 0 \quad 0 &\color{lime} 1 \quad 0 \quad 1 \quad 1 \quad 0 \\
+                            offspring_2 & \color{lime} 1 \quad 1 \quad 1 & \color{red} 0 \quad 0 \quad 0 \quad 0 \quad 1
+                            \end {array}$
+                        </span>
+                    </section>
+
+                    <section id="double_crossover" data-auto-animate>
+                        <h1 data-id="dh">Double-Point Crossover</h1>
+                        <p data-id="dp" class="left-text">Select 2 <span class="pink">random points</span> in the chromosomes, swap the sections between the 2 points of $p_1$ and $p_2$</p>
+                        <span data-id="ds">
+                            $\begin{array}{c|c|c|c}
+                            p_1 & \color{red} 1 \quad 0 \quad 0 & \color{red} 0 \quad 0 \quad 0 \quad 0 & \color{red} 0 \\
+                            p_2 & \color{lime} 1 \quad 1 \quad 1& \color{lime} 1 \quad 0 \quad 1 \quad 1 & \color{lime} 1 \\ \hline
+                            offspring_1 & \color{red} 1 \quad 0 \quad 0 & \color{lime} 1 \quad 0 \quad 1 \quad 1 & \color{red} 0 \\
+                            offspring_2 & \color{lime} 1 \quad 1 \quad 1 & \color{red} 0 \quad 0 \quad 0 \quad 0 & \color{lime}1
+                            \end {array}$
+                        </span>
+                    </section>
+
+                    <section id="uniform_crossover" data-auto-animate>
+                        <h1 data-id="dh">Uniform Crossover</h1>
+                        <ul data-id="dp">
+                            <li><span class="lime">Don't split</span> chromosomes, treat bit separately</li>
+                            <li>Each gene of the offspring is chosen from either parent with a <span class="pink">probability</span></li>
+                            <li>Can use <span class="cyan">different probability</span> if prefer one over the other</li>
+                            <li>Can produce <span class="yellow">more than 2</span> offspring</li>
+                        </ul>
+                        <img data-id="ds" src="img/uniform_crossover.png" alt="Uniform Crossover: https://th.bing.com/th/id/OIP.rGl1xKTZiCbvoZzAWctqegHaEf?rs=1&pid=ImgDetMain">
+                    </section>
+
+                    <section id="mutation">
+                        <h1>Mutation</h1>
+                        <span>
+                            $\begin{array}{r|c}
+                            p & \color{lime} 1 \quad 1 \quad 0 \quad 1 \quad \color{red} 0 \color{lime} \quad 0 \quad 1 \quad 0 \\ \hline
+                            offspring & \color{lime} 1 \quad 1 \quad 0 \quad 1 \quad \color{red} 1 \color{lime} \quad 0 \quad 1 \quad 0
+                            \end{array}$
+                        </span>
+                        <ul>
+                            <li>Purpose: <span class="lime">random</span> mutations alter a certain percentage of the bits of the chromosome</li>
+                            <li>Allows the GA to explore <span class="purple">unknown</span> regions by introducing new information</li>
+                            <li>Can either mutate <span class="blue">only one</span> random bit, or</li>
+                            <li>Mutate <span class="orange">several bits</span> at the same time by a mutation <span class="cyan">probability</span> $\mu \in [0,1]$</li>
+                            <span class="fragment">
+                                <li><span class="purple">Elitism</span>: <span class="lightgreen">copy</span> the best individual to the next generation directly</li>
+                                <dd class="like-li-2"><span class="pink">Preserve</span> the good sample!</dd>
+                            </span>
+                        </ul>
+                    </section>
+
+                    <section id="why_crossover_mutation">
+                        <h1>Mutation vs Crossover</h1>
+                        <ul>
+                            <li>Mutation helps to avoid the algorithm getting 'stuck' in local minima</li>
+                            <li>Crossover works to recombine 'useful' parts of the genotype</li>
+                            <li>The crossover and mutation rates balance exploration and exploitation</li>
+                        </ul>
+                        <img src="img/crossover_mutation_tradeoff.png" alt="Crossover Mutation Tradeoff: https://www.researchgate.net/profile/Abdelhameed_Ibrahim/publication/342065330/figure/download/fig7/AS:901664932376577@1591985080521/Crossover-and-mutation-processes-of-genetic-algorithm-43.png" class="r-stretch">
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>History of evolutionary algorithms</li>
+                            <li>Genetic algorithm</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

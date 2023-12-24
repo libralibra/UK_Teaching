@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="highlight-theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '6'],
+                ['topic', ' - Decision Tree'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p class="menu-title"><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Dimensionality reduction and why it matters</li>
+                            <li>Introduce Principal Component Analysis (PCA)</li>
+                            <li>Explain the details about PCA</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_decision_tree">
+                    <section id="title_decision_tree">
+                        <h1 class="r-frame-text">Decision Tree</h1>
+                    </section>
+
+                    <section id="Quiz">
+                        <h1>Quiz: Professor or Hobo?</h1>
+                        Can you guess the man in the picture is a Professor or Hobo?
+                        <iframe id="myframe" allowtransparency="true" src="http://www.proforhobo.com/" frameborder="0" style="width:90%; height:500px;background: white;"></iframe>
+                    </section>
+
+                    <section id="decision">
+                        <h1>How did you make the decision?</h1>
+                        <ul>
+                            <li>What are the clues that allow you to distinguish a professor from a hobo?</li>
+                            <dd class="like-li-2">Clothes</dd>
+                            <dd class="like-li-2">Background</dd>
+                            <dd class="like-li-2">Beard</dd>
+                            <dd class="like-li-2">...</dd>
+                        </ul>
+                        <p><span class="lime">Main idea</span>: check a set of properties in some order</p>
+                    </section>
+
+                    <section id="decision_tree_pros">
+                        <h1>Decision Tree</h1>
+                        <ul>
+                            <li>Decision tree is a tree which:</li>
+                            <dd class="like-li-2">each internal (non-leaf) node is labelled with a condition, a Boolean function of examples</dd>
+                            <dd class="like-li-2">each internal node has two branches, one labelled <code class="lime">true</code> and the other <code class="pink">false</code></dd>
+                            <dd class="like-li-2">each leaf of the tree is labelled with an <span class="cyan">outcome</span></dd>
+                            <dd class="like-li-3">If the leaf is categories (classes), the tree is called <span class="blue">classification tree</span></dd>
+                            <dd class="like-li-3">If the leaf if real numbers, the tree is called <span class="orange">regression tree</span></dd>
+                        </ul>
+                    </section>
+
+                    <section id="classification_decision_tree">
+                        <h1>Classification with Decision Tree</h1>
+                        <ul>
+                            <li>A <span class="bold highlight-bckg-warning">Decision Tree</span> takes a <span class="lime">series of inputs</span> defining a situation, and <span class="red">outputs a binary decision</span> (classification)</li>
+                            <li>A decision tree <span class="pink">spells out an order for checking the properties</span> (features) of the situation <span class="skyblue">until we have enough information</span> to decide what's going on</li>
+                            <li>We use the <span class="yellow">observable features to predict</span> the outcome (or some important hidden or unknown quantity)</li>
+                            <dd class="like-li-2">The tree will be built using training data and make predictions on the test data</dd>
+                        </ul>
+                        <p class="text-left fragment"><span class="question">Question</span>: what is the optimal/efficient order of checking the features?</p>
+                    </section>
+
+                    <section id="feature_order">
+                        <h1>The Order of Features</h1>
+                        <ul>
+                            <li>The order of checking the features is very important</li>
+                            <li><span class="idea">Idea</span>: choose the next feature whose value can <span class="lime">reduce the uncertainty</span> about the outcome of the classification the most</li>
+                            <li>What does it mean when we say that something reduces the uncertainty in our knowledge?</li>
+                            <li class="fragment"><span class="red">reduce</span> uncertainty = <span class="purple">increase</span> (known) information</li>
+                            <ol class="fragment">
+                                <li>Choose the attribute that provides the highest <span class="blue">information gain</span></li>
+                                <li>Choose the one that has the highest <span class="pink">Gini score improvement</span></li>
+                            </ol>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_information_gain">
+                    <section id="information_gain_measurement">
+                        <h1>Measure Information Gain</h1>
+                        <p class="left-text"><span class="question">Question</span>: How to measure information gain?</p>
+                        <span class="fragment" data-fragment-index="1">
+                            <p class="left-text"><span class="answer">Answer</span>: borrow similar concepts from information and coding theory</p>
+                            <ul class="text-left">
+                                <li><span class="red">Entropy</span> (Shannon, 1948)</li>
+                                <dd class="like-li-2">A measure of the <span class="pink">amount of disorder</span> or <span class="blue">uncertainty</span> in a system</dd>
+                                <dd class="like-li-2">A tidy room has low entropy: you can be reasonably certain your keys are on the hook close to the door</dd>
+                                <dd class="like-li-2">A messy room has high entropy: things are all over the place and your keys could be <span class="underline">absolutely anywhere</span></dd>
+                            </ul>
+                        </span>
+                    </section>
+
+                    <section id="entropy">
+                        <h1>Entropy</h1>
+                        <!-- double stroke letters: https://www.webnots.com/alt-code-shortcuts-for-double-stroke-letters-and-numbers -->
+                        <p class="red">Entropy is the measurement of disorder of the system (Shannon, 1948)</p>
+                        $H(Y) = - \sum_{y \in \char"1D550} \color{lightgreen} P(Y=y) \color{red} log_2 P(Y=y)$, where <span class="lightgreen">$P(.)$</span> measures how often $Y=y$ and <span class="red">$log(.)$</span> is the measure of information when $Y=y$ (in bits)
+                        <img src="img/entropy.png" alt="Entropy: https://lawofthermodynamicsinfo.com/wp-content/uploads/2021/02/Entropy-definition-in-thermodynamics-768x537.png" class="r-stretch">
+                        <p class="smalltext">$Gas \xrightleftharpoons[entropy\> \color{red}increases]{entropy\> \color{lightgreen}decreases} Liquid \xrightleftharpoons[entropy\> \color{red}increases]{entropy\> \color{lightgreen}decreases} Solid$</p>
+                    </section>
+
+                    <section id="entropy_example">
+                        <h1>Entropy Example</h1>
+                        Weather of 3 cities in the UK:<br>
+                        <span class="smalltext">
+                            $\begin{array}{|l|c|c|c|}
+                            \hline\hline
+                            \> & \color{lime}\bf{Good} & \color{orange}\bf{OK} & \color{red}\bf{Terrible} \\ \hline
+                            \bf{Falmouth} & 0.333 & 0.333 & 0.333 \\ \hline
+                            \bf{Southampton} & 0.3 & 0.6 & 0.1 \\ \hline
+                            \bf{Aberdeen} & 0 & 0 & 1 \\ \hline\hline
+                            \end{array}$
+                        </span>
+                    </section>
+
+                    <section id="entropy_example_2">
+                        <h1>Entropy Example (2)</h1>
+                        <span class="tinytext">
+                            $\begin{array}{|l|c|c|c|}\hline
+                            \bf{Falmouth} & \bf{P(x)} & \bf{log_2P(x)} & \bf{-P(x)log_2P(x)} \\ \hline
+                            \color{lime}\bf{Good} & 0.333 & -1.586 & 0.528 \\ \hline
+                            \color{orange}\bf{OK} & 0.333 & -1.586 & 0.528 \\ \hline
+                            \color{red}\bf{Terrible} & 0.333 & -1.586 & 0.528 \\ \hline
+                            \> & \> & \color{cyan}Sum = & \color{cyan}1.585\> \text{bits} \\ \hline
+                            \end{array}$ &nbsp;
+                            $\begin{array}{|l|c|c|c|}\hline
+                            \bf{Southampton} & \bf{P(x)} & \bf{log_2P(x)} & \bf{-P(x)log_2P(x)} \\ \hline
+                            \color{lime}\bf{Good} & 0.3 & -1.74 & 0.521 \\ \hline
+                            \color{orange}\bf{OK} & 0.6 & -0.74 & 0.442 \\ \hline
+                            \color{red}\bf{Terrible} & 0.1 & -3.32 & 0.332 \\ \hline
+                            \> & \> & \color{cyan}Sum = & \color{cyan}1.295\> \text{bits} \\ \hline
+                            \end{array}$ &nbsp;
+                            $\begin{array}{|l|c|c|c|}\hline
+                            \bf{Aberdeen} & \bf{P(x)} & \bf{log_2P(x)} & \bf{-P(x)log_2P(x)} \\ \hline
+                            \color{lime}\bf{Good} & 0 & -\infty & 0 \\ \hline
+                            \color{orange}\bf{OK} & 0 & -\infty & 0 \\ \hline
+                            \color{red}\bf{Terrible} & 1 & 0 & 0 \\ \hline
+                            \> & \> & \color{cyan}Sum = & \color{cyan}0\> \text{bits} \\ \hline
+                            \end{array}$
+                        </span><br>
+                        Aberdeen has the least uncertainty (smallest entropy)
+                    </section>
+
+                    <section id="conditional_entropy">
+                        <h1>Conditional Entropy</h1>
+                        <ul>
+                            <li>Entropy measures the uncertainty of a given state of the system</li>
+                            <li>How to measure the change?</li>
+                            <li><span class="lime">Conditional Entropy</span>:</li>
+                            <!-- use \char" followed by hexadecimal of unicode: https://www.webnots.com/alt-code-shortcuts-for-double-stroke-letters-and-numbers -->
+                            <span class="smalltext">
+                                $$H(Y|X) = -\sum_{x\in \char"1D54F, y\in \char"1D550} \color{orange}p(x,y) \color{cyan}log_2 \big(p(y|x)\big)$$
+                                where $p(x,y)$ is the <span class="orange">joint</span> probability and $p(y|x)$ is the <span class="cyan">conditional</span> probability
+                            </span>
+                            <li>How much uncertainty would remain about the outcome $Y$ if we knew the value of attribute $X$?</li>
+                            <!-- example: https://zhuanlan.zhihu.com/p/266223075 -->
+                            <li class="smalltext">E.g. rolling a dice, $ \color{cyan} x = even\> number,\> \color{lime} y = number \gt 4$<br>
+                                $p(x,y) = ?$ <!--1/6-->
+                                and $p(y|x) = ?$ <!--1/3-->
+                                <span class="fragment">$\qquad \color{orange} p(x,y) = 1/6,\> p(y|x) = p(x,y)/p(x) = 1/3$</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="information_gain">
+                        <h1>Information Gain</h1>
+                        <ul>
+                            <li>Information gain: $G(Y,X) = \color{cyan}H(Y) - \color{lime}H(Y|X)$</li>
+                            <li>$H(Y)$ is the current level of uncertainty (<span class="cyan">entropy</span>) and $H(Y|X)$ is the possible new level of uncertainty (<span class="lime">conditional entropy</span>)</li>
+                            <li>The difference represents <span class="red">how much uncertainty would decrease</span></li>
+                            <li><span class="idea">Idea</span>: $Y$ = outcome of the classification, $X$ is the chosen attribute</li>
+                            <li>Information gain = <span class="red">change</span> in the uncertainty if we chose $X$</li>
+                            <li>Choose $X$ with the <span class="purple">highest</span> information gain</li>
+                        </ul>
+                    </section>
+
+                    <section id="gini_score">
+                        <h1>Gini Score</h1>
+                        <ul>
+                            <li>Suppose we split the tree by feature $x$</li>
+                            <li>We have 2 nodes: left and right (node $a$ and $b$</li>
+                            <li>Let $p_{i,k}$ denote the ratio of class $k$ instances among the training instances in node $i$ ($i$ = $a$ or $b$)</li>
+                            <li>Gini score of node $i$: <span class="orange">$G_i = 1 - \sum_{k=1}^n p_{i,k}^2$</span></li>
+                            <li><span class="blue">Useful property</span>: the smaller this score, the more homogenous the class is </li>
+                            <li>Algorithm:</li>
+                            <dd class="like-li-2">Choose the feature that provide the <span class="pink">lowest</span> of the (weighted) sum of the Gini score of the children nodes</dd>
+                            <dd class="like-li-2"><span class="yellow">Repeat</span> until reaching the leaf node (e.g. Gini score is "very small")</dd>
+                        </ul>
+                    </section>
+
+                    <!-- reference: https://zhuanlan.zhihu.com/p/118520699 -->
+                    <section id="main_algorithms">
+                        <h1>Decision Tree Algorithms</h1>
+                        <ul>
+                            <li><span class="lime">CLS (Concept Learning System)</span>: the 1st decision tree algorithm by E.B.Hunt <span class="italic">et.al.</span> in 1966 using a divide-and-conquer approach</li>
+                            <li><span class="blue">ID3 (Iterative Dichotomiser 3)</span>: makes DT as one of the mainstream ML algorithm by J.R.Quinlan in 1986, which utilising the information entropy</li>
+                            <li><span class="pink">C4.5</span>: an extension of ID3 by J.R.Quinlan utilising information gain</li>
+                            <li><span class="cyan">CART (Classification And Regression Tree)</span>: the statistical approach that works both on classification and regression problems based on Gini score</li>
+                            <li><span class="purple">Random Forest</span>: one of the most powerful decision tree algorithm tha overcomes DT's overfitting issue - <span class="skyblue">voting</span> for classification and <span class="lightred">averaging</span> for regression</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_example">
+                    <section id="title_example">
+                        <h1 class="r-frame-text">Example</h1>
+                    </section>
+
+                    <section id="example" data-auto-animate>
+                        <h1 data-id="dh">Example: loan decision</h1>
+                        <!-- <table class="smalltext">
+                            <tr class="highlight-bckg-info">
+                                <th class="highlight-bckg-muted">ID</th>
+                                <th>Age</th>
+                                <th>Has Job</th>
+                                <th>Owns House</th>
+                                <th>Credit Score</th>
+                                <th class="highlight-bckg-warning">Approve?</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>&lt;30</td>
+                                <td>no</td>
+                                <td>no</td>
+                                <td>normal</td>
+                                <td class="highlight-bckg-danger">NO</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>&lt;30</td>
+                                <td>no</td>
+                                <td>no</td>
+                                <td>good</td>
+                                <td class="highlight-bckg-danger">NO</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>&lt;30</td>
+                                <td>yes</td>
+                                <td>no</td>
+                                <td>good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>&lt;30</td>
+                                <td>yes</td>
+                                <td>yes</td>
+                                <td>normal</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>&lt;30</td>
+                                <td>no</td>
+                                <td>no</td>
+                                <td>normal</td>
+                                <td class="highlight-bckg-danger">NO</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>[30,50]</td>
+                                <td>no</td>
+                                <td>no</td>
+                                <td>normal</td>
+                                <td class="highlight-bckg-danger">NO</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>[30,50]</td>
+                                <td>no</td>
+                                <td>no</td>
+                                <td>good</td>
+                                <td class="highlight-bckg-danger">NO</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>[30,50]</td>
+                                <td>yes</td>
+                                <td>yes</td>
+                                <td>good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>[30,50]</td>
+                                <td>no</td>
+                                <td>yes</td>
+                                <td>very good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>[30,50]</td>
+                                <td>no</td>
+                                <td>yes</td>
+                                <td>very good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>&gt;50</td>
+                                <td>no</td>
+                                <td>yes</td>
+                                <td>very good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>&gt;50</td>
+                                <td>no</td>
+                                <td>yes</td>
+                                <td>good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>&gt;50</td>
+                                <td>yes</td>
+                                <td>no</td>
+                                <td>good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>&gt;50</td>
+                                <td>yes</td>
+                                <td>no</td>
+                                <td>very good</td>
+                                <td class="highlight-bckg-success">YES</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>&gt;50</td>
+                                <td>no</td>
+                                <td>no</td>
+                                <td>normal</td>
+                                <td class="highlight-bckg-danger">NO</td>
+                            </tr>
+                        </table> -->
+                        <!-- enable overflow -->
+                        <!-- $\>$ -->
+                        <img data-id="dm" src="img/loan.png" alt="Loan Example" class="r-stretch img-enhance">
+                    </section>
+
+                    <section id="example_tree" data-auto-animate>
+                        <h1 data-id="dh">Example: the decision tree</h1>
+                        <img src="img/loan.png" alt="Loan Example" class="box-top-right img-width-650 img-height-500 img-enhance">
+                        <div class="box-top-left no-bg">
+                            One example decision tree:
+                            <div data-id="dm" class="mermaid">
+                                <pre>
+                                    %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                                    graph TD
+                                    A(Owns House) -- yes --> B{{YES}}
+                                    A -- no --> C(Has Job)
+                                    C -- yes --> D{{YES}}
+                                    C -- no --> E{{NO}}
+                                </pre>
+                            </div>
+                            The entropy of decision:<br>
+                            <p class="left-text tinytext">
+                                $$\begin{align*}
+                                H(Y) &= - \sum_{y \in \char"1D550} \color{lightgreen} P(Y=y) \color{pink} log_2 P(Y=y) \\
+                                &= [-(9/15)\times log_2(9/15)] + [-(6/15)\times log_2(6/15)] \\
+                                &\approx 0.442 + 0.529 \\
+                                &\approx 0.971
+                                \end{align*}$$
+                            </p>
+                        </div>
+                    </section>
+
+                    <section id="information_gain_example" data-auto-animate>
+                        <h1 data-id="dh">Example: Information Gain</h1>
+                        <img data-id="dm" src="img/loan.png" alt="Loan Example" class="box-top-left img-width-550 img-height-500 img-enhance">
+                        <ul style="margin-left: 50%;" class="smalltext">
+                            <li>Now, let denote the 4 features as $A1(age)$, $A2(has\> job)$, $A3(owns\> house)$, $A4(credit\> score)$ </li>
+                            <li class="fragment">Recall the information gain and conditional entropy<br>
+                                $G(Y,X)=H(Y)-H(Y|X)$ <br>
+                                $H(Y|X) = -\sum_{x\in \char"1D54F, y\in \char"1D550} \color{orange}p(x,y) \color{cyan}log_2 \big(p(y|x)\big)$
+                            </li>
+                            <span class="fragment">
+                                <li>$G(Y,A1)=H(Y)-H(Y|A1)=0.971-[(5/15)H(Y1)+(5/15)H(Y2)+(5/15)H(Y3)]$</li>
+                                <dd class="like-li-2" style="font-size: 0.9em;">$H(Y1)=-(2/5)log_2(2/5)-(3/5)log_2(3/5)\approx 0.971$</dd>
+                                <dd class="like-li-2" style="font-size: 0.9em;">$H(Y2)=-(3/5)log_2(3/5)-(2/5)log_2(2/5)\approx 0.971$</dd>
+                                <dd class="like-li-2" style="font-size: 0.9em;">$H(Y3)=-(4/5)log_2(4/5)-(1/5)log_2(1/5)\approx 0.722$</dd>
+                                <dd class="like-li-2" style="font-size: 0.9em;">$G(Y,A1)=0.971-(1/3*0.971+1/3*0.971+1/3*0.722) = \color{lime}0.083$</dd>
+                            </span>
+                            <span class="fragment">
+                                <li>Similarly, we can get the others:</li>
+                                <dd class="like-li-2">$G(Y,A2) = \color{lime}0.324$, $G(Y,A3) = \color{lime}0.420$, $G(Y,A4) = \color{lime}0.363$</dd>
+                            </span>
+                            <li class="fragment">According to the calculation, we should choose $A3$ firstly then $A2$ to build the tree <span class="fragment bigtext lightred"> - Why not $A4$?</span></li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="regularisation">
+                        <h1>Regularisation</h1>
+                        <ul>
+                            <li>Decision tree is a <span class="lime">non-parametric</span> model for machine learning</li>
+                            <dd class="like-li-2">It <span class="pink">doesn't have any restrictions</span> on its parameters</dd>
+                            <dd class="like-li-2">For example, we don't know the tree depth before training</dd>
+                            <li>Easy to become <span class="yellow">overfitted</span> (can learn the model of the training data very well)</li>
+                            <dd class="like-li-2">Too <span class="cyan">complex</span> $\implies$ overfitting, too <span class="lightred">simple</span> $\implies$ big error</dd>
+                            <li>By <span class="purple">regularising</span> the decision tree, we improve the generalisation power of the model</li>
+                            <li><span class="idea">Idea: </span>minimum node size, limit tree depth, classification error, pruning after learning</li>
+                        </ul>
+                    </section>
+
+                    <!-- reference: https://medium.com/analytics-vidhya/regression-trees-decision-tree-for-regression-machine-learning-e4d7525d8047 -->
+                    <section id="more_info">
+                        <h1>More about Decision Tree</h1>
+                        <ul>
+                            <li>Can be used for <span class="lime">regression</span> problem as well</li>
+                            <dd class="like-li-2">Rather than calculating entropy, we calculate <span class="pink">other measurements</span>, e.g. MSE
+                                $$MSE = \frac{1}{n}\sum_{i=1}^n (Y_i - \hat{Y_i})^2$$
+                            </dd>
+                            <li><span class="purple">Random Forest</span>: one of the most powerful decision tree algorithm that overcomes the overfitting issue - <span class="skyblue">voting</span> for classification and <span class="lightred">averaging</span> for regression</li>
+                        </ul>
+                    </section>
+
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>Decision tree concept and terms</li>
+                            <li>Information Gains and Gini Score</li>
+                            <li>Decision tree example</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

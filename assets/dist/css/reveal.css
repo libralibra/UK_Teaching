@@ -57,18 +57,21 @@ green {
     text-shadow: 1px 1px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.answer,
 .lime,
 lime {
     color: limegreen;
     text-shadow: 1px 1px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.idea,
 .cyan,
 cyan {
     color: cyan;
     text-shadow: 1px 1px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+.question,
 .purple,
 purple {
     color: #FF61FF;
@@ -129,7 +132,7 @@ brown {
 
 .lightred,
 lightred {
-    color: #FF7C7B;
+    color: rgb(255, 123, 124);
     text-shadow: 1px 1px 0 #000000, 1px -1px 0 rgba(0, 0, 0, 0.3), -1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -611,12 +614,6 @@ bold {
     text-shadow: 2px 2px 2px black !important;
 }
 
-.mediumtext,
-mediumtext {
-    font-size: 1.25em !important;
-    line-height: 0.9;
-}
-
 .bigtext,
 bigtext {
     font-size: 1.5em !important;
@@ -631,9 +628,15 @@ bigtext2 {
     font-size: 3em !important;
 }
 
+.mediumtext,
+mediumtext {
+    font-size: 0.8em !important;
+    line-height: 0.9;
+}
+
 .smalltext,
 smalltext {
-    font-size: 0.8em !important;
+    font-size: 0.65em !important;
     line-height: 0.7;
 }
 
