@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="highlight-theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '8'],
+                ['topic', ' - Unsupervised Learning'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p class="menu-title"><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Basic concepts of unsupervised learning</li>
+                            <li>$K$-means algorithm</li>
+                            <li>Other issues to consider</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_unsupervised_learning">
+                    <section id="title_unsupervised_learning">
+                        <h1 class="r-frame-text">Unsupervised Learning</h1>
+                    </section>
+
+                    <section id="algorithms">
+                        <h1>ML Algorithms at a Glance (Recall)</h1>
+                        <img src="img/ml_glance.png" alt="Machine Learning Algorithms: https://miro.medium.com/v2/resize:fit:640/format:webp/1*KFQI59Yv7m1f3fwG68KSEA.jpeg" class="r-stretch">
+                    </section>
+
+                    <section id="supervised_unsupervised">
+                        <h1>Supervised vs. Unsupervised Learning</h1>
+                        <ul>
+                            <li><span class="lime">Supervised learning</span>: learn models or classifiers from the data that <span class="lightgreen">relate data attributes to a target class</span></li>
+                            <dd class="like-li-2">These models are then used to predict the values of the class in the test or future data instances</dd>
+                            <dd class="like-li-2 fragment blue" data-fragment-index="1">Data + Label + Algorithm = <span class="pink">Supervised Model</span></dd>
+                            <li><span class="red">Unsupervised learning</span>: the data have <span class="purple">no target/class</span></li>
+                            <dd class="like-li-2">We want to explore the data to find some intrinsic structures in them</dd>
+                            <dd class="like-li-2 fragment blue" data-fragment-index="1">Data <span class="strike">+ Label</span> + Algorithm = <span class="orange">Unsupervised Model</span></dd>
+                        </ul>
+                    </section>
+
+                    <section id="clustering">
+                        <h1>Clustering</h1>
+                        <ul>
+                            <li><span class="blue">Clustering</span> is one main approach to <span class="skyblue">unsupervised learning</span></li>
+                            <dd class="like-li-2">It finds <span class="pink">similarity groups</span> in data, called <span class="purple">clusters</span></dd>
+                            <dd class="like-li-3">It groups data instances that are <span class="cyan">similar to (near) each other in one cluster</span> and data instances that are <span class="orange">very different (far away) from each other into different clusters</span></dd>
+                            <li>Clustering is often considered <span class="lime">synonymous</span> with unsupervised learning</li>
+                            <dd class="like-li-2">Example of unsupervised learning: association rule mining, blind signal separation, self-organising maps, etc.</dd>
+                        </ul>
+                    </section>
+
+                    <section id="clustering_example">
+                        <h1>An Illustration of Clustering</h1>
+                        <img src="img/clustering.gif" alt="Clustering: https://miro.medium.com/v2/resize:fit:2354/1*b2sO2f--yfZiJazc5rYSpg.gif" class="r-stretch">
+                        <p class="left-text">The dataset has 5 natural groups of data points, i.e. 5 natural clusters</p>
+                    </section>
+
+                    <section id="cluster_applications">
+                        <h1>Clustering Applications</h1>
+                        <ul>
+                            <li><span class="blue">Example a</span>: group people of similar heights together to make T-shirts with different sizes: small, medium, and large</li>
+                            <dd class="like-li-2">Tailor-made for each person: too expensive, exhausted</dd>
+                            <dd class="like-li-2">One-size-fits-all: clearly bad idea</dd>
+                            <li><span class="blue">Example b</span>: segment customers according to their similarities in marketing</li>
+                            <dd class="like-li-2">targeted marketing (big companies already do this everyday!)</dd>
+                            <li><span class="blue">Example c</span>: organise a collection of books according to the content similarities</li>
+                            <dd class="like-li-2">produce topic hierarchy, genre etc.</dd>
+                            <li class="fragment pink">Clustering is one of the most utilised data mining techniques in practice
+                                <dd class="like-li-2 white">Clustering has a long history and been used in almost every field, e.g. medicine, psychology, sociology, biology, archaeology, marketing, insurance, libraries, etc.</dd>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="clustering_aspect">
+                        <h1>Clustering Aspects</h1>
+                        <ul>
+                            <li>Clustering <span class="lime">algorithm</span></li>
+                            <dd class="like-li-2">Partitional clustering</dd>
+                            <dd class="like-li-2">Hierarchical clustering</dd>
+                            <dd class="like-li-2">...</dd>
+                            <li><span class="pink">Distance</span> function (similarity or dissimilarity)</li>
+                            <li>Clustering <span class="cyan">quality</span></li>
+                            <dd class="like-li-2">Inner-cluster distance $\implies$ maximised</dd>
+                            <dd class="like-li-2">Intra-cluster distance $\implies$ minimised</dd>
+                            <li>The quality of clustering result depends on the algorithm, the distance function, and the application</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_kmeans">
+                    <section id="title_kmeans">
+                        <h1 class="r-frame-text">$K$-means Clustering</h1>
+                    </section>
+
+                    <section id="kmeans">
+                        <h1>$K$-means Clustering</h1>
+                        <ul>
+                            <li>$K$-means is a <span class="lime">partitional clustering</span> algorithm</li>
+                            <li>Let the set of data points (or instances) $D$ be $\{x_1, x_2, \dots, x_n\}$</li>
+                            <dd class="like-li-2">where $x_i=\{x_{i1},x_{i2},\dots,x_{im}\}$ is a <span class="blue">vector</span> in a real valued space $X \subseteq R^m$ and $m$ is the number of attributes (<span class="orange">dimensions</span>) in the data</dd>
+                            <li>The $k$-means algorithm partitions the given data into $k$ <span class="red">clusters</span></li>
+                            <dd class="like-li-2">Each cluster has a cluster centre, called <span class="purple">centroid</span></dd>
+                            <dd class="like-li-2">$k$ is specified by user</dd>
+                        </ul>
+                    </section>
+
+                    <section id="kmeans_algorithm">
+                        <h1>$K$-means Algorithm</h1>
+                        <ul>
+                            <li>Given $k$, the $k$-means algorithm works as follows:</li>
+                            <ol>
+                                <li><span class="lime">Randomly select</span> $k$ data points (aka. <span class="blue">seeds</span>) to be the initial <span class="pink">centroids</span> (cluster centres)</li>
+                                <li>Assign each data point to the <span class="purple">closest centroid</span></li>
+                                <li><span class="orange">Re-compute the centroids</span> using the data points in each cluster</li>
+                                <li>If a <span class="skyblue">convergence</span> criterion is not met, go to step (2)</li>
+                            </ol>
+                        </ul>
+                    </section>
+
+                    <section id="pseudocode_kmeans">
+                        <h1>$K$-means Pseudocode</h1>
+                        <!-- pascal will highlight 'as', 'to' as well, so use lua -->
+                        <pre><code class="lua" data-line-numbers="">Algorithm k-means(k, D)
+    choose k data points as the initial centroids (cluster centres)
+    repeat 
+        for each data point x ∈ D do 
+            compute the distance from x to each centroid 
+            assign x to the closest centroid
+        end for 
+        re-compute the centroids using the latest cluster members
+    until the stopping criterion is met</code></pre>
+                    </section>
+
+                    <section id="stopping_criteria">
+                        <h1>Stopping/Convergence Check</h1>
+                        <ol>
+                            <li><span class="pink">No (or minimum) re-assignments</span> of data points to different clusters (stable)</li>
+                            <li><span class="blue">No (or minimum) change of centroids</span> (fixed)</li>
+                            <li>Minimum decrease in the <span class="lime">sum of squared error (SSE)</span>
+                                $$SSE = \sum_{j=1}^k \sum_{\bm{x} \in C_j} dist(\bm{x,m}_j)^2$$
+                            </li>
+                            <dd class="like-li-2">$C_j$ is the $j$-th <span class="cyan">cluster</span>, $\bm{m}_j$ is the <span class="orange">centroid</span> of cluster $C_j$ (the <span class="orange">mean vector</span> of all data points in $C_j$, and $dist(\bm{x,m}_j)$ is the <span class="red">distance</span> between data point $\bm{x}$ and centroid $\bm{m}_j$</dd>
+                        </ol>
+                    </section>
+
+                    <section id="kmean_steps">
+                        <h1>$K$-means Steps</h1>
+                        <img src="img/km1.png" alt="K-means: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/K_Means_Example_Step_1.svg/187px-K_Means_Example_Step_1.svg.png" class="img-height-250 img-width-300"><img src="img/km2.png" alt="K-means: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/K_Means_Example_Step_2.svg/209px-K_Means_Example_Step_2.svg.png" class="img-height-250 img-width-300"><br>
+                        <img src="img/km3.png" alt="K-means: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/K_Means_Example_Step_3.svg/209px-K_Means_Example_Step_3.svg.png" class="img-height-250 img-width-300"><img src="img/km4.png" alt="K-means: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/K_Means_Example_Step_4.svg/209px-K_Means_Example_Step_4.svg.png" class="img-height-250 img-width-300">
+                        <div class="fragment box-top-left highlight-bckg-info">(1) randomly selected<br>
+                            $k$ means ($k$=3)</div>
+                        <div class="fragment box-top-right highlight-bckg-warning">(2) assign data points<br>
+                            to nearest cluster</div>
+                        <div class="fragment box-bottom-left highlight-bckg-danger">(3) update centroids<br>
+                            to new means</div>
+                        <div class="fragment box-bottom-right highlight-bckg-success">(4) repeat (2) and (3)<br>
+                            until converge</div>
+                    </section>
+                </section>
+
+                <section id="chap_clustering_extra">
+                    <section id="title_cluster_extra">
+                        <h1 class="r-frame-text">Clustering Algorithm Extra</h1>
+                    </section>
+
+                    <section id="represent_cluster">
+                        <h1>Cluster Representation</h1>
+                        <ul>
+                            <li>Use the <span class="lime">centroid (mean)</span> of each cluster to represent the cluster</li>
+                            <li>Compute the <span class="red">radius</span> and/or <span class="blue">standard deviation</span> if necessary</li>
+                            <li>The centroid alone works well if the clusters are of the <span class="orange">hyper-spherical</span> shape</li>
+                            <li>If clusters are <span class="yellow">elongated</span> or are of other shapes, centroids are not sufficient</li>
+                        </ul>
+                    </section>
+
+                    <section id="non_hyper_spherical_data">
+                        <h1>Non-hyper-spherical Dataset</h1>
+                        <img src="img/non_hyper_spherical_dataset.png" alt="Non-Hyper-Spherical Dataset: https://zerowithdot.com/assets/mistakes-with-k-means-clustering/irregular.png" class="r-stretch">
+                        <p>$K$-means is not good at clustering with these types of datasets</p>
+                    </section>
+
+                    <section id="distance_function">
+                        <h1>Distance Function</h1>
+                        <ul>
+                            <li>The $k$-means algorithm can be used for any application data set where <span class="pink">the mean can be defined and computed</span>. In the <span class="blue bold">Euclidean space</span>, the mean of a cluster is computed with:
+                                <span class="mediumtext">$$\bm{m}_j = \frac{1}{\vert C_j\vert}\sum_{\bm{x}_i \in C_j}\bm{x}_i$$</span>
+                            </li>
+                            <dd class="like-li-2">where $\vert C_j \vert$ is the number of data points in cluster $C_j$</dd>
+                            <li>The <span class="purple">distance from one data point $\bm{x}_i$ to a mean (centroid) $\bm{m}_j$</span> is computed with:
+                                <span class="mediumtext">$$\begin{align*}
+                                    dist(\bm{x}_i,\bm{m}_j) &= \Vert \bm{x}_i - \bm{m}_j \Vert \\
+                                    &= \sqrt{(x_{i\bm{1}}-m_{j\bm{1}})^2+(x_{i\bm{2}}-m_{j\bm{2}})^2+\dots+(x_{i\bm{m}}-m_{j\bm{m}})^2}
+                                    \end{align*}$$</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="kmeans_disk">
+                        <h1>A Disk Version of $K$-means</h1>
+                        <ul>
+                            <li>$K$-means can be implemented <span class="lime">incrementally</span> as the centroids calculation permits so <span class="question" onclick="toggleShow('how');toggleShow('eye');"></span> <span class="cyan invisible" id="how">- how?</span> <span id="eye" class="info" onclick="toggleShow('explain');"></span></li>
+                            <dd id="explain" class="like-li-2 invisible"><span class="mediumtext">$\bm{m}_j = \frac{1}{n}\sum_{\bm{x}_i \in C_j}^{i=1,2\dots,n} \bm{x}_i \implies \bm{m}_{j+1} = \frac{n \times \bm{m}_j}{n+1}$</span></dd>
+                            <li>It can be used to cluster <span class="red">large datasets</span> that cannot fit in memory (data-on-disk)</li>
+                            <li>The <span class="blue">number of iterations</span> need to be defined</li>
+                            <dd class="like-li-2">In practice, $\lt 50$</dd>
+                            <li><span class="orange">Not the best</span> method as other scale-p algorithms exists, e.g. BIRCH (Balanced Iterative Reducing and Clustering using Hierarchies)</li>
+                        </ul>
+                    </section>
+
+                    <section id="strength_kmeans">
+                        <h1>Strengths of $K$-means</h1>
+                        <ul>
+                            <li><span class="lime">Simple</span>: easy to understand and implement</li>
+                            <li><span class="yellow">Efficient</span>: time complexity is $O(tkn)$</li>
+                            <dd class="like-li-2">where $n$ is the number of data points, $k$ is the number of clusters, and $t$ is the number of iterations</dd>
+                            <dd class="like-li-2">Note: since both $t$ and $k$ are small, $k$-means are considered as a <span class="skyblue">linear</span> algorithm</dd>
+                            <li>$K$-means is the most <span class="cyan">popular</span> clustering algorithm</li>
+                            <dd class="like-li-2">Note: it terminates at a <span class="blue">local optimum</span> if using SSE. The <span class="pink">global optimum</span> is (sometimes) hard to find due to complexity.</dd>
+                        </ul>
+                    </section>
+
+                    <section id="weakness_kmeans">
+                        <h1>Weaknesses of $K$-means</h1>
+                        <ul>
+                            <li>The algorithm is only applicable if <span class="lime">mean</span> can be defined</li>
+                            <dd class="like-li-2">For categorical data, $k$-mode - the centroid is represented by the most frequent values</dd>
+                            <li>The user needs to <span class="orange">specify $k$</span> - usually unknown for most problems</li>
+                            <li>Different initial <span class="purple">random seeds</span> lead to different results</li>
+                            <li>The algorithm is sensitive to <span class="red">outliers</span></li>
+                            <dd class="like-li-2">Outliers are data points that are <span class="skyblue">very far away</span> from other data points</dd>
+                            <dd class="like-li-2">Outliers could be <span class="purple">errors</span> in the data recording or some special data points with very different values</dd>
+                        </ul>
+                    </section>
+
+                    <section id="less_cluster_number" data-auto-animate>
+                        <h1 data-id="dh">Number of Clusters is Too Small</h1>
+                        <img data-id="dm" class="r-stretch" src="img/less_cluster.png" alt="Less Clusters: https://zerowithdot.com/assets/mistakes-with-k-means-clustering/toofew1.png">
+                        <p>Cluster: 4, given $k$: 3</p>
+                    </section>
+
+                    <section id="more_cluster_number" data-auto-animate>
+                        <h1 data-id="dh">Number of Clusters is Too Big</h1>
+                        <img data-id="dm" class="r-stretch" src="img/more_clusters.png" alt="More Clusters: https://zerowithdot.com/assets/mistakes-with-k-means-clustering/toomany1.png">
+                        <p>Cluster: 2, given $k$: 4</p>
+                    </section>
+
+                    <section id="initial_seeds" data-auto-animate>
+                        <h1 data-id="dh">Random Initial Seeds</h1>
+                        <img data-id="dm" class="r-stretch" src="img/initial_seeds.png" alt="Initial Seeds: https://i0.wp.com/ucanalytics.com/blogs/wp-content/uploads/2017/01/cluster-analysis-with-different-initial-random-seeds.jpg?resize=768%2C262&ssl=1">
+                        <p>Different seeds lead to different results</p>
+                    </section>
+
+                    <section id="hierarchical_clustering">
+                        <h1>Hierarchical Clustering</h1>
+                        <p>Produce a nested sequence of clusters, called <span class="red">Dendrogram</span></p>
+                        <img src="img/dendrogram.png" alt="Dendrogram: https://www.researchgate.net/publication/332953478/figure/fig5/AS:756474343079937@1557368946622/Dendrogram-of-the-hierarchical-clustering-based-on-the-Euclidean-distance-calculated.png" class="r-stretch">
+                        <p>There are two ways of creating dendrogram: <span class="lime">bottom-up</span> or <span class="blue">top-down</span></p>
+                    </section>
+
+                    <section id="bottom_up_clustering" data-auto-animate>
+                        <h1 data-id="dh">Bottom-Up Clustering</h1>
+                        <img data-id="dm" src="img/bottom_up.png" alt="Bottom-up Clustering: https://image2.slideserve.com/3951266/agglomerative-clustering-l.jpg" class="box-bottom-right">
+                        <ul data-id="du">
+                            <br>
+                            <li>Starts building the dendrogram (tree) <span class="pink">from the bottom</span>$\qquad\qquad\qquad$</li>
+                            <br>
+                            <li><span class="blue">Merges</span> the most similar (or nearest) pair of clusters</li>
+                            <br>
+                            <li><span class="purple">Stops</span> when all the data points are merged into a <br>
+                                single cluster (i.e. the root cluster) or a chosen <br>
+                                number of clusters</li>
+                            <br>
+                            <li>Also called <span class="lime">Agglomerative</span> clustering</li>
+                            <br>
+                        </ul>
+                    </section>
+
+                    <section id="top_down_clustering" data-auto-animate>
+                        <h1 data-id="dh">Top-Down Clustering</h1>
+                        <img data-id="dm" src="img/top_down.png" alt="Top-down Clustering: https://dataaspirant.com/wp-content/uploads/2020/12/17-Hierarchical-Divisive-Clustering.png" class="box-top-right img-height-300">
+                        <ul data-id="du">
+                            <br>
+                            <li>Starts with all data points in <span class="lime">one cluster</span>, the root</li>
+                            <br>
+                            <li><span class="pink">Splits</span> the root into a set of child clusters</li>
+                            <br>
+                            <li>Each child cluster is <span class="blue">recursively divided</span> further</li>
+                            <br>
+                            <li><span class="purple">Stops</span> when only singleton clusters of individual data points remain (i.e. each cluster with only a single data point) or a chosen number of clusters</li>
+                            <br>
+                            <li>Also called <span class="lime">Divisive</span> clustering</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>Unsupervised learning problem</li>
+                            <li>The most popular clustering algorithm: $k$-means</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>

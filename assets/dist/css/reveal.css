@@ -363,7 +363,7 @@ darkpurple {
 
 /* top most element */
 .top-most {
-    z-index: 100 !important;
+    z-index: 1000 !important;
 }
 
 /* left, right align */

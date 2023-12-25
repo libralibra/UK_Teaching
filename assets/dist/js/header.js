@@ -47,3 +47,22 @@ function GeneratePDF() {
     url = url.substring(0, pos + ".html".length);
     window.location.href = url + "?print-pdf";
 }
+
+// for information icon: https://fontawesome.com/v5/search?q=warn&o=r&m=free
+authorData.set('info', '<sup><i class="fas fa-exclamation-circle  mediumtext lightred"></i></sup>');
+authorData.set('warning', '<sup><i class="fas fa-exclamation-triangle mediumtext orange"></i></sup>');
+authorData.set('question', '<sup><i class="fas fa-question-circle mediumtext purple"></i></sup>');
+// toggle visibility of a given element by its unique id
+function toggleShow(ids) {
+    console.log('switching visibility of ' + ids);
+    let elm = document.getElementById(ids);
+    if (elm) {
+        console.log('found ');
+        console.log(elm);
+        if (elm.classList.contains('invisible')) {
+            elm.classList.remove('invisible');
+        } else {
+            elm.classList.add('invisible');
+        }
+    }
+}
