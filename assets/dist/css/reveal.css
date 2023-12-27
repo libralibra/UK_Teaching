@@ -317,7 +317,7 @@ darkpurple {
     border-color: #ff2c2d;
 }
 
-/* custom fragment delete */
+/* custom fragment red box */
 
 /* half out text */
 .reveal .half-out {
@@ -611,7 +611,7 @@ italic {
 bold {
     font-size: 110% !important;
     font-weight: bold !important;
-    text-shadow: 2px 2px 2px black !important;
+    text-shadow: 2px 2px 1px rgb(141, 141, 141) !important;
 }
 
 .bigtext,
@@ -656,11 +656,18 @@ overline {
     text-decoration-line: overline !important;
 }
 
+.wavyline,
+wavyline {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
 .strike,
 strike {
     color: red !important;
     text-decoration-line: line-through !important;
 }
+
 
 /* font style: italic or oblique, bold, bigtext, underline */
 

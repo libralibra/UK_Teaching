@@ -374,6 +374,21 @@
                         </ul>
                     </section>
 
+                    <section id="roc_example">
+                        <h1>Compare Classifiers: Example</h1>
+                        <img class="img-height-400" src="img/roc_models.png" alt="ROC Models">$\qquad\qquad\qquad\qquad\qquad\qquad\qquad$
+                        <div class="box-top-right no-bg">
+                            <img src="img/roc_table.png" alt="ROC Comparison">
+                            <p>Model A is the best among A, B, and C <span class="info" onclick="toggleShow('model_c');"></span><br>
+                                <span id="model_c" class="invisible red">Can we do better?
+                                    <span class="warning" onclick="toggleShow('answer_c');"></span><br>
+                                </span>
+                                <span id="answer_c" class="invisible lime">Mirror C across (0.5,0.5) to get a new model</span>
+                            </p>
+                        </div>
+
+                    </section>
+
                     <section id="multiclass_classification">
                         <h1>Multi-class Classification</h1>
                         <ul>

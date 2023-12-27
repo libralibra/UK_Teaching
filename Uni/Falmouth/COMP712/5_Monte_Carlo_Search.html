@@ -240,10 +240,14 @@
                         <h1>Game Decision Revisited: Minimax</h1>
                         <div class="mermaid">
                             <pre>
-                                %%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+                                %%{init: 
+                                    {'theme': 'dark', 
+                                    'themeVariables': { 'darkMode': true }
+                                    }
+                                }%%
                                 graph TD
-                                A(Current Position) -- Move A --> B(PA)
-                                A(Current Position) -- Move B --> C(PB)
+                                A -- Move A --> B(PA)
+                                A -- Move B --> C(PB)
                                 A(Current Position) -- Move C --> D(PD)
                                 C -. playout policy .-> E(Terminal: win=1, lose=0)
                                 E -- Reward for Move B --> C

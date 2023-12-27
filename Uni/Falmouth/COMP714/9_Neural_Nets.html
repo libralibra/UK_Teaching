@@ -30,8 +30,8 @@
             const authorData = new Map([
                 ['course', 'Machine Learning'],
                 ['coursecode', 'COMP714'],
-                ['week', '7'],
-                ['topic', ' - Dimensionality Reduction'],
+                ['week', '9'],
+                ['topic', ' - Neural Networks'],
             ]);
         </script>
         <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
@@ -65,58 +65,461 @@
                     <section id="overview">
                         <h1>Overview</h1>
                         <ul>
-                            <li>Dimensionality reduction and why it matters</li>
-                            <li>Introduce Principal Component Analysis (PCA)</li>
-                            <li>Explain the details about PCA</li>
+                            <li>History and concept of Neural Networks</li>
+                            <li>The construction of Neural Nets</li>
                         </ul>
                     </section>
                 </section>
 
-                <section id="chap_dimension_reduction">
-                    <section id="title_dimension_reduction">
-                        <h1 class="r-frame-text">Dimensionality Reduction</h1>
+                <section id="chap_percetion">
+                    <section id="title_perception">
+                        <h1 class="r-frame-text">Perception Model</h1>
+                    </section>
+
+                    <section id="classification_types">
+                        <h1>Classification Approaches (recall)</h1>
+                        <ul>
+                            <li><span class="lightblue">Top-down</span>: breaking down the task into smaller, more manageable steps, gradually building towards a complete solution
+                                <dd class="like-li-2">inspiration from higher abstraction levels</dd>
+                            </li>
+                            <li><span class="lightgreen">Bottom-up</span>: starting with individual components and gradually building a comprehensive classification solution
+                                <dd class="like-li-2">inspiration from biology, e.g. <span class="purple">neural networks</span></dd>
+                            </li>
+                        </ul>
+                        <img class="box-bottom-right" style="top: 70%;width:35%;" src="img/neurons.png" alt="Neurons: https://th.bing.com/th/id/OIP.igJrK_irSMSZzd77h7nOJQAAAA?rs=1&pid=ImgDetMain">
+                    </section>
+
+                    <section id="biological_neurons" data-auto-animate>
+                        <h1 data-id="dh">Biological Neurons</h1>
+                        <img data-id="dm" class="r-stretch img-enhance" src="img/neurons.png" alt="Neurons: https://th.bing.com/th/id/OIP.igJrK_irSMSZzd77h7nOJQAAAA?rs=1&pid=ImgDetMain">
+                        <p data-id="dp" class="highlight-bckg-danger">Human brain is estimated to contain around<br>
+                            86,000,000,000 of such neurons<br>
+                            Each is <span class="bold">connected</span> to <span class="bold">thousands</span> of other neurons</p>
+                    </section>
+
+                    <section id="biological_neurons_facts" data-auto-animate>
+                        <h1 data-id="dh">Biological Neurons Facts</h1>
+                        <img data-id="dm" class="box-top-left img-width-5500 img-enhance" src="img/neurons.png" alt="Neurons: https://th.bing.com/th/id/OIP.igJrK_irSMSZzd77h7nOJQAAAA?rs=1&pid=ImgDetMain"> $\qquad\qquad\qquad\qquad\qquad\qquad\quad$
+                        <ul>
+                            <li>Connected to others</li>
+                            <li>Represents simple computation</li>
+                            <li>Has inhibition and excitation connections</li>
+                            <br>
+                            <li>Has a state</li>
+                            <li>Outputs spikes</li>
+                        </ul>
+                        <br><br>
+                        <p data-id="dp" class="highlight-bckg-danger">Human brain is estimated to contain around<br>
+                            86,000,000,000 of such neurons<br>
+                            Each is <span class="bold">connected</span> to <span class="bold">thousands</span> of other neurons</p>
+                    </section>
+
+                    <section id="artificial_neuron" data-auto-animate>
+                        <h1 data-id="dh">Artificial Neuron</h1>
+                        <img style="position: absolute; left:0%;" src="img/pitts_warron.png" alt="Pitts and Worren: https://images.squarespace-cdn.com/content/v1/5c77350965a707ed1710a1bc/1551394954612-SMWU7AXG86QOXFJSHR6P/Walter+Pitts+and+Warren+McCulloch.jpg"><br>
+                        <span class="box-top-right">Warren McCulloch and Walter Pitts (1943)<br>
+                            <q>A Logical Calculus of the Ideas Immanent
+                                in Nervous Activity</q></span>
+                        <br>
+                        <img data-id="dm" class="r-stretch" src="img/artificial_neuron.png" alt="Artificial Neuron: https://www.frontiersin.org/files/Articles/1122638/fenrg-11-1122638-HTML/image_m/fenrg-11-1122638-g008.jpg">
+                        <p data-id="dp" class="highlight-bckg-warning">The <span class="bold">goal</span> of simple <span class="bold">artificial neuron</span> model is to reflect <span class="bold">some</span> neurophysiological <span class="bold">observations</span>, <span class="bold">not</span> to reproduce their <span class="bold">dynamics</span></p>
+                    </section>
+
+                    <section id="perception_model" data-auto-animate>
+                        <h1 data-id="dh">The Perception Model</h1>
+                        <img data-id="dm" src="img/perception_model.png" alt="Perception Model: https://th.bing.com/th/id/OIP.9CH00SoFseQ3Ql50uFuHKQHaDO?rs=1&pid=ImgDetMain" class="r-stretch">
+                        <p><span class="idea">Question</span>: what if we consider $S$ as a sum of the inputs as <span class="blue">$S(x)=\sum_i x_i$</span> <span class="question" onclick="toggleShow('answer1');"></span>
+                            <br>
+                        <div id="answer1" class="invisible">
+                            <span class="answer"></span>
+                            Not so <span class="red">expressive</span>! Use <span class="cyan">weighted sum</span> along with <span class="lime">bias</span> instead!
+                        </div>
+                        </p>
+                    </section>
+
+                    <section id="weighted_sum" data-auto-animate>
+                        <h1 data-id="dh">Weighted Sum of the Inputs</h1>
+                        <img data-id="dm" src="img/perception_model.png" alt="Perception Model: https://th.bing.com/th/id/OIP.9CH00SoFseQ3Ql50uFuHKQHaDO?rs=1&pid=ImgDetMain" class="img-width-700">$\qquad\qquad$
+                        <div class="mermaid box-top-right">
+                            <pre>
+                                %%{init: 
+                                    {'theme': 'dark', 
+                                    'themeVariables': { 'darkMode': true }
+                                    }
+                                }%%
+                                graph LR
+                                A[x1] -- w1 --> B(neuron)
+                                C[x2] -- w2 --> B 
+                                D[x3] -- w3 --> B
+                                E[..] -- .. --> B 
+                                F[xn] -- wn --> B 
+                                B --> G(output)
+                            </pre>
+                        </div>
+                        <br><br>
+                        $$\color{cyan} \sum_{\color{yellow}i=1} x_i w_i + b \to \color{red}\bm{f} \color{white} (\color{cyan} \sum_{\color{lime}i=0} x_i w_i \color{white}), x_0 := 1, w_0 := b$$
+                        where $\color{red}\bm{f}$ is the <span class="red">activation function</span> <span class="warning" onclick="toggleShow('answer2');"></span> <span id="answer2" class="invisible blue">Why do we need $\color{red}\bm{f}$?</span>
+                    </section>
+
+                    <section id="why_activation" data-auto-animate>
+                        <h1 data-id="dh">Why Do We Need Activation Function?</h1>
+                        $$\color{cyan} \sum_{\color{yellow}i=1} x_i w_i + b \to \color{red}\bm{f} \color{white} (\color{cyan} \sum_{\color{lime}i=0} x_i w_i \color{white}), x_0 := 1, w_0 := b$$
+                        where $\color{red}\bm{f}$ is the <span class="red">activation function</span>, <span class="blue">Why do we need $\color{red}\bm{f}$?</span>
+                        <ul>
+                            <li>It's a <span class="yellow">linear</span> model no matter how many neurons were used</li>
+                            <li>To introduce <span class="skyblue">non-linear</span> behaviour</li>
+                            <li>Activation functions are often called <span class="lightgreen">non-linearities</span></li>
+                            <li>Activation functions are applied <span class="lightblue">point-wise</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="activation_functions">
+                        <h1>Activation Functions</h1>
+                        <span class="mediumtext">
+                            <p class="left-text"><span class="lime">Threshold</span> Function
+                                $$f(x) =
+                                \begin{cases}
+                                1 \qquad & if \> x \ge T \\
+                                0 \qquad & if \> x \lt T
+                                \end{cases}
+                                $$
+                                <img src="img/threshold.png" alt="Threshold Function" style="position: absolute; top:11%;right:0%;height:180px;width:300px;">
+                            </p>
+                            <p class="left-text"><span class="orange">Piecewise-Linear</span> Function
+                                $$f(x) =
+                                \begin{cases}
+                                1 \qquad & if \> x \ge 0.5 \\
+                                x+0.5 \qquad & if \> -0.5\le x \le 0.5 \qquad \\
+                                0 \qquad & if \> x \le -0.5
+                                \end{cases}
+                                $$
+                                <img src="img/piecewide_linear.png" alt="Piecewise Linear Function" style="position: absolute; top:40.5%;right:0%;height:180px;width:300px;">
+                            </p>
+                            <p class="left-text"><span class="blue">Sigmoid</span> Function
+                                $$f(x) = \frac{1}{1+e^{-x}} = \frac{e^x}{e^x+1}$$
+                                <img src="img/sigmoid_fun.png" alt="Sigmoid Function" style="position: absolute; top:70%;right:0%;height:180px;width:300px;">
+                            </p>
+                        </span>
+                    </section>
+
+                    <section id="cross_entropy">
+                        <h1>Cross Entropy</h1>
+                        Recall the definition of entropy in information theory:<br>
+                        $H(Y) = - \sum_{y \in \char"1D550} \color{lightgreen} P(Y=y) \color{red} log_2 P(Y=y)$<br>
+                        The <span class="lime">Cross-Entropy</span> for classification can be defined as:<br>
+                        $loss_{CE}(\color{red}p \color{white},\color{lime}q\color{white}) = -[\color{red}p \color{white} \cdot log (\color{lime}q \color{white}) + (1-\color{red}p \color{white}) \cdot log (1- \color{lime}p \color{white})]$
+                        <br><br>
+                        <ul>
+                            <li><span class="blue">Cross entropy loss</span> is also called <span class="lightblue">negative log likelihood</span> or <span class="cyan">logistic</span> loss</li>
+                            <li>It <span class="pink">encodes negation of logarithm of probability</span> of correct classification</li>
+                            <li>It is <span class="purple">composable with sigmoid</span> function</li>
+                        </ul>
+                    </section>
+
+                    <section id="loss_using_ce">
+                        <h1>Loss as Cross Entropy</h1>
+                        <img class="img-height-200" src="img/loss_def.png" alt="Loss: https://miro.medium.com/v2/resize:fit:828/format:webp/1*KvygqiInUpBzpknb-KVKJw.jpeg"><br>
+                        The training process tries to minimise the <span class="purple">Cross Entropy Loss</span> between the output and the ground truth<br>
+                        <img class="img-height-200" src="img/loss_entropy.png" alt="Loss as Cross Entropy: https://miro.medium.com/v2/resize:fit:640/format:webp/1*rcvGMOuWLMpnNvJ3Oj7fPA.jpeg">
                     </section>
                 </section>
 
-                <section id="chap_background">
-                    <section id="title_background">
-                        <h1 class="r-frame-text">Principal Component Analysis (PCA)</h1>
+                <section id="chap_neural_nets">
+                    <section id="title_neural_nets">
+                        <h1 class="r-frame-text">Neural Networks</h1>
                     </section>
 
-                    <!-- https://fontawesome.com/v5/search?o=r&m=free -->
-                    <section id="pca_tree">
-                        <h1>PCA Map</h1>
+                    <section id="multi_layer_nets">
+                        <h1>Multi-layer Neural Networks</h1>
+                        <p>How can we get <span class="lime">complex non-linearity</span> with the simple perceptron model?</p>
+
+                        <ul>
+                            <li>Possible solution: <span class="red">multi-layer neural nets</span></li>
+                            <li>Instead of having inputs feeding directly into output neurons, we can add more "<span class="brown">hidden</span>" neurons in between - human brains like that!</li>
+                            <li>If we think of perceptron as dividing a space into 2 parts with a single line</li>
+                            <dd class="like-li-2">multiple perceptron $\implies$ multiple dividing lines</dd>
+                            <li><span class="purple">Complex non-linear separation</span> can be approximated by multiple lines</li>
+                            <dd class="like-li-2">recall decision tree $\implies$ random forest</dd>
+                            <li class="fragment highlight-bckg-success">Hidden layer provides <span class="bold">non-linear input space transformation</span> so that final linear layer can classify</li>
+                        </ul>
+                    </section>
+
+                    <section id="neural_nets_model">
+                        <h1>Multi-layer Neural Nets</h1>
                         <div class="mermaid">
                             <pre>
-                                mindmap
-                                root((PCA))
-                                    v)Vectorisation(
-                                        Inner Product
-                                        Basis
-                                        Basis Transformation
-                                    m)Max Separability(
-                                        Variance
-                                        Covariance
-                                        Covariance Matrix
-                                    o)Others(
-                                        Steps
-                                        Characteristics
-                                        Details
-                                            Zero Centre
-                                            SVD
-                                    
+                                %%{init: 
+                                    {'theme': 'dark', 
+                                    'themeVariables': { 'darkMode': true }
+                                    }
+                                }%%
+                                graph LR
+                                    A[x1] & B[x2] & C[x3] --> E[f1]
+                                    B & C & D[...] --> F[f2]
+                                    A & C & D --> G[...]
+                                    E & F & G --> H[f3]
+                                    E & F & G --> I[...]
+                                    H & I --> J[...]
+                                    J --> K[output]
                             </pre>
+                        </div>
+                        <ul>
+                            <li>Perceptron feeding into another perceptron, ...</li>
+                            <li>The <span class="gray bold">black box</span> can be quite complicated</li>
+                            <li>Can <span class="lightgreen">approximate (but <span class="lightred">not represent</span>) arbitrary functions</span> given enough hidden neurons</li>
+                        </ul>
+                    </section>
+
+                    <section id="train_nets">
+                        <h1>Training Multi-layer Neural Nets</h1>
+                        The idea sounds cool! But how can we train the complex black box?
+                        <div class="mermaid">
+                            <pre>
+                                %%{init: 
+                                    {'theme': 'dark', 
+                                    'themeVariables': { 'darkMode': true }
+                                    }
+                                }%%
+                                graph LR
+                                    A[Input Layer] --> B[Hidden Layer1]
+                                    B --> C[Hidden Layer 2]
+                                    C -.-> D[Hidden Layer n]
+                                    D --> E[Output]
+                            </pre>
+                        </div>
+                        <span class="text-left fragment">
+                            <p><span class="idea">Idea</span>: use the normal <span class="lime">gradient descent</span> approach to train the weights between the last hidden layer and the output layer</p>
+                            <p><span class="red">Issue</span>: how about the other weights in the "complex" <span class="pink">hidden layers</span>?</p>
+                            <p class="fragment"><span class="highlight-bckg-success">Solution</span>: backpropagation of errors (Rumelhart; Hinton; Williams, 1986)</p>
+                        </span>
+                    </section>
+
+                    <section id="backpropagation">
+                        <h1>Backpropagation</h1>
+                        <div class="mermaid">
+                            <pre>
+                                %%{init: 
+                                    {'theme': 'dark', 
+                                    'themeVariables': { 'darkMode': true }
+                                    }
+                                }%%
+                                graph LR
+                                    A[Input Layer] --> B[Hidden Layer1]
+                                    B --> C[Hidden Layer 2]
+                                    C -.-> D[Hidden Layer n]
+                                    D --> E[Output]
+                            </pre>
+                        </div>
+                        <p class="left-text">High level description:</p>
+                        <ul class="text-left">
+                            <li>Build a <span class="blue">loss function</span> (e.g. $L = RMSE$)</li>
+                            <li>Employ a bit of calculus to calculate the <span class="yellow">partial derivative</span> of $L$ with respect to each weight (use <span class="lime">chain rule</span> to do so)</li>
+                            <li>Use a <span class="brown">differentiable activation function</span></li>
+                            <li>In practice: using <span class="lightred">sigmoid</span> function</li>
+                            <dd class="like-li-2">more recently: tanh, ReLU, LeakyReLU, ELU, etc.</dd>
+                        </ul>
+                    </section>
+
+                    <section id="learning_rate">
+                        <h1>Learning Rate</h1>
+                        <img src="img/learning_rate.png" alt="Learning Rate: https://www.deeplearningwizard.com/deep_learning/boosting_models_pytorch/images/lr1.png">
+                        <span class="left-text">
+                            <p class="like-li">With the loss defined, the training process becomes an <span class="lime">optimisation</span> problem</p>
+                            <p class="like-li">The learning rate defines <span class="pink">how fast</span> the weight need to be altered</p>
+                            <p class="like-li">Large learning rate $\to$ difficult to <span class="purple">converge</span></p>
+                            <p class="like-li">Small learning rate $\to$ <span class="red">slow</span> training</p>
+                        </span>
+                    </section>
+
+                    <section id="further_thoughts">
+                        <h1>Further Thoughts</h1>
+                        <ul>
+                            <li>How to pick a proper learning rate?</li>
+                            <li>How may hidden layers do we need for a given problem?</li>
+                            <li>Some guidelines available but the only reliable approach is to try different values and see how it goes <span class="warning" onclick="toggleShow('the_assignment');"></span></li>
+                            <span id="the_assignment" class="invisible">
+                                <dd class="like-li-2">It takes times, remember this for developing your assignment!</dd>
+                            </span>
+                            <span class="fragment">
+                                <li>Other issues:</li>
+                                <dd class="like-li-2">Large datasets</dd>
+                                <dd class="like-li-2">Large input space</dd>
+                                <dd class="like-li-2">Computational issues</dd>
+                            </span>
+                            <li class="fragment">Will deep learning do better?</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_depp_learning">
+                    <section id="title_deep_learning">
+                        <h1 class="r-frame-text">Deep Learning</h1>
+                    </section>
+
+                    <section id="deep_learning">
+                        <h1>Deep Learning</h1>
+                        <ul>
+                            <li>The main idea of deep learning is to <span class="pink">transform the input</span> into higher level abstractions with <span class="purple">lower dimension</span> (similar to the feature expansion trick)</li>
+                            <li>Multi-layer architecture - typically with <span class="red">many</span> hidden layers - hence the name <span class="cyan">deep</span> learning</li>
+                            <li>Each layer is responsible for a space transformation step</li>
+                            <li>By doing so, the complexity of <span class="yellow">non-linearity is decreased</span></li>
+                            <li>This is, however, <span class="brown">very expensive</span></li>
+                            <li>Need to rely on new computations solutions: GPUs, grid computing, etc.</li>
+                        </ul>
+                    </section>
+
+                    <section id="deep_issues">
+                        <h1>Deep Neural Network Issues</h1>
+                        <ul>
+                            <li>With the increasing of network depth, other issues may appear:</li>
+                            <ol>
+                                <li>Vanishing Gradients</li>
+                                <li>Slow Training Speed</li>
+                                <li>Overfitting in Large Networks</li>
+                            </ol>
+                            <li class="fragment">How can we cope with these problems?</li>
+                        </ul>
+                    </section>
+
+                    <section id="vanishing_gradients">
+                        <h1>Vanishing Gradients</h1>
+                        <ul>
+                            <li>Training = backpropagation</li>
+                            <dd class="like-li-2">Calculate the weight gradient at the <span class="pink">last hidden layer</span> for the required change in the loss function</dd>
+                            <dd class="like-li-2">Then, <span class="red">backpropagate</span> to the previous layer, and go on...</dd>
+                            <li class="fragment"><span class="lime">Observation</span>: gradients often get <span class="yellow">smaller and smaller</span> as we progress back to the previous layers</li>
+                            <span class="fragment">
+                                <li><span class="cyan">Consequence</span>: weights in the first layers (those closer to the input layer) never get significant changes</li>
+                                <dd class="like-li-2">Gradient descent gets stuck in bad <span class="lightgreen">local minima</span></dd>
+                            </span>
+                        </ul>
+                    </section>
+
+                    <section id="vanishing_reason" data-auto-animate>
+                        <h1 data-id="dh">Vanishing Gradients Reasons</h1>
+                        <ul data-id="du">
+                            <li>Glorot & Bengio (2010) identified some key reasons:</li>
+                            <dd class="like-li-2">Usage of sigmoid activation function</dd>
+                            <dd class="like-li-2">Random initialisation with truncated Gaussian function</dd>
+                            <dd class="like-li-3">try other initialisation methods (uniform distribution, normal distribution)</dd>
+                        </ul>
+                        <img data-id="dm" src="img/sigmoid_fun.png" alt="Sigmoid Function" class="r-stretch">
+                    </section>
+
+                    <section id="sigmoid_problem" data-auto-animate>
+                        <h1 data-id="dh">Sigmoid Function Problem</h1>
+                        <img data-id="dm" class="box-top-right img-height-500" src="img/sigmoid_derivative.png" alt="Sigmoid Function Derivatives: https://editor.analyticsvidhya.com/uploads/27889vaegp.png">
+                        <ul>
+                            <li><span class="pink">Saturated</span> (sigmoid) function</li>
+                            <br>
+                            <dd class="like-li-2">Value will be close to 0 or 1 $\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\quad$</dd>
+                            <dd class="like-li-2">Gradient will be very close to 0</dd>
+                            <dd class="like-li-2">Making no changes in the<br>
+                                weights and biases</dd>
+                            <dd class="like-li-2">Affect the layers below its level</dd>
+                        </ul>
+                    </section>
+
+                    <section id="activations" data-auto-animate>
+                        <h1 data-id="dh">Hyperbolic Tangent Function</h1>
+                        <img data-id="dm" class="box-top-left img-height-450 img-width-600" src="img/tanh.png" alt="Tanh: https://aman.ai/primers/backprop/assets/tanh/tanh.jpg">
+                        <div class="box-top-right no-bg text-left">
+                            <p class="like-li">$tanh$: the Hyperbolic Tangent<br>
+                                Function</p>
+                            <p class="like-li">$tanh(x) = \frac{e^{-x}}{e^{-x}+e^x}$</p>
+                            <p class="like-li"><span class="green">Zero-centred</span></p>
+                            <p class="like-li"><span class="pink">Larger derivatives</span> than sigmoid</p>
+                            <p class="like-li">Didn't fix the saturating problem<br>
+                                <span class="blue">completely</span>
+                            </p>
                         </div>
                     </section>
 
+                    <section id="relu" data-auto-animate>
+                        <h1 data-id="dh">ReLU: Rectified Linear Unit</h1>
+                        <img data-id="dm" src="img/relu.png" alt="ReLU: https://miro.medium.com/v2/resize:fit:828/format:webp/1*DfMRHwxY1gyyDmrIAd-gjQ.png" class="box-top-right img-width-400">
+                        <ul>
+                            <br>
+                            <li>$ReLU(x) = max(0,x)$</li>
+                            <br>
+                            <li>easy to compute</li>
+                            <li>No limit on the max value (= no saturation)</li>
+                            <li><span class="red">Issue</span>: dying ReLU $\to$ stays at 0 forever if output becomes 0</li>
+                            <li><span class="blue">Observation</span>: in some cases, up to half o the neurons suffer from this</li>
+                        </ul>
+                    </section>
+
+                    <section id="leaky_relu" data-auto-animate>
+                        <h1 data-id="dh">ReLU Variants: Leaky ReLU</h1>
+                        <p>To fix the <span class="red">"dying ReLU"</span> problem - <span class="lightgreen">no 0-slope part</span></p>
+                        <span>$LReLU_\alpha (x) = max(\alpha x, x)$</span><br>
+                        <img data-id="dm" class="r-stretch img-enhance" src="img/lrelu_prelu.png" alt="LeakyReLU & Parametric ReLU: https://miro.medium.com/v2/resize:fit:828/format:webp/1*ypsvQH7kvtI2BhzR2eT_Sw.png">
+                        <br>
+                        <span class="mediumtext">Leaky ReLU: Fixed slope when $x &lt; 0$; Parametric ReLU: $a$ as a network parameter</span>
+                    </section>
+
+                    <section id="elu" data-auto-animate>
+                        <h1 data-id="dh">ReLU Variants: Exponential Linear Unit</h1>
+                        <p>To fix the <span class="red">"dying ReLU"</span> problem - <span class="lightgreen">no 0-slope part</span></p>
+                        <span class="mediumtext">
+                            $ELU_\alpha (x)=
+                            \begin{cases}
+                            x & if\> x \ge 0 \\
+                            a(e^x-1) & if\> x \lt 0
+                            \end{cases}$</span>
+                        <img data-id="dm" class="r-stretch img-enhance" src="img/elu.png" alt="ELU: https://miro.medium.com/v2/resize:fit:828/format:webp/1*brjVu216FGlkqcOjPXijmw.png">
+
+                    </section>
+
+                    <section id="derivative_comparison">
+                        <h1>Activation Function Comparison</h1>
+                        <img class="img-height-400 img-width-550" src="img/activations.png" alt="Activation Functions">
+                        <img class="img-height-400 img-width-550" src="img/act_derivatives.png" alt="Derivatives of Activation Functions">
+                        <p class="like-li">e.g. derivatives of other functions like $tanh$ are larger than sigmoid</p>
+                    </section>
+
+                    <section id="other_issues">
+                        <h1>Other Issues to Consider</h1>
+                        <ul>
+                            <li>Exploding gradients: gradients become <span class="red">too large</span></li>
+                            <dd class="like-li-2"><span class="blue">Batch normalisation</span>: normalises the data per batch, may slow down the computation though</dd>
+                            <dd class="like-li-2"><span class="green">Gradient clipping</span>: clip the gradient if it becomes too large (e.g. &gt; threshold)</dd>
+                            <li>Slow training: the network trains <span class="purple">too slow</span></li>
+                            <dd class="like-li-2"><span class="pink">Transfer learning</span>: reuse networks already trained on similar problems</dd>
+                            <dd class="like-li-2"><span class="cyan">Other optimiser</span>: Stochastic Gradient Descent (SGD), Momentum Optimisation, Nesterov Accelerated Gradient (NAG), Adaptive Gradient Descent (AdaGrad), Root Mean Square Propagation (RMSProp), Adaptive Moment Estimation (Adam), etc.</dd>
+                        </ul>
+                    </section>
+
+                    <section id="optimiser_comparison">
+                        <h1>Optimiser Comparison</h1>
+                        <img class="img-height-400 img-width-550" src="img/opt.gif" alt="Optimiser: https://editor.analyticsvidhya.com/uploads/121381obtV.gif">
+                        <img class="img-height-400 img-width-550" src="img/opt2.gif" alt="Optimiser: https://editor.analyticsvidhya.com/uploads/56201contours_evaluation_optimizers.gif">
+                        <p>Comparison of training process using different optimiser</p>
+                    </section>
+
+                    <section id="overfitting">
+                        <h1>Overfitting Issue</h1>
+                        <ul>
+                            <li><span class="pink">Too many</span> parameters (weights, neurons, layers, etc)</li>
+                            <dd class="like-li-2">overfitting will occur <span class="red">quite often</span></dd>
+                            <li><span class="blue">Early stopping</span>: train on a mini-batch then validate and training again</li>
+                            <dd class="like-li-2">stop training as soon as the error on validation starts increasing</dd>
+                            <li><span class="cyan">Drop out</span>: at every training step, every neuron (except the output layer) has a probability $p$ of being entirely ignored</li>
+                            <dd class="like-li-2">in practice, $p \text{\textasciitilde} 0.5$</dd>
+                            <li><span class="orange">Data augmentation</span>: artificially generate new data points from existing ones</li>
+                            <dd class="like-li-2">add some noises to existing data but keep the same label</dd>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="chap_summary">
                     <section id="summary">
                         <h1>Summary</h1>
                         <ul>
-                            <li>History of evolutionary algorithms</li>
-                            <li>Genetic algorithm</li>
+                            <li>Perception model</li>
+                            <li>Artificial Neural Nets</li>
+                            <li>Deep Learning</li>
+                            <li>Issues with Neural Nets</li>
                         </ul>
                     </section>
 

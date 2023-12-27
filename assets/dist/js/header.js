@@ -52,6 +52,7 @@ function GeneratePDF() {
 authorData.set('info', '<sup><i class="fas fa-exclamation-circle  mediumtext lightred"></i></sup>');
 authorData.set('warning', '<sup><i class="fas fa-exclamation-triangle mediumtext orange"></i></sup>');
 authorData.set('question', '<sup><i class="fas fa-question-circle mediumtext purple"></i></sup>');
+authorData.set('answer', '<sup><i class="fas fa-bullhorn mediumtext lime"></i></sup>');
 // toggle visibility of a given element by its unique id
 function toggleShow(ids) {
     console.log('switching visibility of ' + ids);
