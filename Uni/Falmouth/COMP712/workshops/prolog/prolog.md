@@ -310,4 +310,4 @@ Q2: Fill in the table if you can:
 
 1. There's no repository for this workshop. 
 2. Check [SWI-Prolog website](https://www.swi-prolog.org/) for more information.
-3. Do you know that the Sudoku problem can be solved by Prolog as well, as shown in this article.
+3. Do you know that the Sudoku problem can be solved by Prolog as well, as shown in [this article](https://www.metalevel.at/sudoku/).
