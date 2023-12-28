@@ -254,8 +254,12 @@
                     <section id="kmeans_disk">
                         <h1>A Disk Version of $K$-means</h1>
                         <ul>
-                            <li>$K$-means can be implemented <span class="lime">incrementally</span> as the centroids calculation permits so <span class="question" onclick="toggleShow('how');toggleShow('eye');"></span> <span class="cyan invisible" id="how">- how?</span> <span id="eye" class="info" onclick="toggleShow('explain');"></span></li>
-                            <dd id="explain" class="like-li-2 invisible"><span class="mediumtext">$\bm{m}_j = \frac{1}{n}\sum_{\bm{x}_i \in C_j}^{i=1,2\dots,n} \bm{x}_i \implies \bm{m}_{j+1} = \frac{n \times \bm{m}_j + \bm{x}_{i+1}}{n+1}$</span></dd>
+                            <li>$K$-means can be implemented <span class="lime">incrementally</span> as the centroids calculation permits so <span class="question" onclick="toggleShow('how');"></span>
+                                <span class="cyan hidden-item" id="how">- how?
+                                    <span id="eye" class="info" onclick="toggleShow('explain');"></span>
+                                </span>
+                            </li>
+                            <dd id="explain" class="like-li-2 hidden-item"><span class="mediumtext">$\bm{m}_j = \frac{1}{n}\sum_{\bm{x}_i \in C_j}^{i=1,2\dots,n} \bm{x}_i \implies \bm{m}_{j+1} = \frac{n \times \bm{m}_j + \bm{x}_{i+1}}{n+1}$</span></dd>
                             <li>It can be used to cluster <span class="red">large datasets</span> that cannot fit in memory (data-on-disk)</li>
                             <li>The <span class="blue">number of iterations</span> need to be defined</li>
                             <dd class="like-li-2">In practice, $\lt 50$</dd>

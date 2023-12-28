@@ -131,9 +131,9 @@
                         <img data-id="dm" src="img/perception_model.png" alt="Perception Model: https://th.bing.com/th/id/OIP.9CH00SoFseQ3Ql50uFuHKQHaDO?rs=1&pid=ImgDetMain" class="r-stretch">
                         <p><span class="idea">Question</span>: what if we consider $S$ as a sum of the inputs as <span class="blue">$S(x)=\sum_i x_i$</span> <span class="question" onclick="toggleShow('answer1');"></span>
                             <br>
-                        <div id="answer1" class="invisible">
+                        <div>
                             <span class="answer"></span>
-                            Not so <span class="red">expressive</span>! Use <span class="cyan">weighted sum</span> along with <span class="lime">bias</span> instead!
+                            <span id="answer1" class="hidden-item">Not so <span class="red">expressive</span>! Use <span class="cyan">weighted sum</span> along with <span class="lime">bias</span> instead!</span>
                         </div>
                         </p>
                     </section>
@@ -159,7 +159,7 @@
                         </div>
                         <br><br>
                         $$\color{cyan} \sum_{\color{yellow}i=1} x_i w_i + b \to \color{red}\bm{f} \color{white} (\color{cyan} \sum_{\color{lime}i=0} x_i w_i \color{white}), x_0 := 1, w_0 := b$$
-                        where $\color{red}\bm{f}$ is the <span class="red">activation function</span> <span class="warning" onclick="toggleShow('answer2');"></span> <span id="answer2" class="invisible blue">Why do we need $\color{red}\bm{f}$?</span>
+                        where $\color{red}\bm{f}$ is the <span class="red">activation function</span> <span class="warning" onclick="toggleShow('answer2');"></span> <span id="answer2" class="hidden-item blue">Why do we need $\color{red}\bm{f}$?</span>
                     </section>
 
                     <section id="why_activation" data-auto-animate>
@@ -335,11 +335,11 @@
                     <section id="further_thoughts">
                         <h1>Further Thoughts</h1>
                         <ul>
-                            <li>How to pick a proper learning rate?</li>
-                            <li>How may hidden layers do we need for a given problem?</li>
+                            <li>How to pick a <span class="lime">proper learning rate</span>?</li>
+                            <li><span class="pink">How many hidden layers</span> do we need for a given problem?</li>
                             <li>Some guidelines available but the only reliable approach is to try different values and see how it goes <span class="warning" onclick="toggleShow('the_assignment');"></span></li>
-                            <span id="the_assignment" class="invisible">
-                                <dd class="like-li-2">It takes times, remember this for developing your assignment!</dd>
+                            <span id="the_assignment" class="hidden-item">
+                                <dd class="like-li-2 lightred">It takes times, remember this for developing your assignment!</dd>
                             </span>
                             <span class="fragment">
                                 <li>Other issues:</li>

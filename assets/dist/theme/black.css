@@ -101,10 +101,13 @@ section.has-light-background h6 {
 
 /* invisible text in index.html for testing */
 .invisible {
-    /* color: var(--r-background-color);
+    color: var(--r-background-color);
     text-decoration: none;
-    text-shadow: none; */
-    visibility: hidden;
+    text-shadow: none;
+}
+
+.hidden-item {
+    display: none;
 }
 
 /* print pdf div in the corner */

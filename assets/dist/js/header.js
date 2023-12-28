@@ -60,10 +60,10 @@ function toggleShow(ids) {
     if (elm) {
         console.log('found ');
         console.log(elm);
-        if (elm.classList.contains('invisible')) {
-            elm.classList.remove('invisible');
+        if (elm.classList.contains('hidden-item')) {
+            elm.classList.remove('hidden-item');
         } else {
-            elm.classList.add('invisible');
+            elm.classList.add('hidden-item');
         }
     }
 }
