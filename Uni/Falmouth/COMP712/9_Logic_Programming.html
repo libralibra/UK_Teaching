@@ -83,10 +83,9 @@
                         <ul>
                             <li>A <span class="lightblue">predicate</span> is a function which returns a <code>boolean</code></li>
                             <li>In logic, a predicate is a <span class="lightpurple">parameterised statement</span> which is <code class="lightgreen">true</code> or <code class="lightpink">false</code>
-                                <dd>e.g. <code class="lightcyan">LivesIn(Bob, Falmouth)</code> could be a predicate representing the statement "<span class="italic">Bob lives in Falmouth</span>"</dd>
+                                <dd>e.g. <code class="lightcyan">lives_in(bob, falmouth)</code> could be a predicate representing the statement "<span class="italic">Bob lives in Falmouth</span>"</dd>
                             </li>
-                            <li>Two parameters: <code>Bob</code> and <code>Falmouth</code></li>
-                            <li></li>
+                            <li>Two parameters: <code>bob</code> and <code>Falmouth</code></li>
                         </ul>
                     </section>
 
@@ -94,7 +93,7 @@
                         <h1>Quantifiers</h1>
                         <ul>
                             <li>Let $P(x)$ be a predicate</li>
-                            <li>$\forall x: P(x)$ means that $P(x)$ is <code>true</code> for all values of $x$ ($\forall$ is read "for all"</li>
+                            <li>$\forall x: P(x)$ means that $P(x)$ is <code>true</code> for all values of $x$ ($\forall$ is read "for all")</li>
                             <li>$\exists x: P(x)$ means that there exist at least one value of $x$ so that $P(x)$ is <code>true</code></li>
                         </ul>
                     </section>
@@ -106,7 +105,7 @@
                             <li>Written as $A \implies B$
                                 <dd>e.g. if someone lives in Falmouth, then they live in Cornwall</dd>
                             </li>
-                            <li>$\forall x:(LivesIn(x, Falmouth) \implies LivesIn(x, Cornwall))$</li>
+                            <li>$\forall x:(lives\_in(X, falmouth) \implies lives\_in(X, cornwall))$</li>
                         </ul>
                     </section>
 
@@ -139,9 +138,11 @@
                         <h1>Use of Prolog</h1>
                         <ul>
                             <li>Well suited for declarative propositional logic</li>
-                            <li>Can do constraint programming</li>
-                            <li>Can do STRIPS-like planning</li>
-                            <li>Backtracking search comes built-in</li>
+                            <li>Unification: matching rules and queries</li>
+                            <li>Solution: inference mechanism that can:</li>
+                            <dd class="like-li-2">do constraint programming</dd>
+                            <dd class="like-li-2">do STRIPS-like planning</dd>
+                            <li>Backtracking search comes built-in to explore alternatives</li>
                         </ul>
                     </section>
 
@@ -151,7 +152,7 @@
                             <li>A standard Prolog program specifies:
                                 <ul>
                                     <li><span class="green">Facts</span> - these are predicates which hare <code>true</code></li>
-                                    <li><span class="purple">Rules</span> - implications of the form $Head :- Body$, which states that Head is <code>true</code> if Body is <code>true</code></li>
+                                    <li><span class="purple">Rules</span> - implications of the form <span class="purple bold">$Head :- Body.$</span>, which states that Head is <code>true</code> if Body is <code>true</code></li>
                                 </ul>
                             </li>
                             <li>A program by itself doesn't do anything - we run <span class="cyan">queries</span> against it
@@ -164,25 +165,54 @@
                     </section>
 
                     <section id="fact">
-                        <h1>A Fact</h1>
+                        <h1>Predicates: A Fact</h1>
                         <div class="img-height-500"><br><br><br><br><code>lives_in(bob, falmouth).</code></div>
                         <div class="box-top-left"><code>lives_in</code> is a predicate.<br>Predicates are introduced <br>when first used.</div>
-                        <div class="box-bottom-right"><code>bob</code> and <code>falmouth</code> are atoms -<br>named variable values.<br>Atoms begin with <span class="lightgreen">lowercase</span> letters.</div>
+                        <div class="box-bottom-left"><code>bob</code> and <code>falmouth</code> are atoms -<br>named variable values</div>
+                        <div class="box-bottom-right">Atoms begin with <span class="lightgreen">lowercase</span> letters.</div>
+                        <div class="box-top-right">Must be ended with a dot (.)</div>
+                    </section>
+
+                    <section id="variables">
+                        <h1>Variable</h1>
+                        <ul>
+                            <li><span class="lime">Definition</span>: Variables are <span class="orange">symbolic placeholders</span> that can take on various values </li>
+                            <li><span class="cyan">Representation</span>: Start with an <span class="purple">uppercase</span> letter or an underscore, followed by <span class="pink">alphanumeric characters or underscores</span> </li>
+                            <li><span class="red">Example</span>: <code>X, Y, _Temp</code></li>
+                        </ul>
+                    </section>
+
+                    <section id="constant">
+                        <h1>Constant</h1>
+                        <ul>
+                            <li><span class="lime">Definition</span>: Constants are <span class="pink">fixed</span> values </li>
+                            <li><span class="orange">Types</span>: Atoms (symbols) and numbers (integers, floats) </li>
+                            <li>Atoms Example: <code>apple, name, true</code></li>
+                            <li>Numbers Example: <code>42, 3.14</code></li>
+                        </ul>
+                    </section>
+
+                    <section id="term">
+                        <h1>Terms in Prolog</h1>
+                        <ul>
+                            <li><span class="lime">Composition</span>: Terms are composed of variables, constants, or complex structures </li>
+                            <li><span class="pink">Structure</span>: Can be atoms, numbers, variables, or compound terms </li>
+                            <li><span class="orange">Compound Terms</span>: Structured terms using functors and arguments </li>
+                            <li><span class="red">Example</span>: <code>likes(john, pizza)</code>, <code>age(mary, 30)</code></li>
+                        </ul>
                     </section>
 
                     <section id="queries">
                         <h1>Queries</h1>
                         <ul>
                             <li>We can query predicates for truth or falsehood
-                                <ul>
-                                    <li><code>?- lives_in(bob, falmouth).</code>
-                                        <dd><code>true.</code></dd>
-                                    </li>
-                                    <li><code>?- lives_in(bob, penryn).</code>
-                                        <dd><code>false.</code></dd>
-                                    </li>
-                                </ul>
                             </li>
+                            <dd class="like-li-2"><code>?- lives_in(bob, falmouth).</code>
+                            <dd><code>true.</code></dd>
+                            </dd>
+                            <dd class="like-li-2"><code>?- lives_in(bob, penryn).</code>
+                            <dd><code>false.</code></dd>
+                            </dd>
                         </ul>
                     </section>
 
@@ -256,6 +286,18 @@
                             <li>Denoted by predicates separated by commas
                                 <dd><code>is_local_student(X) :- lives_in(X, cornwall), students_at(X, falmouth).</code></dd>
                             </li>
+                            <li>i.e. The student is considered as 'local student' if he/she lives in Cornwall and studies at Falmouth University</li>
+                        </ul>
+                    </section>
+
+                    <section id="disjunction">
+                        <h1>Disjunction</h1>
+                        <ul>
+                            <li>The RHS of a rule can contain a disjunction (an <code>OR</code>)</li>
+                            <li>Denoted by predicates separated by semi-colons
+                                <dd><code>is_parent(X,Y) :- is_mother(X, Y); is_father(X, Y).</code></dd>
+                            </li>
+                            <li>i.e. X is considered to be Y's parent if X is either Y's mother or Y's father</li>
                         </ul>
                     </section>
 

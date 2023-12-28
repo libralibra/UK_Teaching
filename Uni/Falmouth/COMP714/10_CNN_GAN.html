@@ -72,44 +72,39 @@
                     </section>
                 </section>
 
-                <section id="chap_dimension_reduction">
-                    <section id="title_dimension_reduction">
-                        <h1 class="r-frame-text">Dimensionality Reduction</h1>
-                    </section>
-                </section>
-
-                <section id="chap_background">
-                    <section id="title_background">
-                        <h1 class="r-frame-text">Principal Component Analysis (PCA)</h1>
+                <section id="chap_cnn">
+                    <section id="title_cnn">
+                        <h1 class="r-frame-text">Convolutional Neural Network (CNN)</h1>
                     </section>
 
-                    <!-- https://fontawesome.com/v5/search?o=r&m=free -->
-                    <section id="pca_tree">
-                        <h1>PCA Map</h1>
+                    <section id="cnn">
                         <div class="mermaid">
                             <pre>
-                                mindmap
-                                root((PCA))
-                                    v)Vectorisation(
-                                        Inner Product
-                                        Basis
-                                        Basis Transformation
-                                    m)Max Separability(
-                                        Variance
-                                        Covariance
-                                        Covariance Matrix
-                                    o)Others(
-                                        Steps
-                                        Characteristics
-                                        Details
-                                            Zero Centre
-                                            SVD
-                                    
+                                %%{init:
+                                {'theme': 'dark',
+                                'themeVariables': { 'darkMode': true }
+                                }
+                                }%%
+                                graph TD
+                                title[<u>Friends Map</u>]
+                                title --> A(a)
+                                style title fill:#000,stroke:#FFF
+                                linkStyle 0 stroke:#FFF,stroke-width:0;
+                                
+                                
+                                
+                                A(john) -- loves --> B(julia)
+                                A -- friend of --> B
+                                A -- friend of --> C(jack)
+                                B -- friend of --> E(molly)
+                                
+                                B -- loves --> D(sam)
+                                D -- loves --> B
                             </pre>
                         </div>
                     </section>
-
                 </section>
+
 
                 <section id="chap_summary">
                     <section id="summary">

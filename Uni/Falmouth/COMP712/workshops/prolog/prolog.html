@@ -1,0 +1,370 @@
+<!DOCTYPE html><html><head>
+      <title>prolog</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.0/dist/mermaid.min.js"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<p><img src="../../../../Falmouth/common/ga_uni_logo.png" alt=""></p>
+<h1 id="comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence </h1>
+<h1 id="workshop-logic-programming-with-prolog">Workshop: Logic Programming With PROLOG </h1>
+<p>Dr Daniel Zhang @ Falmouth University<br>
+2023-2024 Study Block 1</p>
+<p><img src="prolog_logo.png" alt=""></p>
+<ul>
+<li><a href="#comp712-classical-artificial-intelligence">COMP712: Classical Artificial Intelligence</a></li>
+<li><a href="#workshop-logic-programming-with-prolog">Workshop: Logic Programming With PROLOG</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#applications">Applications</a></li>
+<li><a href="#prolog-fundamentals">Prolog Fundamentals</a></li>
+<li><a href="#install-swi-prolog">Install SWI-Prolog</a></li>
+<li><a href="#try-swi-prolog">Try SWI-Prolog</a></li>
+<li><a href="#task-1-reveal-the-friends-map">Task 1: Reveal the Friends Map</a>
+<ul>
+<li><a href="#q1-work-out-the-table-of-friends-for-each-person">Q1: work out the table of friends for each person</a></li>
+<li><a href="#q2-answer-the-following-questions">Q2: answer the following questions</a></li>
+</ul>
+</li>
+<li><a href="#task-2-expert-system-about-the-royal-family">Task 2: Expert System about the Royal Family</a></li>
+<li><a href="#task-3-chicken-and-rabbits-problem">Task 3: Chicken and Rabbits Problem</a></li>
+<li><a href="#task-4-map-colouring-problem">Task 4: Map Colouring Problem</a></li>
+<li><a href="#task-5-who-is-the-murder">Task 5: Who is the murder?*</a></li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+<h1 id="introduction">Introduction </h1>
+<p><a href="#top">Top</a></p>
+<p>Prolog, abbreviated for “<em>Programming in Logic</em>”, stands as a pioneering language in the realm of declarative programming. Unlike imperative languages that focus on how to achieve a result, Prolog follows a different paradigm, emphasising what outcomes are desired. It operates on a foundation rooted in symbolic logic and rule-based reasoning, making it uniquely suited for problems in artificial intelligence, natural language processing, expert systems, and symbolic computation.</p>
+<p>At its core, Prolog operates on the concept of logical inference through a set of rules and facts. These rules and facts form a knowledge base representing relationships, conditions, and logical implications. The language revolves around predicates, which define relationships between entities, and queries, which are posed to the knowledge base to derive solutions. Prolog excels in employing unification, a process that matches variables in queries with facts or rules in the knowledge base, allowing for logical deductions and backtracking to find solutions.</p>
+<p>Prolog’s elegant simplicity lies in its ability to express complex problem-solving tasks concisely. It employs a logical and intuitive approach, using a compact syntax that allows programmers to focus more on defining the problem’s structure rather than explicit procedural instructions. As a result, Prolog serves as a powerful tool for both educational purposes to understand logic-based programming and real-world applications where rule-based reasoning is crucial.</p>
+<h1 id="applications">Applications </h1>
+<p><a href="#top">Top</a></p>
+<p>Prolog, with its logic-based programming paradigm, finds applications in various domains due to its ability to model and solve problems based on rules and relationships. Here are some applications of Prolog:</p>
+<ol>
+<li>
+<p><strong>Natural Language Processing (NLP):</strong> Prolog’s natural fit for symbolic reasoning makes it valuable in parsing and processing natural languages. It’s used in language understanding, grammar parsing, and building chatbots.</p>
+</li>
+<li>
+<p><strong>Expert Systems:</strong> Prolog’s rule-based approach is ideal for building expert systems that mimic human expertise in specific domains. It’s applied in medical diagnosis, decision support systems, and troubleshooting.</p>
+</li>
+<li>
+<p><strong>Symbolic Computation:</strong> Prolog’s ability to handle symbolic expressions makes it suitable for symbolic mathematics, theorem proving, and symbolic integration.</p>
+</li>
+<li>
+<p><strong>Artificial Intelligence (AI):</strong> Prolog is used in various AI applications due to its ability to represent and reason with knowledge effectively. This includes rule-based AI, knowledge-based systems, and problem-solving tasks.</p>
+</li>
+<li>
+<p><strong>Database Querying:</strong> Prolog’s logic-based nature is useful for querying databases and reasoning about relational data. It’s applied in database languages and expert databases.</p>
+</li>
+<li>
+<p><strong>Semantic Web:</strong> Prolog is used in semantic web technologies to reason about ontologies, relationships, and the semantic meaning of data.</p>
+</li>
+<li>
+<p><strong>Robotics and Automation:</strong> Prolog can be used for robot control, planning, and scheduling in robotics applications, where logical reasoning is essential.</p>
+</li>
+<li>
+<p><strong>Education and Research:</strong> Prolog is a popular language for teaching logic-based programming concepts due to its simple syntax and powerful logical inference capabilities.</p>
+</li>
+</ol>
+<p>These applications showcase the versatility of Prolog in domains where rule-based reasoning, logical inference, and symbolic manipulation play significant roles. Its expressiveness and ability to represent real-world problems in a natural and intuitive way make it a valuable tool across diverse fields.</p>
+<h1 id="prolog-fundamentals">Prolog Fundamentals </h1>
+<p><a href="#top">Top</a></p>
+<p>A Prolog program consists of several fundamental components:</p>
+<p><code>Facts</code>: These are statements that establish relationships or attributes. Facts in Prolog are represented as predicates without any conditions. For instance:</p>
+<pre data-role="codeBlock" data-info="prolog" class="language-prolog prolog"><code><span class="token function">animal</span><span class="token punctuation">(</span>cat<span class="token punctuation">)</span><span class="token operator">.</span>
+<span class="token function">color</span><span class="token punctuation">(</span>apple<span class="token punctuation">,</span> red<span class="token punctuation">)</span><span class="token operator">.</span>
+<span class="token function">likes</span><span class="token punctuation">(</span>john<span class="token punctuation">,</span> pizza<span class="token punctuation">)</span><span class="token operator">.</span>
+</code></pre><p><code>Rules</code>: Rules define logical relationships or conditions between different facts or predicates. They consist of a head and a body separated by the :- symbol. The head represents the conclusion, and the body contains the conditions for that conclusion. For example:</p>
+<pre data-role="codeBlock" data-info="prolog" class="language-prolog prolog"><code><span class="token function">mortal</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span> <span class="token operator">:-</span> <span class="token function">human</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token operator">.</span>
+<span class="token function">sibling</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> Y<span class="token punctuation">)</span> <span class="token operator">:-</span> <span class="token function">parent</span><span class="token punctuation">(</span>Z<span class="token punctuation">,</span> X<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">parent</span><span class="token punctuation">(</span>Z<span class="token punctuation">,</span> Y<span class="token punctuation">)</span><span class="token punctuation">,</span> X <span class="token operator">\=</span> Y<span class="token operator">.</span>
+</code></pre><p><code>Queries</code>: These are user-defined queries posed to the Prolog interpreter, seeking information or solutions based on the defined facts and rules. Queries are formed by stating a predicate and variables or constants to find solutions or verify relationships. For instance:</p>
+<pre data-role="codeBlock" data-info="prolog" class="language-prolog prolog"><code><span class="token operator">?-</span> <span class="token function">likes</span><span class="token punctuation">(</span>john<span class="token punctuation">,</span> pizza<span class="token punctuation">)</span><span class="token operator">.</span>
+</code></pre><p><code>Variables</code>: These are symbolic placeholders that can be unified with values. They begin with an uppercase letter or an underscore. Variables are used in queries to retrieve specific values or bindings from the knowledge base.</p>
+<p><code>Clauses</code>: Clauses are either facts or rules. They form the basis of Prolog programs and represent the knowledge base from which the Prolog engine derives solutions by matching and unifying queries with the defined clauses.</p>
+<p>These components collectively form a Prolog program, where facts and rules define relationships and conditions, and queries are used to retrieve information or find solutions based on the defined logic within the program.</p>
+<h1 id="install-swi-prolog">Install SWI-Prolog </h1>
+<p><a href="#top">Top</a></p>
+<p>To download SWI-Prolog for your workshop, follow these steps:</p>
+<ul>
+<li>First, navigate to the SWI-Prolog website (<a href="https://www.swi-prolog.org/">https://www.swi-prolog.org/</a>). Choose the appropriate version based on your operating system (Windows, macOS, Linux, etc.) and select the installer that suits your system specifications.</li>
+<li>Once the download completes, run the installer and follow the installation prompts.</li>
+<li>During installation, you might be asked to specify certain settings; the default settings usually work well for most cases.</li>
+<li>Once installed, you can launch SWI-Prolog from your applications or programs folder.</li>
+</ul>
+<p>Explore the provided documentation and tutorials available on the SWI-Prolog website to get familiar with the environment.</p>
+<blockquote>
+<p>If you have difficulties of installing SWI-Prolog, there is an <a href="https://swish.swi-prolog.org/">online version</a>.</p>
+</blockquote>
+<h1 id="try-swi-prolog">Try SWI-Prolog </h1>
+<p><a href="#top">Top</a></p>
+<p>Upon launching SWI-Prolog, you’ll find the Prolog interpreter or console. Here, you can input Prolog code and execute queries. Get familiar with the console, where you’ll receive feedback for queries and see Prolog’s responses.</p>
+<p><img src="prolog_gui.png" alt=""></p>
+<blockquote>
+<p>NOTE: SWI-Prolog’s console is for <em>queries</em> execution, which is slightly different from the other programming languages (like Python’s IDLE).</p>
+</blockquote>
+<p>You can start typing some basic queries here.</p>
+<pre data-role="codeBlock" data-info="prolog" class="language-prolog prolog"><code><span class="token operator">?-</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token string">'Hello World!'</span><span class="token punctuation">)</span><span class="token operator">.</span>
+Hello World<span class="token operator">!</span>
+true<span class="token operator">.</span>
+
+<span class="token operator">?-</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token string">'Hello '</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nl<span class="token punctuation">,</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token string">'world!'</span><span class="token punctuation">)</span><span class="token operator">.</span>
+Hello 
+world<span class="token operator">!</span>
+true<span class="token operator">.</span>
+
+<span class="token operator">?-</span> X <span class="token operator">is</span> <span class="token number">4</span><span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> <span class="token number">2.</span>
+X <span class="token operator">=</span> <span class="token number">42.</span>
+
+<span class="token operator">?-</span> 
+</code></pre><ul>
+<li><code>write</code>: is called a functor and represented as <code>write/1</code> means it takes 1 argument. (same concept in erlang or elixir to add the number of arguments to the function name)</li>
+<li><code>nl</code>: used to print newline</li>
+<li>to execute sequence of commands you use <code>,</code> which is the <code>AND</code> operator also if it fails the whole computation fails (similarly, <code>;</code> can be used to represent <code>OR</code>, and <code>\+</code> can represent <code>NOT</code>)</li>
+<li><code>is</code>: assignment operator followed by math expression</li>
+<li>variables are <em><strong>Capitalised</strong></em> <code>X</code> not <strong><code>x</code></strong></li>
+</ul>
+<p>You will need to write your own ‘<code>.pl</code>’ files to save predicates such as facts and rules. It can then be loaded in SWI-Prolog via <code>[filename]</code> command. As long as the file was loaded successfully, you can start making queries with it.</p>
+<blockquote>
+<p>NOTE:</p>
+<ul>
+<li>get current working directory: you can use <strong><code>pwd.</code></strong> to check the current working folder.</li>
+<li>change working directory: <strong><code>working_directory(CWD,'NewPath').</code></strong> should be used to change the working directory. <strong><code>CWD</code></strong> must be <strong>UPPERCASE</strong>.</li>
+</ul>
+</blockquote>
+<h1 id="task-1-reveal-the-friends-map">Task 1: Reveal the Friends Map </h1>
+<p><a href="#top">Top</a></p>
+<p>Read the friends map below, write a new <code>.pl</code> prolog file to define these relationships as facts and rules to finish the tasks. Facts and rules you might need to start with include <code>friend().</code> and <code>loves().</code>.</p>
+<div class="mermaid">graph TD
+
+title[&lt;u&gt;Friends Map&lt;/u&gt;]
+title --&gt; A(john)
+style title fill:#FFF,stroke:#FFF
+linkStyle 0 stroke:#FFF,stroke-width:0;
+
+A -- loves --&gt; B(julia) 
+A -- friend of --&gt; B
+A -- friend of --&gt; C(jack) 
+B -- friend of --&gt; E(molly)
+C -- friend of --&gt; F(adam)
+F -- friend of --&gt; G(bill)
+G -- friend of --&gt; B
+E -- friend of --&gt; C
+B -- friend of --&gt; H(emma)
+H -- friend of --&gt; G
+D -- friend of --&gt; F
+C -- friend of --&gt; I(amy)
+I -- friend of --&gt; A
+I -- friend of --&gt; G
+F -- friend of --&gt; I
+E -- friend of --&gt; G
+
+B -- loves --&gt; D(sam) 
+D -- loves --&gt; B
+H -- loves --&gt; C
+F -- loves --&gt; I
+E -- loves --&gt; G
+G -- loves --&gt; I
+I -- loves --&gt; G
+C -- loves --&gt; E
+</div><ul>
+<li><em>No one loves more than 1 person.</em></li>
+</ul>
+<h2 id="q1-work-out-the-table-of-friends-for-each-person">Q1: work out the table of friends for each person </h2>
+<p><a href="#top">Top</a></p>
+<p>Load your prolog file in SWI-Prolog and find out the relationships for each person using queries. Fill ‘<code>None</code>’ if the requested item is an empty list.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Friends</strong></th>
+<th><strong>Loves</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3">John</td>
+
+
+</tr>
+<tr>
+<td colspan="3">Julia</td>
+
+
+</tr>
+<tr>
+<td colspan="3">Emma</td>
+
+
+</tr>
+<tr>
+<td colspan="3">…</td>
+
+
+</tr>
+</tbody>
+</table>
+<h2 id="q2-answer-the-following-questions">Q2: answer the following questions </h2>
+<p><a href="#top">Top</a></p>
+<p>Add a new rule called ‘<code>knows</code>’, we will defined ‘<code>knows</code>’ as a relationship between 2 person if one is the friend of the other. Update your prolog file and run queries.</p>
+<ol>
+<li>Who knows Adam?</li>
+<li>Who knows Molly?</li>
+</ol>
+<p>Let’s define another rule called ‘<code>lovers</code>’, each pair of lovers are 2 people who love each other. Update your prolog file and run queries to find out the answers to the following questions.</p>
+<ol start="3">
+<li>How many pairs of lovers can you spot? And who are they?</li>
+</ol>
+<h1 id="task-2-expert-system-about-the-royal-family">Task 2: Expert System about the Royal Family </h1>
+<p><a href="#top">Top</a></p>
+<p>In this task, you will build up a ‘simplified’ version of the British Royal Family tree to run some queries.</p>
+<p><img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/164E1/production/_130316319_royal_family_tree_976-nc.png.webp" alt=""><br>
+Reference: <a href="https://ichef.bbci.co.uk/news/976/cpsprodpb/164E1/production/_130316319_royal_family_tree_976-nc.png.webp">https://ichef.bbci.co.uk/news/976/cpsprodpb/164E1/production/_130316319_royal_family_tree_976-nc.png.webp</a>*</p>
+<p>Create a new <code>.pl</code> file to record the facts and rules. Some rules you might want to define include:</p>
+<ul>
+<li>Facts and Rules:
+<ul>
+<li>female().</li>
+<li>male().</li>
+<li>mother().</li>
+<li>father().</li>
+<li>parents().</li>
+<li>son().</li>
+<li>daughter().</li>
+<li>child().</li>
+<li>grandfather().</li>
+<li>grandmother().</li>
+<li>grandparents().</li>
+<li>grandson().</li>
+<li>granddaughter().</li>
+<li>grandchild().</li>
+<li>wife().</li>
+<li>husband().</li>
+<li>married().</li>
+<li>sibling().</li>
+<li>nephew().</li>
+<li>cousin().</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p><strong>Run some queries after you finish the definitions of the facts and rules.</strong></p>
+<h1 id="task-3-chicken-and-rabbits-problem">Task 3: Chicken and Rabbits Problem </h1>
+<p><a href="#top">Top</a></p>
+<p>This is a widely-known logic problem that Chinese children often encounter during their primary school years, which was firstly introduced in <code>'Master Sun's Mathematical Manual'</code> (a mathematical treatise written during 3rd to 5th centuries CE).</p>
+<p>The scenario involves a barn where both chickens and rabbits are kept. With the information given about the total number of legs and heads present, the challenge is to determine the specific quantities of chickens and rabbits.</p>
+<p><strong>Q: 150 heads and 396 legs. How many chickens and how many rabbits respectively?</strong></p>
+<blockquote>
+<p>Hint: the module <code>clpq</code> can be introduced to enable simple operations as shown below.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="prolog" class="language-prolog prolog"><code><span class="token operator">:-</span> <span class="token function">use_module</span><span class="token punctuation">(</span><span class="token function">library</span><span class="token punctuation">(</span>clpq<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.</span>
+
+<span class="token function">sum10</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span>Y<span class="token punctuation">)</span> <span class="token operator">:-</span> <span class="token punctuation">{</span>X<span class="token operator">+</span>Y<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">.</span>
+</code></pre><h1 id="task-4-map-colouring-problem">Task 4: Map Colouring Problem </h1>
+<p><a href="#top">Top</a></p>
+<p>Given a map, we’d like to find if it can be coloured using 3 colours: <code>red</code>, <code>blue</code>, and <code>green</code> so that no two adjacent regions have the same color.</p>
+<p><img src="map.png" alt=""><br>
+Reference: <a href="https://coloringnation.com/coloring/p6i/yME/p6iyMEpcn.gif">https://coloringnation.com/coloring/p6i/yME/p6iyMEpcn.gif</a></p>
+<p><strong>Q: Your task is to find a proper colour definitions for each state showing in the partial map.</strong></p>
+<h1 id="task-5-who-is-the-murder">Task 5: Who is the murder?* </h1>
+<p><a href="#top">Top</a></p>
+<p>You were at a murder scene with Detective Holmes. There are 6 suspects: 3 men (George, John, Robert) and 3 women (Barbara, Christine, Yolanda). You were given some clues about the case and your task is to find out who is the murderer.</p>
+<ul>
+<li>Clue 1:<br>
+Each person was in a different room (Bathroom, Dining Room, Kitchen, Living Room, Pantry, Study).</li>
+<li>Clue 2:<br>
+A suspected weapon was found in each room (Bag, Firearm, Gas, Knife, Poison, Rope).</li>
+<li>Clue 3:<br>
+The man in the kitchen was not found with the rope, knife, or bag. Which weapon, then, which was not the firearm, was found in the kitchen?</li>
+<li>Clue 4:<br>
+Barbara was either in the study or the bathroom; Yolanda was in the other. Which room was Barbara found in?</li>
+<li>Clue 5:<br>
+The person with the bag, who was not barbara nor George, was not in the bathroom nor the dining room. Who had the bag in the room with them?</li>
+<li>Clue 6:<br>
+The woman with the rope was found in the study.Who had the rope?</li>
+<li>Clue 7:<br>
+The weapon in the living room was found with either John or George. What weapon was in the living room?</li>
+<li>Clue 8:<br>
+The knife was not in the dining <a href="http://room.So">room.So</a> where was the knife?</li>
+<li>Clue 9:<br>
+Yolanda was not with the weapon found in the study nor the pantry. What weapon was found with Yolanda?</li>
+<li>Clue 10:<br>
+The firearm was in the room with George. In which room was the firearm found?</li>
+<li>Clue 11:<br>
+It was discovered that Mr. Boddy was gassed in the pantry. The suspect found in that room was the murderer. Who, then, do you point the finger towards?</li>
+</ul>
+<p>Q1: Find out who is the murderer!</p>
+<p>Q2: Fill in the table if you can:</p>
+<p><img src="suspect_table.png" alt=""></p>
+<h1 id="notes">Notes </h1>
+<p><a href="#top">Top</a></p>
+<ol>
+<li>There’s no repository for this workshop.</li>
+<li>Check <a href="https://www.swi-prolog.org/">SWI-Prolog website</a> for more information.</li>
+<li>Do you know that the Sudoku problem can be solved by Prolog as well, as shown in this article.</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "forest"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>

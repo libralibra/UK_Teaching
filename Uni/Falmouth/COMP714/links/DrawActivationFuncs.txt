@@ -1,0 +1,66 @@
+function my_script()
+
+s = 0.001;
+x = -5:s:5;
+x = [x(1)-s,x,x(end)+s];
+disp(length(x));
+
+sx = sig(x);
+dsx = (sx(2:end)-sx(1:end-1))/s;
+sx = sx(2:end-1);
+dsx = dsx(2:end);
+disp(length(sx));
+disp(length(dsx));
+
+tx = tax(x);
+dtx = (tx(2:end)-tx(1:end-1))/s;
+tx = tx(2:end-1);
+dtx = dtx(2:end);
+disp(length(tx));
+disp(length(dtx));
+
+rx = relu(x);
+rx(rx<0) = 0;
+drx = (rx(2:end)-rx(1:end-1))/s;
+rx = rx(2:end-1);
+drx = drx(2:end);
+disp(length(rx));
+disp(length(drx));
+
+x = x(2:end-1);
+disp(length(x));
+
+% plot 
+close all;
+clf;
+figure,hold on;
+grid minor;
+
+plot(x,sx,'r-','LineWidth',3);
+plot(x,tx,'b-','LineWidth',3);
+plot(x,rx,'g-','LineWidth',3);
+
+plot(x,dsx,'k-.','LineWidth',3);
+plot(x,dtx,'m-.','LineWidth',3);
+plot(x,drx,'c-.','LineWidth',3);
+
+ylim([-1.1,1.1]);
+legend('S(sigmoid)','T(tanh)','R(ReLU)','S''','T''','R''','Location','southeast');
+
+end
+
+function out = sig(x)
+out = 1./(1 + exp(-x));
+end
+
+function out = tax(x)
+out = tanh(x);
+end
+
+function out = relu(x)
+out = x;
+if out < 0
+    out = 0;
+end
+end
+

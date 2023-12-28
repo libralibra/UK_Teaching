@@ -180,6 +180,12 @@ Reveal.initialize({
             '.like-li-3': {
                 "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
             },
+            'dd': {
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
+            },
+            'p': {
+                "animation": 'animate__jackInTheBox', 'speed': "faster", 'delay': '50'
+            },
             // 'img': 'animate__fadeIn',
         },
     },
