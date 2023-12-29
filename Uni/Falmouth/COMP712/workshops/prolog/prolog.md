@@ -269,7 +269,9 @@ Given a map, we'd like to find if it can be coloured using 3 colours: `red`, `bl
 ![Map](map.png)
 Reference: https://coloringnation.com/coloring/p6i/yME/p6iyMEpcn.gif
 
-**Q: Your task is to find a proper colour definitions for each state showing in the partial map.**
+**Q1: Your task is to find a proper colour definitions for each state showing in the partial map.**
+
+**Q2: How many different patterns can you colour the partial map?**
 
 # Task 5: Who is the murder?*
 [Top](#top)
@@ -299,9 +301,9 @@ You were at a murder scene with Detective Holmes. There are 6 suspects: 3 men (G
 - Clue 11:
   It was discovered that Mr. Boddy was gassed in the pantry. The suspect found in that room was the murderer. Who, then, do you point the finger towards?
 
-Q1: Find out who is the murderer! 
+**Q1: Find out who is the murderer!**
 
-Q2: Fill in the table if you can:
+**Q2: Fill in the table if you can:**
 
 ![Suspect Table](suspect_table.png)
 
