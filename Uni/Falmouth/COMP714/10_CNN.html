@@ -301,7 +301,7 @@
                     </section>
 
                     <section id="famous_cnn_lenet-5">
-                        <h1>Famous CNN: LeNet-5</h1>
+                        <h1>LeNet-5</h1>
                         <img class="r-stretch" src="img/lenet5.png" alt="LeNet-5: https://www.researchgate.net/publication/354960990/figure/fig1/AS:1075204092612608@1633360040273/Architecture-of-the-LeNet-5-showing-the-seven-layers-of-CNN-the-size-of-feature-maps.png">
                         <ul>
                             <li>Perhaps the most widely known CNN architecture (2C+3FC)</li>
@@ -310,7 +310,7 @@
                     </section>
 
                     <section id="alexnet">
-                        <h1>Famous CNN: AlexNet</h1>
+                        <h1>AlexNet</h1>
                         <img src="img/alexnet.png" alt="AlexNet: https://www.researchgate.net/profile/Donato-Cascio/publication/332497078/figure/fig1/AS:748994250670081@1555585553376/AlexNet-architecture-used-in-this-work-for-patterns-classification.png" class="r-stretch">
                         <ul>
                             <li>Developed by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton</li>
@@ -340,7 +340,6 @@
 
                     <section id="googlenet_structure">
                         <h1>GoogLeNet Structure</h1>
-
                         <span>
                             <img style="position: absolute; left:0%; top:25%; height:400px;" src="img/inception.png" alt="Inception Module: https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.22.39_PM.png">$\qquad$
                         </span>
@@ -354,8 +353,10 @@
                         <ul>
                             <li>Winner of ILSVRC 2015</li>
                             <li>Developed by Kaiming He <italic>et, al.</italic>: RESidual Neural nETwork</li>
-                            <li>Delivered an astounding top-5 error rate under <span class="red">$3.6\%$</span></li>
+                            <li>Delivered an astounding top-5 error rate under <span class="red">$3.57\%$</span></li>
                             <li>Extremely deep CNN composed of <span class="purple">152 layers</span></li>
+                            <dd class="like-li-2">it has other variants: 35, 50, 101 layers</dd>
+                            <li>No dropout, no FC except the last 1,000 softmax for classification</li>
                             <li>Key idea is to <span class="lime">skip connections</span> (also called <span class="blue">shortcut connections</span>): the signal feeding into a layer is also added to the output of a layer located a bit higher up the stack</li>
                         </ul>
                     </section>
@@ -364,6 +365,21 @@
                         <h1>RESNET Structure</h1>
                         <img class="r-stretch" src="img/resnet.jpg" alt="RESNET: https://www.researchgate.net/publication/334617454/figure/fig4/AS:941746762559544@1601541333794/ResNet-Architecture-For-conv-layers-filter-size-and-number-of-filters-are-mentioned_W640.jpg">
                     </section>
+
+                    <section id="skip_connection">
+                        <h1>Skip Connection</h1>
+                        <img src="img/skip_connection.png" alt="Skip Connection: https://wisdomml.in/wp-content/uploads/2023/03/skip_conn.png">
+                        <ul>
+                            <li>Each <span class="lime">residual block</span> consist several other <br>
+                                layers and one <span class="pink">skip connection</span></li>
+                            <li>Also known as <span class="pink">identity connection</span></li>
+                            <li><span class="blue">Preserve information</span> from previous layers</li>
+                            <li>Can <span class="purple">skip layers</span> that output close to 0 and <br>
+                                block backpropagation</li>
+                            <br><br>
+                            <br>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="chap_summary">
@@ -371,8 +387,8 @@
                         <h1>Summary</h1>
                         <ul>
                             <li>History of CNN</li>
-                            <li>CNN operations, layers</li>
-                            <li>Typical CNN architectures</li>
+                            <li>CNN operations, layers: <code>CONV, ACT, POOL, FC, BN, DO</code></li>
+                            <li>Typical CNN architectures: <code>LeNet, AlexNet, GooLeNet, RESNET</code></li>
                         </ul>
                     </section>
 
