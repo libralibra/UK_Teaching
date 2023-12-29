@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '10'],
+                ['topic', ' - Convolutional Neural Network (CNN)'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p class="menu-title"><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>What is convolutional neural network (CNN)?</li>
+                            <li>How can we define a CNN?</li>
+                            <li>Typical CNN architectures</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_cnn">
+                    <section id="title_cnn">
+                        <h1 class="r-frame-text">Convolutional Neural Network (CNN)</h1>
+                    </section>
+
+                    <section id="cnn_history">
+                        <h1>Neural Nets in Computer Vision</h1>
+                        <ul>
+                            <li>One of the core domain in CS and AI</li>
+                            <dd class="like-li-2">Identify (classify) visual objects</dd>
+                            <li>NNs are the state-of-the-art solution techniques</li>
+                            <dd class="like-li-2">Natural representation of human vision's <span class="pink">reception field</span></dd>
+                            <dd class="like-li-2">Intuitive model for convolutional networks</dd>
+                        </ul>
+                        <img class="img-height-300" src="img/human_vision.png" alt="Human Vision System: https://msail.github.io/post/cnn_human_visual/fig4.png">
+                    </section>
+
+                    <section id="theoretical_solution">
+                        <h1>Theoretical Ideal Solution</h1>
+                        <img class="box-top-right img-height-500" src="img/fc.png" alt="Fully Connected Layers: https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/3_fully-connected-layer_0.jpg">
+                        <ul>
+                            <li>Normal NN with <span class="lime">fully connected</span> layers (each node is $\qquad\qquad\qquad\qquad$<br>
+                                connected to every single node in the next layer)</li>
+                            <dd class="like-li-2">Can learn (almost) any data model</dd>
+                            <dd class="like-li-2">If we don't need a connection $\to$ set its weight to 0</dd>
+                            <dd class="like-li-2">Should be able to identify "any" visual object</dd>
+                            <li><span class="pink">Issues</span>:</li>
+                            <span class="fragment">
+                                <dd class="like-li-2">Too many parameters to update</dd>
+                                <dd class="like-li-2">e.g. $100 \times 100$ picture in pixels <br>
+                                    1 hidden layer with 1,000 neurons <br>
+                                    $\implies$ 10 million parameters!<br>
+                                    $100 \times 100 \times 1,000 = 10,000,000$
+                                </dd>
+                            </span>
+                        </ul>
+                    </section>
+
+                    <section id="practical_solution" data-auto-animate>
+                        <h1 data-id="dh">Practical Solution</h1>
+                        <ul data-id="du">
+                            <li>Convolutional Layer</li>
+                            <dd class="like-li-2">Motivated by nature</dd>
+                            <dd class="like-li-2">Neurons in the first convolutional layer are not <br>
+                                connected to every single pixels in the input image, but <br>
+                                only to pixels in their <span class="lime">receptive fields</span></dd>
+                            <br>
+                            <li>The second convolutional layer: each neuron is connected only to neurons within a small rectangle of the first layer</li>
+                            <li>The next layer connects to the second convolutional layer in the same way, and so on...</li>
+                        </ul>
+                        <img data-id="dm" class="box-top-right" src="img/reception_field.png" alt="Reception Field: https://almablog-media.s3.ap-south-1.amazonaws.com/4_1_e55494e921.png" />
+                    </section>
+                </section>
+
+                <section id="chap_cnn_details">
+                    <section id="convolution" data-auto-animate>
+                        <h1 data-id="dh">Convolution Operation</h1>
+                        <img data-id="dm" class="img-height-500 img-width-250" src="img/convolution_ops.png" alt="Convolutional Operation: https://upload.wikimedia.org/wikipedia/commons/2/21/Comparison_convolution_correlation.svg">
+                        <ul data-id="du">
+                            <li>Convolution is very useful in <span class="blue">signal processing</span></li>
+                            <dd class="like-li-2">$(f * g)(t) := \int_{-\infty}^\infty f(\tau)g(t-\tau)d\tau$</dd><br>
+                            <li>For digital image, it's simplified as <span class="pink">weighted sum</span> <br>
+                                of pixel values</li>
+                            <li>Different convolution <span class="cyan">kernel</span> has different effects: <br>
+                                down-sample, up-sample, or keep the same size<br>
+                                smooth, sharpen, etc.</li>
+                            <li>Except <span class="purple">kernel size</span>, other factors will affect <br>
+                                the output as well including <span class="orange">padding, stride</span></li>
+                            <br>
+                        </ul>
+                    </section>
+
+                    <section id="convolution_kenel" data-auto-animate>
+                        <h1 data-id="dh">Convolution: Kernel</h1>
+                        <img class="img-height-250 img-width-450" src="img/convolution_number.gif" alt="Convolution Process: https://www.jie-tao.com/wp-content/uploads/2019/02/standard-Convlution-single-channel.gif">
+                        <img data-id="dm" class="img-height-250 img-width-650" src="img/convolution_rgb.gif" alt="Convolution RGB: https://www.jie-tao.com/wp-content/uploads/2019/02/stardard-convolution-multi-channel.gif"><br>
+                        <ul>
+                            <li><span class="cyan">Kernel/filter</span> works like a sliding-window (<span class="lime">weighted sum</span>)</li>
+                            <li>Same operation in each <span class="orange">channel</span> for colour image</li>
+                            <li><span class="pink">Padding</span>: add extra rows/columns around the image (extra 0)</li>
+                            <li><span class="skyblue">Stride</span>: step between adjacent convolution operations</li>
+                        </ul>
+                    </section>
+
+                    <section id="convolution_padding" data-auto-animate>
+                        <h1 data-id="dh">Convolution: Padding & Stride</h1>
+                        <ul>
+                            <li>Kernel size: $f$, padding size: $p$, stride size: $s$, input size: $i$, output size: $o$</li>
+                            <li>The equation: <span class="cyan">$o = \lfloor \frac{i+2\times p - f}{s} \rfloor + 1$</span></li>
+                        </ul><br>
+                        <img class="img-height-200" src="img/conv_kps0.gif" alt="Convolution Process: https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/no_padding_no_strides.gif">
+                        <img class="img-height-200" src="img/conv_kps1.gif" alt="Convolution Process: https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/no_padding_strides.gif">
+                        <img class="img-height-200" src="img/conv_kps2.gif" alt="Convolution Process: https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/same_padding_no_strides.gif">
+                        <img class="img-height-200" src="img/conv_kps3.gif" alt="Convolution Process: https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/padding_strides.gif">
+                        <ul>
+                            <li>(1) $f=3,p=0,s=1$; (2) $f=3,p=0,s=2$; <br>(3) $f=3,p=1,s=1$; (4) $f=3,p=1,s=2$;</li>
+                            <li>(1) $\lfloor \frac{4+2\times 0 - 3}{1} \rfloor + 1 = 2$; (2)$\lfloor \frac{5+2\times 0 - 3}{2} \rfloor + 1 = 2$;<br>
+                                (3) $\lfloor \frac{5+2\times 1 - 3}{1} \rfloor + 1 = 5$; (4)$\lfloor \frac{5+2\times 1 - 3}{2} \rfloor + 1 = 3$;
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="convolution_operands">
+                        <h1>Convolution: Filter, Padding, Stride</h1>
+                        <img src="img/stride.png" alt="Stirde: https://www.researchgate.net/profile/Chairi-Kiourt-2/publication/340500073/figure/fig3/AS:877888291233794@1586316287772/Example-of-a-square-image-convolution-with-zero-padding-While-training-a-CNN-there-are_W640.jpg" class="box-top-right img-width-500">
+                        <ul>
+                            <li>Filter: decides the reception field size of the$\qquad\qquad\qquad\qquad\qquad\quad\quad$<br>
+                                current pixel</li>
+                            <dd class="like-li-2">although it can be rectangle, usually <br>
+                                choose <span class="red">square</span> filter (e.g. 3x3, 5x5)</dd>
+                            <li>Padding: smaller than the kernel size</li>
+                            <li>Stride: large stride will significantly reduce <br>
+                                the output size, but cause information loss</li>
+                            <dd class="like-li-2">Sizes can be different along different directions for padding and strides</dd>
+                        </ul>
+                    </section>
+
+                    <section id="pooling" data-auto-animate>
+                        <h1 data-id="dh">Pooling as Convolution</h1>
+                        <img data-id="dm" src="img/pooling.png" alt="Pooling: https://www.researchgate.net/profile/Imran-Ali-12/publication/340812216/figure/fig4/AS:928590380138496@1598404607456/Pooling-layer-operation-oproaches-1-Pooling-layers-For-the-function-of-decreasing-the.png" class="box-top-right img-height-250 img-height-350">
+                        <ul data-id="du">
+                            <li>Pooling: similar to convolution</li>
+                            <li>Kernel, padding, strides are the same</li>
+                            <li>But there is <span class="red">NO WEIGHT!!!</span></li>
+                            <li>Aggregation function: <span class="lime">$max$</span> or <span class="blue">$mean$</span> </li>
+                            <dd class="like-li-2">max pooling, mean pooling</dd>
+                            <br>
+                            <li><span class="purple">Goal</span>: reduce the image size (reduce the $\qquad\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                complexity, computational load, memory)</li>
+                            <li>CNN can tolerate small image shifts (location invariance)</li>
+                        </ul>
+                    </section>
+
+                    <section id="feature_maps" data-auto-animate>
+                        <h1 data-id="dh">Feature Maps</h1>
+                        <img data-id="dm" src="img/feature_map.png" alt="Feature Maps: https://i.stack.imgur.com/ZgG1Z.png" class="box-top-right img-width-450">
+                        <ul data-id="du">
+                            <li>Multiple filters can be applied at each layer$\qquad\qquad\qquad\qquad\qquad\qquad$</li>
+                            <li>The convolution results can be considered as <br>
+                                filtered feature maps of the input image</li>
+                            <li>Stack 2D feature maps as layers on top of each<br>
+                                other $\implies$ 3D stacks</li>
+                            <li>During training CNN learns the most useful<br>
+                                features</li>
+                            <li>Combines them into more complex patterns</li>
+                        </ul>
+                    </section>
+
+                    <section id="layers">
+                        <h1>CNN Layers</h1>
+                        Layers are <span class="lime">building blocks</span> for create a CNN
+                        <ul>
+                            <li>Convolutional layer (CONV): where <span class="pink">convolution</span> operation happens</li>
+                            <li>Activation layer (ACT): apply a <span class="blue">nonlinear activation</span> function, usually RELU</li>
+                            <dd class="like-li-2">activation layers are <span class="orange">assumed</span> to be part of CNN and <span class="orange">often omitted</span> in the table/diagram to save spaces</dd>
+                            <li>Pooling (POOL): <span class="purple">reduces the size</span> of input (<span class="red">$max$</span> or <span class="red">$mean$</span>)</li>
+                            <li>Fully connected (FC): where each neuron is <span class="brown">fully connected</span> to all neurons in the previous layer</li>
+                        </ul>
+                    </section>
+
+                    <section id="layers_2">
+                        <h1>CNN Layers (2)</h1>
+                        <ul>
+                            <li>Batch normalisation (BN): <span class="pink">normalise</span> the activations of a given input before passing it into the next layer</li>
+                            <dd class="like-li-2">it helps to <span class="cyan">prevent overfitting</span> but <span class="purple">slows down</span> the training process</dd>
+                            <li>Dropout (DO): with probability $p$, <span class="yellow">randomly disconnect</span> inputs from the preceding layer to the next layer in the network architecture</li>
+                            <dd class="like-li-2"><span class="brown">reduce overfitting</span> by explicitly altering the network architecture at training time</dd>
+                        </ul>
+                        <span class="fragment">
+                            <span class="lightred">Typical CNN layers pattern:</span><br>
+                            <code>INPUT $\implies$ <span class="blue">$\big($(CONV + RELU)*N + POOL?$\big)$*M</span> $\implies$ <br>
+                                <span class="purple">(FC + RELU)*K $\implies$ FC</span> $\implies$ OUTPUT</code>
+                        </span>
+                    </section>
+
+                    <section id="parameters">
+                        <h1>Memory Requirement of CNN</h1>
+                        <ul>
+                            <li>Convolutional layers require a <span class="lime">huge amount of RAM</span>, especially during training</li>
+                            <dd class="like-li-2">because the backpropagation process requires <span class="pink">all the intermediate values</span> computed during the forward pass</dd>
+                            <span class="mediumtext">
+                                <li><span class="blue">Example</span>: only 1 convolutional layer with filter $5\times 5$, stride = 1 and padding = 2 (recall: $o = \lfloor \frac{i+2\times p - f}{s} \rfloor + 1$), with 200 feature maps</li>
+                                <li>Total parameters for conv-layer: </li>
+                                <dd class="like-li-2">$\qquad\qquad w_c = 5^2\times 3 \times 200 = 15,000$, $b_c = 200$, $P_c=w_c+b_c=15,200$ </dd>
+                                <dd class="like-li-2">If the image size is (150,100), that's 225 million float multiplications!<br>
+                                    $\qquad\qquad\qquad 150\times 100 \times 15,000 = 225,000,000$</dd>
+                            </span>
+                            <li>The parameters of the fully connected layer are with orders of magnitude more than this (usually tens of millions)</li>
+                        </ul>
+                    </section>
+
+                    <section id="oom">
+                        <h1>Memory Issue in CNN</h1>
+                        <ul>
+                            <li>Training may crash because of <span class="pink">out-of-memory (OOM)</span> error</li>
+                            <li>Reduce the <span class="blue">mini-batch size</span></li>
+                            <li>Reduce the dimensionality using <span class="green">large stride</span></li>
+                            <li>Reduce the <span class="orange">depth</span> of the network by removing some layers</li>
+                            <li>Use <span class="red">less filters</span> for some layers</li>
+                            <li>Use <span class="cyan">16-bit floats</span> instead of 32-bit (FP16 supports)</li>
+                            <li>Distribute the CNN across <span class="brown">multiple GPUs/devices</span></li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_cnn_example">
+                    <section id="cnn_example">
+                        <h1>CNN Example</h1>
+                        <ul>
+                            <li>A typical CNN architecture is like this:</li>
+                        </ul><br>
+                        <img class="r-stretch" src="img/cnn_example.png" alt="CNN Example: https://editor.analyticsvidhya.com/uploads/75059FC.png"><br>
+                        <ul>
+                            <li>Convolutional layer followed by pooling layer $\gets$ <span class="pink">may appear multiple times</span></li>
+                            <li>Fully connected layers as the last (several) layers before output</li>
+                        </ul>
+                    </section>
+
+                    <section id="deep_cnn">
+                        <h1>Deep CNN</h1>
+                        <img src="img/deep_cnn.png" alt="Deep CNN: https://www.researchgate.net/profile/Volkan-Kilic-5/publication/339256141/figure/fig1/AS:912755108368387@1594629184674/The-VGG16-deep-learning-architecture-18.ppm" class="img-height-350">
+                        <ul>
+                            <li>The more powerful the computer becomes, the deeper the CNN can be</li>
+                            <li>In practice, the adjacent blocks halving the size/doubling the features</li>
+                            <li>Output number equals to the number of categories (classes)</li>
+                        </ul>
+                    </section>
+
+                    <section id="famous_cnn_lenet-5">
+                        <h1>Famous CNN: LeNet-5</h1>
+                        <img class="r-stretch" src="img/lenet5.png" alt="LeNet-5: https://www.researchgate.net/publication/354960990/figure/fig1/AS:1075204092612608@1633360040273/Architecture-of-the-LeNet-5-showing-the-seven-layers-of-CNN-the-size-of-feature-maps.png">
+                        <ul>
+                            <li>Perhaps the most widely known CNN architecture (2C+3FC)</li>
+                            <li>Created by Yann LeCun in 1998 and widely used for handwritten digits recognition (MNIST dataset)</li>
+                        </ul>
+                    </section>
+
+                    <section id="alexnet">
+                        <h1>Famous CNN: AlexNet</h1>
+                        <img src="img/alexnet.png" alt="AlexNet: https://www.researchgate.net/profile/Donato-Cascio/publication/332497078/figure/fig1/AS:748994250670081@1555585553376/AlexNet-architecture-used-in-this-work-for-patterns-classification.png" class="r-stretch">
+                        <ul>
+                            <li>Developed by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton</li>
+                            <li>Won the 2012 ImageNet LargeScale Visual Recognition Challenge (ILSVRC) by a large margin</li>
+                            <dd class="like-li-2">achived <span class="lime">$17\%$</span> top-5 error rate while the second best achieved only <span class="blue">$26\%$</span></dd>
+                            <li>Quite similar to LeNet-5, only <span class="pink">much larger and deeper</span> $\implies$ 5C+3FC</li>
+                            <li>The <span class="orange">first to stack convolutional layers</span> <span class="purple">directly</span> on top of each other, instead of stacking a pooling layer on top of each convolutional layer</li>
+                        </ul>
+                    </section>
+
+                    <section id="lenet_alexnet_comparison">
+                        <h1>LeNet vs. AlexNet</h1>
+                        <img src="img/lenet_alexnet.png" alt="LeNet vs. AlexNet: https://upload.wikimedia.org/wikipedia/commons/c/cc/Comparison_image_neural_networks.svg" class="r-stretch">
+                    </section>
+
+                    <section id="googlenet">
+                        <h1>GoogLeNet</h1>
+                        <ul>
+                            <li>Developed by Christian Szegedy et al.</li>
+                            <li>Won the ILSVRC 2014 by pushing the top-5 error rate below <span class="lime">$7\%$</span></li>
+                            <li>Network was much deeper than previous CNNs</li>
+                            <li>Contains sub-networks called <span class="blue">inception modules</span> (inspired by Nolan's movie <italic>Inception, networks in networks) that <span class="pink">use parameters much more efficiently</span></italic>
+                            </li>
+                            <li>GoogLeNet actually has <span class="red">10 times fewer</span> parameters than AlexNet (roughly 6 million instead of 60 million)</li>
+                        </ul>
+                    </section>
+
+                    <section id="googlenet_structure">
+                        <h1>GoogLeNet Structure</h1>
+
+                        <span>
+                            <img style="position: absolute; left:0%; top:25%; height:400px;" src="img/inception.png" alt="Inception Module: https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.22.39_PM.png">$\qquad$
+                        </span>
+                        <div class="img-height-700">Inception Module and GooLeNet Structures
+                        </div>
+                        <img style="position: absolute;left:87%;top:11%;width:150px; border: 1px solid red;" src="img/googlenet.png" alt="GoogLeNet: https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.28.59_PM.png">
+                    </section>
+
+                    <section id="resnet">
+                        <h1>RESNET</h1>
+                        <ul>
+                            <li>Winner of ILSVRC 2015</li>
+                            <li>Developed by Kaiming He <italic>et, al.</italic>: RESidual Neural nETwork</li>
+                            <li>Delivered an astounding top-5 error rate under <span class="red">$3.6\%$</span></li>
+                            <li>Extremely deep CNN composed of <span class="purple">152 layers</span></li>
+                            <li>Key idea is to <span class="lime">skip connections</span> (also called <span class="blue">shortcut connections</span>): the signal feeding into a layer is also added to the output of a layer located a bit higher up the stack</li>
+                        </ul>
+                    </section>
+
+                    <section id="resnet_strcture">
+                        <h1>RESNET Structure</h1>
+                        <img class="r-stretch" src="img/resnet.jpg" alt="RESNET: https://www.researchgate.net/publication/334617454/figure/fig4/AS:941746762559544@1601541333794/ResNet-Architecture-For-conv-layers-filter-size-and-number-of-filters-are-mentioned_W640.jpg">
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>History of CNN</li>
+                            <li>CNN operations, layers</li>
+                            <li>Typical CNN architectures</li>
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>
