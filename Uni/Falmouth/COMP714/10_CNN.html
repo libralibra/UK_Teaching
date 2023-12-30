@@ -250,14 +250,17 @@
                     <section id="parameters">
                         <h1>Memory Requirement of CNN</h1>
                         <ul>
-                            <li>Convolutional layers require a <span class="lime">huge amount of RAM</span>, especially during training</li>
+                            <li>Convolutional layers require a <span class="lime">huge amount of RAM</span> to train</li>
                             <dd class="like-li-2">because the backpropagation process requires <span class="pink">all the intermediate values</span> computed during the forward pass</dd>
                             <span class="mediumtext">
-                                <li><span class="blue">Example</span>: only 1 convolutional layer with filter $5\times 5$, stride = 1 and padding = 2 (recall: $o = \lfloor \frac{i+2\times p - f}{s} \rfloor + 1$), with 200 feature maps</li>
-                                <li>Total parameters for conv-layer: </li>
-                                <dd class="like-li-2">$\qquad\qquad w_c = 5^2\times 3 \times 200 = 15,000$, $b_c = 200$, $P_c=w_c+b_c=15,200$ </dd>
+                                <li><span class="blue">Example</span>: only 1 convolutional layer with $5\times 5$ filter, stride = 1 and padding = 2 (recall: $o = \lfloor \frac{i+2\times p - f}{s} \rfloor + 1$), with 200 feature maps</li>
+                                <li>Total parameters for a <span class="orange">single convolution layer</span>: </li>
+                                <dd class="like-li-2">$\qquad w_c = 5^2\times \color{yellow}3 \color{white}\times 200 = \color{lime}15,000$, $b_c = 200$, $P_c = w_c+b_c = 15,200$ </dd>
                                 <dd class="like-li-2">If the image size is (150,100), that's 225 million float multiplications!<br>
-                                    $\qquad\qquad\qquad 150\times 100 \times 15,000 = 225,000,000$</dd>
+                                    $\qquad 150\times 100 \times \color{lime}15,000 \color{white}= 225,000,000$ <br>
+                                    $\qquad$32 bits float: $ 150\times 100 \times 200 \times \color{red}32 \color{white}\div 8 \div 1024 \div 1024 \approx \color{cyan}11.44 Mb/\bm{image}$<br>
+                                    $\qquad$100 instances = $1GB$ RAM (but 100 is far to less for a NN)
+                                </dd>
                             </span>
                             <li>The parameters of the fully connected layer are with orders of magnitude more than this (usually tens of millions)</li>
                         </ul>
@@ -277,6 +280,7 @@
                     </section>
                 </section>
 
+                <!-- reference: http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf -->
                 <section id="chap_cnn_example">
                     <section id="cnn_example">
                         <h1>CNN Example</h1>
@@ -301,7 +305,7 @@
                     </section>
 
                     <section id="famous_cnn_lenet-5">
-                        <h1>LeNet-5</h1>
+                        <h1>LeNet-5 (1998)</h1>
                         <img class="r-stretch" src="img/lenet5.png" alt="LeNet-5: https://www.researchgate.net/publication/354960990/figure/fig1/AS:1075204092612608@1633360040273/Architecture-of-the-LeNet-5-showing-the-seven-layers-of-CNN-the-size-of-feature-maps.png">
                         <ul>
                             <li>Perhaps the most widely known CNN architecture (2C+3FC)</li>
@@ -310,7 +314,7 @@
                     </section>
 
                     <section id="alexnet">
-                        <h1>AlexNet</h1>
+                        <h1>AlexNet (2012)</h1>
                         <img src="img/alexnet.png" alt="AlexNet: https://www.researchgate.net/profile/Donato-Cascio/publication/332497078/figure/fig1/AS:748994250670081@1555585553376/AlexNet-architecture-used-in-this-work-for-patterns-classification.png" class="r-stretch">
                         <ul>
                             <li>Developed by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton</li>
@@ -324,10 +328,11 @@
                     <section id="lenet_alexnet_comparison">
                         <h1>LeNet vs. AlexNet</h1>
                         <img src="img/lenet_alexnet.png" alt="LeNet vs. AlexNet: https://upload.wikimedia.org/wikipedia/commons/c/cc/Comparison_image_neural_networks.svg" class="r-stretch">
+                        <p>Trainable parameters: 60k vs. 60m</p>
                     </section>
 
                     <section id="googlenet">
-                        <h1>GoogLeNet</h1>
+                        <h1>GoogLeNet (2014)</h1>
                         <ul>
                             <li>Developed by Christian Szegedy et al.</li>
                             <li>Won the ILSVRC 2014 by pushing the top-5 error rate below <span class="lime">$7\%$</span></li>
@@ -335,6 +340,7 @@
                             <li>Contains sub-networks called <span class="blue">inception modules</span> (inspired by Nolan's movie <italic>Inception, networks in networks) that <span class="pink">use parameters much more efficiently</span></italic>
                             </li>
                             <li>GoogLeNet actually has <span class="red">10 times fewer</span> parameters than AlexNet (roughly 6 million instead of 60 million)</li>
+                            <dd class="like-li-2">* There's a <span class="brown">VGGNet</span> in the same year, but GoogLeNet achieved better results</dd>
                         </ul>
                     </section>
 
@@ -343,18 +349,18 @@
                         <span>
                             <img style="position: absolute; left:0%; top:25%; height:400px;" src="img/inception.png" alt="Inception Module: https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.22.39_PM.png">$\qquad$
                         </span>
-                        <div class="img-height-700">Inception Module and GooLeNet Structures
+                        <div class="img-height-600">Inception Module and GooLeNet Structures
                         </div>
                         <img style="position: absolute;left:87%;top:11%;width:150px; border: 1px solid red;" src="img/googlenet.png" alt="GoogLeNet: https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.28.59_PM.png">
                     </section>
 
                     <section id="resnet">
-                        <h1>RESNET</h1>
+                        <h1>RESNET (2015)</h1>
                         <ul>
                             <li>Winner of ILSVRC 2015</li>
                             <li>Developed by Kaiming He <italic>et, al.</italic>: RESidual Neural nETwork</li>
-                            <li>Delivered an astounding top-5 error rate under <span class="red">$3.57\%$</span></li>
-                            <li>Extremely deep CNN composed of <span class="purple">152 layers</span></li>
+                            <li>Delivered an astounding top-5 error rate under <span class="red">$3.57\%$</span> - better than human!</li>
+                            <li>Extremely deep CNN composed of <span class="purple">152 layers</span> - "ultra-deep"</li>
                             <dd class="like-li-2">it has other variants: 35, 50, 101 layers</dd>
                             <li>No dropout, no FC except the last 1,000 softmax for classification</li>
                             <li>Key idea is to <span class="lime">skip connections</span> (also called <span class="blue">shortcut connections</span>): the signal feeding into a layer is also added to the output of a layer located a bit higher up the stack</li>
@@ -379,6 +385,17 @@
                             <br><br>
                             <br>
                         </ul>
+                    </section>
+
+                    <!-- https://www.researchgate.net/publication/349455196/figure/fig9/AS:993169592303617@1613801491918/The-structure-of-dense-block-in-DenseNet-121-network.png -->
+                    <section id="densenet" data-background="img/dense_net.png">
+                        <h1><span class="black">DenseNet (2016)</span></h1>
+                        <div class="box-top-right">Connect layers to <span class="pink">all previous<br>
+                                layers</span> within dense blocks</div>
+                        <div class="box-bottom-left">Error signal can be easily<br>
+                            propagated to earlier layers</div>
+                        <div class="img-height-500" alt="DenseNet: https://www.researchgate.net/publication/349455196/figure/fig9/AS:993169592303617@1613801491918/The-structure-of-dense-block-in-DenseNet-121-network.png"></div>
+                        <img src="img/densenet.png" alt="DenseNet: https://editor.analyticsvidhya.com/uploads/254293.png" class="box-centre fragment r-frame-red" style="left:25%; top:35%;">
                     </section>
                 </section>
 

@@ -447,7 +447,7 @@ darkpurple {
     position: absolute !important;
     bottom: 20px !important;
     right: 0px !important;
-    background-color: #333;
+    background-color: rgb(25, 25, 25);
     padding: 5px !important;
 }
 
@@ -456,7 +456,7 @@ darkpurple {
     position: absolute !important;
     bottom: 20px !important;
     left: 0px !important;
-    background-color: #333;
+    background-color: rgb(25, 25, 25);
     padding: 5px !important;
 }
 
@@ -708,7 +708,7 @@ table thead {
 .img-enhance,
 .img-enhance-130,
 .img-contrast,
-.img-contrast-120 {
+.img-contrast-130 {
     filter: contrast(130%) !important;
 }
 
@@ -726,12 +726,22 @@ table thead {
     filter: brightness(250%) !important;
 }
 
-.img-darken {
+.img-darken,
+.img-darken-30 {
     filter: brightness(30%) !important;
+}
+
+.img-darken-90 {
+    filter: brightness(90%) !important;
 }
 
 .img-blur {
     filter: blur(5px) !important;
+}
+
+.img-sharpen {
+    mix-blend-mode: luminosity;
+    image-rendering: pixelated;
 }
 
 .img-shadow {
