@@ -355,21 +355,21 @@
                     </section>
 
                     <section id="resnet">
-                        <h1>RESNET (2015)</h1>
+                        <h1>ResNet (2015)</h1>
                         <ul>
                             <li>Winner of ILSVRC 2015</li>
                             <li>Developed by Kaiming He <italic>et, al.</italic>: RESidual Neural nETwork</li>
                             <li>Delivered an astounding top-5 error rate under <span class="red">$3.57\%$</span> - better than human!</li>
-                            <li>Extremely deep CNN composed of <span class="purple">152 layers</span> - "ultra-deep"</li>
+                            <li><span class="pink">Extremely deep</span> CNN composed of <span class="purple">152 layers</span> - "ultra-deep"</li>
                             <dd class="like-li-2">it has other variants: 35, 50, 101 layers</dd>
-                            <li>No dropout, no FC except the last 1,000 softmax for classification</li>
+                            <li><span class="blue">No dropout, no FC</span> except the last 1,000 softmax for classification</li>
                             <li>Key idea is to <span class="lime">skip connections</span> (also called <span class="blue">shortcut connections</span>): the signal feeding into a layer is also added to the output of a layer located a bit higher up the stack</li>
                         </ul>
                     </section>
 
                     <section id="resnet_strcture">
-                        <h1>RESNET Structure</h1>
-                        <img class="r-stretch" src="img/resnet.jpg" alt="RESNET: https://www.researchgate.net/publication/334617454/figure/fig4/AS:941746762559544@1601541333794/ResNet-Architecture-For-conv-layers-filter-size-and-number-of-filters-are-mentioned_W640.jpg">
+                        <h1>ResNet Structure</h1>
+                        <img class="r-stretch" src="img/resnet.jpg" alt="ResNet: https://www.researchgate.net/publication/334617454/figure/fig4/AS:941746762559544@1601541333794/ResNet-Architecture-For-conv-layers-filter-size-and-number-of-filters-are-mentioned_W640.jpg">
                     </section>
 
                     <section id="skip_connection">
@@ -397,6 +397,17 @@
                         <div class="img-height-500" alt="DenseNet: https://www.researchgate.net/publication/349455196/figure/fig9/AS:993169592303617@1613801491918/The-structure-of-dense-block-in-DenseNet-121-network.png"></div>
                         <img src="img/densenet.png" alt="DenseNet: https://editor.analyticsvidhya.com/uploads/254293.png" class="box-centre fragment r-frame-red" style="left:25%; top:35%;">
                     </section>
+
+                    <section id="autoencoder">
+                        <h1>Autoencoder</h1>
+                        <img src="img/autoencoder.png" alt="Autoencoder: https://www.educba.com/academy/wp-content/uploads/2019/09/Autoencoders-3.png" class="img-height-300">
+                        <ul>
+                            <li>It's a deep learning model composed of <span class="pink">two neural networks</span> - reversed orders</li>
+                            <li>Especially useful for <span class="lime">Neuro Linguistic Programming (NLP)</span> and <span class="blue">Computer Vision (CV)</span> tasks</li>
+                            <dd class="like-li-2">ChatGPT is a type of NLP models</dd>
+                            <li>Learn to represent data - towards <span class="red">generative model</span></li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="chap_summary">
@@ -418,7 +429,7 @@
                         <ul>
                             <li>History of CNN</li>
                             <li>CNN operations, layers: <code>CONV, ACT, POOL, FC, BN, DO</code></li>
-                            <li>Typical CNN architectures: <code>LeNet, AlexNet, GooLeNet, RESNET</code></li>
+                            <li>Typical CNN architectures: <code>LeNet, AlexNet, GooLeNet, ResNet, DenseNet, Autoencoder</code></li>
                         </ul>
                     </section>
 

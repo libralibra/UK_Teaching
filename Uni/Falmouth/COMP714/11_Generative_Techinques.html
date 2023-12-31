@@ -70,16 +70,122 @@
                     </section>
                 </section>
 
+                <section id="chap_generative">
+                    <section id="title_generative">
+                        <h1 class="r-frame-text">Generative Models</h1>
+                    </section>
+
+                    <section id="generative_vs_discriminative ">
+                        <h1>Generative vs. Discriminative</h1>
+                        <ul>
+                            <li>We've learnt NN, Deep NN, and CNN already</li>
+                            <li>A class of logistical models used for classification or regression - <span class="lime">discriminative models</span></li>
+                            <li>They can reveal <span class="blue">underlying hidden structure</span> of data</li>
+                            <li>More interesting question: can we find a model that can produce <span class="pink">same (or at least similar) distributions</span> as the training data?</li>
+                            <dd class="like-li-2">towards generative approach</dd>
+                        </ul>
+                    </section>
+
+                    <section id="example">
+                        <h1>Generative Example</h1>
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QiiSAvKJIHo?si=RES8daqqfefnxCKN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="r-stretch"></iframe>
+                        <p>Source: <a href="https://www.youtube.com/watch?v=QiiSAvKJIHo" target="_blank">https://www.youtube.com/watch?v=QiiSAvKJIHo</a></p>
+                    </section>
+
+                    <section id="generative_model">
+                        <h1>Generative Approach</h1>
+                        <p>The traditional approach is Maximum likelihood estimation (MLE)</p>
+                        <img src="img/generative_models.png" alt="Generative Model: https://miro.medium.com/v2/resize:fit:2344/1*d7Y6uVN4rX1dqeEUSCQWWw.png" class="r-stretch">
+                        <p class="tinytext">Figure from Ian Goodfellow, <span class="italic">Tutorial on Generative Adversarial Networks</span>, 2017</p>
+                    </section>
+
+                    <section id="why_gan">
+                        <h1>Why GAN?</h1>
+                        <ul>
+                            <li>Can make use of <span class="lime">latent information</span> while sample generation</li>
+                            <dd class="like-li-2">Latent information are those that cannot be directly observed</dd>
+                            <li><span class="pink">No Markov Chain</span> assumption - direct method</li>
+                            <li>Asymptotically consistent (<span class="blue">claims to recover true</span> distribution)</li>
+                            <li>Samples produced are <span class="orange">high-quality</span></li>
+                            <li>Learn to generate by playing a <span class="cyan">2-player game</span>!</li>
+                        </ul>
+                    </section>
+                </section>
+
                 <section id="chap_gan">
                     <section id="title_gan">
                         <h1 class="r-frame-text">Generative Adversarial Network (GAN)</h1>
                     </section>
 
-                    <section id="why_adversarial">
-                        <h1>Why Adversarial?</h1>
+                    <section id="gan">
+                        <h1>Generative Adversarial Network (GAN)</h1>
                         <ul>
-                            <li>https://msail.github.io/post/cnn_human_visual/</li>
-                            <li>No matter how neat CNN is in capturing visual information like the biological system, there are some outright flaws in it. One is the possibility of adversarial attacks, which involve hacking the CNN by slightly changing the pixel values of images in a way that is undetectable to a human eye but enough to fool the CNN to make faulty conclusions. An example is shown below, where the panda image is altered to be recognized as a gibbon by a CNN although there seems to be no difference to the human eye (Figure 6). This example shows how the CNN is perceiving ideas through meticulous attention to every single pixel in an image, which might not be the case with human visuals; for humans, perception likely happens through directly seeing the patterns and lines rather than individual pixels.</li>
+                            <li>What is GAN?</li>
+                            <dd class="like-li-2"><span class="lime">Generative</span>: it's a generative model that learns the <span class="brown">underlying distribution</span> from data</dd>
+                            <dd class="like-li-2"><span class="pink">Adversarial</span>: two <span class="red">competing</span> networks (adversaries) that try to beat each other</dd>
+                            <dd class="like-li-2"><span class="orange">Network</span>: it is a type of neural networks</dd>
+                            <br>
+                        </ul>
+
+                        $\fcolorbox{red}{dimgray}{\large Generator} \xLeftrightarrow{2-player\> game} \fcolorbox{cyan}{olive}{\large Discriminator}$
+                    </section>
+
+                    <section id="generator" data-auto-animate>
+                        <h1 data-id="dh">Generator</h1>
+                        <img data-id="dm" src="img/generator.png" alt="Generator: https://www.researchgate.net/publication/346673786/figure/fig7/AS:11431281176029725@1690003123449/The-schematic-diagram-of-deep-convolutional-generative-adversarial-network-DCGAN.png" class="img-height-350">
+                        <ul data-id="du">
+                            <li>Produces "<span class="red">fake</span>" data from random noises</li>
+                            <li>Learn to generate data <span class="blue">to "fool" the discriminator</span></li>
+                            <li>Gradually find the <span class="orange">latent variables</span> transformation to the domain space</li>
+                        </ul>
+                    </section>
+
+                    <section id="discriminator" data-auto-animate>
+                        <h1 data-id="dh">Discriminator</h1>
+                        <img data-id="dm" src="img/discriminator.png" alt="Discriminator: https://www.researchgate.net/publication/346673786/figure/fig7/AS:11431281176029725@1690003123449/The-schematic-diagram-of-deep-convolutional-generative-adversarial-network-DCGAN.png" class="img-height-350">
+                        <ul data-id="du">
+                            <li>Simply a <span class="pink">binary classifier</span> ((C)NN) - convolutional layers for image data</li>
+                            <li>The inputs are <span class="lime">real and fake</span> data generated by the generator</li>
+                            <li>Try to <span class="blue">distinguish</span> between "fake" and real data</li>
+                        </ul>
+                    </section>
+
+                    <section id="gan_network" data-auto-animate>
+                        <h1 data-id="dh">GAN = Generator + Discriminator</h1>
+                        <ul data-id="du">
+                            <li>GAN: 2-player competing game that combines generator and discriminator as one big network</li>
+                            <span data-id="dm" class="mediumtext">
+                                $$\begin{rcases}
+                                \boxed{Random \atop Noise} & \xRightarrow{\fcolorbox{red}{orange}{\color{black}Generator}} & Fake\> Data \\
+                                \boxed{Real \atop Dataset} & \xRightarrow{\>\>\>\> Load \>\>\>\>\>} & Real\> Data
+                                \end{rcases} \xRightarrow{\fcolorbox{red}{pink}{\color{black}Discriminator}}
+
+                                \begin{cases}
+                                \color{red}Fake \\
+                                \color{lime}Real
+                                \end{cases}$$
+                            </span>
+                            <li><span class="lime">Generator (G)</span>: turns noise into an imitation of the data; tries to trick the discriminator</li>
+                            <li><span class="pink">Discriminator (D)</span>: classifies the input; tries to identify which one is fake and which on is real</li>
+                            <li class="fragment"><span class="purple">Question</span>: how can we train this network?</li>
+                        </ul>
+
+                    </section>
+
+                    <section id="gan_train">
+                        <h1>Train a GAN</h1>
+                        <img src="img/gan.png" alt="GAN: https://miro.medium.com/v2/resize:fit:1200/1*i4HTOtqH4qt9zIZUN43GoA.png" class="box-top-right" style="width:480px;height:240px;">
+                        <ul>
+                            <li>2 Player Game: need train 2 neural networks</li>
+                            <li>Which network should we train first, G or D<span class="question"></span>$\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                <span class="fragment">- answer: D</span>
+                            </li>
+                            <li class="fragment">Why<span class="question"></span> <span class="fragment">- answer: data is ready!</span></li>
+                            <span class="fragment">
+                                <li>D is a binary classifier: real or fake</li>
+                                <li>Real data: the training set; Fake data: from generator</li>
+                                <li>Train the 2 network (almost) simultaneously!</li>
+                            </span>
                         </ul>
                     </section>
                 </section>
