@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title></title>
+
+        <!-- charset setting -->
+        <meta charset="utf-8">
+
+        <!-- meta data -->
+        <meta name="author" content="Dr Xu Zhang">
+        <meta name="generator" content="VS Code + Reveal.js + Markdown + Mermaid">
+
+        <!-- disable search engine robots -->
+        <meta name="robots" content="none">
+
+        <!-- viewport settings -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- all css files -->
+        <link rel="stylesheet" href="../../../assets/dist/css/master.css">
+        <!-- these 2 theme files have to be left here for enabling the them selection in menu -->
+        <link rel="stylesheet" href="../../../assets/dist/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../../../assets/plugin/highlight/monokai.css" id="theme">
+
+        <!-- define data but update later -->
+        <script>
+            const authorData = new Map([
+                ['course', 'Machine Learning'],
+                ['coursecode', 'COMP714'],
+                ['week', '11'],
+                ['topic', ' - Generative Models'],
+            ]);
+        </script>
+        <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
+    </head>
+
+    <body>
+        <div class="pdf_div">
+            <div class="pdf_link">
+                <a class="link_no_change roll" href="#" onclick="GeneratePDF();">
+                    <span data-title="⇩PDF">⇩PDF</span></a><br>
+                <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
+            </div>
+        </div>
+
+        <!-- main content of the slides -->
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="chap_1">
+                    <section id="title">
+                        <h1><span class="course"></span></h1>
+                        <h3><span class="coursecode orange"></span></h3>
+                        <p class="menu-title"><span class="week bigtext"></span><span class="topic bigtext"></span></p>
+                        <img src="../common/digitap2.png" alt="digital attendance reminder" class="r-stretch" />
+                        <p>
+                            <span class="fullname cyan"></span> <br>
+                            <span class="uni"></span> v. <span class="year"></span>
+                        </p>
+                    </section>
+
+                    <section id="overview">
+                        <h1>Overview</h1>
+                        <ul>
+                            <li>Generative vs. Discriminative Models</li>
+                            <li>Generative Adversarial Networks (GAN)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_generative">
+                    <section id="title_generative">
+                        <h1 class="r-frame-text">Generative Models</h1>
+                    </section>
+
+                    <section id="generative_vs_discriminative ">
+                        <h1>Generative vs. Discriminative</h1>
+                        <ul>
+                            <li>We've learnt NN, Deep NN, and CNN already</li>
+                            <li>A class of logistical models used for classification or regression - <span class="lime">discriminative models</span></li>
+                            <li>They can reveal <span class="blue">underlying hidden structure</span> of data</li>
+                            <li>More interesting question: can we find a model that can produce <span class="pink">same (or at least similar) distributions</span> as the training data?</li>
+                            <dd class="like-li-2">towards generative approach</dd>
+                        </ul>
+                    </section>
+
+                    <section id="applications">
+                        <h1>Generative Model Applications</h1>
+                        <ul>
+                            <li>Generate artificial data (text, faces, scenes, game worlds, etc.)</li>
+                            <li>ChatBots, virtual assistants (OpenAI ChatGPT, Baidu Ernie, Huawei Pangos, Alibaba Tonyi, etc.)</li>
+                            <li>Text to image "translation" (midjourney, stable diffusion, and others)</li>
+                            <li>MRI image reconstruction for medical diagnose</li>
+                            <li>Fake voice, fake video</li>
+                        </ul>
+                    </section>
+
+                    <section id="example">
+                        <h1>Generative Example</h1>
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QiiSAvKJIHo?si=RES8daqqfefnxCKN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="r-stretch"></iframe>
+                        <p>Source: <a href="https://www.youtube.com/watch?v=QiiSAvKJIHo" target="_blank">https://www.youtube.com/watch?v=QiiSAvKJIHo</a></p>
+                    </section>
+
+                    <section id="generative_model">
+                        <h1>Generative Approach</h1>
+                        <p>The traditional approach is Maximum likelihood estimation (MLE)</p>
+                        <img src="img/generative_models.png" alt="Generative Model: https://miro.medium.com/v2/resize:fit:2344/1*d7Y6uVN4rX1dqeEUSCQWWw.png" class="r-stretch">
+                        <p class="tinytext">Figure from Ian Goodfellow, <span class="italic">Tutorial on Generative Adversarial Networks</span>, 2017</p>
+                    </section>
+
+                    <section id="why_gan">
+                        <h1>Why GAN?</h1>
+                        <ul>
+                            <li>Can make use of <span class="lime">latent information</span> while sample generation</li>
+                            <dd class="like-li-2">Latent information are those that cannot be directly observed</dd>
+                            <li><span class="pink">No Markov Chain</span> assumption - direct method</li>
+                            <li>Asymptotically consistent (<span class="blue">claims to recover true</span> distribution)</li>
+                            <li>Samples produced are <span class="orange">high-quality</span></li>
+                            <li>Learn to generate by playing a <span class="cyan">2-player game</span>!</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_gan">
+                    <section id="title_gan">
+                        <h1 class="r-frame-text">Generative Adversarial Network (GAN)</h1>
+                    </section>
+
+                    <section id="gan">
+                        <h1>Generative Adversarial Network (GAN)</h1>
+                        <ul>
+                            <li>What is GAN?</li>
+                            <dd class="like-li-2"><span class="lime">Generative</span>: it's a generative model that learns the <span class="brown">underlying distribution</span> from data</dd>
+                            <dd class="like-li-2"><span class="pink">Adversarial</span>: two <span class="red">competing</span> networks (adversaries) that try to beat each other</dd>
+                            <dd class="like-li-2"><span class="orange">Network</span>: it is a type of neural networks</dd>
+                            <br>
+                        </ul>
+
+                        $\fcolorbox{red}{dimgray}{\large Generator} \xLeftrightarrow{2-player\> game} \fcolorbox{cyan}{olive}{\large Discriminator}$
+                    </section>
+
+                    <section id="generator" data-auto-animate>
+                        <h1 data-id="dh">Generator</h1>
+                        <img data-id="dm" src="img/generator.png" alt="Generator: https://www.researchgate.net/publication/346673786/figure/fig7/AS:11431281176029725@1690003123449/The-schematic-diagram-of-deep-convolutional-generative-adversarial-network-DCGAN.png" class="img-height-350">
+                        <ul data-id="du">
+                            <li>Produces "<span class="red">fake</span>" data from random noises</li>
+                            <li>Learn to generate data <span class="blue">to "fool" the discriminator</span></li>
+                            <li>Gradually find the <span class="orange">latent variables</span> transformation to the domain space</li>
+                        </ul>
+                    </section>
+
+                    <section id="discriminator" data-auto-animate>
+                        <h1 data-id="dh">Discriminator</h1>
+                        <img data-id="dm" src="img/discriminator.png" alt="Discriminator: https://www.researchgate.net/publication/346673786/figure/fig7/AS:11431281176029725@1690003123449/The-schematic-diagram-of-deep-convolutional-generative-adversarial-network-DCGAN.png" class="img-height-350">
+                        <ul data-id="du">
+                            <li>Simply a <span class="pink">binary classifier</span> ((C)NN) - convolutional layers for image data</li>
+                            <li>The inputs are <span class="lime">real and fake</span> data generated by the generator</li>
+                            <li>Try to <span class="blue">distinguish</span> between "fake" and real data</li>
+                        </ul>
+                    </section>
+
+                    <section id="gan_network" data-auto-animate>
+                        <h1 data-id="dh">GAN = Generator + Discriminator</h1>
+                        <ul data-id="du">
+                            <li>GAN: 2-player competing game that combines generator and discriminator as one big network</li>
+                            <span data-id="dm" class="mediumtext">
+                                $$\begin{rcases}
+                                \boxed{Random \atop Noise \color{cyan}(z)} & \xRightarrow{\fcolorbox{red}{orange}{\color{black}Generator (G)}} & Fake \atop Data \color{skyblue}(G(z)) \\
+                                \boxed{Real \atop Dataset} & \xRightarrow{\>\>\>\> Load \>\>\>\>\>} & Real \atop Data \color{mediumspringgreen}(x)
+                                \end{rcases} \xRightarrow{\fcolorbox{red}{pink}{\color{black}Discriminator (D)}}
+
+                                \begin{cases}
+                                Fake \atop \color{magenta}D(G(z)) \\
+                                \\
+                                Real \atop \color{chartreuse}D(x)
+                                \end{cases}$$
+                            </span>
+                            <li><span class="lime">Generator (G)</span>: turns noise into an imitation of the data; tries to trick the discriminator</li>
+                            <li><span class="pink">Discriminator (D)</span>: classifies the input; tries to identify which one is fake and which on is real</li>
+                            <li class="fragment"><span class="purple">Question</span>: how can we train this network?</li>
+                        </ul>
+
+                    </section>
+
+                    <section id="gan_train">
+                        <h1>Train a GAN</h1>
+                        <img src="img/gan.png" alt="GAN: https://miro.medium.com/v2/resize:fit:1200/1*i4HTOtqH4qt9zIZUN43GoA.png" class="box-top-right" style="width:480px;height:300px;">
+                        <ul>
+                            <li>2 Player Game: need train 2 neural networks</li>
+                            <br>
+                            <li>Which network should we train first, G or D<span class="question"></span>$\qquad\qquad\qquad\qquad\qquad\qquad$<br>
+                                <span class="fragment">- <span class="answer"></span> <span class="lime">Discriminator</span></span>
+                            </li>
+                            <br>
+                            <li class="fragment">Why<span class="question"></span> <span class="fragment">- <span class="answer"></span>: <span class="lime">target is known!</span></span></li>
+                            <span class="fragment">
+                                <dd class="like-li-2">D is a binary classifier: real or fake</dd>
+                                <dd class="like-li-2"><span class="blue">Real data</span>: the training set; <span class="purple">Fake data</span>: from generator</dd>
+                                <dd class="like-li-2">2 networks <span class="orange">learn to compete</span> against each other at the same time!</dd>
+                            </span>
+                        </ul>
+                    </section>
+
+                    <!-- math letters unicode: https://www.wikiwand.com/en/Mathematical_Alphanumeric_Symbols#Latin_letters -->
+                    <section id="gan_loss" data-auto-animate>
+                        <h1 data-id="dh">Loss of GAN</h1>
+                        <ul data-id="du">
+                            <li>Recall the Cross Entropy Loss Definition (<a href="https://pages.github.falmouth.ac.uk/Daniel-Zhang/UK_Teaching/Uni/Falmouth/COMP714/9_Neural_Nets.html#/cross_entropy" target="_blank">L9 - Neural Networks</a>) and <a href="#gan_network">GAN definition</a>:</li>
+                            <dd class="like-li-2">$\qquad \char"1d4db (\color{red}p \color{white},\color{lime}q\color{white}) = -[\color{red}p \color{white} \cdot log (\color{lime}q \color{white}) + (1-\color{red}p \color{white}) \cdot log (1- \color{lime}p \color{white})]$</dd>
+                            <span data-id="dm" class="smalltext">
+                                $$\begin{rcases}
+                                \boxed{Random \atop Noise \color{cyan}(z)} & \xRightarrow{\fcolorbox{red}{orange}{\color{black}Generator (G)}} & Fake \atop Data \color{skyblue}(G(z)) \\
+                                \boxed{Real \atop Dataset} & \xRightarrow{\>\>\>\> Load \>\>\>\>\>} & Real \atop Data \color{mediumspringgreen}(x)
+                                \end{rcases} \xRightarrow{\fcolorbox{red}{pink}{\color{black}Discriminator (D)}}
+
+                                \begin{cases}
+                                Fake \atop \color{magenta}D(G(z)) \\
+                                \\
+                                Real \atop \color{chartreuse}D(x)
+                                \end{cases}$$
+                            </span>
+                            <!-- Explanation:
+                            1. D(x) represents the probability that real data are correctly classified as real, D's success rate on real data
+                            2. log(1−D(G(z))) represents the probability that fake data are correctly classified as fake, D's success rate on fake data
+                            3. Loss_D = -E_p*log(D(x)) - E_z*log(1-D(G(z))) = -(E_p*log(D(x)) + E_z*log(1-D(G(z)))) according to cross entropy definition
+                            4. D wants the Loss_D to be minimised so (E_p*log(D(x)) + E_z*log(1-D(G(z)))) to be maximised, both parts are bigger should be better
+                            5. if G wants D to correctly classify fake data, the loss_G should be: - E_z*log(1-D(G(z)))
+                            6. but G actually wants D cannot correctly classify fake data, so (is reversed direction) Loss_G = E_z*log(1-D(G(z)))
+                            7. another way of thinking is that G and D are competitors, so G wants something different from D, so that if D wants to maximise (E_p*log(D(x)) - E_z*log(1-D(G(z)))) in step 4, then G wants to minimise (E_p*log(D(x)) + E_z*log(1-D(G(z))))
+                            7.1. but real data E_p has no impact on the generated fake data, so that E_p parts is 0 for Loss_G, then Loss_G = E_z*log(1-D(G(z)))
+                            8. remember that loss need to be minimised for all training process -->
+                            <li>Discriminator loss: <span class="mediumtext">$\char"1d4db_D = \color{lime}-[\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta} + \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)]$</span></li>
+                            <dd class="like-li-2">combines <span class="lime">D's output for real data</span> and <span class="purple">D's output for fake data</span></dd>
+                            <li>Generator loss (compete against D): <span class="mediumtext">$\char"1d4db_G = \color{red}-\char"1d4db_D = \color{magenta}\char"1d53c_{z \text{\textasciitilde} p_{z}} log\Big(1-D\big(G(z)\big)\Big) $</span><span class="question"></span></li>
+                            <dd class="like-li-2 fragment mediumtext">$\color{lime} \char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x)$ has no impact on G</dd>
+                        </ul>
+                    </section>
+
+                    <section id="gan_as_minmax_game" data-auto-animate>
+                        <h1 data-id="dh">GAN as A Minimax Game</h1>
+                        <ul data-id="du">
+                            <li>Discriminator loss: <span class="mediumtext">$\char"1d4db_D = \color{lime}-[\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta} + \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)]$</span></li>
+                            <li>Generator loss (compete against D): <span class="mediumtext">$\char"1d4db_G = \color{red}-\char"1d4db_D = \color{magenta}\char"1d53c_{z \text{\textasciitilde} p_{z}} log\Big(1-D\big(G(z)\big)\Big) $</span></li>
+                            <!-- 1. green part is D's success rate on real data
+                            2. purple part is D's success rate on fake data -->
+                            <li>Generator: try to fool the discriminator by generating real-looking data $\gets$ <span class="blue">minimising</span> D's success rate</li>
+                            <li>Discriminator: distinguish between real and fake data $\gets$ <span class="red">maximising</span> D's success rate</li>
+                            <li>This yields a <span class="cyan">minimax game</span> objective function: </li>
+                            <li class="mediumtext">$V(G,D) = \underset{G}{min}\> \underset{D}{max} [\color{lime}\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta}+ \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)\color{white}]$</li>
+                            <li>Nash equilibrium: $\frac{\partial \char"1d4db_D}{\partial D(x)}=0 \implies D^*(x) = \frac{p_{data}(x)}{p_{data}(x)+p_{generator}(x)} \\
+                                \qquad\qquad\qquad\qquad \implies \forall x,\> \color{lime} p_{data}(x) = \color{magenta} p_{generator}(x)$</li>
+                        </ul>
+                    </section>
+
+                    <section id="gan_dilemma" data-auto-animate>
+                        <h1 data-id="dh">GAN Dilemma</h1>
+                        <ul data-id="du">
+                            <li>As a minimax game:</li>
+                            <dd class="like-li-2">What if the <span class="pink">discriminator behaves badly</span> <span class="question"></span></dd>
+                            <dd class="like-li-3 fragment">the <span class="lime">generator cannot get accurate feedback</span> and the loss cannot represent the reality</dd>
+                            <dd class="like-li-2">What if the <span class="cyan">discriminator does a good job</span> <span class="question"></span></dd>
+                            <dd class="like-li-3 fragment">the gradient of of loss function <span class="blue">drops down to close to zero</span> and learning becomes <span class="orange">super slow or even jammed</span> - gradient vanishing problem</dd>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_practice">
+                    <section id="gan_pitfall" data-auto-animate>
+                        <h1 data-id="dh">GAN in Practice</h1>
+                        <img src="img/new_gloss.png" alt="GAN loss: https://arxiv.org/pdf/1701.00160.pdf" class="box-top-right" style="width: 450px; height:350px;">
+                        <ul data-id="du">
+                            <li>Discriminator: <br>
+                                <span class="mediumtext">$\underset{D}{max}\> \color{lime} [\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta} + \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)]$</span>
+                            </li>
+                            <li>Generator: <span class="mediumtext">$\underset{G}{min}\> \color{magenta}\char"1d53c_{z \text{\textasciitilde} p_{z}} log\Big(1-D\big(G(z)\big)\Big) $</span></li>
+                            <li>In practice, directly optimise this<br>
+                                generator objective does't work well</li>
+                            <li>Use a different objective function for generator</li>
+                            <!-- 1. D(x) means success rate to classify x as real -->
+
+                            <li>Heuristic objective: $\underset{G}{max}\> \color{skyblue}\char"1d53c_{z \text{\textasciitilde} p_{z}} log D\big(G(z)\big) $</li>
+                            <li><span class="idea">The idea</span>: instead of <span class="purple">minimising</span> the likelihood of discriminator <span class="purple">being correct</span>, now <span class="lime">maximising</span> the likelihood of discriminator <span class="lime">being wrong</span></li>
+                            <li>Not theoretical but heuristic solution $\to$ doesn't change the "objective" of <span class="pink">fooling discriminator</span></li>
+                        </ul>
+                    </section>
+
+                    <section id="the_algorithm">
+                        <h1>GAN Training Algorithm</h1>
+                        <pre><code class="pascal" data-line-numbers="|2-6|7-8">for number of training iterations do 
+    for k steps do ('someone find k=1 is more stable while others use k>1')
+        sample mini-batch of m noise samples {z1,z2,...,zm} from noise p_g(z)
+        sample mini-batch of m examples {x1,x2,...,xm} from real data p_d(x)
+        update the discriminator by ascending the stochastic gradient of 'V(G,D)'
+    end for 
+    sample mini-batch of m noise samples {z1,z2,...,zm} from noise p_g(z)
+    update the generator by ascending the stochastic gradient of heuristic objective
+end for</code></pre>
+                        <ul>
+                            <li>Train discriminator for some steps, then generator</li>
+                            <li>Stop training at some points</li>
+                            <li>The generator is ready to produce "real-like" data</li>
+                        </ul>
+                    </section>
+
+                    <section id="hard_train">
+                        <h1>GAN is Hard to Train</h1>
+                        <ul>
+                            <li>Mode collapse: generator keeps generating similar data - so nothing to learn</li>
+                            <li>Vanishing/Exploding gradients from discriminator to generator</li>
+                            <li>Two learning models need to have balance to achieve stability</li>
+                            <li>Maintain trade-off of generating <span class="lime">more accurate</span> vs <span class="pink">high coverage</span> sample</li>
+                            <li>GANs do not naturally have a metric for convergence</li>
+                            <li>Ideally, all losses go to $\approx 0.69 = -log \frac{1}{2}$ <span class="info"></span></li>
+                            <span class="fragment">$$\begin{align*}
+                                \char"1d4db (\color{red}p \color{white},\color{lime}q\color{white}) &= -[\color{red}p \color{white} \cdot log (\color{lime}q \color{white}) + (1-\color{red}p \color{white}) \cdot log (1- \color{lime}p \color{white})] \\
+                                &= -(\frac{1}{2} log \frac{1}{2} + \frac{1}{2} log \frac{1}{2}) \\
+                                &= -log \frac{1}{2} \approx 0.69
+                                \end{align*}$$</span>
+                        </ul>
+                    </section>
+
+                    <section id="cgan">
+                        <h1>Conditional GAN (CGAN)</h1>
+                        <img src="img/cgan.png" alt="CGAN: https://www.researchgate.net/publication/345979594/figure/fig1/AS:1007422965571584@1617199760152/The-architecture-of-CGAN_W640.jpg">
+                        <ul>
+                            <li>It's still a <span class="lime">GAN</span></li>
+                            <li>Use the <span class="pink">real label as an extra input</span> to generator</li>
+                            <li>Trained generator can produce real-like data according to the label </li>
+                            <li><span class="purple">Multi-class</span> discriminator can be used</li>
+                            <li>* Others like ACGAN, DCGAN, InfoGAN, etc.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="chap_summary">
+                    <section id="summary">
+                        <h1>Summary</h1>
+                        <ul>
+                            <li>GAN is an active area of research</li>
+                            <li>GAN architecture is flexible to support variety of learning problems</li>
+                            <li>GAN does not guarantee to converge</li>
+                            <li>Needs a lot of work in theoretic foundation of network</li>
+                            <li>Evaluation of GAN is still an open research</li>
+                            <!-- <li><a href="https://www.pcgbook.com/" target="_blank">Free PCG Book</a></li> -->
+                        </ul>
+                    </section>
+
+                    <section id="questions">
+                        <h2><span class="bold purple">Questions?</span></h2>
+                        <img src="../common/questions.PNG" class="r-stretch" alt="question image"><br>
+                        <h5>Email: <a class="emaillink"></a></h5>
+                        <span class="office cyan"></span>
+                        </h6>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- header footer div -->
+        <div id="header">
+            <!-- <div id="header-left">HEADER-LEFT</div> -->
+            <!-- <div id="header-right">HEADER-RIGHT</div> -->
+            <div class="footer-left"><a href="http://www.falmouth.ac.uk" target="_blank"><img class="img-width-100 img-round-corner-10 img-zoom-15 fix-bottom-left" src="../common/logo.png" title="visit Falmouth University"></a></div>
+            <!-- <div id="footer-right">FOOTER-RIGHT</div> -->
+        </div>
+
+        <!-- include all js files and settings -->
+        <script id="all_js_files" src="../../../assets/dist/js/include.js"></script>
+
+    </body>
+
+</html>
