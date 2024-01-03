@@ -78,6 +78,9 @@ If any of the software or libraries are not installed, please follow the instruc
     , which will initiate the jupyter server and automatically open a browser to the current working folder. 
    
    2. Run the notebook directly within Visual Studio Code, utilising the Jupyter extension that supports notebook editing and previewing.
+   
+5. Google has an on-line version of notebook environment called [Colab](https://colab.research.google.com/), Google Colab has GPU and TPU support in a Jupyter environment, in which you can create new or upload your existing notebook to run on the cloud. 
+You should be able to get $300 of Google Cloud Credits here: https://cloud.google.com/free/
 
 # JupyterLab Notebook
 [Top](#top)
