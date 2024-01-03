@@ -2,6 +2,7 @@
 // latex cheat sheet using $..$ or $$...$$: https://alozano.clas.uconn.edu/wp-content/uploads/sites/490/2020/08/latexcheatsheet.pdf
 // Katex plugin symbols: https://katex.org/docs/supported.html
 // html unicode: https://www.w3schools.com/charsets/ref_emoji_hands.asp
+// Emmet cheat sheet: https://docs.emmet.io/cheat-sheet/
 
 // common data
 authorData.set('email', 'Daniel.Zhang@falmouth.ac.uk');

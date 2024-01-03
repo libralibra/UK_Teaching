@@ -259,10 +259,11 @@ print(np.sqrt(x))</code></pre>
 
                     <section id="curve_fitting">
                         <h1>Curve Fitting using <code>SciPy</code></h1>
-                        <pre><code class="python smalltext" data-line-numbers="">from scipy import optimize
+                        <pre><code class="python normal-line-height-12 img-height-500" data-line-numbers="">from scipy import optimize
 import matplotlib.pyplot as plt
 x_data = np.linspace(-5, 5, num=50)
-y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
+y_data = 2.9 * np.sin(1.5 * x_data) + 
+         np.random.normal(size=50)
 
 fig, ax = plt.subplots(dpi=153)
 
@@ -279,7 +280,7 @@ plt.show()</code></pre>
 
                     <section id="interpolation">
                         <h1>Interpolation</h1>
-                        <pre><code class="python smalltext" data-line-numbers="">import matplotlib.pyplot as plt
+                        <pre><code class="python normal-line-height-12 img-height-500" data-line-numbers="">import matplotlib.pyplot as plt
 measured_time = np.linspace(0, 1, 10)
 noise = (np.random.random(10)*2 - 1) * 1e-1
 measures = np.sin(2 * np.pi * measured_time) + noise
@@ -298,7 +299,7 @@ ax.plot(interpolation_time, linear_results, c='r', label='linear results')
 ax.plot(interpolation_time, cubic_results, c='g', label='cubic results')
 ax.legend()
 plt.show()</code>
-                        <img src="img/interpolation.png" alt="SciPy Interpolation" class="img-width-500 box-bottom-right fragment"></pre>
+                        <img src="img/interpolation.png" alt="SciPy Interpolation" class="box-top-right fragment" style="left:58%;width:500px;"></pre>
                     </section>
 
                     <section id="scipy_reading">
@@ -507,6 +508,21 @@ print(df.to_string())</code></pre>
                             <li>has <code class="brown">TorchScript</code> for model serialisation and deployment</li>
                         </ul>
                         <p class="like-li text-left"><a href="https://pytorch.org/tutorials/" target="_blank">PyTorch Tutorial</a></p>
+                    </section>
+
+                    <section id="cuda">
+                        <h1>CUDA</h1>
+                        <img src="img/cuda.png" alt="CUDA: https://upload.wikimedia.org/wikipedia/en/b/b9/Nvidia_CUDA_Logo.jpg" class="img-width-250 box-top-right">
+                        <ul>
+                            <li>CUDA (Compute Unified Device Architecture), the <span class="lime">parallel <br>
+                                    computing platform</span> and programming model from NVIDIA</li>
+                            <li>Enables developers to harness the computational power of <br>
+                                NVIDIA <span class="pink">GPUs</span> for general-purpose processing</li>
+                            <li><span class="orange">Significantly accelerates computation</span> by dividing tasks into smaller threads that can be executed concurrently on the GPU</li>
+                            <li><span class="red">Massive parallelism</span> with various programming languages bindings including C, C++, Fortran, and Python</li>
+                            <li><span class="cyan">Widely applied to</span> scientific simulations, deep learning, computer vision, data analytics, financial modelling, and more</li>
+                            <li>A <span class="blue">vast CUDA ecosystem</span> with community support, forums, and resources like CUDA libraries (cuDNN, cuBLAS) and frameworks (TensorFlow, PyTorch)</li>
+                        </ul>
                     </section>
                 </section>
 

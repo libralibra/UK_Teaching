@@ -268,7 +268,7 @@ section.has-light-background h6 {
 .reveal blockquote {
     display: block;
     position: relative;
-    width: 70%;
+    width: 90%;
     margin: var(--r-block-margin) auto;
     padding: 5px;
     font-style: italic;

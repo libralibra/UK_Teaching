@@ -30,10 +30,12 @@
             const authorData = new Map([
                 ['course', 'Machine Learning'],
                 ['coursecode', 'COMP714'],
-                ['week', '11'],
-                ['topic', ' - Generative Models'],
+                ['week', '12'],
+                ['topic', ' - Procedural Content Generation (PCG)'],
+                ['reference', 'http://pcg.wikidot.com/']
             ]);
         </script>
+
         <script id="header_pdf_func" src="../../../assets/dist/js/header.js"></script>
     </head>
 
@@ -45,6 +47,8 @@
                 <span class="yellow" id="time_placeholder" title="Click to show the python console">00:00</span>
             </div>
         </div>
+
+        <!-- reference: http://pcg.wikidot.com/ -->
 
         <!-- main content of the slides -->
         <div class="reveal">
@@ -65,286 +69,389 @@
                     <section id="overview">
                         <h1>Overview</h1>
                         <ul>
-                            <li>Generative vs. Discriminative Models</li>
-                            <li>Generative Adversarial Networks (GAN)</li>
+                            <li>Introduce the history of PCG</li>
+                            <li>Explain what PCG is and show some examples</li>
+                            <li>Discuss the algorithms used in practice for PCG</li>
                         </ul>
                     </section>
                 </section>
 
-                <section id="chap_generative">
-                    <section id="title_generative">
-                        <h1 class="r-frame-text">Generative Models</h1>
+                <section id="chap_pcg_history">
+                    <section id="title_pcg_history">
+                        <h1 class="r-frame-text">What is PCG?</h1>
                     </section>
 
-                    <section id="generative_vs_discriminative ">
-                        <h1>Generative vs. Discriminative</h1>
+                    <section id="what_is_pcg">
+                        <h1>What is PCG?</h1>
                         <ul>
-                            <li>We've learnt NN, Deep NN, and CNN already</li>
-                            <li>A class of logistical models used for classification or regression - <span class="lime">discriminative models</span></li>
-                            <li>They can reveal <span class="blue">underlying hidden structure</span> of data</li>
-                            <li>More interesting question: can we find a model that can produce <span class="pink">same (or at least similar) distributions</span> as the training data?</li>
-                            <dd class="like-li-2">towards generative approach</dd>
+                            <li><span class="lime">Procedure</span>: using algorithms/rules/computers to ...</li>
+                            <li><span class="pink">Content</span>: stuff (levels, assets, music, movie, pictures, etc.)</li>
+                            <li><span class="blue">Generation</span>: making stuff</li>
+                            <blockquote class="orange fragment">PCG refers to creating game content automatically, through algorithmic means.<br>
+                                $\qquad\qquad\qquad\qquad \text{---}\text{---}$ Togelius, Yannakakis, Stanley, Browne
+                            </blockquote>
+                            <blockquote class="skyblue fragment">PCG should ensure that from a few parameters, a large number of possible types of content can be generated.<br>
+                                $\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad \text{---}\text{---}$ Doull
+                            </blockquote>
                         </ul>
                     </section>
 
-                    <section id="applications">
-                        <h1>Generative Model Applications</h1>
+                    <section id="why_pcg">
+                        <h1>Why PCG?</h1>
                         <ul>
-                            <li>Generate artificial data (text, faces, scenes, game worlds, etc.)</li>
-                            <li>ChatBots, virtual assistants (OpenAI ChatGPT, Baidu Ernie, Huawei Pangos, Alibaba Tonyi, etc.)</li>
-                            <li>Text to image "translation" (midjourney, stable diffusion, and others)</li>
-                            <li>MRI image reconstruction for medical diagnose</li>
-                            <li>Fake voice, fake video</li>
+                            <blockquote>PCG is a family of techniques, algorithms, and procedures used for generating contents in an <span class="lime">automated way rather than manually</span>. </blockquote>
+
+                            <li>PCG is a way to <span class="cyan">overcome the limited human imagination</span></li>
+                            <li>Has been used in lots of morden (and old school) games</li>
+                            <li>Helps designer at design phase</li>
+                            <li>Generates contents at runtime</li>
                         </ul>
                     </section>
 
-                    <section id="example">
-                        <h1>Generative Example</h1>
-                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QiiSAvKJIHo?si=RES8daqqfefnxCKN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="r-stretch"></iframe>
-                        <p>Source: <a href="https://www.youtube.com/watch?v=QiiSAvKJIHo" target="_blank">https://www.youtube.com/watch?v=QiiSAvKJIHo</a></p>
-                    </section>
-
-                    <section id="generative_model">
-                        <h1>Generative Approach</h1>
-                        <p>The traditional approach is Maximum likelihood estimation (MLE)</p>
-                        <img src="img/generative_models.png" alt="Generative Model: https://miro.medium.com/v2/resize:fit:2344/1*d7Y6uVN4rX1dqeEUSCQWWw.png" class="r-stretch">
-                        <p class="tinytext">Figure from Ian Goodfellow, <span class="italic">Tutorial on Generative Adversarial Networks</span>, 2017</p>
-                    </section>
-
-                    <section id="why_gan">
-                        <h1>Why GAN?</h1>
+                    <section id="pcg_benifit">
+                        <h1>Why PCG? (2)</h1>
                         <ul>
-                            <li>Can make use of <span class="lime">latent information</span> while sample generation</li>
-                            <dd class="like-li-2">Latent information are those that cannot be directly observed</dd>
-                            <li><span class="pink">No Markov Chain</span> assumption - direct method</li>
-                            <li>Asymptotically consistent (<span class="blue">claims to recover true</span> distribution)</li>
-                            <li>Samples produced are <span class="orange">high-quality</span></li>
-                            <li>Learn to generate by playing a <span class="cyan">2-player game</span>!</li>
+                            <li>Historically for <span class="lime">saving spaces</span></li>
+                            <dd class="like-li-2">PCG was born to <span class="pink">compress data</span></dd>
+                            <dd class="like-li-2">No space to store pre-made artworks and data</dd>
+                            <li>Nowadays: </li>
+                            <dd class="like-li-2">Reduce cost</dd>
+                            <dd class="like-li-2">Increase playability</dd>
+                            <dd class="like-li-2">Some games relies on unpredictable content as part of the design</dd>
                         </ul>
                     </section>
-                </section>
 
-                <section id="chap_gan">
-                    <section id="title_gan">
-                        <h1 class="r-frame-text">Generative Adversarial Network (GAN)</h1>
-                    </section>
-
-                    <section id="gan">
-                        <h1>Generative Adversarial Network (GAN)</h1>
+                    <section id="not_random">
+                        <h1>PCG $\not =$ Randomness</h1>
                         <ul>
-                            <li>What is GAN?</li>
-                            <dd class="like-li-2"><span class="lime">Generative</span>: it's a generative model that learns the <span class="brown">underlying distribution</span> from data</dd>
-                            <dd class="like-li-2"><span class="pink">Adversarial</span>: two <span class="red">competing</span> networks (adversaries) that try to beat each other</dd>
-                            <dd class="like-li-2"><span class="orange">Network</span>: it is a type of neural networks</dd>
-                            <br>
+                            <li>Although <span class="blue">some</span> (most) PCG methods use randomness</li>
+                            <li>PCG is <span class="red">NOT</span> randomness</li>
+                            <li>There are PCG methods that don't use randomness (fractals, simulations)</li>
+                            <li>There are random processes that wouldn't be PCG (shuffling a deck in card game)</li>
+                            <li>Randomness in PCG is generally <span class="orange">constrained</span> to produce content</li>
                         </ul>
-
-                        $\fcolorbox{red}{dimgray}{\large Generator} \xLeftrightarrow{2-player\> game} \fcolorbox{cyan}{olive}{\large Discriminator}$
                     </section>
 
-                    <section id="generator" data-auto-animate>
-                        <h1 data-id="dh">Generator</h1>
-                        <img data-id="dm" src="img/generator.png" alt="Generator: https://www.researchgate.net/publication/346673786/figure/fig7/AS:11431281176029725@1690003123449/The-schematic-diagram-of-deep-convolutional-generative-adversarial-network-DCGAN.png" class="img-height-350">
+                    <!-- https://www.slideshare.net/DavideAversa/introduction-to-procedural-contents-generation -->
+                    <section id="akalabeth" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (1)</h1>
                         <ul data-id="du">
-                            <li>Produces "<span class="red">fake</span>" data from random noises</li>
-                            <li>Learn to generate data <span class="blue">to "fool" the discriminator</span></li>
-                            <li>Gradually find the <span class="orange">latent variables</span> transformation to the domain space</li>
+                            <li><span class="lime">1979</span>: <span class="pink">Akalabeth: World of Doom</span> is (maybe) the first game to use a seed to generate the game world</li>
                         </ul>
+                        <img data-id="dm" class="r-stretch" src="img/akalabeth.png" alt="Akalabeth: https://upload.wikimedia.org/wikipedia/en/4/4e/Akalabeth.jpg">
                     </section>
 
-                    <section id="discriminator" data-auto-animate>
-                        <h1 data-id="dh">Discriminator</h1>
-                        <img data-id="dm" src="img/discriminator.png" alt="Discriminator: https://www.researchgate.net/publication/346673786/figure/fig7/AS:11431281176029725@1690003123449/The-schematic-diagram-of-deep-convolutional-generative-adversarial-network-DCGAN.png" class="img-height-350">
+                    <section id="rogue" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (2)</h1>
                         <ul data-id="du">
-                            <li>Simply a <span class="pink">binary classifier</span> ((C)NN) - convolutional layers for image data</li>
-                            <li>The inputs are <span class="lime">real and fake</span> data generated by the generator</li>
-                            <li>Try to <span class="blue">distinguish</span> between "fake" and real data</li>
+                            <li><span class="lime">1980</span>: <span class="pink">Rogue</span>, the real ancestor of the rogue-like games used PCG to create a fully replayable game experience</li>
+                            <li>All the rogue-like games from then are one of the main game genres to use PCG in modern video games</li>
                         </ul>
+                        <img data-id="dm" class="r-stretch" src="img/rogue.png" alt="PCG generated Rogue scene: https://upload.wikimedia.org/wikipedia/commons/0/0c/Rogue_Screenshot.png">
+                        <p>A PCG generated game world in the 1980 version of Rogue</p>
                     </section>
 
-                    <section id="gan_network" data-auto-animate>
-                        <h1 data-id="dh">GAN = Generator + Discriminator</h1>
+                    <section id="sentinel" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (3)</h1>
                         <ul data-id="du">
-                            <li>GAN: 2-player competing game that combines generator and discriminator as one big network</li>
-                            <span data-id="dm" class="mediumtext">
-                                $$\begin{rcases}
-                                \boxed{Random \atop Noise \color{cyan}(z)} & \xRightarrow{\fcolorbox{red}{orange}{\color{black}Generator (G)}} & Fake \atop Data \color{skyblue}(G(z)) \\
-                                \boxed{Real \atop Dataset} & \xRightarrow{\>\>\>\> Load \>\>\>\>\>} & Real \atop Data \color{mediumspringgreen}(x)
-                                \end{rcases} \xRightarrow{\fcolorbox{red}{pink}{\color{black}Discriminator (D)}}
-
-                                \begin{cases}
-                                Fake \atop \color{magenta}D(G(z)) \\
-                                \\
-                                Real \atop \color{chartreuse}D(x)
-                                \end{cases}$$
-                            </span>
-                            <li><span class="lime">Generator (G)</span>: turns noise into an imitation of the data; tries to trick the discriminator</li>
-                            <li><span class="pink">Discriminator (D)</span>: classifies the input; tries to identify which one is fake and which on is real</li>
-                            <li class="fragment"><span class="purple">Question</span>: how can we train this network?</li>
+                            <li><span class="lime">1985</span>: <span class="pink">The Sentinel</span> has 10,000 different level stored in only 48-64 kilobytes</li>
                         </ul>
-
+                        <img data-id="dm" class="r-stretch" src="img/the_sentinel.png" alt="The Sentinel: https://upload.wikimedia.org/wikipedia/en/3/35/The_Sentinel_%28video_game%29_Atari_ST_screenshot.png">
                     </section>
 
-                    <section id="gan_train">
-                        <h1>Train a GAN</h1>
-                        <img src="img/gan.png" alt="GAN: https://miro.medium.com/v2/resize:fit:1200/1*i4HTOtqH4qt9zIZUN43GoA.png" class="box-top-right" style="width:480px;height:300px;">
-                        <ul>
-                            <li>2 Player Game: need train 2 neural networks</li>
-                            <br>
-                            <li>Which network should we train first, G or D<span class="question"></span>$\qquad\qquad\qquad\qquad\qquad\qquad$<br>
-                                <span class="fragment">- <span class="answer"></span> <span class="lime">Discriminator</span></span>
-                            </li>
-                            <br>
-                            <li class="fragment">Why<span class="question"></span> <span class="fragment">- <span class="answer"></span>: <span class="lime">target is known!</span></span></li>
+                    <section id="elite" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (4)</h1>
+                        <ul data-id="du">
+                            <li><span class="lime">1985</span>: <span class="pink">Elite</span> used PCG to generated an universe with 8 galaxies, each has 256 solar systems. Each solar system has from 1 to 12 planets, each planet has a space station in its orbit, a proper name, a personal terrain, prices of commodities, and local details.</li>
+                            <li>Everything has been contained in a 32Kb home PC, both code and contents.</li>
+                        </ul>
+                        <img data-id="dm" class="r-stretch" src="img/elite.png" alt="Elite: https://upload.wikimedia.org/wikipedia/en/8/83/ZXSpectrum_elite.gif">
+                        <div class="fragment box-centre gray-bg text-left" style="left:15%;top:50%;">
+                            <p class="like-li">The original algorithm is open source and can be found:<br>
+                                <a href="http://www.iancgbell.clara.net/elite/text" target="_blank">http://www.iancgbell.clara.net/elite/text/</a>
+                            </p>
+                            <p class="like-li">A detailed explanation of the algorithm: <br>
+                                <a href="https://www.gamedeveloper.com/design/algorithms-for-an-infinite-universe" target="_blank">Algorithms for an Infinite Universe</a>
+                            </p>
+                        </div>
+                    </section>
+
+                    <section id="elite_new" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (5)</h1>
+                        <ul data-id="du">
+                            <li><span class="lime">1985</span>: <span class="pink">Elite Dangerous</span>, the latest version, used PCG to generate 1:1 replica of the Milk Way with more than <span class="red">400 billion</span> star systems.</li>
+                            <li>If we assume 1kb per star system (very optimistic), the full system will occupy <span class="cyan">more than 400 Terabytes without PCG</span>.</li>
+                        </ul>
+                        <img data-id="dm" class="r-stretch" src="img/elite_new.png" alt="Elite Dangerous: https://www.gamersdecide.com/sites/default/files/content-images/news/2016/09/05/elite-dangerous-review-it-worth-playing/wallpaper-04-1920x1080.jpg">
+                    </section>
+
+                    <section id="cd_emerge" data-auto-animate>
+                        <h1 data-id="dh">PCG in 1990's</h1>
+                        <ul data-id="du">
+                            <li>There's no too much <span class="lime">new</span> progress of PCG in 1990s <span class="question"></span></li>
+                            <dd class="fragment like-li-2">Games were released using <span class="red">CDs</span>, which enables the developers to store massive data by comparing to early 80s</dd>
                             <span class="fragment">
-                                <dd class="like-li-2">D is a binary classifier: real or fake</dd>
-                                <dd class="like-li-2"><span class="blue">Real data</span>: the training set; <span class="purple">Fake data</span>: from generator</dd>
-                                <dd class="like-li-2">2 networks <span class="orange">learn to compete</span> against each other at the same time!</dd>
+                                <li>PCG were still in use, but mainly for:</li>
+                                <dd class="like-li-2">Provide improved replayability of a game</dd>
+                                <dd class="like-li-2">Increase the amount of game contents in a way that is not possible to do manually</dd>
+                                <dd class="like-li-2">Automate the designing process of game assets (e.g. rocks, trees, foliage, etc.)</dd>
                             </span>
                         </ul>
                     </section>
 
-                    <!-- math letters unicode: https://www.wikiwand.com/en/Mathematical_Alphanumeric_Symbols#Latin_letters -->
-                    <section id="gan_loss" data-auto-animate>
-                        <h1 data-id="dh">Loss of GAN</h1>
+                    <section id="diablo" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (6)</h1>
                         <ul data-id="du">
-                            <li>Recall the Cross Entropy Loss Definition (<a href="https://pages.github.falmouth.ac.uk/Daniel-Zhang/UK_Teaching/Uni/Falmouth/COMP714/9_Neural_Nets.html#/cross_entropy" target="_blank">L9 - Neural Networks</a>) and <a href="#gan_network">GAN definition</a>:</li>
-                            <dd class="like-li-2">$\qquad \char"1d4db (\color{red}p \color{white},\color{lime}q\color{white}) = -[\color{red}p \color{white} \cdot log (\color{lime}q \color{white}) + (1-\color{red}p \color{white}) \cdot log (1- \color{lime}p \color{white})]$</dd>
-                            <span data-id="dm" class="smalltext">
-                                $$\begin{rcases}
-                                \boxed{Random \atop Noise \color{cyan}(z)} & \xRightarrow{\fcolorbox{red}{orange}{\color{black}Generator (G)}} & Fake \atop Data \color{skyblue}(G(z)) \\
-                                \boxed{Real \atop Dataset} & \xRightarrow{\>\>\>\> Load \>\>\>\>\>} & Real \atop Data \color{mediumspringgreen}(x)
-                                \end{rcases} \xRightarrow{\fcolorbox{red}{pink}{\color{black}Discriminator (D)}}
-
-                                \begin{cases}
-                                Fake \atop \color{magenta}D(G(z)) \\
-                                \\
-                                Real \atop \color{chartreuse}D(x)
-                                \end{cases}$$
-                            </span>
-                            <!-- Explanation:
-                            1. D(x) represents the probability that real data are correctly classified as real, D's success rate on real data
-                            2. log(1−D(G(z))) represents the probability that fake data are correctly classified as fake, D's success rate on fake data
-                            3. Loss_D = -E_p*log(D(x)) - E_z*log(1-D(G(z))) = -(E_p*log(D(x)) + E_z*log(1-D(G(z)))) according to cross entropy definition
-                            4. D wants the Loss_D to be minimised so (E_p*log(D(x)) + E_z*log(1-D(G(z)))) to be maximised, both parts are bigger should be better
-                            5. if G wants D to correctly classify fake data, the loss_G should be: - E_z*log(1-D(G(z)))
-                            6. but G actually wants D cannot correctly classify fake data, so (is reversed direction) Loss_G = E_z*log(1-D(G(z)))
-                            7. another way of thinking is that G and D are competitors, so G wants something different from D, so that if D wants to maximise (E_p*log(D(x)) - E_z*log(1-D(G(z)))) in step 4, then G wants to minimise (E_p*log(D(x)) + E_z*log(1-D(G(z))))
-                            7.1. but real data E_p has no impact on the generated fake data, so that E_p parts is 0 for Loss_G, then Loss_G = E_z*log(1-D(G(z)))
-                            8. remember that loss need to be minimised for all training process -->
-                            <li>Discriminator loss: <span class="mediumtext">$\char"1d4db_D = \color{lime}-[\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta} + \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)]$</span></li>
-                            <dd class="like-li-2">combines <span class="lime">D's output for real data</span> and <span class="purple">D's output for fake data</span></dd>
-                            <li>Generator loss (compete against D): <span class="mediumtext">$\char"1d4db_G = \color{red}-\char"1d4db_D = \color{magenta}\char"1d53c_{z \text{\textasciitilde} p_{z}} log\Big(1-D\big(G(z)\big)\Big) $</span><span class="question"></span></li>
-                            <dd class="like-li-2 fragment mediumtext">$\color{lime} \char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x)$ has no impact on G</dd>
+                            <li><span class="lime">1995</span>: <span class="pink">Diablo</span>, one of the first games to introduce PCG and rogue-like games into the modern era</li>
+                            <li><span class="blue">Random dungeon layouts</span></li>
+                            <li><span class="purple">New!</span> random item generation - never seen before in commercial video games</li>
+                            <li>RPG games started to use real-time PCG</li>
                         </ul>
+                        <img data-id="dm" class="r-stretch" src="img/diablo.png" alt="Diablo: https://th.bing.com/th/id/OIP.WFdO4nyOSFU9iDqfvx6eoQAAAA?rs=1&pid=ImgDetMain">
                     </section>
 
-                    <section id="gan_as_minmax_game" data-auto-animate>
-                        <h1 data-id="dh">GAN as A Minimax Game</h1>
+                    <section id="minecraft" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (7)</h1>
                         <ul data-id="du">
-                            <li>Discriminator loss: <span class="mediumtext">$\char"1d4db_D = \color{lime}-[\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta} + \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)]$</span></li>
-                            <li>Generator loss (compete against D): <span class="mediumtext">$\char"1d4db_G = \color{red}-\char"1d4db_D = \color{magenta}\char"1d53c_{z \text{\textasciitilde} p_{z}} log\Big(1-D\big(G(z)\big)\Big) $</span></li>
-                            <!-- 1. green part is D's success rate on real data
-                            2. purple part is D's success rate on fake data -->
-                            <li>Generator: try to fool the discriminator by generating real-looking data $\gets$ <span class="blue">minimising</span> D's success rate</li>
-                            <li>Discriminator: distinguish between real and fake data $\gets$ <span class="red">maximising</span> D's success rate</li>
-                            <li>This yields a <span class="cyan">minimax game</span> objective function: </li>
-                            <li class="mediumtext">$V(G,D) = \underset{G}{min}\> \underset{D}{max} [\color{lime}\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta}+ \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)\color{white}]$</li>
-                            <li>Nash equilibrium: $\frac{\partial \char"1d4db_D}{\partial D(x)}=0 \implies D^*(x) = \frac{p_{data}(x)}{p_{data}(x)+p_{generator}(x)} \\
-                                \qquad\qquad\qquad\qquad \implies \forall x,\> \color{lime} p_{data}(x) = \color{magenta} p_{generator}(x)$</li>
+                            <li><span class="lime">2000s</span>: commercial PCG tools started their businesses like <span class="pink">SpeedTree</span> and <span class="skyblue">Dwarf's Fortress Engine</span></li>
+                            <li><span class="orange">2009</span>: <span class="cyan">Minecraft</span> might be the root of modern hype for PCG</li>
+                            <li>PCG is now present in <span class="purple">almost every</span> non-FPS games</li>
                         </ul>
+                        <img data-id="dm" class="r-stretch" src="img/minecraft.png" alt="Minecraft: https://th.bing.com/th/id/OIP.gE2jADDu7pQ2aE5wEOHNYgHaEK?rs=1&pid=ImgDetMain">
                     </section>
 
-                    <section id="gan_dilemma" data-auto-animate>
-                        <h1 data-id="dh">GAN Dilemma</h1>
+                    <section id="no_man_sky" data-auto-animate>
+                        <h1 data-id="dh">History of PCG in Games (8)</h1>
                         <ul data-id="du">
-                            <li>As a minimax game:</li>
-                            <dd class="like-li-2">What if the <span class="pink">discriminator behaves badly</span> <span class="question"></span></dd>
-                            <dd class="like-li-3 fragment">the <span class="lime">generator cannot get accurate feedback</span> and the loss cannot represent the reality</dd>
-                            <dd class="like-li-2">What if the <span class="cyan">discriminator does a good job</span> <span class="question"></span></dd>
-                            <dd class="like-li-3 fragment">the gradient of of loss function <span class="blue">drops down to close to zero</span> and learning becomes <span class="orange">super slow or even jammed</span> - gradient vanishing problem</dd>
+                            <li>PCG plays a more and more important role in modern game creations</li>
+                            <li>e.g. <span class="italic">No Man's Sky</span> (left) and <span class="italic">Civilization VI</span> (right)</li>
+                            <br><br><br><br><br><br><br><br><br>
                         </ul>
+                        <img data-id="dm" class="box-bottom-left img-width-500 img-height-350" src="img/nomansky.png" alt="No Man's Sky: https://cdn.vox-cdn.com/thumbor/yCdsS43JqLWBlU7cSk07str_rjY=/0x0:1920x1080/1120x0/filters:focal(0x0:1920x1080):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/25045956/ss_3a346ebce3327c450dae1a15d24a34bab4c84a72.1920x1080.jpg">
+                        <img data-id="dm2" class="box-bottom-right img-width-500 img-height-350" src="img/civilization.png" alt="Civilization VI: https://vulcan.dl.playstation.net/ap/rnd/202107/1223/9dEEJtBKMAIihQ1VoLJVOnZn.jpg">
                     </section>
                 </section>
 
-                <section id="chap_practice">
-                    <section id="gan_pitfall" data-auto-animate>
-                        <h1 data-id="dh">GAN in Practice</h1>
-                        <img src="img/new_gloss.png" alt="GAN loss: https://arxiv.org/pdf/1701.00160.pdf" class="box-top-right" style="width: 450px; height:350px;">
+                <section id="chap_techniques">
+                    <section id="title_techniques">
+                        <h1 class="r-frame-text">PCG Techniques</h1>
+                    </section>
+
+                    <section id="techniques">
+                        <h1>PCG Techniques</h1>
+                        <p class="text-left">PCG are widely used for generation levels and contents in games</p>
+                        <ul>
+                            <li>Binary space partitioning $\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\quad$</li>
+                            <li>Random walks</li>
+                            <li>Cellular automata</li>
+                            <li>Noise-based methods</li>
+                            <li>Grid-based methods</li>
+                        </ul>
+                        <div class="text-left">
+                            <p class="like-li">Most of these will have some examples and links for exploration</p>
+                            <p class="like-li">This is not an exhaustive list, there are much more to research</p>
+                            <p class="like-li"><span class="warning"></span> Some of them are a little bit intensive!</p>
+                        </div>
+                    </section>
+
+                    <section id="bsp" data-auto-animate>
+                        <h1 data-id="dh">Binary Space Partitioning</h1>
+                        <img data-id="dm" src="img/bsp.png" alt="BSP: https://www.cs.purdue.edu/homes/cs53100/slides/bsp.pdf" class="box-top-right">
                         <ul data-id="du">
-                            <li>Discriminator: <br>
-                                <span class="mediumtext">$\underset{D}{max}\> \color{lime} [\char"1d53c_{x \text{\textasciitilde} p_{data}}logD(x) \color{magenta} + \char"1d53c_{z \text{\textasciitilde} p_{z}}log\Big(1-D\big(G(z)\big)\Big)]$</span>
-                            </li>
-                            <li>Generator: <span class="mediumtext">$\underset{G}{min}\> \color{magenta}\char"1d53c_{z \text{\textasciitilde} p_{z}} log\Big(1-D\big(G(z)\big)\Big) $</span></li>
-                            <li>In practice, directly optimise this<br>
-                                generator objective does't work well</li>
-                            <li>Use a different objective function for generator</li>
-                            <!-- 1. D(x) means success rate to classify x as real -->
-
-                            <li>Heuristic objective: $\underset{G}{max}\> \color{skyblue}\char"1d53c_{z \text{\textasciitilde} p_{z}} log D\big(G(z)\big) $</li>
-                            <li><span class="idea">The idea</span>: instead of <span class="purple">minimising</span> the likelihood of discriminator <span class="purple">being correct</span>, now <span class="lime">maximising</span> the likelihood of discriminator <span class="lime">being wrong</span></li>
-                            <li>Not theoretical but heuristic solution $\to$ doesn't change the "objective" of <span class="pink">fooling discriminator</span></li>
+                            <li>Divides a space into smaller regions by a partitioning plane <br>
+                                recursively</li>
+                            <li>The choice of splitting planes greatly impacts the efficiency <br>
+                                of the tree</li>
+                            <li>Enables efficient spatial queries like point containment, ray tracing, and collision detection</li>
+                            <li>Demos</li>
+                            <dd class="like-li-2"><a href="https://iq.opengenus.org/binary-space-partitioning/" target="_blank">Binary Space Partitioning Trees</a></dd>
+                            <dd class="like-li-2"><a href="https://www.devx.com/terms/binary-space-partitioning/" target="_blank">Binary Space Partitioning</a></dd>
+                            <dd class="like-li-2"><a href="https://commons.apache.org/proper/commons-geometry/tutorials/bsp-tree.html" target="_blank">Binary Space Partitioning Tree Tutorial</a></dd>
+                            <dd class="like-li-2"><a href="https://www.cs.purdue.edu/homes/cs53100/slides/bsp.pdf" target="_blank">Binary Space Partitions Lecture</a></dd>
+                            <dd class="like-li-2"><a href="https://gamedevelopment.tutsplus.com/how-to-use-bsp-trees-to-generate-game-maps--gamedev-12268t" target="_blank">How to Use BSP Trees to Generate Game Maps</a></dd>
                         </ul>
                     </section>
 
-                    <section id="the_algorithm">
-                        <h1>GAN Training Algorithm</h1>
-                        <pre><code class="pascal" data-line-numbers="|2-6|7-8">for number of training iterations do 
-    for k steps do ('someone find k=1 is more stable while others use k>1')
-        sample mini-batch of m noise samples {z1,z2,...,zm} from noise p_g(z)
-        sample mini-batch of m examples {x1,x2,...,xm} from real data p_d(x)
-        update the discriminator by ascending the stochastic gradient of 'V(G,D)'
-    end for 
-    sample mini-batch of m noise samples {z1,z2,...,zm} from noise p_g(z)
-    update the generator by ascending the stochastic gradient of heuristic objective
-end for</code></pre>
-                        <ul>
-                            <li>Train discriminator for some steps, then generator</li>
-                            <li>Stop training at some points</li>
-                            <li>The generator is ready to produce "real-like" data</li>
+                    <section id="cellular_automata" data-auto-animate>
+                        <h1 data-id="dh">Cellular Automata</h1>
+                        <img data-id="dm" src="img/automata.webp" alt="Cave: https://i0.wp.com/jeremykun.com/wp-content/uploads/2012/07/caveexample.gif" class="box-top-right" class="box-top-right">
+                        <ul data-id="du">
+                            <li>States set (usually 2 or more)</li>
+                            <li>Have a rule defined, e.g. If at least 4 of the neighbours $\qquad\qquad\qquad\qquad\>$<br>
+                                are alive, cell stays alive, otherwise dead</li>
+                            <li>Used for cave/natural-like environments</li>
+                            <br>
+                            <!-- https://blog.jrheard.com/procedural-dungeon-generation-cellular-automata -->
+                            <li>Demos</li>
+                            <dd class="like-li-2"><a href="https://jeremykun.com/2012/07/29/the-cellular-automaton-method-for-cave-generation/" target="_blank">The Cellular Automaton Method for Cave Generation</a></dd>
+                            <dd class="like-li-2"><a href="https://www.gridsagegames.com/blog/2014/06/mapgen-cellular-automata/" target="_blank">Mapgen: Cellular Automata</a></dd>
+                            <dd class="like-li-2"><a href="https://www.roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels" target="_blank">Cellular Automata Method for Generating Random Cave-Like Levels</a></dd>
                         </ul>
                     </section>
 
-                    <section id="hard_train">
-                        <h1>GAN is Hard to Train</h1>
-                        <ul>
-                            <li>Mode collapse: generator keeps generating similar data - so nothing to learn</li>
-                            <li>Vanishing/Exploding gradients from discriminator to generator</li>
-                            <li>Two learning models need to have balance to achieve stability</li>
-                            <li>Maintain trade-off of generating <span class="lime">more accurate</span> vs <span class="pink">high coverage</span> sample</li>
-                            <li>GANs do not naturally have a metric for convergence</li>
-                            <li>Ideally, all losses go to $\approx 0.69 = -log \frac{1}{2}$ <span class="info"></span></li>
-                            <span class="fragment">$$\begin{align*}
-                                \char"1d4db (\color{red}p \color{white},\color{lime}q\color{white}) &= -[\color{red}p \color{white} \cdot log (\color{lime}q \color{white}) + (1-\color{red}p \color{white}) \cdot log (1- \color{lime}p \color{white})] \\
-                                &= -(\frac{1}{2} log \frac{1}{2} + \frac{1}{2} log \frac{1}{2}) \\
-                                &= -log \frac{1}{2} \approx 0.69
-                                \end{align*}$$</span>
+                    <section id="cellular_pseudocode" data-auto-animate>
+                        <h1 data-id="dh">Cellular Automata Pseudocode Example</h1>
+                        <pre data-id="du"><code class="javascript" data-line-numbers>function cellularLogic(r,c,clean) {
+    var numWalls = countAround(r,c,1,1);
+    var numWalls2 = countAround(r,c,2,2);
+    if (isWall(r,c)) {
+        if (numWalls >= 3) {return 1; } return 0; 
+    } else {
+        if (!clean) { if (numWalls >=5 || numWalls2 <=2) {return 1;} }
+        else { if (numWalls >= 5) {return 1;}}
+    }
+    return 0;
+}</code></pre>
+                    </section>
+
+                    <section id="grid_based" data-auto-animate>
+                        <h1 data-id="dh">Grid-based Methods</h1>
+                        <img data-id="dm" src="img/spelunky.png" alt="Spelunky: https://tinysubversions.com/spelunkyGen/" class="box-top-right">
+                        <ul data-id="du">
+                            <li>Split the map into blocks</li>
+                            <li>Pick (or generate) a template for each block$\qquad\qquad\qquad\qquad\qquad\qquad$</li>
+                            <li>Place template on grid</li>
+                            <br>
+                            <li>Demos</li>
+                            <dd class="like-li-2"><a href="https://tinysubversions.com/spelunkyGen/" target="_blank">Spelunky Generator Lessons (1)</a><span class="warning"></span></dd>
+                            <dd class="like-li-2"><a href="https://tinysubversions.com/spelunkyGen2/" target="_blank">Spelunky Generator Lessons (2)</a><span class="warning"></span></dd>
+                            <dd class="like-li-2"><a href="https://www.alanzucconi.com/2022/06/05/minecraft-world-generation/" target="_blank">The World Generation of Minecraft</a></dd>
                         </ul>
                     </section>
 
-                    <section id="cgan">
-                        <h1>Conditional GAN (CGAN)</h1>
-                        <img src="img/cgan.png" alt="CGAN: https://www.researchgate.net/publication/345979594/figure/fig1/AS:1007422965571584@1617199760152/The-architecture-of-CGAN_W640.jpg">
+                    <section id="noise_based" data-auto-animate>
+                        <h1 data-id="dh">Noise-based Methods</h1>
+                        <img data-id="dm" src="img/minecraft.png" alt="Minecraft: https://th.bing.com/th/id/OIP.gE2jADDu7pQ2aE5wEOHNYgHaEK?rs=1&pid=ImgDetMain" class="box-top-right">
+                        <ul data-id="du">
+                            <li>Generate noise (usually gradient noise)</li>
+                            <li>Interpret noise as values</li>
+                            <li>Place template on grid</li>
+                            <br>
+                            <li>Demos</li>
+                            <dd class="like-li-2"><a href="https://www.alphr.com/how-minecraft-generates-worlds/" target="_blank">How Minecraft Generates Worlds</a></dd>
+                            <dd class="like-li-2"><a href="https://medium.com/mlearning-ai/how-exactly-does-minecraft-world-generation-work-e50c07693c9a" target="_blank">How Exactly Does Minecraft World Generation Work?</a></dd>
+                            <dd class="like-li-2"><a href="https://www.alanzucconi.com/2022/06/05/minecraft-world-generation/" target="_blank">The World Generation of Minecraft</a></dd>
+                        </ul>
+                    </section>
+
+                    <section id="maze" data-auto-animate>
+                        <h1 data-id="dh">Maze/Dungeon Generation</h1>
+                        <div data-id="dm" class="box-top-right">
+                            <img src="img/maze.png" alt="Maze: https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Prim_Maze.svg/1200px-Prim_Maze.svg.png"><br>
+                            <img src="img/dungeon.png" alt="Dungeon: https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg">
+                        </div>
+
+                        <ul data-id="du">
+                            <li>Mazes and dungeons are typical scenarios of the eldest <br>
+                                form of PCG</li>
+                            <li>Am important characteristic of game play</li>
+                            <li>Has been studies in mathematics for several decades $\qquad\qquad\qquad\qquad$</li>
+                            <li>There are lots of algorithms around this topic:</li>
+                            <span class="blue">
+                                <dd class="like-li-2">Prim's Algorithm</dd>
+                                <dd class="like-li-2">Random Traversal</dd>
+                                <dd class="like-li-2">Randomised Depth-First</dd>
+                                <dd class="like-li-2">WIlson's Algorithm</dd>
+                                <dd class="like-li-2">Voronoi-Delaunay Triangulation</dd>
+                            </span>
+                        </ul>
+                    </section>
+
+                    <section id="lsystem" data-auto-animate>
+                        <h1 data-id="dh">L-System</h1>
+                        <img data-id="dm" src="img/lsystem.png" alt="Maze: https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Prim_Maze.svg/1200px-Prim_Maze.svg.png" class="box-top-right img-widht-200">
+                        <ul data-id="du">
+                            <li>An L-system (Lindenmayer system) is <q class="lime">a parallel <br>
+                                    rewriting system and a type of formal grammar</q></li>
+                            <li>L-systems are based on rewriting rules and string<br>
+                                manipulation</li>
+                            <li>Commonly used to generate fractal patterns, $\qquad\qquad\qquad\qquad\qquad\quad$<br>
+                                plants, and now buildings and cities</li>
+                            <li>Parametric L-systems use variables to control the <br>
+                                behavior of productions</li>
+                            <dd class="like-li-2"><a href="https://www.wikiwand.com/en/L-system" target="_blank">L-System</a></dd>
+                            <dd class="like-li-2"><a href="https://morphocode.com/intro-to-l-systems/" target="_blank">Intro to L-System</a></dd>
+                            <dd class="like-li-2"><a href="http://algorithmicbotany.org/papers/abop/abop.pdf" target="_blank">The Beauty of Plants</a></dd>
+                            <dd class="like-li-2"><a href="https://www2.cs.arizona.edu/patterns/weaving/webdocs.html" target="_blank">Designing with L-System Series Papers</a></dd>
+                        </ul>
+                    </section>
+
+                    <section id="lsystem-example" data-auto-animate>
+                        <h1 data-id="dh">L-System</h1>
+                        <img data-id="dm" src="img/lsystem.png" alt="L-System: https://www.michael-hansmeyer.com/images/l-systems/l-system-7-l.webp" class="box-top-right">
+                        <pre style="position: relative; left: -15%; width: 60%;"><code class="pascal">seed: A 
+rules:
+    rule #1: A <- AB 
+    rule #2: B <- A
+
+t = 0: A 
+t = 1: AB (rule #1)
+t = 2: ABBA (rule #1 and rule #2)   
+t = 3: ABBABAAB 
+t = 4: ABBABAABBAABABBA
+...</code></pre>
+                    </section>
+
+                    <section id="diamond_square_algorithm" data-auto-animate>
+                        <h1 data-id="dh">Diamond-Square Algorithm</h1>
+                        <img data-id="dm" src="img/diamond.png" alt="Diamond Square Algorithm: https://www.philipp-janert.com/blog/2022/the-diamond-square-algorithm-for-terrain-generation/terrain.pngg" class="box-top-right">
+                        <ul data-id="du">
+                            <li>A type of <span class="brown">midpoint displacement algorithm</span></li>
+                            <li>Assign a height value to each corner of the rectangle, then <br>
+                                divide it into 4 sub-rectangles, and let their heights to be the $\qquad\qquad\qquad$<br>
+                                mean of all corners</li>
+                            <li>Add a small error to the middle height depending on the size <br>
+                                of the area (roughness)</li>
+                            <li>Iterate and subdivide each rectangle into smaller ones until <br>
+                                no noticeable differences were found, then stop and render</li>
+                            <dd class="like-li-2"><a href="https://www.philipp-janert.com/blog/2022/the-diamond-square-algorithm-for-terrain-generation/" target="_blank">Diamond-Square Algorithm</a></dd>
+                            <dd class="like-li-2"><a href="https://medium.com/@nickobrien/diamond-square-algorithm-explanation-and-c-implementation-5efa891e486f" target="_blank">Diamond-Square Algorithm Explanation and C++ Implementation</a></dd>
+                            <dd class="like-li-2"><a href="https://learn.64bitdragon.com/articles/computer-science/procedural-generation/the-diamond-square-algorithm" target="_blank">The Diamond Square Algorithm</a></dd>
+                            <dd class="like-li-2"><a href="https://jmecom.github.io/blog/2015/diamond-square/" target="_blank">Procedural Terrain Generation: Diamond-Square</a></dd>
+                        </ul>
+                    </section>
+
+                    <section id="more_algorithms">
+                        <h1>More Algorithms on Level Generation</h1>
                         <ul>
-                            <li>It's still a <span class="lime">GAN</span></li>
-                            <li>Use the <span class="pink">real label as an extra input</span> to generator</li>
-                            <li>Trained generator can produce real-like data according to the label </li>
-                            <li><span class="purple">Multi-class</span> discriminator can be used</li>
-                            <li>* Others like ACGAN, DCGAN, InfoGAN, etc.</li>
+                            <li>There are many other algorithms exists for level generation:</li>
+                            <dd class="like-li-2"><a href="https://www.freecodecamp.org/news/context-free-grammar/" target="_blank">Context-free grammars</a> (<a href="http://infolab.stanford.edu/%7Eullman/ialc/spr10/slides/cfl1.pdf" target="_blank">Stanford Lecture Slides</a> )</dd>
+                            <dd class="like-li-2"><a href="https://towardsdatascience.com/game-level-design-with-reinforcement-learning-fa6eb585eb4e" target="_blank">Reinforcement learning</a>(<a href="https://arxiv.org/abs/2001.09212" target="_blank">Paper</a>)</dd>
+                            <dd class="like-li-2"><a href="Genetic algorithm" target="_blank">Genetic algorithm</a> (<a href="https://www.mdpi.com/2076-3417/12/2/772" target="_blank">Paper</a>)</dd>
+                            <li><span class="warning"></span>The player doesn't care about too much details about your fancy PCG algorithm generated contents</li>
+                            <dd class="like-li-2">e.g. you can generated billions of trees, weapons, rooms, who care about the leaf is 10 pixels or 15 pixels?</dd>
+                            <li>PCG is not a substitute for game-play</li>
+                            <li>Adding PCG to your game won't automatically make it good</li>
+                        </ul>
+                    </section>
+
+                    <section id="pcg_challenges">
+                        <h1>Challenges of PCG</h1>
+                        <ul>
+                            <li>Satisfies a high number of constraints (e.g. full connectivity)</li>
+                            <dd class="like-li-2">finding these constraints and tweaking unintuitive parameters of the system can degenerate into trail and error approach</dd>
+                            <li>Produces aesthetically pleasing results</li>
+                            <dd class="likeli-2">levels can become too similar to each other</dd>
+                            <li>Maximise the expressive range (variety of the results)</li>
+                            <dd class="like-li-2">can decrease co-op multiplayer playability</dd>
+                            <li>May require spending too much time on inventing a "fancy" level generator</li>
                         </ul>
                     </section>
                 </section>
 
                 <section id="chap_summary">
-                    <section id="summary">
-                        <h1>Summary</h1>
+                    <section id="further_reading">
+                        <h1>PCG: The Book</h1>
+                        <img src="img/pcg_book.png" alt="PCG Book: https://www.pcgbook.com/" class="box-top-right img-height-500 img-width-400">
                         <ul>
-                            <li>GAN is an active area of research</li>
-                            <li>GAN architecture is flexible to support variety of learning problems</li>
-                            <li>GAN does not guarantee to converge</li>
-                            <li>Needs a lot of work in theoretic foundation of network</li>
-                            <li>Evaluation of GAN is still an open research</li>
-                            <!-- <li><a href="https://www.pcgbook.com/" target="_blank">Free PCG Book</a></li> -->
+                            <br>
+                            <li>Procedural Content Generation in Games:<br>
+                                <span class="italic">A Textbox and Overview of Current Research</span>
+                            </li>
+                            <li>by Noor Shaker, Julian Togelius, and Mark Nelson $\qquad\qquad\qquad\qquad\qquad$</li>
+                            <li>Published by Springer (2016)</li>
+                            <li>A legal online version is available</li>
+                            <dd class="like-li-2"><a href="https://www.pcgbook.com/" target="_blank">The PCG Book</a></dd>
                         </ul>
                     </section>
 
