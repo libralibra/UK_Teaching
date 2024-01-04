@@ -167,7 +167,7 @@ function A_Star(start, goal, h)
 # The Repository
 [Top](#top)
 
-This repository contains the materials for COMP712 - Pathfinding (1) workshop.
+This repository contains the materials for COMP712 - Pathfinding (2) workshop.
 
 > **[https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Pathfinding-2.git](https://github.falmouth.ac.uk/Daniel-Zhang/COMP712-Pathfinding-2.git)**
 
