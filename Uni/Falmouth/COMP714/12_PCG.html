@@ -394,20 +394,28 @@ t = 4: ABBABAABBAABABBA
 
                     <section id="diamond_square_algorithm" data-auto-animate>
                         <h1 data-id="dh">Diamond-Square Algorithm</h1>
-                        <img data-id="dm" src="img/diamond.png" alt="Diamond Square Algorithm: https://www.philipp-janert.com/blog/2022/the-diamond-square-algorithm-for-terrain-generation/terrain.pngg" class="box-top-right">
                         <ul data-id="du">
                             <li>A type of <span class="brown">midpoint displacement algorithm</span></li>
-                            <li>Assign a height value to each corner of the rectangle, then <br>
-                                divide it into 4 sub-rectangles, and let their heights to be the $\qquad\qquad\qquad$<br>
-                                mean of all corners</li>
-                            <li>Add a small error to the middle height depending on the size <br>
+                            <li>First introduced by Fournier, Fussell and Carpenter at SIGGRAPH in 1982</li>
+                            <li>Has two steps: the <span class="red">diamond step</span> and the <span class="cyan">square step</span> </li>
+                            <dd class="like-li-2"><span class="red">The diamond step</span>: For each square in the array, set the midpoint of that square to be the average of the four corner points plus a random value</dd>
+                            <dd class="like-li-2"><span class="cyan">The square step</span>: For each diamond in the array, set the midpoint of that diamond to be the average of the four corner points plus a random value</dd>
+                        </ul>
+                        <img data-id="dm" src="img/diamond_square.png" alt="Diamond-Square Algorithm: https://upload.wikimedia.org/wikipedia/commons/b/bf/Diamond_Square.svg" class="r-stretch">
+                    </section>
+
+                    <section id="diamond_square_algorithm_2" data-auto-animate>
+                        <h1 data-id="dh">Diamond-Square Algorithm (2)</h1>
+                        <img data-id="dm" src="img/diamond.png" alt="Diamond Square Algorithm: https://www.philipp-janert.com/blog/2022/the-diamond-square-algorithm-for-terrain-generation/terrain.pngg" class="box-top-right">
+                        <ul data-id="du">
+                            <li>The small error to the middle height depending on the size <br>
                                 of the area (roughness)</li>
                             <li>Iterate and subdivide each rectangle into smaller ones until <br>
                                 no noticeable differences were found, then stop and render</li>
                             <dd class="like-li-2"><a href="https://www.philipp-janert.com/blog/2022/the-diamond-square-algorithm-for-terrain-generation/" target="_blank">Diamond-Square Algorithm</a></dd>
-                            <dd class="like-li-2"><a href="https://medium.com/@nickobrien/diamond-square-algorithm-explanation-and-c-implementation-5efa891e486f" target="_blank">Diamond-Square Algorithm Explanation and C++ Implementation</a></dd>
                             <dd class="like-li-2"><a href="https://learn.64bitdragon.com/articles/computer-science/procedural-generation/the-diamond-square-algorithm" target="_blank">The Diamond Square Algorithm</a></dd>
                             <dd class="like-li-2"><a href="https://jmecom.github.io/blog/2015/diamond-square/" target="_blank">Procedural Terrain Generation: Diamond-Square</a></dd>
+                            <dd class="like-li-2"><a href="https://medium.com/@nickobrien/diamond-square-algorithm-explanation-and-c-implementation-5efa891e486f" target="_blank">Diamond-Square Algorithm Explanation and C++ Implementation</a>$\qquad\quad\>$</dd>
                         </ul>
                     </section>
 
