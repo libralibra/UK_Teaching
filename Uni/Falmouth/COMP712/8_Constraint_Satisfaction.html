@@ -168,7 +168,7 @@
 
                     <section id="backtracking_pseudocode">
                         <h1>Backtracking Pseudocode</h1>
-                        <pre><code class="r-stretch vb smalltext" data-line-numbers>Procedure SolveBacktracking(cell)
+                        <pre><code class="r-stretch vb" data-line-numbers>Procedure SolveBacktracking(cell)
     For n = 1,...,9
         If cell can have value n
             Set value of cell to n 
@@ -227,7 +227,7 @@ End Procedure</code></pre>
 
                     <section id="sudoku_constraint_propagation">
                         <h1>Constraint Propagation Pseudocode</h1>
-                        <pre><code class="r-stretch vb smalltext" data-line-numbers>Procedure SolveConstraintPropagation()
+                        <pre><code class="r-stretch vb" data-line-numbers>Procedure SolveConstraintPropagation()
     Repeat
         For each empty cell
             Determine the list of possible numbers that could go in the cell
@@ -285,7 +285,7 @@ End Procedure</code></pre>
                             <div class="col-50">
                                 <ul>
                                     <li>What to do if we were stuck using CSP?</li>
-                                    <li class="fragment">What will you do if you are solving this problem?
+                                    <li>What will you do if you are solving this problem?
                                         <dd class="fragment">- Human has more complicated logics to inference<br>
                                             - E.g. cell (3,2) in sub-grid (2,3) has to be 7. Similarly, cell (2,2) in the centre grid has to be 5...</dd>
                                     </li>
@@ -397,7 +397,7 @@ End Procedure</code></pre>
                         <h1>Constraint Propagation + Backtracking</h1>
                         <div class="row">
                             <div class="col-50">
-                                <pre class="img-height-450 r-stretch"><code class="vb smalltext" data-line-numbers>Procedure SolveConstraintPropagation()
+                                <pre class="img-height-450 r-stretch"><code class="vb" data-line-numbers>Procedure SolveConstraintPropagation()
     Repeat
         For each empty cell
             Determine the list of possible numbers
@@ -410,7 +410,7 @@ End Procedure</code></pre>
 End Procedure</code></pre>
                             </div>
                             <div class="col-50">
-                                <pre class="img-height-450 r-stretch"><code class="vb smalltext" data-line-numbers>Procedure SolveBacktracking(cell)
+                                <pre class="img-height-450 r-stretch"><code class="vb" data-line-numbers>Procedure SolveBacktracking(cell)
     For n = 1, … , 9
         If cell can have value n
             Save the state of the board
