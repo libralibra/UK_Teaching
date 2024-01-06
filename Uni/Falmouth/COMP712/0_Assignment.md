@@ -22,7 +22,7 @@ v 0.1 (2023-2024)
   - [Assignment Guidelines](#assignment-guidelines)
     - [Submission Structure](#submission-structure)
   - [Project Implementation Guidelines](#project-implementation-guidelines)
-  - [Marking Rubic](#marking-rubic)
+  - [Marking Rubric](#marking-rubric)
   - [FAQ](#faq)
 
 
@@ -129,7 +129,7 @@ This programming task does not come with a predefined GitHub repository. You are
 
 >**Note**: Please refer to the marking rubric for more detailed information regarding the criteria.
 
-## Marking Rubic
+## Marking Rubric
 <a href="#top">Top</a>
 
 | Criteria               	| Weight 	| Near Pass                                                                                                                                                                                                                  	| Pass                                                                                                                                                                                                          	| Merit                                                                                                                                                                                                                                                               	| Distinction                                                                                                                                                                                                                                                                                                            	|
